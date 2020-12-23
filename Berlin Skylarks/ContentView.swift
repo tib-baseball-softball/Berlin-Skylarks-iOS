@@ -23,7 +23,7 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
-            Text("NEWS")
+            NewsView()
                 .tabItem {
                     Image(systemName: "newspaper.fill")
                     Text("News")
@@ -48,7 +48,7 @@ struct ContentView: View {
                     Image(systemName: "info.circle.fill")
                     Text("Info")
                 }
-        }
+        }.background(Color.secondary) //unsure if this works at all
     }
 }
 
@@ -57,7 +57,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView().padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            ContentView().preferredColorScheme(.dark).padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
     }
 }
