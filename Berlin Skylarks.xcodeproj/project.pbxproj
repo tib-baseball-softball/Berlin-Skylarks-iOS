@@ -14,6 +14,7 @@
 		CABF7BF8259351D500B95813 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BF7259351D500B95813 /* Persistence.swift */; };
 		CABF7BFB259351D500B95813 /* Berlin_Skylarks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BF9259351D500B95813 /* Berlin_Skylarks.xcdatamodeld */; };
 		CABF7C04259355A200B95813 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CABF7C03259355A200B95813 /* README.md */; };
+		CABF7C0B2593627900B95813 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7C0A2593627900B95813 /* NewsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +27,7 @@
 		CABF7BFA259351D500B95813 /* Berlin_Skylarks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Berlin_Skylarks.xcdatamodel; sourceTree = "<group>"; };
 		CABF7BFC259351D500B95813 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CABF7C03259355A200B95813 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CABF7C0A2593627900B95813 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 			children = (
 				CABF7BEE259351D400B95813 /* Berlin_SkylarksApp.swift */,
 				CABF7BF0259351D400B95813 /* ContentView.swift */,
+				CABF7C0A2593627900B95813 /* NewsView.swift */,
 				CABF7BF2259351D500B95813 /* Assets.xcassets */,
 				CABF7BF7259351D500B95813 /* Persistence.swift */,
 				CABF7BFC259351D500B95813 /* Info.plist */,
@@ -151,6 +154,7 @@
 				CABF7BF8259351D500B95813 /* Persistence.swift in Sources */,
 				CABF7BF1259351D400B95813 /* ContentView.swift in Sources */,
 				CABF7BEF259351D400B95813 /* Berlin_SkylarksApp.swift in Sources */,
+				CABF7C0B2593627900B95813 /* NewsView.swift in Sources */,
 				CABF7BFB259351D500B95813 /* Berlin_Skylarks.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -1,4 +1,4 @@
-# Berlin-Skylarks
+# Berlin Skylarks
 iOS App for the Berlin Skylarks Baseball &amp; Softball Club, built in Swift.
 
 Intended Features:
@@ -7,7 +7,7 @@ Intended Features:
 
 -Display news from tib-baseball.de
 
--Display schedule via BSM API
+-Display standings via BSM API
 
 -to be expanded...
 
