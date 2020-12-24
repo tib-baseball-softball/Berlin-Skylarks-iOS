@@ -8,9 +8,9 @@
 import SwiftUI
 
 
-let ItemBackgroundColor = Color(UIColor.tertiarySystemBackground)
-let PageBackgroundColor = Color(UIColor.secondarySystemBackground)
-let NewsItemSpacing = 10 // not used yet
+let ItemBackgroundColor = Color(UIColor.tertiarySystemFill)
+//let PageBackgroundColor = Color(UIColor.secondarySystemBackground) //using standard backgrounds for now
+let NewsItemSpacing: Int = 10 // not used yet
 
 struct NewsView: View {
     var body: some View {
@@ -93,7 +93,7 @@ struct NewsView: View {
             
         }
     }
-  //  .background(PageBackgroundColor) //throws error
+  
 }
 
 
@@ -102,7 +102,8 @@ struct NewsView: View {
 struct NewsView_Previews: PreviewProvider {
     static var previews: some View {
         NewsView()
-            .preferredColorScheme(.dark)
+            .preferredColorScheme(.light)
+            
             
             }
 }

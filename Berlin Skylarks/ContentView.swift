@@ -21,6 +21,7 @@ struct ContentView: View {
 
     //this creates the tab bar at the bottom
     
+    
     var body: some View {
         TabView {
             NewsView()
@@ -30,7 +31,7 @@ struct ContentView: View {
                 }
             Text("SCORES")
                 .tabItem {
-                    Image(systemName: "42.square.fill") //or circle
+                    Image(systemName: "42.circle.fill")
                     Text("Scores")
                 }
             Text("STANDINGS") //these are placeholders to put the real views into
@@ -48,7 +49,7 @@ struct ContentView: View {
                     Image(systemName: "info.circle.fill")
                     Text("Info")
                 }
-        }.background(Color.secondary) //unsure if this works at all
+        }
     }
 }
 
@@ -59,5 +60,6 @@ struct ContentView_Previews: PreviewProvider {
         Group {
             ContentView().preferredColorScheme(.dark).padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
+        .preferredColorScheme(.light)
     }
 }
