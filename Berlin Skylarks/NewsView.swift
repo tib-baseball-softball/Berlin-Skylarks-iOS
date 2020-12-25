@@ -16,12 +16,6 @@ let NewsItemPadding: CGFloat = 15
 
 //right now all news items lead to the same page
 
-struct NewsDetailView: View {
-    var body: some View {
-        Text("placeholder")
-    }
-}
-
 struct NewsView: View {
     var body: some View {
         NavigationView {
