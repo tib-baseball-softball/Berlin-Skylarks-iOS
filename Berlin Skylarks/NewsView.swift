@@ -14,88 +14,91 @@ let NewsItemSpacing: CGFloat = 10
 let NewsItemCornerRadius: CGFloat = 20.0
 let NewsItemPadding: CGFloat = 15
 
+//right now all news items lead to the same page
+
+struct NewsDetailView: View {
+    var body: some View {
+        Text("placeholder")
+    }
+}
+
 struct NewsView: View {
     var body: some View {
-
-        VStack {
-            HStack {
-                Text("News")
-                    .frame(alignment: .leading)
-                    .font(.largeTitle)
-                    .padding(15)
-                Spacer()
-            }
+        NavigationView {
             ScrollView {
-                
-                
                 VStack(
-                    
                     spacing: 15
-                    
                 ) {
-                    
-                    VStack(
-                        alignment: .leading,
-                        spacing: NewsItemSpacing
-                    ) {
-                        Image("dummy_field")
-                            .resizable()
-                            .scaledToFit()
-                        Text("Spielbericht")
-                            .font(.title3)
-                            .padding(10)
-                        Text("Skylarks gewinnen durch Homerun im 9. Inning nach heroischer Performance")
-                            .font(.headline)
-                            .lineLimit(nil)
-                            .padding(10)
+                    NavigationLink(
+                        destination: NewsDetailView()) {
+                            VStack(
+                                alignment: .leading,
+                                spacing: NewsItemSpacing
+                            ) {
+                                Image("dummy_field")
+                                    .resizable()
+                                    .scaledToFit()
+                                Text("Spielbericht")
+                                    .font(.title3)
+                                    .padding(10)
+                                Text("Skylarks gewinnen durch Homerun im 9. Inning nach heroischer Performance")
+                                    .font(.headline)
+                                    .lineLimit(nil)
+                                    .padding(10)
+                            }
+                            .background(ItemBackgroundColor)
+                            .cornerRadius(NewsItemCornerRadius)
+                            .padding(NewsItemPadding)
+                            .foregroundColor(.primary)
                     }
-                    .background(ItemBackgroundColor)
-                    .cornerRadius(NewsItemCornerRadius)
-                    .padding(NewsItemPadding)
-                    
-                    VStack(
-                        alignment: .leading,
-                        spacing: NewsItemSpacing
-                    ) {
-                        Image("dummy_kids")
-                            .resizable()
-                            .scaledToFit()
-                        Text("Eventbericht")
-                            .font(.title3)
-                            .padding(10)
-                        Text("Kinder hatten ganz viel Spaß")
-                            .font(.headline)
-                            .lineLimit(nil)
-                            .padding(10)
+                    NavigationLink(
+                        destination: NewsDetailView()) {
+                            VStack(
+                                alignment: .leading,
+                                spacing: NewsItemSpacing
+                            ) {
+                                Image("dummy_kids")
+                                    .resizable()
+                                    .scaledToFit()
+                                Text("Eventbericht")
+                                    .font(.title3)
+                                    .padding(10)
+                                Text("Kinder hatten ganz viel Spaß")
+                                    .font(.headline)
+                                    .lineLimit(nil)
+                                    .padding(10)
+                            }
+                            .background(ItemBackgroundColor)
+                            .cornerRadius(NewsItemCornerRadius)
+                            .padding(NewsItemPadding)
+                            .foregroundColor(.primary)
                     }
-                    .background(ItemBackgroundColor)
-                    .cornerRadius(NewsItemCornerRadius)
-                    .padding(NewsItemPadding)
-                    
-                    VStack(
-                        alignment: .leading,
-                        spacing: NewsItemSpacing
-                    ) {
-                        Image("Rondell")
-                            .resizable()
-                            .scaledToFit()
-                        Text("Designprozess")
-                            .font(.title3)
-                            .padding(10)
-                        Text("Breaking News: Skylarks immer noch bestaussehendster Verein Berlins")
-                            .font(.headline)
-                            .lineLimit(nil)
-                            .padding(10)
+                    NavigationLink(
+                        destination: NewsDetailView()) {
+                            VStack(
+                                alignment: .leading,
+                                spacing: NewsItemSpacing
+                            ) {
+                                Image("Rondell")
+                                    .resizable()
+                                    .scaledToFit()
+                                Text("Designprozess")
+                                    .font(.title3)
+                                    .padding(10)
+                                Text("Breaking News: Skylarks immer noch bestaussehendster Verein Berlins")
+                                    .font(.headline)
+                                    .lineLimit(nil)
+                                    .padding(10)
+                            }
+                            .background(ItemBackgroundColor)
+                            .cornerRadius(NewsItemCornerRadius)
+                            .padding(NewsItemPadding)
+                            .foregroundColor(.primary)
                     }
-                    .background(ItemBackgroundColor)
-                    .cornerRadius(NewsItemCornerRadius)
-                    .padding(NewsItemPadding)
                 }
-            }
-            
+            } .navigationBarTitle("News")
         }
     }
-  
 }
 
 
