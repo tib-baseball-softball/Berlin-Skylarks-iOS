@@ -5,9 +5,11 @@
 //  Created by David Battefeld on 24.12.20.
 //
 
-import Foundation
+/*import Foundation
 import SwiftUI
 
+ //commented out until I really need it
+ 
 extension Color {
      
     // MARK: - Text Colors
@@ -60,5 +62,5 @@ extension Color {
     static let systemRed = Color(UIColor.systemRed)
     static let systemTeal = Color(UIColor.systemTeal)
     static let systemIndigo = Color(UIColor.systemIndigo)
-
-}
+ 
+}*/
