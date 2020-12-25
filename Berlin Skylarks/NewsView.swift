@@ -10,7 +10,9 @@ import SwiftUI
 
 let ItemBackgroundColor = Color(UIColor.tertiarySystemFill)
 //let PageBackgroundColor = Color(UIColor.secondarySystemBackground) //using standard backgrounds for now
-let NewsItemSpacing: Int = 10 // not used yet
+let NewsItemSpacing: CGFloat = 10
+let NewsItemCornerRadius: CGFloat = 20.0
+let NewsItemPadding: CGFloat = 15
 
 struct NewsView: View {
     var body: some View {
@@ -34,7 +36,7 @@ struct NewsView: View {
                     
                     VStack(
                         alignment: .leading,
-                        spacing: 10
+                        spacing: NewsItemSpacing
                     ) {
                         Image("dummy_field")
                             .resizable()
@@ -48,12 +50,12 @@ struct NewsView: View {
                             .padding(10)
                     }
                     .background(ItemBackgroundColor)
-                    .cornerRadius(20.0)
-                    .padding(15)
+                    .cornerRadius(NewsItemCornerRadius)
+                    .padding(NewsItemPadding)
                     
                     VStack(
                         alignment: .leading,
-                        spacing: 10
+                        spacing: NewsItemSpacing
                     ) {
                         Image("dummy_kids")
                             .resizable()
@@ -67,12 +69,12 @@ struct NewsView: View {
                             .padding(10)
                     }
                     .background(ItemBackgroundColor)
-                    .cornerRadius(20.0)
-                    .padding(15)
+                    .cornerRadius(NewsItemCornerRadius)
+                    .padding(NewsItemPadding)
                     
                     VStack(
                         alignment: .leading,
-                        spacing: 10
+                        spacing: NewsItemSpacing
                     ) {
                         Image("Rondell")
                             .resizable()
@@ -86,8 +88,8 @@ struct NewsView: View {
                             .padding(10)
                     }
                     .background(ItemBackgroundColor)
-                    .cornerRadius(20.0)
-                    .padding(10)
+                    .cornerRadius(NewsItemCornerRadius)
+                    .padding(NewsItemPadding)
                 }
             }
             
@@ -102,8 +104,5 @@ struct NewsView: View {
 struct NewsView_Previews: PreviewProvider {
     static var previews: some View {
         NewsView()
-            .preferredColorScheme(.light)
-            
-            
             }
 }

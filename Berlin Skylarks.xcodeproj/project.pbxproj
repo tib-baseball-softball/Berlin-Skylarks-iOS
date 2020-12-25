@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CA78B71C259507BC00510621 /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
+		CA78B725259648F300510621 /* PlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B724259648F300510621 /* PlayersView.swift */; };
 		CABF7BEF259351D400B95813 /* Berlin_SkylarksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BEE259351D400B95813 /* Berlin_SkylarksApp.swift */; };
 		CABF7BF1259351D400B95813 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BF0259351D400B95813 /* ContentView.swift */; };
 		CABF7BF3259351D500B95813 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		CA78B71B259507BC00510621 /* ColorSets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSets.swift; sourceTree = "<group>"; };
+		CA78B724259648F300510621 /* PlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersView.swift; sourceTree = "<group>"; };
 		CABF7BEB259351D400B95813 /* Berlin Skylarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Berlin Skylarks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABF7BEE259351D400B95813 /* Berlin_SkylarksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Berlin_SkylarksApp.swift; sourceTree = "<group>"; };
 		CABF7BF0259351D400B95813 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -65,6 +67,7 @@
 			children = (
 				CABF7BEE259351D400B95813 /* Berlin_SkylarksApp.swift */,
 				CABF7BF0259351D400B95813 /* ContentView.swift */,
+				CA78B724259648F300510621 /* PlayersView.swift */,
 				CA78B71B259507BC00510621 /* ColorSets.swift */,
 				CABF7C0A2593627900B95813 /* NewsView.swift */,
 				CABF7BF2259351D500B95813 /* Assets.xcassets */,
@@ -159,6 +162,7 @@
 				CABF7BEF259351D400B95813 /* Berlin_SkylarksApp.swift in Sources */,
 				CABF7C0B2593627900B95813 /* NewsView.swift in Sources */,
 				CA78B71C259507BC00510621 /* ColorSets.swift in Sources */,
+				CA78B725259648F300510621 /* PlayersView.swift in Sources */,
 				CABF7BFB259351D500B95813 /* Berlin_Skylarks.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -39,7 +39,7 @@ struct ContentView: View {
                     Image(systemName: "calendar")
                     Text("Standings")
                 }
-            Text("PLAYERS")
+            TeamListView()
                 .tabItem {
                     Image(systemName: "person.3.fill")
                     Text("Players")
@@ -60,6 +60,6 @@ struct ContentView_Previews: PreviewProvider {
         Group {
             ContentView().preferredColorScheme(.dark).padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
-        .preferredColorScheme(.light)
+        
     }
 }
