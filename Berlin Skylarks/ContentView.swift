@@ -58,7 +58,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView().preferredColorScheme(.dark).padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            ContentView().padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
         
     }

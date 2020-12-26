@@ -24,56 +24,52 @@ struct PlayerDetailListHeader: View {
 
 struct TeamPlayersView: View {
     var body: some View {
-        NavigationView {
-            List {
-                Section(header: PlayerDetailListHeader()) {
-                    NavigationLink(
-                        destination: PlayerDetailView()){
-                            HStack {
-                                Image(systemName: "person.fill")
-                                    .font(.system(size: previewImageSize))
-                                Spacer()
-                                    .frame(width: SpacerWidth)
-                                Text("Jaro Bruders")
-                                    .font(.title2)
-                                Spacer()
-                                Text("21")
-                                    .font(.largeTitle)
-                            }
-                    }
-                    HStack {
-                        Image(systemName: "person.fill")
-                            .font(.system(size: previewImageSize))
-                        Spacer()
-                            .frame(width: SpacerWidth)
-                        Text("Fritz Leidinger")
-                            .font(.title2)
-                        Spacer()
-                        Text("22")
-                            .font(.largeTitle)
-                    }
-                    HStack {
-                        Image(systemName: "person.fill")
-                            .font(.system(size: previewImageSize))
-                        Spacer()
-                            .frame(width: SpacerWidth)
-                        Text("Jorge Carbonell Rodríguez")
-                            .font(.title2)
-                        Spacer()
-                        Text("18")
-                            .font(.largeTitle)
-                    }
+        List {
+            Section(header: PlayerDetailListHeader()) {
+                NavigationLink(
+                    destination: PlayerDetailView()){
+                        HStack {
+                            Image(systemName: "person.fill")
+                                .font(.system(size: previewImageSize))
+                            Spacer()
+                                .frame(width: SpacerWidth)
+                            Text("Jaro Bruders")
+                                .font(.title2)
+                            Spacer()
+                            Text("21")
+                                .font(.largeTitle)
+                        }
+                }
+                HStack {
+                    Image(systemName: "person.fill")
+                        .font(.system(size: previewImageSize))
+                    Spacer()
+                        .frame(width: SpacerWidth)
+                    Text("Fritz Leidinger")
+                        .font(.title2)
+                    Spacer()
+                    Text("22")
+                        .font(.largeTitle)
+                }
+                HStack {
+                    Image(systemName: "person.fill")
+                        .font(.system(size: previewImageSize))
+                    Spacer()
+                        .frame(width: SpacerWidth)
+                    Text("Jorge Carbonell Rodríguez")
+                        .font(.title2)
+                    Spacer()
+                    Text("18")
+                        .font(.largeTitle)
                 }
             }
-            .navigationBarTitle("Verbandsliga Baseball")
         }
+        .navigationBarTitle("Verbandsliga Baseball")
     }
 }
 
 struct TeamPlayersView_Previews: PreviewProvider {
     static var previews: some View {
         TeamPlayersView()
-            .preferredColorScheme(.dark)
-            
     }
 }
