@@ -29,7 +29,7 @@ struct ContentView: View {
                     Image(systemName: "newspaper.fill")
                     Text("News")
                 }
-            Text("SCORES")
+            ScoresView()
                 .tabItem {
                     Image(systemName: "42.square.fill")
                     Text("Scores")
