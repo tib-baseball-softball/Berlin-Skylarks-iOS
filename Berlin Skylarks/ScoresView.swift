@@ -40,12 +40,13 @@ struct ScoresView: View {
                     Text("Result #5")
                 }
             }
+            .listStyle(InsetGroupedListStyle())
             .navigationBarTitle("Scores")
             .navigationBarItems(leading:
                 HStack {
                     Image(systemName: "chevron.backward.circle.fill")
                     Spacer(minLength: 85)
-                    Text("Calendar Week") //this needs to be configured to select the week
+                   // Text("Calendar Week") //this needs to be configured to select the week
                 }
                                 ,trailing:
                     Image(systemName: "chevron.forward.circle.fill")
@@ -57,6 +58,5 @@ struct ScoresView: View {
 struct ScoresView_Previews: PreviewProvider {
     static var previews: some View {
         ScoresView()
-            .previewDevice("iPhone SE (2nd generation)")
     }
 }

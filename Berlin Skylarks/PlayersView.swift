@@ -65,6 +65,7 @@ struct TeamPlayersView: View {
             }
         }
         .navigationBarTitle("Verbandsliga Baseball")
+        .listStyle(InsetGroupedListStyle())
     }
 }
 

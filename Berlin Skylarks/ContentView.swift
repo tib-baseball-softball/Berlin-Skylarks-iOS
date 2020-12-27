@@ -12,12 +12,12 @@ struct ContentView: View {
     
     //this stuff was in here from the start, no idea if it's important
     
-    /*@Environment(\.managedObjectContext) private var viewContext
+    @Environment(\.managedObjectContext) private var viewContext
 
     @FetchRequest(
         sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
         animation: .default)
-    private var items: FetchedResults<Item>*/
+    private var items: FetchedResults<Item>
 
     //this creates the tab bar at the bottom
     
@@ -44,10 +44,10 @@ struct ContentView: View {
                     Image(systemName: "person.3.fill")
                     Text("Players")
                 }
-            Text("ABOUT")
+            SettingsListView()
                 .tabItem {
-                    Image(systemName: "info.circle.fill")
-                    Text("Info")
+                    Image(systemName: "gearshape.fill")
+                    Text("Settings")
                 }
         }
     }

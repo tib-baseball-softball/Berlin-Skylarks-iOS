@@ -52,6 +52,7 @@ struct TeamListView: View {
                 
             }
             .navigationBarTitle("Teams")
+            .listStyle(InsetGroupedListStyle())
         }
     }
 }
