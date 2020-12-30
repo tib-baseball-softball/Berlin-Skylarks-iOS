@@ -34,7 +34,7 @@ struct ContentView: View {
                     Image(systemName: "42.square.fill")
                     Text("Scores")
                 }
-            Text("STANDINGS") //these are placeholders to put the real views into
+            StandingsView()
                 .tabItem {
                     Image(systemName: "calendar")
                     Text("Standings")
