@@ -9,10 +9,12 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
+//I am not sure if this works from the nested structure of the JSON (Apple one is flat)
+
 struct GameScore: Hashable, Codable {
     var id: Int
-    var match_id: Int
-    var time: Int // needs something else
+    var match_id: String
+    var time: String // needs something else
     var home_runs: Int
     var away_runs: Int
     var home_team_name: String

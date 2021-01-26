@@ -7,6 +7,8 @@
 
 import Foundation
 
+var gamescores: [GameScore] = load("BSM_Games_2020_human_readable.json")
+
 //just pasted from Apple tutorial, needs to understand this!
 
 func load<T: Decodable>(_ filename: String) -> T {
