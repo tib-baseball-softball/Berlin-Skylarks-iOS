@@ -13,13 +13,15 @@ let ScoresSubItemBackground = Color(UIColor.tertiarySystemFill)
 let ScoresItemPadding: CGFloat = 10.0
 
 struct ScoresOverView: View {
+    var gamescore: GameScore
+    
     var body: some View {
         VStack(spacing: ScoresItemSpacing) {
             HStack {
-                Text("ID: 12847")
+                Text("ID: \(gamescore.match_id)")
                     .italic()
                 Spacer()
-                Text("Saturday, May 8th, 2021")
+                Text(gamescore.time)
                     .italic()
             }
             .font(.subheadline)
@@ -27,15 +29,18 @@ struct ScoresOverView: View {
                 VStack {
                     Text("Guest")
                         .bold()
-                    Image("Berlin_Flamingos_Logo_3D")
+                    Image("Bird_whiteoutline")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 50, height: 50, alignment: .center)
-                    Text("Berlin Flamingos 2")
+                    Text(gamescore.away_team_name)
                         .lineLimit(nil)
                 }
                 Spacer()
-                Text("2")
+                
+                //I should be super careful about force unwrapping here!
+                
+                Text(String(gamescore.away_runs!))
                     .font(.largeTitle)
                     .bold()
                     .padding(ScoresNumberPadding)
@@ -51,21 +56,24 @@ struct ScoresOverView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(width: 50, height: 50, alignment: .center)
-                    Text("Berlin Skylarks 1")
+                    Text(gamescore.home_team_name)
                         .lineLimit(nil)
                 }
                 Spacer()
-                Text("5")
+                Text(String(gamescore.home_runs!))
                     .font(.largeTitle)
                     .bold()
                     .padding(ScoresNumberPadding)
+                    
+                    //todo: make the higher color red (or Skylarks color?)
+                    
                     .foregroundColor(Color("AccentColor"))
             }
             .padding(ScoresItemPadding)
             .background(ScoresSubItemBackground)
             .cornerRadius(NewsItemCornerRadius)
             HStack {
-                Text("Gail S. Halvorsen Park")
+                Text("Home Ballpark")
                     .italic()
                 Spacer()
                 Text("Berlin")
@@ -80,6 +88,6 @@ struct ScoresOverView: View {
 
 struct ScoresOverView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoresOverView()
+        ScoresOverView(gamescore: gamescores[4])
     }
 }

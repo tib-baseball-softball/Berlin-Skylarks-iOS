@@ -5,7 +5,7 @@
       "time":"2020-08-08 17:00:00 +0200",
       "league_id":2669,
       "comment":"Mercy-Rule im 4. Inning",
-      "home_runs":3,
+      "home_runs":0,
       "away_runs":18,
       "scoresheet_file_name":"Spiel-200302.pdf",
       "scoresheet_content_type":"application/pdf",
@@ -106,6 +106,7 @@
          ]
       },
       "home_team_name":"Roosters",
+      "logoImageName":"Roosters_Logo",
       "away_league_entry":{
          "id":22706,
          "created_at":"2019-12-16 09:15:37 +0100",

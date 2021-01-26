@@ -16,29 +16,36 @@ struct ScoresListViewHeader: View {
 struct ScoresView: View {
     var body: some View {
         NavigationView {
-            List {
-                Section(header: ScoresListViewHeader()) {
-                    NavigationLink(
-                        destination: ScoresDetailView()) {
-                            ScoresOverView()
-                    }
-                }
-                
-                Section(header: ScoresListViewHeader()) {
-                    Text("Result #2")
-                }
-                
-                Section(header: ScoresListViewHeader()) {
-                    Text("Result #3")
-                }
-                
-                Section(header: ScoresListViewHeader()) {
-                    Text("Result #4")
-                }
-                
-                Section(header: ScoresListViewHeader()) {
-                    Text("Result #5")
-                }
+            List(gamescores, id: \.id) { GameScore in
+                ScoresOverView(gamescore: GameScore)
+//                Section(header: ScoresListViewHeader()) {
+//                    NavigationLink(
+//                        destination: ScoresDetailView()) {
+//                        ScoresOverView(gamescore: gamescores[0])
+//                    }
+//                }
+//
+//                Section(header: ScoresListViewHeader()) {
+//                    NavigationLink(
+//                        destination: ScoresDetailView()) {
+//                        ScoresOverView(gamescore: gamescores[1])
+//                    }
+//                }
+//
+//                Section(header: ScoresListViewHeader()) {
+//                    NavigationLink(
+//                        destination: ScoresDetailView()) {
+//                        ScoresOverView(gamescore: gamescores[2])
+//                    }
+//                }
+//
+//                Section(header: ScoresListViewHeader()) {
+//                    Text("Result #4")
+//                }
+//
+//                Section(header: ScoresListViewHeader()) {
+//                    Text("Result #5")
+//                }
             }
             .listStyle(InsetGroupedListStyle())
             .navigationBarTitle("Scores")
@@ -54,6 +61,7 @@ struct ScoresView: View {
         }
     }
 }
+
 
 struct ScoresView_Previews: PreviewProvider {
     static var previews: some View {
