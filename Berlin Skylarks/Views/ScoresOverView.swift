@@ -29,7 +29,7 @@ struct ScoresOverView: View {
                 VStack {
                     Text("Guest")
                         .bold()
-                    Image("Bird_whiteoutline")
+                    Image("App_road_team_logo")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 50, height: 50, alignment: .center)
@@ -52,7 +52,7 @@ struct ScoresOverView: View {
                 VStack {
                     Text("Home")
                         .bold()
-                    Image("Bird_whiteoutline")
+                    Image("App_home_team_logo")
                         .resizable()
                         .scaledToFit()
                         .frame(width: 50, height: 50, alignment: .center)
