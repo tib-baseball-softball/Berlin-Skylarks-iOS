@@ -12,10 +12,19 @@ let ScoresNumberPadding: CGFloat = 20.0
 let ScoresSubItemBackground = Color(UIColor.tertiarySystemFill)
 let ScoresItemPadding: CGFloat = 10.0
 
+var away_team_logo: Image? = Image("App_road_team_logo")
+var home_team_logo: Image? = Image("App_home_team_logo")
+
+//if gamescore.away_team_name.contains("Skylarks") {
+  //      away_team_logo = Image("Bird_whiteoutline")
+   // }
+
 struct ScoresOverView: View {
     var gamescore: GameScore
+    //var teamlogo: TeamLogo
     
     var body: some View {
+    
         VStack(spacing: ScoresItemSpacing) {
             HStack {
                 Text("ID: \(gamescore.match_id)")
@@ -23,13 +32,12 @@ struct ScoresOverView: View {
                 Spacer()
                 Text(gamescore.time)
                     .italic()
-            }
-            .font(.subheadline)
+            }.font(.subheadline)
             HStack {
                 VStack {
                     Text("Guest")
                         .bold()
-                    Image("App_road_team_logo")
+                    away_team_logo?
                         .resizable()
                         .scaledToFit()
                         .frame(width: 50, height: 50, alignment: .center)
@@ -52,7 +60,7 @@ struct ScoresOverView: View {
                 VStack {
                     Text("Home")
                         .bold()
-                    Image("App_home_team_logo")
+                    home_team_logo?
                         .resizable()
                         .scaledToFit()
                         .frame(width: 50, height: 50, alignment: .center)
@@ -67,17 +75,27 @@ struct ScoresOverView: View {
                     
                     //todo: make the higher color red (or Skylarks color?)
                     
-                    .foregroundColor(Color("AccentColor"))
+                    //.foregroundColor(Color("AccentColor"))
             }
             .padding(ScoresItemPadding)
             .background(ScoresSubItemBackground)
             .cornerRadius(NewsItemCornerRadius)
             HStack {
-                Text("Home Ballpark")
+                Text(String(describing:  gamescore.field.name))
                     .italic()
                 Spacer()
-                Text("Berlin")
+                Text(String(describing:  gamescore.field.city))
                     .italic()
+            }.font(.subheadline)
+            HStack {
+                Text("Status: \(gamescore.human_state)")
+                    .italic()
+                Spacer()
+                Text("Scoresheet:")
+                    .italic()
+                Image(systemName: "doc.fill")
+                    .font(.headline)
+                    .foregroundColor(Color("AccentColor"))
             }.font(.subheadline)
         }
         .padding(ScoresItemPadding)
@@ -88,6 +106,6 @@ struct ScoresOverView: View {
 
 struct ScoresOverView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoresOverView(gamescore: gamescores[4])
+        ScoresOverView(gamescore: gamescores[0])
     }
 }

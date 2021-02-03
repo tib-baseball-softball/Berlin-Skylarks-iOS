@@ -9,8 +9,6 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
-//I am not sure if this works from the nested structure of the JSON (Apple one is flat)
-
 struct GameScore: Hashable, Codable {
     var id: Int
     var match_id: String
@@ -19,26 +17,24 @@ struct GameScore: Hashable, Codable {
     var away_runs: Int?
     var home_team_name: String
     var away_team_name: String
-//    var field_name: String //two entries in JSON
-//    var field_city: String
+    var human_state: String
+    var field: Field
+    
+    struct Field: Hashable, Codable {
+        var name: String
+        var city: String
+        //var latitude: Double?
+       // var longitude: Double?
+    }
 //    var league_name: String
-    
-//    private var logoImageName: String
-//    var teamLogo: Image {
-//        Image(logoImageName)
-//    }
-    
     //those exist in BSM, but need to be mapped to home ballpark, also only in detail view
     
-//    private var coordinates: Coordinates
-//    var locationCoordinate: CLLocationCoordinate2D {
-//        CLLocationCoordinate2D(
-//            latitude: coordinates.latitude,
-//            longitude: coordinates.longitude)
-//    }
-
-//    struct Coordinates: Hashable, Codable {
-//       var latitude: Double
-//       var longitude: Double
-//    }
+/*     private var field: Coordinates
+     var locationCoordinate: CLLocationCoordinate2D {
+      CLLocationCoordinate2D(
+            latitude: field.latitude,
+            longitude: field.longitude)
+    }
+*/
 }
+

@@ -20,6 +20,7 @@
 		CA78B7282596880200510621 /* NewsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B7272596880200510621 /* NewsDetailView.swift */; };
 		CA78B72B259688C100510621 /* PlayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B72A259688C100510621 /* PlayerDetailView.swift */; };
 		CA78B72E2596892E00510621 /* TeamListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B72D2596892E00510621 /* TeamListView.swift */; };
+		CA9000B125CB56FF007AD273 /* TeamLogos.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9000B025CB56FF007AD273 /* TeamLogos.swift */; };
 		CABF7BEF259351D400B95813 /* Berlin_SkylarksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BEE259351D400B95813 /* Berlin_SkylarksApp.swift */; };
 		CABF7BF1259351D400B95813 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BF0259351D400B95813 /* ContentView.swift */; };
 		CABF7BF3259351D500B95813 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
@@ -45,6 +46,7 @@
 		CA78B7272596880200510621 /* NewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailView.swift; sourceTree = "<group>"; };
 		CA78B72A259688C100510621 /* PlayerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailView.swift; sourceTree = "<group>"; };
 		CA78B72D2596892E00510621 /* TeamListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListView.swift; sourceTree = "<group>"; };
+		CA9000B025CB56FF007AD273 /* TeamLogos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamLogos.swift; sourceTree = "<group>"; };
 		CABF7BEB259351D400B95813 /* Berlin Skylarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Berlin Skylarks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CABF7BEE259351D400B95813 /* Berlin_SkylarksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Berlin_SkylarksApp.swift; sourceTree = "<group>"; };
 		CABF7BF0259351D400B95813 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */,
 				CAFDC1FC25BF7F09000A5922 /* ModelData.swift */,
+				CA9000B025CB56FF007AD273 /* TeamLogos.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -221,6 +224,7 @@
 				CABF7BF8259351D500B95813 /* Persistence.swift in Sources */,
 				CABF7BF1259351D400B95813 /* ContentView.swift in Sources */,
 				CA78B7282596880200510621 /* NewsDetailView.swift in Sources */,
+				CA9000B125CB56FF007AD273 /* TeamLogos.swift in Sources */,
 				CA0DA04225974EAD002A0FAB /* ScoresView.swift in Sources */,
 				CA0DA057259CAC8E002A0FAB /* StandingsView.swift in Sources */,
 				CA0A95B525BF704C00A7C7C3 /* BSMGameScore.swift in Sources */,
