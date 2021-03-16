@@ -7,6 +7,8 @@
 
 import Foundation
 
+//change back the Model here!
+
 var gamescores: [GameScore] = load("BSM_Games_2020_human_readable.json")
 
 //just pasted from Apple tutorial, needs to understand this!

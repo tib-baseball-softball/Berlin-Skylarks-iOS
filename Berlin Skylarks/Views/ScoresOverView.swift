@@ -21,11 +21,11 @@ var home_team_logo: Image? = Image("App_home_team_logo")
 
 struct ScoresOverView: View {
     var gamescore: GameScore
-    //var teamlogo: TeamLogo
+//    var teamlogo: TeamLogo
     
     var body: some View {
-    
         VStack(spacing: ScoresItemSpacing) {
+            Text(gamescore.league.name)
             HStack {
                 Text("ID: \(gamescore.match_id)")
                     .italic()

@@ -19,6 +19,9 @@ struct GameScore: Hashable, Codable {
     var away_team_name: String
     var human_state: String
     var field: Field
+    var league: League
+//    var home_league_entry: Home_League_Entry
+//    var away_league_entry: Away_League_Entry
     
     struct Field: Hashable, Codable {
         var name: String
@@ -26,7 +29,31 @@ struct GameScore: Hashable, Codable {
         //var latitude: Double?
        // var longitude: Double?
     }
-//    var league_name: String
+ 
+    struct League: Hashable, Codable {
+        var id: Int
+        var season: Int
+        var name: String
+    }
+    /*
+    struct Home_League_Entry: Hashable, Codable {
+        var team: Team
+    }
+    
+    struct Away_League_Entry: Hashable, Codable {
+        var team: Team
+    }
+    
+    struct Team: Hashable, Codable {
+        var clubs: Clubs
+    }
+    
+    struct Clubs: Hashable, Codable {
+//        var id: Int
+        var name: String
+        var acronym: String
+    }
+ */
     //those exist in BSM, but need to be mapped to home ballpark, also only in detail view
     
 /*     private var field: Coordinates
