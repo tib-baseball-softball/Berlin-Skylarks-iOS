@@ -31,7 +31,7 @@ struct ScoresOverView: View {
                 Text("ID: \(gamescore.match_id)")
                     .italic()
                 Spacer()
-                Text("\(gamescore.time)")
+                Text(gamescore.time)
                     .italic()
             }.font(.subheadline)
             HStack {

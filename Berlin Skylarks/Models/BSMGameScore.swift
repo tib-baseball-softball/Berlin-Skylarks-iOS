@@ -12,7 +12,7 @@ import CoreLocation
 struct GameScore: Hashable, Codable {
     var id: Int
     var match_id: String
-    var time: Date // needs to be converted to something else
+    var time: String // needs to be converted to something else
     var home_runs: Int? //those really should be Ints
     var away_runs: Int?
     var home_team_name: String
