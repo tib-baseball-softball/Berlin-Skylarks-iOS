@@ -26,11 +26,12 @@ struct ScoresOverView: View {
     var body: some View {
         VStack(spacing: ScoresItemSpacing) {
             Text(gamescore.league.name)
+            Text(gamescore.away_league_entry.team.clubs.debugDescription)
             HStack {
                 Text("ID: \(gamescore.match_id)")
                     .italic()
                 Spacer()
-                Text(gamescore.time)
+                Text("\(gamescore.time)")
                     .italic()
             }.font(.subheadline)
             HStack {

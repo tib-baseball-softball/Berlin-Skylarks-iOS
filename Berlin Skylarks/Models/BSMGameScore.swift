@@ -12,7 +12,7 @@ import CoreLocation
 struct GameScore: Hashable, Codable {
     var id: Int
     var match_id: String
-    var time: String // needs to be converted to something else
+    var time: Date // needs to be converted to something else
     var home_runs: Int? //those really should be Ints
     var away_runs: Int?
     var home_team_name: String
@@ -20,8 +20,8 @@ struct GameScore: Hashable, Codable {
     var human_state: String
     var field: Field
     var league: League
-//    var home_league_entry: Home_League_Entry
-//    var away_league_entry: Away_League_Entry
+    var home_league_entry: Home_League_Entry
+    var away_league_entry: Away_League_Entry
     
     struct Field: Hashable, Codable {
         var name: String
@@ -35,7 +35,7 @@ struct GameScore: Hashable, Codable {
         var season: Int
         var name: String
     }
-    /*
+    
     struct Home_League_Entry: Hashable, Codable {
         var team: Team
     }
@@ -45,15 +45,18 @@ struct GameScore: Hashable, Codable {
     }
     
     struct Team: Hashable, Codable {
-        var clubs: Clubs
+        var name: String
+        var clubs: [Clubs]
     }
     
+    //note the spaces here! --> sometimes used in example for arrays
+    
     struct Clubs: Hashable, Codable {
-//        var id: Int
+        var id: Int
         var name: String
         var acronym: String
     }
- */
+
     //those exist in BSM, but need to be mapped to home ballpark, also only in detail view
     
 /*     private var field: Coordinates
