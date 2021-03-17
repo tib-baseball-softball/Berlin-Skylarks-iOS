@@ -9,7 +9,9 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
-struct GameScore: Hashable, Codable {
+//not sure if this actually conforms to Identifiable! --> added in tutorial
+
+struct GameScore: Hashable, Codable, Identifiable {
     var id: Int
     var match_id: String
     var time: String // needs to be converted to something else

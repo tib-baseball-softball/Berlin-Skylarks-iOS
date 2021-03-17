@@ -47,7 +47,7 @@ struct ScoresOverView: View {
                 }
                 Spacer()
                 
-                //I should be super careful about force unwrapping here!
+                //I should be super careful about force unwrapping here --> this won't work once I have real data as games in the future do NOT have runs yet!
                 
                 Text(String(gamescore.away_runs!))
                     .font(.largeTitle)

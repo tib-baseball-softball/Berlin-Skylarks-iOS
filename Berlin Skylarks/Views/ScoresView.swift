@@ -16,40 +16,16 @@ struct ScoresListViewHeader: View {
 struct ScoresView: View {
     var body: some View {
         NavigationView {
+            //apparently it should be possible to drop the id part but it throws an error
             List(gamescores, id: \.id) { GameScore in
-                ScoresOverView(gamescore: GameScore)
-//                Section(header: ScoresListViewHeader()) {
-//                    NavigationLink(
-//                        destination: ScoresDetailView()) {
-//                        ScoresOverView(gamescore: gamescores[0])
-//                    }
-//                }
-//
-//                Section(header: ScoresListViewHeader()) {
-//                    NavigationLink(
-//                        destination: ScoresDetailView()) {
-//                        ScoresOverView(gamescore: gamescores[1])
-//                    }
-//                }
-//
-//                Section(header: ScoresListViewHeader()) {
-//                    NavigationLink(
-//                        destination: ScoresDetailView()) {
-//                        ScoresOverView(gamescore: gamescores[2])
-//                    }
-//                }
-//
-//                Section(header: ScoresListViewHeader()) {
-//                    Text("Result #4")
-//                }
-//
-//                Section(header: ScoresListViewHeader()) {
-//                    Text("Result #5")
-//                }
+                NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
+                    ScoresOverView(gamescore: GameScore)
+                }
             }
             .listStyle(InsetGroupedListStyle())
-            .navigationBarTitle("Scores")
-            .navigationBarItems(leading:
+            .navigationTitle("Scores")
+            
+          /*  .navigationBarItems(leading:
                 HStack {
                     Image(systemName: "chevron.backward.circle.fill")
                     Spacer(minLength: 85)
@@ -57,7 +33,8 @@ struct ScoresView: View {
                 }
                                 ,trailing:
                     Image(systemName: "chevron.forward.circle.fill")
-            )
+            )*/
+            
         }
     }
 }
@@ -66,5 +43,11 @@ struct ScoresView: View {
 struct ScoresView_Previews: PreviewProvider {
     static var previews: some View {
         ScoresView()
+        /*
+        ForEach(["iPhone 12", "iPhone 8", "iPad Pro (9.7-inch)"], id: \.self) { deviceName in
+            ScoresView()
+                        .previewDevice(PreviewDevice(rawValue: deviceName))
+                }
+        */
     }
 }

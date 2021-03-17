@@ -98,5 +98,5 @@ struct NewsView: View {
 struct NewsView_Previews: PreviewProvider {
     static var previews: some View {
         NewsView()
-            }
+    }
 }
