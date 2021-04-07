@@ -97,7 +97,14 @@ struct ScoresDetailView: View {
                 .padding(ScoresItemPadding)
             }
             Section(header: Text("Game officials")) {
-                Text("Tfsdfchnfghjg")
+                HStack {
+                    Image(systemName: "person.fill")
+                    Text(gamescore.umpire_assignments.debugDescription)
+                }.padding(ScoresItemPadding)
+                HStack {
+                    Image(systemName: "pencil")
+                    Text(gamescore.scorer_assignments.debugDescription)
+                }.padding(ScoresItemPadding)
             }
         }
         .listStyle(InsetGroupedListStyle())

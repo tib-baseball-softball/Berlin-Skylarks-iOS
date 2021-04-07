@@ -24,6 +24,8 @@ struct GameScore: Hashable, Codable, Identifiable {
     var league: League
     var home_league_entry: Home_League_Entry
     var away_league_entry: Away_League_Entry
+    var umpire_assignments: [Umpire_Assignments] // might need square brackets
+    var scorer_assignments: [Scorer_Assignments]
     
     struct Field: Hashable, Codable {
         var name: String
@@ -44,6 +46,24 @@ struct GameScore: Hashable, Codable, Identifiable {
     
     struct Away_League_Entry: Hashable, Codable {
         var team: Team
+    }
+    
+    struct Umpire_Assignments: Hashable, Codable {
+        var license: License
+    }
+    
+    struct Scorer_Assignments: Hashable, Codable {
+        var license: License
+    }
+    
+    struct License: Hashable, Codable {
+        var person: Person
+        var number: String
+    }
+    
+    struct Person: Hashable, Codable {
+        var first_name: String
+        var last_name: String
     }
     
     struct Team: Hashable, Codable {
