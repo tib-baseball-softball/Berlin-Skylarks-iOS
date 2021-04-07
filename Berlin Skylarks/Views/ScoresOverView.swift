@@ -26,14 +26,7 @@ struct ScoresOverView: View {
     var body: some View {
         VStack(spacing: ScoresItemSpacing) {
             Text(gamescore.league.name)
-            Text(gamescore.away_league_entry.team.clubs.debugDescription)
-            HStack {
-                Text("ID: \(gamescore.match_id)")
-                    .italic()
-                Spacer()
-                Text(gamescore.time)
-                    .italic()
-            }.font(.subheadline)
+            //Text(gamescore.away_league_entry.team.clubs.debugDescription)
             HStack {
                 VStack {
                     Text("Guest")
@@ -81,23 +74,6 @@ struct ScoresOverView: View {
             .padding(ScoresItemPadding)
             .background(ScoresSubItemBackground)
             .cornerRadius(NewsItemCornerRadius)
-            HStack {
-                Text(String(describing:  gamescore.field.name))
-                    .italic()
-                Spacer()
-                Text(String(describing:  gamescore.field.city))
-                    .italic()
-            }.font(.subheadline)
-            HStack {
-                Text("Status: \(gamescore.human_state)")
-                    .italic()
-                Spacer()
-                Text("Scoresheet:")
-                    .italic()
-                Image(systemName: "doc.fill")
-                    .font(.headline)
-                    .foregroundColor(Color("AccentColor"))
-            }.font(.subheadline)
         }
         .padding(ScoresItemPadding)
 //        .background(ItemBackgroundColor) //not needed because of new list style

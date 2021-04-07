@@ -5,12 +5,17 @@
 //  Created by David Battefeld on 30.12.20.
 //
 
+var myString = "Hallo Lena"
+var Abstand = 40
+
 import SwiftUI
 
 struct StandingsView: View {
     var body: some View {
-        Image(systemName: "rectangle.slash")
-            .font(.largeTitle)
+        VStack {
+            Text(String(Abstand))
+            Text("Test")
+        }
     }
 }
 
