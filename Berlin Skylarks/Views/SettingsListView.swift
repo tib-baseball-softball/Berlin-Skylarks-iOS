@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsListView: View {
     
 //    this is lazily copied, needs further understanding
-    @State private var showGreeting = true
+    @State private var showGreeting = false
     
     var body: some View {
         NavigationView {

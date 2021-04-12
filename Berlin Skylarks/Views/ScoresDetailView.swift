@@ -66,10 +66,10 @@ struct ScoresDetailView: View {
                     }
                     .padding(ScoresItemPadding)
                 }
-                //not sure if I want the darker background color with rounded corners here
-                .padding(ScoresItemPadding)
-                .background(ScoresSubItemBackground)
-                .cornerRadius(NewsItemCornerRadius)
+                //don't want the darker background color with rounded corners here
+              //  .padding(ScoresItemPadding)
+              //  .background(ScoresSubItemBackground)
+              //  .cornerRadius(NewsItemCornerRadius)
             }
             Section(header: Text("Location")) {
                 HStack {
