@@ -17,8 +17,8 @@ struct ScoresDetailView: View {
                     Text(gamescore.league.name)
                 }.padding(ScoresItemPadding)
                 HStack {
-                    Image(systemName: "creditcard")
-                    Text("ID: \(gamescore.match_id)")
+                    Image(systemName: "number")
+                    Text("\(gamescore.match_id)")
                 }
                 .padding(ScoresItemPadding)
                 HStack {
