@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "logo-sluggers.png",
+      "filename" : "Rams-Logo.jpeg",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "logo-sluggers@2x.png",
+      "filename" : "Rams-Logo@2x.jpeg",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "logo-sluggers@3x.png",
+      "filename" : "Rams-Logo@3x.jpeg",
       "idiom" : "universal",
       "scale" : "3x"
     }

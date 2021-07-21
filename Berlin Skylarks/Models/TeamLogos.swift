@@ -8,7 +8,11 @@
 import Foundation
 import SwiftUI
 
+//not sure if this file is needed ATM
+
 struct TeamLogo {
     var SkylarksLogo = Image("Bird_whiteoutline")
     var RoostersLogo = Image("Roosters_Logo")
 }
+
+

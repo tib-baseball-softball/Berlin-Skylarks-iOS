@@ -43,7 +43,10 @@ struct NewsView: View {
                         .foregroundColor(.primary)
                 }
                 NavigationLink(
-                    destination: NewsDetailView()) {
+                    
+                    //here a hardcoded link to a WebView is used for testing
+                    
+                    destination: WebArticleView()) {
                         VStack(
                             alignment: .leading,
                             spacing: NewsItemSpacing

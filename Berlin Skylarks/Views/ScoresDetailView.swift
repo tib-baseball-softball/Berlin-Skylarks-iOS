@@ -9,8 +9,25 @@ import SwiftUI
 
 struct ScoresDetailView: View {
     var gamescore: GameScore
+    
+    func setCorrectLogo() {
+        for (name, image) in teamLogos {
+            if gamescore.away_team_name.contains(name) {
+                away_team_logo = image //teamLogos[name]
+            }
+        }
+        
+        for (name, image) in teamLogos {
+            if gamescore.home_team_name.contains(name) {
+                home_team_logo = image //teamLogos[name]
+            }
+        }
+    }
+    
     var body: some View {
-        List {
+        self.setCorrectLogo()
+        return
+            List {
             Section(header: Text("Main info")) {
                 HStack {
                     Image(systemName: "list.bullet")
@@ -99,11 +116,24 @@ struct ScoresDetailView: View {
             Section(header: Text("Game officials")) {
                 HStack {
                     Image(systemName: "person.fill")
-                    Text(gamescore.umpire_assignments.debugDescription)
+                    Text(gamescore.umpire_assignments[0].license.person.first_name + " " + gamescore.umpire_assignments[0].license.person.last_name)
+                    Spacer()
+                    Text(gamescore.umpire_assignments[0].license.number)
+                        .font(.caption)
+                }.padding(ScoresItemPadding)
+                HStack {
+                    Image(systemName: "person.fill")
+                    Text(gamescore.umpire_assignments[1].license.person.first_name + " " + gamescore.umpire_assignments[1].license.person.last_name)
+                    Spacer()
+                    Text(gamescore.umpire_assignments[1].license.number)
+                        .font(.caption)
                 }.padding(ScoresItemPadding)
                 HStack {
                     Image(systemName: "pencil")
-                    Text(gamescore.scorer_assignments.debugDescription)
+                    Text(gamescore.scorer_assignments[0].license.person.first_name + " " + gamescore.scorer_assignments[0].license.person.last_name)
+                    Spacer()
+                    Text(gamescore.scorer_assignments[0].license.number)
+                        .font(.caption)
                 }.padding(ScoresItemPadding)
             }
         }
@@ -112,8 +142,8 @@ struct ScoresDetailView: View {
     }
 }
 
-struct ScoresDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        ScoresDetailView(gamescore: gamescores[0])
-    }
-}
+//struct ScoresDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ScoresDetailView(gamescore: gamescores[5])
+//    }
+//}
