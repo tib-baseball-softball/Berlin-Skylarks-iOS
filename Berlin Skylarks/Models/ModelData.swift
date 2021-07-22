@@ -8,6 +8,7 @@
 import Foundation
 
 //change back the Model here!
+// file is mostly obsolete right now
 
 
 class apiCall: ObservableObject {

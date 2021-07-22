@@ -8,7 +8,11 @@
 import SwiftUI
 
 struct InfoView: View {
+    init() {
+        print("Test Message")
+    }
     var body: some View {
+        
         Text("Info and legal blurb here")
     }
 }

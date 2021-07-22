@@ -7,17 +7,24 @@
 
 import SwiftUI
 
-struct ScoresListViewHeader: View {
-    var body: some View {
-        Text("League")
-    }
-}
+//struct ScoresListViewHeader: View {
+//    var body: some View {
+//        Text("League")
+//    }
+//}
 
 struct ScoresView: View {
+    
     @State private var gamescores = [GameScore]()
+    
+    @State var selection: String = "Current Gameday"
+    let filterOptions: [String] = [
+        "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season",
+    ]
+    
     var body: some View {
         NavigationView {
-            //apparently it should be possible to drop the id part but it throws an error
+    
             List(self.gamescores, id: \.id) { GameScore in
                 NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
                     ScoresOverView(gamescore: GameScore)
@@ -25,6 +32,35 @@ struct ScoresView: View {
             }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Scores")
+            
+            .toolbar {
+                ToolbarItem {
+                    HStack {
+                        Picker(
+                            selection: $selection,
+                            label: HStack {
+                                Text("Show:")
+                                Text(selection)
+                            }
+                            .font(.headline)
+                            .padding(ScoresItemPadding)
+                            .padding(.horizontal)
+                            .background(ItemBackgroundColor)
+                            .cornerRadius(NewsItemCornerRadius)
+                            ,
+                            content: {
+                                ForEach(filterOptions, id: \.self) { option in
+                                    HStack {
+                                        Text(option)
+                                        Image(systemName: "list.bullet")
+                                    }
+                                    .tag(option)
+                                }
+                        })
+                        .pickerStyle(MenuPickerStyle())
+                    }
+                }
+            }
             
         }.onAppear(perform: loadData)
     }
