@@ -142,8 +142,8 @@ struct ScoresDetailView: View {
     }
 }
 
-//struct ScoresDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        ScoresDetailView()
-//    }
-//}
+struct ScoresDetailView_Previews: PreviewProvider {
+    static var previews: some View {
+        ScoresDetailView(gamescore: dummyGameScores[0])
+    }
+}

@@ -58,9 +58,9 @@ struct ScoresView: View {
                                 Text(selection)
                             }
                             .font(.headline)
-                            .padding(ScoresItemPadding)
+                           // .padding(ScoresItemPadding)
                             .padding(.horizontal)
-                            .background(ItemBackgroundColor)
+                            //.background(ItemBackgroundColor)
                             .cornerRadius(NewsItemCornerRadius)
                             ,
                             content: {
