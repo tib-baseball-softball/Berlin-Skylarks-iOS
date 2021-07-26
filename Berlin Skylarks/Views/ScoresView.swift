@@ -7,11 +7,24 @@
 
 import SwiftUI
 
+//this is some old trash of which I have no knowledge of
 //struct ScoresListViewHeader: View {
 //    var body: some View {
 //        Text("League")
 //    }
 //}
+
+//BSM API URLS to get the games //////
+//those are hardcoded to the year 2021 - so I would need to push an update at least once a year, but there might also be a solution that works continually
+
+//force unwrapping should not be an issue here - these are never nil
+
+let urlPrevious: URL = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=previous&api_key=IN__8yHVCeE3gP83Dvyqww")!
+let urlCurrent = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=current&api_key=IN__8yHVCeE3gP83Dvyqww")!
+let urlNext = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=next&api_key=IN__8yHVCeE3gP83Dvyqww")!
+let urlAll = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
+
+
 
 struct ScoresView: View {
     
@@ -32,6 +45,8 @@ struct ScoresView: View {
             }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Scores")
+            
+            // this is the toolbar with the picker in the top right corner where you can select which games to display. TODO: bind to View so that the appropriate games are dynamically loaded on selection.
             
             .toolbar {
                 ToolbarItem {
@@ -62,18 +77,18 @@ struct ScoresView: View {
                 }
             }
             
-        }.onAppear(perform: loadData)
+        }.onAppear(perform: { loadData(url: urlCurrent) })
     }
 }
 
 extension ScoresView {
-    func loadData() {
+    func loadData(url: URL) {
             
             //loads only previous gameday right now!
         
-            guard let url = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=previous&api_key=IN__8yHVCeE3gP83Dvyqww") else {
-                return
-            }
+//            guard let url = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=previous&api_key=IN__8yHVCeE3gP83Dvyqww") else {
+//                return
+//            }
             
             let request = URLRequest(url: url)
             URLSession.shared.dataTask(with: request) { data, response, error in
@@ -103,17 +118,6 @@ extension ScoresView {
 //            }
 //            .listStyle(InsetGroupedListStyle())
 //            .navigationTitle("Scores")
-//
-//          /*  .navigationBarItems(leading:
-//                HStack {
-//                    Image(systemName: "chevron.backward.circle.fill")
-//                    Spacer(minLength: 85)
-//                   // Text("Calendar Week") //this needs to be configured to select the week
-//                }
-//                                ,trailing:
-//                    Image(systemName: "chevron.forward.circle.fill")
-//            )*/
-//
 //        }
 //    }
 //}
