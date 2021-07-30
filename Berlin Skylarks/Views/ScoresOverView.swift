@@ -11,6 +11,7 @@ let ScoresItemSpacing: CGFloat = 20.0
 let ScoresNumberPadding: CGFloat = 20.0
 let ScoresSubItemBackground = Color(UIColor.tertiarySystemFill)
 let ScoresItemPadding: CGFloat = 10.0
+let teamNameFrame: CGFloat = 120
 
 var away_team_logo: Image? = Image("App_road_team_logo")
 var home_team_logo: Image? = Image("App_home_team_logo")
@@ -66,6 +67,7 @@ struct ScoresOverView: View {
                         .scaledToFit()
                         .frame(width: 50, height: 50, alignment: .center)
                     Text(gamescore.away_team_name)
+                        .frame(width: teamNameFrame)
                         .lineLimit(nil)
                 }
                 Spacer()
@@ -90,6 +92,7 @@ struct ScoresOverView: View {
                         .scaledToFit()
                         .frame(width: 50, height: 50, alignment: .center)
                     Text(gamescore.home_team_name)
+                        .frame(width: teamNameFrame)
                         .lineLimit(nil)
                 }
                 Spacer()

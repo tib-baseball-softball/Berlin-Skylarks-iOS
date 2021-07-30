@@ -19,25 +19,28 @@ import SwiftUI
 
 //force unwrapping should not be an issue here - these are never nil
 
-let urlPrevious: URL = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=previous&api_key=IN__8yHVCeE3gP83Dvyqww")!
+let urlPrevious = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=previous&api_key=IN__8yHVCeE3gP83Dvyqww")!
 let urlCurrent = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=current&api_key=IN__8yHVCeE3gP83Dvyqww")!
 let urlNext = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=next&api_key=IN__8yHVCeE3gP83Dvyqww")!
 let urlAll = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
 
-var urlSelected: URL? = urlCurrent
+var isLoadingScores = false
 
 struct ScoresView: View {
     
     @State private var gamescores = [GameScore]()
     
     @State var selection: String = "Current Gameday"
+    
+    @State var urlSelected = urlCurrent
+
     let filterOptions: [String] = [
         "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season",
     ]
     
     var body: some View {
         NavigationView {
-    
+            
             List(self.gamescores, id: \.id) { GameScore in
                 NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
                     ScoresOverView(gamescore: GameScore)
@@ -77,19 +80,15 @@ struct ScoresView: View {
                 }
             }
             
-        }.onAppear(perform: { loadData(url: urlCurrent) })
+        }.onAppear(perform: { loadData(url: urlSelected) })
     }
 }
 
 extension ScoresView {
     func loadData(url: URL) {
             
-            //this was the previous version
+            isLoadingScores = true
         
-//            guard let url = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=previous&api_key=IN__8yHVCeE3gP83Dvyqww") else {
-//                return
-//            }
-            
             let request = URLRequest(url: url)
             URLSession.shared.dataTask(with: request) { data, response, error in
                 
@@ -101,20 +100,14 @@ extension ScoresView {
                         }
                     }
                 }
-                
+            isLoadingScores = false
             }.resume()
-        }
+    }
 }
 
 
 struct ScoresView_Previews: PreviewProvider {
     static var previews: some View {
         ScoresView()
-        /*
-        ForEach(["iPhone 12", "iPhone 8", "iPad Pro (9.7-inch)"], id: \.self) { deviceName in
-            ScoresView()
-                        .previewDevice(PreviewDevice(rawValue: deviceName))
-                }
-        */
     }
 }

@@ -55,6 +55,7 @@ struct ScoresDetailView: View {
                                 .scaledToFit()
                                 .frame(width: 50, height: 50, alignment: .center)
                             Text(gamescore.away_team_name)
+                                //.frame(width: teamNameFrame)
                                 .lineLimit(nil)
                         }
                         Spacer()
@@ -66,8 +67,9 @@ struct ScoresDetailView: View {
                                 .scaledToFit()
                                 .frame(width: 50, height: 50, alignment: .center)
                             Text(gamescore.home_team_name)
+                                //.frame(width: teamNameFrame)
                                 .lineLimit(nil)
-                        }
+                        }.frame(width: teamNameFrame)
                     }
                     .padding(ScoresItemPadding)
                     HStack {
@@ -120,10 +122,15 @@ struct ScoresDetailView: View {
             Section(header: Text("Game officials")) {
                 HStack {
                     Image(systemName: "person.fill")
-                    Text(gamescore.umpire_assignments[0].license.person.first_name + " " + gamescore.umpire_assignments[0].license.person.last_name)
+                    if let umpire1Name = gamescore.umpire_assignments[0].license.person.last_name {
+                        Text(umpire1Name + ", " + gamescore.umpire_assignments[0].license.person.first_name)
+                    }
+                    
                     Spacer()
-                    Text(gamescore.umpire_assignments[0].license.number)
-                        .font(.caption)
+                    if let umpire1Number = gamescore.umpire_assignments[0].license.number {
+                        Text(umpire1Number)
+                            .font(.caption)
+                    }
                 }.padding(ScoresItemPadding)
                 HStack {
                     Image(systemName: "person.fill")
@@ -148,6 +155,6 @@ struct ScoresDetailView: View {
 
 struct ScoresDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoresDetailView(gamescore: dummyGameScores[0])
+        ScoresDetailView(gamescore: dummyGameScores[7])
     }
 }
