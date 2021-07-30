@@ -24,7 +24,7 @@ let urlCurrent = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches
 let urlNext = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=next&api_key=IN__8yHVCeE3gP83Dvyqww")!
 let urlAll = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
 
-
+var urlSelected: URL? = urlCurrent
 
 struct ScoresView: View {
     
@@ -84,7 +84,7 @@ struct ScoresView: View {
 extension ScoresView {
     func loadData(url: URL) {
             
-            //loads only previous gameday right now!
+            //this was the previous version
         
 //            guard let url = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=previous&api_key=IN__8yHVCeE3gP83Dvyqww") else {
 //                return
@@ -105,22 +105,6 @@ extension ScoresView {
             }.resume()
         }
 }
-//old state
-
-//struct ScoresView: View {
-//    var body: some View {
-//        NavigationView {
-//            //apparently it should be possible to drop the id part but it throws an error
-//            List(gamescores, id: \.id) { GameScore in
-//                NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
-//                    ScoresOverView(gamescore: GameScore)
-//                }
-//            }
-//            .listStyle(InsetGroupedListStyle())
-//            .navigationTitle("Scores")
-//        }
-//    }
-//}
 
 
 struct ScoresView_Previews: PreviewProvider {

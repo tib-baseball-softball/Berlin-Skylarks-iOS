@@ -71,15 +71,19 @@ struct ScoresDetailView: View {
                     }
                     .padding(ScoresItemPadding)
                     HStack {
-                        Text(String(gamescore.away_runs!))
-                            .font(.largeTitle)
-                            .bold()
-                            .padding(ScoresNumberPadding)
+                        if let awayScore = gamescore.away_runs {
+                            Text(String(awayScore))
+                                .font(.largeTitle)
+                                .bold()
+                                .padding(ScoresNumberPadding)
+                        }
                         Spacer()
-                        Text(String(gamescore.home_runs!))
-                            .font(.largeTitle)
-                            .bold()
-                            .padding(ScoresNumberPadding)
+                        if let homeScore = gamescore.home_runs {
+                            Text(String(homeScore))
+                                .font(.largeTitle)
+                                .bold()
+                                .padding(ScoresNumberPadding)
+                        }
                     }
                     .padding(ScoresItemPadding)
                 }

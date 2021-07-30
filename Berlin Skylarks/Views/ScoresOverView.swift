@@ -50,11 +50,6 @@ struct ScoresOverView: View {
             }
         }
     }
-//    func correctNullScores() {
-//        if gamescore.away_runs == nil {
-//
-//        }
-//    }
     
     var body: some View {
         self.setCorrectLogo()
@@ -75,12 +70,13 @@ struct ScoresOverView: View {
                 }
                 Spacer()
                 
-                //I should be super careful about forced unwrapping here --> this won't work once I have real data as games in the future do NOT have runs yet!
+                if let awayScore = gamescore.away_runs {
+                    Text(String(awayScore))
+                        .font(.largeTitle)
+                        .bold()
+                        .padding(ScoresNumberPadding)
+                }
                 
-                Text(String(gamescore.away_runs!))
-                    .font(.largeTitle)
-                    .bold()
-                    .padding(ScoresNumberPadding)
             }
             .padding(ScoresItemPadding)
             .background(ScoresSubItemBackground)
@@ -97,14 +93,18 @@ struct ScoresOverView: View {
                         .lineLimit(nil)
                 }
                 Spacer()
-                Text(String(gamescore.home_runs!))
-                    .font(.largeTitle)
-                    .bold()
-                    .padding(ScoresNumberPadding)
-                    
-                    //todo: make the higher color red (or Skylarks color?)
-                    
-                    //.foregroundColor(Color("AccentColor"))
+                
+                if let homeScore = gamescore.home_runs {
+                    Text(String(homeScore))
+                        .font(.largeTitle)
+                        .bold()
+                        .padding(ScoresNumberPadding)
+                        
+                        //todo: make the higher color red (or Skylarks color?)
+                        
+                        //.foregroundColor(Color("AccentColor"))
+                }
+                
             }
             .padding(ScoresItemPadding)
             .background(ScoresSubItemBackground)
@@ -119,6 +119,6 @@ struct ScoresOverView: View {
 struct ScoresOverView_Previews: PreviewProvider {
     
     static var previews: some View {
-        ScoresOverView(gamescore: dummyGameScores[0])
+        ScoresOverView(gamescore: dummyGameScores[7])
     }
 }
