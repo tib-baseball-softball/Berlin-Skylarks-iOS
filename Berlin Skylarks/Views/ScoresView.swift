@@ -32,7 +32,7 @@ struct ScoresView: View {
     
     @State var selection: String = "Current Gameday"
     
-    @State var urlSelected = urlCurrent
+    @State var urlSelected = urlNext
 
     let filterOptions: [String] = [
         "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season",
