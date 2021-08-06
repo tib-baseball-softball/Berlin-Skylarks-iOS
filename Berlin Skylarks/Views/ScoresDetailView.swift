@@ -120,32 +120,90 @@ struct ScoresDetailView: View {
                 .padding(ScoresItemPadding)
             }
             Section(header: Text("Game officials")) {
-                HStack {
-                    Image(systemName: "person.fill")
-                    if let umpire1Name = gamescore.umpire_assignments[0].license.person.last_name {
-                        Text(umpire1Name + ", " + gamescore.umpire_assignments[0].license.person.first_name)
-                    }
-                    
-                    Spacer()
-                    if let umpire1Number = gamescore.umpire_assignments[0].license.number {
-                        Text(umpire1Number)
+                
+                //start umpire assignments. I support up to four slots, the first two get else statements if empty.
+                
+                if gamescore.umpire_assignments.indices.contains(0) {
+                    HStack {
+                        Image(systemName: "person.fill")
+                        Text(gamescore.umpire_assignments[0].license.person.last_name + ", " + gamescore.umpire_assignments[0].license.person.first_name)
+                        Spacer()
+                        Text(gamescore.umpire_assignments[0].license.number)
                             .font(.caption)
-                    }
-                }.padding(ScoresItemPadding)
-                HStack {
-                    Image(systemName: "person.fill")
-                    Text(gamescore.umpire_assignments[1].license.person.first_name + " " + gamescore.umpire_assignments[1].license.person.last_name)
-                    Spacer()
-                    Text(gamescore.umpire_assignments[1].license.number)
-                        .font(.caption)
-                }.padding(ScoresItemPadding)
-                HStack {
-                    Image(systemName: "pencil")
-                    Text(gamescore.scorer_assignments[0].license.person.first_name + " " + gamescore.scorer_assignments[0].license.person.last_name)
-                    Spacer()
-                    Text(gamescore.scorer_assignments[0].license.number)
-                        .font(.caption)
-                }.padding(ScoresItemPadding)
+                    }.padding(ScoresItemPadding)
+                } else {
+                    HStack {
+                        Image(systemName: "person.fill")
+                        Text("No first umpire assigned yet")
+                        Spacer()
+                    }.padding(ScoresItemPadding)
+                }
+                
+                if gamescore.umpire_assignments.indices.contains(1) {
+                    HStack {
+                        Image(systemName: "person.fill")
+                        Text(gamescore.umpire_assignments[1].license.person.last_name + ", " + gamescore.umpire_assignments[1].license.person.first_name)
+                        Spacer()
+                        Text(gamescore.umpire_assignments[1].license.number)
+                            .font(.caption)
+                    }.padding(ScoresItemPadding)
+                } else {
+                    HStack {
+                        Image(systemName: "person.fill")
+                        Text("No second umpire assigned yet")
+                        Spacer()
+                    }.padding(ScoresItemPadding)
+                }
+                
+                if gamescore.umpire_assignments.indices.contains(2) {
+                    HStack {
+                        Image(systemName: "person.fill")
+                        Text(gamescore.umpire_assignments[2].license.person.last_name + ", " + gamescore.umpire_assignments[2].license.person.first_name)
+                        Spacer()
+                        Text(gamescore.umpire_assignments[2].license.number)
+                            .font(.caption)
+                    }.padding(ScoresItemPadding)
+                }
+                
+                if gamescore.umpire_assignments.indices.contains(3) {
+                    HStack {
+                        Image(systemName: "person.fill")
+                        Text(gamescore.umpire_assignments[3].license.person.last_name + ", " + gamescore.umpire_assignments[3].license.person.first_name)
+                        Spacer()
+                        Text(gamescore.umpire_assignments[3].license.number)
+                            .font(.caption)
+                    }.padding(ScoresItemPadding)
+                }
+                
+                //scorer assignments. I support two entries here to account for double scoring. Only the first one gets an else statement since second scorers are rare
+                
+                if gamescore.scorer_assignments.indices.contains(0) {
+                    HStack {
+                        Image(systemName: "pencil")
+                        Text(gamescore.scorer_assignments[0].license.person.last_name + ", " + gamescore.scorer_assignments[0].license.person.first_name)
+                        
+                        Spacer()
+                        Text(gamescore.scorer_assignments[0].license.number)
+                                .font(.caption)
+                    }.padding(ScoresItemPadding)
+                } else {
+                    HStack {
+                        Image(systemName: "pencil")
+                        Text("No scorer assigned yet")
+                        Spacer()
+                    }.padding(ScoresItemPadding)
+                }
+                
+                if gamescore.scorer_assignments.indices.contains(1) {
+                    HStack {
+                        Image(systemName: "pencil")
+                        Text(gamescore.scorer_assignments[1].license.number + ", " + gamescore.scorer_assignments[1].license.person.first_name)
+                        
+                        Spacer()
+                        Text(gamescore.scorer_assignments[1].license.number)
+                                .font(.caption)
+                    }.padding(ScoresItemPadding)
+                }
             }
         }
         .listStyle(InsetGroupedListStyle())
@@ -155,6 +213,6 @@ struct ScoresDetailView: View {
 
 struct ScoresDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoresDetailView(gamescore: dummyGameScores[7])
+        ScoresDetailView(gamescore: dummyGameScores[6])
     }
 }

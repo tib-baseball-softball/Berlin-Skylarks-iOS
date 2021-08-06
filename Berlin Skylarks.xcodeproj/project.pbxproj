@@ -383,6 +383,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -407,6 +408,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTS_MACCATALYST = YES;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
