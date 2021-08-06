@@ -24,6 +24,13 @@ let urlCurrent = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches
 let urlNext = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=next&api_key=IN__8yHVCeE3gP83Dvyqww")!
 let urlAll = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
 
+let scoresURLs = [
+    "Previous Gameday": urlPrevious,
+    "Current Gameday": urlCurrent,
+    "Next Gameday": urlNext,
+    "Full Season": urlAll,
+]
+
 var isLoadingScores = false
 
 struct ScoresView: View {
@@ -32,7 +39,7 @@ struct ScoresView: View {
     
     @State var selection: String = "Current Gameday"
     
-    @State var urlSelected = urlNext
+    @State var urlSelected = urlCurrent
 
     let filterOptions: [String] = [
         "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season",
@@ -48,6 +55,18 @@ struct ScoresView: View {
             }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Scores")
+            
+            .onAppear(perform: { loadGameData(url: urlSelected) })
+            
+            //I need to get what "value" means here --> type is string, like selection. Code works anyway.
+            .onChange(of: selection, perform: { value in
+                for (string, url) in scoresURLs {
+                    if selection.contains(string) {
+                        urlSelected = url
+                    }
+                }
+                loadGameData(url: urlSelected)
+            })
             
             // this is the toolbar with the picker in the top right corner where you can select which games to display. TODO: bind to View so that the appropriate games are dynamically loaded on selection.
             
@@ -79,15 +98,12 @@ struct ScoresView: View {
                     }
                 }
             }
-            
-        }.onAppear(perform: { loadData(url: urlSelected) })
+        }
     }
 }
 
 extension ScoresView {
-    func loadData(url: URL) {
-            
-            isLoadingScores = true
+    func loadGameData(url: URL) {
         
             let request = URLRequest(url: url)
             URLSession.shared.dataTask(with: request) { data, response, error in
@@ -100,7 +116,7 @@ extension ScoresView {
                         }
                     }
                 }
-            isLoadingScores = false
+            //isLoadingScores = false
             }.resume()
     }
 }

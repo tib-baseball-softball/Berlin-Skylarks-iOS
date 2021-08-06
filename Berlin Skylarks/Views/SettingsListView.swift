@@ -10,7 +10,7 @@ import SwiftUI
 struct SettingsListView: View {
     
 //    this is lazily copied, needs further understanding
-    @State private var sendPush = true
+    @State private var sendPush = false
     
     var body: some View {
         NavigationView {
@@ -19,6 +19,13 @@ struct SettingsListView: View {
                     Toggle(isOn: $sendPush) {
                             Text("Send Push Notifications")
                         }
+                    
+                    //this was a simple test of onChange syntax
+                    
+                    .onChange(of: sendPush, perform: { whatever in
+                        print("Push enabled")
+                    })
+                    
                     .toggleStyle(SwitchToggleStyle(tint: Color("AccentColor")))
                     NavigationLink(
                         destination: InfoView()) {
