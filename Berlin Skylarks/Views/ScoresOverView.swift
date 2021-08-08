@@ -56,8 +56,13 @@ struct ScoresOverView: View {
         self.setCorrectLogo()
         return
             VStack(spacing: ScoresItemSpacing) {
-            Text(gamescore.league.name)
-            //Text(gamescore.away_league_entry.team.clubs.debugDescription)
+                VStack {
+                    Text(gamescore.league.name)
+                    HStack {
+                        Image(systemName: "clock.fill")
+                        Text(gamescore.time)
+                    }.padding(ScoresItemPadding)
+                }
             HStack {
                 VStack {
                     Text("Guest")
@@ -122,6 +127,6 @@ struct ScoresOverView: View {
 struct ScoresOverView_Previews: PreviewProvider {
     
     static var previews: some View {
-        ScoresOverView(gamescore: dummyGameScores[7])
+        ScoresOverView(gamescore: dummyGameScores[36])
     }
 }

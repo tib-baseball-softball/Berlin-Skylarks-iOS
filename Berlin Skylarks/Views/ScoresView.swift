@@ -47,10 +47,14 @@ struct ScoresView: View {
     
     var body: some View {
         NavigationView {
-            
-            List(self.gamescores, id: \.id) { GameScore in
-                NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
-                    ScoresOverView(gamescore: GameScore)
+            List {
+                ForEach(self.gamescores, id: \.id) { GameScore in
+                    NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
+                        ScoresOverView(gamescore: GameScore)
+                    }
+                }
+                if !gamescores.indices.contains(0) {
+                    Text("There are no Skylarks games scheduled for the chosen time frame.")
                 }
             }
             .listStyle(InsetGroupedListStyle())
