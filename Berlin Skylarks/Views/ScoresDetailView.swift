@@ -109,14 +109,17 @@ struct ScoresDetailView: View {
               //  .cornerRadius(NewsItemCornerRadius)
             }
             Section(header: Text("Location")) {
+                
+                //TODO: add mapKit View here and map to location
+                
                 HStack {
                     Image(systemName: "diamond.fill") //this really needs a custom icon
-                    Text(String(describing:  gamescore.field.name))
+                    Text(String(gamescore.field.name))
                 }
                 .padding(ScoresItemPadding)
                 HStack {
                     Image(systemName: "house.fill")
-                    Text(String(describing:  gamescore.field.city))
+                    Text(gamescore.field.street + ",\n" + gamescore.field.postal_code + " " + gamescore.field.city)
                 }
                 .padding(ScoresItemPadding)
             }

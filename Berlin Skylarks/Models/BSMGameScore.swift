@@ -20,6 +20,7 @@ struct GameScore: Hashable, Codable, Identifiable {
     var home_team_name: String
     var away_team_name: String
     var human_state: String
+    var scoresheet_url: String?
     var field: Field
     var league: League
     var home_league_entry: Home_League_Entry
@@ -30,6 +31,8 @@ struct GameScore: Hashable, Codable, Identifiable {
     struct Field: Hashable, Codable {
         var name: String
         var city: String
+        var street: String
+        var postal_code: String
         //var latitude: Double?
        // var longitude: Double?
     }

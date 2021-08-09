@@ -29,6 +29,8 @@
 		CABF7BFB259351D500B95813 /* Berlin_Skylarks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BF9259351D500B95813 /* Berlin_Skylarks.xcdatamodeld */; };
 		CABF7C04259355A200B95813 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CABF7C03259355A200B95813 /* README.md */; };
 		CABF7C0B2593627900B95813 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7C0A2593627900B95813 /* NewsView.swift */; };
+		CAE7740A26C1702900A57F66 /* VLBB_2021_Standings.json in Resources */ = {isa = PBXBuildFile; fileRef = CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */; };
+		CAE7740C26C1709B00A57F66 /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
 		CAFDC1FD25BF7F09000A5922 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFDC1FC25BF7F09000A5922 /* ModelData.swift */; };
 /* End PBXBuildFile section */
 
@@ -58,6 +60,8 @@
 		CABF7BFC259351D500B95813 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CABF7C03259355A200B95813 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CABF7C0A2593627900B95813 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VLBB_2021_Standings.json; sourceTree = "<group>"; };
+		CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMStandingsTable.swift; sourceTree = "<group>"; };
 		CAFDC1FC25BF7F09000A5922 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				CA0DA052259A46FA002A0FAB /* BSM_Games_2020_human_readable.json */,
+				CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */,
 			);
 			path = "JSON data";
 			sourceTree = "<group>";
@@ -127,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */,
+				CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */,
 				CAFDC1FC25BF7F09000A5922 /* ModelData.swift */,
 			);
 			path = Models;
@@ -213,6 +219,7 @@
 				CABF7BF6259351D500B95813 /* Preview Assets.xcassets in Resources */,
 				CA0DA053259A46FA002A0FAB /* BSM_Games_2020_human_readable.json in Resources */,
 				CABF7BF3259351D500B95813 /* Assets.xcassets in Resources */,
+				CAE7740A26C1702900A57F66 /* VLBB_2021_Standings.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -234,6 +241,7 @@
 				CABF7C0B2593627900B95813 /* NewsView.swift in Sources */,
 				CA78B71C259507BC00510621 /* ColorSets.swift in Sources */,
 				CA78B725259648F300510621 /* PlayersView.swift in Sources */,
+				CAE7740C26C1709B00A57F66 /* BSMStandingsTable.swift in Sources */,
 				CA56299526943C0D00274BE4 /* WebArticleView.swift in Sources */,
 				CA78B72E2596892E00510621 /* TeamListView.swift in Sources */,
 				CA0DA0452598BB32002A0FAB /* ScoresOverView.swift in Sources */,
