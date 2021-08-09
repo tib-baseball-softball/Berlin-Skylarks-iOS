@@ -16,6 +16,8 @@ let teamNameFrame: CGFloat = 120
 var away_team_logo: Image? = Image("App_road_team_logo")
 var home_team_logo: Image? = Image("App_home_team_logo")
 
+var gameDate: Date?
+
 let teamLogos = [
     "Skylarks": Image("Bird_whiteoutline"),
     "Roosters": Image("Roosters_Logo"),
@@ -37,6 +39,12 @@ let teamLogos = [
 
 struct ScoresOverView: View {
     var gamescore: GameScore
+
+//    let gameDateFormatter = DateFormatter()
+//    gameDateFormatter.dateStyle = .short
+//
+//    let gameTimeFormatter = DateFormatter()
+//    gameTimeFormatter.timeStyle = .short
     
     func setCorrectLogo() {
         for (name, image) in teamLogos {
@@ -52,15 +60,27 @@ struct ScoresOverView: View {
         }
     }
     
+    func getDatefromBSMString() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "y-M-dd HH:mm:ss Z"
+        
+        //force unwrapping alert: gametime really should be a required field in BSM DB - let's see if there are crashes
+        gameDate = dateFormatter.date(from: gamescore.time)!
+    }
+    
     var body: some View {
         self.setCorrectLogo()
+        self.getDatefromBSMString()
         return
             VStack(spacing: ScoresItemSpacing) {
                 VStack {
                     Text(gamescore.league.name)
+                        .font(.headline)
                     HStack {
+                        Image(systemName: "calendar")
+                        Text(gameDate!, style: .date)
                         Image(systemName: "clock.fill")
-                        Text(gamescore.time)
+                        Text(gameDate!, style: .time)
                     }.padding(ScoresItemPadding)
                 }
             HStack {

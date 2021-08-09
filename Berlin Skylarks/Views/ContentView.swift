@@ -36,7 +36,7 @@ struct ContentView: View {
                 }
             StandingsView()
                 .tabItem {
-                    Image(systemName: "calendar")
+                    Image(systemName: "tablecells.fill")
                     Text("Standings")
                 }
             TeamListView()

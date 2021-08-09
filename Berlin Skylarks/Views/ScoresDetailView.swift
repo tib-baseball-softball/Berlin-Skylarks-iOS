@@ -24,8 +24,17 @@ struct ScoresDetailView: View {
         }
     }
     
+    func getDatefromBSMString() {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "y-M-dd HH:mm:ss Z"
+        
+        //force unwrapping alert: game time really should be a required field in BSM DB - let's see if there are crashes
+        gameDate = dateFormatter.date(from: gamescore.time)!
+    }
+    
     var body: some View {
         self.setCorrectLogo()
+        self.getDatefromBSMString()
         return
             List {
             Section(header: Text("Main info")) {
@@ -39,8 +48,13 @@ struct ScoresDetailView: View {
                 }
                 .padding(ScoresItemPadding)
                 HStack {
+                    Image(systemName: "calendar")
+                    Text(gameDate!, style: .date)
+                }
+                .padding(ScoresItemPadding)
+                HStack {
                     Image(systemName: "clock.fill")
-                    Text(gamescore.time)
+                    Text(gameDate!, style: .time)
                 }
                 .padding(ScoresItemPadding)
             }
@@ -181,7 +195,6 @@ struct ScoresDetailView: View {
                     HStack {
                         Image(systemName: "pencil")
                         Text(gamescore.scorer_assignments[0].license.person.last_name + ", " + gamescore.scorer_assignments[0].license.person.first_name)
-                        
                         Spacer()
                         Text(gamescore.scorer_assignments[0].license.number)
                                 .font(.caption)
@@ -197,8 +210,7 @@ struct ScoresDetailView: View {
                 if gamescore.scorer_assignments.indices.contains(1) {
                     HStack {
                         Image(systemName: "pencil")
-                        Text(gamescore.scorer_assignments[1].license.number + ", " + gamescore.scorer_assignments[1].license.person.first_name)
-                        
+                        Text(gamescore.scorer_assignments[1].license.person.last_name + ", " + gamescore.scorer_assignments[1].license.person.first_name)
                         Spacer()
                         Text(gamescore.scorer_assignments[1].license.number)
                                 .font(.caption)
