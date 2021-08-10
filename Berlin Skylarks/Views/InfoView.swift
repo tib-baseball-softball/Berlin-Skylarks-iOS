@@ -12,7 +12,9 @@ import SwiftUI
 struct InfoView: View {
 
     var body: some View {
-        Text("dhfgbdfjhcjhbjkdfbcj")
+        List {
+            Text("dsfghdfhg")
+        }
     }
 }
 

@@ -15,54 +15,40 @@ struct StandingsView: View {
                     HStack {
                         Text("#")
                             .bold()
-                            .font(.title3)
                         Spacer()
                         Text("Team")
                             .bold()
-                            .font(.title3)
                         Spacer()
-                        Text("W")
-                            .bold()
-                            .font(.title3)
-                        Text("L")
-                            .bold()
-                            .font(.title3)
-                        Text("GB")
-                            .bold()
-                            .font(.title3)
+                        HStack {
+                            Text("W")
+                                .bold()
+                                .padding(.horizontal, 4)
+                            Text("L")
+                                .bold()
+                                .padding(.horizontal, 4)
+                            Text("GB")
+                                .bold()
+                                .padding(.horizontal, -1)
+                        }.padding(.horizontal, -10)
                     }
-                    //.foregroundColor(.white)
-                    //.listRowBackground(ScoresSubItemBackground)
+                    .font(.title3)
+                    .foregroundColor(.white)
+                    .listRowBackground(Color.accentColor)
                     
                     HStack {
-                        Text("1")
+                        Text("1.")
                         Spacer()
                         Text("Skylarks")
                         Spacer()
-                        Text("7")
-                        Text("2")
-                        Text("0")
-                    }
-                    HStack {
-                        Text("2")
-                        Spacer()
-                        Text("Roadrunners")
-                        Spacer()
-                        Text("4:5")
-                    }
-                    HStack {
-                        Text("3")
-                        Spacer()
-                        Text("Sluggers")
-                        Spacer()
-                        Text("3:6")
-                    }
-                    HStack {
-                        Text("4")
-                        Spacer()
-                        Text("SG Challengers/Ravens/Sliders")
-                        Spacer()
-                        Text("0:9")
+                        HStack {
+                            Text("14")
+                                .padding(.horizontal, 5)
+                            Text("2")
+                                .padding(.horizontal, 5)
+                            Text("0")
+                                .padding(.horizontal, 1)
+                        }
+                        
                     }
                 }
                 Section(header: Text("Test section")) {
@@ -79,9 +65,5 @@ struct StandingsView: View {
 struct StandingsView_Previews: PreviewProvider {
     static var previews: some View {
         StandingsView()
-            
-            
-            
-            
     }
 }
