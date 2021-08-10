@@ -39,12 +39,6 @@ let teamLogos = [
 
 struct ScoresOverView: View {
     var gamescore: GameScore
-
-//    let gameDateFormatter = DateFormatter()
-//    gameDateFormatter.dateStyle = .short
-//
-//    let gameTimeFormatter = DateFormatter()
-//    gameTimeFormatter.timeStyle = .short
     
     func setCorrectLogo() {
         for (name, image) in teamLogos {

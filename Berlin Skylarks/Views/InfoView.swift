@@ -5,12 +5,14 @@
 //  Created by David Battefeld on 27.12.20.
 //
 
+//until I do stuff with it this is my test view
+
 import SwiftUI
 
 struct InfoView: View {
+
     var body: some View {
-        
-        Text("Info and legal blurb here")
+        Text("dhfgbdfjhcjhbjkdfbcj")
     }
 }
 

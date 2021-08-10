@@ -31,6 +31,7 @@
 		CABF7C0B2593627900B95813 /* NewsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7C0A2593627900B95813 /* NewsView.swift */; };
 		CAE7740A26C1702900A57F66 /* VLBB_2021_Standings.json in Resources */ = {isa = PBXBuildFile; fileRef = CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */; };
 		CAE7740C26C1709B00A57F66 /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
+		CAE7740E26C292F900A57F66 /* StandingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740D26C292F900A57F66 /* StandingsTableView.swift */; };
 		CAFDC1FD25BF7F09000A5922 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFDC1FC25BF7F09000A5922 /* ModelData.swift */; };
 /* End PBXBuildFile section */
 
@@ -62,6 +63,7 @@
 		CABF7C0A2593627900B95813 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VLBB_2021_Standings.json; sourceTree = "<group>"; };
 		CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMStandingsTable.swift; sourceTree = "<group>"; };
+		CAE7740D26C292F900A57F66 /* StandingsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsTableView.swift; sourceTree = "<group>"; };
 		CAFDC1FC25BF7F09000A5922 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -152,6 +154,7 @@
 				CABF7C0A2593627900B95813 /* NewsView.swift */,
 				CA0DA04A2598F449002A0FAB /* SettingsListView.swift */,
 				CA0DA04D2598F570002A0FAB /* InfoView.swift */,
+				CAE7740D26C292F900A57F66 /* StandingsTableView.swift */,
 				CA78B7272596880200510621 /* NewsDetailView.swift */,
 				CA56299426943C0D00274BE4 /* WebArticleView.swift */,
 			);
@@ -248,6 +251,7 @@
 				CA78B72B259688C100510621 /* PlayerDetailView.swift in Sources */,
 				CAFDC1FD25BF7F09000A5922 /* ModelData.swift in Sources */,
 				CABF7BFB259351D500B95813 /* Berlin_Skylarks.xcdatamodeld in Sources */,
+				CAE7740E26C292F900A57F66 /* StandingsTableView.swift in Sources */,
 				CA0DA04E2598F570002A0FAB /* InfoView.swift in Sources */,
 				CA0DA04B2598F449002A0FAB /* SettingsListView.swift in Sources */,
 			);

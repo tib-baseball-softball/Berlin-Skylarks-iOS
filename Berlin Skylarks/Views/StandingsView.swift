@@ -46,24 +46,27 @@ struct StandingsView: View {
                     HStack {
                         Text("2")
                         Spacer()
-                        Text("Sample Team")
+                        Text("Roadrunners")
                         Spacer()
                         Text("4:5")
                     }
                     HStack {
                         Text("3")
                         Spacer()
-                        Text("Sample Team")
+                        Text("Sluggers")
                         Spacer()
                         Text("3:6")
                     }
                     HStack {
                         Text("4")
                         Spacer()
-                        Text("Sample Team")
+                        Text("SG Challengers/Ravens/Sliders")
                         Spacer()
                         Text("0:9")
                     }
+                }
+                Section(header: Text("Test section")) {
+                    StandingsTableView()
                 }
             }
             .listStyle(InsetGroupedListStyle())
@@ -76,6 +79,8 @@ struct StandingsView: View {
 struct StandingsView_Previews: PreviewProvider {
     static var previews: some View {
         StandingsView()
+            
+            
             
             
     }
