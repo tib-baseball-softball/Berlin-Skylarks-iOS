@@ -7,6 +7,8 @@
 
 import SwiftUI
 
+//this is a single table with ONE league. it can be accessed by tapping the corresponding league in StandingsView
+
 struct StandingsTableView: View {
     var body: some View {
         List {
@@ -21,17 +23,65 @@ struct StandingsTableView: View {
                     HStack {
                         Text("W")
                             .bold()
+                            .padding(.horizontal, 4)
                         Text("L")
                             .bold()
+                            .padding(.horizontal, 4)
                         Text("GB")
                             .bold()
+                            .padding(.horizontal, -1)
                     }.padding(.horizontal, -10)
                 }
                 .font(.title3)
                 .foregroundColor(.white)
                 .listRowBackground(Color.accentColor)
+                
+                HStack {
+                    Text("1.")
+                    Spacer()
+                    Text("Skylarks")
+                    Spacer()
+                    HStack {
+                        Text("14")
+                            .padding(.horizontal, 5)
+                        Text("2")
+                            .padding(.horizontal, 5)
+                        Text("0")
+                            .padding(.horizontal, 1)
+                    }
+                    
+                }
+                HStack {
+                    Text("2.")
+                    Spacer()
+                    Text("Sluggers")
+                    Spacer()
+                    HStack {
+                        Text("4")
+                            .padding(.horizontal, 5)
+                        Text("4")
+                            .padding(.horizontal, 5)
+                        Text("2")
+                            .padding(.horizontal, 1)
+                    }
+                    
+                }
+                HStack {
+                    Text("3.")
+                    Spacer()
+                    Text("Dukes")
+                    Spacer()
+                    HStack {
+                        Text("1")
+                            .padding(.horizontal, 5)
+                        Text("3")
+                            .padding(.horizontal, 5)
+                        Text("5")
+                            .padding(.horizontal, 1)
+                    }
+                    
+                }
             }
-            
         }
         .listStyle(InsetGroupedListStyle())
     }

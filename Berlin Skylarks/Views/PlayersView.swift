@@ -31,6 +31,8 @@ struct TeamPlayersView: View {
                         HStack {
                             Image(systemName: "person.fill")
                                 .font(.system(size: previewImageSize))
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.gray, lineWidth: 2))
                             Spacer()
                                 .frame(width: SpacerWidth)
                             Text("Jaro Bruders")

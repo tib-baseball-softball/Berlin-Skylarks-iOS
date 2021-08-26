@@ -7,53 +7,31 @@
 
 import SwiftUI
 
+let StandingsRowPadding: CGFloat = 10
+
+let leagues = ["Verbandsliga Baseball", "Landesliga Baseball", "Verbandsliga Softball" ]
+
 struct StandingsView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Verbandsliga Baseball")) {
-                    HStack {
-                        Text("#")
-                            .bold()
-                        Spacer()
-                        Text("Team")
-                            .bold()
-                        Spacer()
-                        HStack {
-                            Text("W")
-                                .bold()
-                                .padding(.horizontal, 4)
-                            Text("L")
-                                .bold()
-                                .padding(.horizontal, 4)
-                            Text("GB")
-                                .bold()
-                                .padding(.horizontal, -1)
-                        }.padding(.horizontal, -10)
+                Section(header: Text("Please select your league")) {
+                    ForEach(leagues, id: \.self) { league in
+                        NavigationLink(
+                            destination: StandingsTableView(),
+                            label: {
+                                HStack {
+                                    Image(systemName: "tablecells")
+                                        .padding(.trailing, 3)
+                                        .foregroundColor(Color.accentColor)
+                                    Text(league)
+                                }
+                            })
                     }
-                    .font(.title3)
-                    .foregroundColor(.white)
-                    .listRowBackground(Color.accentColor)
                     
-                    HStack {
-                        Text("1.")
-                        Spacer()
-                        Text("Skylarks")
-                        Spacer()
-                        HStack {
-                            Text("14")
-                                .padding(.horizontal, 5)
-                            Text("2")
-                                .padding(.horizontal, 5)
-                            Text("0")
-                                .padding(.horizontal, 1)
-                        }
-                        
-                    }
+                    .padding(StandingsRowPadding)
                 }
-                Section(header: Text("Test section")) {
-                    StandingsTableView()
-                }
+                
             }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Standings")
