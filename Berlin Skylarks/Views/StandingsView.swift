@@ -5,6 +5,8 @@
 //  Created by David Battefeld on 30.12.20.
 //
 
+//this is the overview table where the desired league is selected to display standings
+
 import SwiftUI
 
 let StandingsRowPadding: CGFloat = 10

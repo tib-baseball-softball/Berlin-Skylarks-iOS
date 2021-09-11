@@ -5,6 +5,8 @@
 //  Created by David Battefeld on 10.08.21.
 //
 
+let teamPadding: CGFloat = 4
+
 import SwiftUI
 
 //this is a single table with ONE league. it can be accessed by tapping the corresponding league in StandingsView
@@ -12,24 +14,29 @@ import SwiftUI
 struct StandingsTableView: View {
     var body: some View {
         List {
-            Section(header: Text("Verbandsliga Baseball")) {
+            Section {
                 HStack {
                     Text("#")
                         .bold()
-                    Spacer()
                     Text("Team")
                         .bold()
                     Spacer()
                     HStack {
                         Text("W")
                             .bold()
-                            .padding(.horizontal, 4)
-                        Text("L")
+                            .frame(width: 21, height: 20, alignment: .center)
+                        Text("L ")
                             .bold()
-                            .padding(.horizontal, 4)
+                            .frame(width: 21, height: 20, alignment: .center)
+                        Text("%")
+                            .bold()
+                            .frame(width: 27, height: 20, alignment: .center)
                         Text("GB")
                             .bold()
-                            .padding(.horizontal, -1)
+                            .frame(width: 28, height: 20, alignment: .center)
+                        Text("Srk")
+                            .bold()
+                            .frame(width: 37, height: 20, alignment: .center)
                     }.padding(.horizontal, -10)
                 }
                 .font(.title3)
@@ -38,58 +45,54 @@ struct StandingsTableView: View {
                 
                 HStack {
                     Text("1.")
-                    Spacer()
                     Text("Skylarks")
+                        .padding(.horizontal, teamPadding)
                     Spacer()
                     HStack {
                         Text("14")
-                            .padding(.horizontal, 5)
+                            .frame(width: 21, height: 20, alignment: .center)
                         Text("2")
-                            .padding(.horizontal, 5)
-                        Text("0")
-                            .padding(.horizontal, 1)
-                    }
+                            .frame(width: 21, height: 20, alignment: .center)
+                        Text(".875")
+                            .frame(width: 34, height: 20, alignment: .center)
+                        Text("4")
+                            .frame(width: 21, height: 20, alignment: .center)
+                        Text("W10")
+                            .frame(width: 37, height: 20, alignment: .center)
+                    }.padding(.horizontal, -8)
                     
                 }
                 HStack {
                     Text("2.")
-                    Spacer()
-                    Text("Sluggers")
+                    Text("SG Sluggers/Flamingos/Galactic Empire")
+                        .padding(.horizontal, teamPadding)
                     Spacer()
                     HStack {
                         Text("4")
-                            .padding(.horizontal, 5)
-                        Text("4")
-                            .padding(.horizontal, 5)
+                            .frame(width: 21, height: 20, alignment: .center)
                         Text("2")
-                            .padding(.horizontal, 1)
-                    }
+                            .frame(width: 21, height: 20, alignment: .center)
+                        Text(".221")
+                            .frame(width: 34, height: 20, alignment: .center)
+                        Text("12")
+                            .frame(width: 21, height: 20, alignment: .center)
+                        Text("L3")
+                            .frame(width: 37, height: 20, alignment: .center)
+                    }.padding(.horizontal, -8)
                     
                 }
-                HStack {
-                    Text("3.")
-                    Spacer()
-                    Text("Dukes")
-                    Spacer()
-                    HStack {
-                        Text("1")
-                            .padding(.horizontal, 5)
-                        Text("3")
-                            .padding(.horizontal, 5)
-                        Text("5")
-                            .padding(.horizontal, 1)
-                    }
-                    
-                }
+                //more rows here
             }
         }
         .listStyle(InsetGroupedListStyle())
+        .navigationTitle("Verbandsliga Baseball")
     }
 }
 
 struct StandingsTableView_Previews: PreviewProvider {
     static var previews: some View {
         StandingsTableView()
+            
     }
 }
 
