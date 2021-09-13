@@ -11,6 +11,9 @@ import Foundation
 
 var dummyGameScores: [GameScore] = loadDummyData("BSM_Games_2020_human_readable.json")
 
+var dummyLeagueTable: LeagueTable = loadDummyData("VLBB_2021_Standings.json")
+
+
 func loadDummyData<T: Decodable>(_ filename: String) -> T {
     let data: Data
 

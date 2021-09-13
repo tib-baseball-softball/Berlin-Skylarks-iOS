@@ -8,14 +8,14 @@
 import Foundation
 import SwiftUI
 
-struct LeagueTable: Hashable, Codable, Identifiable {
-    var id: Int
-    var league_id: String
+struct LeagueTable: Hashable, Codable {
+    //var id: Int
+    var league_id: Int
     var league_name: String
     var season: Int
-    var rows: [Rows]
+    var rows: [Row]
     
-    struct Rows: Hashable, Codable {
+    struct Row: Hashable, Codable {
         var rank: String
         var team_name: String
         var short_team_name: String
@@ -24,7 +24,7 @@ struct LeagueTable: Hashable, Codable, Identifiable {
         var losses_count: Int
         var quota: String
         var games_behind: String
-        var streak: String
+        var streak: String //I need to check the error that occurred when the Poor Pigs retreted from the league and had an Int instead of a string in the original JSON! => fixed it in my dummy data
         
 //        var league_entry: LeagueEntry
 //    }

@@ -20,7 +20,7 @@ struct StandingsView: View {
                 Section(header: Text("Please select your league")) {
                     ForEach(leagues, id: \.self) { league in
                         NavigationLink(
-                            destination: StandingsTableView(),
+                            destination: StandingsTableView(leagueTable: dummyLeagueTable),
                             label: {
                                 HStack {
                                     Image(systemName: "tablecells")
@@ -30,8 +30,9 @@ struct StandingsView: View {
                                 }
                             })
                     }
-                    
                     .padding(StandingsRowPadding)
+                    
+                    //.onAppear(perform: { print(dummyLeagueTable) })
                 }
                 
             }

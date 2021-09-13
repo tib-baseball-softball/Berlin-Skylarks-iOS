@@ -12,6 +12,11 @@ import SwiftUI
 //this is a single table with ONE league. it can be accessed by tapping the corresponding league in StandingsView
 
 struct StandingsTableView: View {
+    
+    var leagueTable: LeagueTable
+    
+    @State private var leagueTables = [LeagueTable.Row]()
+    
     var body: some View {
         List {
             Section {
@@ -43,24 +48,26 @@ struct StandingsTableView: View {
                 .foregroundColor(.white)
                 .listRowBackground(Color.accentColor)
                 
-                HStack {
-                    Text("1.")
-                    Text("Skylarks")
-                        .padding(.horizontal, teamPadding)
-                    Spacer()
+                ForEach(self.leagueTable.rows, id: \.rank) { tableRow in
                     HStack {
-                        Text("14")
-                            .frame(width: 21, height: 20, alignment: .center)
-                        Text("2")
-                            .frame(width: 21, height: 20, alignment: .center)
-                        Text(".875")
-                            .frame(width: 34, height: 20, alignment: .center)
-                        Text("4")
-                            .frame(width: 21, height: 20, alignment: .center)
-                        Text("W10")
-                            .frame(width: 37, height: 20, alignment: .center)
-                    }.padding(.horizontal, -8)
-                    
+                        Text(leagueTable.rows[0].rank)
+                        Text(leagueTable.rows[0].team_name)
+                            .padding(.horizontal, teamPadding)
+                        Spacer()
+                        HStack {
+                            Text("14")
+                                .frame(width: 21, height: 20, alignment: .center)
+                            Text("2")
+                                .frame(width: 21, height: 20, alignment: .center)
+                            Text(".875")
+                                .frame(width: 34, height: 20, alignment: .center)
+                            Text("4")
+                                .frame(width: 21, height: 20, alignment: .center)
+                            Text("W10")
+                                .frame(width: 37, height: 20, alignment: .center)
+                        }.padding(.horizontal, -8)
+                        
+                    }
                 }
                 HStack {
                     Text("2.")
@@ -91,7 +98,7 @@ struct StandingsTableView: View {
 
 struct StandingsTableView_Previews: PreviewProvider {
     static var previews: some View {
-        StandingsTableView()
+        StandingsTableView(leagueTable: dummyLeagueTable)
             
     }
 }
