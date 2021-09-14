@@ -50,43 +50,24 @@ struct StandingsTableView: View {
                 
                 ForEach(self.leagueTable.rows, id: \.rank) { tableRow in
                     HStack {
-                        Text(leagueTable.rows[0].rank)
-                        Text(leagueTable.rows[0].team_name)
+                        Text(tableRow.rank)
+                        Text(tableRow.team_name)
                             .padding(.horizontal, teamPadding)
                         Spacer()
                         HStack {
-                            Text("14")
+                            Text(String(tableRow.wins_count))
                                 .frame(width: 21, height: 20, alignment: .center)
-                            Text("2")
+                            Text(String(tableRow.losses_count))
                                 .frame(width: 21, height: 20, alignment: .center)
-                            Text(".875")
-                                .frame(width: 34, height: 20, alignment: .center)
-                            Text("4")
+                            Text(tableRow.quota)
+                                .frame(width: 35, height: 20, alignment: .center)
+                            Text(String(tableRow.games_behind))
                                 .frame(width: 21, height: 20, alignment: .center)
-                            Text("W10")
+                            Text(tableRow.streak)
                                 .frame(width: 37, height: 20, alignment: .center)
                         }.padding(.horizontal, -8)
                         
                     }
-                }
-                HStack {
-                    Text("2.")
-                    Text("SG Sluggers/Flamingos/Galactic Empire")
-                        .padding(.horizontal, teamPadding)
-                    Spacer()
-                    HStack {
-                        Text("4")
-                            .frame(width: 21, height: 20, alignment: .center)
-                        Text("2")
-                            .frame(width: 21, height: 20, alignment: .center)
-                        Text(".221")
-                            .frame(width: 34, height: 20, alignment: .center)
-                        Text("12")
-                            .frame(width: 21, height: 20, alignment: .center)
-                        Text("L3")
-                            .frame(width: 37, height: 20, alignment: .center)
-                    }.padding(.horizontal, -8)
-                    
                 }
                 //more rows here
             }
