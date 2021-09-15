@@ -96,6 +96,7 @@ struct ScoresOverView: View {
                         .font(.largeTitle)
                         .bold()
                         .padding(ScoresNumberPadding)
+                        .foregroundColor(gamescore.away_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
                 }
                 
             }
@@ -121,10 +122,7 @@ struct ScoresOverView: View {
                         .font(.largeTitle)
                         .bold()
                         .padding(ScoresNumberPadding)
-                        
-                        //todo: make the higher color red (or Skylarks color?)
-                        
-                        //.foregroundColor(Color("AccentColor"))
+                        .foregroundColor(gamescore.home_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
                 }
                 
             }

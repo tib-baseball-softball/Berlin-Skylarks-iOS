@@ -92,6 +92,7 @@ struct ScoresDetailView: View {
                                 .font(.largeTitle)
                                 .bold()
                                 .padding(ScoresNumberPadding)
+                                .foregroundColor(gamescore.away_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
                         }
                         Spacer()
                         if let homeScore = gamescore.home_runs {
@@ -99,6 +100,7 @@ struct ScoresDetailView: View {
                                 .font(.largeTitle)
                                 .bold()
                                 .padding(ScoresNumberPadding)
+                                .foregroundColor(gamescore.home_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
                         }
                     }
                     .padding(ScoresItemPadding)

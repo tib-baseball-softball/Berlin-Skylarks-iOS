@@ -65,9 +65,10 @@ struct StandingsTableView: View {
                                 .frame(width: 21, height: 20, alignment: .center)
                             Text(tableRow.streak)
                                 .frame(width: 37, height: 20, alignment: .center)
+                                
                         }.padding(.horizontal, -8)
-                        
                     }
+                    .foregroundColor(tableRow.team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
                 }
                 //more rows here
             }
