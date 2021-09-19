@@ -38,6 +38,8 @@ let teamLogos = [
 
 
 struct ScoresOverView: View {
+    
+    //this is called a "stored property"
     var gamescore: GameScore
     
     func setCorrectLogo() {

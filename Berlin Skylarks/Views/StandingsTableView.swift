@@ -5,17 +5,26 @@
 //  Created by David Battefeld on 10.08.21.
 //
 
-let teamPadding: CGFloat = 4
-
 import SwiftUI
 
-//this is a single table with ONE league. it can be accessed by tapping the corresponding league in StandingsView
+let teamPadding: CGFloat = 4
+
+//the only way I manged to get this to work is via this global variable. Check if it can be moved to local
+
+var leagueTable: LeagueTable = dummyLeagueTable
+
+//this View is a single table with ONE league. it can be accessed by tapping the corresponding league in StandingsView
 
 struct StandingsTableView: View {
     
-    var leagueTable: LeagueTable
+    var league: String
+    //var leagueTable: LeagueTable
     
-    //@State private var leagueTables = [LeagueTable.Row]()
+    @State var leagueURLSelected = urlLLBB
+    
+    // no idea if this is actually needed here
+    
+    //@State private var leagueTables = [LeagueTable]()
     
     var body: some View {
         List {
@@ -60,9 +69,9 @@ struct StandingsTableView: View {
                             Text(String(tableRow.losses_count))
                                 .frame(width: 21, height: 20, alignment: .center)
                             Text(tableRow.quota)
-                                .frame(width: 35, height: 20, alignment: .center)
+                                .frame(width: 36, height: 20, alignment: .center)
                             Text(String(tableRow.games_behind))
-                                .frame(width: 21, height: 20, alignment: .center)
+                                .frame(width: 24, height: 20, alignment: .center)
                             Text(tableRow.streak)
                                 .frame(width: 37, height: 20, alignment: .center)
                                 
@@ -75,12 +84,30 @@ struct StandingsTableView: View {
         }
         .listStyle(InsetGroupedListStyle())
         .navigationTitle(leagueTable.league_name + " " + String(leagueTable.season))
+        
+        .onAppear(perform: { loadTableData(url: leagueURLSelected) })
+    }
+    private func loadTableData(url: URL) {
+
+            let request = URLRequest(url: url)
+            URLSession.shared.dataTask(with: request) { data, response, error in
+
+                if let data = data {
+                    if let response_obj = try? JSONDecoder().decode(LeagueTable.self, from: data) {
+
+                        DispatchQueue.main.async {
+                            leagueTable = response_obj
+                        }
+                    }
+                }
+            //isLoadingScores = false
+            }.resume()
     }
 }
 
 struct StandingsTableView_Previews: PreviewProvider {
     static var previews: some View {
-        StandingsTableView(leagueTable: dummyLeagueTable)
-            
+        StandingsTableView(league: leagues[0])
+
     }
 }

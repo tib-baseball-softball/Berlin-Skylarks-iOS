@@ -16,6 +16,12 @@ struct InfoView: View {
             Text("dsfghdfhg")
         }
     }
+    
+    //this is how you can declare functions in a view!
+    
+    private func printSomething() {
+        print(self)
+    }
 }
 
 struct InfoView_Previews: PreviewProvider {

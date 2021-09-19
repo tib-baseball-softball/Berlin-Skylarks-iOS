@@ -29,12 +29,10 @@ struct TeamPlayersView: View {
                 NavigationLink(
                     destination: PlayerDetailView()){
                         HStack {
-                            Image(systemName: "person.fill")
+                            Image(systemName: "person.circle.fill")
                                 .font(.system(size: previewImageSize))
-                                .clipShape(Circle())
-                                .overlay(Circle().stroke(Color.gray, lineWidth: 2))
-                            Spacer()
-                                .frame(width: SpacerWidth)
+//                                .clipShape(Circle())
+//                                .overlay(Circle().stroke(Color.gray, lineWidth: 2))
                             Text("Jaro Bruders")
                             Spacer()
                             Text("21")
@@ -44,8 +42,6 @@ struct TeamPlayersView: View {
                 HStack {
                     Image(systemName: "person.fill")
                         .font(.system(size: previewImageSize))
-                    Spacer()
-                        .frame(width: SpacerWidth)
                     Text("Sample Player 1")
                     Spacer()
                     Text("22")
@@ -54,8 +50,6 @@ struct TeamPlayersView: View {
                 HStack {
                     Image(systemName: "person.fill")
                         .font(.system(size: previewImageSize))
-                    Spacer()
-                        .frame(width: SpacerWidth)
                     Text("Sample Player 2")
                     Spacer()
                     Text("18")
@@ -64,8 +58,6 @@ struct TeamPlayersView: View {
                 HStack {
                     Image(systemName: "person.fill")
                         .font(.system(size: previewImageSize))
-                    Spacer()
-                        .frame(width: SpacerWidth)
                     Text("Sample Player 2")
                     Spacer()
                     Text("42")
@@ -74,8 +66,6 @@ struct TeamPlayersView: View {
                 HStack {
                     Image(systemName: "person.fill")
                         .font(.system(size: previewImageSize))
-                    Spacer()
-                        .frame(width: SpacerWidth)
                     Text("Sample Player 2")
                     Spacer()
                     Text("1")
@@ -84,8 +74,6 @@ struct TeamPlayersView: View {
                 HStack {
                     Image(systemName: "person.fill")
                         .font(.system(size: previewImageSize))
-                    Spacer()
-                        .frame(width: SpacerWidth)
                     Text("Sample Player 2")
                     Spacer()
                     Text("101")
@@ -94,8 +82,6 @@ struct TeamPlayersView: View {
                 HStack {
                     Image(systemName: "person.fill")
                         .font(.system(size: previewImageSize))
-                    Spacer()
-                        .frame(width: SpacerWidth)
                     Text("Sample Player 2")
                     Spacer()
                     Text("5")

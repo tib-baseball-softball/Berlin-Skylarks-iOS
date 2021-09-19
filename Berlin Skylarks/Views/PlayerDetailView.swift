@@ -13,7 +13,8 @@ struct PlayerDetailView: View {
             Section(header: Text("Portrait")) {
                 HStack {
                     Spacer()
-                    Image("Bird_whiteoutline")
+                    Image(systemName: "person.fill")
+                        .font(.system(size: 120))
                     Spacer()
                 }
             }

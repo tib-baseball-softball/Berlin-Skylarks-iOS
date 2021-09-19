@@ -7,28 +7,21 @@
 
 import SwiftUI
 
-//this is some old trash of which I have no knowledge of
-//struct ScoresListViewHeader: View {
-//    var body: some View {
-//        Text("League")
-//    }
-//}
-
 //BSM API URLS to get the games //////
 //those are hardcoded to the year 2021 - so I would need to push an update at least once a year, but there might also be a solution that works continually
 
 //force unwrapping should not be an issue here - these are never nil
 
-let urlPrevious = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=previous&api_key=IN__8yHVCeE3gP83Dvyqww")!
-let urlCurrent = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=current&api_key=IN__8yHVCeE3gP83Dvyqww")!
-let urlNext = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=next&api_key=IN__8yHVCeE3gP83Dvyqww")!
-let urlAll = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
+let urlPreviousGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=previous&api_key=IN__8yHVCeE3gP83Dvyqww")!
+let urlCurrentGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=current&api_key=IN__8yHVCeE3gP83Dvyqww")!
+let urlNextGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=next&api_key=IN__8yHVCeE3gP83Dvyqww")!
+let urlFullSeason = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
 
 let scoresURLs = [
-    "Previous Gameday": urlPrevious,
-    "Current Gameday": urlCurrent,
-    "Next Gameday": urlNext,
-    "Full Season": urlAll,
+    "Previous Gameday": urlPreviousGameday,
+    "Current Gameday": urlCurrentGameday,
+    "Next Gameday": urlNextGameday,
+    "Full Season": urlFullSeason,
 ]
 
 var isLoadingScores = false
@@ -39,7 +32,7 @@ struct ScoresView: View {
     
     @State var selection: String = "Current Gameday"
     
-    @State var urlSelected = urlCurrent
+    @State var gameURLSelected = urlCurrentGameday
 
     let filterOptions: [String] = [
         "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season",
@@ -49,7 +42,7 @@ struct ScoresView: View {
         NavigationView {
             List {
                 ForEach(self.gamescores, id: \.id) { GameScore in
-                    NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
+                    NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) { //the second GameScore is from line 44!
                         ScoresOverView(gamescore: GameScore)
                     }
                 }
@@ -60,19 +53,19 @@ struct ScoresView: View {
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Scores")
             
-            .onAppear(perform: { loadGameData(url: urlSelected) })
+            .onAppear(perform: { loadGameData(url: gameURLSelected) })
             
             //I need to get what "value" means here --> type is string, like selection. Code works anyway.
             .onChange(of: selection, perform: { value in
                 for (string, url) in scoresURLs {
                     if selection.contains(string) {
-                        urlSelected = url
+                        gameURLSelected = url
                     }
                 }
-                loadGameData(url: urlSelected)
+                loadGameData(url: gameURLSelected)
             })
             
-            // this is the toolbar with the picker in the top right corner where you can select which games to display. TODO: bind to View so that the appropriate games are dynamically loaded on selection.
+            // this is the toolbar with the picker in the top right corner where you can select which games to display.
             
             .toolbar {
                 ToolbarItem {

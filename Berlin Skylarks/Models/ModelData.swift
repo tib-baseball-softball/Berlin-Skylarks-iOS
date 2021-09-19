@@ -35,3 +35,20 @@ func loadDummyData<T: Decodable>(_ filename: String) -> T {
         fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
     }
 }
+
+
+//func loadTableDataDebug(url: URL) {
+//
+//        let request = URLRequest(url: url)
+//        URLSession.shared.dataTask(with: request) { data, response, error in
+//
+//            if let data = data {
+//                if let response_obj = try? JSONDecoder().decode(LeagueTable.self, from: data) {
+//
+//                    DispatchQueue.main.async {
+//                        dummyLeagueTable = response_obj
+//                    }
+//                }
+//            }
+//        }
+//}
