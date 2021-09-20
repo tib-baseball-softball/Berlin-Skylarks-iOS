@@ -22,7 +22,7 @@
             "human_game_day":null,
             "field":null,
             "team":{
-               "name":"Skylarks",
+               "name":"Test Team",
                "pool":false,
                "gamechanger":null,
                "cloned_from_id":null,
@@ -77,7 +77,7 @@
             ]
          },
          "not_competing":"",
-         "team_name":"Skylarks",
+         "team_name":"Test Team",
          "short_team_name":"BEA",
          "match_count":8,
          "wins_count":7,
@@ -160,7 +160,7 @@
             ]
          },
          "not_competing":"",
-         "team_name":"Dukes",
+         "team_name":"Test Team 2",
          "short_team_name":"DDU",
          "match_count":8,
          "wins_count":6,

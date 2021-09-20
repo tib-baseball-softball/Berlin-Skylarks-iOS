@@ -13,7 +13,7 @@ struct InfoView: View {
 
     var body: some View {
         List {
-            Text("dsfghdfhg")
+            
         }
     }
     

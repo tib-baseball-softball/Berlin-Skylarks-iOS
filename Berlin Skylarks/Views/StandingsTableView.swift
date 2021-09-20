@@ -9,6 +9,26 @@ import SwiftUI
 
 let teamPadding: CGFloat = 4
 
+//these need to be changed every year after the schedule is published - there is no option to collect all tables for Skylarks teams like I do with scores
+
+let urlVLBB = URL(string:"https://bsm.baseball-softball.de/leagues/4800/table.json")!
+let urlVLSB = URL(string:"https://bsm.baseball-softball.de/leagues/4805/table.json")!
+let urlLLBB = URL(string:"https://bsm.baseball-softball.de/leagues/4801/table.json")!
+let urlBZLBB = URL(string:"https://bsm.baseball-softball.de/leagues/4802/table.json")!
+let urlSchBB = URL(string:"https://bsm.baseball-softball.de/leagues/4804/table.json")!
+let urlTossBB = URL(string:"https://bsm.baseball-softball.de/leagues/4807/table.json")!
+
+let leagueTableArray = [ urlVLBB, urlVLSB, urlLLBB, urlBZLBB, urlSchBB, urlTossBB ]
+
+let leagueTableURLs = [
+    "Verbandsliga Baseball": urlVLBB,
+    "Verbandsliga Softball": urlVLSB,
+    "Landesliga Baseball": urlLLBB,
+    "Bezirksliga Baseball": urlBZLBB,
+    "Schülerliga": urlSchBB,
+    "Tossballliga": urlTossBB,
+]
+
 //the only way I manged to get this to work is via this global variable. Check if it can be moved to local
 
 var leagueTable: LeagueTable = dummyLeagueTable
@@ -17,14 +37,13 @@ var leagueTable: LeagueTable = dummyLeagueTable
 
 struct StandingsTableView: View {
     
-    var league: String
-    //var leagueTable: LeagueTable
+    @State var league: String
+    
+    //@State var updater: Bool = false
+    
+    //@State var leagueTable: LeagueTable
     
     @State var leagueURLSelected = urlLLBB
-    
-    // no idea if this is actually needed here
-    
-    //@State private var leagueTables = [LeagueTable]()
     
     var body: some View {
         List {
@@ -38,13 +57,13 @@ struct StandingsTableView: View {
                     HStack {
                         Text("W")
                             .bold()
-                            .frame(width: 21, height: 20, alignment: .center)
+                            .frame(width: 24, height: 20, alignment: .center)
                         Text("L ")
                             .bold()
                             .frame(width: 21, height: 20, alignment: .center)
                         Text("%")
                             .bold()
-                            .frame(width: 27, height: 20, alignment: .center)
+                            .frame(width: 38, height: 20, alignment: .center)
                         Text("GB")
                             .bold()
                             .frame(width: 28, height: 20, alignment: .center)
@@ -69,9 +88,9 @@ struct StandingsTableView: View {
                             Text(String(tableRow.losses_count))
                                 .frame(width: 21, height: 20, alignment: .center)
                             Text(tableRow.quota)
-                                .frame(width: 36, height: 20, alignment: .center)
+                                .frame(width: 42, height: 20, alignment: .center)
                             Text(String(tableRow.games_behind))
-                                .frame(width: 24, height: 20, alignment: .center)
+                                .frame(width: 26, height: 20, alignment: .center)
                             Text(tableRow.streak)
                                 .frame(width: 37, height: 20, alignment: .center)
                                 
@@ -85,7 +104,22 @@ struct StandingsTableView: View {
         .listStyle(InsetGroupedListStyle())
         .navigationTitle(leagueTable.league_name + " " + String(leagueTable.season))
         
-        .onAppear(perform: { loadTableData(url: leagueURLSelected) })
+//        .onAppear(perform: {
+//            for (string, url) in leagueTableURLs {
+//                if league.contains(string) {
+//                    leagueURLSelected = url
+//                }
+//            }
+//            loadTableData(url: leagueURLSelected)
+//            //DEBUG
+//            print(leagueTable)
+//        })
+//
+//        .onChange(of: leagueURLSelected, perform: { value in
+//            loadTableData(url: leagueURLSelected)
+//            //DEBUG
+//            print(leagueTable)
+//        } )
     }
     private func loadTableData(url: URL) {
 
@@ -107,7 +141,7 @@ struct StandingsTableView: View {
 
 struct StandingsTableView_Previews: PreviewProvider {
     static var previews: some View {
-        StandingsTableView(league: leagues[0])
+        StandingsTableView(league: leagues[2])
 
     }
 }
