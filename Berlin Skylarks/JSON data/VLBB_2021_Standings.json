@@ -160,7 +160,7 @@
             ]
          },
          "not_competing":"",
-         "team_name":"Test Team 2",
+         "team_name":"Team With Ridiculously Long Team Name",
          "short_team_name":"DDU",
          "match_count":8,
          "wins_count":6,
@@ -243,7 +243,7 @@
             ]
          },
          "not_competing":"",
-         "team_name":"Sluggers 2",
+         "team_name":"Boring Team",
          "short_team_name":"BES2",
          "match_count":6,
          "wins_count":4,
@@ -326,7 +326,7 @@
             ]
          },
          "not_competing":"",
-         "team_name":"Roadrunners",
+         "team_name":"Team with special cháräctêrs",
          "short_team_name":"BWP",
          "match_count":8,
          "wins_count":5,

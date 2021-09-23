@@ -9,39 +9,13 @@ import SwiftUI
 
 let teamPadding: CGFloat = 4
 
-//these need to be changed every year after the schedule is published - there is no option to collect all tables for Skylarks teams like I do with scores
-
-let urlVLBB = URL(string:"https://bsm.baseball-softball.de/leagues/4800/table.json")!
-let urlVLSB = URL(string:"https://bsm.baseball-softball.de/leagues/4805/table.json")!
-let urlLLBB = URL(string:"https://bsm.baseball-softball.de/leagues/4801/table.json")!
-let urlBZLBB = URL(string:"https://bsm.baseball-softball.de/leagues/4802/table.json")!
-let urlSchBB = URL(string:"https://bsm.baseball-softball.de/leagues/4804/table.json")!
-let urlTossBB = URL(string:"https://bsm.baseball-softball.de/leagues/4807/table.json")!
-
-let leagueTableArray = [ urlVLBB, urlVLSB, urlLLBB, urlBZLBB, urlSchBB, urlTossBB ]
-
-let leagueTableURLs = [
-    "Verbandsliga Baseball": urlVLBB,
-    "Verbandsliga Softball": urlVLSB,
-    "Landesliga Baseball": urlLLBB,
-    "Bezirksliga Baseball": urlBZLBB,
-    "Schülerliga": urlSchBB,
-    "Tossballliga": urlTossBB,
-]
-
-//the only way I manged to get this to work is via this global variable. Check if it can be moved to local
-
-var leagueTable: LeagueTable = dummyLeagueTable
-
 //this View is a single table with ONE league. it can be accessed by tapping the corresponding league in StandingsView
 
 struct StandingsTableView: View {
     
-    @State var league: String
-    
     //@State var updater: Bool = false
     
-    //@State var leagueTable: LeagueTable
+    @State var leagueTable: LeagueTable
     
     @State var leagueURLSelected = urlLLBB
     
@@ -103,23 +77,6 @@ struct StandingsTableView: View {
         }
         .listStyle(InsetGroupedListStyle())
         .navigationTitle(leagueTable.league_name + " " + String(leagueTable.season))
-        
-//        .onAppear(perform: {
-//            for (string, url) in leagueTableURLs {
-//                if league.contains(string) {
-//                    leagueURLSelected = url
-//                }
-//            }
-//            loadTableData(url: leagueURLSelected)
-//            //DEBUG
-//            print(leagueTable)
-//        })
-//
-//        .onChange(of: leagueURLSelected, perform: { value in
-//            loadTableData(url: leagueURLSelected)
-//            //DEBUG
-//            print(leagueTable)
-//        } )
     }
     private func loadTableData(url: URL) {
 
@@ -141,7 +98,7 @@ struct StandingsTableView: View {
 
 struct StandingsTableView_Previews: PreviewProvider {
     static var previews: some View {
-        StandingsTableView(league: leagues[2])
+        StandingsTableView(leagueTable: dummyLeagueTable)
 
     }
 }

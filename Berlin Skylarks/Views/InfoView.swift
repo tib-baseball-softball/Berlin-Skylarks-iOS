@@ -13,8 +13,9 @@ struct InfoView: View {
 
     var body: some View {
         List {
-            
+            Text("Test")
         }
+        .listStyle(.insetGrouped)
     }
     
     //this is how you can declare functions in a view!
