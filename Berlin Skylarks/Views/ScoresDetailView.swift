@@ -114,16 +114,26 @@ struct ScoresDetailView: View {
                 
                 //TODO: add mapKit View here and map to location
                 
-                HStack {
-                    Image(systemName: "diamond.fill") //this really needs a custom icon
-                    Text(String(gamescore.field.name))
+                //field is now optional - apparently that is not a required field in BSM (doesn't really makes sense but okay...)
+                
+                if let field = gamescore.field {
+                    HStack {
+                        Image(systemName: "diamond.fill") //this really needs a custom icon
+                        Text(String(field.name))
+                    }
+                    .padding(ScoresItemPadding)
+                    HStack {
+                        Image(systemName: "house.fill")
+                        Text(field.street + ",\n" + field.postal_code + " " + field.city)
+                    }
+                    .padding(ScoresItemPadding)
+                } else {
+                    HStack {
+                        Image(systemName: "diamond.fill")
+                        Text("No location/field data")
+                    }
                 }
-                .padding(ScoresItemPadding)
-                HStack {
-                    Image(systemName: "house.fill")
-                    Text(gamescore.field.street + ",\n" + gamescore.field.postal_code + " " + gamescore.field.city)
-                }
-                .padding(ScoresItemPadding)
+                
             }
             Section(header: Text("Status")) {
                 HStack {

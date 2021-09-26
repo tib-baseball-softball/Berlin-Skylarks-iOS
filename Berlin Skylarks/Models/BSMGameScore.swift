@@ -21,7 +21,7 @@ struct GameScore: Hashable, Codable, Identifiable {
     var away_team_name: String
     var human_state: String
     var scoresheet_url: String?
-    var field: Field
+    var field: Field?
     var league: League
     var home_league_entry: Home_League_Entry
     var away_league_entry: Away_League_Entry

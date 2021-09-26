@@ -15,7 +15,7 @@ struct InfoView: View {
         List {
             Text("Test")
         }
-        .listStyle(.insetGrouped)
+        //.listStyle(.insetGrouped)
     }
     
     //this is how you can declare functions in a view!
@@ -28,6 +28,6 @@ struct InfoView: View {
 struct InfoView_Previews: PreviewProvider {
     static var previews: some View {
         InfoView()
-.previewInterfaceOrientation(.portrait)
+//.previewInterfaceOrientation(.portrait)
     }
 }
