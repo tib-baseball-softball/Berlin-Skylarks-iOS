@@ -14,7 +14,7 @@ import CoreLocation
 struct GameScore: Hashable, Codable, Identifiable {
     var id: Int
     var match_id: String
-    var time: String // gets converted by DateFormatter() in view later
+    var time: String // gets converted by DateFormatter() in view
     var home_runs: Int? //those really should be Ints
     var away_runs: Int?
     var home_team_name: String
@@ -25,7 +25,7 @@ struct GameScore: Hashable, Codable, Identifiable {
     var league: League
     var home_league_entry: Home_League_Entry
     var away_league_entry: Away_League_Entry
-    var umpire_assignments: [Umpire_Assignments] // might need square brackets
+    var umpire_assignments: [Umpire_Assignments]
     var scorer_assignments: [Scorer_Assignments]
     
     struct Field: Hashable, Codable {

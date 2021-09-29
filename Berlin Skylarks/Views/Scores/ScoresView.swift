@@ -68,13 +68,22 @@ struct ScoresView: View {
             // this is the toolbar with the picker in the top right corner where you can select which games to display.
             
             .toolbar {
-                ToolbarItem {
+                ToolbarItemGroup {
                     HStack {
+                        Button(action: {
+                            print("trigger reload")
+                            loadGameData(url: gameURLSelected)
+                        }) {
+                            Label("Test", systemImage: "arrow.counterclockwise.circle")
+                                .padding(.horizontal, 15)
+                                //.font(.title2)
+                                //.frame(width: 10, height: 10, alignment: .trailing)
+                        }
                         Picker(
                             selection: $selection,
                             label: HStack {
                                 Text("Show:")
-                                Text(selection)
+                                //Text(selection)
                             }
                             .font(.headline)
                            // .padding(ScoresItemPadding)
@@ -84,14 +93,19 @@ struct ScoresView: View {
                             ,
                             content: {
                                 ForEach(filterOptions, id: \.self) { option in
-                                    HStack {
-                                        Text(option)
-                                        Image(systemName: "list.bullet")
-                                    }
+                                    Label(option, systemImage: "list.bullet.circle")
+                                        //.labelStyle(.iconOnly)
+//                                    HStack {
+//                                        Image(systemName: "list.bullet.circle")
+//                                            .frame(width: 10)
+//                                        Text(option)
+//                                    }
                                     .tag(option)
                                 }
+                                
                         })
                         .pickerStyle(MenuPickerStyle())
+                        .labelsHidden()
                     }
                 }
             }

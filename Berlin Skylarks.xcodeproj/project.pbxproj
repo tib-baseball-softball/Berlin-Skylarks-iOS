@@ -130,6 +130,45 @@
 			path = "Preview Content";
 			sourceTree = "<group>";
 		};
+		CAF839CB2704FCC2006FAD6B /* Scores */ = {
+			isa = PBXGroup;
+			children = (
+				CA0DA04125974EAD002A0FAB /* ScoresView.swift */,
+				CA0DA0442598BB32002A0FAB /* ScoresOverView.swift */,
+				CA0DA0472598BCB1002A0FAB /* ScoresDetailView.swift */,
+			);
+			path = Scores;
+			sourceTree = "<group>";
+		};
+		CAF839CC2704FD20006FAD6B /* Players */ = {
+			isa = PBXGroup;
+			children = (
+				CA78B72D2596892E00510621 /* TeamListView.swift */,
+				CA78B724259648F300510621 /* PlayersView.swift */,
+				CA78B72A259688C100510621 /* PlayerDetailView.swift */,
+			);
+			path = Players;
+			sourceTree = "<group>";
+		};
+		CAF839CD2704FD42006FAD6B /* Standings */ = {
+			isa = PBXGroup;
+			children = (
+				CA0DA056259CAC8E002A0FAB /* StandingsView.swift */,
+				CAE7740D26C292F900A57F66 /* StandingsTableView.swift */,
+			);
+			path = Standings;
+			sourceTree = "<group>";
+		};
+		CAF839CE2704FD75006FAD6B /* News */ = {
+			isa = PBXGroup;
+			children = (
+				CABF7C0A2593627900B95813 /* NewsView.swift */,
+				CA78B7272596880200510621 /* NewsDetailView.swift */,
+				CA56299426943C0D00274BE4 /* WebArticleView.swift */,
+			);
+			path = News;
+			sourceTree = "<group>";
+		};
 		CAFDC20025C0BC63000A5922 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -144,19 +183,12 @@
 			isa = PBXGroup;
 			children = (
 				CABF7BF0259351D400B95813 /* ContentView.swift */,
-				CA78B72D2596892E00510621 /* TeamListView.swift */,
-				CA78B724259648F300510621 /* PlayersView.swift */,
-				CA78B72A259688C100510621 /* PlayerDetailView.swift */,
-				CA0DA04125974EAD002A0FAB /* ScoresView.swift */,
-				CA0DA0442598BB32002A0FAB /* ScoresOverView.swift */,
-				CA0DA0472598BCB1002A0FAB /* ScoresDetailView.swift */,
-				CABF7C0A2593627900B95813 /* NewsView.swift */,
+				CAF839CE2704FD75006FAD6B /* News */,
+				CAF839CB2704FCC2006FAD6B /* Scores */,
+				CAF839CC2704FD20006FAD6B /* Players */,
+				CAF839CD2704FD42006FAD6B /* Standings */,
 				CA0DA04A2598F449002A0FAB /* SettingsListView.swift */,
 				CA0DA04D2598F570002A0FAB /* InfoView.swift */,
-				CA0DA056259CAC8E002A0FAB /* StandingsView.swift */,
-				CAE7740D26C292F900A57F66 /* StandingsTableView.swift */,
-				CA78B7272596880200510621 /* NewsDetailView.swift */,
-				CA56299426943C0D00274BE4 /* WebArticleView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

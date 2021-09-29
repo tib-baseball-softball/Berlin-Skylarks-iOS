@@ -7,6 +7,7 @@
 
 import SwiftUI
 
+let ColorStandingsTableHeadline = Color(UIColor.secondarySystemFill)
 let teamPadding: CGFloat = 4
 
 //this View is a single table with ONE league. it can be accessed by tapping the corresponding league in StandingsView
@@ -47,8 +48,8 @@ struct StandingsTableView: View {
                     }.padding(.horizontal, -10)
                 }
                 .font(.title3)
-                .foregroundColor(.white)
-                .listRowBackground(Color.accentColor)
+                //.foregroundColor(.white)
+                .listRowBackground(ColorStandingsTableHeadline)
                 
                 ForEach(leagueTable.rows, id: \.rank) { tableRow in
                     HStack {
@@ -99,6 +100,8 @@ struct StandingsTableView: View {
 struct StandingsTableView_Previews: PreviewProvider {
     static var previews: some View {
         StandingsTableView(leagueTable: dummyLeagueTable)
+            
+            
 
     }
 }

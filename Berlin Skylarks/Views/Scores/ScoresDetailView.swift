@@ -115,7 +115,6 @@ struct ScoresDetailView: View {
                 //TODO: add mapKit View here and map to location
                 
                 //field is now optional - apparently that is not a required field in BSM (doesn't really makes sense but okay...)
-                
                 if let field = gamescore.field {
                     HStack {
                         Image(systemName: "diamond.fill") //this really needs a custom icon
@@ -133,7 +132,6 @@ struct ScoresDetailView: View {
                         Text("No location/field data")
                     }
                 }
-                
             }
             Section(header: Text("Status")) {
                 HStack {
@@ -141,12 +139,22 @@ struct ScoresDetailView: View {
                     Text("\(gamescore.human_state)")
                 }
                 .padding(ScoresItemPadding)
-                HStack {
-                    Image(systemName: "doc.fill")
-                    //this needs to be adjusted for both states concerning scoresheet
-                    Text("Scoresheet unavailable")
+                
+                //WIP - add link
+                
+                if let scoresheetURL = gamescore.scoresheet_url {
+                    HStack {
+                        Image(systemName: "doc.fill")
+                        Text(scoresheetURL)
+                    }
+                } else {
+                    HStack {
+                        Image(systemName: "doc.fill")
+                        Text("Scoresheet unavailable")
+                    }
+                    .padding(ScoresItemPadding)
                 }
-                .padding(ScoresItemPadding)
+                
             }
             Section(header: Text("Game officials")) {
                 
