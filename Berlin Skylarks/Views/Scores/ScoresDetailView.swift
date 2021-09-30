@@ -140,13 +140,12 @@ struct ScoresDetailView: View {
                 }
                 .padding(ScoresItemPadding)
                 
-                //WIP - add link
-                
                 if let scoresheetURL = gamescore.scoresheet_url {
                     HStack {
                         Image(systemName: "doc.fill")
-                        Text(scoresheetURL)
+                        Link("Link to Scoresheet", destination: URL(string: scoresheetURL)!)
                     }
+                    .padding(ScoresItemPadding)
                 } else {
                     HStack {
                         Image(systemName: "doc.fill")
