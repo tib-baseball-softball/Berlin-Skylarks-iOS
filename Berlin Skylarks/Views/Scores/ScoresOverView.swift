@@ -133,7 +133,7 @@ struct ScoresOverView: View {
             .cornerRadius(NewsItemCornerRadius)
         }
         .padding(ScoresItemPadding)
-//        .background(ItemBackgroundColor) //not needed because of new list style
+        .background(ItemBackgroundColor) //switch on or off depending on whether I use List or Grid
         .cornerRadius(NewsItemCornerRadius)
     }
 }
