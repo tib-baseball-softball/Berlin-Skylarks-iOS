@@ -24,6 +24,9 @@ let scoresURLs = [
     "Full Season": urlFullSeason,
 ]
 
+let scoresGridSpacing: CGFloat = 25
+let scoresGridPadding: CGFloat = 20
+
 var isLoadingScores = false
 
 struct ScoresView: View {
@@ -38,19 +41,27 @@ struct ScoresView: View {
         "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season",
     ]
     
+    let columns = [
+        GridItem(.adaptive(minimum: 300), spacing: scoresGridSpacing),
+    ]
+    
     var body: some View {
         NavigationView {
-            List {
-                ForEach(self.gamescores, id: \.id) { GameScore in
-                    NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) { //the second GameScore is from line 44!
-                        ScoresOverView(gamescore: GameScore)
+            ScrollView {
+                LazyVGrid(columns: columns, spacing: scoresGridSpacing) {
+                    ForEach(self.gamescores, id: \.id) { GameScore in
+                        NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
+                            ScoresOverView(gamescore: GameScore)
+                        }
+                        .foregroundColor(.primary)
+                    }
+                    if !gamescores.indices.contains(0) {
+                        Text("There are no Skylarks games scheduled for the chosen time frame.")
                     }
                 }
-                if !gamescores.indices.contains(0) {
-                    Text("There are no Skylarks games scheduled for the chosen time frame.")
-                }
+                .padding(scoresGridPadding)
             }
-            .listStyle(InsetGroupedListStyle())
+            //.listStyle(InsetGroupedListStyle())
             .navigationTitle("Scores")
             
             .onAppear(perform: { loadGameData(url: gameURLSelected) })
@@ -110,6 +121,7 @@ struct ScoresView: View {
                 }
             }
         }
+        .navigationViewStyle(.stack)
     }
 }
 
@@ -136,5 +148,6 @@ extension ScoresView {
 struct ScoresView_Previews: PreviewProvider {
     static var previews: some View {
         ScoresView()
+            
     }
 }

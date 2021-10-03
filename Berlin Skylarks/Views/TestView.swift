@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-let scoresGridSpacing: CGFloat = 30
-let scoresGridPadding: CGFloat = 25
-
 struct TestView: View {
 
     let columns = [
@@ -17,19 +14,19 @@ struct TestView: View {
     ]
     
     var body: some View {
-        Group {
+        NavigationView {
             ScrollView {
-                HStack {
-                    Text("Scores")
-                        .bold()
-                        .font(.largeTitle)
-                    Spacer()
-                    Image(systemName: "arrow.counterclockwise.circle")
-                        .font(.largeTitle)
-                    Image(systemName: "list.bullet.circle")
-                        .font(.largeTitle)
-                }
-                .padding(.horizontal, 25)
+//                HStack {
+//                    Text("Scores")
+//                        .bold()
+//                        .font(.largeTitle)
+//                    Spacer()
+//                    Image(systemName: "arrow.counterclockwise.circle")
+//                        .font(.largeTitle)
+//                    Image(systemName: "list.bullet.circle")
+//                        .font(.largeTitle)
+//                }
+//                .padding(.horizontal, 25)
                 LazyVGrid(columns: columns, spacing: scoresGridSpacing) {
                     ForEach(dummyGameScores, id: \.self) { GameScore in
                         ScoresOverView(gamescore: GameScore)
@@ -37,8 +34,13 @@ struct TestView: View {
                 }
                 .padding(scoresGridPadding)
             }
+            .navigationTitle("Scores")
             //.frame(maxHeight: 400)
+            .toolbar {
+                
+            }
         }
+        .navigationViewStyle(.stack)
     }
     
     //this is how you can declare functions in a view!
