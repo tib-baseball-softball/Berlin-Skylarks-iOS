@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct TestView: View {
 
@@ -13,34 +14,16 @@ struct TestView: View {
         GridItem(.adaptive(minimum: 300), spacing: scoresGridSpacing),
     ]
     
+    private var pointsOfInterest = [
+        AnnotatedItem(name: "Ballpark", coordinate: .init(latitude: (dummyGameScores[3].field?.latitude)!, longitude: (dummyGameScores[3].field?.longitude)!)),
+        ]
+    
+    @State private var region: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: (dummyGameScores[3].field?.latitude) as! CLLocationDegrees as! CLLocationDegrees, longitude: (dummyGameScores[3].field?.longitude)!), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
+    
     var body: some View {
-        NavigationView {
-            ScrollView {
-//                HStack {
-//                    Text("Scores")
-//                        .bold()
-//                        .font(.largeTitle)
-//                    Spacer()
-//                    Image(systemName: "arrow.counterclockwise.circle")
-//                        .font(.largeTitle)
-//                    Image(systemName: "list.bullet.circle")
-//                        .font(.largeTitle)
-//                }
-//                .padding(.horizontal, 25)
-                LazyVGrid(columns: columns, spacing: scoresGridSpacing) {
-                    ForEach(dummyGameScores, id: \.self) { GameScore in
-                        ScoresOverView(gamescore: GameScore)
-                    }
-                }
-                .padding(scoresGridPadding)
-            }
-            .navigationTitle("Scores")
-            //.frame(maxHeight: 400)
-            .toolbar {
-                
-            }
+        Map(coordinateRegion: $region, annotationItems: pointsOfInterest) { item in
+            MapMarker(coordinate: item.coordinate, tint:  Color.accentColor)
         }
-        .navigationViewStyle(.stack)
     }
     
     //this is how you can declare functions in a view!
@@ -53,6 +36,5 @@ struct TestView: View {
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
         TestView()
-            .previewDevice("iPad Air (4th generation)")
     }
 }

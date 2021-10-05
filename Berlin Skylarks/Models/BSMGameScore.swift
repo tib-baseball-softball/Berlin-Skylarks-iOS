@@ -33,8 +33,8 @@ struct GameScore: Hashable, Codable, Identifiable {
         var city: String
         var street: String
         var postal_code: String
-        //var latitude: Double?
-       // var longitude: Double?
+        var latitude: Double?
+        var longitude: Double?
     }
  
     struct League: Hashable, Codable {
@@ -81,15 +81,10 @@ struct GameScore: Hashable, Codable, Identifiable {
         var name: String
         var acronym: String
     }
-
-    //those exist in BSM, but need to be mapped to home ballpark, also only in detail view
-    
-/*     private var field: Coordinates
-     var locationCoordinate: CLLocationCoordinate2D {
-      CLLocationCoordinate2D(
-            latitude: field.latitude,
-            longitude: field.longitude)
-    }
-*/
 }
 
+struct AnnotatedItem: Identifiable {
+    let id = UUID()
+    var name: String
+    var coordinate: CLLocationCoordinate2D
+}

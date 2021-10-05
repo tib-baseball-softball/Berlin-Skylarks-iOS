@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import MapKit
 
 struct ScoresDetailView: View {
     var gamescore: GameScore
@@ -112,10 +113,22 @@ struct ScoresDetailView: View {
             }
             Section(header: Text("Location")) {
                 
-                //TODO: add mapKit View here and map to location
-                
                 //field is now optional - apparently that is not a required field in BSM (doesn't really makes sense but okay...)
+                
                 if let field = gamescore.field {
+                    if let coordinateLatitude = gamescore.field?.latitude, let coordinateLongitude = gamescore.field?.longitude {
+//                        var fieldPin = [
+//                            AnnotatedItem(name: gamescore.field?.name, coordinate: .init(latitude: coordinateLatitude, longitude: coordinateLongitude)),
+//                            ]
+                        Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))), interactionModes: [])
+
+//                                                        {
+//                            MapMarker(coordinate: item.coordinate, tint: Color.accentColor)
+//                        }
+                        .frame(height: 200)
+                    } else {
+                        Text("No field coordinates provided")
+                    }
                     HStack {
                         Image(systemName: "diamond.fill") //this really needs a custom icon
                         Text(String(field.name))
