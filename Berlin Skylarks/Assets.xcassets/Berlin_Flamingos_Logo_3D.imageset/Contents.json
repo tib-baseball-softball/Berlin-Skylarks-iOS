@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Berlin_Flamingos_Logo_3D.jpg",
+      "filename" : "Berlin_Flamingos_Logo_3D.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Berlin_Flamingos_Logo_3D@2x.jpg",
+      "filename" : "Berlin_Flamingos_Logo_3D@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Berlin_Flamingos_Logo_3D@3x.jpg",
+      "filename" : "Berlin_Flamingos_Logo_3D@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

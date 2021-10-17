@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "Sliders_logo.png",
+      "filename" : "Sliders_Rund_2021.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "Sliders_logo@2x.png",
+      "filename" : "Sliders_Rund_2021@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "Sliders_logo@3x.png",
+      "filename" : "Sliders_Rund_2021@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

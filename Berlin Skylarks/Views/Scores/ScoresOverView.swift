@@ -25,7 +25,7 @@ let teamLogos = [
     "Eagles": Image("Mahlow-Eagles_Logo"),
     "Ravens": Image("ravens_logo"),
     "Porcupines": Image("potsdam_logo"),
-    "Sliders": Image("Sliders_logo"),
+    "Sliders": Image("Sliders_Rund_2021"),
     "Flamingos": Image("Berlin_Flamingos_Logo_3D"),
     "Challengers": Image("challengers_Logo"),
     "Rams": Image("Rams-Logo"),
@@ -141,6 +141,6 @@ struct ScoresOverView: View {
 struct ScoresOverView_Previews: PreviewProvider {
     
     static var previews: some View {
-        ScoresOverView(gamescore: dummyGameScores[36])
+        ScoresOverView(gamescore: dummyGameScores[21])
     }
 }
