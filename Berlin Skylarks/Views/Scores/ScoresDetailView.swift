@@ -11,31 +11,10 @@ import MapKit
 struct ScoresDetailView: View {
     var gamescore: GameScore
     
-    func setCorrectLogo() {
-        for (name, image) in teamLogos {
-            if gamescore.away_team_name.contains(name) {
-                away_team_logo = image //teamLogos[name]
-            }
-        }
-        
-        for (name, image) in teamLogos {
-            if gamescore.home_team_name.contains(name) {
-                home_team_logo = image //teamLogos[name]
-            }
-        }
-    }
-    
-    func getDatefromBSMString() {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "y-M-dd HH:mm:ss Z"
-        
-        //force unwrapping alert: game time really should be a required field in BSM DB - let's see if there are crashes
-        gameDate = dateFormatter.date(from: gamescore.time)!
-    }
-    
     var body: some View {
-        self.setCorrectLogo()
-        self.getDatefromBSMString()
+        setCorrectLogo(gamescore: gamescore)
+        getDatefromBSMString(gamescore: gamescore)
+        determineGameStatus(gamescore: gamescore)
         return
             List {
             Section(header: Text("Main info")) {
@@ -105,6 +84,29 @@ struct ScoresDetailView: View {
                         }
                     }
                     .padding(ScoresItemPadding)
+                    if gamescore.human_state.contains("gespielt") {
+                        if !isDerby {
+                            if skylarksWin {
+                                Text("W")
+                                    .font(.title)
+                                    .bold()
+                                    .foregroundColor(Color.green)
+                            } else {
+                                Text("L")
+                                    .font(.title)
+                                    .bold()
+                                    .foregroundColor(Color.accentColor)
+                            }
+                        } else {
+                            VStack {
+                                Image(systemName: "heart.fill")
+                                    .font(.title)
+                                    .foregroundColor(Color.accentColor)
+                                Text("Derby - Skylarks win either way")
+                                    .padding(ScoresItemPadding)
+                            }
+                        }
+                    }
                 }
                 //don't want the darker background color with rounded corners here
               //  .padding(ScoresItemPadding)
@@ -260,6 +262,6 @@ struct ScoresDetailView: View {
 
 struct ScoresDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoresDetailView(gamescore: dummyGameScores[6])
+        ScoresDetailView(gamescore: dummyGameScores[8])
     }
 }

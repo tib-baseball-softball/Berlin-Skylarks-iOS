@@ -62,7 +62,7 @@ struct ScoresView: View {
                 .padding(scoresGridPadding)
             }
             //.listStyle(InsetGroupedListStyle())
-            .navigationTitle("Scores")
+            
             
             .onAppear(perform: { loadGameData(url: gameURLSelected) })
             
@@ -120,6 +120,12 @@ struct ScoresView: View {
                     }
                 }
             }
+            //this does not work yet
+//            .refreshable {
+//                loadGameData(url: gameURLSelected)
+//            }
+            //this one leads to the weird constraint errors in console. Will ignore this for now.
+            .navigationTitle("Scores")
         }
         .navigationViewStyle(.stack)
     }

@@ -49,6 +49,10 @@ struct StandingsView: View {
                 }
                 
             }
+            .refreshable {
+                leagueTableArray = []
+                loadAllTables()
+            }
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Standings")
         }
