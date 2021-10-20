@@ -24,6 +24,11 @@ struct ContentView: View {
     
     var body: some View {
         TabView {
+            UserHomeView()
+                .tabItem {
+                    Image(systemName: "star.square.fill")
+                    Text("Home")
+                }
             NewsView()
                 .tabItem {
                     Image(systemName: "newspaper.fill")
@@ -58,7 +63,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView().padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            ContentView().padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext).previewInterfaceOrientation(.portrait)
         }
         
     }

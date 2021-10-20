@@ -66,6 +66,7 @@ struct ScoresDetailView: View {
                         }.frame(width: teamNameFrame)
                     }
                     .padding(ScoresItemPadding)
+                    Divider()
                     HStack {
                         if let awayScore = gamescore.away_runs {
                             Text(String(awayScore))
@@ -84,6 +85,7 @@ struct ScoresDetailView: View {
                         }
                     }
                     .padding(ScoresItemPadding)
+                    Divider()
                     if gamescore.human_state.contains("gespielt") {
                         if !isDerby {
                             if skylarksWin {

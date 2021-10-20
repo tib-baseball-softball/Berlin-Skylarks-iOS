@@ -22,25 +22,7 @@ struct NewsView: View {
             List {
                 NavigationLink(
                     destination: NewsDetailView()) {
-                        VStack(
-                            alignment: .leading,
-                            spacing: NewsItemSpacing
-                        ) {
-                            Image("dummy_field")
-                                .resizable()
-                                .scaledToFit()
-                            Text("Spielbericht")
-                                .font(.title3)
-                                .padding(10)
-                            Text("Skylarks gewinnen durch Homerun im 9. Inning nach heroischer Performance")
-                                .font(.headline)
-                                .lineLimit(nil)
-                                .padding(10)
-                        }
-                        .background(ItemBackgroundColor)
-                        .cornerRadius(NewsItemCornerRadius)
-                        .padding(NewsItemPadding)
-                        .foregroundColor(.primary)
+                        NewsItem()
                 }
                 NavigationLink(
                     
@@ -67,28 +49,6 @@ struct NewsView: View {
                         .padding(NewsItemPadding)
                         .foregroundColor(.primary)
                 }
-                NavigationLink(
-                    destination: NewsDetailView()) {
-                        VStack(
-                            alignment: .leading,
-                            spacing: NewsItemSpacing
-                        ) {
-                            Image("Rondell")
-                                .resizable()
-                                .scaledToFit()
-                            Text("Designprozess")
-                                .font(.title3)
-                                .padding(10)
-                            Text("Breaking News: Skylarks immer noch bestaussehendster Verein Berlins")
-                                .font(.headline)
-                                .lineLimit(nil)
-                                .padding(10)
-                        }
-                        .background(ItemBackgroundColor)
-                        .cornerRadius(NewsItemCornerRadius)
-                        .padding(NewsItemPadding)
-                        .foregroundColor(.primary)
-                }
             } .navigationBarTitle("News")
             .listStyle(InsetListStyle())
         }
@@ -101,5 +61,30 @@ struct NewsView: View {
 struct NewsView_Previews: PreviewProvider {
     static var previews: some View {
         NewsView()
+    }
+}
+
+struct NewsItem: View {
+    var body: some View {
+        VStack(
+            alignment: .leading,
+            spacing: NewsItemSpacing
+        ) {
+            Image("dummy_field")
+                .resizable()
+                .scaledToFit()
+            Text("Spielbericht")
+                .font(.title2)
+                .bold()
+                .padding(.horizontal, 10)
+            Text("Skylarks gewinnen durch Homerun im 9. Inning nach heroischer Performance")
+                .lineLimit(nil)
+                .padding(10)
+        }
+        .background(ItemBackgroundColor)
+        .cornerRadius(NewsItemCornerRadius)
+        .padding(NewsItemPadding)
+        .foregroundColor(.primary)
+        .frame(maxWidth: 330)
     }
 }

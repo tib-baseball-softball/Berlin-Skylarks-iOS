@@ -56,12 +56,18 @@ struct ScoresOverView: View {
                     Text(gamescore.league.name)
                         .font(.title2)
                         .bold()
+                    Divider()
+                        .frame(width: 180)
                     HStack {
                         Image(systemName: "calendar")
                         Text(gameDate!, style: .date)
+                        Divider()
+                            .frame(height: 30)
                         Image(systemName: "clock.fill")
                         Text(gameDate!, style: .time)
                     }.padding(ScoresItemPadding)
+                    Divider()
+                        .frame(width: 180)
                     if gamescore.human_state.contains("gespielt") {
                         if !isDerby {
                             if skylarksWin {
@@ -100,7 +106,6 @@ struct ScoresOverView: View {
                             .lineLimit(nil)
                     }
                     Spacer()
-                    
                     if let awayScore = gamescore.away_runs {
                         Text(String(awayScore))
                             .font(.largeTitle)

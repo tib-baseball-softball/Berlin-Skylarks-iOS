@@ -7,26 +7,40 @@
 
 import SwiftUI
 
+class UserSettings: ObservableObject {
+    @Published var favoriteTeam: String {
+        didSet {
+            UserDefaults.standard.set(favoriteTeam, forKey: "favoriteTeam")
+        }
+    }
+    
+    @Published var sendPush: Bool {
+        didSet {
+            UserDefaults.standard.set(sendPush, forKey: "sendPush")
+        }
+    }
+    
+    public var skylarksTeams = ["Softball (VL)","Team 1 (VL)", "Team 2 (LL)", "Team 3 (BZL)", "Team 4 (BZL)", "Jugend (U15)", "Schüler (U12)", ]
+    
+    init() {
+        self.favoriteTeam = UserDefaults.standard.object(forKey: "favoriteTeam") as? String ?? "Team 1 (VL)"
+        self.sendPush = UserDefaults.standard.object(forKey: "sendPush") as? Bool ?? false
+    }
+}
+
 struct SettingsListView: View {
     
-//    this is lazily copied, needs further understanding
-    @State private var sendPush = false
+    @ObservedObject var userSettings = UserSettings()
     
     var body: some View {
         NavigationView {
             List {
                 Section(header: Text("Notifications")) {
-                    Toggle(isOn: $sendPush) {
+                    Toggle(isOn: $userSettings.sendPush) {
                             Text("Send Push Notifications")
-                        }
-                    
-                    //this was a simple test of onChange syntax
-                    
-                    .onChange(of: sendPush, perform: { whatever in
-                        print("Push enabled")
-                    })
-                    
+                    }
                     .toggleStyle(SwitchToggleStyle(tint: Color("AccentColor")))
+                    
                     NavigationLink(
                         destination: InfoView()) {
                         HStack {
@@ -48,15 +62,17 @@ struct SettingsListView: View {
                         .italic()
                 }
                 Section(header: Text("Teams")) {
-                    NavigationLink(
-                        destination: InfoView()) {
-                        HStack {
-                            Image(systemName: "star.square.fill")
-                                .font(.title)
-                            Text("Favorite Team")
+                    Picker(selection: $userSettings.favoriteTeam, label:
+                            HStack {
+                                Image(systemName: "star.square.fill")
+                                    .font(.title)
+                                Text("Favorite Team")
+                    }) {
+                        ForEach(userSettings.skylarksTeams, id: \.self) { team in
+                            Text(team)
                         }
                     }
-                    Text("Your favorite team appears at the top in Standings and Scores.")
+                    Text("Your favorite team appears in the Home dashboard tab.")
                         .font(.subheadline)
                         .italic()
                 }
@@ -84,11 +100,13 @@ struct SettingsListView: View {
             .listStyle(InsetGroupedListStyle())
             .navigationTitle("Settings")
         }
+        .navigationViewStyle(.stack)
     }
 }
 
 struct SettingsListView_Previews: PreviewProvider {
     static var previews: some View {
         SettingsListView()
+            .preferredColorScheme(.dark)
     }
 }
