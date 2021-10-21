@@ -14,8 +14,6 @@ let teamPadding: CGFloat = 4
 
 struct StandingsTableView: View {
     
-    //@State var updater: Bool = false
-    
     @State var leagueTable: LeagueTable
     
     @State var leagueURLSelected = urlLLBB
@@ -79,23 +77,6 @@ struct StandingsTableView: View {
         .listStyle(InsetGroupedListStyle())
         .navigationTitle(leagueTable.league_name + " " + String(leagueTable.season))
     }
-    //this might be duplicate and actually unused here
-//    private func loadTableData(url: URL) {
-//
-//            let request = URLRequest(url: url)
-//            URLSession.shared.dataTask(with: request) { data, response, error in
-//
-//                if let data = data {
-//                    if let response_obj = try? JSONDecoder().decode(LeagueTable.self, from: data) {
-//
-//                        DispatchQueue.main.async {
-//                            leagueTable = response_obj
-//                        }
-//                    }
-//                }
-//            //isLoadingScores = false
-//            }.resume()
-//    }
 }
 
 struct StandingsTableView_Previews: PreviewProvider {

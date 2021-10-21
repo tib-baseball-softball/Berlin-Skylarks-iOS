@@ -17,8 +17,10 @@ struct UserHomeView: View {
     //or ObservedObject
     @StateObject var userSettings = UserSettings()
     
+    // 110 is good for iPhone SE, spacing lower than 38 makes elements overlap on iPad landscape orientation
+    
     let smallColumns = [
-        GridItem(.adaptive(minimum: 110), spacing: 30),
+        GridItem(.adaptive(minimum: 110), spacing: 38),
     ]
     let bigColumns = [
         GridItem(.adaptive(minimum: 300), spacing: 30),
@@ -31,9 +33,10 @@ struct UserHomeView: View {
                     Image("Rondell")
                         .resizable()
                         .scaledToFit()
+                    
                     VStack(alignment: .center, spacing: NewsItemSpacing) {
                         HStack {
-                            Image(systemName: "number")
+                            Image(systemName: "star.fill")
                                 .font(.title)
                             Text("Favorite Team")
                                 .font(.title2)
@@ -49,6 +52,7 @@ struct UserHomeView: View {
                     .frame(minWidth: 150, minHeight: 150)
                     .background(ItemBackgroundColor)
                     .cornerRadius(NewsItemCornerRadius)
+                    
                     VStack(alignment: .center, spacing: NewsItemSpacing) {
                         HStack {
                             Image(systemName: "tablecells")
@@ -60,7 +64,7 @@ struct UserHomeView: View {
                         .padding(5)
                         Divider()
                             .frame(width: 100)
-                        Text("Verbandsliga Baseball")
+                        Text("Landesliga Baseball")
                             .font(.system(size: 18))
                             .padding(5)
                     }
@@ -93,6 +97,7 @@ struct UserHomeView: View {
                     .frame(minWidth: 150, minHeight: 150)
                     .background(ItemBackgroundColor)
                     .cornerRadius(NewsItemCornerRadius)
+                    
                     VStack(alignment: .center, spacing: NewsItemSpacing) {
                         HStack {
                             Image(systemName: "percent")
@@ -112,8 +117,41 @@ struct UserHomeView: View {
                     .frame(minWidth: 150, minHeight: 150)
                     .background(ItemBackgroundColor)
                     .cornerRadius(NewsItemCornerRadius)
+                    
+                    VStack(alignment: .center, spacing: NewsItemSpacing) {
+                        HStack {
+                            Image(systemName: "number")
+                                .font(.title)
+                            Text("Rank")
+                                .font(.title2)
+                                .bold()
+                        }
+                        .padding(5)
+                        Divider()
+                            .frame(width: 100)
+                        HStack {
+                            //this will obviously be replaced with the real variable
+                            let dummyRank = "1."
+                            if dummyRank == "1." {
+                                Image(systemName: "crown")
+                                    .font(.title)
+                                    .foregroundColor(Color.accentColor)
+                            } else {
+                                Image(systemName: "hexagon")
+                                    .font(.title)
+                                    .foregroundColor(Color.accentColor)
+                            }
+                            Text(dummyRank)
+                                .bold()
+                                .padding(10)
+                            .font(.largeTitle)
+                        }
+                    }
+                    .frame(minWidth: 150, minHeight: 150)
+                    .background(ItemBackgroundColor)
+                    .cornerRadius(NewsItemCornerRadius)
                 }
-                .padding(20)
+                .padding(25)
                 
                 //GRID with last game, next game and table
               
@@ -123,7 +161,7 @@ struct UserHomeView: View {
                             .font(.title)
                             .bold()
                             .padding(.leading, 15)
-                        ScoresOverView(gamescore: dummyGameScores[56])
+                        ScoresOverView(gamescore: dummyGameScores[7])
                     }
                     VStack(alignment: .leading) {
                         Text("Next Game")

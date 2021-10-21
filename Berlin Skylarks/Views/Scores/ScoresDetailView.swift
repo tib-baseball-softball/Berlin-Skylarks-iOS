@@ -46,6 +46,12 @@ struct ScoresDetailView: View {
                             .bold()
                             .padding(ScoresItemPadding)
                     }
+                    if gamescore.human_state.contains("ausgefallen") {
+                        Text("PPD")
+                            .font(.title)
+                            .bold()
+                            .padding(ScoresItemPadding)
+                    }
                     if gamescore.human_state.contains("gespielt") {
                         if !isDerby {
                             if skylarksWin {
