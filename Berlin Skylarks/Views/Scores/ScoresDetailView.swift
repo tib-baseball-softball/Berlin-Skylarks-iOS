@@ -40,6 +40,38 @@ struct ScoresDetailView: View {
             }
             Section(header: Text("Score")) {
                 VStack {
+                    if gamescore.human_state.contains("geplant") {
+                        Text("TBD")
+                            .font(.title)
+                            .bold()
+                            .padding(ScoresItemPadding)
+                    }
+                    if gamescore.human_state.contains("gespielt") {
+                        if !isDerby {
+                            if skylarksWin {
+                                Text("W")
+                                    .font(.title)
+                                    .bold()
+                                    .foregroundColor(Color.green)
+                                    .padding(ScoresItemPadding)
+                            } else {
+                                Text("L")
+                                    .font(.title)
+                                    .bold()
+                                    .foregroundColor(Color.accentColor)
+                                    .padding(ScoresItemPadding)
+                            }
+                        } else {
+                            VStack {
+                                Image(systemName: "heart.fill")
+                                    .font(.title)
+                                    .foregroundColor(Color.accentColor)
+                                Text("Derby - Skylarks win either way")
+                                    .padding(ScoresItemPadding)
+                            }
+                            .padding(ScoresItemPadding)
+                        }
+                    }
                     HStack {
                         VStack {
                             Text("Guest")
@@ -85,30 +117,6 @@ struct ScoresDetailView: View {
                         }
                     }
                     .padding(ScoresItemPadding)
-                    Divider()
-                    if gamescore.human_state.contains("gespielt") {
-                        if !isDerby {
-                            if skylarksWin {
-                                Text("W")
-                                    .font(.title)
-                                    .bold()
-                                    .foregroundColor(Color.green)
-                            } else {
-                                Text("L")
-                                    .font(.title)
-                                    .bold()
-                                    .foregroundColor(Color.accentColor)
-                            }
-                        } else {
-                            VStack {
-                                Image(systemName: "heart.fill")
-                                    .font(.title)
-                                    .foregroundColor(Color.accentColor)
-                                Text("Derby - Skylarks win either way")
-                                    .padding(ScoresItemPadding)
-                            }
-                        }
-                    }
                 }
                 //don't want the darker background color with rounded corners here
               //  .padding(ScoresItemPadding)
@@ -264,6 +272,6 @@ struct ScoresDetailView: View {
 
 struct ScoresDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoresDetailView(gamescore: dummyGameScores[8])
+        ScoresDetailView(gamescore: dummyGameScores[47])
     }
 }

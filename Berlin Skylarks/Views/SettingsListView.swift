@@ -106,7 +106,8 @@ struct SettingsListView: View {
 
 struct SettingsListView_Previews: PreviewProvider {
     static var previews: some View {
-        SettingsListView()
-            .preferredColorScheme(.dark)
+        ForEach(ColorScheme.allCases, id: \.self) {
+            SettingsListView().preferredColorScheme($0)
+        }
     }
 }

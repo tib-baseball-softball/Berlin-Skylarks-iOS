@@ -18,7 +18,7 @@ struct UserHomeView: View {
     @StateObject var userSettings = UserSettings()
     
     let smallColumns = [
-        GridItem(.adaptive(minimum: 150), spacing: 30),
+        GridItem(.adaptive(minimum: 110), spacing: 30),
     ]
     let bigColumns = [
         GridItem(.adaptive(minimum: 300), spacing: 30),
@@ -80,11 +80,11 @@ struct UserHomeView: View {
                         Divider()
                             .frame(width: 100)
                         HStack {
-                            Text("7")
+                            Text("9")
                                 .bold()
                                 .padding(10)
                             Text(":")
-                            Text("7")
+                            Text("1")
                                 .bold()
                                 .padding(10)
                         }
@@ -104,7 +104,7 @@ struct UserHomeView: View {
                         .padding(5)
                         Divider()
                             .frame(width: 100)
-                        Text(".875")
+                        Text(".900")
                             .bold()
                             .padding(10)
                             .font(.largeTitle)
@@ -113,14 +113,35 @@ struct UserHomeView: View {
                     .background(ItemBackgroundColor)
                     .cornerRadius(NewsItemCornerRadius)
                 }
-                .padding(25)
+                .padding(20)
                 
-                VStack(alignment: .leading) {
-                    Text("Latest Score")
-                        .font(.title)
-                        .bold()
-                        .padding(.leading, 15)
-                    ScoresOverView(gamescore: dummyGameScores[4])
+                //GRID with last game, next game and table
+              
+                LazyVGrid(columns: bigColumns, spacing: 30) {
+                    VStack(alignment: .leading) {
+                        Text("Latest Score")
+                            .font(.title)
+                            .bold()
+                            .padding(.leading, 15)
+                        ScoresOverView(gamescore: dummyGameScores[56])
+                    }
+                    VStack(alignment: .leading) {
+                        Text("Next Game")
+                            .font(.title)
+                            .bold()
+                            .padding(.leading, 15)
+                        ScoresOverView(gamescore: dummyGameScores[0])
+                    }
+                    VStack(alignment: .leading) {
+                        Text("Standings")
+                            .font(.title)
+                            .bold()
+                            .padding(.leading, 15)
+                        StandingsTableView(leagueTable: dummyLeagueTable)
+                            .frame(height: 485)
+                            .cornerRadius(NewsItemCornerRadius)
+                    }
+                    
                 }
                 .padding(homeViewPadding)
                 
@@ -130,7 +151,7 @@ struct UserHomeView: View {
                         .bold()
                         .padding(.leading, 15)
                     ScrollView(.horizontal) {
-                        HStack {
+                        LazyHStack {
                             NewsItem()
                             NewsItem()
                             NewsItem()
@@ -150,7 +171,8 @@ struct UserHomeView: View {
 
 struct UserHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        UserHomeView()
-            .preferredColorScheme(.dark)
+        ForEach(ColorScheme.allCases, id: \.self) {
+            UserHomeView().preferredColorScheme($0)
+        }
     }
 }

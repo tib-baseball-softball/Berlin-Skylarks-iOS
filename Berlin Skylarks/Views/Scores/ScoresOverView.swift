@@ -68,6 +68,11 @@ struct ScoresOverView: View {
                     }.padding(ScoresItemPadding)
                     Divider()
                         .frame(width: 180)
+                    if gamescore.human_state.contains("geplant") {
+                        Text("TBD")
+                            .font(.title)
+                            .bold()
+                    }
                     if gamescore.human_state.contains("gespielt") {
                         if !isDerby {
                             if skylarksWin {
