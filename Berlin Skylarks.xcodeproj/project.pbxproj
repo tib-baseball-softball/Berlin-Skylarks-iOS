@@ -93,6 +93,14 @@
 			path = "JSON data";
 			sourceTree = "<group>";
 		};
+		CA97EAB7272370F5003055B6 /* Home_Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				CAAB56C427208A9200ADDE9D /* UserHomeView.swift */,
+			);
+			path = Home_Dashboard;
+			sourceTree = "<group>";
+		};
 		CABF7BE2259351D400B95813 = {
 			isa = PBXGroup;
 			children = (
@@ -190,7 +198,7 @@
 			isa = PBXGroup;
 			children = (
 				CABF7BF0259351D400B95813 /* ContentView.swift */,
-				CAAB56C427208A9200ADDE9D /* UserHomeView.swift */,
+				CA97EAB7272370F5003055B6 /* Home_Dashboard */,
 				CAF839CE2704FD75006FAD6B /* News */,
 				CAF839CB2704FCC2006FAD6B /* Scores */,
 				CAF839CC2704FD20006FAD6B /* Players */,

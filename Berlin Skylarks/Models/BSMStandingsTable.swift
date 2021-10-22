@@ -27,7 +27,3 @@ struct LeagueTable: Hashable, Codable {
         var streak: String //I need to check the error that occurred when the Poor Pigs retreated from the league and had an Int instead of a string in the original JSON! => fixed it in my dummy data
     }
 }
-
-//extension LeagueTable: Identifiable {
-//  var id: Int { league_id }
-//}

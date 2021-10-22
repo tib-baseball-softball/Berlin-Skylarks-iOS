@@ -145,7 +145,6 @@ extension ScoresView {
                         }
                     }
                 }
-            //isLoadingScores = false
             }.resume()
     }
 }

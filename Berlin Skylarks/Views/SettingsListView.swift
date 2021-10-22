@@ -20,7 +20,7 @@ class UserSettings: ObservableObject {
         }
     }
     
-    public var skylarksTeams = ["Softball (VL)","Team 1 (VL)", "Team 2 (LL)", "Team 3 (BZL)", "Team 4 (BZL)", "Jugend (U15)", "Schüler (U12)", "Tossball (U10)", "Teeball (U8)" ]
+    public var skylarksTeams = ["Team 1 (VL)", "Softball (VL)", "Team 2 (LL)", "Team 3 (BZL)", "Team 4 (BZL)", "Jugend (U15)", "Schüler (U12)", "Tossball (U10)", "Teeball (U8)" ]
     
     init() {
         self.favoriteTeam = UserDefaults.standard.object(forKey: "favoriteTeam") as? String ?? "Team 1 (VL)"

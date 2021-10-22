@@ -9,6 +9,14 @@ import SwiftUI
 
 // this is meant to be the user's main dashboard where their favorite team is displayed
 
+var displayDashboardLeagueTable = LeagueTable(league_id: 1, league_name: "Default League", season: Calendar.current.component(.year, from: Date()), rows: [])
+
+var displayDashboardTableRow = LeagueTable.Row(rank: "X.", team_name: "Testteam", short_team_name: "XXX", match_count: 0, wins_count: 0, losses_count: 0, quota: ".000", games_behind: "0", streak: "00")
+
+//let dashboardTeamURLDict = [
+//
+//]
+
 let homeViewGridSpacing: CGFloat = 30
 let homeViewPadding: CGFloat = 25
 
@@ -16,6 +24,32 @@ struct UserHomeView: View {
     
     //or ObservedObject
     @StateObject var userSettings = UserSettings()
+    
+    @State var homeLeagueTables = [LeagueTable]()
+    
+    func loadHomeTableData(url: URL) {
+        
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+
+            if let data = data {
+                if let response_obj = try? JSONDecoder().decode(LeagueTable.self, from: data) {
+
+                    DispatchQueue.main.async {
+                        displayDashboardLeagueTable = response_obj
+                        
+                        homeLeagueTables.append(response_obj)
+                        
+                        for row in displayDashboardLeagueTable.rows {
+                            if row.team_name.contains("Skylarks") {
+                                displayDashboardTableRow = row
+                            }
+                        }
+                    }
+                }
+            }
+        }.resume()
+    }
     
     // 110 is good for iPhone SE, spacing lower than 38 makes elements overlap on iPad landscape orientation
     
@@ -29,10 +63,16 @@ struct UserHomeView: View {
     var body: some View {
         NavigationView {
             ScrollView {
+                //Text(homeLeagueTables.debugDescription)
                 LazyVGrid(columns: smallColumns, spacing: 30) {
                     Image("Rondell")
                         .resizable()
                         .scaledToFit()
+                        .accessibilityLabel("Berlin Skylarks Logo")
+//                        .overlay(
+//                            Circle()
+//                                .stroke(lineWidth: 2.0)
+//                        )
                     
                     VStack(alignment: .center, spacing: NewsItemSpacing) {
                         HStack {
@@ -64,7 +104,7 @@ struct UserHomeView: View {
                         .padding(5)
                         Divider()
                             .frame(width: 100)
-                        Text("Landesliga Baseball")
+                        Text(displayDashboardLeagueTable.league_name)
                             .font(.system(size: 18))
                             .padding(5)
                     }
@@ -84,11 +124,11 @@ struct UserHomeView: View {
                         Divider()
                             .frame(width: 100)
                         HStack {
-                            Text("9")
+                            Text(String(displayDashboardTableRow.wins_count))
                                 .bold()
                                 .padding(10)
                             Text(":")
-                            Text("1")
+                            Text(String(displayDashboardTableRow.losses_count))
                                 .bold()
                                 .padding(10)
                         }
@@ -109,7 +149,7 @@ struct UserHomeView: View {
                         .padding(5)
                         Divider()
                             .frame(width: 100)
-                        Text(".900")
+                        Text(displayDashboardTableRow.quota)
                             .bold()
                             .padding(10)
                             .font(.largeTitle)
@@ -130,9 +170,7 @@ struct UserHomeView: View {
                         Divider()
                             .frame(width: 100)
                         HStack {
-                            //this will obviously be replaced with the real variable
-                            let dummyRank = "1."
-                            if dummyRank == "1." {
+                            if displayDashboardTableRow.rank == "1." {
                                 Image(systemName: "crown")
                                     .font(.title)
                                     .foregroundColor(Color.accentColor)
@@ -141,7 +179,7 @@ struct UserHomeView: View {
                                     .font(.title)
                                     .foregroundColor(Color.accentColor)
                             }
-                            Text(dummyRank)
+                            Text(displayDashboardTableRow.rank)
                                 .bold()
                                 .padding(10)
                             .font(.largeTitle)
@@ -175,9 +213,13 @@ struct UserHomeView: View {
                             .font(.title)
                             .bold()
                             .padding(.leading, 15)
-                        StandingsTableView(leagueTable: dummyLeagueTable)
-                            .frame(height: 485)
+                        if homeLeagueTables.indices.contains(0) {
+                            StandingsTableView(leagueTable: homeLeagueTables[0])
+                                .frame(height: 485)
                             .cornerRadius(NewsItemCornerRadius)
+                        } else {
+                            Text("No standings available")
+                        }
                     }
                     
                 }
@@ -202,6 +244,8 @@ struct UserHomeView: View {
                 .padding(homeViewPadding)
             }
             .navigationTitle("Dashboard")
+            
+            .onAppear(perform: { loadHomeTableData(url: urlLLBB) })
         }
         .navigationViewStyle(.stack)
     }

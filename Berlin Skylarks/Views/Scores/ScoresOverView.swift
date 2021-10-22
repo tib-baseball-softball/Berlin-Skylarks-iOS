@@ -156,7 +156,7 @@ struct ScoresOverView: View {
                 .cornerRadius(NewsItemCornerRadius)
         }
         .padding(ScoresItemPadding)
-        .background(ItemBackgroundColor) //switch on or off depending on whether I use List or Grid
+        .background(.regularMaterial) //switch on or off depending on whether I use List or Grid
         .cornerRadius(NewsItemCornerRadius)
     }
 }
@@ -164,6 +164,8 @@ struct ScoresOverView: View {
 struct ScoresOverView_Previews: PreviewProvider {
     
     static var previews: some View {
-        ScoresOverView(gamescore: dummyGameScores[7])
+        ForEach(ColorScheme.allCases, id: \.self) {
+            ScoresOverView(gamescore: dummyGameScores[7]).preferredColorScheme($0)
+        }
     }
 }
