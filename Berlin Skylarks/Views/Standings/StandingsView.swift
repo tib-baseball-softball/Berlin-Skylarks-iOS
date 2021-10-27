@@ -17,6 +17,7 @@ let urlVLBB = URL(string:"https://bsm.baseball-softball.de/leagues/4800/table.js
 let urlVLSB = URL(string:"https://bsm.baseball-softball.de/leagues/4805/table.json")!
 let urlLLBB = URL(string:"https://bsm.baseball-softball.de/leagues/4801/table.json")!
 let urlBZLBB = URL(string:"https://bsm.baseball-softball.de/leagues/4802/table.json")!
+let urlJugBB = URL(string:"https://bsm.baseball-softball.de/leagues/4804/table.json")!
 let urlSchBB = URL(string:"https://bsm.baseball-softball.de/leagues/4804/table.json")!
 let urlTossBB = URL(string:"https://bsm.baseball-softball.de/leagues/4807/table.json")!
 

@@ -1,5 +1,5 @@
 //
-//  UserHome.swift
+//  UserHomeView.swift
 //  Berlin Skylarks
 //
 //  Created by David Battefeld on 20.10.21.
@@ -13,19 +13,37 @@ var displayDashboardLeagueTable = LeagueTable(league_id: 1, league_name: "Defaul
 
 var displayDashboardTableRow = LeagueTable.Row(rank: "X.", team_name: "Testteam", short_team_name: "XXX", match_count: 0, wins_count: 0, losses_count: 0, quota: ".000", games_behind: "0", streak: "00")
 
-//let dashboardTeamURLDict = [
-//
-//]
+let dashboardTeamURLDict = [
+    "Team 1 (VL)" : urlVLBB,
+    "Softball (VL)" : urlVLSB,
+    "Team 2 (LL)" : urlLLBB,
+    "Team 3 (BZL)" : urlBZLBB,
+    "Team 4 (BZL)" : urlBZLBB,
+    "Jugend (U15)": urlSchBB, //placeholder
+    "Schüler (U12)" : urlSchBB,
+    "Tossball (U10)" : urlTossBB,
+    "Teeball (U8)" : urlSchBB, //placeholder
+]
 
 let homeViewGridSpacing: CGFloat = 30
 let homeViewPadding: CGFloat = 25
 
 struct UserHomeView: View {
     
-    //or ObservedObject
-    @StateObject var userSettings = UserSettings()
+    //StateObject / ObservedObject
+    @ObservedObject var userSettings = UserSettings()
     
     @State var homeLeagueTables = [LeagueTable]()
+    
+    @State var selectedHomeURL = urlVLBB //just a default value that is immediately overridden
+    
+    func setCorrectURL() {
+        for (name, url) in dashboardTeamURLDict {
+            if userSettings.favoriteTeam == name {
+                selectedHomeURL = url
+            }
+        }
+    }
     
     func loadHomeTableData(url: URL) {
         
@@ -51,7 +69,7 @@ struct UserHomeView: View {
         }.resume()
     }
     
-    // 110 is good for iPhone SE, spacing lower than 38 makes elements overlap on iPad landscape orientation
+    // 110 is good for iPhone SE, spacing lower than 38 makes elements overlap on iPad landscape orientation. Still looks terrible on some Mac sizes...
     
     let smallColumns = [
         GridItem(.adaptive(minimum: 110), spacing: 38),
@@ -245,7 +263,21 @@ struct UserHomeView: View {
             }
             .navigationTitle("Dashboard")
             
-            .onAppear(perform: { loadHomeTableData(url: urlLLBB) })
+            .onAppear(perform: {
+                setCorrectURL()
+                loadHomeTableData(url: selectedHomeURL)
+            })
+            
+            //this does not work yet - view doesn't refresh (only after reloading app/page)
+            
+            .onChange(of: userSettings.favoriteTeam, perform: { favoriteTeam in
+                setCorrectURL()
+                loadHomeTableData(url: selectedHomeURL)
+                
+                //DEBUG
+                print(selectedHomeURL)
+                print(displayDashboardTableRow)
+            })
         }
         .navigationViewStyle(.stack)
     }
