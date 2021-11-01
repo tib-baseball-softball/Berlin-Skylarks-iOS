@@ -9,9 +9,12 @@ import SwiftUI
 
 // this is meant to be the user's main dashboard where their favorite team is displayed
 
-var displayDashboardLeagueTable = LeagueTable(league_id: 1, league_name: "Default League", season: Calendar.current.component(.year, from: Date()), rows: [])
+class UserDashboard: ObservableObject {
+    @Published var displayDashboardLeagueTable = LeagueTable(league_id: 1, league_name: "Default League", season: Calendar.current.component(.year, from: Date()), rows: [])
+    
+    @Published var displayDashboardTableRow = LeagueTable.Row(rank: "X.", team_name: "Testteam", short_team_name: "XXX", match_count: 0, wins_count: 0, losses_count: 0, quota: ".000", games_behind: "0", streak: "00")
+}
 
-var displayDashboardTableRow = LeagueTable.Row(rank: "X.", team_name: "Testteam", short_team_name: "XXX", match_count: 0, wins_count: 0, losses_count: 0, quota: ".000", games_behind: "0", streak: "00")
 
 let dashboardTeamURLDict = [
     "Team 1 (VL)" : urlVLBB,
@@ -31,7 +34,11 @@ let homeViewPadding: CGFloat = 25
 struct UserHomeView: View {
     
     //StateObject / ObservedObject
-    @ObservedObject var userSettings = UserSettings()
+    @StateObject var userSettings = UserSettings()
+    
+    @AppStorage("favoriteTeam") var favoriteTeam: String = "Test Team"
+    
+    @StateObject var userDashboard = UserDashboard()
     
     @State var homeLeagueTables = [LeagueTable]()
     
@@ -39,7 +46,7 @@ struct UserHomeView: View {
     
     func setCorrectURL() {
         for (name, url) in dashboardTeamURLDict {
-            if userSettings.favoriteTeam == name {
+            if favoriteTeam == name {
                 selectedHomeURL = url
             }
         }
@@ -54,13 +61,13 @@ struct UserHomeView: View {
                 if let response_obj = try? JSONDecoder().decode(LeagueTable.self, from: data) {
 
                     DispatchQueue.main.async {
-                        displayDashboardLeagueTable = response_obj
+                        userDashboard.displayDashboardLeagueTable = response_obj
                         
                         homeLeagueTables.append(response_obj)
                         
-                        for row in displayDashboardLeagueTable.rows {
+                        for row in userDashboard.displayDashboardLeagueTable.rows {
                             if row.team_name.contains("Skylarks") {
-                                displayDashboardTableRow = row
+                                userDashboard.displayDashboardTableRow = row
                             }
                         }
                     }
@@ -103,7 +110,7 @@ struct UserHomeView: View {
                         .padding(5)
                         Divider()
                             .frame(width: 100)
-                        Text(userSettings.favoriteTeam)
+                        Text(favoriteTeam)
                             .font(.system(size: 18))
                             .padding(5)
                     }
@@ -122,7 +129,7 @@ struct UserHomeView: View {
                         .padding(5)
                         Divider()
                             .frame(width: 100)
-                        Text(displayDashboardLeagueTable.league_name)
+                        Text(userDashboard.displayDashboardLeagueTable.league_name)
                             .font(.system(size: 18))
                             .padding(5)
                     }
@@ -142,11 +149,11 @@ struct UserHomeView: View {
                         Divider()
                             .frame(width: 100)
                         HStack {
-                            Text(String(displayDashboardTableRow.wins_count))
+                            Text(String(userDashboard.displayDashboardTableRow.wins_count))
                                 .bold()
                                 .padding(10)
                             Text(":")
-                            Text(String(displayDashboardTableRow.losses_count))
+                            Text(String(userDashboard.displayDashboardTableRow.losses_count))
                                 .bold()
                                 .padding(10)
                         }
@@ -167,7 +174,7 @@ struct UserHomeView: View {
                         .padding(5)
                         Divider()
                             .frame(width: 100)
-                        Text(displayDashboardTableRow.quota)
+                        Text(userDashboard.displayDashboardTableRow.quota)
                             .bold()
                             .padding(10)
                             .font(.largeTitle)
@@ -188,7 +195,7 @@ struct UserHomeView: View {
                         Divider()
                             .frame(width: 100)
                         HStack {
-                            if displayDashboardTableRow.rank == "1." {
+                            if userDashboard.displayDashboardTableRow.rank == "1." {
                                 Image(systemName: "crown")
                                     .font(.title)
                                     .foregroundColor(Color.accentColor)
@@ -197,7 +204,7 @@ struct UserHomeView: View {
                                     .font(.title)
                                     .foregroundColor(Color.accentColor)
                             }
-                            Text(displayDashboardTableRow.rank)
+                            Text(userDashboard.displayDashboardTableRow.rank)
                                 .bold()
                                 .padding(10)
                             .font(.largeTitle)
@@ -268,15 +275,10 @@ struct UserHomeView: View {
                 loadHomeTableData(url: selectedHomeURL)
             })
             
-            //this does not work yet - view doesn't refresh (only after reloading app/page)
-            
-            .onChange(of: userSettings.favoriteTeam, perform: { favoriteTeam in
+            .onChange(of: favoriteTeam, perform: { favoriteTeam in
                 setCorrectURL()
+                homeLeagueTables = []
                 loadHomeTableData(url: selectedHomeURL)
-                
-                //DEBUG
-                print(selectedHomeURL)
-                print(displayDashboardTableRow)
             })
         }
         .navigationViewStyle(.stack)
