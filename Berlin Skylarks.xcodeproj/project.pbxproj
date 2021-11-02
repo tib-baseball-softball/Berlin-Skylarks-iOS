@@ -15,6 +15,25 @@
 		CA0DA04E2598F570002A0FAB /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA04D2598F570002A0FAB /* InfoView.swift */; };
 		CA0DA053259A46FA002A0FAB /* BSM_Games_2020_human_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0DA052259A46FA002A0FAB /* BSM_Games_2020_human_readable.json */; };
 		CA0DA057259CAC8E002A0FAB /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA056259CAC8E002A0FAB /* StandingsView.swift */; };
+		CA1C39A72731856B00BB194C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA1C39A62731856B00BB194C /* Assets.xcassets */; };
+		CA1C39AD2731856B00BB194C /* WatchSkylarks WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CA1C39AC2731856B00BB194C /* WatchSkylarks WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CA1C39B42731856B00BB194C /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39B32731856B00BB194C /* ContentView.swift */; };
+		CA1C39B62731856B00BB194C /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39B52731856B00BB194C /* NotificationController.swift */; };
+		CA1C39B82731856B00BB194C /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39B72731856B00BB194C /* NotificationView.swift */; };
+		CA1C39BA2731856B00BB194C /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39B92731856B00BB194C /* ComplicationController.swift */; };
+		CA1C39BC2731856C00BB194C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA1C39BB2731856C00BB194C /* Assets.xcassets */; };
+		CA1C39BF2731856C00BB194C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA1C39BE2731856C00BB194C /* Preview Assets.xcassets */; };
+		CA1C39CB2731856C00BB194C /* WatchSkylarksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39CA2731856C00BB194C /* WatchSkylarksTests.swift */; };
+		CA1C39D52731856C00BB194C /* WatchSkylarksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39D42731856C00BB194C /* WatchSkylarksUITests.swift */; };
+		CA1C39D72731856C00BB194C /* WatchSkylarksUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39D62731856C00BB194C /* WatchSkylarksUITestsLaunchTests.swift */; };
+		CA1C39DA2731856C00BB194C /* WatchSkylarks.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CA1C39A42731856B00BB194C /* WatchSkylarks.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CA1C39EA2731875800BB194C /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
+		CA1C39EB2731875800BB194C /* VLBB_2021_Standings.json in Resources */ = {isa = PBXBuildFile; fileRef = CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */; };
+		CA1C39EC2731875800BB194C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
+		CA1C39ED2731875800BB194C /* BSM_Games_2020_human_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0DA052259A46FA002A0FAB /* BSM_Games_2020_human_readable.json */; };
+		CA1C39EE2731875800BB194C /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
+		CA1C39F02731875800BB194C /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFDC1FC25BF7F09000A5922 /* ModelData.swift */; };
+		CA1C39F827318C6D00BB194C /* Berlin_SkylarksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39F727318C6D00BB194C /* Berlin_SkylarksApp.swift */; };
 		CA56299526943C0D00274BE4 /* WebArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56299426943C0D00274BE4 /* WebArticleView.swift */; };
 		CA78B71C259507BC00510621 /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CA78B725259648F300510621 /* PlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B724259648F300510621 /* PlayersView.swift */; };
@@ -38,6 +57,62 @@
 		CAFDC1FD25BF7F09000A5922 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFDC1FC25BF7F09000A5922 /* ModelData.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		CA1C39AE2731856B00BB194C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CABF7BE3259351D400B95813 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA1C39AB2731856B00BB194C;
+			remoteInfo = "WatchSkylarks WatchKit Extension";
+		};
+		CA1C39C72731856C00BB194C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CABF7BE3259351D400B95813 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA1C39AB2731856B00BB194C;
+			remoteInfo = "WatchSkylarks WatchKit Extension";
+		};
+		CA1C39D12731856C00BB194C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CABF7BE3259351D400B95813 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA1C39A32731856B00BB194C;
+			remoteInfo = WatchSkylarks;
+		};
+		CA1C39D82731856C00BB194C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CABF7BE3259351D400B95813 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CA1C39A32731856B00BB194C;
+			remoteInfo = WatchSkylarks;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CA1C39DB2731856C00BB194C /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				CA1C39DA2731856C00BB194C /* WatchSkylarks.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA1C39DE2731856C00BB194C /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CA1C39AD2731856B00BB194C /* WatchSkylarks WatchKit Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMGameScore.swift; sourceTree = "<group>"; };
 		CA0DA04125974EAD002A0FAB /* ScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresView.swift; sourceTree = "<group>"; };
@@ -48,6 +123,23 @@
 		CA0DA052259A46FA002A0FAB /* BSM_Games_2020_human_readable.json */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = BSM_Games_2020_human_readable.json; sourceTree = "<group>"; };
 		CA0DA056259CAC8E002A0FAB /* StandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsView.swift; sourceTree = "<group>"; };
 		CA1A240C26BC389E00A8D1C7 /* Berlin Skylarks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Berlin Skylarks.entitlements"; sourceTree = "<group>"; };
+		CA1C39A42731856B00BB194C /* WatchSkylarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchSkylarks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA1C39A62731856B00BB194C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CA1C39AC2731856B00BB194C /* WatchSkylarks WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchSkylarks WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA1C39B32731856B00BB194C /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		CA1C39B52731856B00BB194C /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		CA1C39B72731856B00BB194C /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
+		CA1C39B92731856B00BB194C /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
+		CA1C39BB2731856C00BB194C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CA1C39BE2731856C00BB194C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		CA1C39C02731856C00BB194C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA1C39C12731856C00BB194C /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		CA1C39C62731856C00BB194C /* WatchSkylarksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchSkylarksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA1C39CA2731856C00BB194C /* WatchSkylarksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSkylarksTests.swift; sourceTree = "<group>"; };
+		CA1C39D02731856C00BB194C /* WatchSkylarksUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchSkylarksUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA1C39D42731856C00BB194C /* WatchSkylarksUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSkylarksUITests.swift; sourceTree = "<group>"; };
+		CA1C39D62731856C00BB194C /* WatchSkylarksUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchSkylarksUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		CA1C39F727318C6D00BB194C /* Berlin_SkylarksApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Berlin_SkylarksApp.swift; sourceTree = "<group>"; };
 		CA56299426943C0D00274BE4 /* WebArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebArticleView.swift; sourceTree = "<group>"; };
 		CA78B71B259507BC00510621 /* ColorSets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSets.swift; sourceTree = "<group>"; };
 		CA78B724259648F300510621 /* PlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersView.swift; sourceTree = "<group>"; };
@@ -74,6 +166,27 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CA1C39A92731856B00BB194C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA1C39C32731856C00BB194C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA1C39CD2731856C00BB194C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CABF7BE8259351D400B95813 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -93,6 +206,55 @@
 			path = "JSON data";
 			sourceTree = "<group>";
 		};
+		CA1C39A52731856B00BB194C /* WatchSkylarks */ = {
+			isa = PBXGroup;
+			children = (
+				CA1C39A62731856B00BB194C /* Assets.xcassets */,
+			);
+			path = WatchSkylarks;
+			sourceTree = "<group>";
+		};
+		CA1C39B02731856B00BB194C /* WatchSkylarks WatchKit Extension */ = {
+			isa = PBXGroup;
+			children = (
+				CA1C39F727318C6D00BB194C /* Berlin_SkylarksApp.swift */,
+				CA1C39B32731856B00BB194C /* ContentView.swift */,
+				CA1C39B52731856B00BB194C /* NotificationController.swift */,
+				CA1C39B72731856B00BB194C /* NotificationView.swift */,
+				CA1C39B92731856B00BB194C /* ComplicationController.swift */,
+				CA1C39BB2731856C00BB194C /* Assets.xcassets */,
+				CA1C39C02731856C00BB194C /* Info.plist */,
+				CA1C39C12731856C00BB194C /* PushNotificationPayload.apns */,
+				CA1C39BD2731856C00BB194C /* Preview Content */,
+			);
+			path = "WatchSkylarks WatchKit Extension";
+			sourceTree = "<group>";
+		};
+		CA1C39BD2731856C00BB194C /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				CA1C39BE2731856C00BB194C /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CA1C39C92731856C00BB194C /* WatchSkylarksTests */ = {
+			isa = PBXGroup;
+			children = (
+				CA1C39CA2731856C00BB194C /* WatchSkylarksTests.swift */,
+			);
+			path = WatchSkylarksTests;
+			sourceTree = "<group>";
+		};
+		CA1C39D32731856C00BB194C /* WatchSkylarksUITests */ = {
+			isa = PBXGroup;
+			children = (
+				CA1C39D42731856C00BB194C /* WatchSkylarksUITests.swift */,
+				CA1C39D62731856C00BB194C /* WatchSkylarksUITestsLaunchTests.swift */,
+			);
+			path = WatchSkylarksUITests;
+			sourceTree = "<group>";
+		};
 		CA97EAB7272370F5003055B6 /* Home_Dashboard */ = {
 			isa = PBXGroup;
 			children = (
@@ -106,6 +268,10 @@
 			children = (
 				CABF7C03259355A200B95813 /* README.md */,
 				CABF7BED259351D400B95813 /* Berlin Skylarks */,
+				CA1C39A52731856B00BB194C /* WatchSkylarks */,
+				CA1C39B02731856B00BB194C /* WatchSkylarks WatchKit Extension */,
+				CA1C39C92731856C00BB194C /* WatchSkylarksTests */,
+				CA1C39D32731856C00BB194C /* WatchSkylarksUITests */,
 				CABF7BEC259351D400B95813 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -114,6 +280,10 @@
 			isa = PBXGroup;
 			children = (
 				CABF7BEB259351D400B95813 /* Berlin Skylarks.app */,
+				CA1C39A42731856B00BB194C /* WatchSkylarks.app */,
+				CA1C39AC2731856B00BB194C /* WatchSkylarks WatchKit Extension.appex */,
+				CA1C39C62731856C00BB194C /* WatchSkylarksTests.xctest */,
+				CA1C39D02731856C00BB194C /* WatchSkylarksUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -124,11 +294,11 @@
 				CA1A240C26BC389E00A8D1C7 /* Berlin Skylarks.entitlements */,
 				CA0DA051259A46CC002A0FAB /* JSON data */,
 				CABF7BEE259351D400B95813 /* Berlin_SkylarksApp.swift */,
+				CABF7BF7259351D500B95813 /* Persistence.swift */,
 				CA78B71B259507BC00510621 /* ColorSets.swift */,
 				CAFDC20225C0BC77000A5922 /* Views */,
 				CAFDC20025C0BC63000A5922 /* Models */,
 				CABF7BF2259351D500B95813 /* Assets.xcassets */,
-				CABF7BF7259351D500B95813 /* Persistence.swift */,
 				CABF7BFC259351D500B95813 /* Info.plist */,
 				CABF7BF9259351D500B95813 /* Berlin_Skylarks.xcdatamodeld */,
 				CABF7BF4259351D500B95813 /* Preview Content */,
@@ -213,6 +383,76 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CA1C39A32731856B00BB194C /* WatchSkylarks */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA1C39E62731856C00BB194C /* Build configuration list for PBXNativeTarget "WatchSkylarks" */;
+			buildPhases = (
+				CA1C39A22731856B00BB194C /* Resources */,
+				CA1C39DE2731856C00BB194C /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CA1C39AF2731856B00BB194C /* PBXTargetDependency */,
+			);
+			name = WatchSkylarks;
+			productName = WatchSkylarks;
+			productReference = CA1C39A42731856B00BB194C /* WatchSkylarks.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		CA1C39AB2731856B00BB194C /* WatchSkylarks WatchKit Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA1C39E52731856C00BB194C /* Build configuration list for PBXNativeTarget "WatchSkylarks WatchKit Extension" */;
+			buildPhases = (
+				CA1C39A82731856B00BB194C /* Sources */,
+				CA1C39A92731856B00BB194C /* Frameworks */,
+				CA1C39AA2731856B00BB194C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "WatchSkylarks WatchKit Extension";
+			productName = "WatchSkylarks WatchKit Extension";
+			productReference = CA1C39AC2731856B00BB194C /* WatchSkylarks WatchKit Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
+		CA1C39C52731856C00BB194C /* WatchSkylarksTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA1C39E72731856C00BB194C /* Build configuration list for PBXNativeTarget "WatchSkylarksTests" */;
+			buildPhases = (
+				CA1C39C22731856C00BB194C /* Sources */,
+				CA1C39C32731856C00BB194C /* Frameworks */,
+				CA1C39C42731856C00BB194C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CA1C39C82731856C00BB194C /* PBXTargetDependency */,
+			);
+			name = WatchSkylarksTests;
+			productName = WatchSkylarksTests;
+			productReference = CA1C39C62731856C00BB194C /* WatchSkylarksTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CA1C39CF2731856C00BB194C /* WatchSkylarksUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA1C39E82731856C00BB194C /* Build configuration list for PBXNativeTarget "WatchSkylarksUITests" */;
+			buildPhases = (
+				CA1C39CC2731856C00BB194C /* Sources */,
+				CA1C39CD2731856C00BB194C /* Frameworks */,
+				CA1C39CE2731856C00BB194C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CA1C39D22731856C00BB194C /* PBXTargetDependency */,
+			);
+			name = WatchSkylarksUITests;
+			productName = WatchSkylarksUITests;
+			productReference = CA1C39D02731856C00BB194C /* WatchSkylarksUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 		CABF7BEA259351D400B95813 /* Berlin Skylarks */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CABF7BFF259351D500B95813 /* Build configuration list for PBXNativeTarget "Berlin Skylarks" */;
@@ -220,10 +460,12 @@
 				CABF7BE7259351D400B95813 /* Sources */,
 				CABF7BE8259351D400B95813 /* Frameworks */,
 				CABF7BE9259351D400B95813 /* Resources */,
+				CA1C39DB2731856C00BB194C /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CA1C39D92731856C00BB194C /* PBXTargetDependency */,
 			);
 			name = "Berlin Skylarks";
 			productName = "Berlin Skylarks";
@@ -236,9 +478,23 @@
 		CABF7BE3259351D400B95813 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1230;
+				LastSwiftUpdateCheck = 1310;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
+					CA1C39A32731856B00BB194C = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					CA1C39AB2731856B00BB194C = {
+						CreatedOnToolsVersion = 13.1;
+					};
+					CA1C39C52731856C00BB194C = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = CA1C39AB2731856B00BB194C;
+					};
+					CA1C39CF2731856C00BB194C = {
+						CreatedOnToolsVersion = 13.1;
+						TestTargetID = CA1C39A32731856B00BB194C;
+					};
 					CABF7BEA259351D400B95813 = {
 						CreatedOnToolsVersion = 12.3;
 					};
@@ -258,11 +514,49 @@
 			projectRoot = "";
 			targets = (
 				CABF7BEA259351D400B95813 /* Berlin Skylarks */,
+				CA1C39A32731856B00BB194C /* WatchSkylarks */,
+				CA1C39AB2731856B00BB194C /* WatchSkylarks WatchKit Extension */,
+				CA1C39C52731856C00BB194C /* WatchSkylarksTests */,
+				CA1C39CF2731856C00BB194C /* WatchSkylarksUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CA1C39A22731856B00BB194C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA1C39A72731856B00BB194C /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA1C39AA2731856B00BB194C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA1C39BF2731856C00BB194C /* Preview Assets.xcassets in Resources */,
+				CA1C39EB2731875800BB194C /* VLBB_2021_Standings.json in Resources */,
+				CA1C39EC2731875800BB194C /* Assets.xcassets in Resources */,
+				CA1C39BC2731856C00BB194C /* Assets.xcassets in Resources */,
+				CA1C39ED2731875800BB194C /* BSM_Games_2020_human_readable.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA1C39C42731856C00BB194C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA1C39CE2731856C00BB194C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CABF7BE9259351D400B95813 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -278,6 +572,38 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CA1C39A82731856B00BB194C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA1C39B62731856B00BB194C /* NotificationController.swift in Sources */,
+				CA1C39B42731856B00BB194C /* ContentView.swift in Sources */,
+				CA1C39F02731875800BB194C /* ModelData.swift in Sources */,
+				CA1C39F827318C6D00BB194C /* Berlin_SkylarksApp.swift in Sources */,
+				CA1C39BA2731856B00BB194C /* ComplicationController.swift in Sources */,
+				CA1C39B82731856B00BB194C /* NotificationView.swift in Sources */,
+				CA1C39EA2731875800BB194C /* BSMGameScore.swift in Sources */,
+				CA1C39EE2731875800BB194C /* BSMStandingsTable.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA1C39C22731856C00BB194C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA1C39CB2731856C00BB194C /* WatchSkylarksTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA1C39CC2731856C00BB194C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA1C39D72731856C00BB194C /* WatchSkylarksUITestsLaunchTests.swift in Sources */,
+				CA1C39D52731856C00BB194C /* WatchSkylarksUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CABF7BE7259351D400B95813 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -311,7 +637,258 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		CA1C39AF2731856B00BB194C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA1C39AB2731856B00BB194C /* WatchSkylarks WatchKit Extension */;
+			targetProxy = CA1C39AE2731856B00BB194C /* PBXContainerItemProxy */;
+		};
+		CA1C39C82731856C00BB194C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA1C39AB2731856B00BB194C /* WatchSkylarks WatchKit Extension */;
+			targetProxy = CA1C39C72731856C00BB194C /* PBXContainerItemProxy */;
+		};
+		CA1C39D22731856C00BB194C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA1C39A32731856B00BB194C /* WatchSkylarks */;
+			targetProxy = CA1C39D12731856C00BB194C /* PBXContainerItemProxy */;
+		};
+		CA1C39D92731856C00BB194C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CA1C39A32731856B00BB194C /* WatchSkylarks */;
+			targetProxy = CA1C39D82731856C00BB194C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin XCBuildConfiguration section */
+		CA1C39DC2731856C00BB194C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = WatchSkylarks_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchSkylarks;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		CA1C39DD2731856C00BB194C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IBSC_MODULE = WatchSkylarks_WatchKit_Extension;
+				INFOPLIST_KEY_CFBundleDisplayName = WatchSkylarks;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		CA1C39DF2731856C00BB194C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchSkylarks WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "WatchSkylarks WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "WatchSkylarks WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = WatchSkylarks_WatchKit_Extension.ComplicationController;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		CA1C39E02731856C00BB194C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"WatchSkylarks WatchKit Extension/Preview Content\"";
+				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "WatchSkylarks WatchKit Extension/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = "WatchSkylarks WatchKit Extension";
+				INFOPLIST_KEY_CLKComplicationPrincipalClass = WatchSkylarks_WatchKit_Extension.ComplicationController;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		CA1C39E12731856C00BB194C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.WatchSkylarksTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchSkylarks WatchKit Extension.appex/WatchSkylarks WatchKit Extension";
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		CA1C39E22731856C00BB194C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.WatchSkylarksTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchSkylarks WatchKit Extension.appex/WatchSkylarks WatchKit Extension";
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		CA1C39E32731856C00BB194C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.WatchSkylarksUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = WatchSkylarks;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Debug;
+		};
+		CA1C39E42731856C00BB194C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.WatchSkylarksUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				TEST_TARGET_NAME = WatchSkylarks;
+				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
 		CABF7BFD259351D500B95813 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -483,6 +1060,42 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CA1C39E52731856C00BB194C /* Build configuration list for PBXNativeTarget "WatchSkylarks WatchKit Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA1C39DF2731856C00BB194C /* Debug */,
+				CA1C39E02731856C00BB194C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA1C39E62731856C00BB194C /* Build configuration list for PBXNativeTarget "WatchSkylarks" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA1C39DC2731856C00BB194C /* Debug */,
+				CA1C39DD2731856C00BB194C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA1C39E72731856C00BB194C /* Build configuration list for PBXNativeTarget "WatchSkylarksTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA1C39E12731856C00BB194C /* Debug */,
+				CA1C39E22731856C00BB194C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA1C39E82731856C00BB194C /* Build configuration list for PBXNativeTarget "WatchSkylarksUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA1C39E32731856C00BB194C /* Debug */,
+				CA1C39E42731856C00BB194C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CABF7BE6259351D400B95813 /* Build configuration list for PBXProject "Berlin Skylarks" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
