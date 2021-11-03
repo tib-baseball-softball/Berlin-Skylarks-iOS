@@ -21,11 +21,14 @@ struct ContentView: View {
                         .foregroundColor(Color.accentColor)
                     Text("News")
                 }
-                HStack {
-                    Image(systemName: "42.square")
-                        .foregroundColor(Color.accentColor)
-                    Text("Scores")
-                }
+                NavigationLink(
+                    destination: ScoresView()) {
+                        HStack {
+                            Image(systemName: "42.square")
+                                .foregroundColor(Color.accentColor)
+                            Text("Scores")
+                        }
+                    }
                 HStack {
                     Image(systemName: "tablecells")
                         .foregroundColor(Color.accentColor)

@@ -7,13 +7,6 @@
 
 import SwiftUI
 
-
-let ItemBackgroundColor = Color(UIColor.tertiarySystemFill)
-//let PageBackgroundColor = Color(UIColor.secondarySystemBackground) //using standard backgrounds for now
-let NewsItemSpacing: CGFloat = 10
-let NewsItemCornerRadius: CGFloat = 20.0
-let NewsItemPadding: CGFloat = 15
-
 //right now all news items lead to the same page
 
 struct NewsView: View {

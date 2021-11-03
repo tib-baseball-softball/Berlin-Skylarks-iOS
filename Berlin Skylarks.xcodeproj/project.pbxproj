@@ -39,7 +39,12 @@
 		CA1C3A0D273340C000BB194C /* BSM_URL_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */; };
 		CA1C3A0E273340C000BB194C /* BSM_URL_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */; };
 		CA1C3A0F2733414400BB194C /* GlobalScoresFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C2271F62F800ADDE9D /* GlobalScoresFunctions.swift */; };
-		CA1C3A102733427A00BB194C /* Berlin_SkylarksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BEE259351D400B95813 /* Berlin_SkylarksApp.swift */; };
+		CA1C3A122733442300BB194C /* SettingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA04A2598F449002A0FAB /* SettingsListView.swift */; };
+		CA1C3A132733444400BB194C /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA04D2598F570002A0FAB /* InfoView.swift */; };
+		CA1C3A172733473100BB194C /* watchOS_globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A162733473100BB194C /* watchOS_globals.swift */; };
+		CA1C3A1A273348AC00BB194C /* ScoresOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A19273348AC00BB194C /* ScoresOverView.swift */; };
+		CA1C3A1C273348E500BB194C /* ScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A1B273348E500BB194C /* ScoresView.swift */; };
+		CA1C3A1E2733499F00BB194C /* ScoresDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A1D2733499F00BB194C /* ScoresDetailView.swift */; };
 		CA56299526943C0D00274BE4 /* WebArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56299426943C0D00274BE4 /* WebArticleView.swift */; };
 		CA78B71C259507BC00510621 /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CA78B725259648F300510621 /* PlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B724259648F300510621 /* PlayersView.swift */; };
@@ -148,6 +153,10 @@
 		CA1C39F727318C6D00BB194C /* Berlin_SkylarksApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Berlin_SkylarksApp.swift; sourceTree = "<group>"; };
 		CA1C3A092733407400BB194C /* Ints_Floats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ints_Floats.swift; sourceTree = "<group>"; };
 		CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSM_URL_Data.swift; sourceTree = "<group>"; };
+		CA1C3A162733473100BB194C /* watchOS_globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchOS_globals.swift; sourceTree = "<group>"; };
+		CA1C3A19273348AC00BB194C /* ScoresOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresOverView.swift; sourceTree = "<group>"; };
+		CA1C3A1B273348E500BB194C /* ScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresView.swift; sourceTree = "<group>"; };
+		CA1C3A1D2733499F00BB194C /* ScoresDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresDetailView.swift; sourceTree = "<group>"; };
 		CA56299426943C0D00274BE4 /* WebArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebArticleView.swift; sourceTree = "<group>"; };
 		CA78B71B259507BC00510621 /* ColorSets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSets.swift; sourceTree = "<group>"; };
 		CA78B724259648F300510621 /* PlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersView.swift; sourceTree = "<group>"; };
@@ -225,11 +234,12 @@
 		CA1C39B02731856B00BB194C /* WatchSkylarks WatchKit Extension */ = {
 			isa = PBXGroup;
 			children = (
+				CA1C3A182733488E00BB194C /* Views */,
 				CA1C39F727318C6D00BB194C /* Berlin_SkylarksApp.swift */,
-				CA1C39B32731856B00BB194C /* ContentView.swift */,
 				CA1C39B52731856B00BB194C /* NotificationController.swift */,
 				CA1C39B72731856B00BB194C /* NotificationView.swift */,
 				CA1C39B92731856B00BB194C /* ComplicationController.swift */,
+				CA1C3A162733473100BB194C /* watchOS_globals.swift */,
 				CA1C39BB2731856C00BB194C /* Assets.xcassets */,
 				CA1C39C02731856C00BB194C /* Info.plist */,
 				CA1C39C12731856C00BB194C /* PushNotificationPayload.apns */,
@@ -270,6 +280,17 @@
 				CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */,
 			);
 			path = Global;
+			sourceTree = "<group>";
+		};
+		CA1C3A182733488E00BB194C /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CA1C39B32731856B00BB194C /* ContentView.swift */,
+				CA1C3A1B273348E500BB194C /* ScoresView.swift */,
+				CA1C3A19273348AC00BB194C /* ScoresOverView.swift */,
+				CA1C3A1D2733499F00BB194C /* ScoresDetailView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CA97EAB7272370F5003055B6 /* Home_Dashboard */ = {
@@ -595,9 +616,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA1C39B62731856B00BB194C /* NotificationController.swift in Sources */,
+				CA1C3A122733442300BB194C /* SettingsListView.swift in Sources */,
 				CA1C39B42731856B00BB194C /* ContentView.swift in Sources */,
+				CA1C3A1A273348AC00BB194C /* ScoresOverView.swift in Sources */,
+				CA1C3A1E2733499F00BB194C /* ScoresDetailView.swift in Sources */,
+				CA1C3A172733473100BB194C /* watchOS_globals.swift in Sources */,
+				CA1C3A1C273348E500BB194C /* ScoresView.swift in Sources */,
 				CA1C39F02731875800BB194C /* ModelData.swift in Sources */,
 				CA1C3A0B2733407400BB194C /* Ints_Floats.swift in Sources */,
+				CA1C3A132733444400BB194C /* InfoView.swift in Sources */,
 				CA1C39F827318C6D00BB194C /* Berlin_SkylarksApp.swift in Sources */,
 				CA1C3A0F2733414400BB194C /* GlobalScoresFunctions.swift in Sources */,
 				CA1C39BA2731856B00BB194C /* ComplicationController.swift in Sources */,
@@ -605,7 +632,6 @@
 				CA1C39EA2731875800BB194C /* BSMGameScore.swift in Sources */,
 				CA1C3A0E273340C000BB194C /* BSM_URL_Data.swift in Sources */,
 				CA1C39EE2731875800BB194C /* BSMStandingsTable.swift in Sources */,
-				CA1C3A102733427A00BB194C /* Berlin_SkylarksApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -5,12 +5,19 @@
 //  Created by David Battefeld on 24.12.20.
 //
 
-/*import Foundation
+import Foundation
 import SwiftUI
+
+let ScoresSubItemBackground = Color(UIColor.tertiarySystemFill)
+let ColorStandingsTableHeadline = Color(UIColor.secondarySystemFill)
+
+let ItemBackgroundColor = Color(UIColor.tertiarySystemFill)
+//let PageBackgroundColor = Color(UIColor.secondarySystemBackground) //using standard backgrounds for now
+
 
  //commented out until I really need it
  
-extension Color {
+/*extension Color {
      
     // MARK: - Text Colors
     static let lightText = Color(UIColor.lightText)

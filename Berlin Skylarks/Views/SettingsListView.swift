@@ -97,7 +97,10 @@ struct SettingsListView: View {
                     }
                 }
             }
-            .listStyle(InsetGroupedListStyle())
+        #if !os(watchOS)
+            .listStyle(.insetGrouped)
+        #endif
+            
             .navigationTitle("Settings")
         }
         .navigationViewStyle(.stack)
