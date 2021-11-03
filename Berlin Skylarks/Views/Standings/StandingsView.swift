@@ -9,19 +9,6 @@
 
 import SwiftUI
 
-let StandingsRowPadding: CGFloat = 10
-
-//these need to be changed every year after the schedule is published - there is no option to collect all tables for Skylarks teams like I do with scores
-
-let urlVLBB = URL(string:"https://bsm.baseball-softball.de/leagues/4800/table.json")!
-let urlVLSB = URL(string:"https://bsm.baseball-softball.de/leagues/4805/table.json")!
-let urlLLBB = URL(string:"https://bsm.baseball-softball.de/leagues/4801/table.json")!
-let urlBZLBB = URL(string:"https://bsm.baseball-softball.de/leagues/4802/table.json")!
-let urlJugBB = URL(string:"https://bsm.baseball-softball.de/leagues/4804/table.json")!
-let urlSchBB = URL(string:"https://bsm.baseball-softball.de/leagues/4804/table.json")!
-let urlTossBB = URL(string:"https://bsm.baseball-softball.de/leagues/4807/table.json")!
-
-let leagueTableURLs = [ urlVLBB, urlVLSB, urlLLBB, urlBZLBB, urlSchBB, urlTossBB ]
 
 struct StandingsView: View {
     

@@ -7,40 +7,6 @@
 
 import SwiftUI
 
-let ScoresItemSpacing: CGFloat = 20.0
-let ScoresNumberPadding: CGFloat = 20.0
-let ScoresSubItemBackground = Color(UIColor.tertiarySystemFill)
-let ScoresItemPadding: CGFloat = 10.0
-let teamNameFrame: CGFloat = 120
-
-var away_team_logo: Image? = Image("App_road_team_logo")
-var home_team_logo: Image? = Image("App_home_team_logo")
-
-var skylarksAreHomeTeam = false
-var skylarksWin = false
-var isDerby = false
-
-var gameDate: Date?
-
-let teamLogos = [
-    "Skylarks": Image("Bird_whiteoutline"),
-    "Roosters": Image("Roosters_Logo"),
-    "Sluggers": Image("Sluggers_Logo"),
-    "Eagles": Image("Mahlow-Eagles_Logo"),
-    "Ravens": Image("ravens_logo"),
-    "Porcupines": Image("potsdam_logo"),
-    "Sliders": Image("Sliders_Rund_2021"),
-    "Flamingos": Image("Berlin_Flamingos_Logo_3D"),
-    "Challengers": Image("challengers_Logo"),
-    "Rams": Image("Rams-Logo"),
-    "Wizards": Image("Wizards_Logo"),
-    "Poor Pigs": Image("Poorpigs_Logo"),
-    "Dukes": Image("Dukes_Logo"),
-    "Roadrunners": Image("Roadrunners_Logo"),
-    "Dragons": Image("Dragons_Logo"),
-]
-
-
 struct ScoresOverView: View {
     
     //this is called a "stored property"

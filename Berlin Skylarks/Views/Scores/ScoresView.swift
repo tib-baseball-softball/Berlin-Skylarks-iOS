@@ -7,28 +7,6 @@
 
 import SwiftUI
 
-//BSM API URLS to get the games //////
-//those are hardcoded to the year 2021 - so I would need to push an update at least once a year, but there might also be a solution that works continually
-
-//force unwrapping should not be an issue here - these are never nil
-
-let urlPreviousGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=previous&api_key=IN__8yHVCeE3gP83Dvyqww")!
-let urlCurrentGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=current&api_key=IN__8yHVCeE3gP83Dvyqww")!
-let urlNextGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=next&api_key=IN__8yHVCeE3gP83Dvyqww")!
-let urlFullSeason = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
-
-let scoresURLs = [
-    "Previous Gameday": urlPreviousGameday,
-    "Current Gameday": urlCurrentGameday,
-    "Next Gameday": urlNextGameday,
-    "Full Season": urlFullSeason,
-]
-
-let scoresGridSpacing: CGFloat = 25
-let scoresGridPadding: CGFloat = 20
-
-var isLoadingScores = false
-
 struct ScoresView: View {
     
     @State private var gamescores = [GameScore]()

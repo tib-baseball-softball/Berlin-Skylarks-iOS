@@ -6,6 +6,34 @@
 //
 
 import Foundation
+import SwiftUI
+
+var away_team_logo: Image? = Image("App_road_team_logo")
+var home_team_logo: Image? = Image("App_home_team_logo")
+
+let teamLogos = [
+    "Skylarks": Image("Bird_whiteoutline"),
+    "Roosters": Image("Roosters_Logo"),
+    "Sluggers": Image("Sluggers_Logo"),
+    "Eagles": Image("Mahlow-Eagles_Logo"),
+    "Ravens": Image("ravens_logo"),
+    "Porcupines": Image("potsdam_logo"),
+    "Sliders": Image("Sliders_Rund_2021"),
+    "Flamingos": Image("Berlin_Flamingos_Logo_3D"),
+    "Challengers": Image("challengers_Logo"),
+    "Rams": Image("Rams-Logo"),
+    "Wizards": Image("Wizards_Logo"),
+    "Poor Pigs": Image("Poorpigs_Logo"),
+    "Dukes": Image("Dukes_Logo"),
+    "Roadrunners": Image("Roadrunners_Logo"),
+    "Dragons": Image("Dragons_Logo"),
+]
+
+var skylarksAreHomeTeam = false
+var skylarksWin = false
+var isDerby = false
+
+var gameDate: Date?
 
 func determineGameStatus(gamescore: GameScore) {
     if gamescore.home_team_name.contains("Skylarks") && !gamescore.away_team_name.contains("Skylarks") {

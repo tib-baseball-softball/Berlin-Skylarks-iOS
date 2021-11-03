@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-let ColorStandingsTableHeadline = Color(UIColor.secondarySystemFill)
-let teamPadding: CGFloat = 4
-
 //this View is a single table with ONE league. it can be accessed by tapping the corresponding league in StandingsView
 
 struct StandingsTableView: View {
