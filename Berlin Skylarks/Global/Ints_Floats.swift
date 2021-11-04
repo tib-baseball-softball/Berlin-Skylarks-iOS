@@ -25,3 +25,6 @@ let teamNameFrame: CGFloat = 120
 let StandingsRowPadding: CGFloat = 10
 
 let teamPadding: CGFloat = 4
+
+let homeViewGridSpacing: CGFloat = 30
+let homeViewPadding: CGFloat = 25

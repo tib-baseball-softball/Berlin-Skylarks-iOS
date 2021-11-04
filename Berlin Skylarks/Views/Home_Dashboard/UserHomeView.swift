@@ -9,28 +9,6 @@ import SwiftUI
 
 // this is meant to be the user's main dashboard where their favorite team is displayed
 
-class UserDashboard: ObservableObject {
-    @Published var displayDashboardLeagueTable = LeagueTable(league_id: 1, league_name: "Default League", season: Calendar.current.component(.year, from: Date()), rows: [])
-    
-    @Published var displayDashboardTableRow = LeagueTable.Row(rank: "X.", team_name: "Testteam", short_team_name: "XXX", match_count: 0, wins_count: 0, losses_count: 0, quota: ".000", games_behind: "0", streak: "00")
-}
-
-
-let dashboardTeamURLDict = [
-    "Team 1 (VL)" : urlVLBB,
-    "Softball (VL)" : urlVLSB,
-    "Team 2 (LL)" : urlLLBB,
-    "Team 3 (BZL)" : urlBZLBB,
-    "Team 4 (BZL)" : urlBZLBB,
-    "Jugend (U15)": urlSchBB, //placeholder
-    "Schüler (U12)" : urlSchBB,
-    "Tossball (U10)" : urlTossBB,
-    "Teeball (U8)" : urlSchBB, //placeholder
-]
-
-let homeViewGridSpacing: CGFloat = 30
-let homeViewPadding: CGFloat = 25
-
 struct UserHomeView: View {
     
     //StateObject / ObservedObject
@@ -290,5 +268,6 @@ struct UserHomeView_Previews: PreviewProvider {
         ForEach(ColorScheme.allCases, id: \.self) {
             UserHomeView().preferredColorScheme($0)
         }
+.previewInterfaceOrientation(.landscapeLeft)
     }
 }

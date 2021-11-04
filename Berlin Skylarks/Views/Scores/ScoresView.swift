@@ -93,7 +93,7 @@ struct ScoresView: View {
                                 }
                                 
                         })
-                        .pickerStyle(MenuPickerStyle())
+                        .pickerStyle(.menu)
                         .labelsHidden()
                     }
                 }

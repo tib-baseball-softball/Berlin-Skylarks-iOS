@@ -71,13 +71,15 @@ struct StandingsTableView: View {
                 //more rows here
             }
         }
-        .listStyle(InsetGroupedListStyle())
+        .listStyle(.insetGrouped)
         .navigationTitle(leagueTable.league_name + " " + String(leagueTable.season))
+        .frame(width: 500, height: 500)
     }
 }
 
 struct StandingsTableView_Previews: PreviewProvider {
     static var previews: some View {
         StandingsTableView(leagueTable: dummyLeagueTable)
+.previewInterfaceOrientation(.landscapeLeft)
     }
 }

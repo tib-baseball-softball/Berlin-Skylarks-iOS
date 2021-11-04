@@ -17,29 +17,26 @@ struct ScoresOverView: View {
                     Image("Bird_whiteoutline")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 50, height: 50, alignment: .center)
+                        .frame(width: 40, height: 40, alignment: .center)
                     //Divider()
                     Text("8")
                         .font(.title)
-                        .bold()
                 }
+                Spacer()
+                Text("W")
+                    .font(.title2)
+                    .foregroundColor(.green)
                 Spacer()
                 VStack {
                     Image("Berlin_Flamingos_Logo_3D")
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 50, height: 50, alignment: .center)
+                        .frame(width: 40, height: 40, alignment: .center)
                     //Divider()
                     Text("1")
                         .font(.title)
-                        .bold()
                 }
             }
-            Divider()
-            Text("W")
-                .font(.title2)
-                .bold()
-                .foregroundColor(.green)
         }
         .padding(5)
     }

@@ -8,8 +8,25 @@
 import SwiftUI
 
 struct ScoresView: View {
+    
+    @State var selection: String = "Option 1"
+    
     var body: some View {
         List {
+            Picker(
+                selection: $selection ,
+                   
+                label: HStack {
+                    Image(systemName: "star.fill")
+                    Text("Test")
+                },
+            
+                content: {
+                    Text("Option 1")
+                    Text("Option 2")
+                    Text("Option 3")
+                }
+            )
             NavigationLink(
                 destination: ScoresDetailView()) {
                     ScoresOverView()

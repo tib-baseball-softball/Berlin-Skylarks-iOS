@@ -26,7 +26,7 @@
 		CA1C39CB2731856C00BB194C /* WatchSkylarksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39CA2731856C00BB194C /* WatchSkylarksTests.swift */; };
 		CA1C39D52731856C00BB194C /* WatchSkylarksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39D42731856C00BB194C /* WatchSkylarksUITests.swift */; };
 		CA1C39D72731856C00BB194C /* WatchSkylarksUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39D62731856C00BB194C /* WatchSkylarksUITestsLaunchTests.swift */; };
-		CA1C39DA2731856C00BB194C /* WatchSkylarks.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CA1C39A42731856B00BB194C /* WatchSkylarks.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CA1C39DA2731856C00BB194C /* WatchSkylarks.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CA1C39A42731856B00BB194C /* WatchSkylarks.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CA1C39EA2731875800BB194C /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
 		CA1C39EB2731875800BB194C /* VLBB_2021_Standings.json in Resources */ = {isa = PBXBuildFile; fileRef = CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */; };
 		CA1C39EC2731875800BB194C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
@@ -705,6 +705,7 @@
 		};
 		CA1C39D92731856C00BB194C /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
+			platformFilter = ios;
 			target = CA1C39A32731856B00BB194C /* WatchSkylarks */;
 			targetProxy = CA1C39D82731856C00BB194C /* PBXContainerItemProxy */;
 		};
