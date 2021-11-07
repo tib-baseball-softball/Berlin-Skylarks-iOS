@@ -45,6 +45,7 @@
 		CA1C3A1A273348AC00BB194C /* ScoresOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A19273348AC00BB194C /* ScoresOverView.swift */; };
 		CA1C3A1C273348E500BB194C /* ScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A1B273348E500BB194C /* ScoresView.swift */; };
 		CA1C3A1E2733499F00BB194C /* ScoresDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A1D2733499F00BB194C /* ScoresDetailView.swift */; };
+		CA1C3A2027388BF300BB194C /* SidebarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A1F27388BF300BB194C /* SidebarNavigationView.swift */; };
 		CA56299526943C0D00274BE4 /* WebArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56299426943C0D00274BE4 /* WebArticleView.swift */; };
 		CA78B71C259507BC00510621 /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CA78B725259648F300510621 /* PlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B724259648F300510621 /* PlayersView.swift */; };
@@ -157,6 +158,7 @@
 		CA1C3A19273348AC00BB194C /* ScoresOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresOverView.swift; sourceTree = "<group>"; };
 		CA1C3A1B273348E500BB194C /* ScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresView.swift; sourceTree = "<group>"; };
 		CA1C3A1D2733499F00BB194C /* ScoresDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresDetailView.swift; sourceTree = "<group>"; };
+		CA1C3A1F27388BF300BB194C /* SidebarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigationView.swift; sourceTree = "<group>"; };
 		CA56299426943C0D00274BE4 /* WebArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebArticleView.swift; sourceTree = "<group>"; };
 		CA78B71B259507BC00510621 /* ColorSets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSets.swift; sourceTree = "<group>"; };
 		CA78B724259648F300510621 /* PlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersView.swift; sourceTree = "<group>"; };
@@ -407,6 +409,7 @@
 			isa = PBXGroup;
 			children = (
 				CABF7BF0259351D400B95813 /* ContentView.swift */,
+				CA1C3A1F27388BF300BB194C /* SidebarNavigationView.swift */,
 				CA97EAB7272370F5003055B6 /* Home_Dashboard */,
 				CAF839CE2704FD75006FAD6B /* News */,
 				CAF839CB2704FCC2006FAD6B /* Scores */,
@@ -670,6 +673,7 @@
 				CABF7C0B2593627900B95813 /* NewsView.swift in Sources */,
 				CA78B71C259507BC00510621 /* ColorSets.swift in Sources */,
 				CA78B725259648F300510621 /* PlayersView.swift in Sources */,
+				CA1C3A2027388BF300BB194C /* SidebarNavigationView.swift in Sources */,
 				CAE7740C26C1709B00A57F66 /* BSMStandingsTable.swift in Sources */,
 				CAAB56C3271F62F800ADDE9D /* GlobalScoresFunctions.swift in Sources */,
 				CA56299526943C0D00274BE4 /* WebArticleView.swift in Sources */,

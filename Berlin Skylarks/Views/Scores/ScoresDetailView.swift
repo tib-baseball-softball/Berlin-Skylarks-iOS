@@ -273,6 +273,20 @@ struct ScoresDetailView: View {
         }
         .listStyle(InsetGroupedListStyle())
         .navigationTitle("Game Details")
+        
+        // this could save games to calendar
+        
+        .toolbar {
+            ToolbarItemGroup {
+                Button(action: {
+                    print("pressed")
+                    
+                }) {
+                    Text("Button")
+                }
+            }
+            
+        }
     }
 }
 

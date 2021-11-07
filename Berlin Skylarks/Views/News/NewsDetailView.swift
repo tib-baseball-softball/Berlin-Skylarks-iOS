@@ -32,7 +32,6 @@ struct NewsDetailView: View {
                     .font(.subheadline)
                     .padding(.vertical, SmallPaddingCategoryAuthor)
                 Text("Im direkten Rückspiel gegen die Dresden Dukes nach der Auswärtsfahrt der Vorwoche ließen die Skylarks rein gar nichts anbrennen. In zwei sehr einseitigen Spielen gewann man in beiden Fällen klar und vorzeitig durch Mercy Rule und ließ den Gästen keine Chance.")
-                    .blur(radius: 1.0)
                 Group {
                     Text("Tabelle")
                         .font(.title2)
@@ -49,6 +48,18 @@ struct NewsDetailView: View {
             } .padding(DetailViewPadding)
         }
         .navigationBarTitle("Article", displayMode: .inline)
+        
+        .toolbar {
+            ToolbarItemGroup {
+                Button(action: {
+                    print("pressed")
+                    
+                }) {
+                    Text("Button")
+                }
+            }
+            
+        }
     }
 }
 

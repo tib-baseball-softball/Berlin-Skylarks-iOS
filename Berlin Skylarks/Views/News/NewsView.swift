@@ -11,7 +11,6 @@ import SwiftUI
 
 struct NewsView: View {
     var body: some View {
-        NavigationView {
             List {
                 NavigationLink(
                     destination: NewsDetailView()) {
@@ -42,9 +41,11 @@ struct NewsView: View {
                         .padding(NewsItemPadding)
                         .foregroundColor(.primary)
                 }
-            } .navigationBarTitle("News")
-            .listStyle(InsetListStyle())
-        }
+            }
+            .navigationTitle("News")
+            .listStyle(.inset)
+            
+            .navigationViewStyle(.stack)
     }
 }
 

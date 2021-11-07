@@ -9,10 +9,6 @@ import SwiftUI
 import MapKit
 
 struct TestView: View {
-
-    let columns = [
-        GridItem(.adaptive(minimum: 300), spacing: scoresGridSpacing),
-    ]
     
     private var pointsOfInterest = [
         AnnotatedItem(name: "Ballpark", coordinate: .init(latitude: (dummyGameScores[3].field?.latitude)!, longitude: (dummyGameScores[3].field?.longitude)!)),
@@ -21,8 +17,10 @@ struct TestView: View {
     @State private var region: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: (dummyGameScores[3].field?.latitude) as! CLLocationDegrees as! CLLocationDegrees, longitude: (dummyGameScores[3].field?.longitude)!), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
     
     var body: some View {
-        Map(coordinateRegion: $region, annotationItems: pointsOfInterest) { item in
-            MapMarker(coordinate: item.coordinate, tint:  Color.accentColor)
+        NavigationView {
+            Text("first layer")
+            Text("Second Layer")
+            Text("third layer")
         }
     }
     
@@ -35,6 +33,9 @@ struct TestView: View {
 
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
-        TestView()
+        ForEach(ColorScheme.allCases, id: \.self) {
+            TestView().preferredColorScheme($0)
+        }
+.previewInterfaceOrientation(.landscapeLeft)
     }
 }

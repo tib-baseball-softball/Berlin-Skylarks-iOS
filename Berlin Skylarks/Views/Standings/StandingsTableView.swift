@@ -71,15 +71,27 @@ struct StandingsTableView: View {
                 //more rows here
             }
         }
-        .listStyle(.insetGrouped)
+        .listStyle(.grouped)
         .navigationTitle(leagueTable.league_name + " " + String(leagueTable.season))
-        .frame(width: 500, height: 500)
+        
+        //this is sort of needed for dahboard, but breaks all other occurrences
+        //.frame(width: 500, height: 500)
+        .toolbar {
+            ToolbarItemGroup {
+                Button(action: {
+                    print("pressed")
+                    
+                }) {
+                    Text("Button")
+                }
+            }
+            
+        }
     }
 }
 
 struct StandingsTableView_Previews: PreviewProvider {
     static var previews: some View {
         StandingsTableView(leagueTable: dummyLeagueTable)
-.previewInterfaceOrientation(.landscapeLeft)
     }
 }

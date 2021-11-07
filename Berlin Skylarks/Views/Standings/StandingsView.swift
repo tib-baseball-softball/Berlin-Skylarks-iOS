@@ -15,7 +15,7 @@ struct StandingsView: View {
     @State private var leagueTableArray = [LeagueTable]()
     
     var body: some View {
-        NavigationView {
+        //NavigationView {
             List {
                 Section(header: Text("Please select your league")) {
                     ForEach(leagueTableArray, id: \.self) { LeagueTable in
@@ -41,9 +41,21 @@ struct StandingsView: View {
                 leagueTableArray = []
                 loadAllTables()
             }
-            .listStyle(InsetGroupedListStyle())
+            .listStyle(.insetGrouped)
             .navigationTitle("Standings")
-        }
+            
+            .toolbar {
+                ToolbarItemGroup {
+                    Button(action: {
+                        print("pressed")
+                        
+                    }) {
+                        Text("Button")
+                    }
+                }
+                
+            }
+    //    }
         // I can either make this conditional or maybe clear the array below before adding the new values
         .onAppear(perform: {
             if !leagueTableArray.indices.contains(0) {
