@@ -46,7 +46,7 @@ struct ContentView: View {
                         Image(systemName: "42.square.fill")
                         Text("Scores")
                     }
-                StandingsView()
+                StandingsViewWrapper()
                     .tabItem {
                         Image(systemName: "tablecells.fill")
                         Text("Standings")
@@ -66,62 +66,7 @@ struct ContentView: View {
         //on iPad and macOS we use a sidebar navigation to make better use of the ample space (also because Apple said so)
         
         if UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac {
-            NavigationView {
-                List {
-                    Section(header: Text("Dashboard")) {
-                        NavigationLink(
-                            destination: UserHomeView()) {
-                                HStack {
-                                    Image(systemName: "star.square.fill")
-                                    Text("Home")
-                                }
-                        }
-                    }
-                    Section(header: Text("Game Action")) {
-                        NavigationLink(
-                            destination: ScoresView()) {
-                                Image(systemName: "42.square.fill")
-                                Text("Scores")
-                        }
-                        NavigationLink(
-                            destination: StandingsView()) {
-                                Image(systemName: "tablecells.fill")
-                                Text("Standings")
-                        }
-                    }
-                    Section(header: Text("About the team")) {
-                        NavigationLink(
-                            destination: NewsView()) {
-                                HStack {
-                                    Image(systemName: "newspaper.fill")
-                                    Text("News")
-                                }
-                        }
-                        NavigationLink(
-                            destination: TeamListView()) {
-                                Image(systemName: "person.3.fill")
-                                Text("Players")
-                        }
-                    }
-                    Section(header: Text("Preferences")) {
-                        NavigationLink(
-                            destination: SettingsListView()) {
-                                Image(systemName: "gearshape.fill")
-                                Text("Settings")
-                        }
-                        HStack {
-                            Image(systemName: "gearshape.fill")
-                            Text("Legal stuff")
-                        }
-                    }
-                }
-                .listStyle(.sidebar)
-                Text("Please select a category")
-                
-                //this would create a third column
-                
-                //Text("Please select an app section")
-            }
+            SidebarNavigationView()
         }
     }
 }
@@ -131,8 +76,7 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView().padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext).previewInterfaceOrientation(.landscapeLeft)
+            ContentView().padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
         }
-        
     }
 }

@@ -11,12 +11,14 @@ struct ScoresView: View {
     
     @State private var gamescores = [GameScore]()
     
-    @State var selection: String = "Current Gameday"
+    @State var selection: String = "Current"
     
     @State var gameURLSelected = urlCurrentGameday
+    
+    @State private var date = Date()
 
     let filterOptions: [String] = [
-        "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season",
+        "Previous", "Current", "Next", "Full Season",
     ]
     
     let columns = [
@@ -26,6 +28,31 @@ struct ScoresView: View {
     var body: some View {
         NavigationView {
             ScrollView {
+                Picker(
+                    selection: $selection,
+                    label: HStack {
+                        Text("Show:")
+                        //Text(selection)
+                    }
+                    .font(.headline)
+                   // .padding(ScoresItemPadding)
+                    .padding(.horizontal)
+                    //.background(ItemBackgroundColor)
+                    .cornerRadius(NewsItemCornerRadius)
+                    ,
+                    content: {
+                        ForEach(filterOptions, id: \.self) { option in
+                            HStack {
+                                //Image(systemName: "list.bullet.circle")
+                                Text(" " + option)
+                            }
+                            .tag(option)
+                        }
+                        
+                })
+                .pickerStyle(.segmented)
+                .padding(.vertical, scoresGridPadding)
+                
                 LazyVGrid(columns: columns, spacing: scoresGridSpacing) {
                     ForEach(self.gamescores, id: \.id) { GameScore in
                         NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
@@ -39,7 +66,6 @@ struct ScoresView: View {
                 }
                 .padding(scoresGridPadding)
             }
-            //.listStyle(InsetGroupedListStyle())
             
             
             .onAppear(perform: { loadGameData(url: gameURLSelected) })
@@ -57,45 +83,29 @@ struct ScoresView: View {
             // this is the toolbar with the picker in the top right corner where you can select which games to display.
             
             .toolbar {
-                ToolbarItemGroup {
-                    HStack {
-                        Button(action: {
-                            print("trigger reload")
-                            loadGameData(url: gameURLSelected)
-                        }) {
-                            Label("Test", systemImage: "arrow.counterclockwise.circle")
-                                .padding(.horizontal, 15)
-                                //.font(.title2)
-                                //.frame(width: 10, height: 10, alignment: .trailing)
-                        }
-                        Picker(
-                            selection: $selection,
-                            label: HStack {
-                                Text("Show:")
-                                //Text(selection)
-                            }
-                            .font(.headline)
-                           // .padding(ScoresItemPadding)
-                            .padding(.horizontal)
-                            //.background(ItemBackgroundColor)
-                            .cornerRadius(NewsItemCornerRadius)
-                            ,
-                            content: {
-                                ForEach(filterOptions, id: \.self) { option in
-                                    Label(option, systemImage: "list.bullet.circle")
-                                        //.labelStyle(.iconOnly)
-//                                    HStack {
-//                                        Image(systemName: "list.bullet.circle")
-//                                            .frame(width: 10)
-//                                        Text(option)
-//                                    }
-                                    .tag(option)
-                                }
-                                
-                        })
-                        .pickerStyle(.menu)
-                        .labelsHidden()
+                ToolbarItem(placement: .principal) {
+                    DatePicker(
+                        "Game Date",
+                        selection: $date,
+                        displayedComponents: [.date]
+                    )
+                    .padding(40)
+                }
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        print("trigger reload")
+                        loadGameData(url: gameURLSelected)
+                    }) {
+                        Label("Test", systemImage: "arrow.counterclockwise.circle")
+                            .padding(.horizontal, 15)
+                            //.font(.title2)
+                            //.frame(width: 10, height: 10, alignment: .trailing)
                     }
+                    
+                }
+                
+                ToolbarItem(placement: .bottomBar) {
+                    
                 }
             }
             //this does not work yet
@@ -130,7 +140,8 @@ extension ScoresView {
 
 struct ScoresView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoresView()
-            
+        ForEach(ColorScheme.allCases, id: \.self) {
+            ScoresView().preferredColorScheme($0)
+        }
     }
 }

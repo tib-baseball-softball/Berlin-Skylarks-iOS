@@ -48,18 +48,6 @@ struct NewsDetailView: View {
             } .padding(DetailViewPadding)
         }
         .navigationBarTitle("Article", displayMode: .inline)
-        
-        .toolbar {
-            ToolbarItemGroup {
-                Button(action: {
-                    print("pressed")
-                    
-                }) {
-                    Text("Button")
-                }
-            }
-            
-        }
     }
 }
 

@@ -9,13 +9,24 @@
 
 import SwiftUI
 
+//iPhone uses this to get Navigation
+//I have to be really careful as this might produce errors with State variables later!
+
+struct StandingsViewWrapper: View {
+    var body: some View {
+        NavigationView {
+            StandingsView()
+        }
+    }
+}
+
+//iPad/Mac already has navigation in struct
 
 struct StandingsView: View {
     
     @State private var leagueTableArray = [LeagueTable]()
     
     var body: some View {
-        //NavigationView {
             List {
                 Section(header: Text("Please select your league")) {
                     ForEach(leagueTableArray, id: \.self) { LeagueTable in
@@ -43,19 +54,6 @@ struct StandingsView: View {
             }
             .listStyle(.insetGrouped)
             .navigationTitle("Standings")
-            
-            .toolbar {
-                ToolbarItemGroup {
-                    Button(action: {
-                        print("pressed")
-                        
-                    }) {
-                        Text("Button")
-                    }
-                }
-                
-            }
-    //    }
         // I can either make this conditional or maybe clear the array below before adding the new values
         .onAppear(perform: {
             if !leagueTableArray.indices.contains(0) {
@@ -88,6 +86,6 @@ struct StandingsView: View {
 
 struct StandingsView_Previews: PreviewProvider {
     static var previews: some View {
-        StandingsView()
+        StandingsViewWrapper()
     }
 }

@@ -9,6 +9,9 @@ import SwiftUI
 import MapKit
 
 struct ScoresDetailView: View {
+    
+    @State private var showingSheet = false
+    
     var gamescore: GameScore
     
     var body: some View {
@@ -271,21 +274,38 @@ struct ScoresDetailView: View {
                 }
             }
         }
-        .listStyle(InsetGroupedListStyle())
+        .listStyle(.insetGrouped)
         .navigationTitle("Game Details")
         
-        // this could save games to calendar
-        
         .toolbar {
-            ToolbarItemGroup {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button(action: {
-                    print("pressed")
+                    print("bookmark button pressed")
                     
-                }) {
-                    Text("Button")
+                }, label: {
+                    Image(systemName: "bookmark")
+                })
+                
+                Button(action: {
+                    showingSheet.toggle()
+                    
+                }, label: {
+                    Image(systemName: "square.and.arrow.up")
+                })
+                .sheet(isPresented: $showingSheet) {
+                    ShareSheet()
                 }
+                
+                
             }
-            
+            ToolbarItem(placement: .principal) {
+                Button(action: {
+                    print("share button pressed")
+                    
+                }, label: {
+                    Image(systemName: "doc.on.doc")
+                })
+            }
         }
     }
 }

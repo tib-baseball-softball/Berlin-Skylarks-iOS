@@ -11,50 +11,14 @@ import SwiftUI
 
 struct NewsView: View {
     var body: some View {
-            List {
-                NavigationLink(
-                    destination: NewsDetailView()) {
-                        NewsItem()
-                }
-                NavigationLink(
-                    
-                    //here a hardcoded link to a WebView is used for testing
-                    
-                    destination: WebArticleView()) {
-                        VStack(
-                            alignment: .leading,
-                            spacing: NewsItemSpacing
-                        ) {
-                            Image("dummy_kids")
-                                .resizable()
-                                .scaledToFit()
-                            Text("Eventbericht")
-                                .font(.title3)
-                                .padding(10)
-                            Text("Kinder hatten ganz viel Spaß")
-                                .font(.headline)
-                                .lineLimit(nil)
-                                .padding(10)
-                        }
-                        .background(ItemBackgroundColor)
-                        .cornerRadius(NewsItemCornerRadius)
-                        .padding(NewsItemPadding)
-                        .foregroundColor(.primary)
-                }
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            NavigationView {
+                NewsBody()
             }
-            .navigationTitle("News")
-            .listStyle(.inset)
-            
-            .navigationViewStyle(.stack)
-    }
-}
-
-
-//DEBUG
-
-struct NewsView_Previews: PreviewProvider {
-    static var previews: some View {
-        NewsView()
+        } else {
+            NewsBody()
+        }
+        
     }
 }
 
@@ -80,5 +44,55 @@ struct NewsItem: View {
         .padding(NewsItemPadding)
         .foregroundColor(.primary)
         .frame(maxWidth: 330)
+    }
+}
+
+struct NewsBody: View {
+    var body: some View {
+        List {
+            NavigationLink(
+                destination: NewsDetailView()) {
+                    NewsItem()
+            }
+            NavigationLink(
+                
+                //here a hardcoded link to a WebView is used for testing
+                
+                destination: WebArticleView()) {
+                    VStack(
+                        alignment: .leading,
+                        spacing: NewsItemSpacing
+                    ) {
+                        Image("dummy_kids")
+                            .resizable()
+                            .scaledToFit()
+                        Text("Eventbericht")
+                            .font(.title3)
+                            .padding(10)
+                        Text("Kinder hatten ganz viel Spaß")
+                            .font(.headline)
+                            .lineLimit(nil)
+                            .padding(10)
+                    }
+                    .background(ItemBackgroundColor)
+                    .cornerRadius(NewsItemCornerRadius)
+                    .padding(NewsItemPadding)
+                    .foregroundColor(.primary)
+            }
+        }
+        .navigationTitle("News")
+        .listStyle(.inset)
+        
+        .navigationViewStyle(.stack)
+    }
+}
+
+
+
+//DEBUG
+
+struct NewsView_Previews: PreviewProvider {
+    static var previews: some View {
+        NewsView()
     }
 }

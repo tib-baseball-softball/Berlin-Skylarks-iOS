@@ -25,9 +25,9 @@ let urlFullSeason = URL(string: "https://bsm.baseball-softball.de/clubs/485/matc
 //https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&filters[leagues][]=4801&filters[gamedays][]=previous
 
 let scoresURLs = [
-    "Previous Gameday": urlPreviousGameday,
-    "Current Gameday": urlCurrentGameday,
-    "Next Gameday": urlNextGameday,
+    "Previous": urlPreviousGameday,
+    "Current": urlCurrentGameday,
+    "Next": urlNextGameday,
     "Full Season": urlFullSeason,
 ]
 

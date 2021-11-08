@@ -268,6 +268,5 @@ struct UserHomeView_Previews: PreviewProvider {
         ForEach(ColorScheme.allCases, id: \.self) {
             UserHomeView().preferredColorScheme($0)
         }
-.previewInterfaceOrientation(.landscapeLeft)
     }
 }
