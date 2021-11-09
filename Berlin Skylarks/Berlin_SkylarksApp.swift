@@ -19,7 +19,7 @@ struct Berlin_SkylarksApp: App {
     }
 }
 
-//this makes views immediately appear (instead of being hodden behind back buttons)
+//this makes views immediately appear (instead of being hidden behind back buttons)
 
 extension UISplitViewController {
     open override func viewDidLoad() {
