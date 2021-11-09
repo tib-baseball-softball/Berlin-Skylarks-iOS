@@ -16,5 +16,7 @@ Play Ball! ⚾️🥎
 ______
 
 Please note: I am not a programmer. This project represents my learning experience to coding and iOS development as a complete beginner. So please do not expect anything refined. However, I still aim to create a working and functional app at some point in the future.
+______
+
 
 So, let the potatoes begin! 🥔
