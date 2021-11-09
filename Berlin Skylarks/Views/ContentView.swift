@@ -46,7 +46,7 @@ struct ContentView: View {
                         Image(systemName: "42.square.fill")
                         Text("Scores")
                     }
-                StandingsViewWrapper()
+                StandingsView()
                     .tabItem {
                         Image(systemName: "tablecells.fill")
                         Text("Standings")
@@ -63,7 +63,7 @@ struct ContentView: View {
                     }
             }
         }
-        //on iPad and macOS we use a sidebar navigation to make better use of the ample space (also because Apple said so)
+        //on iPad and macOS we use a sidebar navigation to make better use of the ample space)
         
         if UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac {
             SidebarNavigationView()

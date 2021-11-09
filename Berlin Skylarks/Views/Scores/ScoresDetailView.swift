@@ -11,6 +11,8 @@ import MapKit
 struct ScoresDetailView: View {
     
     @State private var showingSheet = false
+    @State private var showCalendarDialog = false
+    @State private var isBookmarked = false
     
     var gamescore: GameScore
     
@@ -280,33 +282,58 @@ struct ScoresDetailView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button(action: {
-                    print("bookmark button pressed")
+                    isBookmarked.toggle()
                     
                 }, label: {
-                    Image(systemName: "bookmark")
+                    //the button changes its appearance if a bookmark is set
+                    Image(systemName: isBookmarked == true ? "bookmark.fill" : "bookmark")
                 })
                 
+                Spacer()
+                
+                Button(
+                    action: {
+                        showCalendarDialog.toggle()
+                    }
+                ){
+                    Image(systemName: "calendar.badge.plus")
+                }
+                .confirmationDialog("Save game to calendar", isPresented: $showCalendarDialog) {
+                    Button("Save to calendar") {
+                        print("saved to calendar")
+
+                        //add actual action here
+                    }
+                }
+                
+                Spacer()
+                
                 Button(action: {
-                    showingSheet.toggle()
+                    //showingSheet.toggle()
+                    ActionSheet()
                     
                 }, label: {
                     Image(systemName: "square.and.arrow.up")
                 })
-                .sheet(isPresented: $showingSheet) {
-                    ShareSheet()
-                }
-                
-                
+//                .sheet(isPresented: $showingSheet) {
+//                    ShareSheet()
+//                }
             }
-            ToolbarItem(placement: .principal) {
-                Button(action: {
-                    print("share button pressed")
-                    
-                }, label: {
-                    Image(systemName: "doc.on.doc")
-                })
-            }
+//            ToolbarItem(placement: .principal) {
+//                Button(action: {
+//                    print("doc button pressed")
+//
+//                }, label: {
+//                    Image(systemName: "doc.on.doc")
+//                })
+//            }
         }
+    }
+    func ActionSheet() {
+        //guard let data = URL(string: "https://www.zoho.com") else { return }
+        let data = gamescore.match_id
+        let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
+        UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
     }
 }
 
