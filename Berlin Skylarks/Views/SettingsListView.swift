@@ -35,7 +35,9 @@ struct SettingsListView: View {
     var body: some View {
         NavigationView {
             List {
-                Section(header: Text("Notifications")) {
+                Section(
+                        header: Text("Notifications"),
+                        footer: Text("Receive notifications for all Skylarks teams or just your favorite team.")) {
                     Toggle(isOn: $userSettings.sendPush) {
                             Text("Send Push Notifications")
                     }
@@ -57,11 +59,10 @@ struct SettingsListView: View {
                             Text("Frequency")
                         }
                     }
-                    Text("Receive notifications for all Skylarks teams or just your favorite team.")
-                        .font(.subheadline)
-                        .italic()
                 }
-                Section(header: Text("Teams")) {
+                Section(
+                    header: Text("Teams"),
+                    footer: Text("Your favorite team appears in the Home dashboard tab.")) {
                     Picker(selection: $userSettings.favoriteTeam, label:
                             HStack {
                                 Image(systemName: "star.square.fill")
@@ -72,9 +73,6 @@ struct SettingsListView: View {
                             Text(team)
                         }
                     }
-                    Text("Your favorite team appears in the Home dashboard tab.")
-                        .font(.subheadline)
-                        .italic()
                 }
                 Section(header: Text("Information")) {
                     NavigationLink(

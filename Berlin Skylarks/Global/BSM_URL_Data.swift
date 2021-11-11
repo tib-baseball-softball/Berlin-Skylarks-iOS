@@ -15,20 +15,25 @@ import SwiftUI
 
 //force unwrapping should not be an issue here - these are never nil
 
+//URLs used on web frontend
+
 let urlPreviousGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=previous&api_key=IN__8yHVCeE3gP83Dvyqww")!
 let urlCurrentGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=current&api_key=IN__8yHVCeE3gP83Dvyqww")!
 let urlNextGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=next&api_key=IN__8yHVCeE3gP83Dvyqww")!
 let urlFullSeason = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
 
-//filtered by league
+//URLs by league
 
-//https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&filters[leagues][]=4801&filters[gamedays][]=previous
+let urlScoresVLBB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4800&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
+
+
 
 let scoresURLs = [
-    "Previous": urlPreviousGameday,
-    "Current": urlCurrentGameday,
-    "Next": urlNextGameday,
-    "Full Season": urlFullSeason,
+    "Previous Gameday": urlPreviousGameday,
+    "Current Gameday": urlCurrentGameday,
+    "Next Gameday": urlNextGameday,
+    "Full Season Gameday": urlFullSeason,
+    "Verbandsliga BB": urlScoresVLBB,
 ]
 
 

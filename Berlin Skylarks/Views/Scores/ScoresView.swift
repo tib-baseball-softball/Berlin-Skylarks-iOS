@@ -11,14 +11,14 @@ struct ScoresView: View {
     
     @State private var gamescores = [GameScore]()
     
-    @State var selection: String = "Current"
+    @State var selection: String = "Current Gameday"
     
     @State var gameURLSelected = urlCurrentGameday
     
     @State private var date = Date()
 
     let filterOptions: [String] = [
-        "Previous", "Current", "Next", "Full Season",
+        "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season", "Verbandsliga BB",
     ]
     
     let columns = [
@@ -28,31 +28,6 @@ struct ScoresView: View {
     var body: some View {
         NavigationView {
             ScrollView {
-                Picker(
-                    selection: $selection,
-                    label: HStack {
-                        Text("Show:")
-                        //Text(selection)
-                    }
-                    .font(.headline)
-                   // .padding(ScoresItemPadding)
-                    .padding(.horizontal)
-                    //.background(ItemBackgroundColor)
-                    .cornerRadius(NewsItemCornerRadius)
-                    ,
-                    content: {
-                        ForEach(filterOptions, id: \.self) { option in
-                            HStack {
-                                //Image(systemName: "list.bullet.circle")
-                                Text(" " + option)
-                            }
-                            .tag(option)
-                        }
-                        
-                })
-                .pickerStyle(.segmented)
-                .padding(.vertical, scoresGridPadding)
-                
                 LazyVGrid(columns: columns, spacing: scoresGridSpacing) {
                     ForEach(self.gamescores, id: \.id) { GameScore in
                         NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
@@ -83,26 +58,52 @@ struct ScoresView: View {
             // this is the toolbar with the picker in the top right corner where you can select which games to display.
             
             .toolbar {
-                ToolbarItem(placement: .principal) {
-                    DatePicker(
-                        "Game Date",
-                        selection: $date,
-                        displayedComponents: [.date]
-                    )
-                    .padding(40)
-                }
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        print("trigger reload")
-                        loadGameData(url: gameURLSelected)
-                    }) {
-                        Label("Test", systemImage: "arrow.counterclockwise.circle")
-                            .padding(.horizontal, 15)
-                            //.font(.title2)
-                            //.frame(width: 10, height: 10, alignment: .trailing)
+//                ToolbarItem(placement: .principal) {
+//                    DatePicker(
+//                        "Game Date",
+//                        selection: $date,
+//                        displayedComponents: [.date]
+//                    )
+//                    .padding(40)
+//                }
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    HStack {
+//                        Text("Show:")
+//                            .font(.callout)
+                        Picker(
+                            selection: $selection,
+                            //this actually does not show the label, just the selection
+                            label: HStack {
+                                Text("Show:")
+                                //Text(selection)
+                            },
+                            content: {
+                                ForEach(filterOptions, id: \.self) { option in
+                                    HStack {
+                                        Image(systemName: "list.bullet.circle")
+                                        Text(" " + option)
+                                    }
+                                    .tag(option)
+                                }
+                                
+                        })
+                        .pickerStyle(.automatic)
+                        .padding(.vertical, scoresGridPadding)
                     }
-                    
                 }
+                //let's try to include resreshable here as well, the button is super ugly
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Button(action: {
+//                        print("trigger reload")
+//                        loadGameData(url: gameURLSelected)
+//                    }) {
+//                        Label("Test", systemImage: "arrow.counterclockwise.circle")
+//                            .padding(.horizontal, 15)
+//                            //.font(.title2)
+//                            //.frame(width: 10, height: 10, alignment: .trailing)
+//                    }
+//
+//                }
                 
                 ToolbarItem(placement: .bottomBar) {
                     

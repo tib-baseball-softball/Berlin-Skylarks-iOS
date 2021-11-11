@@ -62,6 +62,11 @@ struct ContentView: View {
                         Text("Settings")
                     }
             }
+//            .toolbar {
+//                ToolbarItem(placement: .navigationBarTrailing) {
+//                    Image(systemName: "plus")
+//                }
+//            }
         }
         //on iPad and macOS we use a sidebar navigation to make better use of the ample space)
         
