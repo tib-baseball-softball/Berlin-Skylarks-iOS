@@ -38,7 +38,6 @@
 		CA1C3A0B2733407400BB194C /* Ints_Floats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A092733407400BB194C /* Ints_Floats.swift */; };
 		CA1C3A0D273340C000BB194C /* BSM_URL_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */; };
 		CA1C3A0E273340C000BB194C /* BSM_URL_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */; };
-		CA1C3A0F2733414400BB194C /* GlobalScoresFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C2271F62F800ADDE9D /* GlobalScoresFunctions.swift */; };
 		CA1C3A132733444400BB194C /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA04D2598F570002A0FAB /* InfoView.swift */; };
 		CA1C3A172733473100BB194C /* watchOS_globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A162733473100BB194C /* watchOS_globals.swift */; };
 		CA1C3A1A273348AC00BB194C /* ScoresOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A19273348AC00BB194C /* ScoresOverView.swift */; };
@@ -632,7 +631,6 @@
 				CA1C3A0B2733407400BB194C /* Ints_Floats.swift in Sources */,
 				CA1C3A132733444400BB194C /* InfoView.swift in Sources */,
 				CA1C39F827318C6D00BB194C /* Berlin_SkylarksApp.swift in Sources */,
-				CA1C3A0F2733414400BB194C /* GlobalScoresFunctions.swift in Sources */,
 				CA1C39BA2731856B00BB194C /* ComplicationController.swift in Sources */,
 				CA1C39B82731856B00BB194C /* NotificationView.swift in Sources */,
 				CA1C39EA2731875800BB194C /* BSMGameScore.swift in Sources */,

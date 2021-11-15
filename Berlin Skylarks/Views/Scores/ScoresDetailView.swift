@@ -300,9 +300,12 @@ struct ScoresDetailView: View {
                 }
                 .confirmationDialog("Save game to calendar", isPresented: $showCalendarDialog) {
                     Button("Save to calendar") {
-                        print("saved to calendar")
-
-                        //add actual action here
+                        
+                        getDatefromBSMString(gamescore: gamescore)
+                        
+                        if let localGameDate = gameDate {
+                            addGameToCalendar(gameDate: localGameDate, gamescore: gamescore)
+                        }
                     }
                 }
                 

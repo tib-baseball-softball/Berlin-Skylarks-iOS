@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import EventKit
 import SwiftUI
 
 var away_team_logo: Image? = Image("App_road_team_logo")
@@ -88,3 +89,63 @@ func getDatefromBSMString(gamescore: GameScore) {
     //force unwrapping alert: gametime really should be a required field in BSM DB - let's see if there are crashes
     gameDate = dateFormatter.date(from: gamescore.time)!
 }
+
+//-------------------------------CALENDAR EVENTS---------------------------------//
+
+func addGameToCalendar(gameDate: Date, gamescore: GameScore) {
+    let eventStore = EKEventStore()
+         
+    eventStore.requestAccess(to: .event) { (granted, error) in
+      
+      if (granted) && (error == nil) {
+          print("granted \(granted)")
+          print("error \(String(describing: error))")
+          
+          let event:EKEvent = EKEvent(eventStore: eventStore)
+          let calendars = eventStore.calendars(for: .event)
+          
+          for calendar in calendars {
+              print("start loop")
+              if calendar.title == "Development Calendar" {
+                  event.title = gamescore.league.name + ": " + gamescore.away_team_name + " @ " + gamescore.home_team_name
+                  event.startDate = gameDate
+                  event.endDate = gameDate.addingTimeInterval(2 * 60 * 60)
+                  event.notes = gamescore.match_id
+                  //add more info
+                  
+                  event.calendar = calendar
+                  //event.calendar = eventStore.defaultCalendarForNewEvents
+                  do {
+                      try eventStore.save(event, span: .thisEvent)
+                  } catch let error as NSError {
+                      print("failed to save event with error : \(error)")
+                  }
+                  print("Saved Event successfully")
+              }
+          }
+      }
+      else{
+      
+          print("failed to save event with error : \(String(describing: error)) or access not granted")
+      }
+    }
+}
+
+//        switch EKEventStore.authorizationStatus(for: .event) {
+//        case .authorized:
+//            insertEvent(store: eventStore, gameDate: gameDate)
+//        case .denied:
+//            print("Access denied")
+//        case .notDetermined:
+//
+//            eventStore.requestAccess(to: .event, completion:
+//              {[weak self] (granted: Bool, error: Error?) -> Void in
+//                  if granted {
+//                    self!.insertEvent(store: eventStore)
+//                  } else {
+//                        print("Access denied")
+//                  }
+//            })
+//            default:
+//                print("Case default")
+//        }
