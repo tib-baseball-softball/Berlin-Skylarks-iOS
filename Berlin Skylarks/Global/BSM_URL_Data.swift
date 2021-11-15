@@ -25,7 +25,11 @@ let urlFullSeason = URL(string: "https://bsm.baseball-softball.de/clubs/485/matc
 //URLs by league
 
 let urlScoresVLBB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4800&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
-
+let urlScoresVLSB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4805&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
+let urlScoresLLBB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4801&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
+let urlScoresBZLBB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4802&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
+let urlScoresSchBB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4804&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
+let urlScoresTossBB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4807&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
 
 
 let scoresURLs = [
@@ -34,6 +38,11 @@ let scoresURLs = [
     "Next Gameday": urlNextGameday,
     "Full Season Gameday": urlFullSeason,
     "Verbandsliga BB": urlScoresVLBB,
+    "Verbandsliga SB": urlScoresVLSB,
+    "Landesliga BB": urlScoresLLBB,
+    "Bezirksliga BB": urlScoresBZLBB,
+    "Schülerliga": urlScoresSchBB,
+    "Tossballliga": urlScoresTossBB,
 ]
 
 

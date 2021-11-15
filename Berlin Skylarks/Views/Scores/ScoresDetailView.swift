@@ -329,9 +329,19 @@ struct ScoresDetailView: View {
 //            }
         }
     }
+    
+    // this works, but is an absolute performance nightmare and leads to boatloads of errors in console
+    
     func ActionSheet() {
         //guard let data = URL(string: "https://www.zoho.com") else { return }
-        let data = gamescore.match_id
+        let data = "League: "
+        + gamescore.league.name
+        + """
+        
+        
+        """
+        + "Match Number: "
+        gamescore.match_id
         let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
     }

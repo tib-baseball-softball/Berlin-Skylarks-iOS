@@ -11,6 +11,8 @@ struct ScoresView: View {
     
     @State private var gamescores = [GameScore]()
     
+    @State private var showCalendarDialog = false
+    
     @State var selection: String = "Current Gameday"
     
     @State var gameURLSelected = urlCurrentGameday
@@ -18,7 +20,7 @@ struct ScoresView: View {
     @State private var date = Date()
 
     let filterOptions: [String] = [
-        "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season", "Verbandsliga BB",
+        "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season", "Verbandsliga BB", "Verbandsliga SB", "Landesliga BB", "Bezirksliga BB", "Schülerliga", "Tossballliga",
     ]
     
     let columns = [
@@ -67,31 +69,43 @@ struct ScoresView: View {
 //                    .padding(40)
 //                }
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    HStack {
-//                        Text("Show:")
-//                            .font(.callout)
-                        Picker(
-                            selection: $selection,
-                            //this actually does not show the label, just the selection
-                            label: HStack {
-                                Text("Show:")
-                                //Text(selection)
-                            },
-                            content: {
-                                ForEach(filterOptions, id: \.self) { option in
-                                    HStack {
-                                        Image(systemName: "list.bullet.circle")
-                                        Text(" " + option)
-                                    }
-                                    .tag(option)
-                                }
-                                
-                        })
-                        .pickerStyle(.automatic)
-                        .padding(.vertical, scoresGridPadding)
+                    Button(
+                        action: {
+                            showCalendarDialog.toggle()
+                        }
+                    ){
+                        Image(systemName: "calendar.badge.plus")
                     }
+                    .confirmationDialog("Save game to calendar", isPresented: $showCalendarDialog) {
+                        Button("Save to calendar") {
+                            print("saved to calendar")
+
+                            //add actual action here
+                        }
+                    }
+                    .padding(.horizontal, 10)
+                    
+                    Picker(
+                        selection: $selection,
+                        //this actually does not show the label, just the selection
+                        label: HStack {
+                            Text("Show:")
+                            //Text(selection)
+                        },
+                        content: {
+                            ForEach(filterOptions, id: \.self) { option in
+                                HStack {
+                                    Image(systemName: "list.bullet.circle")
+                                    Text(" " + option)
+                                }
+                                .tag(option)
+                            }
+                            
+                    })
+                    .pickerStyle(.automatic)
+                    .padding(.vertical, scoresGridPadding)
                 }
-                //let's try to include resreshable here as well, the button is super ugly
+                //let's try to include refreshable here as well, the button is super ugly
 //                ToolbarItem(placement: .navigationBarTrailing) {
 //                    Button(action: {
 //                        print("trigger reload")
