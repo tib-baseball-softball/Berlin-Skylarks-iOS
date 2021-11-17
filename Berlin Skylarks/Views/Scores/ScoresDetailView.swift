@@ -301,9 +301,7 @@ struct ScoresDetailView: View {
                 }
                 .confirmationDialog("Save game to calendar", isPresented: $showCalendarDialog) {
                     Button("Save to calendar") {
-                        
                         getDatefromBSMString(gamescore: gamescore)
-                        
                         if let localGameDate = gameDate {
                             addGameToCalendar(gameDate: localGameDate, gamescore: gamescore)
                             showEventAlert = true
@@ -349,7 +347,7 @@ struct ScoresDetailView: View {
         
         """
         + "Match Number: "
-        gamescore.match_id
+        + gamescore.match_id
         let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
     }

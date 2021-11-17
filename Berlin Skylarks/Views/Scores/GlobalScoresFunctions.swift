@@ -105,7 +105,7 @@ func addGameToCalendar(gameDate: Date, gamescore: GameScore) {
           let calendars = eventStore.calendars(for: .event)
           
           for calendar in calendars {
-              print("start loop")
+              //print("start loop")
               if calendar.title == "Development Calendar" {
                   event.title = gamescore.league.name + ": " + gamescore.away_team_name + " @ " + gamescore.home_team_name
                   event.startDate = gameDate

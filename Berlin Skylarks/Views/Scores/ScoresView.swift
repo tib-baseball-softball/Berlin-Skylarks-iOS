@@ -12,6 +12,7 @@ struct ScoresView: View {
     @State private var gamescores = [GameScore]()
     
     @State private var showCalendarDialog = false
+    @State private var showEventAlert = false
     
     @State var selection: String = "Current Gameday"
     
@@ -76,11 +77,16 @@ struct ScoresView: View {
                     ){
                         Image(systemName: "calendar.badge.plus")
                     }
-                    .confirmationDialog("Save game to calendar", isPresented: $showCalendarDialog) {
+                    .confirmationDialog("Save games to calendar", isPresented: $showCalendarDialog) {
                         Button("Save to calendar") {
-                            print("saved to calendar")
-
-                            //add actual action here
+                            for gamescore in gamescores {
+                                getDatefromBSMString(gamescore: gamescore)
+                                
+                                if let localGameDate = gameDate {
+                                    addGameToCalendar(gameDate: localGameDate, gamescore: gamescore)
+                                    showEventAlert = true
+                                }
+                            }
                         }
                     }
                     .padding(.horizontal, 10)
