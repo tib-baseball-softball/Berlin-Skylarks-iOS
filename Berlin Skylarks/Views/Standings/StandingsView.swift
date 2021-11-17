@@ -47,13 +47,15 @@ struct StandingsView: View {
             }
             .listStyle(.insetGrouped)
             .navigationTitle("Standings")
+            
+        }
+        
         // I can either make this conditional or maybe clear the array below before adding the new values
         .onAppear(perform: {
             if !leagueTableArray.indices.contains(0) {
                 loadAllTables()
             }
         })
-        }
     }
     func loadAllTables() {
         for index in 0..<leagueTableURLs.count {

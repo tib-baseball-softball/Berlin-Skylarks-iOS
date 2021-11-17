@@ -13,6 +13,7 @@ struct ScoresDetailView: View {
     @State private var showingSheet = false
     @State private var showCalendarDialog = false
     @State private var isBookmarked = false
+    @State private var showEventAlert = false
     
     var gamescore: GameScore
     
@@ -305,7 +306,11 @@ struct ScoresDetailView: View {
                         
                         if let localGameDate = gameDate {
                             addGameToCalendar(gameDate: localGameDate, gamescore: gamescore)
+                            showEventAlert = true
                         }
+                    }
+                    .alert("Event has been saved", isPresented: $showEventAlert) {
+                        Button("OK") { }
                     }
                 }
                 
