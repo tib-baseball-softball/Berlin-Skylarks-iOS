@@ -102,7 +102,7 @@ struct ScoresView: View {
                             }
                             
                     })
-                    .pickerStyle(.automatic)
+                    .pickerStyle(.menu)
                     .padding(.vertical, scoresGridPadding)
                 }
                 //let's try to include refreshable here as well, the button is super ugly

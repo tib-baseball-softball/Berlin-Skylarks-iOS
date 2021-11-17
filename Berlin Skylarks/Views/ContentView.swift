@@ -56,11 +56,11 @@ struct ContentView: View {
                         Image(systemName: "person.3.fill")
                         Text("Players")
                     }
-                SettingsListView()
-                    .tabItem {
-                        Image(systemName: "gearshape.fill")
-                        Text("Settings")
-                    }
+//                SettingsListView()
+//                    .tabItem {
+//                        Image(systemName: "gearshape.fill")
+//                        Text("Settings")
+//                    }
             }
 //            .toolbar {
 //                ToolbarItem(placement: .navigationBarTrailing) {

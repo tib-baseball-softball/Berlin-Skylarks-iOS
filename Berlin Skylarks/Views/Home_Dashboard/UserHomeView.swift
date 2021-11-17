@@ -16,6 +16,8 @@ struct UserHomeView: View {
     
     @AppStorage("favoriteTeam") var favoriteTeam: String = "Test Team"
     
+    @State private var showingSettings = false
+    
     @StateObject var userDashboard = UserDashboard()
     
     @State var homeLeagueTables = [LeagueTable]()
@@ -258,6 +260,22 @@ struct UserHomeView: View {
                 homeLeagueTables = []
                 loadHomeTableData(url: selectedHomeURL)
             })
+            
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button(
+                        action: {
+                            showingSettings.toggle()
+                        }
+                    ){
+                        Image(systemName: "gearshape.fill")
+                    }
+                    .padding(.horizontal, 5)
+                    .sheet( isPresented: $showingSettings) {
+                        SettingsListView()
+                    }
+                }
+            }
         }
         .navigationViewStyle(.stack)
     }
