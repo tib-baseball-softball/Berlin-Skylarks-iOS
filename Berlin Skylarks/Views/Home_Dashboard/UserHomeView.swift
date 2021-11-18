@@ -17,9 +17,11 @@ struct UserHomeView: View {
     @AppStorage("favoriteTeam") var favoriteTeam: String = "Test Team"
     
     @State private var showingSettings = false
+    @State private var showingNextGame = false
+    @State private var showingLastGame = false
     
     @StateObject var userDashboard = UserDashboard()
-    
+    @State var homeGamescores = [GameScore]()
     @State var homeLeagueTables = [LeagueTable]()
     
     @State var selectedHomeURL = urlVLBB //just a default value that is immediately overridden
@@ -204,14 +206,28 @@ struct UserHomeView: View {
                             .font(.title)
                             .bold()
                             .padding(.leading, 15)
-                        ScoresOverView(gamescore: dummyGameScores[7])
+                            ScoresOverView(gamescore: userDashboard.displayDashboardLastGame)
+                            
+                            .onTapGesture {
+                                showingLastGame.toggle()
+                            }
+                            .sheet(isPresented: $showingLastGame) {
+                                ScoresDetailView(gamescore: userDashboard.displayDashboardLastGame)
+                            }
                     }
                     VStack(alignment: .leading) {
                         Text("Next Game")
                             .font(.title)
                             .bold()
                             .padding(.leading, 15)
-                        ScoresOverView(gamescore: dummyGameScores[0])
+                        ScoresOverView(gamescore: userDashboard.displayDashboardNextGame)
+                        
+                        .onTapGesture {
+                            showingNextGame.toggle()
+                        }
+                        .sheet(isPresented: $showingNextGame) {
+                            ScoresDetailView(gamescore: userDashboard.displayDashboardNextGame)
+                        }
                     }
                     VStack(alignment: .leading) {
                         Text("Standings")
@@ -285,8 +301,10 @@ struct UserHomeView: View {
 
 struct UserHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(ColorScheme.allCases, id: \.self) {
-            UserHomeView().preferredColorScheme($0)
+        Group {
+            ForEach(ColorScheme.allCases, id: \.self) {
+                UserHomeView().preferredColorScheme($0)
+            }
         }
     }
 }

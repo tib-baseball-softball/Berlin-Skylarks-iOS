@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+let idLandesliga = "4801"
+
 //-------------------------------SCORES------------------------------------//
 
 //BSM API URLS to get the games //////
@@ -67,6 +69,10 @@ class UserDashboard: ObservableObject {
     @Published var displayDashboardLeagueTable = LeagueTable(league_id: 1, league_name: "Default League", season: Calendar.current.component(.year, from: Date()), rows: [])
     
     @Published var displayDashboardTableRow = LeagueTable.Row(rank: "X.", team_name: "Testteam", short_team_name: "XXX", match_count: 0, wins_count: 0, losses_count: 0, quota: ".000", games_behind: "0", streak: "00")
+    
+    @Published var displayDashboardNextGame = GameScore(id: 999, match_id: "000", time: "2020-08-08 17:00:00 +0200", home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: GameScore.League(id: 999, season: 1970, name: "Next league"), umpire_assignments: [], scorer_assignments: [])
+    
+    @Published var displayDashboardLastGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: GameScore.League(id: 999, season: 1970, name: "Latest league"), umpire_assignments: [], scorer_assignments: [])
 }
 
 let dashboardTeamURLDict = [
@@ -80,6 +86,10 @@ let dashboardTeamURLDict = [
     "Tossball (U10)" : urlTossBB,
     "Teeball (U8)" : urlSchBB, //placeholder
 ]
+
+let urlHomeLLBB = URL(string:"")!
+
+//&sorted[time]=asc/desc
 
 //-------------------------------FUNKTIONÄRE---------------------------------//
 

@@ -9,11 +9,6 @@
 
 import SwiftUI
 
-//iPhone uses this to get Navigation
-
-
-//iPad/Mac already has navigation in struct
-
 struct StandingsView: View {
     
     @State private var leagueTableArray = [LeagueTable]()
@@ -41,10 +36,13 @@ struct StandingsView: View {
                 }
                 
             }
+        //this doesn't work - still crashes
+        #if !os(macOS)
             .refreshable {
                 leagueTableArray = []
                 loadAllTables()
             }
+        #endif
             .listStyle(.insetGrouped)
             .navigationTitle("Standings")
             
@@ -53,6 +51,7 @@ struct StandingsView: View {
         // I can either make this conditional or maybe clear the array below before adding the new values
         .onAppear(perform: {
             if !leagueTableArray.indices.contains(0) {
+                //leagueTableArray = []
                 loadAllTables()
             }
         })
