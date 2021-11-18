@@ -28,30 +28,39 @@ struct ContentView: View {
         
         if UIDevice.current.userInterfaceIdiom == .phone {
             TabView {
-                UserHomeView()
+                NavigationView {
+                    UserHomeView()
+                }
+                .navigationViewStyle(.stack)
                     .tabItem {
                         Image(systemName: "star.square.fill")
                         Text("Home")
                     }
                 
-                //this needs to be wrapped in NavigationView on iPhone (iPad uses its own)
-                
-                NewsView()
+                NavigationView {
+                    NewsView()
+                }
                     .tabItem {
                         Image(systemName: "newspaper.fill")
                         Text("News")
                     }
-                ScoresView()
+                NavigationView {
+                    ScoresView()
+                }
                     .tabItem {
                         Image(systemName: "42.square.fill")
                         Text("Scores")
                     }
-                StandingsView()
+                NavigationView {
+                    StandingsView()
+                }
                     .tabItem {
                         Image(systemName: "tablecells.fill")
                         Text("Standings")
                     }
-                TeamListView()
+                NavigationView {
+                    TeamListView()
+                }
                     .tabItem {
                         Image(systemName: "person.3.fill")
                         Text("Players")
@@ -82,6 +91,7 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView().padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+                //.previewInterfaceOrientation(.landscapeLeft)
         }
     }
 }

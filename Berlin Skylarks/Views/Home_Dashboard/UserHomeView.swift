@@ -66,7 +66,7 @@ struct UserHomeView: View {
     ]
     
     var body: some View {
-        NavigationView {
+        //NavigationView {
             ScrollView {
                 //Text(homeLeagueTables.debugDescription)
                 LazyVGrid(columns: smallColumns, spacing: 30) {
@@ -272,12 +272,14 @@ struct UserHomeView: View {
                     }
                     .padding(.horizontal, 5)
                     .sheet( isPresented: $showingSettings) {
-                        SettingsListView()
+                        NavigationView {
+                            SettingsListView()
+                        }
                     }
                 }
             }
-        }
-        .navigationViewStyle(.stack)
+        //}
+        //.navigationViewStyle(.stack)
     }
 }
 

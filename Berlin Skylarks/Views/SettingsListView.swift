@@ -33,7 +33,7 @@ struct SettingsListView: View {
     @ObservedObject var userSettings = UserSettings()
     
     var body: some View {
-        NavigationView {
+        //NavigationView {
             List {
                 Section(
                         header: Text("Notifications"),
@@ -100,8 +100,8 @@ struct SettingsListView: View {
         #endif
             
             .navigationTitle("Settings")
-        }
-        .navigationViewStyle(.stack)
+        //}
+        //.navigationViewStyle(.stack)
     }
 }
 

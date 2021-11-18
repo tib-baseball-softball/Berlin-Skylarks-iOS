@@ -21,7 +21,7 @@ struct TeamDetailListHeader: View {
 
 struct TeamListView: View {
     var body: some View {
-        NavigationView {
+        //NavigationView {
             List {
                 Section(header: TeamDetailListHeader()) {
                     NavigationLink(
@@ -54,8 +54,8 @@ struct TeamListView: View {
             .navigationBarTitle("Teams")
             .listStyle(.insetGrouped)
             
-        }
-        .navigationViewStyle(.stack)
+        //}
+        //.navigationViewStyle(.stack)
     }
 }
 

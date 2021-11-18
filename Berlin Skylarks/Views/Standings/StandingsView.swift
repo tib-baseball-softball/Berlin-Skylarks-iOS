@@ -19,7 +19,7 @@ struct StandingsView: View {
     @State private var leagueTableArray = [LeagueTable]()
     
     var body: some View {
-        NavigationView {
+        //NavigationView {
             List {
                 Section(header: Text("Please select your league")) {
                     ForEach(leagueTableArray, id: \.self) { LeagueTable in
@@ -48,7 +48,7 @@ struct StandingsView: View {
             .listStyle(.insetGrouped)
             .navigationTitle("Standings")
             
-        }
+        //}
         
         // I can either make this conditional or maybe clear the array below before adding the new values
         .onAppear(perform: {

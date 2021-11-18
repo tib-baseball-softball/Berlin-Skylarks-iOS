@@ -11,13 +11,13 @@ import SwiftUI
 
 struct NewsView: View {
     var body: some View {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            NavigationView {
-                NewsBody()
-            }
-        } else {
+//        if UIDevice.current.userInterfaceIdiom == .phone {
+//            NavigationView {
+//                NewsBody()
+//            }
+//        } else {
             NewsBody()
-        }
+//        }
         
     }
 }
@@ -93,6 +93,9 @@ struct NewsBody: View {
 
 struct NewsView_Previews: PreviewProvider {
     static var previews: some View {
-        NewsView()
+        NavigationView {
+            NewsView()
+        }
+        
     }
 }

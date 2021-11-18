@@ -29,7 +29,7 @@ struct ScoresView: View {
     ]
     
     var body: some View {
-        NavigationView {
+        //NavigationView {
             ScrollView {
                 LazyVGrid(columns: columns, spacing: scoresGridSpacing) {
                     ForEach(self.gamescores, id: \.id) { GameScore in
@@ -135,8 +135,8 @@ struct ScoresView: View {
 //            }
             //this one leads to the weird constraint errors in console. Will ignore this for now.
             .navigationTitle("Scores")
-        }
-        .navigationViewStyle(.stack)
+        //}
+        //.navigationViewStyle(.stack)
     }
 }
 
