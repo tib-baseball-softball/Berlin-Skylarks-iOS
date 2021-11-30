@@ -206,13 +206,13 @@ struct UserHomeView: View {
                             .font(.title)
                             .bold()
                             .padding(.leading, 15)
-                            ScoresOverView(gamescore: userDashboard.displayDashboardLastGame)
+                            ScoresOverView(gamescore: userDashboard.LastGame)
                             
                             .onTapGesture {
                                 showingLastGame.toggle()
                             }
                             .sheet(isPresented: $showingLastGame) {
-                                ScoresDetailView(gamescore: userDashboard.displayDashboardLastGame)
+                                ScoresDetailView(gamescore: userDashboard.LastGame)
                             }
                     }
                     VStack(alignment: .leading) {
@@ -220,13 +220,13 @@ struct UserHomeView: View {
                             .font(.title)
                             .bold()
                             .padding(.leading, 15)
-                        ScoresOverView(gamescore: userDashboard.displayDashboardNextGame)
+                        ScoresOverView(gamescore: userDashboard.NextGame)
                         
                         .onTapGesture {
                             showingNextGame.toggle()
                         }
                         .sheet(isPresented: $showingNextGame) {
-                            ScoresDetailView(gamescore: userDashboard.displayDashboardNextGame)
+                            ScoresDetailView(gamescore: userDashboard.NextGame)
                         }
                     }
                     VStack(alignment: .leading) {

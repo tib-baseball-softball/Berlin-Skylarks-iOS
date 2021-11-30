@@ -8,8 +8,6 @@
 import Foundation
 import SwiftUI
 
-let idLandesliga = "4801"
-
 //-------------------------------SCORES------------------------------------//
 
 //BSM API URLS to get the games //////
@@ -17,7 +15,7 @@ let idLandesliga = "4801"
 
 //force unwrapping should not be an issue here - these are never nil
 
-//URLs used on web frontend
+//URLs used on BSM web frontend
 
 let urlPreviousGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=previous&api_key=IN__8yHVCeE3gP83Dvyqww")!
 let urlCurrentGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=current&api_key=IN__8yHVCeE3gP83Dvyqww")!
@@ -61,7 +59,12 @@ let urlJugBB = URL(string:"https://bsm.baseball-softball.de/leagues/4804/table.j
 let urlSchBB = URL(string:"https://bsm.baseball-softball.de/leagues/4804/table.json")!
 let urlTossBB = URL(string:"https://bsm.baseball-softball.de/leagues/4807/table.json")!
 
-let leagueTableURLs = [ urlVLBB, urlVLSB, urlLLBB, urlBZLBB, urlSchBB, urlTossBB ]
+let leagueTableURLs = [ urlVLBB,
+                        urlVLSB,
+                        urlLLBB,
+                        urlBZLBB,
+                        urlSchBB,
+                        urlTossBB ]
 
 //-------------------------------DASHBOARD---------------------------------//
 
@@ -70,9 +73,9 @@ class UserDashboard: ObservableObject {
     
     @Published var displayDashboardTableRow = LeagueTable.Row(rank: "X.", team_name: "Testteam", short_team_name: "XXX", match_count: 0, wins_count: 0, losses_count: 0, quota: ".000", games_behind: "0", streak: "00")
     
-    @Published var displayDashboardNextGame = GameScore(id: 999, match_id: "000", time: "2020-08-08 17:00:00 +0200", home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: GameScore.League(id: 999, season: 1970, name: "Next league"), umpire_assignments: [], scorer_assignments: [])
+    @Published var NextGame = GameScore(id: 999, match_id: "000", time: "2020-08-08 17:00:00 +0200", home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: GameScore.League(id: 999, season: 1970, name: "Next league"), umpire_assignments: [], scorer_assignments: [])
     
-    @Published var displayDashboardLastGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: GameScore.League(id: 999, season: 1970, name: "Latest league"), umpire_assignments: [], scorer_assignments: [])
+    @Published var LastGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: GameScore.League(id: 999, season: 1970, name: "Latest league"), umpire_assignments: [], scorer_assignments: [])
 }
 
 let dashboardTeamURLDict = [
@@ -90,6 +93,9 @@ let dashboardTeamURLDict = [
 let urlHomeLLBB = URL(string:"")!
 
 //&sorted[time]=asc/desc
+
+//https://bsm.baseball-softball.de/clubs/485/team_clubs.json?filters[seasons][]=2021&api_key=IN__8yHVCeE3gP83Dvyqww
+//=> this yields all officially registered teams
 
 //-------------------------------FUNKTIONÄRE---------------------------------//
 
