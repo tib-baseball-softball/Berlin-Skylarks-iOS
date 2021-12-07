@@ -124,7 +124,7 @@ func addGameToCalendar(gameDate: Date, gamescore: GameScore) {
               }
           }
       }
-      else{
+      else {
       
           print("failed to save event with error : \(String(describing: error)) or access not granted")
       }

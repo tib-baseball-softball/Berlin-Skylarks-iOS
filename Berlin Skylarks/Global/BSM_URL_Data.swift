@@ -8,6 +8,18 @@
 import Foundation
 import SwiftUI
 
+let currentSeason = "2021"
+
+//-----------------------------change league IDs here--------------------------------//
+
+let idVLBB = "4800"
+let idVLSB = "4805"
+let idLLBB = "4801"
+let idBZLBB = "4802"
+let idJugBB = "4804" //placeholder
+let idSchBB = "4804"
+let idTossBB = "4807"
+
 //-------------------------------SCORES------------------------------------//
 
 //BSM API URLS to get the games //////
@@ -22,9 +34,9 @@ let urlCurrentGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/
 let urlNextGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=next&api_key=IN__8yHVCeE3gP83Dvyqww")!
 let urlFullSeason = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
 
-//URLs by league
+//URLs by league - to be moved
 
-let urlScoresVLBB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4800&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
+//let urlScoresVLBB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4800&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
 let urlScoresVLSB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4805&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
 let urlScoresLLBB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4801&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
 let urlScoresBZLBB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4802&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
@@ -37,7 +49,7 @@ let scoresURLs = [
     "Current Gameday": urlCurrentGameday,
     "Next Gameday": urlNextGameday,
     "Full Season Gameday": urlFullSeason,
-    "Verbandsliga BB": urlScoresVLBB,
+    "Verbandsliga BB": team1.scoresURL,
     "Verbandsliga SB": urlScoresVLSB,
     "Landesliga BB": urlScoresLLBB,
     "Bezirksliga BB": urlScoresBZLBB,
@@ -69,28 +81,28 @@ let leagueTableURLs = [ urlVLBB,
 //-------------------------------DASHBOARD---------------------------------//
 
 class UserDashboard: ObservableObject {
-    @Published var displayDashboardLeagueTable = LeagueTable(league_id: 1, league_name: "Default League", season: Calendar.current.component(.year, from: Date()), rows: [])
+    @Published var leagueTable = LeagueTable(league_id: 1, league_name: "Default League", season: Calendar.current.component(.year, from: Date()), rows: [])
     
-    @Published var displayDashboardTableRow = LeagueTable.Row(rank: "X.", team_name: "Testteam", short_team_name: "XXX", match_count: 0, wins_count: 0, losses_count: 0, quota: ".000", games_behind: "0", streak: "00")
+    @Published var tableRow = LeagueTable.Row(rank: "X.", team_name: "Testteam", short_team_name: "XXX", match_count: 0, wins_count: 0, losses_count: 0, quota: ".000", games_behind: "0", streak: "00")
     
     @Published var NextGame = GameScore(id: 999, match_id: "000", time: "2020-08-08 17:00:00 +0200", home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: GameScore.League(id: 999, season: 1970, name: "Next league"), umpire_assignments: [], scorer_assignments: [])
     
     @Published var LastGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: GameScore.League(id: 999, season: 1970, name: "Latest league"), umpire_assignments: [], scorer_assignments: [])
 }
 
-let dashboardTeamURLDict = [
-    "Team 1 (VL)" : urlVLBB,
-    "Softball (VL)" : urlVLSB,
-    "Team 2 (LL)" : urlLLBB,
-    "Team 3 (BZL)" : urlBZLBB,
-    "Team 4 (BZL)" : urlBZLBB,
-    "Jugend (U15)": urlSchBB, //placeholder
-    "Schüler (U12)" : urlSchBB,
-    "Tossball (U10)" : urlTossBB,
-    "Teeball (U8)" : urlSchBB, //placeholder
-]
+//let dashboardTeamURLDict = [
+//    "Team 1 (VL)" : urlVLBB,
+//    "Softball (VL)" : urlVLSB,
+//    "Team 2 (LL)" : urlLLBB,
+//    "Team 3 (BZL)" : urlBZLBB,
+//    "Team 4 (BZL)" : urlBZLBB,
+//    "Jugend (U15)": urlSchBB, //placeholder
+//    "Schüler (U12)" : urlSchBB,
+//    "Tossball (U10)" : urlTossBB,
+//    "Teeball (U8)" : urlSchBB, //placeholder
+//]
 
-let urlHomeLLBB = URL(string:"")!
+let urlHomeLLBB = URL(string:"dfgfd")!
 
 //&sorted[time]=asc/desc
 

@@ -47,3 +47,34 @@ extension View {
         #endif
     }
 }
+
+//these two are copy and paste and should make reading and storing custom values (Team) in user settings easier
+
+extension UserDefaults {
+  func setCodableObject<T: Codable>(_ data: T?, forKey defaultName: String) {
+    let encoded = try? JSONEncoder().encode(data)
+    set(encoded, forKey: defaultName)
+  }
+}
+
+//// Usage:
+//let key = "foo_key"
+//let codableObject = CodableObject(value: 100)
+//UserDefaults.standard.setCodableObject(codableObject, forKey: key)
+
+extension UserDefaults {
+  func codableObject<T : Codable>(dataType: T.Type, key: String) -> T? {
+    guard let userDefaultData = data(forKey: key) else {
+      return nil
+    }
+    return try? JSONDecoder().decode(T.self, from: userDefaultData)
+  }
+}
+
+//// Usage:
+//let key = "foo_key"
+//if let retrievedCodableObject = UserDefaults.standard.codableObject(dataType: CodableObject.self, key: key) {
+//  print("\(retrievedCodableObject.value)")
+//} else {
+//  print("Not yet saved with key \(key)")
+//}

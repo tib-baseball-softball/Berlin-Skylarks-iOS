@@ -12,7 +12,7 @@ import SwiftUI
 struct UserHomeView: View {
     
     //StateObject / ObservedObject
-    @StateObject var userSettings = UserSettings()
+    //@StateObject var userSettings = UserSettings()
     
     @AppStorage("favoriteTeam") var favoriteTeam: String = "Test Team"
     
@@ -23,18 +23,20 @@ struct UserHomeView: View {
     @StateObject var userDashboard = UserDashboard()
     @State var homeGamescores = [GameScore]()
     @State var homeLeagueTables = [LeagueTable]()
+    @State var displayTeam = testTeam
     
-    @State var selectedHomeURL = urlVLBB //just a default value that is immediately overridden
+    @State var selectedHomeTablesURL = URL(string: "nonsense")!
     
-    func setCorrectURL() {
-        for (name, url) in dashboardTeamURLDict {
-            if favoriteTeam == name {
-                selectedHomeURL = url
+    func setFavoriteTeam() {
+        for team in allSkylarksTeams {
+            if favoriteTeam == team.name {
+                displayTeam = team
+                selectedHomeTablesURL = displayTeam.leagueTableURL
             }
         }
     }
     
-    func loadHomeTableData(url: URL) {
+    func loadHomeTeamData(url: URL) {
         
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -43,13 +45,13 @@ struct UserHomeView: View {
                 if let response_obj = try? JSONDecoder().decode(LeagueTable.self, from: data) {
 
                     DispatchQueue.main.async {
-                        userDashboard.displayDashboardLeagueTable = response_obj
+                        userDashboard.leagueTable = response_obj
                         
                         homeLeagueTables.append(response_obj)
                         
-                        for row in userDashboard.displayDashboardLeagueTable.rows {
+                        for row in userDashboard.leagueTable.rows {
                             if row.team_name.contains("Skylarks") {
-                                userDashboard.displayDashboardTableRow = row
+                                userDashboard.tableRow = row
                             }
                         }
                     }
@@ -70,7 +72,6 @@ struct UserHomeView: View {
     var body: some View {
         //NavigationView {
             ScrollView {
-                //Text(homeLeagueTables.debugDescription)
                 LazyVGrid(columns: smallColumns, spacing: 30) {
                     Image("Rondell")
                         .resizable()
@@ -92,7 +93,7 @@ struct UserHomeView: View {
                         .padding(5)
                         Divider()
                             .frame(width: 100)
-                        Text(favoriteTeam)
+                        Text(displayTeam.name)
                             .font(.system(size: 18))
                             .padding(5)
                     }
@@ -111,7 +112,7 @@ struct UserHomeView: View {
                         .padding(5)
                         Divider()
                             .frame(width: 100)
-                        Text(userDashboard.displayDashboardLeagueTable.league_name)
+                        Text(userDashboard.leagueTable.league_name)
                             .font(.system(size: 18))
                             .padding(5)
                     }
@@ -131,11 +132,11 @@ struct UserHomeView: View {
                         Divider()
                             .frame(width: 100)
                         HStack {
-                            Text(String(userDashboard.displayDashboardTableRow.wins_count))
+                            Text(String(userDashboard.tableRow.wins_count))
                                 .bold()
                                 .padding(10)
                             Text(":")
-                            Text(String(userDashboard.displayDashboardTableRow.losses_count))
+                            Text(String(userDashboard.tableRow.losses_count))
                                 .bold()
                                 .padding(10)
                         }
@@ -156,7 +157,7 @@ struct UserHomeView: View {
                         .padding(5)
                         Divider()
                             .frame(width: 100)
-                        Text(userDashboard.displayDashboardTableRow.quota)
+                        Text(userDashboard.tableRow.quota)
                             .bold()
                             .padding(10)
                             .font(.largeTitle)
@@ -177,7 +178,7 @@ struct UserHomeView: View {
                         Divider()
                             .frame(width: 100)
                         HStack {
-                            if userDashboard.displayDashboardTableRow.rank == "1." {
+                            if userDashboard.tableRow.rank == "1." {
                                 Image(systemName: "crown")
                                     .font(.title)
                                     .foregroundColor(Color.accentColor)
@@ -186,7 +187,7 @@ struct UserHomeView: View {
                                     .font(.title)
                                     .foregroundColor(Color.accentColor)
                             }
-                            Text(userDashboard.displayDashboardTableRow.rank)
+                            Text(userDashboard.tableRow.rank)
                                 .bold()
                                 .padding(10)
                             .font(.largeTitle)
@@ -267,14 +268,14 @@ struct UserHomeView: View {
             .navigationTitle("Dashboard")
             
             .onAppear(perform: {
-                setCorrectURL()
-                loadHomeTableData(url: selectedHomeURL)
+                setFavoriteTeam()
+                loadHomeTeamData(url: selectedHomeTablesURL)
             })
             
             .onChange(of: favoriteTeam, perform: { favoriteTeam in
-                setCorrectURL()
+                setFavoriteTeam()
                 homeLeagueTables = []
-                loadHomeTableData(url: selectedHomeURL)
+                loadHomeTeamData(url: selectedHomeTablesURL)
             })
             
             .toolbar {

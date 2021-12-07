@@ -11,6 +11,7 @@ class UserSettings: ObservableObject {
     @Published var favoriteTeam: String {
         didSet {
             UserDefaults.standard.set(favoriteTeam, forKey: "favoriteTeam")
+            //UserDefaults.standard.setCodableObject(favoriteTeam, forKey: "favoriteTeam")
         }
     }
     
@@ -20,10 +21,10 @@ class UserSettings: ObservableObject {
         }
     }
     
-    public var skylarksTeams = ["Team 1 (VL)", "Softball (VL)", "Team 2 (LL)", "Team 3 (BZL)", "Team 4 (BZL)", "Jugend (U15)", "Schüler (U12)", "Tossball (U10)", "Teeball (U8)" ]
+    public var skylarksTeams = ["Team 1", "Softball", "Team 2", "Team 3", "Team 4", "Jugend", "Schüler", "Tossball", "Teeball" ]
     
     init() {
-        self.favoriteTeam = UserDefaults.standard.object(forKey: "favoriteTeam") as? String ?? "Team 1 (VL)"
+        self.favoriteTeam = UserDefaults.standard.object(forKey: "favoriteTeam") as? String ?? "Team 1"
         self.sendPush = UserDefaults.standard.object(forKey: "sendPush") as? Bool ?? false
     }
 }
@@ -31,6 +32,7 @@ class UserSettings: ObservableObject {
 struct SettingsListView: View {
     
     @ObservedObject var userSettings = UserSettings()
+    @State private var showingTestView = false
     
     var body: some View {
         //NavigationView {
@@ -63,7 +65,7 @@ struct SettingsListView: View {
                 Section(
                     header: Text("Teams"),
                     footer: Text("Your favorite team appears in the Home dashboard tab.")) {
-                    Picker(selection: $userSettings.favoriteTeam, label:
+                        Picker(selection: $userSettings.favoriteTeam, label:
                             HStack {
                                 Image(systemName: "star.square.fill")
                                     .font(.title)
@@ -98,6 +100,22 @@ struct SettingsListView: View {
         #if !os(watchOS)
             .listStyle(.insetGrouped)
         #endif
+        
+            .toolbar {
+                ToolbarItem(placement: .automatic) {
+                    Button(
+                        action: {
+                            showingTestView.toggle()
+                        }
+                    ){
+                        Image(systemName: "info.circle.fill")
+                    }
+                    .padding(.horizontal, 5)
+                    .sheet( isPresented: $showingTestView) {
+                        TestView()
+                    }
+                }
+            }
             
             .navigationTitle("Settings")
         //}
@@ -107,8 +125,10 @@ struct SettingsListView: View {
 
 struct SettingsListView_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(ColorScheme.allCases, id: \.self) {
-            SettingsListView().preferredColorScheme($0)
+        NavigationView {
+            ForEach(ColorScheme.allCases, id: \.self) {
+                SettingsListView().preferredColorScheme($0)
+            }
         }
     }
 }
