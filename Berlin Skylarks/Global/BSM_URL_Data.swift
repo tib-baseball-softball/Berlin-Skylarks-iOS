@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 let currentSeason = "2021"
+let skylarksID = "485"
 
 //-----------------------------change league IDs here--------------------------------//
 
@@ -29,19 +30,11 @@ let idTossBB = "4807"
 
 //URLs used on BSM web frontend
 
-let urlPreviousGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=previous&api_key=IN__8yHVCeE3gP83Dvyqww")!
-let urlCurrentGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=current&api_key=IN__8yHVCeE3gP83Dvyqww")!
-let urlNextGameday = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=next&api_key=IN__8yHVCeE3gP83Dvyqww")!
-let urlFullSeason = URL(string: "https://bsm.baseball-softball.de/clubs/485/matches.json?filter[seasons][]=2021&search=skylarks&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
+let urlPreviousGameday = URL(string: "https://bsm.baseball-softball.de/clubs/" + skylarksID + "/matches.json?filter[seasons][]=" + currentSeason + "&search=skylarks&filters[gamedays][]=previous&api_key=" + apiKey)!
+let urlCurrentGameday = URL(string: "https://bsm.baseball-softball.de/clubs/" + skylarksID + "/matches.json?filter[seasons][]=" + currentSeason + "&search=skylarks&filters[gamedays][]=current&api_key=" + apiKey)!
+let urlNextGameday = URL(string: "https://bsm.baseball-softball.de/clubs/" + skylarksID + "/matches.json?filter[seasons][]=" + currentSeason + "&search=skylarks&filters[gamedays][]=next&api_key=" + apiKey)!
+let urlFullSeason = URL(string: "https://bsm.baseball-softball.de/clubs/" + skylarksID + "/matches.json?filter[seasons][]=" + currentSeason + "&search=skylarks&filters[gamedays][]=any&api_key=" + apiKey)!
 
-//URLs by league - to be moved
-
-//let urlScoresVLBB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4800&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
-let urlScoresVLSB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4805&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
-let urlScoresLLBB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4801&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
-let urlScoresBZLBB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4802&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
-let urlScoresSchBB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4804&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
-let urlScoresTossBB = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4807&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!
 
 
 let scoresURLs = [
@@ -50,11 +43,11 @@ let scoresURLs = [
     "Next Gameday": urlNextGameday,
     "Full Season Gameday": urlFullSeason,
     "Verbandsliga BB": team1.scoresURL,
-    "Verbandsliga SB": urlScoresVLSB,
-    "Landesliga BB": urlScoresLLBB,
-    "Bezirksliga BB": urlScoresBZLBB,
-    "Schülerliga": urlScoresSchBB,
-    "Tossballliga": urlScoresTossBB,
+    "Verbandsliga SB": teamSoftball.scoresURL,
+    "Landesliga BB": team2.scoresURL,
+    "Bezirksliga BB": team3.scoresURL,
+    "Schülerliga": teamSchueler.scoresURL,
+    "Tossballliga": teamTossball.scoresURL,
 ]
 
 
@@ -63,20 +56,14 @@ let scoresURLs = [
 //these need to be changed every year after the schedule is published - there is no option to collect all tables for Skylarks teams like I do with scores
 //apparently they also do not need an API key
 
-let urlVLBB = URL(string:"https://bsm.baseball-softball.de/leagues/4800/table.json")!
-let urlVLSB = URL(string:"https://bsm.baseball-softball.de/leagues/4805/table.json")!
-let urlLLBB = URL(string:"https://bsm.baseball-softball.de/leagues/4801/table.json")!
-let urlBZLBB = URL(string:"https://bsm.baseball-softball.de/leagues/4802/table.json")!
-let urlJugBB = URL(string:"https://bsm.baseball-softball.de/leagues/4804/table.json")!
-let urlSchBB = URL(string:"https://bsm.baseball-softball.de/leagues/4804/table.json")!
-let urlTossBB = URL(string:"https://bsm.baseball-softball.de/leagues/4807/table.json")!
+//URLs are set in SkylarksTeams now
 
-let leagueTableURLs = [ urlVLBB,
-                        urlVLSB,
-                        urlLLBB,
-                        urlBZLBB,
-                        urlSchBB,
-                        urlTossBB ]
+let leagueTableURLs = [ team1.leagueTableURL,
+                        teamSoftball.leagueTableURL,
+                        team2.leagueTableURL,
+                        team3.leagueTableURL,
+                        teamSchueler.leagueTableURL,
+                        teamTossball.leagueTableURL, ]
 
 //-------------------------------DASHBOARD---------------------------------//
 

@@ -22,8 +22,8 @@ let team1 = Team(
                  leagueName: "Verbandsliga",
                  sport: "Baseball",
                  ageGroup: "Erwachsene",
-                 scoresURL: URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=" + idVLBB + "&filters[gamedays][]=any&api_key=" + apiKey)!,
-                 leagueTableURL: URL(string:"https://bsm.baseball-softball.de/leagues/4800/table.json")!,
+                 scoresURL: URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + currentSeason + "&search=skylarks&filters[leagues][]=" + idVLBB + "&filters[gamedays][]=any&api_key=" + apiKey)!,
+                 leagueTableURL: URL(string:"https://bsm.baseball-softball.de/leagues/" + idVLBB + "/table.json")!,
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
@@ -32,8 +32,8 @@ let team2 = Team(
                  leagueName: "Landesliga",
                  sport: "Baseball",
                  ageGroup: "Erwachsene",
-                 scoresURL: URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4801&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!,
-                 leagueTableURL: URL(string:"https://bsm.baseball-softball.de/leagues/4801/table.json")!,
+                 scoresURL: URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + currentSeason + "&search=skylarks&filters[leagues][]=" + idLLBB + "&filters[gamedays][]=any&api_key=" + apiKey)!,
+                 leagueTableURL: URL(string:"https://bsm.baseball-softball.de/leagues/" + idLLBB + "/table.json")!,
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
@@ -42,8 +42,8 @@ let team3 = Team(
                  leagueName: "Bezirksliga",
                  sport: "Baseball",
                  ageGroup: "Erwachsene",
-                 scoresURL: URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4802&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!,
-                 leagueTableURL: URL(string:"https://bsm.baseball-softball.de/leagues/4802/table.json")!,
+                 scoresURL: URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + currentSeason + "&search=skylarks&filters[leagues][]=" + idBZLBB + "&filters[gamedays][]=any&api_key=" + apiKey)!,
+                 leagueTableURL: URL(string:"https://bsm.baseball-softball.de/leagues/" + idBZLBB + "/table.json")!,
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
@@ -52,8 +52,8 @@ let team4 = Team(
                  leagueName: "Bezirksliga",
                  sport: "Baseball",
                  ageGroup: "Erwachsene",
-                 scoresURL: URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4802&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!,
-                 leagueTableURL: URL(string:"https://bsm.baseball-softball.de/leagues/4802/table.json")!,
+                 scoresURL: URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + currentSeason + "&search=skylarks&filters[leagues][]=" + idBZLBB + "&filters[gamedays][]=any&api_key=" + apiKey)!,
+                 leagueTableURL: URL(string:"https://bsm.baseball-softball.de/leagues/" + idBZLBB + "/table.json")!,
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
@@ -62,8 +62,8 @@ let teamSoftball = Team(
                  leagueName: "Verbandsliga",
                  sport: "Softball",
                  ageGroup: "Erwachsene",
-                 scoresURL: URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4805&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!,
-                 leagueTableURL: URL(string:"https://bsm.baseball-softball.de/leagues/4805/table.json")!,
+                 scoresURL: URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + currentSeason + "&search=skylarks&filters[leagues][]=" + idVLSB + "&filters[gamedays][]=any&api_key=" + apiKey)!,
+                 leagueTableURL: URL(string:"https://bsm.baseball-softball.de/leagues/" + idVLSB + "/table.json")!,
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
@@ -72,9 +72,29 @@ let teamJugend = Team(
                  leagueName: "Jugendliga",
                  sport: "Baseball",
                  ageGroup: "Nachwuchs",
-                 scoresURL: URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=2021&search=skylarks&filters[leagues][]=4803&filters[gamedays][]=any&api_key=IN__8yHVCeE3gP83Dvyqww")!,
-                 leagueTableURL: URL(string:"https://bsm.baseball-softball.de/leagues/4803/table.json")!,
+                 scoresURL: URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + currentSeason + "&search=skylarks&filters[leagues][]=" + idJugBB + "&filters[gamedays][]=any&api_key=" + apiKey)!,
+                 leagueTableURL: URL(string:"https://bsm.baseball-softball.de/leagues/" + idJugBB + "/table.json")!,
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
-let allSkylarksTeams = [ team1, team2 ]
+let teamSchueler = Team(
+                 name: "Schüler",
+                 leagueName: "Schülerliga",
+                 sport: "Baseball",
+                 ageGroup: "Nachwuchs",
+                 scoresURL: URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + currentSeason + "&search=skylarks&filters[leagues][]=" + idSchBB + "&filters[gamedays][]=any&api_key=" + apiKey)!,
+                 leagueTableURL: URL(string:"https://bsm.baseball-softball.de/leagues/" + idSchBB + "/table.json")!,
+                 homeURL: URL(string:"https://www.tib-baseball.de")!
+                                            )
+
+let teamTossball = Team(
+                 name: "Tossball",
+                 leagueName: "Tossballliga",
+                 sport: "Baseball",
+                 ageGroup: "Nachwuchs",
+                 scoresURL: URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + currentSeason + "&search=skylarks&filters[leagues][]=" + idTossBB + "&filters[gamedays][]=any&api_key=" + apiKey)!,
+                 leagueTableURL: URL(string:"https://bsm.baseball-softball.de/leagues/" + idTossBB + "/table.json")!,
+                 homeURL: URL(string:"https://www.tib-baseball.de")!
+                                            )
+
+let allSkylarksTeams = [ team1, team2, team3, team4, teamSoftball, teamJugend, teamSchueler ]
