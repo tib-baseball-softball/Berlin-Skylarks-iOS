@@ -97,4 +97,4 @@ let teamTossball = Team(
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
-let allSkylarksTeams = [ team1, team2, team3, team4, teamSoftball, teamJugend, teamSchueler ]
+let allSkylarksTeams = [ team1, team2, team3, team4, teamSoftball, teamJugend, teamSchueler, teamTossball ]

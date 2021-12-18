@@ -20,23 +20,26 @@ struct UserHomeView: View {
     @State private var showingNextGame = false
     @State private var showingLastGame = false
     
+    @State var showNextGame = true
+    @State var showLastGame = true
+    
     @StateObject var userDashboard = UserDashboard()
-    @State var homeGamescores = [GameScore]()
+    @State private var homeGamescores = [GameScore]()
     @State var homeLeagueTables = [LeagueTable]()
     @State var displayTeam = testTeam
     
     @State var selectedHomeTablesURL = URL(string: "nonsense")!
+    @State var selectedHomeScoresURL = URL(string: "nonsense")!
     
     func setFavoriteTeam() {
-        for team in allSkylarksTeams {
-            if favoriteTeam == team.name {
-                displayTeam = team
-                selectedHomeTablesURL = displayTeam.leagueTableURL
-            }
+        for team in allSkylarksTeams where favoriteTeam == team.name {
+            displayTeam = team
+            selectedHomeTablesURL = displayTeam.leagueTableURL
+            selectedHomeScoresURL = displayTeam.scoresURL
         }
     }
     
-    func loadHomeTeamData(url: URL) {
+    func loadHomeTeamTable(url: URL) {
         
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -49,8 +52,18 @@ struct UserHomeView: View {
                         
                         homeLeagueTables.append(response_obj)
                         
-                        for row in userDashboard.leagueTable.rows {
-                            if row.team_name.contains("Skylarks") {
+                        for row in userDashboard.leagueTable.rows where row.team_name.contains("Skylarks") {
+                            
+                            //we have two teams for BZL, so the function needs to account for the correct one
+                            if displayTeam == team3 {
+                                if row.team_name == "Skylarks 3" {
+                                    userDashboard.tableRow = row
+                                }
+                            } else if displayTeam == team4 {
+                                if row.team_name == "Skylarks 4" {
+                                    userDashboard.tableRow = row
+                                }
+                            } else if displayTeam != team3 && displayTeam != team4 {
                                 userDashboard.tableRow = row
                             }
                         }
@@ -58,6 +71,69 @@ struct UserHomeView: View {
                 }
             }
         }.resume()
+    }
+    
+    func loadHomeGameData(url: URL) {
+        
+        //get the games
+        
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            if let data = data {
+                if let response_obj = try? JSONDecoder().decode([GameScore].self, from: data) {
+                    
+                    DispatchQueue.main.async {
+                        self.homeGamescores = response_obj
+                    }
+                }
+            }
+        }.resume()
+    }
+    
+    func processGameDates() {
+        // processing
+        
+        let now = Date()
+        //var allGames = [GameScore]()
+        var nextGames = [GameScore]()
+        var previousGames = [GameScore]()
+
+        for (index, _) in homeGamescores.enumerated() {
+            homeGamescores[index].gameDate = getDatefromBSMString(gamescore: homeGamescores[index])
+            //print(homeGamescores)
+        }
+        for gamescore in homeGamescores where gamescore.gameDate ?? now > now {
+            nextGames.append(gamescore)
+        }
+        if nextGames.indices.contains(0) {
+            showingNextGame = true
+            userDashboard.NextGame = nextGames.first!
+        } else {
+            showingNextGame = false
+        }
+        
+        //Add last games to separate array and set it to be displayed
+        for gamescore in homeGamescores where gamescore.gameDate ?? now < now {
+            previousGames.append(gamescore)
+        }
+        if previousGames.indices.contains(0) {
+            showingLastGame = true
+            userDashboard.LastGame = previousGames.last!
+        } else {
+            showingLastGame = false
+        }
+        
+//        for i in 0...homeGamescores.count {
+//            print(homeGamescores[i])
+//            homeGamescores[i].gameDate = getDatefromBSMString(gamescore: homeGamescores[i])
+//            for gamescore in homeGamescores where gamescore.gameDate ?? now > now {
+//                nextGames.append(gamescore)
+//                if nextGames.indices.contains(0) {
+//                    userDashboard.NextGame = nextGames[0]
+//                }
+//            }
+//        }
     }
     
     // 110 is good for iPhone SE, spacing lower than 38 makes elements overlap on iPad landscape orientation. Still looks terrible on some Mac sizes...
@@ -72,6 +148,7 @@ struct UserHomeView: View {
     var body: some View {
         //NavigationView {
             ScrollView {
+                //Text(homeGamescores.debugDescription)
                 LazyVGrid(columns: smallColumns, spacing: 30) {
                     Image("Rondell")
                         .resizable()
@@ -202,34 +279,46 @@ struct UserHomeView: View {
                 //GRID with last game, next game and table
               
                 LazyVGrid(columns: bigColumns, spacing: 30) {
-                    VStack(alignment: .leading) {
-                        Text("Latest Score")
-                            .font(.title)
-                            .bold()
-                            .padding(.leading, 15)
-                            ScoresOverView(gamescore: userDashboard.LastGame)
+                    
+                    if showingLastGame == true {
+                        VStack(alignment: .leading) {
+                            Text("Latest Score")
+                                .font(.title)
+                                .bold()
+                                .padding(.leading, 15)
                             
-                            .onTapGesture {
-                                showingLastGame.toggle()
-                            }
-                            .sheet(isPresented: $showingLastGame) {
-                                ScoresDetailView(gamescore: userDashboard.LastGame)
-                            }
-                    }
-                    VStack(alignment: .leading) {
-                        Text("Next Game")
-                            .font(.title)
-                            .bold()
-                            .padding(.leading, 15)
-                        ScoresOverView(gamescore: userDashboard.NextGame)
-                        
-                        .onTapGesture {
-                            showingNextGame.toggle()
+                                ScoresOverView(gamescore: userDashboard.LastGame)
+                                
+                                .onTapGesture {
+                                    showingLastGame.toggle()
+                                }
+                                .sheet(isPresented: $showingLastGame) {
+                                    ScoresDetailView(gamescore: userDashboard.LastGame)
+                                }
                         }
-                        .sheet(isPresented: $showingNextGame) {
-                            ScoresDetailView(gamescore: userDashboard.NextGame)
-                        }
+                    } else {
+                        Text("There is no recent game to display.")
                     }
+                    
+                    if showingNextGame == true {
+                        VStack(alignment: .leading) {
+                            Text("Next Game")
+                                .font(.title)
+                                .bold()
+                                .padding(.leading, 15)
+                                ScoresOverView(gamescore: userDashboard.NextGame)
+                                
+                                .onTapGesture {
+                                    showingNextGame.toggle()
+                                }
+                                .sheet(isPresented: $showingNextGame) {
+                                    ScoresDetailView(gamescore: userDashboard.NextGame)
+                                }
+                        }
+                    } else {
+                        Text("There is no next game to display.")
+                    }
+                    
                     VStack(alignment: .leading) {
                         Text("Standings")
                             .font(.title)
@@ -269,13 +358,17 @@ struct UserHomeView: View {
             
             .onAppear(perform: {
                 setFavoriteTeam()
-                loadHomeTeamData(url: selectedHomeTablesURL)
+                loadHomeTeamTable(url: selectedHomeTablesURL)
+                loadHomeGameData(url: selectedHomeScoresURL)
+                processGameDates()
             })
             
             .onChange(of: favoriteTeam, perform: { favoriteTeam in
                 setFavoriteTeam()
                 homeLeagueTables = []
-                loadHomeTeamData(url: selectedHomeTablesURL)
+                loadHomeTeamTable(url: selectedHomeTablesURL)
+                loadHomeGameData(url: selectedHomeScoresURL)
+                processGameDates()
             })
             
             .toolbar {

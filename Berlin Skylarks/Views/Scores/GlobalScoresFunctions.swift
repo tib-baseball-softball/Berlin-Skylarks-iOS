@@ -82,13 +82,19 @@ func setCorrectLogo(gamescore: GameScore) {
     }
 }
 
-func getDatefromBSMString(gamescore: GameScore) {
+func getDatefromBSMString(gamescore: GameScore) -> Date {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "y-M-dd HH:mm:ss Z"
     
+    return dateFormatter.date(from: gamescore.time)!
     //force unwrapping alert: gametime really should be a required field in BSM DB - let's see if there are crashes
-    gameDate = dateFormatter.date(from: gamescore.time)!
+    //gameDate = dateFormatter.date(from: gamescore.time)!
 }
+
+//func addGameDatesToGamescores(gamescore: GameScore) -> GameScore {
+//
+//    return gamescore.gameDate = getDatefromBSMString(gamescore: gamescore)
+//}
 
 //-------------------------------CALENDAR EVENTS---------------------------------//
 

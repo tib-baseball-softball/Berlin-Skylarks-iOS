@@ -14,7 +14,7 @@ struct ScoresOverView: View {
     
     var body: some View {
         setCorrectLogo(gamescore: gamescore)
-        getDatefromBSMString(gamescore: gamescore)
+        gameDate = getDatefromBSMString(gamescore: gamescore)
         determineGameStatus(gamescore: gamescore)
         return
             VStack(spacing: ScoresItemSpacing) {

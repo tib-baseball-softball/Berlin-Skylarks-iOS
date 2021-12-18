@@ -8,6 +8,8 @@
 import Foundation
 import SwiftUI
 
+//These values are used for all URLs. They need to be manually adjusted for the correct season at the moment.
+
 let currentSeason = "2021"
 let skylarksID = "485"
 
@@ -76,20 +78,6 @@ class UserDashboard: ObservableObject {
     
     @Published var LastGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: GameScore.League(id: 999, season: 1970, name: "Latest league"), umpire_assignments: [], scorer_assignments: [])
 }
-
-//let dashboardTeamURLDict = [
-//    "Team 1 (VL)" : urlVLBB,
-//    "Softball (VL)" : urlVLSB,
-//    "Team 2 (LL)" : urlLLBB,
-//    "Team 3 (BZL)" : urlBZLBB,
-//    "Team 4 (BZL)" : urlBZLBB,
-//    "Jugend (U15)": urlSchBB, //placeholder
-//    "Schüler (U12)" : urlSchBB,
-//    "Tossball (U10)" : urlTossBB,
-//    "Teeball (U8)" : urlSchBB, //placeholder
-//]
-
-let urlHomeLLBB = URL(string:"dfgfd")!
 
 //&sorted[time]=asc/desc
 

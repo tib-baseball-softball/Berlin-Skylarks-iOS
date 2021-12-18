@@ -13,7 +13,7 @@ struct StandingsTableView: View {
     
     @State var leagueTable: LeagueTable
     
-    @State var leagueURLSelected = urlLLBB
+    //@State var leagueURLSelected = urlLLBB
     
     //var padding: CGFloat {
     //    if UIDevice.current.userInterfaceIdiom != .phone {

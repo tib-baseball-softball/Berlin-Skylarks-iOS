@@ -19,7 +19,7 @@ struct ScoresDetailView: View {
     
     var body: some View {
         setCorrectLogo(gamescore: gamescore)
-        getDatefromBSMString(gamescore: gamescore)
+        gameDate = getDatefromBSMString(gamescore: gamescore)
         determineGameStatus(gamescore: gamescore)
         return
             List {
@@ -301,11 +301,11 @@ struct ScoresDetailView: View {
                 }
                 .confirmationDialog("Save game to calendar", isPresented: $showCalendarDialog) {
                     Button("Save to calendar") {
-                        getDatefromBSMString(gamescore: gamescore)
-                        if let localGameDate = gameDate {
-                            addGameToCalendar(gameDate: localGameDate, gamescore: gamescore)
-                            showEventAlert = true
-                        }
+                        //gameDate = getDatefromBSMString(gamescore: gamescore)
+                        let localGameDate = getDatefromBSMString(gamescore: gamescore)
+                        addGameToCalendar(gameDate: localGameDate, gamescore: gamescore)
+                        showEventAlert = true
+                        
                     }
                     .alert("Event has been saved", isPresented: $showEventAlert) {
                         Button("OK") { }
