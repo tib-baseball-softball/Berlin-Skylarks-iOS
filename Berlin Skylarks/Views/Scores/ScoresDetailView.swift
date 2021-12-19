@@ -88,7 +88,7 @@ struct ScoresDetailView: View {
                         VStack {
                             Text("Guest")
                                 .bold()
-                            away_team_logo?
+                            away_team_logo
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50, alignment: .center)
@@ -100,7 +100,7 @@ struct ScoresDetailView: View {
                         VStack {
                             Text("Home")
                                 .bold()
-                            home_team_logo?
+                            home_team_logo
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50, alignment: .center)

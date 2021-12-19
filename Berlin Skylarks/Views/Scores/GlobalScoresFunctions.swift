@@ -9,8 +9,8 @@ import Foundation
 import EventKit
 import SwiftUI
 
-var away_team_logo: Image? = Image("App_road_team_logo")
-var home_team_logo: Image? = Image("App_home_team_logo")
+var away_team_logo = Image("App_road_team_logo")
+var home_team_logo = Image("App_home_team_logo")
 
 let teamLogos = [
     "Skylarks": Image("Bird_whiteoutline"),

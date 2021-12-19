@@ -73,7 +73,7 @@ struct ScoresOverView: View {
                         Text("Guest")
                             .font(.title3)
                             .bold()
-                        away_team_logo?
+                        away_team_logo
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50, height: 50, alignment: .center)
@@ -99,7 +99,7 @@ struct ScoresOverView: View {
                         Text("Home")
                             .font(.title3)
                             .bold()
-                        home_team_logo?
+                        home_team_logo
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50, height: 50, alignment: .center)

@@ -16,9 +16,9 @@ struct UserHomeView: View {
     
     @AppStorage("favoriteTeam") var favoriteTeam: String = "Test Team"
     
-    @State private var showingSettings = false
-    @State private var showingNextGame = false
-    @State private var showingLastGame = false
+    @State private var showingSheetSettings = false
+    @State private var showingSheetNextGame = false
+    @State private var showingSheetLastGame = false
     
     @State var showNextGame = true
     @State var showLastGame = true
@@ -85,6 +85,7 @@ struct UserHomeView: View {
                     
                     DispatchQueue.main.async {
                         self.homeGamescores = response_obj
+                        processGameDates()
                     }
                 }
             }
@@ -93,8 +94,13 @@ struct UserHomeView: View {
     
     func processGameDates() {
         // processing
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyyMMdd"
         
-        let now = Date()
+        //for testing purposes this is set to some date in the season, normally it's just the current date
+        //let now = Date()
+        let now = formatter.date(from: "20210928") ?? Date.now // September 27th, 2021 UTC
+        
         //var allGames = [GameScore]()
         var nextGames = [GameScore]()
         var previousGames = [GameScore]()
@@ -103,37 +109,26 @@ struct UserHomeView: View {
             homeGamescores[index].gameDate = getDatefromBSMString(gamescore: homeGamescores[index])
             //print(homeGamescores)
         }
-        for gamescore in homeGamescores where gamescore.gameDate ?? now > now {
+        for gamescore in homeGamescores where gamescore.gameDate! > now {
             nextGames.append(gamescore)
         }
-        if nextGames.indices.contains(0) {
-            showingNextGame = true
+        if nextGames != [] {
+            showNextGame = true
             userDashboard.NextGame = nextGames.first!
         } else {
-            showingNextGame = false
+            showNextGame = false
         }
         
         //Add last games to separate array and set it to be displayed
-        for gamescore in homeGamescores where gamescore.gameDate ?? now < now {
+        for gamescore in homeGamescores where gamescore.gameDate! < now {
             previousGames.append(gamescore)
         }
-        if previousGames.indices.contains(0) {
-            showingLastGame = true
+        if previousGames != [] {
+            showLastGame = true
             userDashboard.LastGame = previousGames.last!
         } else {
-            showingLastGame = false
+            showLastGame = false
         }
-        
-//        for i in 0...homeGamescores.count {
-//            print(homeGamescores[i])
-//            homeGamescores[i].gameDate = getDatefromBSMString(gamescore: homeGamescores[i])
-//            for gamescore in homeGamescores where gamescore.gameDate ?? now > now {
-//                nextGames.append(gamescore)
-//                if nextGames.indices.contains(0) {
-//                    userDashboard.NextGame = nextGames[0]
-//                }
-//            }
-//        }
     }
     
     // 110 is good for iPhone SE, spacing lower than 38 makes elements overlap on iPad landscape orientation. Still looks terrible on some Mac sizes...
@@ -280,7 +275,7 @@ struct UserHomeView: View {
               
                 LazyVGrid(columns: bigColumns, spacing: 30) {
                     
-                    if showingLastGame == true {
+                    //if showingLastGame == true {
                         VStack(alignment: .leading) {
                             Text("Latest Score")
                                 .font(.title)
@@ -290,17 +285,17 @@ struct UserHomeView: View {
                                 ScoresOverView(gamescore: userDashboard.LastGame)
                                 
                                 .onTapGesture {
-                                    showingLastGame.toggle()
+                                    showingSheetLastGame.toggle()
                                 }
-                                .sheet(isPresented: $showingLastGame) {
+                                .sheet(isPresented: $showingSheetLastGame) {
                                     ScoresDetailView(gamescore: userDashboard.LastGame)
                                 }
                         }
-                    } else {
-                        Text("There is no recent game to display.")
-                    }
+//                    } else {
+//                        Text("There is no recent game to display.")
+//                    }
                     
-                    if showingNextGame == true {
+                    //if showingNextGame == true {
                         VStack(alignment: .leading) {
                             Text("Next Game")
                                 .font(.title)
@@ -309,15 +304,15 @@ struct UserHomeView: View {
                                 ScoresOverView(gamescore: userDashboard.NextGame)
                                 
                                 .onTapGesture {
-                                    showingNextGame.toggle()
+                                    showingSheetNextGame.toggle()
                                 }
-                                .sheet(isPresented: $showingNextGame) {
+                                .sheet(isPresented: $showingSheetNextGame) {
                                     ScoresDetailView(gamescore: userDashboard.NextGame)
                                 }
                         }
-                    } else {
-                        Text("There is no next game to display.")
-                    }
+//                    } else {
+//                        Text("There is no next game to display.")
+//                    }
                     
                     VStack(alignment: .leading) {
                         Text("Standings")
@@ -360,7 +355,6 @@ struct UserHomeView: View {
                 setFavoriteTeam()
                 loadHomeTeamTable(url: selectedHomeTablesURL)
                 loadHomeGameData(url: selectedHomeScoresURL)
-                processGameDates()
             })
             
             .onChange(of: favoriteTeam, perform: { favoriteTeam in
@@ -368,20 +362,19 @@ struct UserHomeView: View {
                 homeLeagueTables = []
                 loadHomeTeamTable(url: selectedHomeTablesURL)
                 loadHomeGameData(url: selectedHomeScoresURL)
-                processGameDates()
             })
             
             .toolbar {
                 ToolbarItem(placement: .navigationBarTrailing) {
                     Button(
                         action: {
-                            showingSettings.toggle()
+                            showingSheetSettings.toggle()
                         }
                     ){
                         Image(systemName: "gearshape.fill")
                     }
                     .padding(.horizontal, 5)
-                    .sheet( isPresented: $showingSettings) {
+                    .sheet( isPresented: $showingSheetSettings) {
                         NavigationView {
                             SettingsListView()
                         }
