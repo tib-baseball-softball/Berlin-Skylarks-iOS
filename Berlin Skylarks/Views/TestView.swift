@@ -12,12 +12,6 @@ struct TestView: View {
     
     var favoriteTeam = UserDefaults.standard.codableObject(dataType: Team.self, key: "favoriteTeam")
     
-//    private var pointsOfInterest = [
-//        AnnotatedItem(name: "Ballpark", coordinate: .init(latitude: (dummyGameScores[3].field?.latitude)!, longitude: (dummyGameScores[3].field?.longitude)!)),
-//        ]
-//
-//    @State private var region: MKCoordinateRegion = MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: (dummyGameScores[3].field?.latitude) as! CLLocationDegrees as! CLLocationDegrees, longitude: (dummyGameScores[3].field?.longitude)!), span: MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01))
-    
     var body: some View {
         VStack {
             Text(favoriteTeam?.name ?? "No favorite team selected")

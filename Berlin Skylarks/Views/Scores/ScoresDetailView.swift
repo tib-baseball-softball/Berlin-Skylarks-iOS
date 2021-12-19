@@ -137,18 +137,16 @@ struct ScoresDetailView: View {
             }
             Section(header: Text("Location")) {
                 
-                //field is now optional - apparently that is not a required field in BSM (doesn't really makes sense but okay...)
+                //field is now optional - apparently that is not a required field in BSM (doesn't really make sense but okay...)
                 
                 if let field = gamescore.field {
-                    if let coordinateLatitude = gamescore.field?.latitude, let coordinateLongitude = gamescore.field?.longitude {
-//                        var fieldPin = [
-//                            AnnotatedItem(name: gamescore.field?.name, coordinate: .init(latitude: coordinateLatitude, longitude: coordinateLongitude)),
-//                            ]
-                        Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))), interactionModes: [])
-
-//                                                        {
-//                            MapMarker(coordinate: item.coordinate, tint: Color.accentColor)
-//                        }
+                    if let coordinateLatitude = field.latitude, let coordinateLongitude = field.longitude {
+                        let fieldPin = [
+                            Ballpark(name: field.name, coordinate: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude)),
+                            ]
+                    Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))), interactionModes: [], annotationItems: fieldPin) {
+                                MapMarker(coordinate: $0.coordinate, tint: Color.accentColor)
+                        }
                         .frame(height: 200)
                     } else {
                         Text("No field coordinates provided")

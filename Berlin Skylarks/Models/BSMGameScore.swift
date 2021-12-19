@@ -86,7 +86,7 @@ struct GameScore: Hashable, Codable, Identifiable {
     }
 }
 
-struct AnnotatedItem: Identifiable {
+struct Ballpark: Identifiable {
     let id = UUID()
     var name: String
     var coordinate: CLLocationCoordinate2D
