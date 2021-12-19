@@ -15,7 +15,7 @@ struct GameScore: Hashable, Codable, Identifiable {
     var id: Int
     var match_id: String
     var time: String // gets converted by DateFormatter() in view
-    #warning("Check if this works - this is added by me, this is not available in BSM API!")
+    //"Check if this works - this is added by me, this is not available in BSM API!")
     var gameDate: Date?
     //
     var home_runs: Int? //those really should be Ints

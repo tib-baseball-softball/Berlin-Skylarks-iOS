@@ -21,7 +21,7 @@ struct UserHomeView: View {
     @State private var showingSheetLastGame = false
     
     @State var showNextGame = true
-    @State var showLastGame = true
+    @State var showLastGame = false //true!
     
     @StateObject var userDashboard = UserDashboard()
     @State private var homeGamescores = [GameScore]()
@@ -98,8 +98,8 @@ struct UserHomeView: View {
         formatter.dateFormat = "yyyyMMdd"
         
         //for testing purposes this is set to some date in the season, normally it's just the current date
-        //let now = Date()
-        let now = formatter.date(from: "20210928") ?? Date.now // September 27th, 2021 UTC
+        let now = Date()
+        //let now = formatter.date(from: "20210928") ?? Date.now // September 27th, 2021 UTC
         
         //var allGames = [GameScore]()
         var nextGames = [GameScore]()
@@ -137,13 +137,17 @@ struct UserHomeView: View {
         GridItem(.adaptive(minimum: 110), spacing: 38),
     ]
     let bigColumns = [
-        GridItem(.adaptive(minimum: 300), spacing: 30),
+        GridItem(.adaptive(minimum: 300), spacing: 30, alignment: .topLeading),
     ]
     
     var body: some View {
         //NavigationView {
             ScrollView {
-                //Text(homeGamescores.debugDescription)
+                
+                //-------------------------------------------//
+                // Small grid with team info (from table data)
+                //-------------------------------------------//
+                
                 LazyVGrid(columns: smallColumns, spacing: 30) {
                     Image("Rondell")
                         .resizable()
@@ -271,11 +275,13 @@ struct UserHomeView: View {
                 }
                 .padding(25)
                 
+                //-------------------------------------------//
                 //GRID with last game, next game and table
+                //-------------------------------------------//
               
                 LazyVGrid(columns: bigColumns, spacing: 30) {
                     
-                    //if showingLastGame == true {
+                    if showLastGame == true {
                         VStack(alignment: .leading) {
                             Text("Latest Score")
                                 .font(.title)
@@ -291,11 +297,20 @@ struct UserHomeView: View {
                                     ScoresDetailView(gamescore: userDashboard.LastGame)
                                 }
                         }
-//                    } else {
-//                        Text("There is no recent game to display.")
-//                    }
+                    } else {
+                        VStack(alignment: .leading) {
+                            Text("Latest Score")
+                                .font(.title)
+                                .bold()
+                                .padding(.leading, 15)
+                            Text("There is no recent game to display.")
+                                .padding()
+                                .background(ScoresSubItemBackground)
+                                .cornerRadius(NewsItemCornerRadius)
+                        }
+                    }
                     
-                    //if showingNextGame == true {
+                    if showNextGame == true {
                         VStack(alignment: .leading) {
                             Text("Next Game")
                                 .font(.title)
@@ -310,9 +325,18 @@ struct UserHomeView: View {
                                     ScoresDetailView(gamescore: userDashboard.NextGame)
                                 }
                         }
-//                    } else {
-//                        Text("There is no next game to display.")
-//                    }
+                    } else {
+                        VStack {
+                            Text("Next Game")
+                                .font(.title)
+                                .bold()
+                                .padding(.leading, 15)
+                            Text("There is no next game to display.")
+                                .padding()
+                                .background(ScoresSubItemBackground)
+                                .cornerRadius(NewsItemCornerRadius)
+                        }
+                    }
                     
                     VStack(alignment: .leading) {
                         Text("Standings")
@@ -327,7 +351,6 @@ struct UserHomeView: View {
                             Text("No standings available")
                         }
                     }
-                    
                 }
                 .padding(homeViewPadding)
                 

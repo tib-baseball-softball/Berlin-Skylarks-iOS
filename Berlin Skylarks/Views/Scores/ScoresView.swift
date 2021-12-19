@@ -80,7 +80,7 @@ struct ScoresView: View {
                     .confirmationDialog("Save games to calendar", isPresented: $showCalendarDialog) {
                         Button("Save to calendar") {
                             for gamescore in gamescores {
-                                getDatefromBSMString(gamescore: gamescore)
+                                gameDate = getDatefromBSMString(gamescore: gamescore)
                                 
                                 if let localGameDate = gameDate {
                                     addGameToCalendar(gameDate: localGameDate, gamescore: gamescore)
