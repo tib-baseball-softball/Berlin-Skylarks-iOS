@@ -7,6 +7,7 @@
 
 import SwiftUI
 import MapKit
+import EventKit
 
 struct ScoresDetailView: View {
     
@@ -14,6 +15,8 @@ struct ScoresDetailView: View {
     @State private var showCalendarDialog = false
     @State private var isBookmarked = false
     @State private var showEventAlert = false
+    
+    //let calendars = getAvailableCalendars()
     
     var gamescore: GameScore
     
@@ -144,10 +147,16 @@ struct ScoresDetailView: View {
                         let fieldPin = [
                             Ballpark(name: field.name, coordinate: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude)),
                             ]
-                    Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))), interactionModes: [], annotationItems: fieldPin) {
+                        Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))), interactionModes: .zoom, annotationItems: fieldPin) {
                                 MapMarker(coordinate: $0.coordinate, tint: Color.accentColor)
                         }
                         .frame(height: 200)
+                        
+                        //TODO: make this a link to open the maps app
+//                        .onTapGesture(perform: {
+//                            map.openInMaps()
+//                        })
+                        
                     } else {
                         Text("No field coordinates provided")
                     }
@@ -292,22 +301,26 @@ struct ScoresDetailView: View {
                 
                 Button(
                     action: {
+                        getAvailableCalendars()
                         showCalendarDialog.toggle()
                     }
                 ){
                     Image(systemName: "calendar.badge.plus")
                 }
-                .confirmationDialog("Save game to calendar", isPresented: $showCalendarDialog) {
-                    Button("Save to calendar") {
-                        //gameDate = getDatefromBSMString(gamescore: gamescore)
-                        let localGameDate = getDatefromBSMString(gamescore: gamescore)
-                        addGameToCalendar(gameDate: localGameDate, gamescore: gamescore)
-                        showEventAlert = true
-                        
+                .confirmationDialog("Choose a calendar to save the game", isPresented: $showCalendarDialog, titleVisibility: .visible) {
+                    
+                    ForEach(calendarStrings, id: \.self) { calendarString in
+                        Button(calendarString) {
+                            //gameDate = getDatefromBSMString(gamescore: gamescore)
+                            let localGameDate = getDatefromBSMString(gamescore: gamescore)
+                            addGameToCalendar(gameDate: localGameDate, gamescore: gamescore, calendarString: calendarString)
+                            showEventAlert = true
+                            
+                        }
                     }
-                    .alert("Event has been saved", isPresented: $showEventAlert) {
-                        Button("OK") { }
-                    }
+                }
+                .alert("Game has been saved to calendar", isPresented: $showEventAlert) {
+                    Button("OK") { }
                 }
                 
                 Spacer()
@@ -337,7 +350,6 @@ struct ScoresDetailView: View {
     // this works, but is an absolute performance nightmare and leads to boatloads of errors in console
     
     func ActionSheet() {
-        //guard let data = URL(string: "https://www.zoho.com") else { return }
         let data = "League: "
         + gamescore.league.name
         + """

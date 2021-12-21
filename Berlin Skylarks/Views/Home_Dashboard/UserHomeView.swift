@@ -11,9 +11,6 @@ import SwiftUI
 
 struct UserHomeView: View {
     
-    //StateObject / ObservedObject
-    //@StateObject var userSettings = UserSettings()
-    
     @AppStorage("favoriteTeam") var favoriteTeam: String = "Test Team"
     
     @State private var showingSheetSettings = false
@@ -21,7 +18,7 @@ struct UserHomeView: View {
     @State private var showingSheetLastGame = false
     
     @State var showNextGame = true
-    @State var showLastGame = false //true!
+    @State var showLastGame = true
     
     @StateObject var userDashboard = UserDashboard()
     @State private var homeGamescores = [GameScore]()
@@ -97,11 +94,10 @@ struct UserHomeView: View {
         let formatter = DateFormatter()
         formatter.dateFormat = "yyyyMMdd"
         
-        //for testing purposes this is set to some date in the season, normally it's just the current date
+        //for testing purposes this can be set to some date in the season, normally it's just the current date
         let now = Date()
         //let now = formatter.date(from: "20210928") ?? Date.now // September 27th, 2021 UTC
         
-        //var allGames = [GameScore]()
         var nextGames = [GameScore]()
         var previousGames = [GameScore]()
 

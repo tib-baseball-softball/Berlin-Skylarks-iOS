@@ -98,7 +98,38 @@ func getDatefromBSMString(gamescore: GameScore) -> Date {
 
 //-------------------------------CALENDAR EVENTS---------------------------------//
 
-func addGameToCalendar(gameDate: Date, gamescore: GameScore) {
+var calendarStrings = [String]()
+
+func getAvailableCalendars() {
+    
+    let eventStore = EKEventStore()
+    //var calendars = [EKCalendar]()
+         
+    eventStore.requestAccess(to: .event) { (granted, error) in
+      
+      if (granted) && (error == nil) {
+          print("granted \(granted)")
+          print("error \(String(describing: error))")
+          
+          //let event:EKEvent = EKEvent(eventStore: eventStore)
+          let calendars = eventStore.calendars(for: .event)
+          
+          //clear the array before loading new
+          calendarStrings = []
+          
+          for calendar in calendars {
+              calendarStrings.append(calendar.title)
+          }
+          //print(calendars)
+      }
+      else {
+          print("Access not granted")
+      }
+    }
+    
+}
+
+func addGameToCalendar(gameDate: Date, gamescore: GameScore, calendarString: String) {
     let eventStore = EKEventStore()
          
     eventStore.requestAccess(to: .event) { (granted, error) in
@@ -110,48 +141,27 @@ func addGameToCalendar(gameDate: Date, gamescore: GameScore) {
           let event:EKEvent = EKEvent(eventStore: eventStore)
           let calendars = eventStore.calendars(for: .event)
           
+          event.title = gamescore.league.name + ": " + gamescore.away_team_name + " @ " + gamescore.home_team_name
+          event.startDate = gameDate
+          event.endDate = gameDate.addingTimeInterval(2 * 60 * 60)
+          event.notes = gamescore.match_id
+          //add more info
+          
           for calendar in calendars {
-              //print("start loop")
-              if calendar.title == "Development Calendar" {
-                  event.title = gamescore.league.name + ": " + gamescore.away_team_name + " @ " + gamescore.home_team_name
-                  event.startDate = gameDate
-                  event.endDate = gameDate.addingTimeInterval(2 * 60 * 60)
-                  event.notes = gamescore.match_id
-                  //add more info
-                  
+              if calendar.title == calendarString {
                   event.calendar = calendar
-                  //event.calendar = eventStore.defaultCalendarForNewEvents
-                  do {
-                      try eventStore.save(event, span: .thisEvent)
-                  } catch let error as NSError {
-                      print("failed to save event with error : \(error)")
-                  }
-                  print("Saved Event successfully")
               }
           }
+          //event.calendar = eventStore.defaultCalendarForNewEvents
+          do {
+              try eventStore.save(event, span: .thisEvent)
+          } catch let error as NSError {
+              print("failed to save event with error : \(error)")
+          }
+          print("Saved Event successfully")
       }
       else {
-      
           print("failed to save event with error : \(String(describing: error)) or access not granted")
       }
     }
 }
-
-//        switch EKEventStore.authorizationStatus(for: .event) {
-//        case .authorized:
-//            insertEvent(store: eventStore, gameDate: gameDate)
-//        case .denied:
-//            print("Access denied")
-//        case .notDetermined:
-//
-//            eventStore.requestAccess(to: .event, completion:
-//              {[weak self] (granted: Bool, error: Error?) -> Void in
-//                  if granted {
-//                    self!.insertEvent(store: eventStore)
-//                  } else {
-//                        print("Access denied")
-//                  }
-//            })
-//            default:
-//                print("Case default")
-//        }

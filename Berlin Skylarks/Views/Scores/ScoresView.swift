@@ -46,7 +46,10 @@ struct ScoresView: View {
             }
             
             
-            .onAppear(perform: { loadGameData(url: gameURLSelected) })
+            .onAppear(perform: {
+                loadGameData(url: gameURLSelected)
+                getAvailableCalendars()
+            })
             
             //I need to get what "value" means here --> type is string, like selection. Code works anyway.
             .onChange(of: selection, perform: { value in
@@ -73,21 +76,28 @@ struct ScoresView: View {
                     Button(
                         action: {
                             showCalendarDialog.toggle()
+                            getAvailableCalendars()
                         }
                     ){
                         Image(systemName: "calendar.badge.plus")
                     }
-                    .confirmationDialog("Save games to calendar", isPresented: $showCalendarDialog) {
-                        Button("Save to calendar") {
-                            for gamescore in gamescores {
-                                gameDate = getDatefromBSMString(gamescore: gamescore)
-                                
-                                if let localGameDate = gameDate {
-                                    addGameToCalendar(gameDate: localGameDate, gamescore: gamescore)
-                                    showEventAlert = true
+                    .confirmationDialog("Choose a calendar to save the game(s)", isPresented: $showCalendarDialog, titleVisibility: .visible) {
+                        
+                        ForEach(calendarStrings, id: \.self) { calendarString in
+                            Button(calendarString) {
+                                for gamescore in gamescores {
+                                    gameDate = getDatefromBSMString(gamescore: gamescore)
+
+                                    if let localGameDate = gameDate {
+                                        addGameToCalendar(gameDate: localGameDate, gamescore: gamescore, calendarString: calendarString)
+                                        showEventAlert = true
+                                    }
                                 }
                             }
                         }
+                    }
+                    .alert("All games have been saved", isPresented: $showEventAlert) {
+                        Button("OK") { }
                     }
                     .padding(.horizontal, 10)
                     

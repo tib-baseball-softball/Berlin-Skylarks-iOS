@@ -12,12 +12,20 @@ struct TestView: View {
     
     var favoriteTeam = UserDefaults.standard.codableObject(dataType: Team.self, key: "favoriteTeam")
     
+    //let calendars = getAvailableCalendars()
+    
     var body: some View {
-        VStack {
-            Text(favoriteTeam?.name ?? "No favorite team selected")
-            Text(favoriteTeam?.ageGroup ?? "no age group")
-            Text(favoriteTeam?.leagueName ?? "no league")
-        }
+        
+        Text("dfhbhjdfjc")
+//        ForEach(calendars, id: \.self) { calendar in
+//            Button(calendar.title) {
+//                //gameDate = getDatefromBSMString(gamescore: gamescore)
+//                let localGameDate = getDatefromBSMString(gamescore: dummyGameScores[47])
+//                addGameToCalendar(gameDate: localGameDate, gamescore: dummyGameScores[4], calendar: calendar)
+//                //showEventAlert = true
+//
+//            }
+//        }
     }
     //this is how you can declare functions in a view!
     
