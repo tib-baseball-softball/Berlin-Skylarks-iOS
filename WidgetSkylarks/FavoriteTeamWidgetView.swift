@@ -60,7 +60,7 @@ struct TeamWidgetLastGameView: View {
                     Text("Team 1")
                         .foregroundColor(Color.skylarksRed)
                     Text("Latest Score")
-                        .font(.caption)
+                        .font(.footnote)
                 }
                 Spacer()
                 Text("W")
@@ -113,7 +113,7 @@ struct TeamWidgetNextGameView: View {
                     Text("Team 1")
                         .foregroundColor(Color.skylarksRed)
                     Text("Next Game")
-                        .font(.caption)
+                        .font(.footnote)
                 }
                 Spacer()
                 VStack(spacing: 2) {
@@ -121,26 +121,30 @@ struct TeamWidgetNextGameView: View {
                         .foregroundColor(.skylarksRed)
                     Text("12:00")
                 }
-                .font(.caption)
+                .font(.footnote)
             }
             .font(Font.callout.smallCaps())
+            .padding(.bottom, 5)
             Divider()
-            VStack(alignment: .leading, spacing: 2.0) {
+            VStack(alignment: .leading, spacing: 5.0) {
                 HStack {
                     Image("Berlin_Flamingos_Logo_3D")
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 28)
-                    Text("Flamingos 2")
+                    Text("FLA")
                     Spacer()
                 }
+                .padding(.top, 5.0)
                 HStack {
                     Image(systemName: "calendar")
+                        .frame(maxWidth: 28)
                         .font(.callout)
-                        .foregroundColor(.skylarksSand)
-                    Text("2. Oktober 2021")
+                        .foregroundColor(.skylarksRed)
+                    Text("2.10.2021")
                 }
             }
+            .padding(.vertical,2)
             .font(.subheadline)
             .background(ContainerRelativeShape().fill(Color(UIColor.systemBackground)))
         }.font(.subheadline)
