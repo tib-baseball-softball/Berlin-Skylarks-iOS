@@ -7,7 +7,7 @@
 
 import Foundation
 
-let testTeam = Team(
+let testTeam = SkylarksTeam(
                  name: "Test Team",
                  leagueName: "Test League",
                  sport: "Baseball",
@@ -17,7 +17,7 @@ let testTeam = Team(
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
-let team1 = Team(
+let team1 = SkylarksTeam(
                  name: "Team 1",
                  leagueName: "Verbandsliga",
                  sport: "Baseball",
@@ -27,7 +27,7 @@ let team1 = Team(
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
-let team2 = Team(
+let team2 = SkylarksTeam(
                  name: "Team 2",
                  leagueName: "Landesliga",
                  sport: "Baseball",
@@ -37,7 +37,7 @@ let team2 = Team(
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
-let team3 = Team(
+let team3 = SkylarksTeam(
                  name: "Team 3",
                  leagueName: "Bezirksliga",
                  sport: "Baseball",
@@ -47,7 +47,7 @@ let team3 = Team(
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
-let team4 = Team(
+let team4 = SkylarksTeam(
                  name: "Team 4",
                  leagueName: "Bezirksliga",
                  sport: "Baseball",
@@ -57,7 +57,7 @@ let team4 = Team(
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
-let teamSoftball = Team(
+let teamSoftball = SkylarksTeam(
                  name: "Softball",
                  leagueName: "Verbandsliga",
                  sport: "Softball",
@@ -67,7 +67,7 @@ let teamSoftball = Team(
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
-let teamJugend = Team(
+let teamJugend = SkylarksTeam(
                  name: "Jugend",
                  leagueName: "Jugendliga",
                  sport: "Baseball",
@@ -77,7 +77,7 @@ let teamJugend = Team(
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
-let teamSchueler = Team(
+let teamSchueler = SkylarksTeam(
                  name: "Schüler",
                  leagueName: "Schülerliga",
                  sport: "Baseball",
@@ -87,7 +87,7 @@ let teamSchueler = Team(
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
-let teamTossball = Team(
+let teamTossball = SkylarksTeam(
                  name: "Tossball",
                  leagueName: "Tossballliga",
                  sport: "Baseball",

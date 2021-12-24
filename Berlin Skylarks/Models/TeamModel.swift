@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Team: Hashable, Codable {
+struct SkylarksTeam: Hashable, Codable {
     var name: String
     var leagueName: String
     var sport: String

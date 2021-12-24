@@ -14,7 +14,7 @@ struct InfoView: View {
     var body: some View {
         
         VStack {
-            Text("nix hier")
+            Text("Favorite Team from user settings:")
             Text(userSettings.favoriteTeam)
         }
         

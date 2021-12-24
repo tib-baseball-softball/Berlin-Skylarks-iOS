@@ -131,7 +131,8 @@ struct ScoresOverView_Previews: PreviewProvider {
     
     static var previews: some View {
         ForEach(ColorScheme.allCases, id: \.self) {
-            ScoresOverView(gamescore: dummyGameScores[7]).preferredColorScheme($0)
+            ScoresOverView(gamescore: dummyGameScores[7])
+                .preferredColorScheme($0)
         }
     }
 }

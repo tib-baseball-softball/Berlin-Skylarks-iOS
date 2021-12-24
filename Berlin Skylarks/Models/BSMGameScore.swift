@@ -26,8 +26,8 @@ struct GameScore: Hashable, Codable, Identifiable {
     var scoresheet_url: String?
     var field: Field?
     var league: League
-//    var home_league_entry: Home_League_Entry
-//    var away_league_entry: Away_League_Entry
+    var home_league_entry: Home_League_Entry
+    var away_league_entry: Away_League_Entry
     var umpire_assignments: [Umpire_Assignments]
     var scorer_assignments: [Scorer_Assignments]
     
@@ -46,13 +46,13 @@ struct GameScore: Hashable, Codable, Identifiable {
         var name: String
     }
     
-//    struct Home_League_Entry: Hashable, Codable {
-//        var team: Team
-//    }
-//
-//    struct Away_League_Entry: Hashable, Codable {
-//        var team: Team
-//    }
+    struct Home_League_Entry: Hashable, Codable {
+        var team: Team
+    }
+
+    struct Away_League_Entry: Hashable, Codable {
+        var team: Team
+    }
     
     struct Umpire_Assignments: Hashable, Codable {
         var license: License
@@ -74,16 +74,17 @@ struct GameScore: Hashable, Codable, Identifiable {
     
     struct Team: Hashable, Codable {
         var name: String
-        var clubs: [Clubs]
+        var short_name: String
+        //var clubs: [Clubs]
     }
     
     //note the spaces here! --> sometimes used in example for arrays
     
-    struct Clubs: Hashable, Codable {
-        var id: Int
-        var name: String
-        var acronym: String
-    }
+//    struct Clubs: Hashable, Codable {
+//        var id: Int
+//        var name: String
+//        var acronym: String
+//    }
 }
 
 struct Ballpark: Identifiable {

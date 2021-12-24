@@ -9,23 +9,14 @@ import SwiftUI
 import MapKit
 
 struct TestView: View {
-    
-    var favoriteTeam = UserDefaults.standard.codableObject(dataType: Team.self, key: "favoriteTeam")
-    
+
     //let calendars = getAvailableCalendars()
     
     var body: some View {
-        
-        Text("dfhbhjdfjc")
-//        ForEach(calendars, id: \.self) { calendar in
-//            Button(calendar.title) {
-//                //gameDate = getDatefromBSMString(gamescore: gamescore)
-//                let localGameDate = getDatefromBSMString(gamescore: dummyGameScores[47])
-//                addGameToCalendar(gameDate: localGameDate, gamescore: dummyGameScores[4], calendar: calendar)
-//                //showEventAlert = true
-//
-//            }
-//        }
+        VStack(alignment: .leading){
+            Text("dfhbhjdfjc")
+        }
+        .padding()
     }
     //this is how you can declare functions in a view!
     
