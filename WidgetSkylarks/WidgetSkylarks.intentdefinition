@@ -9,24 +9,28 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>88xZPY</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>20A294</string>
+	<string>21C52</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>12A6144</string>
+	<string>13C100</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>12.0</string>
+	<string>13.2.1</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
 			<key>INIntentCategory</key>
 			<string>information</string>
+			<key>INIntentDescription</key>
+			<string>Favorite Team</string>
 			<key>INIntentDescriptionID</key>
 			<string>tVvJ9c</string>
 			<key>INIntentEligibleForWidgets</key>
 			<true/>
 			<key>INIntentIneligibleForSuggestions</key>
 			<true/>
+			<key>INIntentLastParameterTag</key>
+			<integer>5</integer>
 			<key>INIntentName</key>
-			<string>Configuration</string>
+			<string>FavoriteTeam</string>
 			<key>INIntentResponse</key>
 			<dict>
 				<key>INIntentResponseCodes</key>
@@ -44,7 +48,7 @@
 				</array>
 			</dict>
 			<key>INIntentTitle</key>
-			<string>Configuration</string>
+			<string>Favorite Team</string>
 			<key>INIntentTitleID</key>
 			<string>gpCwrM</string>
 			<key>INIntentType</key>
@@ -54,6 +58,70 @@
 		</dict>
 	</array>
 	<key>INTypes</key>
-	<array/>
+	<array>
+		<dict>
+			<key>INTypeDisplayName</key>
+			<string>Type</string>
+			<key>INTypeDisplayNameID</key>
+			<string>LQc5Ix</string>
+			<key>INTypeLastPropertyTag</key>
+			<integer>100</integer>
+			<key>INTypeName</key>
+			<string>Type</string>
+			<key>INTypeProperties</key>
+			<array>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>1</integer>
+					<key>INTypePropertyName</key>
+					<string>identifier</string>
+					<key>INTypePropertyTag</key>
+					<integer>1</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>2</integer>
+					<key>INTypePropertyName</key>
+					<string>displayString</string>
+					<key>INTypePropertyTag</key>
+					<integer>2</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>3</integer>
+					<key>INTypePropertyName</key>
+					<string>pronunciationHint</string>
+					<key>INTypePropertyTag</key>
+					<integer>3</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>4</integer>
+					<key>INTypePropertyName</key>
+					<string>alternativeSpeakableMatches</string>
+					<key>INTypePropertySupportsMultipleValues</key>
+					<true/>
+					<key>INTypePropertyTag</key>
+					<integer>4</integer>
+					<key>INTypePropertyType</key>
+					<string>SpeakableString</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

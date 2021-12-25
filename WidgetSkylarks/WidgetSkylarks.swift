@@ -9,24 +9,24 @@ import WidgetKit
 import SwiftUI
 import Intents
 
-struct Provider: IntentTimelineProvider {
-    func placeholder(in context: Context) -> SimpleEntry {
-        SimpleEntry(date: Date(), configuration: ConfigurationIntent())
+struct FavoriteTeamProvider: IntentTimelineProvider {
+    func placeholder(in context: Context) -> FavoriteTeamEntry {
+        FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent())
     }
 
-    func getSnapshot(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (SimpleEntry) -> ()) {
-        let entry = SimpleEntry(date: Date(), configuration: configuration)
+    func getSnapshot(for configuration: FavoriteTeamIntent, in context: Context, completion: @escaping (FavoriteTeamEntry) -> ()) {
+        let entry = FavoriteTeamEntry(date: Date(), configuration: configuration)
         completion(entry)
     }
 
-    func getTimeline(for configuration: ConfigurationIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
-        var entries: [SimpleEntry] = []
+    func getTimeline(for configuration: FavoriteTeamIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
+        var entries: [FavoriteTeamEntry] = []
 
         // Generate a timeline consisting of five entries an hour apart, starting from the current date.
         let currentDate = Date()
         for hourOffset in 0 ..< 5 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = SimpleEntry(date: entryDate, configuration: configuration)
+            let entry = FavoriteTeamEntry(date: entryDate, configuration: configuration)
             entries.append(entry)
         }
 
@@ -35,37 +35,38 @@ struct Provider: IntentTimelineProvider {
     }
 }
 
-struct SimpleEntry: TimelineEntry {
+struct FavoriteTeamEntry: TimelineEntry {
     let date: Date
-    let configuration: ConfigurationIntent
+    let configuration: FavoriteTeamIntent
 }
 
-struct WidgetSkylarksEntryView : View {
-    var entry: Provider.Entry
-
-    var body: some View {
-        Text(entry.date, style: .time)
-    }
-}
+//struct WidgetSkylarksEntryView : View {
+//    var entry: Provider.Entry
+//
+//    var body: some View {
+//        Text(entry.date, style: .time)
+//    }
+//}
 
 @main
 struct WidgetSkylarks: Widget {
     let kind: String = "WidgetSkylarks"
 
     var body: some WidgetConfiguration {
-        IntentConfiguration(kind: kind, intent: ConfigurationIntent.self, provider: Provider()) { entry in
-            FavoriteTeamWidgetView()
-                
-                //entry: entry)
+        IntentConfiguration(kind: kind, intent: FavoriteTeamIntent.self, provider: FavoriteTeamProvider()) { entry in
+            FavoriteTeamWidgetView(entry: entry)
         }
-        .configurationDisplayName("My Widget")
-        .description("This is an example widget.")
+        .configurationDisplayName("Favorite Team")
+        .description("Shows info about your favorite Skylarks team.")
+        
+        //TODO: add support for extraLarge
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
 
 struct WidgetSkylarks_Previews: PreviewProvider {
     static var previews: some View {
-        WidgetSkylarksEntryView(entry: SimpleEntry(date: Date(), configuration: ConfigurationIntent()))
+        FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent()))
             .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

@@ -11,6 +11,8 @@ import WidgetKit
 struct FavoriteTeamWidgetView: View {
     
     @Environment(\.widgetFamily) var widgetFamily
+    
+    var entry: Provider.Entry
     //var gamescore: GameScore
     
     var body: some View {
@@ -18,13 +20,25 @@ struct FavoriteTeamWidgetView: View {
             //LinearGradient(colors: [Color.skylarksBlue, Color.skylarksRed], startPoint: .topLeading, endPoint: .bottomTrailing)
             Color(UIColor.systemBackground)
             //Color.skylarksBlue
-            HStack(alignment: .top) {
-                TeamWidgetLastGameView()
+            VStack {
                 
-                if widgetFamily != .systemSmall {
+                //TODO: this is needed because of error in preview, real code below
+                //if widgetFamily == .systemMedium {
+                if widgetFamily == .systemLarge || widgetFamily == .systemExtraLarge {
+                    TeamWidgetOverView()
                     Divider()
-                        .padding(.vertical)
-                    TeamWidgetNextGameView()
+                        .padding(.horizontal)
+                }
+                
+                HStack(alignment: .top) {
+                    
+                    TeamWidgetLastGameView()
+                    
+                    if widgetFamily != .systemSmall {
+                        Divider()
+                            .padding(.vertical)
+                        TeamWidgetNextGameView()
+                    }
                 }
             }
         }
@@ -34,18 +48,18 @@ struct FavoriteTeamWidgetView: View {
 struct FavoriteTeamWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            FavoriteTeamWidgetView()
-                .previewContext(WidgetPreviewContext(family: .systemSmall))
-                //.environment(\.colorScheme, .dark)
-            FavoriteTeamWidgetView()
-                .previewContext(WidgetPreviewContext(family: .systemMedium))
-                //.environment(\.colorScheme, .dark)
-            FavoriteTeamWidgetView()
+//            FavoriteTeamWidgetView()
+//                .previewContext(WidgetPreviewContext(family: .systemSmall))
+//                .environment(\.colorScheme, .dark)
+//            FavoriteTeamWidgetView()
+//                .previewContext(WidgetPreviewContext(family: .systemMedium))
+//                .environment(\.colorScheme, .dark)
+            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent()))
                 .previewContext(WidgetPreviewContext(family: .systemLarge))
-                //.environment(\.colorScheme, .dark)
-            FavoriteTeamWidgetView()
-                .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
-                //.environment(\.colorScheme, .dark)
+                .environment(\.colorScheme, .dark)
+//            FavoriteTeamWidgetView()
+//                .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
+//                .environment(\.colorScheme, .dark)
         }
         
     }
@@ -58,9 +72,11 @@ struct TeamWidgetLastGameView: View {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 0.5) {
                     Text("Team 1")
+                        .bold()
                         .foregroundColor(Color.skylarksRed)
                     Text("Latest Score")
                         .font(.footnote)
+                        .foregroundColor(.secondary)
                 }
                 Spacer()
                 Text("W")
@@ -68,7 +84,9 @@ struct TeamWidgetLastGameView: View {
                     .bold()
             }
             .font(Font.callout.smallCaps())
+            
             Divider()
+            
             VStack(alignment: .leading, spacing: 0.0) {
                 HStack {
                     Image("Bird_whiteoutline")
@@ -95,8 +113,6 @@ struct TeamWidgetLastGameView: View {
                 }
                 .padding(.vertical,2)
             }
-            
-            .padding(.all, 3.0)
             .background(ContainerRelativeShape().fill(Color(UIColor.systemBackground)))
             //.border(Color.skylarksSand)
             //Divider()
@@ -111,9 +127,11 @@ struct TeamWidgetNextGameView: View {
             HStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: 0.5) {
                     Text("Team 1")
+                        .bold()
                         .foregroundColor(Color.skylarksRed)
                     Text("Next Game")
                         .font(.footnote)
+                        .foregroundColor(.secondary)
                 }
                 Spacer()
                 VStack(spacing: 2) {
@@ -124,31 +142,104 @@ struct TeamWidgetNextGameView: View {
                 .font(.footnote)
             }
             .font(Font.callout.smallCaps())
-            .padding(.bottom, 5)
+            //.padding(.bottom, 2)
+            
             Divider()
-            VStack(alignment: .leading, spacing: 5.0) {
+            
+            VStack(alignment: .leading, spacing: 10.0) {
                 HStack {
                     Image("Berlin_Flamingos_Logo_3D")
                         .resizable()
                         .scaledToFit()
-                        .frame(maxWidth: 28)
+                        .frame(maxWidth: 35)
                     Text("FLA")
                     Spacer()
                 }
                 .padding(.top, 5.0)
                 HStack {
                     Image(systemName: "calendar")
-                        .frame(maxWidth: 28)
+                        .frame(maxWidth: 35)
                         .font(.callout)
                         .foregroundColor(.skylarksRed)
-                    Text("2.10.2021")
+                    Text("02.10.2021")
                 }
             }
             .padding(.vertical,2)
             .font(.subheadline)
             .background(ContainerRelativeShape().fill(Color(UIColor.systemBackground)))
         }.font(.subheadline)
-        .padding()
+            .padding()
     }
 }
 
+struct TeamWidgetOverView: View {
+    var body: some View {
+        VStack(alignment: .leading) {
+            HStack(alignment: .bottom) {
+                VStack(alignment: .leading, spacing: 0.5) {
+                    Image("Rondell")
+                        .resizable()
+                        .scaledToFit()
+                    Spacer()
+                    HStack {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.skylarksRed)
+                        Text("Team 1")
+                            .bold()
+                        .foregroundColor(Color.skylarksRed)
+                    }
+                    
+                    Text("Standings")
+                        .font(.subheadline)
+                        .foregroundColor(.skylarksSand)
+                    
+                }
+                Spacer()
+                VStack(alignment: .leading, spacing: 3) {
+                    HStack {
+                        Image(systemName: "tablecells")
+                            .foregroundColor(.skylarksRed)
+                            .frame(maxWidth: 20)
+                        Text("Verbandsliga")
+                    }
+                    HStack {
+                        Image(systemName: "calendar.badge.clock")
+                            .foregroundColor(.skylarksRed)
+                            .frame(maxWidth: 20)
+                        Text("2021")
+                    }
+                    Spacer()
+                    Group {
+                        HStack {
+                            Image(systemName: "sum")
+                                .foregroundColor(.skylarksRed)
+                                .frame(maxWidth: 20)
+                            Text("14 : 2")
+                                .bold()
+                        }
+                        HStack {
+                            Image(systemName: "percent")
+                                .foregroundColor(.skylarksRed)
+                                .frame(maxWidth: 20)
+                            Text(".875")
+                                .bold()
+                        }
+                        HStack {
+                            Image(systemName: "number")
+                                .foregroundColor(.skylarksRed)
+                                .frame(maxWidth: 20)
+                            Text("1.")
+                                .bold()
+                        }
+                    }
+                }
+                .padding()
+                .background(ContainerRelativeShape().fill(Color(UIColor.secondarySystemBackground)))
+                .font(.subheadline)
+            }
+            .font(Font.body.smallCaps())
+        }
+        .font(.subheadline)
+        .padding()
+    }
+}
