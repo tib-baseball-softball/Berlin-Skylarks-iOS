@@ -384,18 +384,20 @@ struct UserHomeView: View {
             })
             
             .toolbar {
-                ToolbarItem(placement: .navigationBarTrailing) {
-                    Button(
-                        action: {
-                            showingSheetSettings.toggle()
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    if UIDevice.current.userInterfaceIdiom == .phone {
+                        Button(
+                            action: {
+                                showingSheetSettings.toggle()
+                            }
+                        ){
+                            Image(systemName: "gearshape.fill")
                         }
-                    ){
-                        Image(systemName: "gearshape.fill")
-                    }
-                    .padding(.horizontal, 5)
-                    .sheet( isPresented: $showingSheetSettings) {
-                        NavigationView {
-                            SettingsListView()
+                        .padding(.horizontal, 5)
+                        .sheet( isPresented: $showingSheetSettings) {
+                            NavigationView {
+                                SettingsListView()
+                            }
                         }
                     }
                 }
@@ -408,9 +410,8 @@ struct UserHomeView: View {
 struct UserHomeView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ForEach(ColorScheme.allCases, id: \.self) {
-                UserHomeView().preferredColorScheme($0)
-            }
+            UserHomeView()
+                .preferredColorScheme(.dark)
         }
     }
 }
