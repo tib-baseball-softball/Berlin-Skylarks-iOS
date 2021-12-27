@@ -128,37 +128,50 @@ struct ScoresOverView: View {
         #endif
         
         #if os(watchOS)
+        setCorrectLogo(gamescore: gamescore)
+        gameDate = getDatefromBSMString(gamescore: gamescore)
+        determineGameStatus(gamescore: gamescore)
         return
         VStack {
-            Text("Final")
-            Divider()
-            HStack {
-                VStack {
-                    Image("Bird_whiteoutline")
+            VStack {
+                Text(gamescore.league.name)
+                    .font(.caption2)
+                Divider()
+                    .padding(.horizontal)
+                HStack {
+                    away_team_logo
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 40, height: 40, alignment: .center)
-                    //Divider()
-                    Text("8")
-                        .font(.title)
+                        .frame(maxWidth: 30, alignment: .center)
+                    Text(gamescore.away_league_entry.team.short_name)
+                        .font(.caption)
+                        .padding(.leading)
+                    Spacer()
+                    if let awayScore = gamescore.away_runs {
+                        Text(String(awayScore))
+                            .font(.title3)
+                            .bold()
+                            .frame(maxWidth: 40, alignment: .center)
+                    }
                 }
-                Spacer()
-                Text("W")
-                    .font(.title2)
-                    .foregroundColor(.green)
-                Spacer()
-                VStack {
-                    Image("Berlin_Flamingos_Logo_3D")
+                HStack {
+                    home_team_logo
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 40, height: 40, alignment: .center)
-                    //Divider()
-                    Text("1")
-                        .font(.title)
+                        .frame(maxWidth: 30, alignment: .center)
+                    Text(gamescore.home_league_entry.team.short_name)
+                        .font(.caption)
+                        .padding(.leading)
+                    Spacer()
+                    if let homeScore = gamescore.home_runs {
+                        Text(String(homeScore))
+                            .font(.title3)
+                            .bold()
+                            .frame(maxWidth: 40, alignment: .center)
+                    }
                 }
             }
         }
-        .padding()
         #endif
     }
 }
@@ -166,7 +179,11 @@ struct ScoresOverView: View {
 struct ScoresOverView_Previews: PreviewProvider {
     
     static var previews: some View {
-        ScoresOverView(gamescore: dummyGameScores[7])
-            .preferredColorScheme(.dark)
+        VStack {
+            ScoresOverView(gamescore: dummyGameScores[7])
+                .preferredColorScheme(.dark)
+        }
+        .background(Color.backgroundGrayPreview)
+        .cornerRadius(8)
     }
 }

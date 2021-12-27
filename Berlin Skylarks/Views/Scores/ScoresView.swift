@@ -38,7 +38,7 @@ struct ScoresView: View {
                     }
                     .foregroundColor(.primary)
                 }
-                if !gamescores.indices.contains(0) {
+                if gamescores == [] {
                     Text("There are no Skylarks games scheduled for the chosen time frame.")
                 }
             }
@@ -144,30 +144,62 @@ struct ScoresView: View {
         .navigationTitle("Scores")
         #endif
         
+        //---------------------------------------------------------//
+        //-----------start Apple Watch-specific code---------------//
+        //---------------------------------------------------------//
+        
         #if os(watchOS)
         List {
             Picker(
                 selection: $selection ,
                    
                 label: HStack {
-                    Image(systemName: "list.bullet.circle")
-                        .foregroundColor(.skylarksRed)
-                    Text(selection)
+//                    Image(systemName: "list.bullet.circle")
+//                        .foregroundColor(.skylarksRed)
+                    Text(" Show:")
                 },
             
                 content: {
-                    Text("Option 1")
-                    Text("Option 2")
-                    Text("Option 3")
+                    ForEach(filterOptions, id: \.self) { option in
+                        HStack {
+                            //Image(systemName: "list.bullet.circle")
+                            Text(" " + option)
+                        }
+                        .tag(option)
+                    }
                 }
             )
-            NavigationLink(
-                destination: ScoresDetailView(gamescore: dummyGameScores[0])) {
-                    ScoresOverView(gamescore: dummyGameScores[0])
+                .pickerStyle(.automatic)
+            
+            ForEach(self.gamescores, id: \.id) { GameScore in
+                NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
+                    ScoresOverView(gamescore: GameScore)
                 }
+                .foregroundColor(.primary)
+            }
+            if gamescores == [] {
+                Text("There are no Skylarks games scheduled for the chosen time frame.")
+                    .font(.caption2)
+                    .padding()
+            }
         }
         .listStyle(.carousel)
         .navigationTitle("Scores")
+        
+        .onAppear(perform: {
+            loadGameData(url: gameURLSelected)
+            //getAvailableCalendars()
+        })
+        
+        .onChange(of: selection, perform: { value in
+            for (string, url) in scoresURLs {
+                if selection.contains(string) {
+                    gameURLSelected = url
+                }
+            }
+            loadGameData(url: gameURLSelected)
+        })
+        
         #endif
     }
 }
@@ -193,8 +225,6 @@ extension ScoresView {
 
 struct ScoresView_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(ColorScheme.allCases, id: \.self) {
-            ScoresView().preferredColorScheme($0)
-        }
+        ScoresView()
     }
 }
