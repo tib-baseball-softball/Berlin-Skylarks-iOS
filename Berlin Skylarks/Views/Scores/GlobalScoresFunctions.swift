@@ -129,6 +129,7 @@ func getAvailableCalendars() {
     
 }
 
+#if !os(watchOS)
 func addGameToCalendar(gameDate: Date, gamescore: GameScore, calendarString: String) {
     let eventStore = EKEventStore()
          
@@ -165,3 +166,4 @@ func addGameToCalendar(gameDate: Date, gamescore: GameScore, calendarString: Str
       }
     }
 }
+#endif

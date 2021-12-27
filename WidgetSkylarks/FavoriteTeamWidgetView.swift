@@ -12,7 +12,7 @@ struct FavoriteTeamWidgetView: View {
     
     @Environment(\.widgetFamily) var widgetFamily
     
-    var entry: Provider.Entry
+    var entry: FavoriteTeamProvider.Entry
     //var gamescore: GameScore
     
     var body: some View {
@@ -56,7 +56,7 @@ struct FavoriteTeamWidgetView_Previews: PreviewProvider {
 //                .environment(\.colorScheme, .dark)
             FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent()))
                 .previewContext(WidgetPreviewContext(family: .systemLarge))
-                .environment(\.colorScheme, .dark)
+                //.environment(\.colorScheme, .dark)
 //            FavoriteTeamWidgetView()
 //                .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
 //                .environment(\.colorScheme, .dark)

@@ -21,6 +21,7 @@ struct ScoresDetailView: View {
     var gamescore: GameScore
     
     var body: some View {
+        #if !os(watchOS)
         setCorrectLogo(gamescore: gamescore)
         gameDate = getDatefromBSMString(gamescore: gamescore)
         determineGameStatus(gamescore: gamescore)
@@ -284,6 +285,7 @@ struct ScoresDetailView: View {
                 }
             }
         }
+        
         .listStyle(.insetGrouped)
         .navigationTitle("Game Details")
         
@@ -345,9 +347,14 @@ struct ScoresDetailView: View {
 //                })
 //            }
         }
+        #endif
+        
+        #if os(watchOS)
+        Text("Detailed info here")
+        #endif
     }
-    
-    // this works, but is an absolute performance nightmare and leads to boatloads of errors in console
+    #if !os(watchOS)
+    //TODO: this works, but is an absolute performance nightmare and leads to boatloads of errors in console
     
     func ActionSheet() {
         let data = "League: "
@@ -361,10 +368,12 @@ struct ScoresDetailView: View {
         let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
     }
+    #endif
 }
 
 struct ScoresDetailView_Previews: PreviewProvider {
     static var previews: some View {
         ScoresDetailView(gamescore: dummyGameScores[47])
+            //.previewDevice(PreviewDevice(rawValue: "Apple Watch Series 6 - 44mm"))
     }
 }

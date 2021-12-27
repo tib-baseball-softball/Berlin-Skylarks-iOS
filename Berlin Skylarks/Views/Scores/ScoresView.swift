@@ -29,41 +29,38 @@ struct ScoresView: View {
     ]
     
     var body: some View {
-        //NavigationView {
-            ScrollView {
-                LazyVGrid(columns: columns, spacing: scoresGridSpacing) {
-                    ForEach(self.gamescores, id: \.id) { GameScore in
-                        NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
-                            ScoresOverView(gamescore: GameScore)
-                        }
-                        .foregroundColor(.primary)
+        #if !os(watchOS)
+        ScrollView {
+            LazyVGrid(columns: columns, spacing: scoresGridSpacing) {
+                ForEach(self.gamescores, id: \.id) { GameScore in
+                    NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
+                        ScoresOverView(gamescore: GameScore)
                     }
-                    if !gamescores.indices.contains(0) {
-                        Text("There are no Skylarks games scheduled for the chosen time frame.")
-                    }
+                    .foregroundColor(.primary)
                 }
-                .padding(scoresGridPadding)
+                if !gamescores.indices.contains(0) {
+                    Text("There are no Skylarks games scheduled for the chosen time frame.")
+                }
             }
-            
-            
-            .onAppear(perform: {
-                loadGameData(url: gameURLSelected)
-                getAvailableCalendars()
-            })
-            
-            //I need to get what "value" means here --> type is string, like selection. Code works anyway.
-            .onChange(of: selection, perform: { value in
-                for (string, url) in scoresURLs {
-                    if selection.contains(string) {
-                        gameURLSelected = url
-                    }
+            .padding(scoresGridPadding)
+        }
+        .onAppear(perform: {
+            loadGameData(url: gameURLSelected)
+            getAvailableCalendars()
+        })
+        
+        .onChange(of: selection, perform: { value in
+            for (string, url) in scoresURLs {
+                if selection.contains(string) {
+                    gameURLSelected = url
                 }
-                loadGameData(url: gameURLSelected)
-            })
-            
-            // this is the toolbar with the picker in the top right corner where you can select which games to display.
-            
-            .toolbar {
+            }
+            loadGameData(url: gameURLSelected)
+        })
+        
+        // this is the toolbar with the picker in the top right corner where you can select which games to display.
+    
+        .toolbar {
 //                ToolbarItem(placement: .principal) {
 //                    DatePicker(
 //                        "Game Date",
@@ -72,56 +69,56 @@ struct ScoresView: View {
 //                    )
 //                    .padding(40)
 //                }
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button(
-                        action: {
-                            showCalendarDialog.toggle()
-                            getAvailableCalendars()
-                        }
-                    ){
-                        Image(systemName: "calendar.badge.plus")
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button(
+                    action: {
+                        showCalendarDialog.toggle()
+                        getAvailableCalendars()
                     }
-                    .confirmationDialog("Choose a calendar to save the game(s)", isPresented: $showCalendarDialog, titleVisibility: .visible) {
-                        
-                        ForEach(calendarStrings, id: \.self) { calendarString in
-                            Button(calendarString) {
-                                for gamescore in gamescores {
-                                    gameDate = getDatefromBSMString(gamescore: gamescore)
-
-                                    if let localGameDate = gameDate {
-                                        addGameToCalendar(gameDate: localGameDate, gamescore: gamescore, calendarString: calendarString)
-                                        showEventAlert = true
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    .alert("All games have been saved", isPresented: $showEventAlert) {
-                        Button("OK") { }
-                    }
-                    .padding(.horizontal, 10)
-                    
-                    Picker(
-                        selection: $selection,
-                        //this actually does not show the label, just the selection
-                        label: HStack {
-                            Text("Show:")
-                            //Text(selection)
-                        },
-                        content: {
-                            ForEach(filterOptions, id: \.self) { option in
-                                HStack {
-                                    Image(systemName: "list.bullet.circle")
-                                    Text(" " + option)
-                                }
-                                .tag(option)
-                            }
-                            
-                    })
-                    .pickerStyle(.menu)
-                    .padding(.vertical, scoresGridPadding)
+                ){
+                    Image(systemName: "calendar.badge.plus")
                 }
-                //let's try to include refreshable here as well, the button is super ugly
+                .confirmationDialog("Choose a calendar to save the game(s)", isPresented: $showCalendarDialog, titleVisibility: .visible) {
+                    
+                    ForEach(calendarStrings, id: \.self) { calendarString in
+                        Button(calendarString) {
+                            for gamescore in gamescores {
+                                gameDate = getDatefromBSMString(gamescore: gamescore)
+
+                                if let localGameDate = gameDate {
+                                    addGameToCalendar(gameDate: localGameDate, gamescore: gamescore, calendarString: calendarString)
+                                    showEventAlert = true
+                                }
+                            }
+                        }
+                    }
+                }
+                .alert("All games have been saved", isPresented: $showEventAlert) {
+                    Button("OK") { }
+                }
+                .padding(.horizontal, 10)
+                
+                Picker(
+                    selection: $selection,
+                    //this actually does not show the label, just the selection
+                    label: HStack {
+                        Text("Show:")
+                        //Text(selection)
+                    },
+                    content: {
+                        ForEach(filterOptions, id: \.self) { option in
+                            HStack {
+                                Image(systemName: "list.bullet.circle")
+                                Text(" " + option)
+                            }
+                            .tag(option)
+                        }
+                        
+                })
+                .pickerStyle(.menu)
+                .padding(.vertical, scoresGridPadding)
+            }
+            //let's try to include refreshable here as well, the button is super ugly
 //                ToolbarItem(placement: .navigationBarTrailing) {
 //                    Button(action: {
 //                        print("trigger reload")
@@ -134,19 +131,44 @@ struct ScoresView: View {
 //                    }
 //
 //                }
+            
+            ToolbarItem(placement: .bottomBar) {
                 
-                ToolbarItem(placement: .bottomBar) {
-                    
-                }
             }
-            //this does not work yet
+        }
+        //this does not work yet
 //            .refreshable {
 //                loadGameData(url: gameURLSelected)
 //            }
-            //this one leads to the weird constraint errors in console. Will ignore this for now.
-            .navigationTitle("Scores")
-        //}
-        //.navigationViewStyle(.stack)
+        //this one leads to the weird constraint errors in console. Will ignore this for now.
+        .navigationTitle("Scores")
+        #endif
+        
+        #if os(watchOS)
+        List {
+            Picker(
+                selection: $selection ,
+                   
+                label: HStack {
+                    Image(systemName: "list.bullet.circle")
+                        .foregroundColor(.skylarksRed)
+                    Text(selection)
+                },
+            
+                content: {
+                    Text("Option 1")
+                    Text("Option 2")
+                    Text("Option 3")
+                }
+            )
+            NavigationLink(
+                destination: ScoresDetailView(gamescore: dummyGameScores[0])) {
+                    ScoresOverView(gamescore: dummyGameScores[0])
+                }
+        }
+        .listStyle(.carousel)
+        .navigationTitle("Scores")
+        #endif
     }
 }
 

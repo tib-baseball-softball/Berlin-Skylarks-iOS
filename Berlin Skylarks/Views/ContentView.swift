@@ -12,18 +12,21 @@ struct ContentView: View {
     
     //this stuff was in here from the start, no idea if it's important
     
-    @Environment(\.managedObjectContext) private var viewContext
-
-    @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-        animation: .default)
-    private var items: FetchedResults<Item>
+//    @Environment(\.managedObjectContext) private var viewContext
+//
+//    @FetchRequest(
+//        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+//        animation: .default)
+//    private var items: FetchedResults<Item>
 
     //main navigation view
     
     
     var body: some View {
         
+        //iPhone/iPad/Mac
+        
+        #if !os(watchOS)
         //the interface on iPhone uses a tab bar at the bottom
         
         if UIDevice.current.userInterfaceIdiom == .phone {
@@ -82,6 +85,49 @@ struct ContentView: View {
         if UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac {
             SidebarNavigationView()
         }
+        #endif
+        
+        //Apple Watch
+        #if os(watchOS)
+        NavigationView {
+            List {
+                HStack {
+                    Image(systemName: "star")
+                        .foregroundColor(Color.accentColor)
+                    Text("Favorite Team")
+                }
+                HStack {
+                    Image(systemName: "newspaper")
+                        .foregroundColor(Color.accentColor)
+                    Text("News")
+                }
+                NavigationLink(
+                    destination: ScoresView()) {
+                        HStack {
+                            Image(systemName: "42.square")
+                                .foregroundColor(Color.accentColor)
+                            Text("Scores")
+                        }
+                    }
+                HStack {
+                    Image(systemName: "tablecells")
+                        .foregroundColor(Color.accentColor)
+                    Text("Standings")
+                }
+                HStack {
+                    Image(systemName: "person.3")
+                        .foregroundColor(Color.accentColor)
+                    Text("Players")
+                }
+                HStack {
+                    Image(systemName: "gearshape")
+                        .foregroundColor(Color.accentColor)
+                    Text("Settings")
+                }
+            }
+            .navigationTitle("Home")
+        }
+        #endif
     }
 }
 
@@ -90,7 +136,9 @@ struct ContentView: View {
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            ContentView().padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
+            ContentView()
+                .previewDevice("Apple Watch Series 6 - 44mm")
+//                .padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
                 //.previewInterfaceOrientation(.landscapeLeft)
         }
     }

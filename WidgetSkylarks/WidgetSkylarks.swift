@@ -10,6 +10,9 @@ import SwiftUI
 import Intents
 
 struct FavoriteTeamProvider: IntentTimelineProvider {
+    
+    typealias Entry = FavoriteTeamEntry
+    
     func placeholder(in context: Context) -> FavoriteTeamEntry {
         FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent())
     }
