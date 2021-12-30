@@ -137,7 +137,6 @@ struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             ContentView()
-                .previewDevice("Apple Watch Series 6 - 44mm")
 //                .padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
                 //.previewInterfaceOrientation(.landscapeLeft)
         }

@@ -98,3 +98,16 @@ let teamTossball = SkylarksTeam(
                                             )
 
 let allSkylarksTeams = [ team1, team2, team3, team4, teamSoftball, teamJugend, teamSchueler, teamTossball ]
+
+enum SkylarksTeams {
+    case team1
+    case team2
+    case team3
+    case team4
+    case teamSoftball
+    case teamJunioren
+    case teamJugend
+    case teamSchueler
+    case teamTossball
+    case teamTeeball
+}

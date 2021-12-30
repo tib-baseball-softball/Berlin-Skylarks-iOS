@@ -13,8 +13,10 @@ struct StandingsView: View {
     
     @State private var leagueTableArray = [LeagueTable]()
     
+    @State var tablesLoaded = false
+    
     var body: some View {
-        //NavigationView {
+        ZStack {
             List {
                 Section(header: Text("Please select your league")) {
                     ForEach(leagueTableArray, id: \.self) { LeagueTable in
@@ -46,13 +48,14 @@ struct StandingsView: View {
             .listStyle(.insetGrouped)
             .navigationTitle("Standings")
             
-        //}
+        }
         
-        // I can either make this conditional or maybe clear the array below before adding the new values
+        // Fix on iPhone seems to work for now
         .onAppear(perform: {
-            if !leagueTableArray.indices.contains(0) {
+            if leagueTableArray == [] && tablesLoaded == false {
                 //leagueTableArray = []
                 loadAllTables()
+                tablesLoaded = true
             }
         })
     }

@@ -3,7 +3,121 @@
 <plist version="1.0">
 <dict>
 	<key>INEnums</key>
-	<array/>
+	<array>
+		<dict>
+			<key>INEnumDisplayName</key>
+			<string>Enum</string>
+			<key>INEnumDisplayNameID</key>
+			<string>spuNWJ</string>
+			<key>INEnumGeneratesHeader</key>
+			<true/>
+			<key>INEnumName</key>
+			<string>Enum</string>
+			<key>INEnumType</key>
+			<string>Regular</string>
+			<key>INEnumValues</key>
+			<array>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>unknown</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>anQMAj</string>
+					<key>INEnumValueName</key>
+					<string>unknown</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Team 1</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>Or0P24</string>
+					<key>INEnumValueIndex</key>
+					<integer>1</integer>
+					<key>INEnumValueName</key>
+					<string>team1</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Team 2</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>DXSQIm</string>
+					<key>INEnumValueIndex</key>
+					<integer>2</integer>
+					<key>INEnumValueName</key>
+					<string>team2</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Team 3</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>CmGNHB</string>
+					<key>INEnumValueIndex</key>
+					<integer>3</integer>
+					<key>INEnumValueName</key>
+					<string>team3</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Team 4</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>PgM6r5</string>
+					<key>INEnumValueIndex</key>
+					<integer>4</integer>
+					<key>INEnumValueName</key>
+					<string>team4</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Softball</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>x9hDNr</string>
+					<key>INEnumValueIndex</key>
+					<integer>5</integer>
+					<key>INEnumValueName</key>
+					<string>teamSoftball</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Jugend</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>js3yKa</string>
+					<key>INEnumValueIndex</key>
+					<integer>6</integer>
+					<key>INEnumValueName</key>
+					<string>teamJugend</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Schüler</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>Xkjj7u</string>
+					<key>INEnumValueIndex</key>
+					<integer>7</integer>
+					<key>INEnumValueName</key>
+					<string>teamSchueler</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Tossball</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>cId5Pi</string>
+					<key>INEnumValueIndex</key>
+					<integer>8</integer>
+					<key>INEnumValueName</key>
+					<string>teamTossball</string>
+				</dict>
+				<dict>
+					<key>INEnumValueDisplayName</key>
+					<string>Teeball</string>
+					<key>INEnumValueDisplayNameID</key>
+					<string>6m7Vln</string>
+					<key>INEnumValueIndex</key>
+					<integer>9</integer>
+					<key>INEnumValueName</key>
+					<string>teamTeeball</string>
+				</dict>
+			</array>
+		</dict>
+	</array>
 	<key>INIntentDefinitionModelVersion</key>
 	<string>1.2</string>
 	<key>INIntentDefinitionNamespace</key>
@@ -20,7 +134,7 @@
 			<key>INIntentCategory</key>
 			<string>information</string>
 			<key>INIntentDescription</key>
-			<string>Favorite Team</string>
+			<string>Select Team</string>
 			<key>INIntentDescriptionID</key>
 			<string>tVvJ9c</string>
 			<key>INIntentEligibleForWidgets</key>
@@ -28,7 +142,7 @@
 			<key>INIntentIneligibleForSuggestions</key>
 			<true/>
 			<key>INIntentLastParameterTag</key>
-			<integer>6</integer>
+			<integer>7</integer>
 			<key>INIntentName</key>
 			<string>FavoriteTeam</string>
 			<key>INIntentParameters</key>
@@ -37,22 +151,17 @@
 					<key>INIntentParameterConfigurable</key>
 					<true/>
 					<key>INIntentParameterDisplayName</key>
-					<string>Name</string>
+					<string>Team</string>
 					<key>INIntentParameterDisplayNameID</key>
 					<string>P8eyq7</string>
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
-					<key>INIntentParameterMetadata</key>
-					<dict>
-						<key>INIntentParameterMetadataCapitalization</key>
-						<string>Sentences</string>
-						<key>INIntentParameterMetadataDefaultValue</key>
-						<string>Team 1</string>
-						<key>INIntentParameterMetadataDefaultValueID</key>
-						<string>kN6BZG</string>
-					</dict>
+					<key>INIntentParameterEnumType</key>
+					<string>Enum</string>
+					<key>INIntentParameterEnumTypeNamespace</key>
+					<string>88xZPY</string>
 					<key>INIntentParameterName</key>
-					<string>name</string>
+					<string>team</string>
 					<key>INIntentParameterPromptDialogs</key>
 					<array>
 						<dict>
@@ -67,11 +176,31 @@
 							<key>INIntentParameterPromptDialogType</key>
 							<string>Primary</string>
 						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>There are ${count} options matching ‘${team}’.</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>rSh0za</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>DisambiguationIntroduction</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogFormatString</key>
+							<string>Just to confirm, you wanted ‘${team}’?</string>
+							<key>INIntentParameterPromptDialogFormatStringID</key>
+							<string>kbo5lG</string>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Confirmation</string>
+						</dict>
 					</array>
 					<key>INIntentParameterTag</key>
-					<integer>6</integer>
+					<integer>7</integer>
 					<key>INIntentParameterType</key>
-					<string>String</string>
+					<string>Integer</string>
 				</dict>
 			</array>
 			<key>INIntentResponse</key>
@@ -91,7 +220,7 @@
 				</array>
 			</dict>
 			<key>INIntentTitle</key>
-			<string>Favorite Team</string>
+			<string>Team Selection</string>
 			<key>INIntentTitleID</key>
 			<string>gpCwrM</string>
 			<key>INIntentType</key>
@@ -101,70 +230,6 @@
 		</dict>
 	</array>
 	<key>INTypes</key>
-	<array>
-		<dict>
-			<key>INTypeDisplayName</key>
-			<string>Type</string>
-			<key>INTypeDisplayNameID</key>
-			<string>LQc5Ix</string>
-			<key>INTypeLastPropertyTag</key>
-			<integer>100</integer>
-			<key>INTypeName</key>
-			<string>Type</string>
-			<key>INTypeProperties</key>
-			<array>
-				<dict>
-					<key>INTypePropertyDefault</key>
-					<true/>
-					<key>INTypePropertyDisplayPriority</key>
-					<integer>1</integer>
-					<key>INTypePropertyName</key>
-					<string>identifier</string>
-					<key>INTypePropertyTag</key>
-					<integer>1</integer>
-					<key>INTypePropertyType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INTypePropertyDefault</key>
-					<true/>
-					<key>INTypePropertyDisplayPriority</key>
-					<integer>2</integer>
-					<key>INTypePropertyName</key>
-					<string>displayString</string>
-					<key>INTypePropertyTag</key>
-					<integer>2</integer>
-					<key>INTypePropertyType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INTypePropertyDefault</key>
-					<true/>
-					<key>INTypePropertyDisplayPriority</key>
-					<integer>3</integer>
-					<key>INTypePropertyName</key>
-					<string>pronunciationHint</string>
-					<key>INTypePropertyTag</key>
-					<integer>3</integer>
-					<key>INTypePropertyType</key>
-					<string>String</string>
-				</dict>
-				<dict>
-					<key>INTypePropertyDefault</key>
-					<true/>
-					<key>INTypePropertyDisplayPriority</key>
-					<integer>4</integer>
-					<key>INTypePropertyName</key>
-					<string>alternativeSpeakableMatches</string>
-					<key>INTypePropertySupportsMultipleValues</key>
-					<true/>
-					<key>INTypePropertyTag</key>
-					<integer>4</integer>
-					<key>INTypePropertyType</key>
-					<string>SpeakableString</string>
-				</dict>
-			</array>
-		</dict>
-	</array>
+	<array/>
 </dict>
 </plist>

@@ -75,6 +75,10 @@
 		CA9B1815277A299700D24CFA /* ScoresDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA0472598BCB1002A0FAB /* ScoresDetailView.swift */; };
 		CA9B1816277A299D00D24CFA /* GlobalScoresFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C2271F62F800ADDE9D /* GlobalScoresFunctions.swift */; };
 		CA9B1817277A299F00D24CFA /* GlobalScoresFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C2271F62F800ADDE9D /* GlobalScoresFunctions.swift */; };
+		CAAB4021277B7C4800F45C7A /* BSM_Games_2020_human_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0DA052259A46FA002A0FAB /* BSM_Games_2020_human_readable.json */; };
+		CAAB4022277B7C4B00F45C7A /* VLBB_2021_Standings.json in Resources */ = {isa = PBXBuildFile; fileRef = CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */; };
+		CAAB4024277B7C5700F45C7A /* VLBB_2021_Standings.json in Resources */ = {isa = PBXBuildFile; fileRef = CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */; };
+		CAAB4025277B7C5B00F45C7A /* BSM_Games_2020_human_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0DA052259A46FA002A0FAB /* BSM_Games_2020_human_readable.json */; };
 		CAAB56C3271F62F800ADDE9D /* GlobalScoresFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C2271F62F800ADDE9D /* GlobalScoresFunctions.swift */; };
 		CAAB56C527208A9200ADDE9D /* UserHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C427208A9200ADDE9D /* UserHomeView.swift */; };
 		CABF7BEF259351D400B95813 /* Berlin_SkylarksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BEE259351D400B95813 /* Berlin_SkylarksApp.swift */; };
@@ -686,6 +690,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAAB4024277B7C5700F45C7A /* VLBB_2021_Standings.json in Resources */,
+				CAAB4025277B7C5B00F45C7A /* BSM_Games_2020_human_readable.json in Resources */,
 				CA1C39A72731856B00BB194C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -733,7 +739,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAAB4022277B7C4B00F45C7A /* VLBB_2021_Standings.json in Resources */,
 				CA48557B277383D5004ED11A /* Assets.xcassets in Resources */,
+				CAAB4021277B7C4800F45C7A /* BSM_Games_2020_human_readable.json in Resources */,
 				CAE1348B2771F2E100DFA745 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

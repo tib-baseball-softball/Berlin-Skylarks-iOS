@@ -12,8 +12,8 @@ struct FavoriteTeamWidgetView: View {
     
     @Environment(\.widgetFamily) var widgetFamily
     
-    var entry: FavoriteTeamProvider.Entry
-    //var gamescore: GameScore
+    //var entry: FavoriteTeamProvider.Entry
+    var gamescore: GameScore
     
     var body: some View {
         ZStack {
@@ -25,19 +25,19 @@ struct FavoriteTeamWidgetView: View {
                 //TODO: this is needed because of error in preview, real code below
                 //if widgetFamily == .systemMedium {
                 if widgetFamily == .systemLarge || widgetFamily == .systemExtraLarge {
-                    TeamWidgetOverView()
+                    TeamWidgetOverView(gamescore: gamescore)
                     Divider()
                         .padding(.horizontal)
                 }
                 
                 HStack(alignment: .top) {
                     
-                    TeamWidgetLastGameView()
+                    TeamWidgetLastGameView(gamescore: gamescore)
                     
                     if widgetFamily != .systemSmall {
                         Divider()
                             .padding(.vertical)
-                        TeamWidgetNextGameView()
+                        TeamWidgetNextGameView(gamescore: gamescore)
                     }
                 }
             }
@@ -54,7 +54,7 @@ struct FavoriteTeamWidgetView_Previews: PreviewProvider {
 //            FavoriteTeamWidgetView()
 //                .previewContext(WidgetPreviewContext(family: .systemMedium))
 //                .environment(\.colorScheme, .dark)
-            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent()))
+            FavoriteTeamWidgetView(gamescore: dummyGameScores[37])
                 .previewContext(WidgetPreviewContext(family: .systemLarge))
                 //.environment(\.colorScheme, .dark)
 //            FavoriteTeamWidgetView()
@@ -67,6 +67,9 @@ struct FavoriteTeamWidgetView_Previews: PreviewProvider {
 
 
 struct TeamWidgetLastGameView: View {
+    
+    var gamescore: GameScore
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .top) {
@@ -89,11 +92,11 @@ struct TeamWidgetLastGameView: View {
             
             VStack(alignment: .leading, spacing: 0.0) {
                 HStack {
-                    Image("Bird_whiteoutline")
+                    away_team_logo
                         .resizable()
                         .scaledToFit()
                         .frame(maxHeight: 35)
-                    Text("BEA")
+                    Text(gamescore.away_league_entry.team.short_name)
                     Spacer()
                     Text("12")
                         .font(.headline)
@@ -101,11 +104,11 @@ struct TeamWidgetLastGameView: View {
                 }
                 .padding(.vertical, 2)
                 HStack {
-                    Image("Sluggers_Logo")
+                    home_team_logo
                         .resizable()
                         .scaledToFit()
                         .frame(maxHeight: 35)
-                    Text("BES2")
+                    Text(gamescore.home_league_entry.team.short_name)
                     Spacer()
                     Text("11")
                         .font(.headline)
@@ -122,6 +125,9 @@ struct TeamWidgetLastGameView: View {
 }
 
 struct TeamWidgetNextGameView: View {
+    
+    var gamescore: GameScore
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .bottom) {
@@ -173,6 +179,9 @@ struct TeamWidgetNextGameView: View {
 }
 
 struct TeamWidgetOverView: View {
+    
+    var gamescore: GameScore
+    
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .bottom) {

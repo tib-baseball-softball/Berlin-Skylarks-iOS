@@ -126,7 +126,27 @@ func getAvailableCalendars() {
           print("Access not granted")
       }
     }
-    
+}
+
+//-------------------------load Scores---------------------------------//
+
+//MARK: first try to get this functionality reusable
+
+func loadGameScoreData(url: URL) -> [GameScore] {
+    var gamescores = [GameScore]()
+        let request = URLRequest(url: url)
+        URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            if let data = data {
+                if let response_obj = try? JSONDecoder().decode([GameScore].self, from: data) {
+                    
+                    DispatchQueue.main.async {
+                        gamescores = response_obj
+                    }
+                }
+            }
+        }.resume()
+    return gamescores
 }
 
 #if !os(watchOS)

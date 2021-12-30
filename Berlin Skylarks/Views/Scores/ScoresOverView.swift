@@ -132,46 +132,46 @@ struct ScoresOverView: View {
         gameDate = getDatefromBSMString(gamescore: gamescore)
         determineGameStatus(gamescore: gamescore)
         return
-        VStack {
             VStack {
-                Text(gamescore.league.name)
-                    .font(.caption2)
-                Divider()
-                    .padding(.horizontal)
-                HStack {
-                    away_team_logo
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 30, alignment: .center)
-                    Text(gamescore.away_league_entry.team.short_name)
-                        .font(.caption)
-                        .padding(.leading)
-                    Spacer()
-                    if let awayScore = gamescore.away_runs {
-                        Text(String(awayScore))
-                            .font(.title3)
-                            .bold()
-                            .frame(maxWidth: 40, alignment: .center)
+                VStack {
+                    Text(gamescore.league.name)
+                        .font(.caption2)
+                    Divider()
+                        .padding(.horizontal)
+                    HStack {
+                        away_team_logo
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: 30, alignment: .center)
+                        Text(gamescore.away_league_entry.team.short_name)
+                            .font(.caption)
+                            .padding(.leading)
+                        Spacer()
+                        if let awayScore = gamescore.away_runs {
+                            Text(String(awayScore))
+                                .font(.title3)
+                                .bold()
+                                .frame(maxWidth: 40, alignment: .center)
+                        }
                     }
-                }
-                HStack {
-                    home_team_logo
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 30, alignment: .center)
-                    Text(gamescore.home_league_entry.team.short_name)
-                        .font(.caption)
-                        .padding(.leading)
-                    Spacer()
-                    if let homeScore = gamescore.home_runs {
-                        Text(String(homeScore))
-                            .font(.title3)
-                            .bold()
-                            .frame(maxWidth: 40, alignment: .center)
+                    HStack {
+                        home_team_logo
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: 30, alignment: .center)
+                        Text(gamescore.home_league_entry.team.short_name)
+                            .font(.caption)
+                            .padding(.leading)
+                        Spacer()
+                        if let homeScore = gamescore.home_runs {
+                            Text(String(homeScore))
+                                .font(.title3)
+                                .bold()
+                                .frame(maxWidth: 40, alignment: .center)
+                        }
                     }
                 }
             }
-        }
         #endif
     }
 }
