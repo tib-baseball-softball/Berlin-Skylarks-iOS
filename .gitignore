@@ -1,2 +1,9 @@
+# no Spotlight indexing
 .DS_Store
-/Users/davidbattefeld/Xcode Projekte/Berlin-Skylarks/Berlin Skylarks/Global/API_Key.swift
+
+# no API keys
+API_Key.swift
+
+.xcuserstate
+
+.xcsettings

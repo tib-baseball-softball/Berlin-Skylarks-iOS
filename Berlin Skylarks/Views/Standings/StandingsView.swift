@@ -16,28 +16,27 @@ struct StandingsView: View {
     @State var tablesLoaded = false
     
     var body: some View {
-        ZStack {
-            List {
-                Section(header: Text("Please select your league")) {
-                    ForEach(leagueTableArray, id: \.self) { LeagueTable in
-                        
-                        //beware hacky stuff
-                        
-                        NavigationLink(
-                            destination: StandingsTableView(leagueTable: LeagueTable),
-                            label: {
-                                HStack {
-                                    Image(systemName: "tablecells")
-                                        .padding(.trailing, 3)
-                                        .foregroundColor(Color.accentColor)
-                                    Text(LeagueTable.league_name)
-                                }
-                            })
-                    }
-                    .padding(StandingsRowPadding)
+        List {
+            Section(header: Text("Please select your league")) {
+                ForEach(leagueTableArray, id: \.self) { LeagueTable in
+                    
+                    //beware hacky stuff
+                    
+                    NavigationLink(
+                        destination: StandingsTableView(leagueTable: LeagueTable),
+                        label: {
+                            HStack {
+                                Image(systemName: "tablecells")
+                                    .padding(.trailing, 3)
+                                    .foregroundColor(Color.accentColor)
+                                Text(LeagueTable.league_name)
+                            }
+                        })
                 }
-                
+                .padding(StandingsRowPadding)
             }
+            
+        }
         //this doesn't work - still crashes
         #if !os(macOS)
             .refreshable {
@@ -45,15 +44,13 @@ struct StandingsView: View {
                 loadAllTables()
             }
         #endif
-            .listStyle(.insetGrouped)
-            .navigationTitle("Standings")
-            
-        }
+        .listStyle(.insetGrouped)
+        .navigationTitle("Standings")
         
-        // Fix on iPhone seems to work for now
+        //MARK: Fix on iPhone seems to work for now even without a container view, please double-check in practice!
+        
         .onAppear(perform: {
             if leagueTableArray == [] && tablesLoaded == false {
-                //leagueTableArray = []
                 loadAllTables()
                 tablesLoaded = true
             }
