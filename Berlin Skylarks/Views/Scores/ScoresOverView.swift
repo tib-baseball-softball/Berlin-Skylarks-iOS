@@ -21,92 +21,93 @@ struct ScoresOverView: View {
             VStack(spacing: ScoresItemSpacing) {
                 VStack {
                     Text(gamescore.league.name)
-                        .font(.title2)
+                        .font(.title3)
                         .bold()
-                    Divider()
-                        .frame(width: 180)
                     HStack {
-                        Image(systemName: "calendar")
-                        Text(gameDate!, style: .date)
-                        Divider()
-                            .frame(height: 30)
-                        Image(systemName: "clock.fill")
-                        Text(gameDate!, style: .time)
-                    }.padding(ScoresItemPadding)
-                    Divider()
-                        .frame(width: 180)
-                    if gamescore.human_state.contains("geplant") {
-                        Text("TBD")
-                            .font(.title)
-                            .bold()
-                    }
-                    if gamescore.human_state.contains("ausgefallen") {
-                        Text("PPD")
-                            .font(.title)
-                            .bold()
-                    }
-                    if gamescore.human_state.contains("gespielt") {
-                        if !isDerby {
-                            if skylarksWin {
-                                Text("W")
-                                    .font(.title)
-                                    .bold()
-                                    .foregroundColor(Color.green)
-                            } else {
-                                Text("L")
-                                    .font(.title)
-                                    .bold()
-                                    .foregroundColor(Color.accentColor)
+                        VStack(alignment: .leading, spacing: 7) {
+                            HStack {
+                                Image(systemName: "calendar")
+                                Text(gameDate!, style: .date)
                             }
-                        } else {
-                            VStack {
-                                Image(systemName: "heart.fill")
-                                    .font(.title)
-                                    .foregroundColor(Color.accentColor)
-                                Text("Derby - Skylarks win either way")
-                                    .padding(ScoresItemPadding)
+                            HStack {
+                                Image(systemName: "clock.fill")
+                                Text(gameDate!, style: .time)
                             }
                         }
+                        .padding()
+                        Spacer()
+                        Divider()
+                            .frame(height: 40)
+                        Spacer()
+                        if gamescore.human_state.contains("geplant") {
+                            Text("TBD")
+                                .font(.title)
+                                .bold()
+                        }
+                        if gamescore.human_state.contains("ausgefallen") {
+                            Text("PPD")
+                                .font(.title)
+                                .bold()
+                        }
+                        if gamescore.human_state.contains("gespielt") {
+                            if !isDerby {
+                                if skylarksWin {
+                                    Text("W")
+                                        .font(.title)
+                                        .bold()
+                                        .foregroundColor(Color.green)
+                                        .padding()
+                                } else {
+                                    Text("L")
+                                        .font(.title)
+                                        .bold()
+                                        .foregroundColor(Color.accentColor)
+                                        .padding()
+                                }
+                            } else {
+                                VStack {
+                                    Image(systemName: "heart.fill")
+                                        .font(.title)
+                                        .foregroundColor(Color.accentColor)
+                                    Text("Derby - Skylarks win either way")
+                                        .padding()
+                                }
+                            }
+                        }
+                        Spacer()
                     }
+                    
                 }
                 HStack {
-                    VStack {
-                        Text("Guest")
-                            .font(.title3)
-                            .bold()
+                    HStack {
                         away_team_logo
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50, height: 50, alignment: .center)
                         Text(gamescore.away_team_name)
-                            .frame(width: teamNameFrame)
-                            .lineLimit(nil)
+                            .padding(.leading)
                     }
                     Spacer()
                     if let awayScore = gamescore.away_runs {
                         Text(String(awayScore))
                             .font(.largeTitle)
                             .bold()
-                            .padding(ScoresNumberPadding)
+                            .padding(.horizontal)
                             .foregroundColor(gamescore.away_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
                     }
                     
                 }
-                .padding(ScoresItemPadding)
+                .padding()
                 .background(ScoresSubItemBackground)
                 .cornerRadius(NewsItemCornerRadius)
                 HStack {
-                    VStack {
-                        Text("Home")
-                            .font(.title3)
-                            .bold()
+                    HStack {
                         home_team_logo
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50, height: 50, alignment: .center)
                         Text(gamescore.home_team_name)
-                            .frame(width: teamNameFrame)
-                            .lineLimit(nil)
+                            .padding(.leading)
                     }
                     Spacer()
                     
@@ -114,15 +115,15 @@ struct ScoresOverView: View {
                         Text(String(homeScore))
                             .font(.largeTitle)
                             .bold()
-                            .padding(ScoresNumberPadding)
+                            .padding(.horizontal)
                             .foregroundColor(gamescore.home_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
                     }
                 }
-                .padding(ScoresItemPadding)
+                .padding()
                 .background(ScoresSubItemBackground)
                 .cornerRadius(NewsItemCornerRadius)
         }
-        .padding(ScoresItemPadding)
+        .padding()
         .background(.regularMaterial) //switch on or off depending on whether I use List or Grid
         .cornerRadius(NewsItemCornerRadius)
         #endif
@@ -183,7 +184,7 @@ struct ScoresOverView_Previews: PreviewProvider {
             ScoresOverView(gamescore: dummyGameScores[7])
                 .preferredColorScheme(.dark)
         }
-        .background(Color.backgroundGrayPreview)
+        //.background(Color.backgroundGrayPreview)
         .cornerRadius(8)
     }
 }

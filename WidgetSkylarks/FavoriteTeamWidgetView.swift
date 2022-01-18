@@ -56,7 +56,7 @@ struct FavoriteTeamWidgetView_Previews: PreviewProvider {
 //                .environment(\.colorScheme, .dark)
             FavoriteTeamWidgetView(gamescore: dummyGameScores[37])
                 .previewContext(WidgetPreviewContext(family: .systemLarge))
-                //.environment(\.colorScheme, .dark)
+                .environment(\.colorScheme, .dark)
 //            FavoriteTeamWidgetView()
 //                .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
 //                .environment(\.colorScheme, .dark)

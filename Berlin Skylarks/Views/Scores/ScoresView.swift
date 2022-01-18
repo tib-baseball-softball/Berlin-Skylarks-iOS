@@ -226,5 +226,6 @@ extension ScoresView {
 struct ScoresView_Previews: PreviewProvider {
     static var previews: some View {
         ScoresView()
+            .preferredColorScheme(.dark)
     }
 }
