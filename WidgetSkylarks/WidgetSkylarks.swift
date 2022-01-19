@@ -15,9 +15,6 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
     
     func team(for configuration: FavoriteTeamIntent) -> SkylarksTeam {
         switch configuration.team {
-            
-        case .unknown:
-            return team1
         case .team1:
             return team1
         case .team2:
@@ -37,16 +34,18 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
             //TODO: add team!
         case .teamTeeball:
             return teamTossball
+        default:
+            return team1
         }
     }
     
     func placeholder(in context: Context) -> FavoriteTeamEntry {
-        FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: team1, lastGame: dummyGameScores[0])
+        FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: team1, lastGame: testGame)
     }
 
     func getSnapshot(for configuration: FavoriteTeamIntent, in context: Context, completion: @escaping (FavoriteTeamEntry) -> ()) {
         //TODO: check what this method does
-        let entry = FavoriteTeamEntry(date: Date(), configuration: configuration, team: team1, lastGame: dummyGameScores[0])
+        let entry = FavoriteTeamEntry(date: Date(), configuration: configuration, team: team1, lastGame: testGame)
         completion(entry)
     }
 
@@ -59,9 +58,9 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
         
         var entries: [FavoriteTeamEntry] = []
 
-        // Generate a timeline consisting of five entries an hour apart, starting from the current date.
+        // Generate a timeline consisting of two entries an hour apart, starting from the current date. WAS FIVE!
         let currentDate = Date()
-        for hourOffset in 0 ..< 5 {
+        for hourOffset in 0 ..< 1 {
             let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
             let entry = FavoriteTeamEntry(date: entryDate, configuration: configuration, team: selectedTeam, lastGame: gamescore)
             entries.append(entry)
@@ -71,16 +70,12 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
         completion(timeline)
     }
     
-    //TODO: Temporary function!
-    //memory limit of 30 MB
-    
     func getNextGame(gamescores: [GameScore]) -> GameScore {
         if gamescores != [] {
             return gamescores[0]
         }
         else {
-            print("gamescores array is empty at this point, returning test data") //this gets printed, so we reach this line
-            return dummyGameScores[1]
+            return testGame
         }
     }
 }
@@ -96,7 +91,7 @@ struct WidgetSkylarksEntryView : View {
     var entry: FavoriteTeamProvider.Entry
 
     var body: some View {
-        FavoriteTeamWidgetView(gamescore: entry.lastGame)
+        FavoriteTeamWidgetView(entry: entry)
     }
 }
 

@@ -12,8 +12,7 @@ struct FavoriteTeamWidgetView: View {
     
     @Environment(\.widgetFamily) var widgetFamily
     
-    //var entry: FavoriteTeamProvider.Entry
-    var gamescore: GameScore
+    var entry: FavoriteTeamProvider.Entry
     
     var body: some View {
         ZStack {
@@ -22,22 +21,25 @@ struct FavoriteTeamWidgetView: View {
             //Color.skylarksBlue
             VStack {
                 
-                //TODO: this is needed because of error in preview, real code below
+                //MARK: this is needed because of error in preview, real code below
                 //if widgetFamily == .systemMedium {
                 if widgetFamily == .systemLarge || widgetFamily == .systemExtraLarge {
-                    TeamWidgetOverView(gamescore: gamescore)
+                    
+                    //TODO: this needs a parameter to account for the team later
+                    
+                    TeamWidgetOverView(entry: entry)
                     Divider()
                         .padding(.horizontal)
                 }
                 
                 HStack(alignment: .top) {
                     
-                    TeamWidgetLastGameView(gamescore: gamescore)
+                    TeamWidgetLastGameView(entry: entry)
                     
                     if widgetFamily != .systemSmall {
                         Divider()
                             .padding(.vertical)
-                        TeamWidgetNextGameView(gamescore: gamescore)
+                        TeamWidgetNextGameView(entry: entry) //MARK: this is obviously WIP
                     }
                 }
             }
@@ -54,9 +56,9 @@ struct FavoriteTeamWidgetView_Previews: PreviewProvider {
 //            FavoriteTeamWidgetView()
 //                .previewContext(WidgetPreviewContext(family: .systemMedium))
 //                .environment(\.colorScheme, .dark)
-            FavoriteTeamWidgetView(gamescore: dummyGameScores[37])
-                .previewContext(WidgetPreviewContext(family: .systemLarge))
-                .environment(\.colorScheme, .dark)
+//            FavoriteTeamWidgetView(entry: )
+//                .previewContext(WidgetPreviewContext(family: .systemLarge))
+//                .environment(\.colorScheme, .dark)
 //            FavoriteTeamWidgetView()
 //                .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
 //                .environment(\.colorScheme, .dark)
@@ -68,13 +70,13 @@ struct FavoriteTeamWidgetView_Previews: PreviewProvider {
 
 struct TeamWidgetLastGameView: View {
     
-    var gamescore: GameScore
+    var entry: FavoriteTeamProvider.Entry
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 0.5) {
-                    Text("Team 1")
+                    Text(entry.team.name)
                         .bold()
                         .foregroundColor(Color.skylarksRed)
                     Text("Latest Score")
@@ -96,7 +98,7 @@ struct TeamWidgetLastGameView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(maxHeight: 35)
-                    Text(gamescore.away_league_entry.team.short_name)
+                    Text(entry.lastGame.away_league_entry.team.short_name)
                     Spacer()
                     Text("12")
                         .font(.headline)
@@ -108,7 +110,7 @@ struct TeamWidgetLastGameView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(maxHeight: 35)
-                    Text(gamescore.home_league_entry.team.short_name)
+                    Text(entry.lastGame.home_league_entry.team.short_name)
                     Spacer()
                     Text("11")
                         .font(.headline)
@@ -126,13 +128,13 @@ struct TeamWidgetLastGameView: View {
 
 struct TeamWidgetNextGameView: View {
     
-    var gamescore: GameScore
+    var entry: FavoriteTeamProvider.Entry
     
     var body: some View {
         VStack(alignment: .leading) {
             HStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: 0.5) {
-                    Text("Team 1")
+                    Text(entry.team.name)
                         .bold()
                         .foregroundColor(Color.skylarksRed)
                     Text("Next Game")
@@ -180,7 +182,7 @@ struct TeamWidgetNextGameView: View {
 
 struct TeamWidgetOverView: View {
     
-    var gamescore: GameScore
+    var entry: FavoriteTeamProvider.Entry
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -193,7 +195,7 @@ struct TeamWidgetOverView: View {
                     HStack {
                         Image(systemName: "star.fill")
                             .foregroundColor(.skylarksRed)
-                        Text("Team 1")
+                        Text(entry.team.name)
                             .bold()
                         .foregroundColor(Color.skylarksRed)
                     }
@@ -209,7 +211,7 @@ struct TeamWidgetOverView: View {
                         Image(systemName: "tablecells")
                             .foregroundColor(.skylarksRed)
                             .frame(maxWidth: 20)
-                        Text("Verbandsliga")
+                        Text(entry.team.leagueName)
                     }
                     HStack {
                         Image(systemName: "calendar.badge.clock")
