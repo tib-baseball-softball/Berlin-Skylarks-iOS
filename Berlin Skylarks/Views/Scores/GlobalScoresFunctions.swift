@@ -68,18 +68,41 @@ func determineGameStatus(gamescore: GameScore) {
     }
 }
 
+//TODO: this is the old func with global variables, gradually replace with func below that works with locals!
+
 func setCorrectLogo(gamescore: GameScore) {
     for (name, image) in teamLogos {
         if gamescore.away_team_name.contains(name) {
-            away_team_logo = image //teamLogos[name]
+            away_team_logo = image
         }
     }
     
     for (name, image) in teamLogos {
         if gamescore.home_team_name.contains(name) {
-            home_team_logo = image //teamLogos[name]
+            home_team_logo = image
         }
     }
+}
+
+//NEW
+
+func fetchCorrectLogos(gamescore: GameScore) -> (road: Image, home: Image) {
+    
+    var road = away_team_logo
+    var home = home_team_logo
+    
+    for (name, image) in teamLogos {
+        if gamescore.away_team_name.contains(name) {
+            road = image
+        }
+    }
+    
+    for (name, image) in teamLogos {
+        if gamescore.home_team_name.contains(name) {
+            home = image
+        }
+    }
+    return (road, home)
 }
 
 func getDatefromBSMString(gamescore: GameScore) -> Date {

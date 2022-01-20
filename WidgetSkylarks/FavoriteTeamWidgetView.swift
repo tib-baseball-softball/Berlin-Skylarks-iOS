@@ -94,10 +94,10 @@ struct TeamWidgetLastGameView: View {
             
             VStack(alignment: .leading, spacing: 0.0) {
                 HStack {
-                    away_team_logo
+                    entry.lastGameRoadLogo
                         .resizable()
                         .scaledToFit()
-                        .frame(maxHeight: 35)
+                        .frame(maxWidth: 35, maxHeight: 35)
                     Text(entry.lastGame.away_league_entry.team.short_name)
                     Spacer()
                     if let awayScore = entry.lastGame.away_runs {
@@ -109,10 +109,10 @@ struct TeamWidgetLastGameView: View {
                 }
                 .padding(.vertical, 2)
                 HStack {
-                    home_team_logo
+                    entry.lastGameHomeLogo
                         .resizable()
                         .scaledToFit()
-                        .frame(maxHeight: 35)
+                        .frame(maxWidth: 35, maxHeight: 35)
                     Text(entry.lastGame.home_league_entry.team.short_name)
                     Spacer()
                     if let homeScore = entry.lastGame.home_runs {

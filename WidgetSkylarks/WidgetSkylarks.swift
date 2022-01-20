@@ -40,24 +40,26 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
     }
     
     func placeholder(in context: Context) -> FavoriteTeamEntry {
-        FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: team1, lastGame: testGame)
+        FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: team1, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo)
     }
 
     func getSnapshot(for configuration: FavoriteTeamIntent, in context: Context, completion: @escaping (FavoriteTeamEntry) -> ()) {
         //TODO: check what this method does
-        let entry = FavoriteTeamEntry(date: Date(), configuration: configuration, team: team1, lastGame: testGame)
+        let entry = FavoriteTeamEntry(date: Date(), configuration: configuration, team: team1, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo)
         completion(entry)
     }
 
     func getTimeline(for configuration: FavoriteTeamIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         
         let selectedTeam = team(for: configuration)
-        var gamescore = testGame //I should really experiment with an empty init at some point in the future
+        //var gamescore = testGame //I should really experiment with an empty init at some point in the future
         
         loadGameScoreData(url: selectedTeam.scoresURL) { gamescores in
-            gamescore = getLastGame(gamescores: gamescores)
+            let gamescore = getLastGame(gamescores: gamescores)
             
-            setCorrectLogo(gamescore: gamescore)
+            let logos = fetchCorrectLogos(gamescore: gamescore)
+            let lastGameRoadLogo = logos.road
+            let lastGameHomeLogo = logos.home
             
             var entries: [FavoriteTeamEntry] = []
 
@@ -65,7 +67,7 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
             let currentDate = Date()
             for hourOffset in 0 ..< 1 {
                 let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-                let entry = FavoriteTeamEntry(date: entryDate, configuration: configuration, team: selectedTeam, lastGame: gamescore)
+                let entry = FavoriteTeamEntry(date: entryDate, configuration: configuration, team: selectedTeam, lastGame: gamescore, lastGameRoadLogo: lastGameRoadLogo, lastGameHomeLogo: lastGameHomeLogo)
                 entries.append(entry)
             }
 
@@ -89,6 +91,8 @@ struct FavoriteTeamEntry: TimelineEntry {
     let configuration: FavoriteTeamIntent
     let team: SkylarksTeam
     let lastGame: GameScore
+    let lastGameRoadLogo: Image
+    let lastGameHomeLogo: Image
 }
 
 struct WidgetSkylarksEntryView : View {
