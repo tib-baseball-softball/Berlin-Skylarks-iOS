@@ -53,9 +53,9 @@ struct FavoriteTeamWidgetView_Previews: PreviewProvider {
 //            FavoriteTeamWidgetView()
 //                .previewContext(WidgetPreviewContext(family: .systemSmall))
 //                .environment(\.colorScheme, .dark)
-//            FavoriteTeamWidgetView()
-//                .previewContext(WidgetPreviewContext(family: .systemMedium))
-//                .environment(\.colorScheme, .dark)
+            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: team1, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false))
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+                .environment(\.colorScheme, .dark)
 //            FavoriteTeamWidgetView(entry: )
 //                .previewContext(WidgetPreviewContext(family: .systemLarge))
 //                .environment(\.colorScheme, .dark)
@@ -84,27 +84,29 @@ struct TeamWidgetLastGameView: View {
                         .foregroundColor(.secondary)
                 }
                 Spacer()
-                Text("W")
-                    .foregroundColor(.green)
-                    .bold()
+                Image(systemName: "star.fill")
+                    .foregroundColor(.skylarksSand)
+                    .font(.caption)
+                    .offset(y: 2)
             }
             .font(Font.callout.smallCaps())
             
             Divider()
             
+            if let lastGame = entry.lastGame {
             VStack(alignment: .leading, spacing: 0.0) {
                 HStack {
                     entry.lastGameRoadLogo
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 35, maxHeight: 35)
-                    Text(entry.lastGame.away_league_entry.team.short_name)
+                    Text(lastGame.away_league_entry.team.short_name)
                     Spacer()
-                    if let awayScore = entry.lastGame.away_runs {
+                    if let awayScore = lastGame.away_runs {
                         Text(String(awayScore))
                             .font(.headline)
                             .bold()
-                            .foregroundColor(entry.lastGame.away_team_name.contains("Skylarks") ? Color.skylarksRed : Color.primary)
+                            .foregroundColor(lastGame.away_team_name.contains("Skylarks") ? Color.skylarksRed : Color.primary)
                     }
                 }
                 .padding(.vertical, 2)
@@ -113,13 +115,13 @@ struct TeamWidgetLastGameView: View {
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 35, maxHeight: 35)
-                    Text(entry.lastGame.home_league_entry.team.short_name)
+                    Text(lastGame.home_league_entry.team.short_name)
                     Spacer()
-                    if let homeScore = entry.lastGame.home_runs {
+                    if let homeScore = lastGame.home_runs {
                         Text(String(homeScore))
                             .font(.headline)
                             .bold()
-                            .foregroundColor(entry.lastGame.home_team_name.contains("Skylarks") ? Color.skylarksRed : Color.primary)
+                            .foregroundColor(lastGame.home_team_name.contains("Skylarks") ? Color.skylarksRed : Color.primary)
                     }
                 }
                 .padding(.vertical,2)
@@ -127,7 +129,12 @@ struct TeamWidgetLastGameView: View {
             .background(ContainerRelativeShape().fill(Color(UIColor.systemBackground)))
             //.border(Color.skylarksSand)
             //Divider()
-        }.font(.subheadline)
+            } else {
+                Text("There is no last game to display.")
+                    .font(.subheadline)
+            }
+        }
+        .font(.subheadline)
         .padding()
     }
 }
@@ -150,7 +157,9 @@ struct TeamWidgetNextGameView: View {
                 Spacer()
                 VStack(spacing: 2) {
                     Image(systemName: "clock")
-                    Text("12:00")
+                    if let gameTime = entry.nextGame?.gameDate {
+                        Text(gameTime, style: .time)
+                    }
                 }
                 .font(.footnote)
             }
@@ -159,13 +168,19 @@ struct TeamWidgetNextGameView: View {
             
             Divider()
             
+            if let nextGame = entry.nextGame {
             VStack(alignment: .leading, spacing: 10.0) {
                 HStack {
-                    Image("Berlin_Flamingos_Logo_3D")
+                    entry.nextGameOpponentLogo
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 35)
-                    Text("FLA")
+                    if entry.skylarksAreRoadTeam == true {
+                        Text(nextGame.home_team_name)
+                    }
+                    if entry.skylarksAreRoadTeam == false {
+                        Text(nextGame.away_team_name)
+                    }
                     Spacer()
                 }
                 .padding(.top, 5.0)
@@ -173,14 +188,21 @@ struct TeamWidgetNextGameView: View {
                     Image(systemName: "calendar")
                         .frame(maxWidth: 35)
                         .font(.callout)
-                    Text("02.10.2021")
+                    if let gameDate = nextGame.gameDate {
+                        Text(gameDate, style: .date)
+                    }
                 }
             }
             .padding(.vertical,2)
             .font(.subheadline)
             .background(ContainerRelativeShape().fill(Color(UIColor.systemBackground)))
-        }.font(.subheadline)
-            .padding()
+            } else {
+                Text("There is no next game to display.")
+                    .font(.subheadline)
+            }
+        }
+        .font(.subheadline)
+        .padding()
     }
 }
 

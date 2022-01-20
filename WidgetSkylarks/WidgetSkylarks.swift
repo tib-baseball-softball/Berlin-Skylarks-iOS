@@ -40,12 +40,12 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
     }
     
     func placeholder(in context: Context) -> FavoriteTeamEntry {
-        FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: team1, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo)
+        FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: team1, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false)
     }
 
     func getSnapshot(for configuration: FavoriteTeamIntent, in context: Context, completion: @escaping (FavoriteTeamEntry) -> ()) {
         //TODO: check what this method does
-        let entry = FavoriteTeamEntry(date: Date(), configuration: configuration, team: team1, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo)
+        let entry = FavoriteTeamEntry(date: Date(), configuration: configuration, team: team1, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false)
         completion(entry)
     }
 
@@ -55,19 +55,45 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
         //var gamescore = testGame //I should really experiment with an empty init at some point in the future
         
         loadGameScoreData(url: selectedTeam.scoresURL) { gamescores in
-            let gamescore = getLastGame(gamescores: gamescores)
+            let displayGames = processGameDates(gamescores: gamescores)
             
-            let logos = fetchCorrectLogos(gamescore: gamescore)
-            let lastGameRoadLogo = logos.road
-            let lastGameHomeLogo = logos.home
+            var lastGameRoadLogo = away_team_logo
+            var lastGameHomeLogo = home_team_logo
+            
+            var nextGameRoadLogo = away_team_logo
+            var nextGameHomeLogo = home_team_logo
+            
+            var nextGameOpponentLogo = away_team_logo
+            
+            var skylarksAreRoadTeam = false
+            
+            if let lastGame = displayGames.last {
+                let logos = fetchCorrectLogos(gamescore: lastGame)
+                lastGameRoadLogo = logos.road
+                lastGameHomeLogo = logos.home
+            }
+            
+            if let nextGame = displayGames.next {
+                let logos = fetchCorrectLogos(gamescore: nextGame)
+                nextGameRoadLogo = logos.road
+                nextGameHomeLogo = logos.home
+                
+                if nextGame.away_team_name.contains("Skylarks") && !nextGame.home_team_name.contains("Skylarks") {
+                    nextGameOpponentLogo = nextGameHomeLogo
+                    skylarksAreRoadTeam = true
+                } else if !nextGame.away_team_name.contains("Skylarks") && nextGame.home_team_name.contains("Skylarks") {
+                    skylarksAreRoadTeam = false
+                    nextGameOpponentLogo = nextGameRoadLogo
+                }
+            }
             
             var entries: [FavoriteTeamEntry] = []
 
-            // Generate a timeline consisting of two entries an hour apart, starting from the current date. WAS FIVE!
+            // Generate a timeline consisting of 3 entries an hour apart, starting from the current date. WAS FIVE!
             let currentDate = Date()
-            for hourOffset in 0 ..< 1 {
+            for hourOffset in 0 ..< 2 {
                 let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-                let entry = FavoriteTeamEntry(date: entryDate, configuration: configuration, team: selectedTeam, lastGame: gamescore, lastGameRoadLogo: lastGameRoadLogo, lastGameHomeLogo: lastGameHomeLogo)
+                let entry = FavoriteTeamEntry(date: entryDate, configuration: configuration, team: selectedTeam, lastGame: displayGames.last, lastGameRoadLogo: lastGameRoadLogo, lastGameHomeLogo: lastGameHomeLogo, nextGame: displayGames.next, nextGameOpponentLogo: nextGameOpponentLogo, skylarksAreRoadTeam: skylarksAreRoadTeam)
                 entries.append(entry)
             }
 
@@ -76,23 +102,26 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
         }
     }
     
-    func getLastGame(gamescores: [GameScore]) -> GameScore {
-        if gamescores != [] {
-            return gamescores[0]
-        }
-        else {
-            return testGame
-        }
-    }
+//    func getLastGame(gamescores: [GameScore]) -> GameScore {
+//        if gamescores != [] {
+//            return gamescores[0]
+//        }
+//        else {
+//            return testGame
+//        }
+//    }
 }
 
 struct FavoriteTeamEntry: TimelineEntry {
     let date: Date
     let configuration: FavoriteTeamIntent
     let team: SkylarksTeam
-    let lastGame: GameScore
+    let lastGame: GameScore?
     let lastGameRoadLogo: Image
     let lastGameHomeLogo: Image
+    let nextGame: GameScore?
+    let nextGameOpponentLogo: Image
+    let skylarksAreRoadTeam: Bool
 }
 
 struct WidgetSkylarksEntryView : View {
