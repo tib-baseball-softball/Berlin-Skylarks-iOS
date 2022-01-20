@@ -82,49 +82,25 @@ struct UserHomeView: View {
                     
                     DispatchQueue.main.async {
                         self.homeGamescores = response_obj
-                        processGameDates()
+                        let displayGames = processGameDates(gamescores: homeGamescores)
+                        
+                        if let nextGame = displayGames.next {
+                            userDashboard.NextGame = nextGame
+                            showNextGame = true
+                        } else {
+                            showNextGame = false
+                        }
+                        
+                        if let lastGame = displayGames.last {
+                            userDashboard.LastGame = lastGame
+                            showLastGame = true
+                        } else {
+                            showLastGame = false
+                        }
                     }
                 }
             }
         }.resume()
-    }
-    
-    func processGameDates() {
-        // processing
-        let formatter = DateFormatter()
-        formatter.dateFormat = "yyyyMMdd"
-        
-        //for testing purposes this can be set to some date in the season, normally it's just the current date
-        let now = Date()
-        //let now = formatter.date(from: "20210928") ?? Date.now // September 27th, 2021 UTC
-        
-        var nextGames = [GameScore]()
-        var previousGames = [GameScore]()
-
-        for (index, _) in homeGamescores.enumerated() {
-            homeGamescores[index].gameDate = getDatefromBSMString(gamescore: homeGamescores[index])
-            //print(homeGamescores)
-        }
-        for gamescore in homeGamescores where gamescore.gameDate! > now {
-            nextGames.append(gamescore)
-        }
-        if nextGames != [] {
-            showNextGame = true
-            userDashboard.NextGame = nextGames.first!
-        } else {
-            showNextGame = false
-        }
-        
-        //Add last games to separate array and set it to be displayed
-        for gamescore in homeGamescores where gamescore.gameDate! < now {
-            previousGames.append(gamescore)
-        }
-        if previousGames != [] {
-            showLastGame = true
-            userDashboard.LastGame = previousGames.last!
-        } else {
-            showLastGame = false
-        }
     }
     
     // 110 is good for iPhone SE, spacing lower than 38 makes elements overlap on iPad landscape orientation. Still looks terrible on some Mac sizes...

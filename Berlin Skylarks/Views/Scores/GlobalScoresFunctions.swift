@@ -9,6 +9,8 @@ import Foundation
 import EventKit
 import SwiftUI
 
+//these are deprecated for actual use, but it nevertheless is helpful to have some fallback images defined
+
 var away_team_logo = Image("App_road_team_logo")
 var home_team_logo = Image("App_home_team_logo")
 
@@ -68,7 +70,7 @@ func determineGameStatus(gamescore: GameScore) {
     }
 }
 
-//TODO: this is the old func with global variables, gradually replace with func below that works with locals!
+//TODO: this is the old func with global variables, do not use and gradually replace with func below that works with locals!
 
 func setCorrectLogo(gamescore: GameScore) {
     for (name, image) in teamLogos {
@@ -114,12 +116,61 @@ func getDatefromBSMString(gamescore: GameScore) -> Date {
     //gameDate = dateFormatter.date(from: gamescore.time)!
 }
 
-//func addGameDatesToGamescores(gamescore: GameScore) -> GameScore {
-//
-//    return gamescore.gameDate = getDatefromBSMString(gamescore: gamescore)
-//}
+func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameScore?) {
+    // processing
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyyMMdd"
+    
+    //this is used because the passed gamescores element cannot be mutated
+    var gameList = gamescores
+    
+    //for testing purposes this can be set to some date in the season, normally it's just the current date
+    let now = Date()
+    //let now = formatter.date(from: "20210928") ?? Date.now // September 27th, 2021 UTC
+    
+    var nextGames = [GameScore]()
+    var previousGames = [GameScore]()
 
+    //add game dates to all games to allow for ordering
+    for (index, _) in gameList.enumerated() {
+        gameList[index].gameDate = getDatefromBSMString(gamescore: gameList[index])
+    }
+    
+    //collect nextGames and add to array
+    for gamescore in gameList where gamescore.gameDate! > now {
+        nextGames.append(gamescore)
+    }
+    
+    //Add last games to separate array and set it to be displayed
+    for gamescore in gameList where gamescore.gameDate! < now {
+        previousGames.append(gamescore)
+    }
+    
+    //case: there is both a last and next game (e.g. middle of the season)
+    if nextGames != [] && previousGames != [] {
+        return (nextGames.first!, previousGames.last!)
+    }
+    
+    //case: there is a previous game and no next game (e.g. season over for selected team)
+    if nextGames == [] && previousGames != [] {
+        return (nil, previousGames.last!)
+    }
+    
+    //case: there is a next game and no previous game (e.g. season has not yet started for selected team)
+    if nextGames != [] && previousGames == [] {
+        return (nextGames.first!, nil)
+    }
+    
+    //case: there is no game at all (error loading data, problems with async?)
+    else {
+        print("nothing to return, gamescores is empty")
+        return (nil, nil)
+    }
+}
+
+//-------------------------------------------------------------------------------//
 //-------------------------------CALENDAR EVENTS---------------------------------//
+//-------------------------------------------------------------------------------//
 
 var calendarStrings = [String]()
 
