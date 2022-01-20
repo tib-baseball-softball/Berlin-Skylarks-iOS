@@ -131,8 +131,9 @@ func getAvailableCalendars() {
 //-------------------------load Scores---------------------------------//
 
 //MARK: first try to get this functionality reusable
+//added completion handler on Jan 20, must be tested
 
-func loadGameScoreData(url: URL) -> [GameScore] {
+func loadGameScoreData(url: URL, completion: @escaping (([GameScore]) -> Void)) {
     var gamescores = [GameScore]()
         let request = URLRequest(url: url)
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -142,11 +143,11 @@ func loadGameScoreData(url: URL) -> [GameScore] {
                     
                     DispatchQueue.main.async {
                         gamescores = response_obj
+                        completion(gamescores)
                     }
                 }
             }
         }.resume()
-    return gamescores
 }
 
 #if !os(watchOS)

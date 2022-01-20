@@ -52,25 +52,29 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
     func getTimeline(for configuration: FavoriteTeamIntent, in context: Context, completion: @escaping (Timeline<Entry>) -> ()) {
         
         let selectedTeam = team(for: configuration)
+        var gamescore = testGame //I should really experiment with an empty init at some point in the future
         
-        let gamescores = loadGameScoreData(url: selectedTeam.scoresURL)
-        let gamescore = getNextGame(gamescores: gamescores)
-        
-        var entries: [FavoriteTeamEntry] = []
+        loadGameScoreData(url: selectedTeam.scoresURL) { gamescores in
+            gamescore = getLastGame(gamescores: gamescores)
+            
+            setCorrectLogo(gamescore: gamescore)
+            
+            var entries: [FavoriteTeamEntry] = []
 
-        // Generate a timeline consisting of two entries an hour apart, starting from the current date. WAS FIVE!
-        let currentDate = Date()
-        for hourOffset in 0 ..< 1 {
-            let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
-            let entry = FavoriteTeamEntry(date: entryDate, configuration: configuration, team: selectedTeam, lastGame: gamescore)
-            entries.append(entry)
+            // Generate a timeline consisting of two entries an hour apart, starting from the current date. WAS FIVE!
+            let currentDate = Date()
+            for hourOffset in 0 ..< 1 {
+                let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+                let entry = FavoriteTeamEntry(date: entryDate, configuration: configuration, team: selectedTeam, lastGame: gamescore)
+                entries.append(entry)
+            }
+
+            let timeline = Timeline(entries: entries, policy: .atEnd)
+            completion(timeline)
         }
-
-        let timeline = Timeline(entries: entries, policy: .atEnd)
-        completion(timeline)
     }
     
-    func getNextGame(gamescores: [GameScore]) -> GameScore {
+    func getLastGame(gamescores: [GameScore]) -> GameScore {
         if gamescores != [] {
             return gamescores[0]
         }

@@ -100,9 +100,12 @@ struct TeamWidgetLastGameView: View {
                         .frame(maxHeight: 35)
                     Text(entry.lastGame.away_league_entry.team.short_name)
                     Spacer()
-                    Text("12")
-                        .font(.headline)
-                        .bold()
+                    if let awayScore = entry.lastGame.away_runs {
+                        Text(String(awayScore))
+                            .font(.headline)
+                            .bold()
+                            .foregroundColor(entry.lastGame.away_team_name.contains("Skylarks") ? Color.skylarksRed : Color.primary)
+                    }
                 }
                 .padding(.vertical, 2)
                 HStack {
@@ -112,9 +115,12 @@ struct TeamWidgetLastGameView: View {
                         .frame(maxHeight: 35)
                     Text(entry.lastGame.home_league_entry.team.short_name)
                     Spacer()
-                    Text("11")
-                        .font(.headline)
-                        .bold()
+                    if let homeScore = entry.lastGame.home_runs {
+                        Text(String(homeScore))
+                            .font(.headline)
+                            .bold()
+                            .foregroundColor(entry.lastGame.home_team_name.contains("Skylarks") ? Color.skylarksRed : Color.primary)
+                    }
                 }
                 .padding(.vertical,2)
             }
@@ -144,7 +150,6 @@ struct TeamWidgetNextGameView: View {
                 Spacer()
                 VStack(spacing: 2) {
                     Image(systemName: "clock")
-                        .foregroundColor(.skylarksRed)
                     Text("12:00")
                 }
                 .font(.footnote)
@@ -168,7 +173,6 @@ struct TeamWidgetNextGameView: View {
                     Image(systemName: "calendar")
                         .frame(maxWidth: 35)
                         .font(.callout)
-                        .foregroundColor(.skylarksRed)
                     Text("02.10.2021")
                 }
             }
@@ -209,13 +213,11 @@ struct TeamWidgetOverView: View {
                 VStack(alignment: .leading, spacing: 3) {
                     HStack {
                         Image(systemName: "tablecells")
-                            .foregroundColor(.skylarksRed)
                             .frame(maxWidth: 20)
                         Text(entry.team.leagueName)
                     }
                     HStack {
                         Image(systemName: "calendar.badge.clock")
-                            .foregroundColor(.skylarksRed)
                             .frame(maxWidth: 20)
                         Text("2021")
                     }
@@ -223,21 +225,18 @@ struct TeamWidgetOverView: View {
                     Group {
                         HStack {
                             Image(systemName: "sum")
-                                .foregroundColor(.skylarksRed)
                                 .frame(maxWidth: 20)
                             Text("14 : 2")
                                 .bold()
                         }
                         HStack {
                             Image(systemName: "percent")
-                                .foregroundColor(.skylarksRed)
                                 .frame(maxWidth: 20)
                             Text(".875")
                                 .bold()
                         }
                         HStack {
                             Image(systemName: "number")
-                                .foregroundColor(.skylarksRed)
                                 .frame(maxWidth: 20)
                             Text("1.")
                                 .bold()
