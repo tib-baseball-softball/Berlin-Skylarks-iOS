@@ -49,7 +49,7 @@ struct ScoresOverView: View {
                                 .font(.title)
                                 .bold()
                         }
-                        if gamescore.human_state.contains("gespielt") {
+                        if gamescore.human_state.contains("gespielt") || gamescore.human_state.contains("Forfeit") || gamescore.human_state.contains("Nichtantreten") || gamescore.human_state.contains("Wertung") || gamescore.human_state.contains("Rückzug") || gamescore.human_state.contains("Ausschluss") {
                             if !isDerby {
                                 if skylarksWin {
                                     Text("W")
