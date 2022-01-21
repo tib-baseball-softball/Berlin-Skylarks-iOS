@@ -70,37 +70,28 @@ struct UserHomeView: View {
         }.resume()
     }
     
-    func loadHomeGameData(url: URL) {
+    func loadHomeGameData() {
         
-        //get the games
-        
-        let request = URLRequest(url: url)
-        URLSession.shared.dataTask(with: request) { data, response, error in
+        //get the games, then process for next and last
+    
+        loadGameScoreData(url: selectedHomeScoresURL) { loadedData in
+            homeGamescores = loadedData
+            let displayGames = processGameDates(gamescores: homeGamescores)
             
-            if let data = data {
-                if let response_obj = try? JSONDecoder().decode([GameScore].self, from: data) {
-                    
-                    DispatchQueue.main.async {
-                        self.homeGamescores = response_obj
-                        let displayGames = processGameDates(gamescores: homeGamescores)
-                        
-                        if let nextGame = displayGames.next {
-                            userDashboard.NextGame = nextGame
-                            showNextGame = true
-                        } else {
-                            showNextGame = false
-                        }
-                        
-                        if let lastGame = displayGames.last {
-                            userDashboard.LastGame = lastGame
-                            showLastGame = true
-                        } else {
-                            showLastGame = false
-                        }
-                    }
-                }
+            if let nextGame = displayGames.next {
+                userDashboard.NextGame = nextGame
+                showNextGame = true
+            } else {
+                showNextGame = false
             }
-        }.resume()
+            
+            if let lastGame = displayGames.last {
+                userDashboard.LastGame = lastGame
+                showLastGame = true
+            } else {
+                showLastGame = false
+            }
+        }
     }
     
     // 110 is good for iPhone SE, spacing lower than 38 makes elements overlap on iPad landscape orientation. Still looks terrible on some Mac sizes...
@@ -349,14 +340,14 @@ struct UserHomeView: View {
             .onAppear(perform: {
                 setFavoriteTeam()
                 loadHomeTeamTable(url: selectedHomeTablesURL)
-                loadHomeGameData(url: selectedHomeScoresURL)
+                loadHomeGameData()
             })
             
             .onChange(of: favoriteTeam, perform: { favoriteTeam in
                 setFavoriteTeam()
                 homeLeagueTables = []
                 loadHomeTeamTable(url: selectedHomeTablesURL)
-                loadHomeGameData(url: selectedHomeScoresURL)
+                loadHomeGameData()
             })
             
             .toolbar {

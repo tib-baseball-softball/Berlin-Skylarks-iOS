@@ -321,8 +321,10 @@ struct ScoresDetailView: View {
                         }
                     }
                 }
-                .alert("Game has been saved to calendar", isPresented: $showEventAlert) {
+                .alert("Save to calendar", isPresented: $showEventAlert) {
                     Button("OK") { }
+                } message: {
+                    Text("Game has been saved to calendar")
                 }
                 
                 Spacer()
@@ -354,7 +356,8 @@ struct ScoresDetailView: View {
         #endif
     }
     #if !os(watchOS)
-    //TODO: this works, but is an absolute performance nightmare and leads to boatloads of errors in console
+    
+    //TODO: this works, but it's UIKit, it's an absolute performance nightmare and it leads to boatloads of errors in console
     
     func ActionSheet() {
         let data = "League: "
