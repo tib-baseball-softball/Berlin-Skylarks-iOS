@@ -49,11 +49,12 @@ struct FavoriteTeamWidgetView: View {
 
 struct FavoriteTeamWidgetView_Previews: PreviewProvider {
     static var previews: some View {
+        let dummyDashboard = UserDashboard()
         Group {
 //            FavoriteTeamWidgetView()
 //                .previewContext(WidgetPreviewContext(family: .systemSmall))
 //                .environment(\.colorScheme, .dark)
-            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: team1, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false))
+            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: team1, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
                 .environment(\.colorScheme, .dark)
 //            FavoriteTeamWidgetView(entry: )
@@ -241,26 +242,26 @@ struct TeamWidgetOverView: View {
                     HStack {
                         Image(systemName: "calendar.badge.clock")
                             .frame(maxWidth: 20)
-                        Text("2021")
+                        Text(String(entry.Table.season))
                     }
                     Spacer()
                     Group {
                         HStack {
                             Image(systemName: "sum")
                                 .frame(maxWidth: 20)
-                            Text("14 - 2")
+                            Text(String(entry.TableRow.wins_count) + "-" + String(entry.TableRow.losses_count))
                                 .bold()
                         }
                         HStack {
                             Image(systemName: "percent")
                                 .frame(maxWidth: 20)
-                            Text(".875")
+                            Text(entry.TableRow.quota)
                                 .bold()
                         }
                         HStack {
                             Image(systemName: "number")
                                 .frame(maxWidth: 20)
-                            Text("1.")
+                            Text(entry.TableRow.rank)
                                 .bold()
                         }
                     }

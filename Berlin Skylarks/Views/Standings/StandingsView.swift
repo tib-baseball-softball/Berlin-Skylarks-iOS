@@ -47,10 +47,10 @@ struct StandingsView: View {
         }
         //this doesn't work - still crashes
         #if !os(macOS)
-            .refreshable {
-                leagueTableArray = []
-                loadAllTables()
-            }
+        .refreshable {
+            leagueTableArray = []
+            loadAllTables()
+        }
         #endif
         .listStyle(.insetGrouped)
         .navigationTitle("Standings")

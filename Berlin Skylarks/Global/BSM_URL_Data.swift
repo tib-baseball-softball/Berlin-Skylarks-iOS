@@ -43,7 +43,7 @@ let scoresURLs = [
     "Previous Gameday": urlPreviousGameday,
     "Current Gameday": urlCurrentGameday,
     "Next Gameday": urlNextGameday,
-    "Full Season Gameday": urlFullSeason,
+    "Full Season": urlFullSeason,
     "Verbandsliga BB": team1.scoresURL,
     "Verbandsliga SB": teamSoftball.scoresURL,
     "Landesliga BB": team2.scoresURL,
