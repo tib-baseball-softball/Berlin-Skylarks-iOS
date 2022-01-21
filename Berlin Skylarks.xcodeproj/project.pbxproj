@@ -357,6 +357,7 @@
 			children = (
 				CA1C3A092733407400BB194C /* Ints_Floats.swift */,
 				CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */,
+				CAAB56C2271F62F800ADDE9D /* GlobalScoresFunctions.swift */,
 				CA6042A02745B14000607011 /* ViewModifiers.swift */,
 				CA1CB20D2756877E0007D24E /* SkylarksTeams.swift */,
 				CA55F6E027601A4F0032302F /* API_Key.swift */,
@@ -456,7 +457,6 @@
 				CA0DA04125974EAD002A0FAB /* ScoresView.swift */,
 				CA0DA0442598BB32002A0FAB /* ScoresOverView.swift */,
 				CA0DA0472598BCB1002A0FAB /* ScoresDetailView.swift */,
-				CAAB56C2271F62F800ADDE9D /* GlobalScoresFunctions.swift */,
 				CA9A89B22739DEFE001BBFA8 /* ShareSheet.swift */,
 			);
 			path = Scores;

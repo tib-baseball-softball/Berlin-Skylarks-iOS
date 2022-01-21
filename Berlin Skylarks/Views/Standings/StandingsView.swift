@@ -15,6 +15,14 @@ struct StandingsView: View {
     
     @State var tablesLoaded = false
     
+    func loadAllTables() {
+        for index in 0..<leagueTableURLs.count {
+            loadTableData(url: leagueTableURLs[index]) { loadedSingleTable in
+                leagueTableArray.append(loadedSingleTable)
+            }
+        }
+    }
+    
     var body: some View {
         List {
             Section(header: Text("Please select your league")) {
@@ -55,26 +63,6 @@ struct StandingsView: View {
                 tablesLoaded = true
             }
         })
-    }
-    func loadAllTables() {
-        for index in 0..<leagueTableURLs.count {
-            loadTableData(url: leagueTableURLs[index])
-        }
-    }
-    private func loadTableData(url: URL) {
-
-            let request = URLRequest(url: url)
-            URLSession.shared.dataTask(with: request) { data, response, error in
-
-                if let data = data {
-                    if let response_obj = try? JSONDecoder().decode(LeagueTable.self, from: data) {
-
-                        DispatchQueue.main.async {
-                            leagueTableArray.append(response_obj)
-                        }
-                    }
-                }
-            }.resume()
     }
 }
 

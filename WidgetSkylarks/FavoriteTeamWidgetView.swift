@@ -248,7 +248,7 @@ struct TeamWidgetOverView: View {
                         HStack {
                             Image(systemName: "sum")
                                 .frame(maxWidth: 20)
-                            Text("14 : 2")
+                            Text("14 - 2")
                                 .bold()
                         }
                         HStack {

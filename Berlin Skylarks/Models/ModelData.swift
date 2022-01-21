@@ -7,7 +7,7 @@
 
 import Foundation
 
-//at the moment this serves just to get some dummy data for prototyping
+//at the moment this file serves just to get some dummy data for prototyping
 
 var dummyGameScores: [GameScore] = loadDummyData("BSM_Games_2020_human_readable.json")
 
@@ -35,20 +35,3 @@ func loadDummyData<T: Decodable>(_ filename: String) -> T {
         fatalError("Couldn't parse \(filename) as \(T.self):\n\(error)")
     }
 }
-
-
-//func loadTableDataDebug(url: URL) {
-//
-//        let request = URLRequest(url: url)
-//        URLSession.shared.dataTask(with: request) { data, response, error in
-//
-//            if let data = data {
-//                if let response_obj = try? JSONDecoder().decode(LeagueTable.self, from: data) {
-//
-//                    DispatchQueue.main.async {
-//                        dummyLeagueTable = response_obj
-//                    }
-//                }
-//            }
-//        }
-//}

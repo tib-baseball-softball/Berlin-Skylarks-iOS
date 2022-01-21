@@ -36,38 +36,31 @@ struct UserHomeView: View {
         }
     }
     
-    func loadHomeTeamTable(url: URL) {
+    func loadHomeTeamTable() {
         
-        let request = URLRequest(url: url)
-        URLSession.shared.dataTask(with: request) { data, response, error in
-
-            if let data = data {
-                if let response_obj = try? JSONDecoder().decode(LeagueTable.self, from: data) {
-
-                    DispatchQueue.main.async {
-                        userDashboard.leagueTable = response_obj
-                        
-                        homeLeagueTables.append(response_obj)
-                        
-                        for row in userDashboard.leagueTable.rows where row.team_name.contains("Skylarks") {
-                            
-                            //we have two teams for BZL, so the function needs to account for the correct one
-                            if displayTeam == team3 {
-                                if row.team_name == "Skylarks 3" {
-                                    userDashboard.tableRow = row
-                                }
-                            } else if displayTeam == team4 {
-                                if row.team_name == "Skylarks 4" {
-                                    userDashboard.tableRow = row
-                                }
-                            } else if displayTeam != team3 && displayTeam != team4 {
-                                userDashboard.tableRow = row
-                            }
-                        }
+        loadTableData(url: selectedHomeTablesURL) { loadedTable in
+            userDashboard.leagueTable = loadedTable
+            
+            homeLeagueTables.append(loadedTable)
+            
+            //we have loaded the table for the favorite team, now we have to identify the row of said team to display this information prominently at the top
+            
+            for row in userDashboard.leagueTable.rows where row.team_name.contains("Skylarks") {
+                
+                //we have two teams for BZL, so the function needs to account for the correct one
+                if displayTeam == team3 {
+                    if row.team_name == "Skylarks 3" {
+                        userDashboard.tableRow = row
                     }
+                } else if displayTeam == team4 {
+                    if row.team_name == "Skylarks 4" {
+                        userDashboard.tableRow = row
+                    }
+                } else if displayTeam != team3 && displayTeam != team4 {
+                    userDashboard.tableRow = row
                 }
             }
-        }.resume()
+        }
     }
     
     func loadHomeGameData() {
@@ -173,11 +166,11 @@ struct UserHomeView: View {
                         HStack {
                             Text(String(userDashboard.tableRow.wins_count))
                                 .bold()
-                                .padding(10)
-                            Text(":")
+                                .padding(.vertical, 10)
+                            Text("-")
                             Text(String(userDashboard.tableRow.losses_count))
                                 .bold()
-                                .padding(10)
+                                .padding(.vertical, 10)
                         }
                         .font(.largeTitle)
                     }
@@ -221,15 +214,16 @@ struct UserHomeView: View {
                                 Image(systemName: "crown")
                                     .font(.title)
                                     .foregroundColor(Color.accentColor)
-                            } else {
-                                Image(systemName: "hexagon")
-                                    .font(.title)
-                                    .foregroundColor(Color.accentColor)
                             }
+//                            else {
+//                                Image(systemName: "hexagon")
+//                                    .font(.title)
+//                                    .foregroundColor(Color.accentColor)
+//                            }
                             Text(userDashboard.tableRow.rank)
                                 .bold()
                                 .padding(10)
-                            .font(.largeTitle)
+                                .font(.largeTitle)
                         }
                     }
                     .frame(minWidth: 150, minHeight: 150)
@@ -306,7 +300,7 @@ struct UserHomeView: View {
                             .font(.title)
                             .bold()
                             .padding(.leading, 15)
-                        if homeLeagueTables.indices.contains(0) {
+                        if homeLeagueTables != [] {
                             StandingsTableView(leagueTable: homeLeagueTables[0])
                                 .frame(height: 485)
                             .cornerRadius(NewsItemCornerRadius)
@@ -339,17 +333,19 @@ struct UserHomeView: View {
             
             .onAppear(perform: {
                 setFavoriteTeam()
-                loadHomeTeamTable(url: selectedHomeTablesURL)
+                loadHomeTeamTable()
                 loadHomeGameData()
             })
             
             .onChange(of: favoriteTeam, perform: { favoriteTeam in
                 setFavoriteTeam()
                 homeLeagueTables = []
-                loadHomeTeamTable(url: selectedHomeTablesURL)
+                loadHomeTeamTable()
                 loadHomeGameData()
             })
             
+        //we are showing the app settings here, but only on iPhone, since the 5 tab items are full. on iPad/Mac the sidebar has more than enough space to include settings
+        
             .toolbar {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     if UIDevice.current.userInterfaceIdiom == .phone {

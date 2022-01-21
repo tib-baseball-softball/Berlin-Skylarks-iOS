@@ -13,16 +13,6 @@ struct StandingsTableView: View {
     
     @State var leagueTable: LeagueTable
     
-    //@State var leagueURLSelected = urlLLBB
-    
-    //var padding: CGFloat {
-    //    if UIDevice.current.userInterfaceIdiom != .phone {
-    //        return 30
-    //    } else {
-    //        return 10
-    //    }
-    //}
-    
     var body: some View {
         ZStack {
             List {
