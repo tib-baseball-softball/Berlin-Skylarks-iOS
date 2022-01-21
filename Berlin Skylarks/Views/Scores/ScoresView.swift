@@ -13,6 +13,8 @@ struct ScoresView: View {
     
     @State private var showCalendarDialog = false
     @State private var showEventAlert = false
+    @State private var showAlertNoGames = false
+    @State private var loadingInProgress = false
     
     @State var selection: String = "Current Gameday"
     
@@ -28,24 +30,41 @@ struct ScoresView: View {
         GridItem(.adaptive(minimum: 300), spacing: scoresGridSpacing),
     ]
     
+    func loadGamesAndProcess() {
+        
+        loadingInProgress = true
+        
+        loadGameScoreData(url: gameURLSelected) { loadedData in
+            gamescores = loadedData
+            loadingInProgress = false
+        }
+    }
+    
     var body: some View {
         #if !os(watchOS)
         ScrollView {
             LazyVGrid(columns: columns, spacing: scoresGridSpacing) {
+                if loadingInProgress == true {
+                    VStack {
+                        ProgressView()
+                        Text("Loading game data...")
+                            .padding()
+                    }
+                }
                 ForEach(self.gamescores, id: \.id) { GameScore in
                     NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
                         ScoresOverView(gamescore: GameScore)
                     }
                     .foregroundColor(.primary)
                 }
-                if gamescores == [] {
+                if gamescores == [] && loadingInProgress == false {
                     Text("There are no Skylarks games scheduled for the chosen time frame.")
                 }
             }
             .padding(scoresGridPadding)
         }
         .onAppear(perform: {
-            loadGameData(url: gameURLSelected)
+            loadGamesAndProcess()
             getAvailableCalendars()
         })
         
@@ -55,29 +74,26 @@ struct ScoresView: View {
                     gameURLSelected = url
                 }
             }
-            loadGameData(url: gameURLSelected)
+            loadGamesAndProcess()
         })
         
         // this is the toolbar with the picker in the top right corner where you can select which games to display.
     
         .toolbar {
-//                ToolbarItem(placement: .principal) {
-//                    DatePicker(
-//                        "Game Date",
-//                        selection: $date,
-//                        displayedComponents: [.date]
-//                    )
-//                    .padding(40)
-//                }
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button(
                     action: {
-                        showCalendarDialog.toggle()
-                        getAvailableCalendars()
+                        if gamescores != [] {
+                            showCalendarDialog.toggle()
+                            getAvailableCalendars()
+                        } else {
+                            showAlertNoGames = true
+                        }
                     }
                 ){
                     Image(systemName: "calendar.badge.plus")
                 }
+                
                 .confirmationDialog("Choose a calendar to save the game(s)", isPresented: $showCalendarDialog, titleVisibility: .visible) {
                     
                     ForEach(calendarStrings, id: \.self) { calendarString in
@@ -93,8 +109,18 @@ struct ScoresView: View {
                         }
                     }
                 }
-                .alert("All games have been saved", isPresented: $showEventAlert) {
+                
+                .alert("Save to calendar", isPresented: $showEventAlert) {
                     Button("OK") { }
+                } message: {
+                    Text("All games have been saved.")
+                }
+                .padding(.horizontal, 10)
+                
+                .alert("Save to calendar", isPresented: $showAlertNoGames) {
+                    Button("OK") { }
+                } message: {
+                    Text("There is no game data to save.")
                 }
                 .padding(.horizontal, 10)
                 
@@ -187,8 +213,7 @@ struct ScoresView: View {
         .navigationTitle("Scores")
         
         .onAppear(perform: {
-            loadGameData(url: gameURLSelected)
-            //getAvailableCalendars()
+            loadGamesAndProcess()
         })
         
         .onChange(of: selection, perform: { value in
@@ -197,28 +222,10 @@ struct ScoresView: View {
                     gameURLSelected = url
                 }
             }
-            loadGameData(url: gameURLSelected)
+            loadGamesAndProcess()
         })
         
         #endif
-    }
-}
-
-extension ScoresView {
-    func loadGameData(url: URL) {
-        
-            let request = URLRequest(url: url)
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                
-                if let data = data {
-                    if let response_obj = try? JSONDecoder().decode([GameScore].self, from: data) {
-                        
-                        DispatchQueue.main.async {
-                            self.gamescores = response_obj
-                        }
-                    }
-                }
-            }.resume()
     }
 }
 
@@ -226,6 +233,6 @@ extension ScoresView {
 struct ScoresView_Previews: PreviewProvider {
     static var previews: some View {
         ScoresView()
-            .preferredColorScheme(.dark)
+            //.preferredColorScheme(.dark)
     }
 }

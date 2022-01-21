@@ -101,15 +101,6 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
             completion(timeline)
         }
     }
-    
-//    func getLastGame(gamescores: [GameScore]) -> GameScore {
-//        if gamescores != [] {
-//            return gamescores[0]
-//        }
-//        else {
-//            return testGame
-//        }
-//    }
 }
 
 struct FavoriteTeamEntry: TimelineEntry {
