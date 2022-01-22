@@ -57,6 +57,11 @@ extension View {
     }
 }
 
+//Usage:
+
+//Text("Hello World")
+//    .iOS { $0.padding(10) }
+
 //these two are copy and paste and should make reading and storing custom values (Team) in user settings easier
 
 extension UserDefaults {

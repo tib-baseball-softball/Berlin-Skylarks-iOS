@@ -10,25 +10,55 @@ import MapKit
 
 struct TestView: View {
 
-    //let calendars = getAvailableCalendars()
+    var gamescore: GameScore
     
     var body: some View {
-        VStack(alignment: .leading){
-            Text("dfhbhjdfjc")
+        List {
+            VStack {
+                HStack {
+                    away_team_logo
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 30, alignment: .center)
+                    Text(gamescore.away_league_entry.team.short_name)
+                        .font(.caption)
+                        .padding(.leading)
+                    Spacer()
+                    if let awayScore = gamescore.away_runs {
+                        Text(String(awayScore))
+                            .font(.title3)
+                            .bold()
+                            .frame(maxWidth: 40, alignment: .center)
+                            .foregroundColor(gamescore.away_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
+                    }
+                }
+                HStack {
+                    home_team_logo
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 30, alignment: .center)
+                    Text(gamescore.home_league_entry.team.short_name)
+                        .font(.caption)
+                        .padding(.leading)
+                    Spacer()
+                    if let homeScore = gamescore.home_runs {
+                        Text(String(homeScore))
+                            .font(.title3)
+                            .bold()
+                            .frame(maxWidth: 40, alignment: .center)
+                            .foregroundColor(gamescore.home_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
+                    }
+                }
+            }
+            .padding(.vertical)
         }
-        .padding()
-    }
-    //this is how you can declare functions in a view!
-    
-    private func printSomething() {
-        print(self)
+        //.font(.footnote)
+        //.padding()
     }
 }
 
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
-        ForEach(ColorScheme.allCases, id: \.self) {
-            TestView().preferredColorScheme($0)
-        }
+        TestView(gamescore: dummyGameScores[60])
     }
 }

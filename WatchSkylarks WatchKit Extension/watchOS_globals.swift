@@ -11,3 +11,4 @@ import SwiftUI
 //this file serves to define global variables that have unavailable values in watchOS
 
 let ScoresSubItemBackground = Color.secondary
+let ColorStandingsTableHeadline = Color.gray

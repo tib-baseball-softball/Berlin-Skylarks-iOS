@@ -28,66 +28,13 @@ struct ScoresDetailView: View {
         return
             List {
             Section(header: Text("Main info")) {
-                HStack {
-                    Image(systemName: "list.bullet")
-                    Text(gamescore.league.name)
-                }.padding(ScoresItemPadding)
-                HStack {
-                    Image(systemName: "number")
-                    Text("\(gamescore.match_id)")
-                }
-                .padding(ScoresItemPadding)
-                HStack {
-                    Image(systemName: "calendar")
-                    Text(gameDate!, style: .date)
-                }
-                .padding(ScoresItemPadding)
-                HStack {
-                    Image(systemName: "clock.fill")
-                    Text(gameDate!, style: .time)
-                }
-                .padding(ScoresItemPadding)
+                ScoreMainInfo(gamescore: gamescore)
             }
             Section(header: Text("Score")) {
                 VStack {
-                    if gamescore.human_state.contains("geplant") {
-                        Text("TBD")
-                            .font(.title)
-                            .bold()
-                            .padding(ScoresItemPadding)
-                    }
-                    if gamescore.human_state.contains("ausgefallen") {
-                        Text("PPD")
-                            .font(.title)
-                            .bold()
-                            .padding(ScoresItemPadding)
-                    }
-                    if gamescore.human_state.contains("gespielt") || gamescore.human_state.contains("Forfeit") || gamescore.human_state.contains("Nichtantreten") || gamescore.human_state.contains("Wertung") || gamescore.human_state.contains("Rückzug") || gamescore.human_state.contains("Ausschluss") {
-                        if !isDerby {
-                            if skylarksWin {
-                                Text("W")
-                                    .font(.title)
-                                    .bold()
-                                    .foregroundColor(Color.green)
-                                    .padding(ScoresItemPadding)
-                            } else {
-                                Text("L")
-                                    .font(.title)
-                                    .bold()
-                                    .foregroundColor(Color.accentColor)
-                                    .padding(ScoresItemPadding)
-                            }
-                        } else {
-                            VStack {
-                                Image(systemName: "heart.fill")
-                                    .font(.title)
-                                    .foregroundColor(Color.accentColor)
-                                Text("Derby - Skylarks win either way")
-                                    .padding(ScoresItemPadding)
-                            }
-                            .padding(ScoresItemPadding)
-                        }
-                    }
+                    //extracted to subview to be used by OverView as well
+                    GameResultIndicator(gamescore: gamescore)
+                    
                     HStack {
                         VStack {
                             Text("Guest")
@@ -143,149 +90,23 @@ struct ScoresDetailView: View {
                 
                 //field is now optional - apparently that is not a required field in BSM (doesn't really make sense but okay...)
                 
-                if let field = gamescore.field {
-                    if let coordinateLatitude = field.latitude, let coordinateLongitude = field.longitude {
-                        let fieldPin = [
-                            Ballpark(name: field.name, coordinate: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude)),
-                            ]
-                        Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))), interactionModes: .zoom, annotationItems: fieldPin) {
-                                MapMarker(coordinate: $0.coordinate, tint: Color.accentColor)
-                        }
-                        .frame(height: 200)
-                        
-                        //TODO: make this a link to open the maps app
-//                        .onTapGesture(perform: {
-//                            map.openInMaps()
-//                        })
-                        
-                    } else {
-                        Text("No field coordinates provided")
-                    }
-                    HStack {
-                        Image(systemName: "diamond.fill") //this really needs a custom icon
-                        Text(String(field.name))
-                    }
-                    .padding(ScoresItemPadding)
-                    HStack {
-                        Image(systemName: "house.fill")
-                        Text(field.street + ",\n" + field.postal_code + " " + field.city)
-                    }
-                    .padding(ScoresItemPadding)
-                } else {
-                    HStack {
-                        Image(systemName: "diamond.fill")
-                        Text("No location/field data")
-                    }
-                }
+                BallparkLocation(gamescore: gamescore)
             }
             Section(header: Text("Status")) {
-                HStack {
-                    Image(systemName: "text.justify")
-                    Text("\(gamescore.human_state)")
-                }
-                .padding(ScoresItemPadding)
                 
-                if let scoresheetURL = gamescore.scoresheet_url {
-                    HStack {
-                        Image(systemName: "doc.fill")
-                        Link("Link to Scoresheet", destination: URL(string: scoresheetURL)!)
-                    }
-                    .padding(ScoresItemPadding)
-                } else {
-                    HStack {
-                        Image(systemName: "doc.fill")
-                        Text("Scoresheet unavailable")
-                    }
-                    .padding(ScoresItemPadding)
-                }
-                
+                ScoresStatusSection(gamescore: gamescore)
             }
             Section(header: Text("Game officials")) {
                 
-                //start umpire assignments. I support up to four slots, the first two get else statements if empty.
+                //start umpire assignments.
                 
-                if gamescore.umpire_assignments.indices.contains(0) {
-                    HStack {
-                        Image(systemName: "person.fill")
-                        Text(gamescore.umpire_assignments[0].license.person.last_name + ", " + gamescore.umpire_assignments[0].license.person.first_name)
-                        Spacer()
-                        Text(gamescore.umpire_assignments[0].license.number)
-                            .font(.caption)
-                    }.padding(ScoresItemPadding)
-                } else {
-                    HStack {
-                        Image(systemName: "person.fill")
-                        Text("No first umpire assigned yet")
-                        Spacer()
-                    }.padding(ScoresItemPadding)
-                }
-                
-                if gamescore.umpire_assignments.indices.contains(1) {
-                    HStack {
-                        Image(systemName: "person.fill")
-                        Text(gamescore.umpire_assignments[1].license.person.last_name + ", " + gamescore.umpire_assignments[1].license.person.first_name)
-                        Spacer()
-                        Text(gamescore.umpire_assignments[1].license.number)
-                            .font(.caption)
-                    }.padding(ScoresItemPadding)
-                } else {
-                    HStack {
-                        Image(systemName: "person.fill")
-                        Text("No second umpire assigned yet")
-                        Spacer()
-                    }.padding(ScoresItemPadding)
-                }
-                
-                if gamescore.umpire_assignments.indices.contains(2) {
-                    HStack {
-                        Image(systemName: "person.fill")
-                        Text(gamescore.umpire_assignments[2].license.person.last_name + ", " + gamescore.umpire_assignments[2].license.person.first_name)
-                        Spacer()
-                        Text(gamescore.umpire_assignments[2].license.number)
-                            .font(.caption)
-                    }.padding(ScoresItemPadding)
-                }
-                
-                if gamescore.umpire_assignments.indices.contains(3) {
-                    HStack {
-                        Image(systemName: "person.fill")
-                        Text(gamescore.umpire_assignments[3].license.person.last_name + ", " + gamescore.umpire_assignments[3].license.person.first_name)
-                        Spacer()
-                        Text(gamescore.umpire_assignments[3].license.number)
-                            .font(.caption)
-                    }.padding(ScoresItemPadding)
-                }
+                UmpireAssignments(gamescore: gamescore)
                 
                 //scorer assignments. I support two entries here to account for double scoring. Only the first one gets an else statement since second scorers are rare
                 
-                if gamescore.scorer_assignments.indices.contains(0) {
-                    HStack {
-                        Image(systemName: "pencil")
-                        Text(gamescore.scorer_assignments[0].license.person.last_name + ", " + gamescore.scorer_assignments[0].license.person.first_name)
-                        Spacer()
-                        Text(gamescore.scorer_assignments[0].license.number)
-                                .font(.caption)
-                    }.padding(ScoresItemPadding)
-                } else {
-                    HStack {
-                        Image(systemName: "pencil")
-                        Text("No scorer assigned yet")
-                        Spacer()
-                    }.padding(ScoresItemPadding)
-                }
-                
-                if gamescore.scorer_assignments.indices.contains(1) {
-                    HStack {
-                        Image(systemName: "pencil")
-                        Text(gamescore.scorer_assignments[1].license.person.last_name + ", " + gamescore.scorer_assignments[1].license.person.first_name)
-                        Spacer()
-                        Text(gamescore.scorer_assignments[1].license.number)
-                                .font(.caption)
-                    }.padding(ScoresItemPadding)
-                }
+                ScorerAssignments(gamescore: gamescore)
             }
         }
-        
         .listStyle(.insetGrouped)
         .navigationTitle("Game Details")
         
@@ -293,7 +114,7 @@ struct ScoresDetailView: View {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button(action: {
                     isBookmarked.toggle()
-                    
+                    //TODO: actually do stuff here
                 }, label: {
                     //the button changes its appearance if a bookmark is set
                     Image(systemName: isBookmarked == true ? "bookmark.fill" : "bookmark")
@@ -351,8 +172,80 @@ struct ScoresDetailView: View {
         }
         #endif
         
+        //---------------------------------------------------------//
+        //-----------start Apple Watch-specific code---------------//
+        //---------------------------------------------------------//
+        
         #if os(watchOS)
-        Text("Detailed info here")
+        setCorrectLogo(gamescore: gamescore)
+        gameDate = getDatefromBSMString(gamescore: gamescore)
+        determineGameStatus(gamescore: gamescore)
+        return
+            List {
+                Section(header: Text("Main info")) {
+                    ScoreMainInfo(gamescore: gamescore)
+                }
+                Section(header: Text("Score")) {
+                    VStack {
+                        HStack {
+                            away_team_logo
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: 30, alignment: .center)
+                            Text(gamescore.away_league_entry.team.short_name)
+                                .font(.caption)
+                                .padding(.leading)
+                            Spacer()
+                            if let awayScore = gamescore.away_runs {
+                                Text(String(awayScore))
+                                    .font(.title3)
+                                    .bold()
+                                    .frame(maxWidth: 40, alignment: .center)
+                                    .foregroundColor(gamescore.away_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
+                            }
+                        }
+                        HStack {
+                            home_team_logo
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxWidth: 30, alignment: .center)
+                            Text(gamescore.home_league_entry.team.short_name)
+                                .font(.caption)
+                                .padding(.leading)
+                            Spacer()
+                            if let homeScore = gamescore.home_runs {
+                                Text(String(homeScore))
+                                    .font(.title3)
+                                    .bold()
+                                    .frame(maxWidth: 40, alignment: .center)
+                                    .foregroundColor(gamescore.home_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
+                            }
+                        }
+                    }
+                    .padding(.vertical)
+                    ScoresStatusSection(gamescore: gamescore)
+                        .font(.caption)
+                }
+                Section(header: Text("Location")) {
+                    
+                    BallparkLocation(gamescore: gamescore)
+                        .font(.caption)
+                }
+                Section(header: Text("Game officials")) {
+                    
+                    //start umpire assignments.
+                    
+                    UmpireAssignments(gamescore: gamescore)
+                        .font(.caption)
+                    
+                    //scorer assignments. I support two entries here to account for double scoring. Only the first one gets an else statement since second scorers are rare
+                    
+                    ScorerAssignments(gamescore: gamescore)
+                        .font(.caption)
+                }
+            }
+            .listStyle(.automatic)
+            .navigationTitle("Game Details")
         #endif
     }
     #if !os(watchOS)
@@ -374,9 +267,213 @@ struct ScoresDetailView: View {
     #endif
 }
 
+struct ScoreMainInfo: View {
+    
+    var gamescore: GameScore
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "list.bullet")
+            Text(gamescore.league.name)
+        }.padding(ScoresItemPadding)
+        HStack {
+            Image(systemName: "number")
+            Text("\(gamescore.match_id)")
+        }
+        .padding(ScoresItemPadding)
+        HStack {
+            Image(systemName: "calendar")
+            Text(gameDate!, style: .date)
+        }
+        .padding(ScoresItemPadding)
+        HStack {
+            Image(systemName: "clock.fill")
+            Text(gameDate!, style: .time)
+        }
+        .padding(ScoresItemPadding)
+    }
+}
+
+struct GameResultIndicator: View {
+    
+    var gamescore: GameScore
+    
+    var body: some View {
+        if gamescore.human_state.contains("geplant") {
+            Text("TBD")
+                .font(.title)
+                .bold()
+                .padding()
+        }
+        if gamescore.human_state.contains("ausgefallen") {
+            Text("PPD")
+                .font(.title)
+                .bold()
+                .padding()
+        }
+        if gamescore.human_state.contains("gespielt") ||
+            gamescore.human_state.contains("Forfeit") ||
+            gamescore.human_state.contains("Nichtantreten") ||
+            gamescore.human_state.contains("Wertung") ||
+            gamescore.human_state.contains("Rückzug") ||
+            gamescore.human_state.contains("Ausschluss") {
+            if !isDerby {
+                if skylarksWin {
+                    Text("W")
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(Color.green)
+                        .padding()
+                } else {
+                    Text("L")
+                        .font(.title)
+                        .bold()
+                        .foregroundColor(Color.accentColor)
+                        .padding()
+                }
+            } else {
+                VStack {
+                    Image(systemName: "heart.fill")
+                        .font(.title)
+                        .foregroundColor(Color.accentColor)
+                    Text("Derby - Skylarks win either way")
+                        .padding()
+                }
+                .padding()
+            }
+        }
+    }
+}
+
+struct ScoresStatusSection: View {
+    var gamescore: GameScore
+    
+    var body: some View {
+        HStack {
+            Image(systemName: "text.justify")
+            Text("\(gamescore.human_state)")
+        }
+        .padding(ScoresItemPadding)
+        
+        if let scoresheetURL = gamescore.scoresheet_url {
+            HStack {
+                Image(systemName: "doc.fill")
+                Link("Link to Scoresheet", destination: URL(string: scoresheetURL)!)
+            }
+            .padding(ScoresItemPadding)
+        } else {
+            HStack {
+                Image(systemName: "doc.fill")
+                Text("Scoresheet unavailable")
+            }
+            .padding(ScoresItemPadding)
+        }
+    }
+}
+
+struct UmpireAssignments: View {
+    
+    var gamescore: GameScore
+    
+    var body: some View {
+        ForEach(gamescore.umpire_assignments, id: \.self) { umpireEntry in
+            HStack {
+                Image(systemName: "person.fill")
+                Text(umpireEntry.license.person.last_name + ", " + umpireEntry.license.person.first_name)
+                Spacer()
+                Text(umpireEntry.license.number)
+                    .font(.caption)
+            }.padding(ScoresItemPadding)
+        }
+        
+        if !gamescore.umpire_assignments.indices.contains(0) {
+            HStack {
+                Image(systemName: "person.fill")
+                Text("No first umpire assigned yet")
+                Spacer()
+            }.padding(ScoresItemPadding)
+        }
+        
+        if !gamescore.umpire_assignments.indices.contains(1) {
+            HStack {
+                Image(systemName: "person.fill")
+                Text("No second umpire assigned yet")
+                Spacer()
+            }.padding(ScoresItemPadding)
+        }
+    }
+}
+
+struct ScorerAssignments: View {
+    
+    var gamescore: GameScore
+    
+    var body: some View {
+        if gamescore.scorer_assignments != [] {
+            ForEach(gamescore.scorer_assignments, id: \.self) { scorerEntry in
+                HStack {
+                    Image(systemName: "pencil")
+                    Text(scorerEntry.license.person.last_name + ", " + scorerEntry.license.person.first_name)
+                    Spacer()
+                    Text(scorerEntry.license.number)
+                            .font(.caption)
+                }.padding(ScoresItemPadding)
+            }
+        } else {
+            HStack {
+                Image(systemName: "pencil")
+                Text("No scorer assigned yet")
+                Spacer()
+            }.padding(ScoresItemPadding)
+        }
+    }
+}
+
+struct BallparkLocation: View {
+    
+    var gamescore: GameScore
+    
+    var body: some View {
+        if let field = gamescore.field {
+            if let coordinateLatitude = field.latitude, let coordinateLongitude = field.longitude {
+                let fieldPin = [
+                    Ballpark(name: field.name, coordinate: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude)),
+                    ]
+                Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))), interactionModes: .zoom, annotationItems: fieldPin) {
+                        MapMarker(coordinate: $0.coordinate, tint: Color.accentColor)
+                }
+                .frame(height: 200)
+                
+                //TODO: make this a link to open the maps app
+//                        .onTapGesture(perform: {
+//                            map.openInMaps()
+//                        })
+                
+            } else {
+                Text("No field coordinates provided")
+            }
+            HStack {
+                Image(systemName: "diamond.fill") //this really needs a custom icon
+                Text(String(field.name))
+            }
+            .padding(ScoresItemPadding)
+            HStack {
+                Image(systemName: "house.fill")
+                Text(field.street + ",\n" + field.postal_code + " " + field.city)
+            }
+            .padding(ScoresItemPadding)
+        } else {
+            HStack {
+                Image(systemName: "diamond.fill")
+                Text("No location/field data")
+            }
+        }
+    }
+}
+
 struct ScoresDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoresDetailView(gamescore: dummyGameScores[47])
+        ScoresDetailView(gamescore: dummyGameScores[7])
             //.previewDevice(PreviewDevice(rawValue: "Apple Watch Series 6 - 44mm"))
     }
 }

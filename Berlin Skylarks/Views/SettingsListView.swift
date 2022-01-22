@@ -101,21 +101,21 @@ struct SettingsListView: View {
             .listStyle(.insetGrouped)
         #endif
         
-            .toolbar {
-                ToolbarItem(placement: .automatic) {
-                    Button(
-                        action: {
-                            showingTestView.toggle()
-                        }
-                    ){
-                        Image(systemName: "info.circle.fill")
-                    }
-                    .padding(.horizontal, 5)
-                    .sheet( isPresented: $showingTestView) {
-                        TestView()
-                    }
-                }
-            }
+//            .toolbar {
+//                ToolbarItem(placement: .automatic) {
+//                    Button(
+//                        action: {
+//                            showingTestView.toggle()
+//                        }
+//                    ){
+//                        Image(systemName: "info.circle.fill")
+//                    }
+//                    .padding(.horizontal, 5)
+//                    .sheet( isPresented: $showingTestView) {
+//                        TestView()
+//                    }
+//                }
+//            }
             
             .navigationTitle("Settings")
         //}

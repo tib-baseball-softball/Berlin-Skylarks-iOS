@@ -39,41 +39,7 @@ struct ScoresOverView: View {
                         Divider()
                             .frame(height: 40)
                         Spacer()
-                        if gamescore.human_state.contains("geplant") {
-                            Text("TBD")
-                                .font(.title)
-                                .bold()
-                        }
-                        if gamescore.human_state.contains("ausgefallen") {
-                            Text("PPD")
-                                .font(.title)
-                                .bold()
-                        }
-                        if gamescore.human_state.contains("gespielt") || gamescore.human_state.contains("Forfeit") || gamescore.human_state.contains("Nichtantreten") || gamescore.human_state.contains("Wertung") || gamescore.human_state.contains("Rückzug") || gamescore.human_state.contains("Ausschluss") {
-                            if !isDerby {
-                                if skylarksWin {
-                                    Text("W")
-                                        .font(.title)
-                                        .bold()
-                                        .foregroundColor(Color.green)
-                                        .padding()
-                                } else {
-                                    Text("L")
-                                        .font(.title)
-                                        .bold()
-                                        .foregroundColor(Color.accentColor)
-                                        .padding()
-                                }
-                            } else {
-                                VStack {
-                                    Image(systemName: "heart.fill")
-                                        .font(.title)
-                                        .foregroundColor(Color.accentColor)
-                                    Text("Derby - Skylarks win either way")
-                                        .padding()
-                                }
-                            }
-                        }
+                        GameResultIndicator(gamescore: gamescore)
                         Spacer()
                     }
                     
@@ -128,6 +94,10 @@ struct ScoresOverView: View {
         .cornerRadius(NewsItemCornerRadius)
         #endif
         
+        //---------------------------------------------------------//
+        //-----------start Apple Watch-specific code---------------//
+        //---------------------------------------------------------//
+        
         #if os(watchOS)
         setCorrectLogo(gamescore: gamescore)
         gameDate = getDatefromBSMString(gamescore: gamescore)
@@ -137,6 +107,12 @@ struct ScoresOverView: View {
                 VStack {
                     Text(gamescore.league.name)
                         .font(.caption2)
+                    HStack {
+                        Text(gameDate!, style: .date)
+                        Text(gameDate!, style: .time)
+                    }
+                    .font(.footnote)
+                    .foregroundColor(.secondary)
                     Divider()
                         .padding(.horizontal)
                     HStack {
@@ -153,6 +129,7 @@ struct ScoresOverView: View {
                                 .font(.title3)
                                 .bold()
                                 .frame(maxWidth: 40, alignment: .center)
+                                .foregroundColor(gamescore.away_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
                         }
                     }
                     HStack {
@@ -169,6 +146,7 @@ struct ScoresOverView: View {
                                 .font(.title3)
                                 .bold()
                                 .frame(maxWidth: 40, alignment: .center)
+                                .foregroundColor(gamescore.home_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
                         }
                     }
                 }
