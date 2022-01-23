@@ -14,3 +14,5 @@ let ColorStandingsTableHeadline = Color(UIColor.secondarySystemFill)
 let ItemBackgroundColor = Color(UIColor.tertiarySystemFill)
 //let PageBackgroundColor = Color(UIColor.secondarySystemBackground) //using standard backgrounds for now
 
+//is that one actually needed?
+let colorStandingsBackground = Color(UIColor.systemGroupedBackground)

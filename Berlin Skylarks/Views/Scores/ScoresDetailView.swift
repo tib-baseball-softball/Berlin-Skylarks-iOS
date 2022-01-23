@@ -382,7 +382,7 @@ struct UmpireAssignments: View {
                 Text(umpireEntry.license.person.last_name + ", " + umpireEntry.license.person.first_name)
                 Spacer()
                 Text(umpireEntry.license.number)
-                    .font(.caption)
+                .iOS { $0.font(.caption) }
             }.padding(ScoresItemPadding)
         }
         
@@ -416,7 +416,7 @@ struct ScorerAssignments: View {
                     Text(scorerEntry.license.person.last_name + ", " + scorerEntry.license.person.first_name)
                     Spacer()
                     Text(scorerEntry.license.number)
-                            .font(.caption)
+                        .iOS { $0.font(.caption) }
                 }.padding(ScoresItemPadding)
             }
         } else {

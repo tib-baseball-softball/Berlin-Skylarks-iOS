@@ -41,7 +41,7 @@ struct StandingsView: View {
                             }
                         })
                 }
-                .padding(StandingsRowPadding)
+                .padding()
             }
             
         }
@@ -52,10 +52,18 @@ struct StandingsView: View {
             loadAllTables()
         }
         #endif
-        .listStyle(.insetGrouped)
+        
+        .listStyle( {
+          #if os(watchOS)
+            .automatic
+          #else
+            .insetGrouped
+          #endif
+        } () )
+        
         .navigationTitle("Standings")
         
-        //MARK: Fix on iPhone seems to work for now even without a container view, please double-check in practice!
+        //Fix on iPhone seems to work for now even without a container view, please double-check in practice!
         
         .onAppear(perform: {
             if leagueTableArray == [] && tablesLoaded == false {

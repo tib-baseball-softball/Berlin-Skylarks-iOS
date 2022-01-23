@@ -13,6 +13,11 @@ import SwiftUI
 let currentSeason = "2021"
 let skylarksID = "485"
 
+//logos for easy usage
+
+let skylarksPrimaryLogo = Image("Rondell")
+let skylarksSecondaryLogo = Image("Bird_whiteoutline")
+
 //-----------------------------change league IDs here--------------------------------//
 
 let idVLBB = "4800"

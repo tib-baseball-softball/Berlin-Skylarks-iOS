@@ -48,6 +48,8 @@
 		CA1CB20F2756877E0007D24E /* SkylarksTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20D2756877E0007D24E /* SkylarksTeams.swift */; };
 		CA1CB211275D15BA0007D24E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA1CB210275D15BA0007D24E /* README.md */; };
 		CA1CB212275D15BA0007D24E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA1CB210275D15BA0007D24E /* README.md */; };
+		CA283D0D279D849000271DC1 /* StandingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740D26C292F900A57F66 /* StandingsTableView.swift */; };
+		CA283D0E279D953500271DC1 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA056259CAC8E002A0FAB /* StandingsView.swift */; };
 		CA48557B277383D5004ED11A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
 		CA48557D27748A9E004ED11A /* GamedayWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */; };
 		CA48557E27748A9E004ED11A /* GamedayWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */; };
@@ -762,6 +764,7 @@
 				CA1C3A0B2733407400BB194C /* Ints_Floats.swift in Sources */,
 				CA1C3A132733444400BB194C /* InfoView.swift in Sources */,
 				CA1C39F827318C6D00BB194C /* Berlin_SkylarksApp.swift in Sources */,
+				CA283D0D279D849000271DC1 /* StandingsTableView.swift in Sources */,
 				CA6042A22745B14000607011 /* ViewModifiers.swift in Sources */,
 				CA1CB20F2756877E0007D24E /* SkylarksTeams.swift in Sources */,
 				CA1722E227542DBE00E8BF36 /* PlayerModel.swift in Sources */,
@@ -772,6 +775,7 @@
 				CA9B180E277A27FA00D24CFA /* ContentView.swift in Sources */,
 				CA1CB20C27567E870007D24E /* TeamModel.swift in Sources */,
 				CA1C39EA2731875800BB194C /* BSMGameScore.swift in Sources */,
+				CA283D0E279D953500271DC1 /* StandingsView.swift in Sources */,
 				CA9B1813277A290900D24CFA /* ScoresView.swift in Sources */,
 				CA1C3A0E273340C000BB194C /* BSM_URL_Data.swift in Sources */,
 				CA55F6E227601E350032302F /* API_Key.swift in Sources */,

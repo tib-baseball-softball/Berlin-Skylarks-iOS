@@ -96,11 +96,11 @@ struct ContentView: View {
                         .foregroundColor(Color.accentColor)
                     Text("Favorite Team")
                 }
-                HStack {
-                    Image(systemName: "newspaper")
-                        .foregroundColor(Color.accentColor)
-                    Text("News")
-                }
+//                HStack {
+//                    Image(systemName: "newspaper")
+//                        .foregroundColor(Color.accentColor)
+//                    Text("News")
+//                }
                 NavigationLink(
                     destination: ScoresView()) {
                         HStack {
@@ -109,16 +109,20 @@ struct ContentView: View {
                             Text("Scores")
                         }
                     }
-                HStack {
-                    Image(systemName: "tablecells")
-                        .foregroundColor(Color.accentColor)
-                    Text("Standings")
-                }
-                HStack {
-                    Image(systemName: "person.3")
-                        .foregroundColor(Color.accentColor)
-                    Text("Players")
-                }
+                NavigationLink(
+                    destination: StandingsView()) {
+                        HStack {
+                            Image(systemName: "tablecells")
+                                .foregroundColor(Color.accentColor)
+                            Text("Standings")
+                        }
+                    }
+                
+//                HStack {
+//                    Image(systemName: "person.3")
+//                        .foregroundColor(Color.accentColor)
+//                    Text("Players")
+//                }
                 HStack {
                     Image(systemName: "gearshape")
                         .foregroundColor(Color.accentColor)
