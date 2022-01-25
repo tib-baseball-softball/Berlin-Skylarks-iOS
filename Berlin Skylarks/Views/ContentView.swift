@@ -10,8 +10,6 @@ import CoreData
 
 struct ContentView: View {
     
-    //this stuff was in here from the start, no idea if it's important
-    
 //    @Environment(\.managedObjectContext) private var viewContext
 //
 //    @FetchRequest(
@@ -80,7 +78,7 @@ struct ContentView: View {
 //                }
 //            }
         }
-        //on iPad and macOS we use a sidebar navigation to make better use of the ample space)
+        //on iPad and macOS we use a sidebar navigation to make better use of the ample space
         
         if UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac {
             SidebarNavigationView()
@@ -91,11 +89,14 @@ struct ContentView: View {
         #if os(watchOS)
         NavigationView {
             List {
-                HStack {
-                    Image(systemName: "star")
-                        .foregroundColor(Color.accentColor)
-                    Text("Favorite Team")
-                }
+                NavigationLink(
+                    destination: UserHomeView()){
+                        HStack {
+                            Image(systemName: "star")
+                                .foregroundColor(Color.accentColor)
+                            Text("Favorite Team")
+                        }
+                    }
 //                HStack {
 //                    Image(systemName: "newspaper")
 //                        .foregroundColor(Color.accentColor)
@@ -123,11 +124,15 @@ struct ContentView: View {
 //                        .foregroundColor(Color.accentColor)
 //                    Text("Players")
 //                }
-                HStack {
-                    Image(systemName: "gearshape")
-                        .foregroundColor(Color.accentColor)
-                    Text("Settings")
-                }
+                NavigationLink(
+                    destination: SettingsListView()) {
+                        HStack {
+                            Image(systemName: "gearshape")
+                                .foregroundColor(Color.accentColor)
+                            Text("Settings")
+                        }
+                    }
+                    
             }
             .navigationTitle("Home")
         }

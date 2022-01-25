@@ -32,75 +32,74 @@ class UserSettings: ObservableObject {
 struct SettingsListView: View {
     
     @ObservedObject var userSettings = UserSettings()
-    @State private var showingTestView = false
+    //@State private var showingTestView = false
     
     var body: some View {
-        //NavigationView {
-            List {
-                Section(
-                        header: Text("Notifications"),
-                        footer: Text("Receive notifications for all Skylarks teams or just your favorite team.")) {
-                    Toggle(isOn: $userSettings.sendPush) {
-                            Text("Send Push Notifications")
-                    }
-                    .toggleStyle(SwitchToggleStyle(tint: Color("AccentColor")))
-                    
-                    NavigationLink(
-                        destination: InfoView()) {
-                        HStack {
-                            Image(systemName: "bell.badge.fill")
-                                .font(.title)
-                            Text("Notify on")
-                        }
-                    }
-                    NavigationLink(
-                        destination: InfoView()) {
-                        HStack {
-                            Image(systemName: "person.2.fill")
-                                .font(.title)
-                            Text("Frequency")
-                        }
+        List {
+            Section(
+                    header: Text("Notifications"),
+                    footer: Text("Receive notifications for all Skylarks teams or just your favorite team.")) {
+                Toggle(isOn: $userSettings.sendPush) {
+                        Text("Send Push Notifications")
+                }
+                .toggleStyle(SwitchToggleStyle(tint: Color("AccentColor")))
+                
+                NavigationLink(
+                    destination: InfoView()) {
+                    HStack {
+                        Image(systemName: "bell.badge.fill")
+                            .font(.title3)
+                        Text("Notify on")
                     }
                 }
-                Section(
-                    header: Text("Teams"),
-                    footer: Text("Your favorite team appears in the Home dashboard tab.")) {
-                        Picker(selection: $userSettings.favoriteTeam, label:
-                            HStack {
-                                Image(systemName: "star.square.fill")
-                                    .font(.title)
-                                Text("Favorite Team")
-                    }) {
-                        ForEach(userSettings.skylarksTeams, id: \.self) { team in
-                            Text(team)
-                        }
-                    }
-                }
-                Section(header: Text("Information")) {
-                    NavigationLink(
-                        destination: InfoView()) {
-                        HStack {
-                            Image(systemName: "info.circle.fill")
-                                .font(.title)
-                            Text("App Info")
-                        }
-                    }
+                NavigationLink(
+                    destination: InfoView()) {
                     HStack {
-                        Text("©")
-                            .font(.largeTitle)
-                        Text("Acknowledgements")
-                    }
-                    HStack {
-                        Text("§")
-                            .font(.largeTitle)
-                        Text("Imprint")
+                        Image(systemName: "person.2.fill")
+                            .font(.title3)
+                        Text("Frequency")
                     }
                 }
             }
-        #if !os(watchOS)
-            .listStyle(.insetGrouped)
-        #endif
-        
+            Section(
+                header: Text("Teams"),
+                footer: Text("Your favorite team appears in the Home dashboard tab.")) {
+                    Picker(selection: $userSettings.favoriteTeam, label:
+                        HStack {
+                            Image(systemName: "star.square.fill")
+                                .font(.title3)
+                            Text("Favorite Team")
+                }) {
+                    ForEach(userSettings.skylarksTeams, id: \.self) { team in
+                        Text(team)
+                    }
+                }
+            }
+            Section(header: Text("Information")) {
+                NavigationLink(
+                    destination: InfoView()) {
+                    HStack {
+                        Image(systemName: "info.circle.fill")
+                            .font(.title3)
+                        Text("App Info")
+                    }
+                }
+                HStack {
+                    Text("©")
+                        .font(.title)
+                    Text("Acknowledgements")
+                }
+                HStack {
+                    Text("§")
+                        .font(.title)
+                    Text("Imprint")
+                }
+            }
+        }
+    #if !os(watchOS)
+        .listStyle(.insetGrouped)
+    #endif
+    
 //            .toolbar {
 //                ToolbarItem(placement: .automatic) {
 //                    Button(
@@ -116,19 +115,15 @@ struct SettingsListView: View {
 //                    }
 //                }
 //            }
-            
-            .navigationTitle("Settings")
-        //}
-        //.navigationViewStyle(.stack)
+        
+        .navigationTitle("Settings")
     }
 }
 
 struct SettingsListView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            ForEach(ColorScheme.allCases, id: \.self) {
-                SettingsListView().preferredColorScheme($0)
-            }
+            SettingsListView()
         }
     }
 }

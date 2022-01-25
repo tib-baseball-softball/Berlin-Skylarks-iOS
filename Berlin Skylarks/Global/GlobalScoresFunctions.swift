@@ -217,6 +217,29 @@ func loadTableData(url: URL, completion: @escaping ((LeagueTable) -> Void)) {
 }
 
 //-------------------------------------------------------------------------------//
+//-----------------------------------LOAD DATA---------------------------------//
+//-------------------------------------------------------------------------------//
+
+//MARK: Generic load function that accepts any codable type
+
+func loadBSMData<T: Codable>(url: URL, dataType: T.Type, completion: @escaping ((T) -> Void)) {
+    
+    let request = URLRequest(url: url)
+    URLSession.shared.dataTask(with: request) { data, response, error in
+
+        if let data = data {
+            if let response_obj = try? JSONDecoder().decode(T.self, from: data) {
+
+                DispatchQueue.main.async {
+                    let loadedData = response_obj
+                    completion(loadedData)
+                }
+            }
+        }
+    }.resume()
+}
+
+//-------------------------------------------------------------------------------//
 //-------------------------------CALENDAR EVENTS---------------------------------//
 //-------------------------------------------------------------------------------//
 

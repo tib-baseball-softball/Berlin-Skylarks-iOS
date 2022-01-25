@@ -20,6 +20,8 @@ let skylarksSecondaryLogo = Image("Bird_whiteoutline")
 
 //-----------------------------change league IDs here--------------------------------//
 
+//those IDs are not the LEAGUE IDs in BSM, they are the LEAGUEGROUP IDs (slightly different)
+
 let idVLBB = "4800"
 let idVLSB = "4805"
 let idLLBB = "4801"
@@ -60,7 +62,7 @@ let scoresURLs = [
 
 //-------------------------------STANDINGS/TABLES---------------------------------//
 
-//these need to be changed every year after the schedule is published - there is no option to collect all tables for Skylarks teams like I do with scores
+//these need to be changed every year after the schedule is published - there is no option to collect all tables for Skylarks teams like I do with scores (WIP to find one)
 //apparently they also do not need an API key
 
 //URLs are set in SkylarksTeams now
@@ -91,7 +93,7 @@ let testGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0
 
 //&sorted[time]=asc/desc
 
-//https://bsm.baseball-softball.de/clubs/485/team_clubs.json?filters[seasons][]=2021&api_key=IN__8yHVCeE3gP83Dvyqww
+//https://bsm.baseball-softball.de/clubs/485/team_clubs.json?filters[seasons][]=2021&api_key=
 //=> this yields all officially registered teams
 
 //-------------------------------FUNKTIONÄRE---------------------------------//

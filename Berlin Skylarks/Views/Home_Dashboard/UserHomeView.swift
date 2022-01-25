@@ -371,7 +371,7 @@ struct UserHomeView: View {
             Section(header: Text("Favorite Team")) {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {
-                        Image(systemName: "star.fill")
+                        Image(systemName: "star")
                             .foregroundColor(.skylarksRed)
                         Text(userDashboard.tableRow.team_name)
                             .padding(.leading)

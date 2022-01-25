@@ -20,42 +20,52 @@ struct TeamDetailListHeader: View {
 }
 
 struct TeamListView: View {
+    
+    @State var leagueGroups = [LeagueGroup]()
+    
+    let leagueGroupURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=2021&api_key=" + apiKey)!
+    
     var body: some View {
-        //NavigationView {
-            List {
-                Section(header: TeamDetailListHeader()) {
-                    NavigationLink(
-                        destination: TeamPlayersView()){
-                            HStack {
-                                Text("1")
-                                Spacer()
-                                Text("Verbandsliga")
-                                Spacer()
-                                Text("Baseball")
-                            }
-                    }
-                    HStack {
-                        Text("2")
-                        Spacer()
-                        Text("Landesliga")
-                        Spacer()
-                        Text("Baseball")
-                    }
-                    HStack {
-                        Text("3")
-                        Spacer()
-                        Text("Bezirksliga")
-                        Spacer()
-                        Text("Baseball")
-                    }
+        List {
+            Section(header: TeamDetailListHeader()) {
+                NavigationLink(
+                    destination: TeamPlayersView()){
+                        HStack {
+                            Text("1")
+                            Spacer()
+                            Text("Verbandsliga")
+                            Spacer()
+                            Text("Baseball")
+                        }
                 }
-                
+                HStack {
+                    Text("2")
+                    Spacer()
+                    Text("Landesliga")
+                    Spacer()
+                    Text("Baseball")
+                }
+                HStack {
+                    Text("3")
+                    Spacer()
+                    Text("Bezirksliga")
+                    Spacer()
+                    Text("Baseball")
+                }
             }
-            .navigationBarTitle("Teams")
-            .listStyle(.insetGrouped)
+            Text(leagueGroups.debugDescription)
             
-        //}
-        //.navigationViewStyle(.stack)
+        }
+        .navigationBarTitle("Teams")
+        .listStyle(.insetGrouped)
+    
+        .onAppear(perform: {
+            if leagueGroups == [] {
+                loadBSMData(url: leagueGroupURL, dataType: [LeagueGroup].self) { loadedData in
+                    leagueGroups = loadedData
+                }
+            }
+        })
     }
 }
 
