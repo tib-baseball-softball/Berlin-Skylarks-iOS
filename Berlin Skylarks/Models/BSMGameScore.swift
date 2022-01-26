@@ -15,9 +15,6 @@ struct GameScore: Hashable, Codable, Identifiable {
     var id: Int
     var match_id: String
     var time: String // gets converted by DateFormatter() in view
-    //"Check if this works - this is added by me, this is not available in BSM API!")
-    var gameDate: Date?
-    //
     var home_runs: Int? //those really should be Ints
     var away_runs: Int?
     var home_team_name: String
@@ -26,10 +23,13 @@ struct GameScore: Hashable, Codable, Identifiable {
     var scoresheet_url: String?
     var field: Field?
     var league: League
-    var home_league_entry: Home_League_Entry
-    var away_league_entry: Away_League_Entry
+    var home_league_entry: LeagueEntry
+    var away_league_entry: LeagueEntry
     var umpire_assignments: [Umpire_Assignments]
     var scorer_assignments: [Scorer_Assignments]
+    
+    //Custom entries not available in BSM API!
+    var gameDate: Date?
     
     struct Field: Hashable, Codable {
         var name: String
@@ -40,19 +40,25 @@ struct GameScore: Hashable, Codable, Identifiable {
         var longitude: Double?
     }
  
-    struct League: Hashable, Codable {
-        var id: Int
-        var season: Int
-        var name: String
+    //now global (used elsewhere as well)
+//    struct League: Hashable, Codable {
+//        var id: Int
+//        var season: Int
+//        var name: String
+//    }
+    
+    struct LeagueEntry: Hashable, Codable {
+        var team: Team
+        //var league: League?
     }
     
-    struct Home_League_Entry: Hashable, Codable {
-        var team: Team
-    }
-
-    struct Away_League_Entry: Hashable, Codable {
-        var team: Team
-    }
+//    struct Home_League_Entry: Hashable, Codable {
+//        var team: Team
+//    }
+//
+//    struct Away_League_Entry: Hashable, Codable {
+//        var team: Team
+//    }
     
     struct Umpire_Assignments: Hashable, Codable {
         var license: License
@@ -72,13 +78,12 @@ struct GameScore: Hashable, Codable, Identifiable {
         var last_name: String
     }
     
+    //there is another team struct with different entities!
     struct Team: Hashable, Codable {
         var name: String
         var short_name: String
         //var clubs: [Clubs]
     }
-    
-    //note the spaces here! --> sometimes used in example for arrays
     
 //    struct Clubs: Hashable, Codable {
 //        var id: Int

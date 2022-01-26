@@ -81,15 +81,17 @@ class UserDashboard: ObservableObject {
     
     @Published var tableRow = LeagueTable.Row(rank: "X.", team_name: "Testteam", short_team_name: "XXX", match_count: 0, wins_count: 0, losses_count: 0, quota: ".000", games_behind: "0", streak: "00")
     
-    @Published var NextGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", gameDate: nil, home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: GameScore.League(id: 999, season: 1970, name: "Latest league"), home_league_entry: GameScore.Home_League_Entry(team: GameScore.Team(name: "Long home name", short_name: "ACR")), away_league_entry: GameScore.Away_League_Entry(team: GameScore.Team(name: "Long away name", short_name: "ACR")), umpire_assignments: [], scorer_assignments: [])
+    @Published var NextGame = testGame
     
-    @Published var LastGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", gameDate: nil, home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: GameScore.League(id: 999, season: 1970, name: "Latest league"), home_league_entry: homeEntry, away_league_entry: awayEntry, umpire_assignments: [], scorer_assignments: [])
+    @Published var LastGame = testGame
 }
 
-let homeEntry = GameScore.Home_League_Entry(team: GameScore.Team(name: "long home name", short_name: "ACR"))
-let awayEntry = GameScore.Away_League_Entry(team: GameScore.Team(name: "long home name", short_name: "ACR"))
+let emptyScoreTeam = GameScore.Team(name: "Test Team", short_name: "ACR")
 
-let testGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", gameDate: nil, home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: GameScore.League(id: 999, season: 1970, name: "Latest league"), home_league_entry: GameScore.Home_League_Entry(team: GameScore.Team(name: "Long home name", short_name: "ACR")), away_league_entry: GameScore.Away_League_Entry(team: GameScore.Team(name: "Long away name", short_name: "ACR")), umpire_assignments: [], scorer_assignments: [])
+let homeEntry = GameScore.LeagueEntry(team: emptyScoreTeam)
+let awayEntry = GameScore.LeagueEntry(team: emptyScoreTeam)
+
+let testGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: emptyLeague, home_league_entry: homeEntry, away_league_entry: awayEntry, umpire_assignments: [], scorer_assignments: [])
 
 //&sorted[time]=asc/desc
 

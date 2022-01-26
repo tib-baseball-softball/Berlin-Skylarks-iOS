@@ -53,7 +53,7 @@ struct SidebarNavigationView: View {
                             destination: TeamListView()) {
                                 Image(systemName: "person.3.fill")
                                     .frame(width: 30)
-                                Text("Players")
+                                Text("Teams")
                                     .frame(width: 100, alignment: .leading)
                         }
                     }

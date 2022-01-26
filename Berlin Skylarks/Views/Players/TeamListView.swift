@@ -9,60 +9,67 @@ import SwiftUI
 
 struct TeamDetailListHeader: View {
     var body: some View {
-        HStack {
-            Image(systemName: "number")
-            Spacer()
-            Text("Team")
-            Spacer()
-            Text("Sport")
-        }
+        Text("Team data")
     }
 }
 
 struct TeamListView: View {
     
-    @State var leagueGroups = [LeagueGroup]()
+    @State var teams = [BSMTeam]()
     
-    let leagueGroupURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=2021&api_key=" + apiKey)!
+    let teamURL = URL(string:"https://bsm.baseball-softball.de/clubs/485/teams.json?filters[seasons][]=" + currentSeason + "&sort[league_sort]=asc&api_key=" + apiKey)!
     
     var body: some View {
         List {
             Section(header: TeamDetailListHeader()) {
-                NavigationLink(
-                    destination: TeamPlayersView()){
-                        HStack {
-                            Text("1")
-                            Spacer()
-                            Text("Verbandsliga")
-                            Spacer()
-                            Text("Baseball")
-                        }
-                }
                 HStack {
-                    Text("2")
+                    Image(systemName: "person.3.fill")
+                        .padding(.trailing)
+                    Text("Team")
                     Spacer()
-                    Text("Landesliga")
-                    Spacer()
-                    Text("Baseball")
+                    Text("League")
+                        .frame(maxWidth: 110, alignment: .leading)
+                        .padding(.trailing)
                 }
-                HStack {
-                    Text("3")
-                    Spacer()
-                    Text("Bezirksliga")
-                    Spacer()
-                    Text("Baseball")
+                //.padding(.horizontal)
+                .font(.headline)
+                .listRowBackground(ColorStandingsTableHeadline)
+                
+                ForEach(teams, id: \.self) { team in
+                    NavigationLink(
+                        destination: TeamPlayersView()){
+                            HStack {
+                                Image(systemName: "person.3")
+                                    .foregroundColor(.skylarksRed)
+                                    .padding(.trailing)
+                                Text(team.name)
+                                Spacer()
+                                if team.league_entries != [] {
+                                    Text(team.league_entries[0].league.name)
+                                        .frame(maxWidth: 110, alignment: .leading)
+                                        .allowsTightening(true)
+                                }
+                            }
+                    }
                 }
+                //.padding(.horizontal)
+                //Text(teams.debugDescription)
             }
-            Text(leagueGroups.debugDescription)
             
         }
         .navigationBarTitle("Teams")
         .listStyle(.insetGrouped)
+        .refreshable {
+            teams = []
+            loadBSMData(url: teamURL, dataType: [BSMTeam].self) { loadedData in
+                teams = loadedData
+            }
+        }
     
         .onAppear(perform: {
-            if leagueGroups == [] {
-                loadBSMData(url: leagueGroupURL, dataType: [LeagueGroup].self) { loadedData in
-                    leagueGroups = loadedData
+            if teams == [] {
+                loadBSMData(url: teamURL, dataType: [BSMTeam].self) { loadedData in
+                    teams = loadedData
                 }
             }
         })
@@ -72,5 +79,6 @@ struct TeamListView: View {
 struct TeamListView_Previews: PreviewProvider {
     static var previews: some View {
         TeamListView()
+            .preferredColorScheme(.dark)
     }
 }

@@ -363,6 +363,7 @@
 			isa = PBXGroup;
 			children = (
 				CA1C3A092733407400BB194C /* Ints_Floats.swift */,
+				CA78B71B259507BC00510621 /* ColorSets.swift */,
 				CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */,
 				CAAB56C2271F62F800ADDE9D /* GlobalScoresFunctions.swift */,
 				CA6042A02745B14000607011 /* ViewModifiers.swift */,
@@ -413,7 +414,6 @@
 			isa = PBXGroup;
 			children = (
 				CABF7BEE259351D400B95813 /* Berlin_SkylarksApp.swift */,
-				CA78B71B259507BC00510621 /* ColorSets.swift */,
 				CABF7BF7259351D500B95813 /* Persistence.swift */,
 				CA1C3A082733402800BB194C /* Global */,
 				CA1A240C26BC389E00A8D1C7 /* Berlin Skylarks.entitlements */,

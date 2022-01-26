@@ -64,7 +64,7 @@ struct ContentView: View {
                 }
                     .tabItem {
                         Image(systemName: "person.3.fill")
-                        Text("Players")
+                        Text("Teams")
                     }
 //                SettingsListView()
 //                    .tabItem {
