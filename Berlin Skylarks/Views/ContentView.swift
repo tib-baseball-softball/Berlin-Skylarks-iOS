@@ -10,14 +10,16 @@ import CoreData
 
 struct ContentView: View {
     
+    @State private var showingSheetOnboarding = false
+    
+    @AppStorage("didLaunchBefore") var didLaunchBefore = false
+    
 //    @Environment(\.managedObjectContext) private var viewContext
 //
 //    @FetchRequest(
 //        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
 //        animation: .default)
 //    private var items: FetchedResults<Item>
-
-    //main navigation view
     
     
     var body: some View {
@@ -72,20 +74,30 @@ struct ContentView: View {
 //                        Text("Settings")
 //                    }
             }
-//            .toolbar {
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Image(systemName: "plus")
-//                }
-//            }
+            .onAppear(perform: {
+                showingSheetOnboarding = true
+            })
+            .sheet(isPresented: $showingSheetOnboarding) {
+                UserOnboardingView()
+            }
         }
+            
         //on iPad and macOS we use a sidebar navigation to make better use of the ample space
         
         if UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac {
             SidebarNavigationView()
+                .onAppear(perform: {
+                    showingSheetOnboarding = true
+                })
+                .sheet( isPresented: $showingSheetOnboarding) {
+                    UserOnboardingView()
+                }
         }
+        
         #endif
         
         //Apple Watch
+        
         #if os(watchOS)
         NavigationView {
             List {

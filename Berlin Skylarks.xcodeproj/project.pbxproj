@@ -63,6 +63,7 @@
 		CA56299526943C0D00274BE4 /* WebArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56299426943C0D00274BE4 /* WebArticleView.swift */; };
 		CA6042A12745B14000607011 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6042A02745B14000607011 /* ViewModifiers.swift */; };
 		CA6042A22745B14000607011 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6042A02745B14000607011 /* ViewModifiers.swift */; };
+		CA6F9E8427B2A9EE00530629 /* UserOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6F9E8327B2A9EE00530629 /* UserOnboardingView.swift */; };
 		CA78B71C259507BC00510621 /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CA78B725259648F300510621 /* PlayersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B724259648F300510621 /* PlayersView.swift */; };
 		CA78B7282596880200510621 /* NewsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B7272596880200510621 /* NewsDetailView.swift */; };
@@ -227,6 +228,7 @@
 		CA55F6E027601A4F0032302F /* API_Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Key.swift; sourceTree = "<group>"; };
 		CA56299426943C0D00274BE4 /* WebArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebArticleView.swift; sourceTree = "<group>"; };
 		CA6042A02745B14000607011 /* ViewModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModifiers.swift; sourceTree = "<group>"; };
+		CA6F9E8327B2A9EE00530629 /* UserOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserOnboardingView.swift; sourceTree = "<group>"; };
 		CA78B71B259507BC00510621 /* ColorSets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorSets.swift; sourceTree = "<group>"; };
 		CA78B724259648F300510621 /* PlayersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayersView.swift; sourceTree = "<group>"; };
 		CA78B7272596880200510621 /* NewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailView.swift; sourceTree = "<group>"; };
@@ -516,6 +518,7 @@
 			children = (
 				CABF7BF0259351D400B95813 /* ContentView.swift */,
 				CA1C3A1F27388BF300BB194C /* SidebarNavigationView.swift */,
+				CA6F9E8327B2A9EE00530629 /* UserOnboardingView.swift */,
 				CA97EAB7272370F5003055B6 /* Home_Dashboard */,
 				CAF839CE2704FD75006FAD6B /* News */,
 				CAF839CB2704FCC2006FAD6B /* Scores */,
@@ -816,6 +819,7 @@
 				CA28D66E27A0601B00680067 /* BSMLeagueGroup.swift in Sources */,
 				CA1722E127542DBE00E8BF36 /* PlayerModel.swift in Sources */,
 				CABF7BF8259351D500B95813 /* Persistence.swift in Sources */,
+				CA6F9E8427B2A9EE00530629 /* UserOnboardingView.swift in Sources */,
 				CAAB56C527208A9200ADDE9D /* UserHomeView.swift in Sources */,
 				CABF7BF1259351D400B95813 /* ContentView.swift in Sources */,
 				CAF839D02705F4D9006FAD6B /* TestView.swift in Sources */,

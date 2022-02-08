@@ -36,31 +36,32 @@ struct SettingsListView: View {
     
     var body: some View {
         List {
-            Section(
-                    header: Text("Notifications"),
-                    footer: Text("Receive notifications for all Skylarks teams or just your favorite team.")) {
-                Toggle(isOn: $userSettings.sendPush) {
-                        Text("Send Push Notifications")
-                }
-                .toggleStyle(SwitchToggleStyle(tint: Color("AccentColor")))
-                
-                NavigationLink(
-                    destination: InfoView()) {
-                    HStack {
-                        Image(systemName: "bell.badge.fill")
-                            .font(.title3)
-                        Text("Notify on")
-                    }
-                }
-                NavigationLink(
-                    destination: InfoView()) {
-                    HStack {
-                        Image(systemName: "person.2.fill")
-                            .font(.title3)
-                        Text("Frequency")
-                    }
-                }
-            }
+            //MARK: commented out for beta testing (not functional yet)
+//            Section(
+//                    header: Text("Notifications"),
+//                    footer: Text("Receive notifications for all Skylarks teams or just your favorite team.")) {
+//                Toggle(isOn: $userSettings.sendPush) {
+//                        Text("Send Push Notifications")
+//                }
+//                .toggleStyle(SwitchToggleStyle(tint: Color("AccentColor")))
+//
+//                NavigationLink(
+//                    destination: InfoView()) {
+//                    HStack {
+//                        Image(systemName: "bell.badge.fill")
+//                            .font(.title3)
+//                        Text("Notify on")
+//                    }
+//                }
+//                NavigationLink(
+//                    destination: InfoView()) {
+//                    HStack {
+//                        Image(systemName: "person.2.fill")
+//                            .font(.title3)
+//                        Text("Frequency")
+//                    }
+//                }
+//            }
             Section(
                 header: Text("Teams"),
                 footer: Text("Your favorite team appears in the Home dashboard tab.")) {
@@ -69,11 +70,11 @@ struct SettingsListView: View {
                             Image(systemName: "star.square.fill")
                                 .font(.title3)
                             Text("Favorite Team")
-                }) {
-                    ForEach(userSettings.skylarksTeams, id: \.self) { team in
-                        Text(team)
+                    }) {
+                        ForEach(userSettings.skylarksTeams, id: \.self) { team in
+                            Text(team)
+                        }
                     }
-                }
             }
             Section(header: Text("Information")) {
                 NavigationLink(
@@ -84,11 +85,11 @@ struct SettingsListView: View {
                         Text("App Info")
                     }
                 }
-                HStack {
-                    Text("©")
-                        .font(.title)
-                    Text("Acknowledgements")
-                }
+//                HStack {
+//                    Text("©")
+//                        .font(.title)
+//                    Text("Acknowledgements")
+//                }
                 HStack {
                     Text("§")
                         .font(.title)
