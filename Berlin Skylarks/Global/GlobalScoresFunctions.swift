@@ -172,49 +172,48 @@ func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameS
 //-----------------------------------LOAD SCORES---------------------------------//
 //-------------------------------------------------------------------------------//
 
-//MARK: first try to get this functionality reusable
+//MARK: OBSOLETE: see function with type parameter below. Will be removed
 //added completion handler on Jan 20, must be tested
 
-func loadGameScoreData(url: URL, completion: @escaping (([GameScore]) -> Void)) {
-    var gamescores = [GameScore]()
-    
-    let request = URLRequest(url: url)
-    URLSession.shared.dataTask(with: request) { data, response, error in
-        
-        if let data = data {
-            if let response_obj = try? JSONDecoder().decode([GameScore].self, from: data) {
-                
-                DispatchQueue.main.async {
-                    gamescores = response_obj
-                    completion(gamescores)
-                }
-            }
-        }
-    }.resume()
-}
+//func loadGameScoreData(url: URL, completion: @escaping (([GameScore]) -> Void)) {
+//    var gamescores = [GameScore]()
+//
+//    let request = URLRequest(url: url)
+//    URLSession.shared.dataTask(with: request) { data, response, error in
+//
+//        if let data = data {
+//            if let response_obj = try? JSONDecoder().decode([GameScore].self, from: data) {
+//
+//                DispatchQueue.main.async {
+//                    gamescores = response_obj
+//                    completion(gamescores)
+//                }
+//            }
+//        }
+//    }.resume()
+//}
 
 //-------------------------------------------------------------------------------//
 //-----------------------------------LOAD TABLES---------------------------------//
 //-------------------------------------------------------------------------------//
 
-//MARK: this function returns a single table instead of a collection (like Scores do)
 
-func loadTableData(url: URL, completion: @escaping ((LeagueTable) -> Void)) {
-    
-    let request = URLRequest(url: url)
-    URLSession.shared.dataTask(with: request) { data, response, error in
-
-        if let data = data {
-            if let response_obj = try? JSONDecoder().decode(LeagueTable.self, from: data) {
-
-                DispatchQueue.main.async {
-                    let leagueTable = response_obj
-                    completion(leagueTable)
-                }
-            }
-        }
-    }.resume()
-}
+//func loadTableData(url: URL, completion: @escaping ((LeagueTable) -> Void)) {
+//
+//    let request = URLRequest(url: url)
+//    URLSession.shared.dataTask(with: request) { data, response, error in
+//
+//        if let data = data {
+//            if let response_obj = try? JSONDecoder().decode(LeagueTable.self, from: data) {
+//
+//                DispatchQueue.main.async {
+//                    let leagueTable = response_obj
+//                    completion(leagueTable)
+//                }
+//            }
+//        }
+//    }.resume()
+//}
 
 //-------------------------------------------------------------------------------//
 //-----------------------------------LOAD DATA---------------------------------//

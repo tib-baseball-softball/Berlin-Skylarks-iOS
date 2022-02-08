@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "CA1C39A32731856B00BB194C"
-               BuildableName = "WatchSkylarks.app"
+               BuildableName = "Skylarks.app"
                BlueprintName = "WatchSkylarks"
                ReferencedContainer = "container:Berlin Skylarks.xcodeproj">
             </BuildableReference>
@@ -61,7 +61,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CA1C39A32731856B00BB194C"
-            BuildableName = "WatchSkylarks.app"
+            BuildableName = "Skylarks.app"
             BlueprintName = "WatchSkylarks"
             ReferencedContainer = "container:Berlin Skylarks.xcodeproj">
          </BuildableReference>
@@ -80,7 +80,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CA1C39A32731856B00BB194C"
-            BuildableName = "WatchSkylarks.app"
+            BuildableName = "Skylarks.app"
             BlueprintName = "WatchSkylarks"
             ReferencedContainer = "container:Berlin Skylarks.xcodeproj">
          </BuildableReference>

@@ -34,7 +34,7 @@ struct ScoresView: View {
         
         loadingInProgress = true
         
-        loadGameScoreData(url: gameURLSelected) { loadedData in
+        loadBSMData(url: gameURLSelected, dataType: [GameScore].self) { loadedData in
             gamescores = loadedData
             loadingInProgress = false
         }
@@ -45,11 +45,7 @@ struct ScoresView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: scoresGridSpacing) {
                 if loadingInProgress == true {
-                    VStack {
-                        ProgressView()
-                        Text("Loading game data...")
-                            .padding()
-                    }
+                    LoadingView()
                 }
                 ForEach(self.gamescores, id: \.id) { GameScore in
                     NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
@@ -226,6 +222,16 @@ struct ScoresView: View {
         })
         
         #endif
+    }
+}
+
+struct LoadingView: View {
+    var body: some View {
+        HStack {
+            Text("Loading data...")
+                .padding()
+            ProgressView()
+        }
     }
 }
 

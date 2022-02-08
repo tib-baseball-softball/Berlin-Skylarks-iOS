@@ -20,6 +20,9 @@ struct UserHomeView: View {
     @State var showNextGame = true
     @State var showLastGame = true
     
+    @State private var loadingScores = false
+    @State private var loadingTables = false
+    
     @StateObject var userDashboard = UserDashboard()
     @State private var homeGamescores = [GameScore]()
     @State var homeLeagueTables = [LeagueTable]()
@@ -38,7 +41,9 @@ struct UserHomeView: View {
     
     func loadHomeTeamTable() {
         
-        loadTableData(url: selectedHomeTablesURL) { loadedTable in
+        loadingTables = true
+        
+        loadBSMData(url: selectedHomeTablesURL, dataType: LeagueTable.self) { loadedTable in
             userDashboard.leagueTable = loadedTable
             
             homeLeagueTables.append(loadedTable)
@@ -60,14 +65,16 @@ struct UserHomeView: View {
                     userDashboard.tableRow = row
                 }
             }
+            loadingTables = false
         }
     }
     
     func loadHomeGameData() {
         
         //get the games, then process for next and last
+        loadingScores = true
     
-        loadGameScoreData(url: selectedHomeScoresURL) { loadedData in
+        loadBSMData(url: selectedHomeScoresURL, dataType: [GameScore].self) { loadedData in
             homeGamescores = loadedData
             let displayGames = processGameDates(gamescores: homeGamescores)
             
@@ -84,6 +91,7 @@ struct UserHomeView: View {
             } else {
                 showLastGame = false
             }
+            loadingScores = false
         }
     }
     
@@ -126,9 +134,13 @@ struct UserHomeView: View {
                     .padding(5)
                     Divider()
                         .frame(width: 100)
-                    Text(displayTeam.name)
-                        .font(.system(size: 18))
-                        .padding(5)
+                    if loadingTables == true {
+                        ProgressView()
+                    } else {
+                        Text(displayTeam.name)
+                            .font(.system(size: 18))
+                            .padding(5)
+                    }
                 }
                 .frame(minWidth: 150, minHeight: 150)
                 .background(ItemBackgroundColor)
@@ -145,9 +157,13 @@ struct UserHomeView: View {
                     .padding(5)
                     Divider()
                         .frame(width: 100)
-                    Text(userDashboard.leagueTable.league_name)
-                        .font(.system(size: 18))
-                        .padding(5)
+                    if loadingTables == true {
+                        ProgressView()
+                    } else {
+                        Text(userDashboard.leagueTable.league_name)
+                            .font(.system(size: 18))
+                            .padding(5)
+                    }
                 }
                 .frame(minWidth: 150, minHeight: 150)
                 .background(ItemBackgroundColor)
@@ -479,7 +495,7 @@ struct UserHomeView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
             UserHomeView()
-                .preferredColorScheme(.dark)
+                //.preferredColorScheme(.dark)
         }
     }
 }

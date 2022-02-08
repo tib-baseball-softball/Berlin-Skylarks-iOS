@@ -56,7 +56,7 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
         let selectedTeam = team(for: configuration)
         //var gamescore = testGame //I should really experiment with an empty init at some point in the future
         
-        loadGameScoreData(url: selectedTeam.scoresURL) { gamescores in
+        loadBSMData(url: selectedTeam.scoresURL, dataType: [GameScore].self) { gamescores in
             let displayGames = processGameDates(gamescores: gamescores)
             
             var lastGameRoadLogo = away_team_logo
@@ -89,11 +89,11 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
                 }
             }
             
-            // let's see if nested completion handlers work => they do, but I should explore better options here, it is widely considered to be unreadable code!
+            // MARK: nested completion handlers work => but I should explore better options here, it is widely considered to be unreadable code!
             
             //let userDashboard = UserDashboard() //moved to top of struct
             
-            loadTableData(url: selectedTeam.leagueTableURL) { loadedTable in
+            loadBSMData(url: selectedTeam.leagueTableURL, dataType: LeagueTable.self) { loadedTable in
                 userDashboard.leagueTable = loadedTable
                 
                 for row in userDashboard.leagueTable.rows where row.team_name.contains("Skylarks") {

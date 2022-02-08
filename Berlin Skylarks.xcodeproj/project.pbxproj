@@ -27,7 +27,7 @@
 		CA1C39CB2731856C00BB194C /* WatchSkylarksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39CA2731856C00BB194C /* WatchSkylarksTests.swift */; };
 		CA1C39D52731856C00BB194C /* WatchSkylarksUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39D42731856C00BB194C /* WatchSkylarksUITests.swift */; };
 		CA1C39D72731856C00BB194C /* WatchSkylarksUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39D62731856C00BB194C /* WatchSkylarksUITestsLaunchTests.swift */; };
-		CA1C39DA2731856C00BB194C /* WatchSkylarks.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CA1C39A42731856B00BB194C /* WatchSkylarks.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CA1C39DA2731856C00BB194C /* Skylarks.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CA1C39A42731856B00BB194C /* Skylarks.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CA1C39EA2731875800BB194C /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
 		CA1C39EB2731875800BB194C /* VLBB_2021_Standings.json in Resources */ = {isa = PBXBuildFile; fileRef = CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */; };
 		CA1C39EC2731875800BB194C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
@@ -159,7 +159,7 @@
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				CA1C39DA2731856C00BB194C /* WatchSkylarks.app in Embed Watch Content */,
+				CA1C39DA2731856C00BB194C /* Skylarks.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -199,7 +199,7 @@
 		CA0DA056259CAC8E002A0FAB /* StandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsView.swift; sourceTree = "<group>"; };
 		CA1722E027542DBE00E8BF36 /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		CA1A240C26BC389E00A8D1C7 /* Berlin Skylarks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Berlin Skylarks.entitlements"; sourceTree = "<group>"; };
-		CA1C39A42731856B00BB194C /* WatchSkylarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchSkylarks.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA1C39A42731856B00BB194C /* Skylarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Skylarks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1C39A62731856B00BB194C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA1C39AC2731856B00BB194C /* WatchSkylarks WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchSkylarks WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1C39B52731856B00BB194C /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
@@ -401,7 +401,7 @@
 			isa = PBXGroup;
 			children = (
 				CABF7BEB259351D400B95813 /* Berlin Skylarks.app */,
-				CA1C39A42731856B00BB194C /* WatchSkylarks.app */,
+				CA1C39A42731856B00BB194C /* Skylarks.app */,
 				CA1C39AC2731856B00BB194C /* WatchSkylarks WatchKit Extension.appex */,
 				CA1C39C62731856C00BB194C /* WatchSkylarksTests.xctest */,
 				CA1C39D02731856C00BB194C /* WatchSkylarksUITests.xctest */,
@@ -545,7 +545,7 @@
 			);
 			name = WatchSkylarks;
 			productName = WatchSkylarks;
-			productReference = CA1C39A42731856B00BB194C /* WatchSkylarks.app */;
+			productReference = CA1C39A42731856B00BB194C /* Skylarks.app */;
 			productType = "com.apple.product-type.application.watchapp2";
 		};
 		CA1C39AB2731856B00BB194C /* WatchSkylarks WatchKit Extension */ = {
@@ -920,12 +920,11 @@
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = WatchSkylarks_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = WatchSkylarks;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Skylarks;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -950,12 +949,11 @@
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				IBSC_MODULE = WatchSkylarks_WatchKit_Extension;
-				INFOPLIST_KEY_CFBundleDisplayName = WatchSkylarks;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
 				INFOPLIST_KEY_WKCompanionAppBundleIdentifier = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks";
 				MARKETING_VERSION = 1.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Skylarks;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
@@ -978,7 +976,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchSkylarks WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "WatchSkylarks WatchKit Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = "Skylarks WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
@@ -1011,7 +1009,7 @@
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchSkylarks WatchKit Extension/Info.plist";
-				INFOPLIST_KEY_CFBundleDisplayName = "WatchSkylarks WatchKit Extension";
+				INFOPLIST_KEY_CFBundleDisplayName = "Skylarks WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = ComplicationController;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
@@ -1318,7 +1316,7 @@
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WidgetSkylarks/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = WidgetSkylarks;
+				INFOPLIST_KEY_CFBundleDisplayName = Skylarks;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1349,7 +1347,7 @@
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WidgetSkylarks/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = WidgetSkylarks;
+				INFOPLIST_KEY_CFBundleDisplayName = Skylarks;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 15.2;
 				LD_RUNPATH_SEARCH_PATHS = (
