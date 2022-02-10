@@ -21,6 +21,12 @@ struct ContentView: View {
 //        animation: .default)
 //    private var items: FetchedResults<Item>
     
+    func checkForOnboarding() {
+        if didLaunchBefore == false {
+            showingSheetOnboarding = true
+            didLaunchBefore = true
+        }
+    }
     
     var body: some View {
         
@@ -75,7 +81,7 @@ struct ContentView: View {
 //                    }
             }
             .onAppear(perform: {
-                showingSheetOnboarding = true
+                checkForOnboarding()
             })
             .sheet(isPresented: $showingSheetOnboarding) {
                 UserOnboardingView()
@@ -87,7 +93,7 @@ struct ContentView: View {
         if UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac {
             SidebarNavigationView()
                 .onAppear(perform: {
-                    showingSheetOnboarding = true
+                    checkForOnboarding()
                 })
                 .sheet( isPresented: $showingSheetOnboarding) {
                     UserOnboardingView()

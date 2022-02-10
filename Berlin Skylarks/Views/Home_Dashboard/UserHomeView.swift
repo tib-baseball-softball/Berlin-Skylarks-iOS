@@ -11,7 +11,7 @@ import SwiftUI
 
 struct UserHomeView: View {
     
-    @AppStorage("favoriteTeam") var favoriteTeam: String = "Test Team"
+    @AppStorage("favoriteTeam") var favoriteTeam: String = "Team 1"
     
     @State private var showingSheetSettings = false
     @State private var showingSheetNextGame = false
@@ -134,13 +134,9 @@ struct UserHomeView: View {
                     .padding(5)
                     Divider()
                         .frame(width: 100)
-                    if loadingTables == true {
-                        ProgressView()
-                    } else {
-                        Text(displayTeam.name)
-                            .font(.system(size: 18))
-                            .padding(5)
-                    }
+                    Text(displayTeam.name)
+                        .font(.system(size: 18))
+                        .padding(5)
                 }
                 .frame(minWidth: 150, minHeight: 150)
                 .background(ItemBackgroundColor)
@@ -157,13 +153,9 @@ struct UserHomeView: View {
                     .padding(5)
                     Divider()
                         .frame(width: 100)
-                    if loadingTables == true {
-                        ProgressView()
-                    } else {
-                        Text(userDashboard.leagueTable.league_name)
-                            .font(.system(size: 18))
-                            .padding(5)
-                    }
+                    Text(userDashboard.leagueTable.league_name)
+                        .font(.system(size: 18))
+                        .padding(5)
                 }
                 .frame(minWidth: 150, minHeight: 150)
                 .background(ItemBackgroundColor)

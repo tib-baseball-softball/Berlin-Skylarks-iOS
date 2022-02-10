@@ -17,6 +17,8 @@ struct TeamListView: View {
     
     @State var teams = [BSMTeam]()
     
+    @State private var loadingInProgress = false
+    
     let teamURL = URL(string:"https://bsm.baseball-softball.de/clubs/485/teams.json?filters[seasons][]=" + currentSeason + "&sort[league_sort]=asc&api_key=" + apiKey)!
     
     var body: some View {
@@ -34,6 +36,10 @@ struct TeamListView: View {
                 //.padding(.horizontal)
                 .font(.headline)
                 .listRowBackground(ColorStandingsTableHeadline)
+                
+                if loadingInProgress == true {
+                    LoadingView()
+                }
                 
                 ForEach(teams, id: \.self) { team in
                     NavigationLink(
@@ -68,8 +74,10 @@ struct TeamListView: View {
     
         .onAppear(perform: {
             if teams == [] {
+                loadingInProgress = true
                 loadBSMData(url: teamURL, dataType: [BSMTeam].self) { loadedData in
                     teams = loadedData
+                    loadingInProgress = false
                 }
             }
         })

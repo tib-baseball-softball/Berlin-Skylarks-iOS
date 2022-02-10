@@ -9,7 +9,7 @@ import SwiftUI
 
 struct UserOnboardingView: View {
     
-    @AppStorage("favoriteTeam") var favoriteTeam: String = "Test Team"
+    @AppStorage("favoriteTeam") var favoriteTeam: String = "Team 1"
     
     @State private var showingPicker = false
     
