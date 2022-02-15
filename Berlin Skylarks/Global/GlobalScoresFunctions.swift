@@ -9,7 +9,7 @@ import Foundation
 import EventKit
 import SwiftUI
 
-//these are deprecated for actual use, but it nevertheless is helpful to have some fallback images defined
+//these are deprecated for actual use, but it's nevertheless helpful to have some fallback images defined
 
 var away_team_logo = Image("App_road_team_logo")
 var home_team_logo = Image("App_home_team_logo")
@@ -73,19 +73,19 @@ func determineGameStatus(gamescore: GameScore) {
 
 //TODO: this is the old func with global variables, do not use and gradually replace with func below that works with locals!
 
-func setCorrectLogo(gamescore: GameScore) {
-    for (name, image) in teamLogos {
-        if gamescore.away_team_name.contains(name) {
-            away_team_logo = image
-        }
-    }
-    
-    for (name, image) in teamLogos {
-        if gamescore.home_team_name.contains(name) {
-            home_team_logo = image
-        }
-    }
-}
+//func setCorrectLogo(gamescore: GameScore) {
+//    for (name, image) in teamLogos {
+//        if gamescore.away_team_name.contains(name) {
+//            away_team_logo = image
+//        }
+//    }
+//
+//    for (name, image) in teamLogos {
+//        if gamescore.home_team_name.contains(name) {
+//            home_team_logo = image
+//        }
+//    }
+//}
 
 //NEW
 

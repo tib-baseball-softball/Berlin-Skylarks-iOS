@@ -11,9 +11,17 @@ struct ScoresOverView: View {
     
     var gamescore: GameScore
     
+    @State var roadLogo = away_team_logo
+    @State var homeLogo = home_team_logo
+    
+    func setLogos() {
+        let logos = fetchCorrectLogos(gamescore: gamescore)
+        roadLogo = logos.road
+        homeLogo = logos.home
+    }
+    
     var body: some View {
         #if !os(watchOS)
-        setCorrectLogo(gamescore: gamescore)
         determineGameStatus(gamescore: gamescore)
         return
             VStack(spacing: ScoresItemSpacing) {
@@ -48,7 +56,8 @@ struct ScoresOverView: View {
                 }
                 HStack {
                     HStack {
-                        away_team_logo
+                        //away_team_logo
+                        roadLogo
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50, height: 50, alignment: .center)
@@ -70,7 +79,7 @@ struct ScoresOverView: View {
                 .cornerRadius(NewsItemCornerRadius)
                 HStack {
                     HStack {
-                        home_team_logo
+                        homeLogo
                             .resizable()
                             .scaledToFit()
                             .frame(width: 50, height: 50, alignment: .center)
@@ -94,6 +103,10 @@ struct ScoresOverView: View {
         .padding()
         .background(.regularMaterial) //switch on or off depending on whether I use List or Grid
         .cornerRadius(NewsItemCornerRadius)
+        
+        .onAppear(perform: {
+            setLogos()
+        })
         #endif
         
         //---------------------------------------------------------//
@@ -101,7 +114,6 @@ struct ScoresOverView: View {
         //---------------------------------------------------------//
         
         #if os(watchOS)
-        setCorrectLogo(gamescore: gamescore)
         determineGameStatus(gamescore: gamescore)
         return
             VStack {
@@ -119,7 +131,7 @@ struct ScoresOverView: View {
                     Divider()
                         .padding(.horizontal)
                     HStack {
-                        away_team_logo
+                        roadLogo
                             .resizable()
                             .scaledToFit()
                             .frame(maxWidth: 30, alignment: .center)
@@ -136,7 +148,7 @@ struct ScoresOverView: View {
                         }
                     }
                     HStack {
-                        home_team_logo
+                        homeLogo
                             .resizable()
                             .scaledToFit()
                             .frame(maxWidth: 30, alignment: .center)
@@ -154,6 +166,9 @@ struct ScoresOverView: View {
                     }
                 }
             }
+            .onAppear(perform: {
+                setLogos()
+            })
         #endif
     }
 }

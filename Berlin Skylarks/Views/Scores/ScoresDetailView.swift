@@ -16,13 +16,19 @@ struct ScoresDetailView: View {
     @State private var isBookmarked = false
     @State private var showEventAlert = false
     
-    //let calendars = getAvailableCalendars()
+    @State var roadLogo = away_team_logo
+    @State var homeLogo = home_team_logo
+    
+    func setLogos() {
+        let logos = fetchCorrectLogos(gamescore: gamescore)
+        roadLogo = logos.road
+        homeLogo = logos.home
+    }
     
     var gamescore: GameScore
     
     var body: some View {
         #if !os(watchOS)
-        setCorrectLogo(gamescore: gamescore)
         determineGameStatus(gamescore: gamescore)
         return
             List {
@@ -38,7 +44,7 @@ struct ScoresDetailView: View {
                         VStack {
                             Text("Guest")
                                 .bold()
-                            away_team_logo
+                            roadLogo
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50, alignment: .center)
@@ -50,7 +56,7 @@ struct ScoresDetailView: View {
                         VStack {
                             Text("Home")
                                 .bold()
-                            home_team_logo
+                            homeLogo
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50, alignment: .center)
@@ -169,6 +175,10 @@ struct ScoresDetailView: View {
 //                })
 //            }
         }
+        .onAppear(perform: {
+            setLogos()
+        })
+        
         #endif
         
         //---------------------------------------------------------//
@@ -176,7 +186,6 @@ struct ScoresDetailView: View {
         //---------------------------------------------------------//
         
         #if os(watchOS)
-        setCorrectLogo(gamescore: gamescore)
         determineGameStatus(gamescore: gamescore)
         return
             List {
@@ -186,7 +195,7 @@ struct ScoresDetailView: View {
                 Section(header: Text("Score")) {
                     VStack {
                         HStack {
-                            away_team_logo
+                            roadLogo
                                 .resizable()
                                 .scaledToFit()
                                 .frame(maxWidth: 30, alignment: .center)
@@ -203,7 +212,7 @@ struct ScoresDetailView: View {
                             }
                         }
                         HStack {
-                            home_team_logo
+                            homeLogo
                                 .resizable()
                                 .scaledToFit()
                                 .frame(maxWidth: 30, alignment: .center)
@@ -244,6 +253,10 @@ struct ScoresDetailView: View {
             }
             .listStyle(.automatic)
             .navigationTitle("Game Details")
+        
+            .onAppear(perform: {
+                setLogos()
+            })
         #endif
     }
     #if !os(watchOS)
