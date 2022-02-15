@@ -15,7 +15,7 @@ var away_team_logo = Image("App_road_team_logo")
 var home_team_logo = Image("App_home_team_logo")
 
 let teamLogos = [
-    "Skylarks": Image("Bird_whiteoutline"),
+    "Skylarks": skylarksSecondaryLogo,
     "Roosters": Image("Roosters_Logo"),
     "Sluggers": Image("Sluggers_Logo"),
     "Eagles": Image("Mahlow-Eagles_Logo"),
@@ -36,7 +36,8 @@ var skylarksAreHomeTeam = false
 var skylarksWin = false
 var isDerby = false
 
-var gameDate: Date?
+//MARK: first step to "localise" these vars
+//var gameDate: Date?
 
 func determineGameStatus(gamescore: GameScore) {
     if gamescore.home_team_name.contains("Skylarks") && !gamescore.away_team_name.contains("Skylarks") {
@@ -121,9 +122,6 @@ func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameS
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyyMMdd"
     
-    //this is used because the passed gamescores element cannot be mutated
-    var gameList = gamescores
-    
     //for testing purposes this can be set to some date in the season, normally it's just the current date
     let now = Date()
     //let now = formatter.date(from: "20210928") ?? Date.now // September 27th, 2021 UTC
@@ -131,10 +129,8 @@ func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameS
     var nextGames = [GameScore]()
     var previousGames = [GameScore]()
 
-    //add game dates to all games to allow for ordering
-    for (index, _) in gameList.enumerated() {
-        gameList[index].gameDate = getDatefromBSMString(gamescore: gameList[index])
-    }
+    //add game dates to all games to allow for ordering | outsourced below
+    let gameList = addDatesToGames(gamescores: gamescores)
     
     //collect nextGames and add to array
     for gamescore in gameList where gamescore.gameDate! > now {
@@ -166,6 +162,17 @@ func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameS
         print("nothing to return, gamescores is empty")
         return (nil, nil)
     }
+}
+
+func addDatesToGames(gamescores: [GameScore]) -> [GameScore] {
+    
+    //this is used because the passed gamescores element cannot be mutated
+    var gameList = gamescores
+    
+    for (index, _) in gameList.enumerated() {
+        gameList[index].gameDate = getDatefromBSMString(gamescore: gameList[index])
+    }
+    return gameList
 }
 
 //-------------------------------------------------------------------------------//

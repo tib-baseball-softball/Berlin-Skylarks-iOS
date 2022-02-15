@@ -35,7 +35,10 @@ struct ScoresView: View {
         loadingInProgress = true
         
         loadBSMData(url: gameURLSelected, dataType: [GameScore].self) { loadedData in
-            gamescores = loadedData
+            //gamescores = loadedData
+            
+            gamescores = addDatesToGames(gamescores: loadedData)
+            
             loadingInProgress = false
         }
     }
@@ -95,12 +98,12 @@ struct ScoresView: View {
                     ForEach(calendarStrings, id: \.self) { calendarString in
                         Button(calendarString) {
                             for gamescore in gamescores {
-                                gameDate = getDatefromBSMString(gamescore: gamescore)
+                                let gameDate = getDatefromBSMString(gamescore: gamescore)
 
-                                if let localGameDate = gameDate {
-                                    addGameToCalendar(gameDate: localGameDate, gamescore: gamescore, calendarString: calendarString)
+                                //if let localGameDate = gameDate {
+                                    addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendarString: calendarString)
                                     showEventAlert = true
-                                }
+                                //}
                             }
                         }
                     }
@@ -163,7 +166,7 @@ struct ScoresView: View {
 //                loadGameData(url: gameURLSelected)
 //            }
         //this one leads to the weird constraint errors in console. Will ignore this for now.
-        .navigationTitle("Scores")
+        .navigationTitle("Scores" + " " + currentSeason)
         #endif
         
         //---------------------------------------------------------//
@@ -206,7 +209,7 @@ struct ScoresView: View {
             }
         }
         .listStyle(.carousel)
-        .navigationTitle("Scores")
+        .navigationTitle("Scores" + currentSeason)
         
         .onAppear(perform: {
             loadGamesAndProcess()

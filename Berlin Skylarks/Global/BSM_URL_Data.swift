@@ -10,7 +10,7 @@ import SwiftUI
 
 //These values are used for all URLs. They need to be manually adjusted for the correct season at the moment.
 
-let currentSeason = "2021"
+var currentSeason = "2021" //WIP to let it change - not possible as long as everything below is a let constant!
 let skylarksID = "485"
 
 //logos for easy usage

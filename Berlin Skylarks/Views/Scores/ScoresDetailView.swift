@@ -23,7 +23,6 @@ struct ScoresDetailView: View {
     var body: some View {
         #if !os(watchOS)
         setCorrectLogo(gamescore: gamescore)
-        gameDate = getDatefromBSMString(gamescore: gamescore)
         determineGameStatus(gamescore: gamescore)
         return
             List {
@@ -178,7 +177,6 @@ struct ScoresDetailView: View {
         
         #if os(watchOS)
         setCorrectLogo(gamescore: gamescore)
-        gameDate = getDatefromBSMString(gamescore: gamescore)
         determineGameStatus(gamescore: gamescore)
         return
             List {
@@ -250,17 +248,40 @@ struct ScoresDetailView: View {
     }
     #if !os(watchOS)
     
-    //TODO: this works, but it's UIKit, it's an absolute performance nightmare and it leads to boatloads of errors in console
+    //TODO: this works, but it's UIKit, it's an absolute performance nightmare
     
     func ActionSheet() {
-        let data = "League: "
-        + gamescore.league.name
-        + """
+        let formatter1 = DateFormatter()
+        let formatter2 = DateFormatter()
+        formatter1.dateStyle = .short
+        formatter2.timeStyle = .short
         
+        var date: String = "date"
+        var time: String = "time"
         
+        if let gameDate = gamescore.gameDate {
+            date = formatter1.string(from: gameDate)
+            time = formatter2.string(from: gameDate)
+        }
+            
+        let data = """
+        Game data - sent from Skylarks app
+        
+        League: \(gamescore.league.name)
+        Match Number: \(gamescore.match_id)
+        Date: \(date)
+        Time: \(time)
+        
+        Status: \(gamescore.human_state)
+        Road Team: \(gamescore.away_team_name) - \(gamescore.away_runs ?? 0)
+        Home Team: \(gamescore.home_team_name) - \(gamescore.home_runs ?? 0)
+        
+        Field: \(gamescore.field?.name ?? "No data")
+        Address: \(gamescore.field?.street ?? ""), \(gamescore.field?.postal_code ?? "") \(gamescore.field?.city ?? "")
+        
+        Link to Scoresheet: \(gamescore.scoresheet_url ?? "Not available yet")
         """
-        + "Match Number: "
-        + gamescore.match_id
+        
         let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
         UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
     }
@@ -281,16 +302,20 @@ struct ScoreMainInfo: View {
             Text("\(gamescore.match_id)")
         }
         .padding(ScoresItemPadding)
-        HStack {
-            Image(systemName: "calendar")
-            Text(gameDate!, style: .date)
+        if let gameDate = gamescore.gameDate {
+            HStack {
+                Image(systemName: "calendar")
+                Text(gameDate, style: .date)
+            }
+            .padding(ScoresItemPadding)
         }
-        .padding(ScoresItemPadding)
-        HStack {
-            Image(systemName: "clock.fill")
-            Text(gameDate!, style: .time)
+        if let gameDate = gamescore.gameDate {
+            HStack {
+                Image(systemName: "clock.fill")
+                Text(gameDate, style: .time)
+            }
+            .padding(ScoresItemPadding)
         }
-        .padding(ScoresItemPadding)
     }
 }
 

@@ -73,7 +73,7 @@ struct StandingsView: View {
           #endif
         } () )
         
-        .navigationTitle("Standings")
+        .navigationTitle("Standings" + " " + currentSeason)
         
         //Fix on iPhone seems to work for now even without a container view, please double-check in practice!
         

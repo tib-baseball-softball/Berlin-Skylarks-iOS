@@ -80,6 +80,6 @@ struct UserOnboardingView: View {
 struct UserOnboardingView_Previews: PreviewProvider {
     static var previews: some View {
         UserOnboardingView()
-            .preferredColorScheme(.dark)
+            //.preferredColorScheme(.dark)
     }
 }

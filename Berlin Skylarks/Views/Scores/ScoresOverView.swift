@@ -14,10 +14,8 @@ struct ScoresOverView: View {
     var body: some View {
         #if !os(watchOS)
         setCorrectLogo(gamescore: gamescore)
-        gameDate = getDatefromBSMString(gamescore: gamescore)
         determineGameStatus(gamescore: gamescore)
         return
-            
             VStack(spacing: ScoresItemSpacing) {
                 VStack {
                     Text(gamescore.league.name)
@@ -27,11 +25,15 @@ struct ScoresOverView: View {
                         VStack(alignment: .leading, spacing: 7) {
                             HStack {
                                 Image(systemName: "calendar")
-                                Text(gameDate!, style: .date)
+                                if let date = gamescore.gameDate {
+                                    Text(date, style: .date)
+                                }
                             }
                             HStack {
                                 Image(systemName: "clock.fill")
-                                Text(gameDate!, style: .time)
+                                if let time = gamescore.gameDate {
+                                    Text(time, style: .time)
+                                }
                             }
                         }
                         .padding()
@@ -100,19 +102,20 @@ struct ScoresOverView: View {
         
         #if os(watchOS)
         setCorrectLogo(gamescore: gamescore)
-        gameDate = getDatefromBSMString(gamescore: gamescore)
         determineGameStatus(gamescore: gamescore)
         return
             VStack {
                 VStack {
                     Text(gamescore.league.name)
                         .font(.caption2)
-                    HStack {
-                        Text(gameDate!, style: .date)
-                        Text(gameDate!, style: .time)
+                    if let gameDate = gamescore.gameDate {
+                        HStack {
+                            Text(gameDate, style: .date)
+                            Text(gameDate, style: .time)
+                        }
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
                     }
-                    .font(.footnote)
-                    .foregroundColor(.secondary)
                     Divider()
                         .padding(.horizontal)
                     HStack {
