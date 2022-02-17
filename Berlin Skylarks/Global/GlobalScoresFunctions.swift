@@ -32,63 +32,6 @@ let teamLogos = [
     "Dragons": Image("Dragons_Logo"),
 ]
 
-var skylarksAreHomeTeam = false
-var skylarksWin = false
-var isDerby = false
-
-//MARK: first step to "localise" these vars
-//var gameDate: Date?
-
-func determineGameStatus(gamescore: GameScore) {
-    if gamescore.home_team_name.contains("Skylarks") && !gamescore.away_team_name.contains("Skylarks") {
-        skylarksAreHomeTeam = true
-        isDerby = false
-    } else if gamescore.away_team_name.contains("Skylarks") && !gamescore.home_team_name.contains("Skylarks") {
-        skylarksAreHomeTeam = false
-        isDerby = false
-    }
-    if gamescore.away_team_name.contains("Skylarks") && gamescore.home_team_name.contains("Skylarks") {
-        isDerby = true
-    }
-    if skylarksAreHomeTeam && !isDerby {
-        if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
-            if homeScore > awayScore {
-                skylarksWin = true
-            }
-            if homeScore < awayScore {
-                skylarksWin = false
-            }
-        }
-    } else if !skylarksAreHomeTeam && !isDerby {
-        if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
-            if homeScore > awayScore {
-                skylarksWin = false
-            }
-            if homeScore < awayScore {
-                skylarksWin = true
-            }
-        }
-    }
-}
-
-//TODO: this is the old func with global variables, do not use and gradually replace with func below that works with locals!
-
-//func setCorrectLogo(gamescore: GameScore) {
-//    for (name, image) in teamLogos {
-//        if gamescore.away_team_name.contains(name) {
-//            away_team_logo = image
-//        }
-//    }
-//
-//    for (name, image) in teamLogos {
-//        if gamescore.home_team_name.contains(name) {
-//            home_team_logo = image
-//        }
-//    }
-//}
-
-//NEW
-
 func fetchCorrectLogos(gamescore: GameScore) -> (road: Image, home: Image) {
     
     var road = away_team_logo
@@ -171,59 +114,13 @@ func addDatesToGames(gamescores: [GameScore]) -> [GameScore] {
     
     for (index, _) in gameList.enumerated() {
         gameList[index].gameDate = getDatefromBSMString(gamescore: gameList[index])
+        gameList[index].determineGameStatus()
     }
     return gameList
 }
 
 //-------------------------------------------------------------------------------//
-//-----------------------------------LOAD SCORES---------------------------------//
-//-------------------------------------------------------------------------------//
-
-//MARK: OBSOLETE: see function with type parameter below. Will be removed
-//added completion handler on Jan 20, must be tested
-
-//func loadGameScoreData(url: URL, completion: @escaping (([GameScore]) -> Void)) {
-//    var gamescores = [GameScore]()
-//
-//    let request = URLRequest(url: url)
-//    URLSession.shared.dataTask(with: request) { data, response, error in
-//
-//        if let data = data {
-//            if let response_obj = try? JSONDecoder().decode([GameScore].self, from: data) {
-//
-//                DispatchQueue.main.async {
-//                    gamescores = response_obj
-//                    completion(gamescores)
-//                }
-//            }
-//        }
-//    }.resume()
-//}
-
-//-------------------------------------------------------------------------------//
-//-----------------------------------LOAD TABLES---------------------------------//
-//-------------------------------------------------------------------------------//
-
-
-//func loadTableData(url: URL, completion: @escaping ((LeagueTable) -> Void)) {
-//
-//    let request = URLRequest(url: url)
-//    URLSession.shared.dataTask(with: request) { data, response, error in
-//
-//        if let data = data {
-//            if let response_obj = try? JSONDecoder().decode(LeagueTable.self, from: data) {
-//
-//                DispatchQueue.main.async {
-//                    let leagueTable = response_obj
-//                    completion(leagueTable)
-//                }
-//            }
-//        }
-//    }.resume()
-//}
-
-//-------------------------------------------------------------------------------//
-//-----------------------------------LOAD DATA---------------------------------//
+//-----------------------------------LOAD DATA-----------------------------------//
 //-------------------------------------------------------------------------------//
 
 //MARK: Generic load function that accepts any codable type

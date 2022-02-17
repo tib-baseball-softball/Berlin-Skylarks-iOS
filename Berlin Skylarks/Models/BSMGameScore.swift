@@ -30,6 +30,9 @@ struct GameScore: Hashable, Codable, Identifiable {
     
     //Custom entries not available in BSM API!
     var gameDate: Date?
+    var skylarksAreHomeTeam: Bool?
+    var skylarksWin: Bool?
+    var isDerby: Bool?
     
     struct Field: Hashable, Codable {
         var name: String
@@ -90,6 +93,44 @@ struct GameScore: Hashable, Codable, Identifiable {
 //        var name: String
 //        var acronym: String
 //    }
+    
+    mutating func determineGameStatus() {
+        
+        //default values so they are never nil
+        skylarksWin = false
+        skylarksAreHomeTeam = false
+        isDerby = false
+        
+        if home_team_name.contains("Skylarks") && !away_team_name.contains("Skylarks") {
+            skylarksAreHomeTeam = true
+            isDerby = false
+        } else if away_team_name.contains("Skylarks") && !home_team_name.contains("Skylarks") {
+            skylarksAreHomeTeam = false
+            isDerby = false
+        }
+        if away_team_name.contains("Skylarks") && home_team_name.contains("Skylarks") {
+            isDerby = true
+        }
+        if skylarksAreHomeTeam! && !isDerby! {
+            if let awayScore = away_runs, let homeScore = home_runs {
+                if homeScore > awayScore {
+                    skylarksWin = true
+                }
+                if homeScore < awayScore {
+                    skylarksWin = false
+                }
+            }
+        } else if !skylarksAreHomeTeam! && !isDerby! {
+            if let awayScore = away_runs, let homeScore = home_runs {
+                if homeScore > awayScore {
+                    skylarksWin = false
+                }
+                if homeScore < awayScore {
+                    skylarksWin = true
+                }
+            }
+        }
+    }
 }
 
 struct Ballpark: Identifiable {

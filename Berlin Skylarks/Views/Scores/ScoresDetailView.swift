@@ -29,9 +29,7 @@ struct ScoresDetailView: View {
     
     var body: some View {
         #if !os(watchOS)
-        determineGameStatus(gamescore: gamescore)
-        return
-            List {
+        List {
             Section(header: Text("Main info")) {
                 ScoreMainInfo(gamescore: gamescore)
             }
@@ -49,7 +47,7 @@ struct ScoresDetailView: View {
                                 .scaledToFit()
                                 .frame(width: 50, height: 50, alignment: .center)
                             Text(gamescore.away_team_name)
-                                //.frame(width: teamNameFrame)
+                            //.frame(width: teamNameFrame)
                                 .lineLimit(nil)
                         }
                         Spacer()
@@ -61,7 +59,7 @@ struct ScoresDetailView: View {
                                 .scaledToFit()
                                 .frame(width: 50, height: 50, alignment: .center)
                             Text(gamescore.home_team_name)
-                                //.frame(width: teamNameFrame)
+                            //.frame(width: teamNameFrame)
                                 .lineLimit(nil)
                         }.frame(width: teamNameFrame)
                     }
@@ -87,9 +85,9 @@ struct ScoresDetailView: View {
                     .padding(ScoresItemPadding)
                 }
                 //don't want the darker background color with rounded corners here
-              //  .padding(ScoresItemPadding)
-              //  .background(ScoresSubItemBackground)
-              //  .cornerRadius(NewsItemCornerRadius)
+                //  .padding(ScoresItemPadding)
+                //  .background(ScoresSubItemBackground)
+                //  .cornerRadius(NewsItemCornerRadius)
             }
             Section(header: Text("Location")) {
                 
@@ -162,18 +160,18 @@ struct ScoresDetailView: View {
                 }, label: {
                     Image(systemName: "square.and.arrow.up")
                 })
-//                .sheet(isPresented: $showingSheet) {
-//                    ShareSheet()
-//                }
+                //                .sheet(isPresented: $showingSheet) {
+                //                    ShareSheet()
+                //                }
             }
-//            ToolbarItem(placement: .principal) {
-//                Button(action: {
-//                    print("doc button pressed")
-//
-//                }, label: {
-//                    Image(systemName: "doc.on.doc")
-//                })
-//            }
+            //            ToolbarItem(placement: .principal) {
+            //                Button(action: {
+            //                    print("doc button pressed")
+            //
+            //                }, label: {
+            //                    Image(systemName: "doc.on.doc")
+            //                })
+            //            }
         }
         .onAppear(perform: {
             setLogos()
@@ -186,77 +184,75 @@ struct ScoresDetailView: View {
         //---------------------------------------------------------//
         
         #if os(watchOS)
-        determineGameStatus(gamescore: gamescore)
-        return
-            List {
-                Section(header: Text("Main info")) {
-                    ScoreMainInfo(gamescore: gamescore)
-                }
-                Section(header: Text("Score")) {
-                    VStack {
-                        HStack {
-                            roadLogo
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxWidth: 30, alignment: .center)
-                            Text(gamescore.away_league_entry.team.short_name)
-                                .font(.caption)
-                                .padding(.leading)
-                            Spacer()
-                            if let awayScore = gamescore.away_runs {
-                                Text(String(awayScore))
-                                    .font(.title3)
-                                    .bold()
-                                    .frame(maxWidth: 40, alignment: .center)
-                                    .foregroundColor(gamescore.away_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
-                            }
-                        }
-                        HStack {
-                            homeLogo
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxWidth: 30, alignment: .center)
-                            Text(gamescore.home_league_entry.team.short_name)
-                                .font(.caption)
-                                .padding(.leading)
-                            Spacer()
-                            if let homeScore = gamescore.home_runs {
-                                Text(String(homeScore))
-                                    .font(.title3)
-                                    .bold()
-                                    .frame(maxWidth: 40, alignment: .center)
-                                    .foregroundColor(gamescore.home_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
-                            }
+        List {
+            Section(header: Text("Main info")) {
+                ScoreMainInfo(gamescore: gamescore)
+            }
+            Section(header: Text("Score")) {
+                VStack {
+                    HStack {
+                        roadLogo
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: 30, alignment: .center)
+                        Text(gamescore.away_league_entry.team.short_name)
+                            .font(.caption)
+                            .padding(.leading)
+                        Spacer()
+                        if let awayScore = gamescore.away_runs {
+                            Text(String(awayScore))
+                                .font(.title3)
+                                .bold()
+                                .frame(maxWidth: 40, alignment: .center)
+                                .foregroundColor(gamescore.away_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
                         }
                     }
-                    .padding(.vertical)
-                    ScoresStatusSection(gamescore: gamescore)
-                        .font(.caption)
+                    HStack {
+                        homeLogo
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxWidth: 30, alignment: .center)
+                        Text(gamescore.home_league_entry.team.short_name)
+                            .font(.caption)
+                            .padding(.leading)
+                        Spacer()
+                        if let homeScore = gamescore.home_runs {
+                            Text(String(homeScore))
+                                .font(.title3)
+                                .bold()
+                                .frame(maxWidth: 40, alignment: .center)
+                                .foregroundColor(gamescore.home_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
+                        }
+                    }
                 }
-                Section(header: Text("Location")) {
-                    
-                    BallparkLocation(gamescore: gamescore)
-                        .font(.caption)
-                }
-                Section(header: Text("Game officials")) {
-                    
-                    //start umpire assignments.
-                    
-                    UmpireAssignments(gamescore: gamescore)
-                        .font(.caption)
-                    
-                    //scorer assignments. I support two entries here to account for double scoring. Only the first one gets an else statement since second scorers are rare
-                    
-                    ScorerAssignments(gamescore: gamescore)
-                        .font(.caption)
-                }
+                .padding(.vertical)
+                ScoresStatusSection(gamescore: gamescore)
+                    .font(.caption)
             }
-            .listStyle(.automatic)
-            .navigationTitle("Game Details")
+            Section(header: Text("Location")) {
+                
+                BallparkLocation(gamescore: gamescore)
+                    .font(.caption)
+            }
+            Section(header: Text("Game officials")) {
+                
+                //start umpire assignments.
+                
+                UmpireAssignments(gamescore: gamescore)
+                    .font(.caption)
+                
+                //scorer assignments. I support two entries here to account for double scoring. Only the first one gets an else statement since second scorers are rare
+                
+                ScorerAssignments(gamescore: gamescore)
+                    .font(.caption)
+            }
+        }
+        .listStyle(.automatic)
+        .navigationTitle("Game Details")
         
-            .onAppear(perform: {
-                setLogos()
-            })
+        .onAppear(perform: {
+            setLogos()
+        })
         #endif
     }
     #if !os(watchOS)
@@ -349,35 +345,37 @@ struct GameResultIndicator: View {
                 .bold()
                 .padding()
         }
-        if gamescore.human_state.contains("gespielt") ||
-            gamescore.human_state.contains("Forfeit") ||
-            gamescore.human_state.contains("Nichtantreten") ||
-            gamescore.human_state.contains("Wertung") ||
-            gamescore.human_state.contains("Rückzug") ||
-            gamescore.human_state.contains("Ausschluss") {
-            if !isDerby {
-                if skylarksWin {
-                    Text("W")
-                        .font(.title)
-                        .bold()
-                        .foregroundColor(Color.green)
-                        .padding()
+        if let derby = gamescore.isDerby, let win = gamescore.skylarksWin {
+            if gamescore.human_state.contains("gespielt") ||
+                gamescore.human_state.contains("Forfeit") ||
+                gamescore.human_state.contains("Nichtantreten") ||
+                gamescore.human_state.contains("Wertung") ||
+                gamescore.human_state.contains("Rückzug") ||
+                gamescore.human_state.contains("Ausschluss") {
+                if !derby {
+                    if win {
+                        Text("W")
+                            .font(.title)
+                            .bold()
+                            .foregroundColor(Color.green)
+                            .padding()
+                    } else {
+                        Text("L")
+                            .font(.title)
+                            .bold()
+                            .foregroundColor(Color.accentColor)
+                            .padding()
+                    }
                 } else {
-                    Text("L")
-                        .font(.title)
-                        .bold()
-                        .foregroundColor(Color.accentColor)
-                        .padding()
+                    VStack {
+                        Image(systemName: "heart.fill")
+                            .font(.title)
+                            .foregroundColor(Color.accentColor)
+                        Text("Derby - Skylarks win either way")
+                            .padding()
+                    }
+                    .padding()
                 }
-            } else {
-                VStack {
-                    Image(systemName: "heart.fill")
-                        .font(.title)
-                        .foregroundColor(Color.accentColor)
-                    Text("Derby - Skylarks win either way")
-                        .padding()
-                }
-                .padding()
             }
         }
     }

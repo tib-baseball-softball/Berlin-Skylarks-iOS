@@ -52,7 +52,7 @@ struct UserHomeView: View {
             
             for row in userDashboard.leagueTable.rows where row.team_name.contains("Skylarks") {
                 
-                //we have two teams for BZL, so the function needs to account for the correct one
+                //we might have two teams for BZL, so the function needs to account for the correct one
                 if displayTeam == team3 {
                     if row.team_name == "Skylarks 3" {
                         userDashboard.tableRow = row
