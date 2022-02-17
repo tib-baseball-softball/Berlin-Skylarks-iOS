@@ -475,15 +475,20 @@ struct BallparkLocation: View {
                 let fieldPin = [
                     Ballpark(name: field.name, coordinate: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude)),
                     ]
-                Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))), interactionModes: .zoom, annotationItems: fieldPin) {
+                Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))), interactionModes: [], annotationItems: fieldPin) {
                         MapMarker(coordinate: $0.coordinate, tint: Color.accentColor)
                 }
                 .frame(height: 200)
                 
-                //TODO: make this a link to open the maps app
-//                        .onTapGesture(perform: {
-//                            map.openInMaps()
-//                        })
+                .onTapGesture(perform: {
+                    if !fieldPin.isEmpty {
+                        let coordinate = fieldPin[0].coordinate
+                        let placemark = MKPlacemark(coordinate: coordinate)
+                        let mapItem = MKMapItem(placemark: placemark)
+                        mapItem.name = fieldPin[0].name
+                        mapItem.openInMaps()
+                    }
+                })
                 
             } else {
                 Text("No field coordinates provided")
