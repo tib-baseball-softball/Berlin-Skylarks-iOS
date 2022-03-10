@@ -208,7 +208,7 @@ struct ScoresView: View {
                     .padding()
             }
         }
-        .listStyle(.carousel)
+        //.listStyle(.carousel)
         .navigationTitle("Scores" + currentSeason)
         
         .onAppear(perform: {

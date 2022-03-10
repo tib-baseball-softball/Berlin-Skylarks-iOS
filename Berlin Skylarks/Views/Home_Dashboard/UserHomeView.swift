@@ -381,7 +381,7 @@ struct UserHomeView: View {
                     HStack {
                         Image(systemName: "star")
                             .foregroundColor(.skylarksRed)
-                        Text(userDashboard.tableRow.team_name)
+                        Text(displayTeam.name)
                             .padding(.leading)
                     }
                     .padding(.top)

@@ -34,7 +34,7 @@ struct SettingsListView: View {
     @ObservedObject var userSettings = UserSettings()
     //@State private var showingTestView = false
     
-    @AppStorage("season") var seasonYear = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
+    @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
     
     var body: some View {
         List {
@@ -68,13 +68,13 @@ struct SettingsListView: View {
                 header: Text("Time Range"),
                 footer: Text("The selected season is applied globally in the app.")
             ) {
-                Picker(selection: $seasonYear, label:
+                Picker(selection: $selectedSeason, label:
                     HStack {
                         Image(systemName: "deskclock.fill")
                             .font(.title3)
                         Text("Season")
                 }) {
-                    ForEach(2017...Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!, id: \.self) { season in
+                    ForEach(2015...Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!, id: \.self) { season in
                         Text(String(season))
                     }
                 }
@@ -135,7 +135,7 @@ struct SettingsListView: View {
 //            }
         
         .navigationTitle("Settings")
-        .onChange(of: seasonYear, perform: { value in
+        .onChange(of: selectedSeason, perform: { value in
             currentSeason = String(value)
         })
     }

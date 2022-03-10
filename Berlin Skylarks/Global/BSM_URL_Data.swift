@@ -63,7 +63,7 @@ let scoresURLs = [
 //-------------------------------STANDINGS/TABLES---------------------------------//
 
 //these need to be changed every year after the schedule is published - there is no option to collect all tables for Skylarks teams like I do with scores (WIP to find one)
-//apparently they also do not need an API key
+//apparently they also do not need an API key (?)
 
 //URLs are set in SkylarksTeams now
 
@@ -77,9 +77,9 @@ let leagueTableURLs = [ team1.leagueTableURL,
 //-------------------------------DASHBOARD---------------------------------//
 
 class UserDashboard: ObservableObject {
-    @Published var leagueTable = LeagueTable(league_id: 1, league_name: "Default League", season: Calendar.current.component(.year, from: Date()), rows: [])
+    @Published var leagueTable = LeagueTable(league_id: 1, league_name: " ", season: Calendar.current.component(.year, from: Date()), rows: [])
     
-    @Published var tableRow = LeagueTable.Row(rank: "X.", team_name: "Testteam", short_team_name: "XXX", match_count: 0, wins_count: 0, losses_count: 0, quota: ".000", games_behind: "0", streak: "00")
+    @Published var tableRow = LeagueTable.Row(rank: " ", team_name: " ", short_team_name: " ", match_count: 0, wins_count: 0, losses_count: 0, quota: " ", games_behind: " ", streak: " ")
     
     @Published var NextGame = testGame
     
@@ -91,7 +91,7 @@ let emptyScoreTeam = GameScore.Team(name: "Test Team", short_name: "ACR")
 let homeEntry = GameScore.LeagueEntry(team: emptyScoreTeam)
 let awayEntry = GameScore.LeagueEntry(team: emptyScoreTeam)
 
-let testGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: emptyLeague, home_league_entry: homeEntry, away_league_entry: awayEntry, umpire_assignments: [], scorer_assignments: [])
+let testGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", league_id: 1, home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: emptyLeague, home_league_entry: homeEntry, away_league_entry: awayEntry, umpire_assignments: [], scorer_assignments: [])
 
 //&sorted[time]=asc/desc
 
