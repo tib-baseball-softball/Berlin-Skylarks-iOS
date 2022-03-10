@@ -10,36 +10,80 @@ import SwiftUI
 struct ScoresView: View {
     
     @State private var gamescores = [GameScore]()
+    @State private var leagueGroups = [LeagueGroup]()
+    
+    @State private var scoresURLs: [String : URL] = [:]
     
     @State private var showCalendarDialog = false
     @State private var showEventAlert = false
     @State private var showAlertNoGames = false
     @State private var loadingInProgress = false
     
-    @State var selection: String = "Current Gameday"
+    @State var selection = "Current Gameday"
     
-    @State var gameURLSelected = urlCurrentGameday
+    //@State var gameURLSelected = urlCurrentGameday
     
-    @State private var date = Date()
+    //@State private var date = Date()
+    
+    @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
 
-    let filterOptions: [String] = [
-        "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season", "Verbandsliga BB", "Verbandsliga SB", "Landesliga BB", "Bezirksliga BB", "Schülerliga", "Tossballliga",
+    @State var filterOptions = [
+        "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season", //"Verbandsliga BB", "Verbandsliga SB", "Landesliga BB", "Bezirksliga BB", "Schülerliga", "Tossballliga",
     ]
     
     let columns = [
         GridItem(.adaptive(minimum: 300), spacing: scoresGridSpacing),
     ]
     
+    func loadLeagueGroups() {
+        let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(selectedSeason)" + "&api_key=" + apiKey)!
+        
+        //reset filter options to default
+        filterOptions = [
+            "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season",
+        ]
+        
+        //old format, club ID is not used anymore - check for errors:
+        //URL(string: "https://bsm.baseball-softball.de/clubs/" + skylarksID + "/matches.json?filter[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=previous&api_key=" + apiKey)!
+        
+        let urlPreviousGameday = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=previous&api_key=" + apiKey)!
+        let urlCurrentGameday = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=current&api_key=" + apiKey)!
+        let urlNextGameday = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=next&api_key=" + apiKey)!
+        let urlFullSeason = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=any&api_key=" + apiKey)!
+
+        //provide default values for dict/reset on change of season
+        scoresURLs = [
+            "Previous Gameday": urlPreviousGameday,
+            "Current Gameday": urlCurrentGameday,
+            "Next Gameday": urlNextGameday,
+            "Full Season": urlFullSeason,
+        ]
+        
+        loadBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self) { loadedLeagues  in
+            leagueGroups = loadedLeagues
+            
+            //add leagueGroup IDs to previously created dict using league names as key / add names to filter options for the user to select
+            for leagueGroup in leagueGroups {
+                filterOptions.append(leagueGroup.name)
+                scoresURLs[leagueGroup.name] = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
+                loadGamesAndProcess()
+            }
+        }
+    }
+    
     func loadGamesAndProcess() {
-        
-        loadingInProgress = true
-        
-        loadBSMData(url: gameURLSelected, dataType: [GameScore].self) { loadedData in
-            //gamescores = loadedData
-            
-            gamescores = addDatesToGames(gamescores: loadedData)
-            
-            loadingInProgress = false
+        for (string, url) in scoresURLs {
+            if selection == string {
+                let gameURLSelected = url
+                loadingInProgress = true
+                
+                loadBSMData(url: gameURLSelected, dataType: [GameScore].self) { loadedData in
+                    
+                    gamescores = addDatesToGames(gamescores: loadedData)
+                    
+                    loadingInProgress = false
+                }
+            }
         }
     }
     
@@ -63,17 +107,20 @@ struct ScoresView: View {
             .padding(scoresGridPadding)
         }
         .onAppear(perform: {
-            loadGamesAndProcess()
+            if gamescores.isEmpty {
+                loadLeagueGroups()
+            }
             getAvailableCalendars()
         })
         
         .onChange(of: selection, perform: { value in
-            for (string, url) in scoresURLs {
-                if selection.contains(string) {
-                    gameURLSelected = url
-                }
-            }
+            gamescores = []
             loadGamesAndProcess()
+        })
+        
+        .onChange(of: selectedSeason, perform: { value in
+            gamescores = []
+            loadLeagueGroups()
         })
         
         // this is the toolbar with the picker in the top right corner where you can select which games to display.
@@ -166,7 +213,7 @@ struct ScoresView: View {
 //                loadGameData(url: gameURLSelected)
 //            }
         //this one leads to the weird constraint errors in console. Will ignore this for now.
-        .navigationTitle("Scores" + " " + currentSeason)
+        .navigationTitle("Scores " + String(selectedSeason))
         #endif
         
         //---------------------------------------------------------//
@@ -175,6 +222,9 @@ struct ScoresView: View {
         
         #if os(watchOS)
         List {
+            if loadingInProgress == true {
+                LoadingView()
+            }
             Picker(
                 selection: $selection ,
                    
@@ -202,26 +252,29 @@ struct ScoresView: View {
                 }
                 .foregroundColor(.primary)
             }
-            if gamescores == [] {
+            if gamescores.isEmpty && loadingInProgress == false {
                 Text("There are no Skylarks games scheduled for the chosen time frame.")
                     .font(.caption2)
                     .padding()
             }
         }
         //.listStyle(.carousel)
-        .navigationTitle("Scores" + currentSeason)
+        .navigationTitle("Scores " + String(selectedSeason))
         
         .onAppear(perform: {
-            loadGamesAndProcess()
+            if gamescores.isEmpty {
+                loadLeagueGroups()
+            }
         })
         
         .onChange(of: selection, perform: { value in
-            for (string, url) in scoresURLs {
-                if selection.contains(string) {
-                    gameURLSelected = url
-                }
-            }
+            gamescores = []
             loadGamesAndProcess()
+        })
+        
+        .onChange(of: selectedSeason, perform: { value in
+            gamescores = []
+            loadLeagueGroups()
         })
         
         #endif

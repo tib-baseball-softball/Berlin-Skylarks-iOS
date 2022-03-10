@@ -45,14 +45,14 @@ struct ContentView: View {
                         Image(systemName: "star.square.fill")
                         Text("Home")
                     }
-                
-                NavigationView {
-                    NewsView()
-                }
-                    .tabItem {
-                        Image(systemName: "newspaper.fill")
-                        Text("News")
-                    }
+                //since News is non-functional right now, let's rather have the settings back in the tab bar
+//                NavigationView {
+//                    NewsView()
+//                }
+//                    .tabItem {
+//                        Image(systemName: "newspaper.fill")
+//                        Text("News")
+//                    }
                 NavigationView {
                     ScoresView()
                 }
@@ -74,11 +74,13 @@ struct ContentView: View {
                         Image(systemName: "person.3.fill")
                         Text("Teams")
                     }
-//                SettingsListView()
-//                    .tabItem {
-//                        Image(systemName: "gearshape.fill")
-//                        Text("Settings")
-//                    }
+                NavigationView {
+                    SettingsListView()
+                }
+                    .tabItem {
+                        Image(systemName: "gearshape.fill")
+                        Text("Settings")
+                    }
             }
             .onAppear(perform: {
                 checkForOnboarding()

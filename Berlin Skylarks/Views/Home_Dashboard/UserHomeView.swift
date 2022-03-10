@@ -114,15 +114,14 @@ struct UserHomeView: View {
             //-------------------------------------------//
             
             LazyVGrid(columns: smallColumns, spacing: 30) {
-                Image("Rondell")
-                    .resizable()
-                    .scaledToFit()
-                    .accessibilityLabel("Berlin Skylarks Logo")
-//                        .overlay(
-//                            Circle()
-//                                .stroke(lineWidth: 2.0)
-//                        )
                 
+                //iPad already has a huge logo in the sidebar, to prevent logo overload
+                if UIDevice.current.userInterfaceIdiom == .phone {
+                    Image("Rondell")
+                        .resizable()
+                        .scaledToFit()
+                        .accessibilityLabel("Berlin Skylarks Logo")
+                }
                 VStack(alignment: .center, spacing: NewsItemSpacing) {
                     HStack {
                         Image(systemName: "star.fill")
@@ -354,26 +353,27 @@ struct UserHomeView: View {
         })
         
     //we are showing the app settings here, but only on iPhone, since the 5 tab items are full. On iPad/Mac the sidebar has more than enough space to include settings
+        //for now we have it back in the tab bar
     
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                if UIDevice.current.userInterfaceIdiom == .phone {
-                    Button(
-                        action: {
-                            showingSheetSettings.toggle()
-                        }
-                    ){
-                        Image(systemName: "gearshape.fill")
-                    }
-                    .padding(.horizontal, 5)
-                    .sheet( isPresented: $showingSheetSettings) {
-                        NavigationView {
-                            SettingsListView()
-                        }
-                    }
-                }
-            }
-        }
+//        .toolbar {
+//            ToolbarItemGroup(placement: .navigationBarTrailing) {
+//                if UIDevice.current.userInterfaceIdiom == .phone {
+//                    Button(
+//                        action: {
+//                            showingSheetSettings.toggle()
+//                        }
+//                    ){
+//                        Image(systemName: "gearshape.fill")
+//                    }
+//                    .padding(.horizontal, 5)
+//                    .sheet( isPresented: $showingSheetSettings) {
+//                        NavigationView {
+//                            SettingsListView()
+//                        }
+//                    }
+//                }
+//            }
+//        }
         #else
         List {
             Section(header: Text("Favorite Team")) {

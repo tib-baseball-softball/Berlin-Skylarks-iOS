@@ -10,8 +10,8 @@ import SwiftUI
 
 //These values are used for all URLs. They need to be manually adjusted for the correct season at the moment.
 
-var currentSeason = "2021" //WIP to let it change - not possible as long as everything below is a let constant!
-let skylarksID = "485"
+var currentSeason = "2021" //Deprecated - using Int from AppStorage now!
+let skylarksID = "485" // this is probably never going to change indeed - but most API calls work without it anyway
 
 //logos for easy usage
 
@@ -21,6 +21,7 @@ let skylarksSecondaryLogo = Image("Bird_whiteoutline")
 //-----------------------------change league IDs here--------------------------------//
 
 //those IDs are not the LEAGUE IDs in BSM, they are the LEAGUEGROUP IDs (slightly different)
+//MARK: WIP to make the whole process dynamic
 
 let idVLBB = "4800"
 let idVLSB = "4805"
@@ -37,27 +38,12 @@ let idTossBB = "4807"
 
 //force unwrapping should not be an issue here - these are never nil
 
-//URLs used on BSM web frontend
+//URLs used on BSM web frontend - now loaded locally in ScoresView
 
-let urlPreviousGameday = URL(string: "https://bsm.baseball-softball.de/clubs/" + skylarksID + "/matches.json?filter[seasons][]=" + currentSeason + "&search=skylarks&filters[gamedays][]=previous&api_key=" + apiKey)!
-let urlCurrentGameday = URL(string: "https://bsm.baseball-softball.de/clubs/" + skylarksID + "/matches.json?filter[seasons][]=" + currentSeason + "&search=skylarks&filters[gamedays][]=current&api_key=" + apiKey)!
-let urlNextGameday = URL(string: "https://bsm.baseball-softball.de/clubs/" + skylarksID + "/matches.json?filter[seasons][]=" + currentSeason + "&search=skylarks&filters[gamedays][]=next&api_key=" + apiKey)!
-let urlFullSeason = URL(string: "https://bsm.baseball-softball.de/clubs/" + skylarksID + "/matches.json?filter[seasons][]=" + currentSeason + "&search=skylarks&filters[gamedays][]=any&api_key=" + apiKey)!
-
-
-
-let scoresURLs = [
-    "Previous Gameday": urlPreviousGameday,
-    "Current Gameday": urlCurrentGameday,
-    "Next Gameday": urlNextGameday,
-    "Full Season": urlFullSeason,
-    "Verbandsliga BB": team1.scoresURL,
-    "Verbandsliga SB": teamSoftball.scoresURL,
-    "Landesliga BB": team2.scoresURL,
-    "Bezirksliga BB": team3.scoresURL,
-    "Schülerliga": teamSchueler.scoresURL,
-    "Tossballliga": teamTossball.scoresURL,
-]
+//let urlPreviousGameday = URL(string: "https://bsm.baseball-softball.de/clubs/" + skylarksID + "/matches.json?filter[seasons][]=" + currentSeason + "&search=skylarks&filters[gamedays][]=previous&api_key=" + apiKey)!
+//let urlCurrentGameday = URL(string: "https://bsm.baseball-softball.de/clubs/" + skylarksID + "/matches.json?filter[seasons][]=" + currentSeason + "&search=skylarks&filters[gamedays][]=current&api_key=" + apiKey)!
+//let urlNextGameday = URL(string: "https://bsm.baseball-softball.de/clubs/" + skylarksID + "/matches.json?filter[seasons][]=" + currentSeason + "&search=skylarks&filters[gamedays][]=next&api_key=" + apiKey)!
+//let urlFullSeason = URL(string: "https://bsm.baseball-softball.de/clubs/" + skylarksID + "/matches.json?filter[seasons][]=" + currentSeason + "&search=skylarks&filters[gamedays][]=any&api_key=" + apiKey)!
 
 
 //-------------------------------STANDINGS/TABLES---------------------------------//

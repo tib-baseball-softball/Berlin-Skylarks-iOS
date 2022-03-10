@@ -7,6 +7,8 @@
 
 import Foundation
 
+// this is mostly obsolete
+
 let testTeam = SkylarksTeam(
                  name: "Test Team",
                  leagueName: "Test League",
