@@ -72,7 +72,7 @@ class UserDashboard: ObservableObject {
     @Published var LastGame = testGame
 }
 
-let emptyScoreTeam = GameScore.Team(name: "Test Team", short_name: "ACR")
+let emptyScoreTeam = GameScore.Team(name: "Test Team", short_name: "ACR", clubs: [])
 
 let homeEntry = GameScore.LeagueEntry(team: emptyScoreTeam)
 let awayEntry = GameScore.LeagueEntry(team: emptyScoreTeam)

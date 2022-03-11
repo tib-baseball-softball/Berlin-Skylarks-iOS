@@ -12,6 +12,16 @@ struct ScoresView: View {
     @State private var gamescores = [GameScore]()
     @State private var leagueGroups = [LeagueGroup]()
     
+    @State private var searchResults = [GameScore]()
+    
+    var listData: [GameScore] {
+        if searchText.isEmpty {
+            return gamescores
+        } else {
+            return searchResults
+        }
+    }
+    
     @State private var scoresURLs: [String : URL] = [:]
     
     @State private var showCalendarDialog = false
@@ -19,11 +29,12 @@ struct ScoresView: View {
     @State private var showAlertNoGames = false
     @State private var loadingInProgress = false
     
-    @State var selection = "Current Gameday"
+    @State private var searchText = ""
     
+    @State var selection = "Current Gameday"
     //@State var gameURLSelected = urlCurrentGameday
     
-    //@State private var date = Date()
+    @State private var filterDate = Date()
     
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
 
@@ -94,7 +105,7 @@ struct ScoresView: View {
                 if loadingInProgress == true {
                     LoadingView()
                 }
-                ForEach(self.gamescores, id: \.id) { GameScore in
+                ForEach(listData, id: \.id) { GameScore in
                     NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
                         ScoresOverView(gamescore: GameScore)
                     }
@@ -105,6 +116,25 @@ struct ScoresView: View {
                 }
             }
             .padding(scoresGridPadding)
+            .animation(.default, value: searchText)
+            .searchable(text: $searchText)
+            .onChange(of: searchText) { searchText in
+                searchResults = self.gamescores.filter({ gamescore in
+                    
+                    // list all fields that are searched
+                    gamescore.home_team_name.lowercased().contains(searchText.lowercased()) ||
+                    gamescore.away_team_name.lowercased().contains(searchText.lowercased()) ||
+                    gamescore.match_id.lowercased().contains(searchText.lowercased()) ||
+                    gamescore.league.name.lowercased().contains(searchText.lowercased()) ||
+                    //MARK: watch for index errors here
+                    gamescore.home_league_entry.team.clubs[0].name.lowercased().contains(searchText.lowercased()) ||
+                    gamescore.away_league_entry.team.clubs[0].name.lowercased().contains(searchText.lowercased()) ||
+                    gamescore.home_league_entry.team.clubs[0].short_name.lowercased().contains(searchText.lowercased()) ||
+                    gamescore.away_league_entry.team.clubs[0].short_name.lowercased().contains(searchText.lowercased()) ||
+                    gamescore.home_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased()) ||
+                    gamescore.away_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased())
+                })
+            }
         }
         .onAppear(perform: {
             if gamescores.isEmpty {
@@ -126,7 +156,7 @@ struct ScoresView: View {
         // this is the toolbar with the picker in the top right corner where you can select which games to display.
     
         .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
+            ToolbarItemGroup(placement: .navigationBarLeading) {
                 Button(
                     action: {
                         if gamescores != [] {
@@ -169,7 +199,13 @@ struct ScoresView: View {
                     Text("There is no game data to save.")
                 }
                 .padding(.horizontal, 10)
-                
+            }
+            
+            ToolbarItemGroup(placement: .principal) {
+                DatePicker("Select a specific date", selection: $filterDate, displayedComponents: .date)
+            }
+            
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Picker(
                     selection: $selection,
                     //this actually does not show the label, just the selection
@@ -203,16 +239,7 @@ struct ScoresView: View {
 //                    }
 //
 //                }
-            
-            ToolbarItem(placement: .bottomBar) {
-                
-            }
         }
-        //this does not work yet
-//            .refreshable {
-//                loadGameData(url: gameURLSelected)
-//            }
-        //this one leads to the weird constraint errors in console. Will ignore this for now.
         .navigationTitle("Scores " + String(selectedSeason))
         #endif
         

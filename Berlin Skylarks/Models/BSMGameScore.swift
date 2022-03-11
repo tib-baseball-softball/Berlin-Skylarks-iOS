@@ -9,8 +9,6 @@ import Foundation
 import SwiftUI
 import CoreLocation
 
-//not sure if this actually conforms to Identifiable! --> added in tutorial
-
 struct GameScore: Hashable, Codable, Identifiable {
     var id: Int
     var match_id: String
@@ -86,14 +84,15 @@ struct GameScore: Hashable, Codable, Identifiable {
     struct Team: Hashable, Codable {
         var name: String
         var short_name: String
-        //var clubs: [Clubs]
+        var clubs: [Club]
     }
     
-//    struct Clubs: Hashable, Codable {
-//        var id: Int
-//        var name: String
-//        var acronym: String
-//    }
+    struct Club: Hashable, Codable {
+        var id: Int
+        var name: String
+        var short_name: String
+        var acronym: String
+    }
     
     mutating func determineGameStatus() {
         
