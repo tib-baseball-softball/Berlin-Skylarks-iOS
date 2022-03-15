@@ -31,6 +31,10 @@ struct UserHomeView: View {
     @State var selectedHomeTablesURL = URL(string: "nonsense")!
     @State var selectedHomeScoresURL = URL(string: "nonsense")!
     
+    //-------------------------------------------//
+    //LOCAL FUNCTIONS
+    //-------------------------------------------//
+    
     func setFavoriteTeam() {
         for team in allSkylarksTeams where favoriteTeam == team.name {
             displayTeam = team
@@ -94,6 +98,8 @@ struct UserHomeView: View {
             loadingScores = false
         }
     }
+    
+    //-------------------------------------------//
     
     // 110 is good for iPhone SE, spacing lower than 38 makes elements overlap on iPad landscape orientation. Still looks terrible on some Mac sizes...
     

@@ -10,8 +10,10 @@ import SwiftUI
 
 //These values are used for all URLs. They need to be manually adjusted for the correct season at the moment.
 
-var currentSeason = "2021" //Deprecated - using Int from AppStorage now!
-let skylarksID = "485" // this is probably never going to change indeed - but most API calls work without it anyway
+//changed IDs to 2022 season on 15-3-2022
+
+var currentSeason = "2022" //Deprecated - using Int from AppStorage in future, but still needed for transition!
+let skylarksID = "485" // this is probably never going to change - but most API calls work without it anyway
 
 //logos for easy usage
 
@@ -23,13 +25,14 @@ let skylarksSecondaryLogo = Image("Bird_whiteoutline")
 //those IDs are not the LEAGUE IDs in BSM, they are the LEAGUEGROUP IDs (slightly different)
 //MARK: WIP to make the whole process dynamic
 
-let idVLBB = "4800"
-let idVLSB = "4805"
-let idLLBB = "4801"
-let idBZLBB = "4802"
-let idJugBB = "4804" //placeholder
-let idSchBB = "4804"
-let idTossBB = "4807"
+let idVLBB = "5137"
+let idVLSB = "5150"
+let idLLBB = "5138"
+let idBZLBB = "5145"
+let idJugBB = "5147"
+let idSchBB = "5148"
+let idTossBB = "4807" //not applicable for 2022
+let idTeeBB = "5149"
 
 //-------------------------------SCORES------------------------------------//
 
@@ -51,14 +54,15 @@ let idTossBB = "4807"
 //these need to be changed every year after the schedule is published - there is no option to collect all tables for Skylarks teams like I do with scores (WIP to find one)
 //apparently they also do not need an API key (?)
 
-//URLs are set in SkylarksTeams now
+//URLs now loaded locally
 
-let leagueTableURLs = [ team1.leagueTableURL,
-                        teamSoftball.leagueTableURL,
-                        team2.leagueTableURL,
-                        team3.leagueTableURL,
-                        teamSchueler.leagueTableURL,
-                        teamTossball.leagueTableURL, ]
+//let leagueTableURLs = [ team1.leagueTableURL,
+//                        teamSoftball.leagueTableURL,
+//                        team2.leagueTableURL,
+//                        team3.leagueTableURL,
+//                        teamJugend.leagueTableURL,
+//                        teamSchueler.leagueTableURL,
+//                        teamTeeball.leagueTableURL, ]
 
 //-------------------------------DASHBOARD---------------------------------//
 

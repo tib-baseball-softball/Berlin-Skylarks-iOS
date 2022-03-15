@@ -15,6 +15,8 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
     
     var userDashboard = UserDashboard()
     
+    //changed to 2022 teams on 15-3-2022
+    
     func team(for configuration: FavoriteTeamIntent) -> SkylarksTeam {
         switch configuration.team {
         case .team1:
@@ -23,19 +25,18 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
             return team2
         case .team3:
             return team3
-        case .team4:
-            return team4
+//        case .team4:
+//            return team4
         case .teamSoftball:
             return teamSoftball
         case .teamJugend:
             return teamJugend
         case .teamSchueler:
             return teamSchueler
-        case .teamTossball:
-            return teamTossball
-            //TODO: add team!
+//        case .teamTossball:
+//            return teamTossball
         case .teamTeeball:
-            return teamTossball
+            return teamTeeball
         default:
             return team1
         }

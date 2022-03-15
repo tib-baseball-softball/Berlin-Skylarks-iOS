@@ -57,16 +57,6 @@
 				</dict>
 				<dict>
 					<key>INEnumValueDisplayName</key>
-					<string>Team 4</string>
-					<key>INEnumValueDisplayNameID</key>
-					<string>PgM6r5</string>
-					<key>INEnumValueIndex</key>
-					<integer>4</integer>
-					<key>INEnumValueName</key>
-					<string>team4</string>
-				</dict>
-				<dict>
-					<key>INEnumValueDisplayName</key>
 					<string>Softball</string>
 					<key>INEnumValueDisplayNameID</key>
 					<string>x9hDNr</string>
@@ -97,16 +87,6 @@
 				</dict>
 				<dict>
 					<key>INEnumValueDisplayName</key>
-					<string>Tossball</string>
-					<key>INEnumValueDisplayNameID</key>
-					<string>cId5Pi</string>
-					<key>INEnumValueIndex</key>
-					<integer>8</integer>
-					<key>INEnumValueName</key>
-					<string>teamTossball</string>
-				</dict>
-				<dict>
-					<key>INEnumValueDisplayName</key>
 					<string>Teeball</string>
 					<key>INEnumValueDisplayNameID</key>
 					<string>6m7Vln</string>
@@ -123,7 +103,7 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>88xZPY</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>21C52</string>
+	<string>21E230</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
 	<string>13C100</string>
 	<key>INIntentDefinitionToolsVersion</key>

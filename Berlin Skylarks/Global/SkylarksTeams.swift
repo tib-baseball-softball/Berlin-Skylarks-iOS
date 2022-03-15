@@ -7,7 +7,7 @@
 
 import Foundation
 
-// this is mostly obsolete
+// this is mostly deprecated
 
 let testTeam = SkylarksTeam(
                  name: "Test Team",
@@ -99,17 +99,14 @@ let teamTossball = SkylarksTeam(
                  homeURL: URL(string:"https://www.tib-baseball.de")!
                                             )
 
-let allSkylarksTeams = [ team1, team2, team3, team4, teamSoftball, teamJugend, teamSchueler, teamTossball ]
+let teamTeeball = SkylarksTeam(
+                 name: "Teeball",
+                 leagueName: "Kinderliga",
+                 sport: "Baseball",
+                 ageGroup: "Nachwuchs",
+                 scoresURL: URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + currentSeason + "&search=skylarks&filters[leagues][]=" + idTeeBB + "&filters[gamedays][]=any&api_key=" + apiKey)!,
+                 leagueTableURL: URL(string:"https://bsm.baseball-softball.de/leagues/" + idTeeBB + "/table.json")!,
+                 homeURL: URL(string:"https://www.tib-baseball.de")!
+                                            )
 
-//enum SkylarksTeams {
-//    case team1
-//    case team2
-//    case team3
-//    case team4
-//    case teamSoftball
-//    case teamJunioren
-//    case teamJugend
-//    case teamSchueler
-//    case teamTossball
-//    case teamTeeball
-//}
+let allSkylarksTeams = [ team1, team2, team3, teamSoftball, teamJugend, teamSchueler, teamTeeball ]
