@@ -177,10 +177,10 @@ struct TeamWidgetNextGameView: View {
                         .scaledToFit()
                         .frame(maxWidth: 35)
                     if entry.skylarksAreRoadTeam == true {
-                        Text(nextGame.home_team_name)
+                        Text(nextGame.home_league_entry.team.short_name)
                     }
                     if entry.skylarksAreRoadTeam == false {
-                        Text(nextGame.away_team_name)
+                        Text(nextGame.away_league_entry.team.short_name)
                     }
                     Spacer()
                 }
@@ -191,6 +191,7 @@ struct TeamWidgetNextGameView: View {
                         .font(.callout)
                     if let gameDate = nextGame.gameDate {
                         Text(gameDate, style: .date)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
             }

@@ -35,9 +35,9 @@ struct GameScore: Hashable, Codable, Identifiable {
     
     struct Field: Hashable, Codable {
         var name: String
-        var city: String
-        var street: String
-        var postal_code: String
+        var city: String?
+        var street: String?
+        var postal_code: String?
         var latitude: Double?
         var longitude: Double?
     }

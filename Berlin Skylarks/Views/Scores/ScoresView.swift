@@ -201,9 +201,10 @@ struct ScoresView: View {
                 .padding(.horizontal, 10)
             }
             
-            ToolbarItemGroup(placement: .principal) {
-                DatePicker("Select a specific date", selection: $filterDate, displayedComponents: .date)
-            }
+            //not sure if I want this
+//            ToolbarItemGroup(placement: .principal) {
+//                DatePicker("Select a specific date", selection: $filterDate, displayedComponents: .date)
+//            }
             
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Picker(
