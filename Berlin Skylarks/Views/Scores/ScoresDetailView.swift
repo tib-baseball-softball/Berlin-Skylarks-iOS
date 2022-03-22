@@ -499,7 +499,7 @@ struct BallparkLocation: View {
             }
             .padding(ScoresItemPadding)
             HStack {
-                Image(systemName: "house.fill")
+                Image(systemName: "map")
                 if let street = field.street, let postalCode = field.postal_code, let city = field.city {
                     Text(street + ",\n" + postalCode + " " + city)
                 }

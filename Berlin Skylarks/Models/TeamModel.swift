@@ -44,7 +44,7 @@ struct BSMTeam: Hashable, Codable, Identifiable {
     }
 }
 
-let emptyTeam = BSMTeam(id: 999, name: "Test Team", short_name: "ACR", league_entries: [], current_player_list: BSMTeam.PlayerList(player_list_entries: []))
+let emptyTeam = BSMTeam(id: 999, name: "Test Team", short_name: "ACR", league_entries: [BSMTeam.LeagueEntry(league: emptyLeague)], current_player_list: BSMTeam.PlayerList(player_list_entries: []))
 
 //this crashes at runtime
 

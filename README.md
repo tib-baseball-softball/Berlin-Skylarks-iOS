@@ -17,6 +17,8 @@ Play Ball! ⚾️🥎
 
 Note: The app requires a BSM API key to function which is not shipped in the public code (documentation: https://bsm.baseball-softball.de/api_docs). Please get in touch for information on how to acquire one (although I would assume that if you are interested in German baseball/softball, you would know where to get one).
 
+Contact info: app@tib-baseball.de
+
 ______
 
 Please note: I am not a programmer. This project represents my learning experience to coding and iOS development as a complete beginner. So please do not expect anything refined. However, I still aim to create a working and functional app at some point in the future.

@@ -19,6 +19,8 @@ struct TeamListView: View {
     
     @State private var loadingInProgress = false
     
+    @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
+    
     let teamURL = URL(string:"https://bsm.baseball-softball.de/clubs/485/teams.json?filters[seasons][]=" + currentSeason + "&sort[league_sort]=asc&api_key=" + apiKey)!
     
     var body: some View {
@@ -43,14 +45,14 @@ struct TeamListView: View {
                 
                 ForEach(teams, id: \.self) { team in
                     NavigationLink(
-                        destination: TeamPlayersView()){
+                        destination: TeamDetailView(team: team)){
                             HStack {
                                 Image(systemName: "person.3")
                                     .foregroundColor(.skylarksRed)
                                     .padding(.trailing)
                                 Text(team.name)
                                 Spacer()
-                                if team.league_entries != [] {
+                                if !team.league_entries.isEmpty {
                                     Text(team.league_entries[0].league.name)
                                         .frame(maxWidth: 110, alignment: .leading)
                                         .allowsTightening(true)
@@ -64,7 +66,13 @@ struct TeamListView: View {
             
         }
         .navigationBarTitle("Teams")
-        .listStyle(.insetGrouped)
+        .listStyle( {
+          #if os(watchOS)
+            .automatic
+          #else
+            .insetGrouped
+          #endif
+        } () )
         .refreshable {
             teams = []
             loadBSMData(url: teamURL, dataType: [BSMTeam].self) { loadedData in
@@ -87,6 +95,6 @@ struct TeamListView: View {
 struct TeamListView_Previews: PreviewProvider {
     static var previews: some View {
         TeamListView()
-            .preferredColorScheme(.dark)
+            //.preferredColorScheme(.dark)
     }
 }
