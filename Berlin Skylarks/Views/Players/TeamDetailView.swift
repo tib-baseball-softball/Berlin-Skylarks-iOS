@@ -1,5 +1,5 @@
 //
-//  PlayersView.swift
+//  TeamDetailView.swift
 //  Berlin Skylarks
 //
 //  Created by David Battefeld on 25.12.20.

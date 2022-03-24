@@ -39,7 +39,7 @@ struct ScoresView: View {
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
 
     @State var filterOptions = [
-        "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season", //"Verbandsliga BB", "Verbandsliga SB", "Landesliga BB", "Bezirksliga BB", "Schülerliga", "Tossballliga",
+        "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season"
     ]
     
     let columns = [
@@ -150,7 +150,7 @@ struct ScoresView: View {
         
         .onChange(of: selectedSeason, perform: { value in
             gamescores = []
-            loadLeagueGroups()
+            //loadLeagueGroups()
         })
         
         // this is the toolbar with the picker in the top right corner where you can select which games to display.

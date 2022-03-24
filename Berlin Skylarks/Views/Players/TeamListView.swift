@@ -21,7 +21,17 @@ struct TeamListView: View {
     
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
     
-    let teamURL = URL(string:"https://bsm.baseball-softball.de/clubs/485/teams.json?filters[seasons][]=" + currentSeason + "&sort[league_sort]=asc&api_key=" + apiKey)!
+    func loadTeamData() {
+        
+        let teamURL = URL(string:"https://bsm.baseball-softball.de/clubs/485/teams.json?filters[seasons][]=" + "\(selectedSeason)" + "&sort[league_sort]=asc&api_key=" + apiKey)!
+        
+        loadingInProgress = true
+        
+        loadBSMData(url: teamURL, dataType: [BSMTeam].self) { loadedData in
+            teams = loadedData
+            loadingInProgress = false
+        }
+    }
     
     var body: some View {
         List {
@@ -60,12 +70,16 @@ struct TeamListView: View {
                             }
                     }
                 }
+                
+                if teams.isEmpty && loadingInProgress == false {
+                    Text("No team data.")
+                }
                 //.padding(.horizontal)
                 //Text(teams.debugDescription)
             }
             
         }
-        .navigationBarTitle("Teams")
+        .navigationBarTitle("Teams" + " \(selectedSeason)")
         .listStyle( {
           #if os(watchOS)
             .automatic
@@ -75,19 +89,17 @@ struct TeamListView: View {
         } () )
         .refreshable {
             teams = []
-            loadBSMData(url: teamURL, dataType: [BSMTeam].self) { loadedData in
-                teams = loadedData
-            }
+            loadTeamData()
         }
     
         .onAppear(perform: {
             if teams == [] {
-                loadingInProgress = true
-                loadBSMData(url: teamURL, dataType: [BSMTeam].self) { loadedData in
-                    teams = loadedData
-                    loadingInProgress = false
-                }
+                loadTeamData()
             }
+        })
+        
+        .onChange(of: selectedSeason, perform: { value in
+            teams = []
         })
     }
 }

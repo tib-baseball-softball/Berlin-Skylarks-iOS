@@ -102,7 +102,9 @@ struct StandingsView: View {
         })
         .onChange(of: selectedSeason, perform: { value in
             leagueTableArray = []
-            loadAllTables()
+            tablesLoaded = false
+            //let's try to save some performance - don't need to load twice
+            //loadAllTables()
         })
     }
 }
