@@ -142,6 +142,16 @@ func loadBSMData<T: Codable>(url: URL, dataType: T.Type, completion: @escaping (
     }.resume()
 }
 
+// new version with async/await
+
+func fetchBSMData<T: Codable>(url: URL, dataType: T.Type) async throws -> T {
+    
+    let (data, _) = try await URLSession.shared.data(from: url)
+    
+    let responseObj = try JSONDecoder().decode(T.self, from: data)
+    return responseObj
+}
+
 //-------------------------------------------------------------------------------//
 //-------------------------------CALENDAR EVENTS---------------------------------//
 //-------------------------------------------------------------------------------//

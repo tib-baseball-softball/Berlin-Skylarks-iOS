@@ -21,16 +21,18 @@ struct TeamListView: View {
     
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
     
-    func loadTeamData() {
+    func loadTeamData() async {
         
         let teamURL = URL(string:"https://bsm.baseball-softball.de/clubs/485/teams.json?filters[seasons][]=" + "\(selectedSeason)" + "&sort[league_sort]=asc&api_key=" + apiKey)!
         
         loadingInProgress = true
         
-        loadBSMData(url: teamURL, dataType: [BSMTeam].self) { loadedData in
-            teams = loadedData
-            loadingInProgress = false
+        do {
+            teams = try await fetchBSMData(url: teamURL, dataType: [BSMTeam].self)
+        } catch {
+            print("Request failed with error: \(error)")
         }
+        loadingInProgress = false
     }
     
     var body: some View {
@@ -89,12 +91,14 @@ struct TeamListView: View {
         } () )
         .refreshable {
             teams = []
-            loadTeamData()
+            await loadTeamData()
         }
     
         .onAppear(perform: {
             if teams == [] {
-                loadTeamData()
+                Task {
+                    await loadTeamData()
+                }
             }
         })
         
