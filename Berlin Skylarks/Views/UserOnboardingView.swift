@@ -9,11 +9,11 @@ import SwiftUI
 
 struct UserOnboardingView: View {
     
-    @AppStorage("favoriteTeam") var favoriteTeam: String = "Team 1"
-    
     @State private var showingPicker = false
+    @State var teams = [BSMTeam]()
     
-    @ObservedObject var userSettings = UserSettings()
+    //@ObservedObject var userSettings = UserSettings()
+    @AppStorage("favoriteTeamID") var favoriteTeamID = 0
     
     var body: some View {
         VStack {
@@ -36,12 +36,10 @@ struct UserOnboardingView: View {
                     HStack {
                         Image(systemName: "star.square.fill")
                             .font(.title)
-                        Text("Favorite Team")
+                        Spacer()
+                        Text("Select Favorite Team")
                             .bold()
                         Spacer()
-                        Text(favoriteTeam)
-                            .bold()
-                            .foregroundColor(.skylarksSand)
                     }
                     .font(.title3)
                     .padding()
@@ -55,12 +53,15 @@ struct UserOnboardingView: View {
                         }
                     }
                     if showingPicker == true {
-                        Picker(selection: $favoriteTeam,
+                        Picker(selection: $favoriteTeamID,
                                label:
                                     Text("Favorite Team")
                         ) {
-                            ForEach(userSettings.skylarksTeams, id: \.self) { team in
-                                Text(team)
+                            ForEach(teams, id: \.self) { team in
+                                if !team.league_entries.isEmpty {
+                                    Text("\(team.name) (\(team.league_entries[0].league.name))")
+                                        .tag(team.id)
+                                }
                             }
                         }
                         .transition(.scale)

@@ -131,6 +131,10 @@ struct GameScore: Hashable, Codable, Identifiable {
             }
         }
     }
+    
+    mutating func addDates() {
+        gameDate = getDatefromBSMString(gamescore: self)
+    }
 }
 
 struct Ballpark: Identifiable {

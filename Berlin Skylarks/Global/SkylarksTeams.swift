@@ -7,7 +7,7 @@
 
 import Foundation
 
-// this is mostly deprecated
+//MARK: this is mostly deprecated
 
 let testTeam = SkylarksTeam(
                  name: "Test Team",

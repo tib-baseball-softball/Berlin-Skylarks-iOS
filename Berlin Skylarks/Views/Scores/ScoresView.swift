@@ -46,7 +46,7 @@ struct ScoresView: View {
         GridItem(.adaptive(minimum: 300), spacing: scoresGridSpacing),
     ]
     
-    func loadLeagueGroups() {
+    func loadLeagueGroups() async {
         let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(selectedSeason)" + "&api_key=" + apiKey)!
         
         //reset filter options to default
@@ -70,30 +70,49 @@ struct ScoresView: View {
             "Full Season": urlFullSeason,
         ]
         
-        loadBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self) { loadedLeagues  in
-            leagueGroups = loadedLeagues
-            
-            //add leagueGroup IDs to previously created dict using league names as key / add names to filter options for the user to select
-            for leagueGroup in leagueGroups {
-                filterOptions.append(leagueGroup.name)
-                scoresURLs[leagueGroup.name] = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
-                loadGamesAndProcess()
-            }
+        do {
+            leagueGroups = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
+        } catch {
+            print("Request failed with error: \(error)")
         }
+        
+        //add leagueGroup IDs to previously created dict using league names as key / add names to filter options for the user to select
+        for leagueGroup in leagueGroups {
+            filterOptions.append(leagueGroup.name)
+            scoresURLs[leagueGroup.name] = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
+        }
+        await loadGamesAndProcess()
+        
+//        loadBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self) { loadedLeagues  in
+//            leagueGroups = loadedLeagues
+//
+//            //add leagueGroup IDs to previously created dict using league names as key / add names to filter options for the user to select
+//            for leagueGroup in leagueGroups {
+//                filterOptions.append(leagueGroup.name)
+//                scoresURLs[leagueGroup.name] = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
+//                loadGamesAndProcess()
+//            }
+//        }
     }
     
-    func loadGamesAndProcess() {
+    func loadGamesAndProcess() async {
         for (string, url) in scoresURLs {
             if selection == string {
                 let gameURLSelected = url
                 loadingInProgress = true
                 
-                loadBSMData(url: gameURLSelected, dataType: [GameScore].self) { loadedData in
-                    
-                    gamescores = addDatesToGames(gamescores: loadedData)
-                    
-                    loadingInProgress = false
+                do {
+                    gamescores = try await fetchBSMData(url: gameURLSelected, dataType: [GameScore].self)
+                } catch {
+                    print("Request failed with error: \(error)")
                 }
+                
+                for (index, _) in gamescores.enumerated() {
+                    gamescores[index].addDates()
+                }
+                //gamescores = addDatesToGames(gamescores: gamescores)
+                
+                loadingInProgress = false
             }
         }
     }
@@ -138,14 +157,18 @@ struct ScoresView: View {
         }
         .onAppear(perform: {
             if gamescores.isEmpty {
-                loadLeagueGroups()
+                Task {
+                    await loadLeagueGroups()
+                }
             }
             getAvailableCalendars()
         })
         
         .onChange(of: selection, perform: { value in
             gamescores = []
-            loadGamesAndProcess()
+            Task {
+                await loadGamesAndProcess()
+            }
         })
         
         .onChange(of: selectedSeason, perform: { value in
@@ -289,20 +312,27 @@ struct ScoresView: View {
         //.listStyle(.carousel)
         .navigationTitle("Scores " + String(selectedSeason))
         
+        //APPLE WATCH SEPARATE FUNCS/////////////////////////////////////////////////////////////////////
+        
         .onAppear(perform: {
             if gamescores.isEmpty {
-                loadLeagueGroups()
+                Task {
+                    await loadLeagueGroups()
+                }
             }
+            getAvailableCalendars()
         })
         
         .onChange(of: selection, perform: { value in
             gamescores = []
-            loadGamesAndProcess()
+            Task {
+                await loadGamesAndProcess()
+            }
         })
         
         .onChange(of: selectedSeason, perform: { value in
             gamescores = []
-            loadLeagueGroups()
+            //loadLeagueGroups()
         })
         
         #endif

@@ -9,25 +9,28 @@ import SwiftUI
 
 struct InfoView: View {
     
-    @ObservedObject var userSettings = UserSettings()
+    //@ObservedObject var userSettings = UserSettings()
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
+    @AppStorage("favoriteTeam") var favoriteTeam: String = ""
+    
+    @AppStorage("favoriteTeamID") var favoriteTeamID = 0
 
     var body: some View {
-        
-        VStack {
-            Text("Favorite Team from user settings:")
-            Text(userSettings.favoriteTeam)
-        }
-        
         VStack {
             Text("selected season according to AppStorage:")
             Text(String(selectedSeason))
         }
-        
-        //this is how you can declare functions in a view!
-    }
-    private func printSomething() {
-        print(self)
+        .padding()
+        VStack {
+            Text("favoriteTeam:")
+            Text(favoriteTeam.debugDescription)
+        }
+        .padding()
+        VStack {
+            Text("favoriteTeamID:")
+            Text("\(favoriteTeamID)")
+        }
+        .padding()
     }
 }
 

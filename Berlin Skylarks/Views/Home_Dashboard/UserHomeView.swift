@@ -11,7 +11,9 @@ import SwiftUI
 
 struct UserHomeView: View {
     
-    @AppStorage("favoriteTeam") var favoriteTeam: String = "Team 1"
+    @AppStorage("favoriteTeam") var favoriteTeam: String = "Not set"
+    @AppStorage("favoriteTeamID") var favoriteTeamID = 0
+    @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
     
     @State private var showingSheetSettings = false
     @State private var showingSheetNextGame = false
@@ -26,7 +28,9 @@ struct UserHomeView: View {
     @StateObject var userDashboard = UserDashboard()
     @State private var homeGamescores = [GameScore]()
     @State var homeLeagueTables = [LeagueTable]()
-    @State var displayTeam = testTeam
+    @State var teams = [BSMTeam]()
+    @State var leagueGroups = [LeagueGroup]()
+    @State var displayTeam: BSMTeam = emptyTeam
     
     @State var selectedHomeTablesURL = URL(string: "nonsense")!
     @State var selectedHomeScoresURL = URL(string: "nonsense")!
@@ -35,45 +39,72 @@ struct UserHomeView: View {
     //LOCAL FUNCTIONS
     //-------------------------------------------//
     
-    func setFavoriteTeam() {
-        for team in allSkylarksTeams where favoriteTeam == team.name {
-            displayTeam = team
-            selectedHomeTablesURL = displayTeam.leagueTableURL
-            selectedHomeScoresURL = displayTeam.scoresURL
-        }
+    func loadProcessHomeData() async {
+        displayTeam = await setFavoriteTeam()
+        await loadHomeTeamTable(team: displayTeam)
     }
     
-    func loadHomeTeamTable() {
+    func setFavoriteTeam() async -> BSMTeam {
+        //get all teams
+        do {
+            teams = try await loadSkylarksTeams(season: selectedSeason)
+        } catch {
+            print("Request failed with error: \(error)")
+        }
+        //check for the favorite one
+        
+        for team in teams where team.id == favoriteTeamID {
+            displayTeam = team
+//            selectedHomeTablesURL = displayTeam.leagueTableURL
+//            selectedHomeScoresURL = displayTeam.scoresURL
+        }
+        return displayTeam
+    }
+    
+    func loadHomeTeamTable(team: BSMTeam) async {
         
         loadingTables = true
         
-        loadBSMData(url: selectedHomeTablesURL, dataType: LeagueTable.self) { loadedTable in
-            userDashboard.leagueTable = loadedTable
-            
-            homeLeagueTables.append(loadedTable)
-            
-            //we have loaded the table for the favorite team, now we have to identify the row of said team to display this information prominently at the top
-            
-            for row in userDashboard.leagueTable.rows where row.team_name.contains("Skylarks") {
-                
-                //we might have two teams for BZL, so the function needs to account for the correct one
-                if displayTeam == team3 {
-                    if row.team_name == "Skylarks 3" {
-                        userDashboard.tableRow = row
-                    }
-                } else if displayTeam == team4 {
-                    if row.team_name == "Skylarks 4" {
-                        userDashboard.tableRow = row
-                    }
-                } else if displayTeam != team3 && displayTeam != team4 {
-                    userDashboard.tableRow = row
-                }
-            }
-            loadingTables = false
+        let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(selectedSeason)" + "&api_key=" + apiKey)!
+        
+        //load all leagueGroups
+        do {
+           leagueGroups = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
+        } catch {
+            print("Request failed with error: \(error)")
         }
+        //load table for specific leagueGroup that corresponds to favorite team
+        for leagueGroup in leagueGroups where team.league_entries[0].league.name == leagueGroup.name {
+            let url = URL(string: "https://bsm.baseball-softball.de/leagues/" + "\(leagueGroup.id)" + "/table.json")!
+            
+            do {
+                let table = try await fetchBSMData(url: url, dataType: LeagueTable.self)
+                homeLeagueTables.append(table)
+                userDashboard.leagueTable = table
+                
+                for row in userDashboard.leagueTable.rows where row.team_name.contains("Skylarks") {
+                    
+                    //we might have two teams for BZL, so the function needs to account for the correct one
+                    if team.name.contains("3") {
+                        if row.team_name == "Skylarks 3" {
+                            userDashboard.tableRow = row
+                        }
+                    } else if team.name.contains("4") {
+                        if row.team_name == "Skylarks 4" {
+                            userDashboard.tableRow = row
+                        }
+                    } else if !team.name.contains("3") && !team.name.contains("4") {
+                        userDashboard.tableRow = row
+                    }
+                }
+            } catch {
+                print("Request failed with error: \(error)")
+            }
+        }
+        loadingTables = false
     }
     
-    func loadHomeGameData() {
+    func loadHomeGameData() async {
         
         //get the games, then process for next and last
         loadingScores = true
@@ -139,9 +170,12 @@ struct UserHomeView: View {
                     .padding(5)
                     Divider()
                         .frame(width: 100)
-                    Text(displayTeam.name)
-                        .font(.system(size: 18))
-                        .padding(5)
+                    if !displayTeam.league_entries.isEmpty {
+                        Text("\(displayTeam.name) (\(displayTeam.league_entries[0].league.acronym))")
+                            .font(.system(size: 18))
+                            .padding(5)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
                 }
                 .frame(minWidth: 150, minHeight: 150)
                 .background(ItemBackgroundColor)
@@ -346,16 +380,19 @@ struct UserHomeView: View {
         .navigationTitle("Dashboard")
         
         .onAppear(perform: {
-            setFavoriteTeam()
-            loadHomeTeamTable()
-            loadHomeGameData()
+            Task {
+                await loadProcessHomeData()
+            }
         })
         
-        .onChange(of: favoriteTeam, perform: { favoriteTeam in
-            setFavoriteTeam()
+        .onChange(of: favoriteTeamID, perform: { favoriteTeam in
+            Task {
+                displayTeam = await setFavoriteTeam()
+            }
             homeLeagueTables = []
-            loadHomeTeamTable()
-            loadHomeGameData()
+            //check: commented out for performance reasons
+//            loadHomeTeamTable()
+//            loadHomeGameData()
         })
         
     //we are showing the app settings here, but only on iPhone, since the 5 tab items are full. On iPad/Mac the sidebar has more than enough space to include settings
@@ -472,18 +509,24 @@ struct UserHomeView: View {
         }
         .navigationTitle("Dashboard")
         
-        .onAppear(perform: {
-            setFavoriteTeam()
-            loadHomeTeamTable()
-            loadHomeGameData()
-        })
+        //APPLE WATCH FUNCS //////////////////////////////////////////////////////////////
         
-        .onChange(of: favoriteTeam, perform: { favoriteTeam in
-            setFavoriteTeam()
-            homeLeagueTables = []
-            loadHomeTeamTable()
-            loadHomeGameData()
-        })
+        //TODO: comment back in once funcs are final
+//        .onAppear(perform: {
+//            setFavoriteTeam()
+//            Task {
+//                await loadHomeTeamTable()
+//                await loadHomeGameData()
+//            }
+//        })
+//
+//        .onChange(of: favoriteTeam, perform: { favoriteTeam in
+//            setFavoriteTeam()
+//            homeLeagueTables = []
+//            //check: commented out for performance reasons
+////            loadHomeTeamTable()
+////            loadHomeGameData()
+//        })
         
         #endif
     }

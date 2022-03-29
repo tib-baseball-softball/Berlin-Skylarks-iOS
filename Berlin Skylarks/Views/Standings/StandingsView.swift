@@ -19,29 +19,28 @@ struct StandingsView: View {
     
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
     
-    func loadAllTables() {
+    func loadAllTables() async {
         
         let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(selectedSeason)" + "&api_key=" + apiKey)!
         
         loadingInProgress = true
         
-        loadBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self) { loadedLeagues  in
-            leagueGroups = loadedLeagues
-            for leagueGroup in leagueGroups {
-                let url = URL(string: "https://bsm.baseball-softball.de/leagues/" + "\(leagueGroup.id)" + "/table.json")!
-                
-                loadBSMData(url: url, dataType: LeagueTable.self) { loadedSingleTable in
-                    leagueTableArray.append(loadedSingleTable)
-                    loadingInProgress = false
-                }
+        do {
+           leagueGroups = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
+        } catch {
+            print("Request failed with error: \(error)")
+        }
+        for leagueGroup in leagueGroups {
+            let url = URL(string: "https://bsm.baseball-softball.de/leagues/" + "\(leagueGroup.id)" + "/table.json")!
+            
+            do {
+                let table = try await fetchBSMData(url: url, dataType: LeagueTable.self)
+                leagueTableArray.append(table)
+            } catch {
+                print("Request failed with error: \(error)")
             }
         }
-//        for index in 0..<leagueTableURLs.count {
-//            loadBSMData(url: leagueTableURLs[index], dataType: LeagueTable.self) { loadedSingleTable in
-//                leagueTableArray.append(loadedSingleTable)
-//                loadingInProgress = false
-//            }
-//        }
+        loadingInProgress = false
     }
     
     var body: some View {
@@ -52,8 +51,6 @@ struct StandingsView: View {
                     LoadingView()
                 } else {
                     ForEach(leagueTableArray, id: \.self) { LeagueTable in
-                        
-                        //beware hacky stuff
                         
                         NavigationLink(
                             destination: StandingsTableView(leagueTable: LeagueTable),
@@ -78,7 +75,7 @@ struct StandingsView: View {
         #if !os(macOS)
         .refreshable {
             leagueTableArray = []
-            loadAllTables()
+            await loadAllTables()
         }
         #endif
         
@@ -96,7 +93,9 @@ struct StandingsView: View {
         
         .onAppear(perform: {
             if leagueTableArray == [] && tablesLoaded == false {
-                loadAllTables()
+                Task {
+                    await loadAllTables()
+                }
                 tablesLoaded = true
             }
         })

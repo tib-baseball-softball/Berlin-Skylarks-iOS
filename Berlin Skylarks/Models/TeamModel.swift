@@ -24,7 +24,7 @@ struct SkylarksTeam: Hashable, Codable {
 //based on BSM API
 
 struct BSMTeam: Hashable, Codable, Identifiable {
-    var id: Int?
+    var id: Int
     var name: String
     var short_name: String
     var league_entries: [LeagueEntry]

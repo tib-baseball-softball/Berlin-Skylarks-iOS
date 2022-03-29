@@ -20,6 +20,7 @@ let teamLogos = [
     "Sluggers": Image("Sluggers_Logo"),
     "Eagles": Image("Mahlow-Eagles_Logo"),
     "Ravens": Image("ravens_logo"),
+    "R´s": Image("ravens_logo"),
     "Porcupines": Image("potsdam_logo"),
     "Sliders": Image("Sliders_Rund_2021"),
     "Flamingos": Image("Berlin_Flamingos_Logo_3D"),
@@ -107,6 +108,8 @@ func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameS
     }
 }
 
+//MARK: Deprecated - use mutating func on struct
+
 func addDatesToGames(gamescores: [GameScore]) -> [GameScore] {
     
     //this is used because the passed gamescores element cannot be mutated
@@ -150,6 +153,13 @@ func fetchBSMData<T: Codable>(url: URL, dataType: T.Type) async throws -> T {
     
     let responseObj = try JSONDecoder().decode(T.self, from: data)
     return responseObj
+}
+
+func loadSkylarksTeams(season: Int) async throws -> [BSMTeam] {
+    
+    let teamURL = URL(string:"https://bsm.baseball-softball.de/clubs/485/teams.json?filters[seasons][]=" + "\(season)" + "&sort[league_sort]=asc&api_key=" + apiKey)!
+    let teams = try await fetchBSMData(url: teamURL, dataType: [BSMTeam].self)
+    return teams
 }
 
 //-------------------------------------------------------------------------------//
