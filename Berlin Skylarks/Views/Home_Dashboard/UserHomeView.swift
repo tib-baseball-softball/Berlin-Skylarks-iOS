@@ -41,7 +41,9 @@ struct UserHomeView: View {
     
     func loadProcessHomeData() async {
         displayTeam = await setFavoriteTeam()
-        await loadHomeTeamTable(team: displayTeam)
+        leagueGroups = await loadLeagueGroups()
+        await loadHomeTeamTable(team: displayTeam, leagueGroups: leagueGroups)
+        await loadHomeGameData(team: displayTeam, leagueGroups: leagueGroups)
     }
     
     func setFavoriteTeam() async -> BSMTeam {
@@ -61,18 +63,24 @@ struct UserHomeView: View {
         return displayTeam
     }
     
-    func loadHomeTeamTable(team: BSMTeam) async {
-        
-        loadingTables = true
+    func loadLeagueGroups() async -> [LeagueGroup] {
         
         let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(selectedSeason)" + "&api_key=" + apiKey)!
+        var loadedLeagues = [LeagueGroup]()
         
         //load all leagueGroups
         do {
-           leagueGroups = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
+           loadedLeagues = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
         } catch {
             print("Request failed with error: \(error)")
         }
+        return loadedLeagues
+    }
+    
+    func loadHomeTeamTable(team: BSMTeam, leagueGroups: [LeagueGroup]) async {
+        
+        loadingTables = true
+        
         //load table for specific leagueGroup that corresponds to favorite team
         for leagueGroup in leagueGroups where team.league_entries[0].league.name == leagueGroup.name {
             let url = URL(string: "https://bsm.baseball-softball.de/leagues/" + "\(leagueGroup.id)" + "/table.json")!
@@ -104,30 +112,40 @@ struct UserHomeView: View {
         loadingTables = false
     }
     
-    func loadHomeGameData() async {
+    func loadHomeGameData(team: BSMTeam, leagueGroups: [LeagueGroup]) async {
         
         //get the games, then process for next and last
         loadingScores = true
-    
-        loadBSMData(url: selectedHomeScoresURL, dataType: [GameScore].self) { loadedData in
-            homeGamescores = loadedData
-            let displayGames = processGameDates(gamescores: homeGamescores)
-            
-            if let nextGame = displayGames.next {
-                userDashboard.NextGame = nextGame
-                showNextGame = true
-            } else {
-                showNextGame = false
-            }
-            
-            if let lastGame = displayGames.last {
-                userDashboard.LastGame = lastGame
-                showLastGame = true
-            } else {
-                showLastGame = false
-            }
-            loadingScores = false
+        
+        //determine the correct leagueGroup
+        for leagueGroup in leagueGroups where team.league_entries[0].league.name == leagueGroup.name {
+            selectedHomeScoresURL = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
         }
+    
+        //load data
+        do {
+            homeGamescores = try await fetchBSMData(url: selectedHomeScoresURL, dataType: [GameScore].self)
+        } catch {
+            print("Request failed with error: \(error)")
+        }
+        
+        //call func to check for next and last game
+        let displayGames = processGameDates(gamescores: homeGamescores)
+        
+        if let nextGame = displayGames.next {
+            userDashboard.NextGame = nextGame
+            showNextGame = true
+        } else {
+            showNextGame = false
+        }
+        
+        if let lastGame = displayGames.last {
+            userDashboard.LastGame = lastGame
+            showLastGame = true
+        } else {
+            showLastGame = false
+        }
+        loadingScores = false
     }
     
     //-------------------------------------------//
@@ -390,6 +408,7 @@ struct UserHomeView: View {
                 displayTeam = await setFavoriteTeam()
             }
             homeLeagueTables = []
+            homeGamescores = []
             //check: commented out for performance reasons
 //            loadHomeTeamTable()
 //            loadHomeGameData()
@@ -511,22 +530,22 @@ struct UserHomeView: View {
         
         //APPLE WATCH FUNCS //////////////////////////////////////////////////////////////
         
-        //TODO: comment back in once funcs are final
-//        .onAppear(perform: {
-//            setFavoriteTeam()
-//            Task {
-//                await loadHomeTeamTable()
-//                await loadHomeGameData()
-//            }
-//        })
-//
-//        .onChange(of: favoriteTeam, perform: { favoriteTeam in
-//            setFavoriteTeam()
-//            homeLeagueTables = []
-//            //check: commented out for performance reasons
-////            loadHomeTeamTable()
-////            loadHomeGameData()
-//        })
+        .onAppear(perform: {
+            Task {
+                await loadProcessHomeData()
+            }
+        })
+        
+        .onChange(of: favoriteTeamID, perform: { favoriteTeam in
+            Task {
+                displayTeam = await setFavoriteTeam()
+            }
+            homeLeagueTables = []
+            homeGamescores = []
+            //check: commented out for performance reasons
+            //            loadHomeTeamTable()
+            //            loadHomeGameData()
+        })
         
         #endif
     }

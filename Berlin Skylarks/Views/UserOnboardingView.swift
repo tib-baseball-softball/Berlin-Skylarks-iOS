@@ -12,8 +12,18 @@ struct UserOnboardingView: View {
     @State private var showingPicker = false
     @State var teams = [BSMTeam]()
     
+    @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
+    
     //@ObservedObject var userSettings = UserSettings()
     @AppStorage("favoriteTeamID") var favoriteTeamID = 0
+    
+    func fetchTeams() async {
+        do {
+            teams = try await loadSkylarksTeams(season: selectedSeason)
+        } catch {
+            print("Request failed with error: \(error)")
+        }
+    }
     
     var body: some View {
         VStack {
@@ -75,6 +85,12 @@ struct UserOnboardingView: View {
             .cornerRadius(NewsItemCornerRadius)
         }
         .padding()
+        
+        .onAppear(perform: {
+            Task {
+                await fetchTeams()
+            }
+        })
     }
 }
 

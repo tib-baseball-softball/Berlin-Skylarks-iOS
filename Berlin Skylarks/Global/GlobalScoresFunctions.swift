@@ -74,7 +74,12 @@ func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameS
     var previousGames = [GameScore]()
 
     //add game dates to all games to allow for ordering | outsourced below
-    let gameList = addDatesToGames(gamescores: gamescores)
+    var gameList = gamescores
+    
+    for (index, _) in gameList.enumerated() {
+        gameList[index].addDates()
+        gameList[index].determineGameStatus()
+    }
     
     //collect nextGames and add to array
     for gamescore in gameList where gamescore.gameDate! > now {
@@ -110,17 +115,17 @@ func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameS
 
 //MARK: Deprecated - use mutating func on struct
 
-func addDatesToGames(gamescores: [GameScore]) -> [GameScore] {
-    
-    //this is used because the passed gamescores element cannot be mutated
-    var gameList = gamescores
-    
-    for (index, _) in gameList.enumerated() {
-        gameList[index].gameDate = getDatefromBSMString(gamescore: gameList[index])
-        gameList[index].determineGameStatus()
-    }
-    return gameList
-}
+//func addDatesToGames(gamescores: [GameScore]) -> [GameScore] {
+//
+//    //this is used because the passed gamescores element cannot be mutated
+//    var gameList = gamescores
+//
+//    for (index, _) in gameList.enumerated() {
+//        gameList[index].gameDate = getDatefromBSMString(gamescore: gameList[index])
+//        gameList[index].determineGameStatus()
+//    }
+//    return gameList
+//}
 
 //-------------------------------------------------------------------------------//
 //-----------------------------------LOAD DATA-----------------------------------//

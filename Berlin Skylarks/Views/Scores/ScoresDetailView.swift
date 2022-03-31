@@ -66,20 +66,20 @@ struct ScoresDetailView: View {
                     .padding(ScoresItemPadding)
                     Divider()
                     HStack {
-                        if let awayScore = gamescore.away_runs {
+                        if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
                             Text(String(awayScore))
                                 .font(.largeTitle)
                                 .bold()
                                 .padding(ScoresNumberPadding)
-                                .foregroundColor(gamescore.away_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
+                                .foregroundColor(awayScore < homeScore ? Color.secondary : Color.primary)
                         }
                         Spacer()
-                        if let homeScore = gamescore.home_runs {
+                        if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
                             Text(String(homeScore))
                                 .font(.largeTitle)
                                 .bold()
                                 .padding(ScoresNumberPadding)
-                                .foregroundColor(gamescore.home_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
+                                .foregroundColor(awayScore > homeScore ? Color.secondary : Color.primary)
                         }
                     }
                     .padding(ScoresItemPadding)
@@ -115,13 +115,14 @@ struct ScoresDetailView: View {
         
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button(action: {
-                    isBookmarked.toggle()
-                    //TODO: actually do stuff here
-                }, label: {
-                    //the button changes its appearance if a bookmark is set
-                    Image(systemName: isBookmarked == true ? "bookmark.fill" : "bookmark")
-                })
+                //MARK: bookmarks
+//                Button(action: {
+//                    isBookmarked.toggle()
+//                    //TODO: actually do stuff here
+//                }, label: {
+//                    //the button changes its appearance if a bookmark is set
+//                    Image(systemName: isBookmarked == true ? "bookmark.fill" : "bookmark")
+//                })
                 
                 Spacer()
                 
@@ -199,12 +200,12 @@ struct ScoresDetailView: View {
                             .font(.caption)
                             .padding(.leading)
                         Spacer()
-                        if let awayScore = gamescore.away_runs {
+                        if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
                             Text(String(awayScore))
                                 .font(.title3)
                                 .bold()
                                 .frame(maxWidth: 40, alignment: .center)
-                                .foregroundColor(gamescore.away_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
+                                .foregroundColor(awayScore < homeScore ? Color.secondary : Color.primary)
                         }
                     }
                     HStack {
@@ -216,12 +217,12 @@ struct ScoresDetailView: View {
                             .font(.caption)
                             .padding(.leading)
                         Spacer()
-                        if let homeScore = gamescore.home_runs {
+                        if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
                             Text(String(homeScore))
                                 .font(.title3)
                                 .bold()
                                 .frame(maxWidth: 40, alignment: .center)
-                                .foregroundColor(gamescore.home_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
+                                .foregroundColor(awayScore > homeScore ? Color.secondary : Color.primary)
                         }
                     }
                 }

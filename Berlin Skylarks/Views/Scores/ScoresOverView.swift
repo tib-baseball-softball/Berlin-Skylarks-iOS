@@ -63,12 +63,12 @@ struct ScoresOverView: View {
                         .padding(.leading)
                 }
                 Spacer()
-                if let awayScore = gamescore.away_runs {
+                if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
                     Text(String(awayScore))
                         .font(.largeTitle)
                         .bold()
                         .padding(.horizontal)
-                        .foregroundColor(gamescore.away_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
+                        .foregroundColor(awayScore < homeScore ? Color.secondary : Color.primary)
                 }
                 
             }
@@ -86,12 +86,12 @@ struct ScoresOverView: View {
                 }
                 Spacer()
                 
-                if let homeScore = gamescore.home_runs {
+                if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
                     Text(String(homeScore))
                         .font(.largeTitle)
                         .bold()
                         .padding(.horizontal)
-                        .foregroundColor(gamescore.home_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
+                        .foregroundColor(awayScore > homeScore ? Color.secondary : Color.primary)
                 }
             }
             .padding()
@@ -135,12 +135,12 @@ struct ScoresOverView: View {
                         .font(.caption)
                         .padding(.leading)
                     Spacer()
-                    if let awayScore = gamescore.away_runs {
+                    if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
                         Text(String(awayScore))
                             .font(.title3)
                             .bold()
                             .frame(maxWidth: 40, alignment: .center)
-                            .foregroundColor(gamescore.away_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
+                            .foregroundColor(awayScore < homeScore ? Color.secondary : Color.primary)
                     }
                 }
                 HStack {
@@ -152,12 +152,12 @@ struct ScoresOverView: View {
                         .font(.caption)
                         .padding(.leading)
                     Spacer()
-                    if let homeScore = gamescore.home_runs {
+                    if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
                         Text(String(homeScore))
                             .font(.title3)
                             .bold()
                             .frame(maxWidth: 40, alignment: .center)
-                            .foregroundColor(gamescore.home_team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
+                            .foregroundColor(awayScore > homeScore ? Color.secondary : Color.primary)
                     }
                 }
             }
@@ -174,7 +174,7 @@ struct ScoresOverView_Previews: PreviewProvider {
     static var previews: some View {
         VStack {
             ScoresOverView(gamescore: dummyGameScores[7])
-                .preferredColorScheme(.dark)
+                //.preferredColorScheme(.dark)
         }
         //.background(Color.backgroundGrayPreview)
         .cornerRadius(8)

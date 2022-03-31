@@ -109,6 +109,7 @@ struct ScoresView: View {
                 
                 for (index, _) in gamescores.enumerated() {
                     gamescores[index].addDates()
+                    gamescores[index].determineGameStatus()
                 }
                 //gamescores = addDatesToGames(gamescores: gamescores)
                 
