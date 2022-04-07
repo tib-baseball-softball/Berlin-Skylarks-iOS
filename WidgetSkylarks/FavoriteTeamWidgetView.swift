@@ -25,8 +25,6 @@ struct FavoriteTeamWidgetView: View {
                 //if widgetFamily == .systemMedium {
                 if widgetFamily == .systemLarge || widgetFamily == .systemExtraLarge {
                     
-                    //TODO: this needs a parameter to account for the team later
-                    
                     TeamWidgetOverView(entry: entry)
                     Divider()
                         .padding(.horizontal)
@@ -54,7 +52,7 @@ struct FavoriteTeamWidgetView_Previews: PreviewProvider {
 //            FavoriteTeamWidgetView()
 //                .previewContext(WidgetPreviewContext(family: .systemSmall))
 //                .environment(\.colorScheme, .dark)
-            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: team1, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
+            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: emptyTeam, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
                 .environment(\.colorScheme, .dark)
 //            FavoriteTeamWidgetView(entry: )
@@ -103,11 +101,11 @@ struct TeamWidgetLastGameView: View {
                         .frame(maxWidth: 35, maxHeight: 35)
                     Text(lastGame.away_league_entry.team.short_name)
                     Spacer()
-                    if let awayScore = lastGame.away_runs {
+                    if let awayScore = lastGame.away_runs, let homeScore = lastGame.home_runs {
                         Text(String(awayScore))
                             .font(.headline)
                             .bold()
-                            .foregroundColor(lastGame.away_team_name.contains("Skylarks") ? Color.skylarksRed : Color.primary)
+                            .foregroundColor(awayScore < homeScore ? Color.secondary : Color.primary)
                     }
                 }
                 .padding(.vertical, 2)
@@ -118,11 +116,11 @@ struct TeamWidgetLastGameView: View {
                         .frame(maxWidth: 35, maxHeight: 35)
                     Text(lastGame.home_league_entry.team.short_name)
                     Spacer()
-                    if let homeScore = lastGame.home_runs {
+                    if let awayScore = lastGame.away_runs, let homeScore = lastGame.home_runs {
                         Text(String(homeScore))
                             .font(.headline)
                             .bold()
-                            .foregroundColor(lastGame.home_team_name.contains("Skylarks") ? Color.skylarksRed : Color.primary)
+                            .foregroundColor(awayScore > homeScore ? Color.secondary : Color.primary)
                     }
                 }
                 .padding(.vertical,2)
@@ -195,7 +193,7 @@ struct TeamWidgetNextGameView: View {
                     }
                 }
             }
-            .padding(.vertical,2)
+            .padding(.top,2)
             .font(.subheadline)
             .background(ContainerRelativeShape().fill(Color(UIColor.systemBackground)))
             } else {
@@ -238,7 +236,7 @@ struct TeamWidgetOverView: View {
                     HStack {
                         Image(systemName: "tablecells")
                             .frame(maxWidth: 20)
-                        Text(entry.team.leagueName)
+                        Text(entry.team.league_entries[0].league.name)
                     }
                     HStack {
                         Image(systemName: "calendar.badge.clock")

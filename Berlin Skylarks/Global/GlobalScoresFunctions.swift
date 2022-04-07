@@ -78,7 +78,6 @@ func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameS
     
     for (index, _) in gameList.enumerated() {
         gameList[index].addDates()
-        gameList[index].determineGameStatus()
     }
     
     //collect nextGames and add to array
@@ -165,6 +164,20 @@ func loadSkylarksTeams(season: Int) async throws -> [BSMTeam] {
     let teamURL = URL(string:"https://bsm.baseball-softball.de/clubs/485/teams.json?filters[seasons][]=" + "\(season)" + "&sort[league_sort]=asc&api_key=" + apiKey)!
     let teams = try await fetchBSMData(url: teamURL, dataType: [BSMTeam].self)
     return teams
+}
+
+func loadLeagueGroups(season: Int) async -> [LeagueGroup] {
+    
+    let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(season)" + "&api_key=" + apiKey)!
+    var loadedLeagues = [LeagueGroup]()
+    
+    //load all leagueGroups
+    do {
+       loadedLeagues = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
+    } catch {
+        print("Request failed with error: \(error)")
+    }
+    return loadedLeagues
 }
 
 //-------------------------------------------------------------------------------//

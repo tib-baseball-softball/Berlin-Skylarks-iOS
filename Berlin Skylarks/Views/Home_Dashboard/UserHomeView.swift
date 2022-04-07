@@ -41,7 +41,7 @@ struct UserHomeView: View {
     
     func loadProcessHomeData() async {
         displayTeam = await setFavoriteTeam()
-        leagueGroups = await loadLeagueGroups()
+        leagueGroups = await loadLeagueGroups(season: selectedSeason)
         await loadHomeTeamTable(team: displayTeam, leagueGroups: leagueGroups)
         await loadHomeGameData(team: displayTeam, leagueGroups: leagueGroups)
     }
@@ -63,19 +63,19 @@ struct UserHomeView: View {
         return displayTeam
     }
     
-    func loadLeagueGroups() async -> [LeagueGroup] {
-        
-        let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(selectedSeason)" + "&api_key=" + apiKey)!
-        var loadedLeagues = [LeagueGroup]()
-        
-        //load all leagueGroups
-        do {
-           loadedLeagues = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
-        } catch {
-            print("Request failed with error: \(error)")
-        }
-        return loadedLeagues
-    }
+//    func loadLeagueGroups() async -> [LeagueGroup] {
+//
+//        let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(selectedSeason)" + "&api_key=" + apiKey)!
+//        var loadedLeagues = [LeagueGroup]()
+//
+//        //load all leagueGroups
+//        do {
+//           loadedLeagues = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
+//        } catch {
+//            print("Request failed with error: \(error)")
+//        }
+//        return loadedLeagues
+//    }
     
     func loadHomeTeamTable(team: BSMTeam, leagueGroups: [LeagueGroup]) async {
         
