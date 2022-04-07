@@ -21,8 +21,9 @@ struct FavoriteTeamWidgetView: View {
             //Color.skylarksBlue
             VStack {
                 
-                //MARK: this is needed because of error in preview, real code below
+                //MARK: this is needed because of error in preview
                 //if widgetFamily == .systemMedium {
+                //MARK: real code
                 if widgetFamily == .systemLarge || widgetFamily == .systemExtraLarge {
                     
                     TeamWidgetOverView(entry: entry)
@@ -45,28 +46,6 @@ struct FavoriteTeamWidgetView: View {
     }
 }
 
-struct FavoriteTeamWidgetView_Previews: PreviewProvider {
-    static var previews: some View {
-        let dummyDashboard = UserDashboard()
-        Group {
-//            FavoriteTeamWidgetView()
-//                .previewContext(WidgetPreviewContext(family: .systemSmall))
-//                .environment(\.colorScheme, .dark)
-            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: emptyTeam, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
-                .previewContext(WidgetPreviewContext(family: .systemMedium))
-                .environment(\.colorScheme, .dark)
-//            FavoriteTeamWidgetView(entry: )
-//                .previewContext(WidgetPreviewContext(family: .systemLarge))
-//                .environment(\.colorScheme, .dark)
-//            FavoriteTeamWidgetView()
-//                .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
-//                .environment(\.colorScheme, .dark)
-        }
-        
-    }
-}
-
-
 struct TeamWidgetLastGameView: View {
     
     var entry: FavoriteTeamProvider.Entry
@@ -75,9 +54,13 @@ struct TeamWidgetLastGameView: View {
         VStack(alignment: .leading) {
             HStack(alignment: .top) {
                 VStack(alignment: .leading, spacing: 0.5) {
-                    Text(entry.team.name)
-                        .bold()
-                        .foregroundColor(Color.skylarksRed)
+                    if !entry.team.league_entries.isEmpty {
+                        Text(entry.team.league_entries[0].league.acronym)
+                            .bold()
+                            .foregroundColor(Color.skylarksRed)
+                    } else {
+                        Text("NOL")
+                    }
                     Text("Latest Score")
                         .font(.footnote)
                         .foregroundColor(.secondary)
@@ -108,7 +91,7 @@ struct TeamWidgetLastGameView: View {
                             .foregroundColor(awayScore < homeScore ? Color.secondary : Color.primary)
                     }
                 }
-                .padding(.vertical, 2)
+                .padding(.vertical, 1.5)
                 HStack {
                     entry.lastGameHomeLogo
                         .resizable()
@@ -123,7 +106,7 @@ struct TeamWidgetLastGameView: View {
                             .foregroundColor(awayScore > homeScore ? Color.secondary : Color.primary)
                     }
                 }
-                .padding(.vertical,2)
+                .padding(.vertical, 1.5)
             }
             .background(ContainerRelativeShape().fill(Color(UIColor.systemBackground)))
             //.border(Color.skylarksSand)
@@ -146,10 +129,15 @@ struct TeamWidgetNextGameView: View {
         VStack(alignment: .leading) {
             HStack(alignment: .bottom) {
                 VStack(alignment: .leading, spacing: 0.5) {
-                    Text(entry.team.name)
-                        .bold()
-                        .foregroundColor(Color.skylarksRed)
+                    if !entry.team.league_entries.isEmpty {
+                        Text(entry.team.league_entries[0].league.acronym)
+                            .bold()
+                            .foregroundColor(Color.skylarksRed)
+                    } else {
+                        Text("NOL")
+                    }
                     Text("Next Game")
+                        .scaledToFill()
                         .font(.footnote)
                         .foregroundColor(.secondary)
                 }
@@ -158,6 +146,7 @@ struct TeamWidgetNextGameView: View {
                     Image(systemName: "clock")
                     if let gameTime = entry.nextGame?.gameDate {
                         Text(gameTime, style: .time)
+                            //.scaledToFill()
                     }
                 }
                 .font(.footnote)
@@ -173,7 +162,7 @@ struct TeamWidgetNextGameView: View {
                     entry.nextGameOpponentLogo
                         .resizable()
                         .scaledToFit()
-                        .frame(maxWidth: 35)
+                        .frame(maxWidth: 35, minHeight: 30, maxHeight: 35)
                     if entry.skylarksAreRoadTeam == true {
                         Text(nextGame.home_league_entry.team.short_name)
                     }
@@ -182,18 +171,19 @@ struct TeamWidgetNextGameView: View {
                     }
                     Spacer()
                 }
-                .padding(.top, 5.0)
+                //.padding(.top, 5.0)
                 HStack {
                     Image(systemName: "calendar")
                         .frame(maxWidth: 35)
                         .font(.callout)
                     if let gameDate = nextGame.gameDate {
                         Text(gameDate, style: .date)
-                            .fixedSize(horizontal: false, vertical: true)
+                            .scaledToFill()
+                            //.fixedSize(horizontal: false, vertical: true)
                     }
                 }
             }
-            .padding(.top,2)
+            //.padding(.top,2)
             .font(.subheadline)
             .background(ContainerRelativeShape().fill(Color(UIColor.systemBackground)))
             } else {
@@ -236,7 +226,7 @@ struct TeamWidgetOverView: View {
                     HStack {
                         Image(systemName: "tablecells")
                             .frame(maxWidth: 20)
-                        Text(entry.team.league_entries[0].league.name)
+                        Text(entry.team.league_entries[0].league.acronym)
                     }
                     HStack {
                         Image(systemName: "calendar.badge.clock")
@@ -265,6 +255,7 @@ struct TeamWidgetOverView: View {
                         }
                     }
                 }
+                .frame(minWidth: 80)
                 .padding()
                 .background(ContainerRelativeShape().fill(Color(UIColor.secondarySystemBackground)))
                 .font(.subheadline)
@@ -273,5 +264,22 @@ struct TeamWidgetOverView: View {
         }
         .font(.subheadline)
         .padding()
+    }
+}
+
+struct FavoriteTeamWidgetView_Previews: PreviewProvider {
+    static var previews: some View {
+        let dummyDashboard = UserDashboard()
+        Group {
+              FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: emptyTeam, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+                .environment(\.colorScheme, .dark)
+            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: emptyTeam, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+                .environment(\.colorScheme, .dark)
+            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: emptyTeam, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
+                .environment(\.colorScheme, .dark)
+        }
     }
 }

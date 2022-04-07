@@ -27,4 +27,4 @@ struct League: Hashable, Codable, Identifiable {
     var age_group: String?
 }
 
-let emptyLeague = League(id: 42, season: 1970, name: "Test League", acronym: "TLL", sport: "Baseball", classification: "Kreisliga", age_group: "Erwachsene")
+let emptyLeague = League(id: 42, season: 1970, name: "Kreisliga", acronym: "TLL", sport: "Baseball", classification: "Kreisliga", age_group: "Erwachsene")

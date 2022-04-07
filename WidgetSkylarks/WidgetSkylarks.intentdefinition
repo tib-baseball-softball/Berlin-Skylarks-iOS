@@ -139,7 +139,7 @@
 					<key>INIntentParameterDisplayPriority</key>
 					<integer>1</integer>
 					<key>INIntentParameterName</key>
-					<string>Team</string>
+					<string>team</string>
 					<key>INIntentParameterObjectType</key>
 					<string>BEATeam</string>
 					<key>INIntentParameterObjectTypeNamespace</key>
@@ -162,7 +162,7 @@
 							<key>INIntentParameterPromptDialogCustom</key>
 							<true/>
 							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>There are ${count} options matching ‘${Team}’.</string>
+							<string>There are ${count} options matching ‘${team}’.</string>
 							<key>INIntentParameterPromptDialogFormatStringID</key>
 							<string>1J0GLr</string>
 							<key>INIntentParameterPromptDialogType</key>
@@ -172,7 +172,7 @@
 							<key>INIntentParameterPromptDialogCustom</key>
 							<true/>
 							<key>INIntentParameterPromptDialogFormatString</key>
-							<string>Just to confirm, you wanted ‘${Team}’?</string>
+							<string>Just to confirm, you wanted ‘${team}’?</string>
 							<key>INIntentParameterPromptDialogFormatStringID</key>
 							<string>q8Iocz</string>
 							<key>INIntentParameterPromptDialogType</key>

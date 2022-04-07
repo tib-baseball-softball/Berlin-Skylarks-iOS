@@ -14,6 +14,8 @@ struct ContentView: View {
     
     @AppStorage("didLaunchBefore") var didLaunchBefore = false
     
+    @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
+    
 //    @Environment(\.managedObjectContext) private var viewContext
 //
 //    @FetchRequest(

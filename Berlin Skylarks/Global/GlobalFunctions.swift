@@ -1,5 +1,5 @@
 //
-//  GlobalScoresFunctions.swift
+//  GlobalFunctions.swift
 //  Berlin Skylarks
 //
 //  Created by David Battefeld on 19.10.21.
@@ -126,6 +126,27 @@ func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameS
 //    return gameList
 //}
 
+func determineTableRow(team: BSMTeam, table: LeagueTable) -> LeagueTable.Row {
+    var correctRow = emptyRow
+    
+    for row in table.rows where row.team_name.contains("Skylarks") {
+        //we might have two teams for BZL, so the function needs to account for the correct one
+        
+        if team.name.contains("3") {
+            if row.team_name == "Skylarks 3" {
+                correctRow = row
+            }
+        } else if team.name.contains("4") {
+            if row.team_name == "Skylarks 4" {
+                correctRow = row
+            }
+        } else if !team.name.contains("3") && !team.name.contains("4") {
+            correctRow = row
+        }
+    }
+    return correctRow
+}
+
 //-------------------------------------------------------------------------------//
 //-----------------------------------LOAD DATA-----------------------------------//
 //-------------------------------------------------------------------------------//
@@ -178,6 +199,23 @@ func loadLeagueGroups(season: Int) async -> [LeagueGroup] {
         print("Request failed with error: \(error)")
     }
     return loadedLeagues
+}
+
+func loadTableForTeam(team: BSMTeam, leagueGroups: [LeagueGroup]) async -> LeagueTable {
+    var correctTable = emptyTable
+    
+    for leagueGroup in leagueGroups where team.league_entries[0].league.name == leagueGroup.name {
+        let url = URL(string: "https://bsm.baseball-softball.de/leagues/" + "\(leagueGroup.id)" + "/table.json")!
+        
+        do {
+            let table = try await fetchBSMData(url: url, dataType: LeagueTable.self)
+            
+            correctTable = table
+        } catch {
+            print("Request failed with error: \(error)")
+        }
+    }
+    return correctTable
 }
 
 //-------------------------------------------------------------------------------//

@@ -82,33 +82,14 @@ struct UserHomeView: View {
         loadingTables = true
         
         //load table for specific leagueGroup that corresponds to favorite team
-        for leagueGroup in leagueGroups where team.league_entries[0].league.name == leagueGroup.name {
-            let url = URL(string: "https://bsm.baseball-softball.de/leagues/" + "\(leagueGroup.id)" + "/table.json")!
-            
-            do {
-                let table = try await fetchBSMData(url: url, dataType: LeagueTable.self)
-                homeLeagueTables.append(table)
-                userDashboard.leagueTable = table
-                
-                for row in userDashboard.leagueTable.rows where row.team_name.contains("Skylarks") {
-                    
-                    //we might have two teams for BZL, so the function needs to account for the correct one
-                    if team.name.contains("3") {
-                        if row.team_name == "Skylarks 3" {
-                            userDashboard.tableRow = row
-                        }
-                    } else if team.name.contains("4") {
-                        if row.team_name == "Skylarks 4" {
-                            userDashboard.tableRow = row
-                        }
-                    } else if !team.name.contains("3") && !team.name.contains("4") {
-                        userDashboard.tableRow = row
-                    }
-                }
-            } catch {
-                print("Request failed with error: \(error)")
-            }
-        }
+        
+        let table = await loadTableForTeam(team: team, leagueGroups: leagueGroups)
+        let row = determineTableRow(team: team, table: table)
+        
+        homeLeagueTables.append(table)
+        userDashboard.leagueTable = table
+        userDashboard.tableRow = row
+        
         loadingTables = false
     }
     
