@@ -42,10 +42,8 @@
 		CA1C3A132733444400BB194C /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA04D2598F570002A0FAB /* InfoView.swift */; };
 		CA1C3A172733473100BB194C /* watchOS_globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A162733473100BB194C /* watchOS_globals.swift */; };
 		CA1C3A2027388BF300BB194C /* SidebarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A1F27388BF300BB194C /* SidebarNavigationView.swift */; };
-		CA1CB20B27567E870007D24E /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* TeamModel.swift */; };
-		CA1CB20C27567E870007D24E /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* TeamModel.swift */; };
-		CA1CB20E2756877E0007D24E /* SkylarksTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20D2756877E0007D24E /* SkylarksTeams.swift */; };
-		CA1CB20F2756877E0007D24E /* SkylarksTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20D2756877E0007D24E /* SkylarksTeams.swift */; };
+		CA1CB20B27567E870007D24E /* BSMTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* BSMTeam.swift */; };
+		CA1CB20C27567E870007D24E /* BSMTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* BSMTeam.swift */; };
 		CA1CB211275D15BA0007D24E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA1CB210275D15BA0007D24E /* README.md */; };
 		CA1CB212275D15BA0007D24E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA1CB210275D15BA0007D24E /* README.md */; };
 		CA283D0D279D849000271DC1 /* StandingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740D26C292F900A57F66 /* StandingsTableView.swift */; };
@@ -74,8 +72,7 @@
 		CA65FF6A27F5F1D600F7845D /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6042A02745B14000607011 /* ViewModifiers.swift */; };
 		CA65FF6B27F5F1DA00F7845D /* BSM_URL_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */; };
 		CA65FF6C27F5F1E300F7845D /* Ints_Floats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A092733407400BB194C /* Ints_Floats.swift */; };
-		CA65FF6D27F882A600F7845D /* SkylarksTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20D2756877E0007D24E /* SkylarksTeams.swift */; };
-		CA65FF6E27F882AA00F7845D /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* TeamModel.swift */; };
+		CA65FF6E27F882AA00F7845D /* BSMTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* BSMTeam.swift */; };
 		CA65FF6F27F882BF00F7845D /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
 		CA65FF7027FF271000F7845D /* BSMLeagueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */; };
 		CA65FF7127FF271600F7845D /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
@@ -94,7 +91,6 @@
 		CA9B180F277A288900D24CFA /* Ints_Floats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A092733407400BB194C /* Ints_Floats.swift */; };
 		CA9B1810277A289000D24CFA /* BSM_URL_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */; };
 		CA9B1811277A289E00D24CFA /* API_Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55F6E027601A4F0032302F /* API_Key.swift */; };
-		CA9B1812277A28A100D24CFA /* SkylarksTeams.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20D2756877E0007D24E /* SkylarksTeams.swift */; };
 		CA9B1813277A290900D24CFA /* ScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA04125974EAD002A0FAB /* ScoresView.swift */; };
 		CA9B1814277A299400D24CFA /* ScoresOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA0442598BB32002A0FAB /* ScoresOverView.swift */; };
 		CA9B1815277A299700D24CFA /* ScoresDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA0472598BCB1002A0FAB /* ScoresDetailView.swift */; };
@@ -117,7 +113,7 @@
 		CAC044A027749D2C00AD9888 /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
 		CAC044A127749D2F00AD9888 /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
 		CAC044A227749D3100AD9888 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1722E027542DBE00E8BF36 /* PlayerModel.swift */; };
-		CAC044A327749D3400AD9888 /* TeamModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* TeamModel.swift */; };
+		CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* BSMTeam.swift */; };
 		CAE134832771F2E000DFA745 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134822771F2E000DFA745 /* WidgetKit.framework */; };
 		CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
 		CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE134872771F2E000DFA745 /* WidgetSkylarks.swift */; };
@@ -246,8 +242,7 @@
 		CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSM_URL_Data.swift; sourceTree = "<group>"; };
 		CA1C3A162733473100BB194C /* watchOS_globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchOS_globals.swift; sourceTree = "<group>"; };
 		CA1C3A1F27388BF300BB194C /* SidebarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigationView.swift; sourceTree = "<group>"; };
-		CA1CB20A27567E870007D24E /* TeamModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamModel.swift; sourceTree = "<group>"; };
-		CA1CB20D2756877E0007D24E /* SkylarksTeams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SkylarksTeams.swift; sourceTree = "<group>"; };
+		CA1CB20A27567E870007D24E /* BSMTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMTeam.swift; sourceTree = "<group>"; };
 		CA1CB210275D15BA0007D24E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BSMLeagueGroup.swift; path = "Berlin Skylarks/Models/BSMLeagueGroup.swift"; sourceTree = SOURCE_ROOT; };
 		CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamedayWidgetView.swift; sourceTree = "<group>"; };
@@ -413,7 +408,6 @@
 				CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */,
 				CAAB56C2271F62F800ADDE9D /* GlobalFunctions.swift */,
 				CA6042A02745B14000607011 /* ViewModifiers.swift */,
-				CA1CB20D2756877E0007D24E /* SkylarksTeams.swift */,
 				CA55F6E027601A4F0032302F /* API_Key.swift */,
 			);
 			path = Global;
@@ -578,7 +572,7 @@
 				CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */,
 				CAFDC1FC25BF7F09000A5922 /* ModelData.swift */,
 				CA1722E027542DBE00E8BF36 /* PlayerModel.swift */,
-				CA1CB20A27567E870007D24E /* TeamModel.swift */,
+				CA1CB20A27567E870007D24E /* BSMTeam.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -875,7 +869,6 @@
 				CA283D0D279D849000271DC1 /* StandingsTableView.swift in Sources */,
 				CA28D66F27A0601B00680067 /* BSMLeagueGroup.swift in Sources */,
 				CA6042A22745B14000607011 /* ViewModifiers.swift in Sources */,
-				CA1CB20F2756877E0007D24E /* SkylarksTeams.swift in Sources */,
 				CA1722E227542DBE00E8BF36 /* PlayerModel.swift in Sources */,
 				CA1C39BA2731856B00BB194C /* ComplicationController.swift in Sources */,
 				CA9B1816277A299D00D24CFA /* GlobalFunctions.swift in Sources */,
@@ -884,7 +877,7 @@
 				CA1C39B82731856B00BB194C /* NotificationView.swift in Sources */,
 				CA9B180E277A27FA00D24CFA /* ContentView.swift in Sources */,
 				CA65FF3E27EA14E700F7845D /* TeamDetailView.swift in Sources */,
-				CA1CB20C27567E870007D24E /* TeamModel.swift in Sources */,
+				CA1CB20C27567E870007D24E /* BSMTeam.swift in Sources */,
 				CA1C39EA2731875800BB194C /* BSMGameScore.swift in Sources */,
 				CA283D0E279D953500271DC1 /* StandingsView.swift in Sources */,
 				CA9B1813277A290900D24CFA /* ScoresView.swift in Sources */,
@@ -918,13 +911,12 @@
 			files = (
 				CA65FF6A27F5F1D600F7845D /* ViewModifiers.swift in Sources */,
 				CA65FF6727F5ECF000F7845D /* WidgetSkylarks.intentdefinition in Sources */,
-				CA65FF6E27F882AA00F7845D /* TeamModel.swift in Sources */,
+				CA65FF6E27F882AA00F7845D /* BSMTeam.swift in Sources */,
 				CA65FF7227FF271900F7845D /* ModelData.swift in Sources */,
 				CA65FF6B27F5F1DA00F7845D /* BSM_URL_Data.swift in Sources */,
 				CA65FF6827F5F1A800F7845D /* GlobalFunctions.swift in Sources */,
 				CA65FF7327FF271C00F7845D /* PlayerModel.swift in Sources */,
 				CA65FF7027FF271000F7845D /* BSMLeagueGroup.swift in Sources */,
-				CA65FF6D27F882A600F7845D /* SkylarksTeams.swift in Sources */,
 				CA65FF6927F5F1C600F7845D /* API_Key.swift in Sources */,
 				CA65FF6F27F882BF00F7845D /* BSMGameScore.swift in Sources */,
 				CA65FF6C27F5F1E300F7845D /* Ints_Floats.swift in Sources */,
@@ -937,7 +929,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA1CB20B27567E870007D24E /* TeamModel.swift in Sources */,
+				CA1CB20B27567E870007D24E /* BSMTeam.swift in Sources */,
 				CA28D66E27A0601B00680067 /* BSMLeagueGroup.swift in Sources */,
 				CA1722E127542DBE00E8BF36 /* PlayerModel.swift in Sources */,
 				CABF7BF8259351D500B95813 /* Persistence.swift in Sources */,
@@ -970,7 +962,6 @@
 				CAFDC1FD25BF7F09000A5922 /* ModelData.swift in Sources */,
 				CABF7BFB259351D500B95813 /* Berlin_Skylarks.xcdatamodeld in Sources */,
 				CAE7740E26C292F900A57F66 /* StandingsTableView.swift in Sources */,
-				CA1CB20E2756877E0007D24E /* SkylarksTeams.swift in Sources */,
 				CA0DA04E2598F570002A0FAB /* InfoView.swift in Sources */,
 				CA0DA04B2598F449002A0FAB /* SettingsListView.swift in Sources */,
 				CA9A89B32739DEFE001BBFA8 /* ShareSheet.swift in Sources */,
@@ -984,9 +975,8 @@
 				CAE1348D2771F2E100DFA745 /* WidgetSkylarks.intentdefinition in Sources */,
 				CA28D67027A0601B00680067 /* BSMLeagueGroup.swift in Sources */,
 				CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */,
-				CA9B1812277A28A100D24CFA /* SkylarksTeams.swift in Sources */,
 				CA9B1810277A289000D24CFA /* BSM_URL_Data.swift in Sources */,
-				CAC044A327749D3400AD9888 /* TeamModel.swift in Sources */,
+				CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */,
 				CA9B180F277A288900D24CFA /* Ints_Floats.swift in Sources */,
 				CAC044A227749D3100AD9888 /* PlayerModel.swift in Sources */,
 				CAC0449F27749D1C00AD9888 /* ModelData.swift in Sources */,

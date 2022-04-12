@@ -265,16 +265,30 @@ func addGameToCalendar(gameDate: Date, gamescore: GameScore, calendarString: Str
           let event:EKEvent = EKEvent(eventStore: eventStore)
           let calendars = eventStore.calendars(for: .event)
           
-          event.title = gamescore.league.name + ": " + gamescore.away_team_name + " @ " + gamescore.home_team_name
+          event.title = "\(gamescore.league.name): \(gamescore.away_team_name) @ \(gamescore.home_team_name)"
           event.startDate = gameDate
           event.endDate = gameDate.addingTimeInterval(2 * 60 * 60)
-          event.notes = gamescore.match_id
-          //add more info
           
-          for calendar in calendars {
-              if calendar.title == calendarString {
-                  event.calendar = calendar
-              }
+          //add game location if there is data
+          
+          if let field = gamescore.field, let latitude = gamescore.field?.latitude, let longitude = gamescore.field?.longitude {
+              
+              let location = CLLocation(latitude: latitude, longitude: longitude)
+              let structuredLocation = EKStructuredLocation(title: "\(field.name) - \(field.street ?? ""), \(field.postal_code ?? "") \(field.city ?? "")")
+              structuredLocation.geoLocation = location
+              event.structuredLocation = structuredLocation
+          }
+          
+          event.notes = """
+                League: \(gamescore.league.name)
+                Match Number: \(gamescore.match_id)
+                
+                Field: \(gamescore.field?.name ?? "No data")
+                Address: \(gamescore.field?.street ?? ""), \(gamescore.field?.postal_code ?? "") \(gamescore.field?.city ?? "")
+            """
+          
+          for calendar in calendars where calendar.title == calendarString {
+                event.calendar = calendar
           }
           //event.calendar = eventStore.defaultCalendarForNewEvents
           do {

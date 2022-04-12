@@ -110,6 +110,11 @@ struct UserHomeView: View {
             print("Request failed with error: \(error)")
         }
         
+        for (index, _) in homeGamescores.enumerated() {
+            homeGamescores[index].addDates()
+            homeGamescores[index].determineGameStatus()
+        }
+        
         //call func to check for next and last game
         let displayGames = processGameDates(gamescores: homeGamescores)
         
