@@ -48,6 +48,8 @@ struct SettingsListView: View {
     
     @AppStorage("favoriteTeamID") var favoriteTeamID = 0
     
+    let mailtoUrl = URL(string: "mailto:app@tib-baseball.de")!
+    
     func fetchTeams() async {
         do {
             teams = try await loadSkylarksTeams(season: selectedSeason)
@@ -123,6 +125,7 @@ struct SettingsListView: View {
                     HStack {
                         Image(systemName: "info.circle.fill")
                             .font(.title3)
+                            .frame(width: 25)
                         Text("App Info")
                     }
                 }
@@ -131,20 +134,51 @@ struct SettingsListView: View {
 //                        .font(.title)
 //                    Text("Acknowledgements")
 //                }
-                HStack {
-                    Text("§")
-                        .font(.title)
-                    Text("Imprint")
+                NavigationLink(
+                    destination: InfoView()) {
+                    HStack {
+                        Text("§")
+                            .font(.title2)
+                            .frame(width: 25)
+                        Text("Imprint")
+                    }
                 }
+                NavigationLink(
+                    destination: InfoView()) {
+                    HStack {
+                        Image(systemName: "hand.raised.square.fill")
+                            .font(.title2)
+                            .frame(width: 25)
+                        Text("Privacy Policy")
+                    }
+                }
+            }
+            Section(header: Text("Get involved")) {
                 HStack {
                     Image(systemName: "network")
+                        .font(.title3)
+                        .frame(width: 25)
                     Link("Visit the team website", destination: URL(string: "https://www.tib-baseball.de")!)
                 }
                 HStack {
+                    Image(systemName: "arrow.triangle.branch")
+                        .font(.title3)
+                        .frame(width: 25)
+                    Link("Contribute on GitHub", destination: URL(string: "https://github.com/Obnoxieux/Berlin-Skylarks")!)
+                }
+                #if !os(watchOS)
+                //watchOS does not support UIApplication
+                HStack {
                     Image(systemName: "envelope.fill")
                         //.font(.title3)
-                    Link("Contact the developer", destination: URL(string: "mailto:app@tib-baseball.de")!)
+                        .frame(width: 25)
+                    Button("Contact the developer", action: {
+                        if UIApplication.shared.canOpenURL(mailtoUrl) {
+                                UIApplication.shared.open(mailtoUrl, options: [:])
+                        }
+                    })
                 }
+                #endif
             }
         }
     #if !os(watchOS)
