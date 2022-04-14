@@ -14,16 +14,19 @@ import SwiftUI
 var away_team_logo = Image("App_road_team_logo")
 var home_team_logo = Image("App_home_team_logo")
 
+let flamingosLogo = Image("Berlin_Flamingos_Logo_3D")
+let sluggersLogo = Image("Sluggers_Logo")
+
 let teamLogos = [
     "Skylarks": skylarksSecondaryLogo,
     "Roosters": Image("Roosters_Logo"),
-    "Sluggers": Image("Sluggers_Logo"),
+    "Sluggers": sluggersLogo,
     "Eagles": Image("Mahlow-Eagles_Logo"),
     "Ravens": Image("ravens_logo"),
     "R´s": Image("ravens_logo"),
     "Porcupines": Image("potsdam_logo"),
     "Sliders": Image("Sliders_Rund_2021"),
-    "Flamingos": Image("Berlin_Flamingos_Logo_3D"),
+    "Flamingos": flamingosLogo,
     "Challengers": Image("challengers_Logo"),
     "Rams": Image("Rams-Logo"),
     "Wizards": Image("Wizards_Logo"),

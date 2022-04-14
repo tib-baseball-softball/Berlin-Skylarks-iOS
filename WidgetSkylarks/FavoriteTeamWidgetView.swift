@@ -126,8 +126,9 @@ struct TeamWidgetNextGameView: View {
     var entry: FavoriteTeamProvider.Entry
     
     var body: some View {
+        
         VStack(alignment: .leading) {
-            HStack(alignment: .bottom) {
+            HStack {
                 VStack(alignment: .leading, spacing: 0.5) {
                     if !entry.team.league_entries.isEmpty {
                         Text(entry.team.league_entries[0].league.acronym)
@@ -137,7 +138,9 @@ struct TeamWidgetNextGameView: View {
                         Text("NOL")
                     }
                     Text("Next Game")
-                        .scaledToFill()
+                        .lineLimit(1)
+                        .fixedSize()
+                        //.scaledToFill()
                         .font(.footnote)
                         .foregroundColor(.secondary)
                 }
@@ -177,7 +180,7 @@ struct TeamWidgetNextGameView: View {
                         .frame(maxWidth: 35)
                         .font(.callout)
                     if let gameDate = nextGame.gameDate {
-                        Text(gameDate, style: .date)
+                        Text(gameDate, format: Date.FormatStyle().day().month().year())
                             .scaledToFill()
                             //.fixedSize(horizontal: false, vertical: true)
                     }
@@ -255,8 +258,8 @@ struct TeamWidgetOverView: View {
                         }
                     }
                 }
-                .frame(minWidth: 80)
-                .padding()
+                .frame(minWidth: 120)
+                .padding([.top, .bottom, .trailing])
                 .background(ContainerRelativeShape().fill(Color(UIColor.secondarySystemBackground)))
                 .font(.subheadline)
             }
@@ -271,15 +274,15 @@ struct FavoriteTeamWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         let dummyDashboard = UserDashboard()
         Group {
-              FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: emptyTeam, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
+              FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: flamingosLogo, lastGameHomeLogo: skylarksSecondaryLogo, nextGame: widgetPreviewLastGame, nextGameOpponentLogo: sluggersLogo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
                 .previewContext(WidgetPreviewContext(family: .systemSmall))
-                .environment(\.colorScheme, .dark)
-            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: emptyTeam, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
+                //.environment(\.colorScheme, .dark)
+            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: flamingosLogo, lastGameHomeLogo: skylarksSecondaryLogo, nextGame: widgetPreviewLastGame, nextGameOpponentLogo: sluggersLogo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
                 .previewContext(WidgetPreviewContext(family: .systemMedium))
-                .environment(\.colorScheme, .dark)
-            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: emptyTeam, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
+                //.environment(\.colorScheme, .dark)
+            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: flamingosLogo, lastGameHomeLogo: skylarksSecondaryLogo, nextGame: widgetPreviewLastGame, nextGameOpponentLogo: sluggersLogo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
                 .previewContext(WidgetPreviewContext(family: .systemLarge))
-                .environment(\.colorScheme, .dark)
+                //.environment(\.colorScheme, .dark)
         }
     }
 }

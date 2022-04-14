@@ -18,8 +18,6 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
     //always uses current season
     let season = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
     
-    //changed to 2022 teams on 15-3-2022
-    
     func team(for configuration: FavoriteTeamIntent) async -> BSMTeam {
         var teams = [BSMTeam]()
         var selectedTeam = emptyTeam
@@ -44,12 +42,13 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
     }
     
     func placeholder(in context: Context) -> FavoriteTeamEntry {
-        FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: emptyTeam, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false, Table: userDashboard.leagueTable, TableRow: userDashboard.tableRow)
+        //note sure where this data is displayed
+        FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: flamingosLogo, lastGameHomeLogo: skylarksSecondaryLogo, nextGame: widgetPreviewLastGame, nextGameOpponentLogo: sluggersLogo, skylarksAreRoadTeam: false, Table: userDashboard.leagueTable, TableRow: userDashboard.tableRow)
     }
 
     func getSnapshot(for configuration: FavoriteTeamIntent, in context: Context, completion: @escaping (FavoriteTeamEntry) -> ()) {
-        //TODO: check what this method does
-        let entry = FavoriteTeamEntry(date: Date(), configuration: configuration, team: emptyTeam, lastGame: testGame, lastGameRoadLogo: away_team_logo, lastGameHomeLogo: home_team_logo, nextGame: testGame, nextGameOpponentLogo: away_team_logo, skylarksAreRoadTeam: false, Table: userDashboard.leagueTable, TableRow: userDashboard.tableRow)
+        //this method provides the data for the preview in the widget gallery
+        let entry = FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: flamingosLogo, lastGameHomeLogo: skylarksSecondaryLogo, nextGame: widgetPreviewLastGame, nextGameOpponentLogo: sluggersLogo, skylarksAreRoadTeam: false, Table: userDashboard.leagueTable, TableRow: userDashboard.tableRow)
         completion(entry)
     }
 

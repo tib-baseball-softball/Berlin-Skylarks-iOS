@@ -8,8 +8,6 @@
 import Foundation
 import SwiftUI
 
-//These values are used for all URLs. They need to be manually adjusted for the correct season at the moment.
-
 //changed IDs to 2022 season on 15-3-2022
 
 var currentSeason = "2022" //Deprecated - using Int from AppStorage in future, but still needed for transition!
@@ -75,6 +73,7 @@ class UserDashboard: ObservableObject {
     
     @Published var LastGame = testGame
 }
+
 let emptyTable = LeagueTable(league_id: 1, league_name: " ", season: Calendar.current.component(.year, from: Date()), rows: [])
 
 let emptyRow = LeagueTable.Row(rank: " ", team_name: " ", short_team_name: " ", match_count: 0, wins_count: 0, losses_count: 0, quota: " ", games_behind: " ", streak: " ")

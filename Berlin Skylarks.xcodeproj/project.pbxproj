@@ -114,6 +114,8 @@
 		CAC044A127749D2F00AD9888 /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
 		CAC044A227749D3100AD9888 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1722E027542DBE00E8BF36 /* PlayerModel.swift */; };
 		CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* BSMTeam.swift */; };
+		CAC49350280850C0009677C7 /* WidgetPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4934F280850C0009677C7 /* WidgetPreviewData.swift */; };
+		CAC49351280850C0009677C7 /* WidgetPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4934F280850C0009677C7 /* WidgetPreviewData.swift */; };
 		CAE134832771F2E000DFA745 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134822771F2E000DFA745 /* WidgetKit.framework */; };
 		CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
 		CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE134872771F2E000DFA745 /* WidgetSkylarks.swift */; };
@@ -277,6 +279,7 @@
 		CABF7BFA259351D500B95813 /* Berlin_Skylarks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Berlin_Skylarks.xcdatamodel; sourceTree = "<group>"; };
 		CABF7BFC259351D500B95813 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CABF7C0A2593627900B95813 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
+		CAC4934F280850C0009677C7 /* WidgetPreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreviewData.swift; sourceTree = "<group>"; };
 		CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetSkylarksExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE134822771F2E000DFA745 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		CAE134842771F2E000DFA745 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -514,12 +517,13 @@
 		CAE134862771F2E000DFA745 /* WidgetSkylarks */ = {
 			isa = PBXGroup;
 			children = (
-				CAE134872771F2E000DFA745 /* WidgetSkylarks.swift */,
 				CAE134892771F2E000DFA745 /* WidgetSkylarks.intentdefinition */,
 				CAE1348A2771F2E100DFA745 /* Assets.xcassets */,
 				CAE1348C2771F2E100DFA745 /* Info.plist */,
+				CAE134872771F2E000DFA745 /* WidgetSkylarks.swift */,
 				CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */,
 				CAF062E12774C28400B7A0B2 /* FavoriteTeamWidgetView.swift */,
+				CAC4934F280850C0009677C7 /* WidgetPreviewData.swift */,
 			);
 			path = WidgetSkylarks;
 			sourceTree = "<group>";
@@ -921,6 +925,7 @@
 				CA65FF6F27F882BF00F7845D /* BSMGameScore.swift in Sources */,
 				CA65FF6C27F5F1E300F7845D /* Ints_Floats.swift in Sources */,
 				CA65FF4927F5EC4400F7845D /* IntentHandler.swift in Sources */,
+				CAC49351280850C0009677C7 /* WidgetPreviewData.swift in Sources */,
 				CA65FF7127FF271600F7845D /* BSMStandingsTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -974,6 +979,7 @@
 			files = (
 				CAE1348D2771F2E100DFA745 /* WidgetSkylarks.intentdefinition in Sources */,
 				CA28D67027A0601B00680067 /* BSMLeagueGroup.swift in Sources */,
+				CAC49350280850C0009677C7 /* WidgetPreviewData.swift in Sources */,
 				CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */,
 				CA9B1810277A289000D24CFA /* BSM_URL_Data.swift in Sources */,
 				CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */,

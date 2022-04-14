@@ -106,7 +106,7 @@ struct SettingsListView: View {
                     Picker(selection: $favoriteTeamID, label:
                         HStack {
                             Image(systemName: "star.square.fill")
-                                .font(.title3)
+                                .font(.title2)
                             Text("Favorite Team")
                     }) {
                         ForEach(teams, id: \.self) { team in
@@ -135,6 +135,15 @@ struct SettingsListView: View {
                     Text("§")
                         .font(.title)
                     Text("Imprint")
+                }
+                HStack {
+                    Image(systemName: "network")
+                    Link("Visit the team website", destination: URL(string: "https://www.tib-baseball.de")!)
+                }
+                HStack {
+                    Image(systemName: "envelope.fill")
+                        //.font(.title3)
+                    Link("Contact the developer", destination: URL(string: "mailto:app@tib-baseball.de")!)
                 }
             }
         }
