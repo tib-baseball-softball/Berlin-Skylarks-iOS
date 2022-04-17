@@ -8,15 +8,6 @@
 import Foundation
 import SwiftUI
 
-extension Color {
-    static let skylarksRed = Color(red: 186 / 255, green: 12 / 255, blue: 47 / 255)
-    static let skylarksBlue = Color(red: 4 / 255, green: 30 / 255, blue: 66 / 255)
-    static let skylarksSand = Color(red: 206 / 255, green: 184 / 255, blue: 136 / 255)
-    //this is not adapting to dark mode!
-    static let backgroundGrayPreview = Color(red: 58 / 255, green: 58 / 255, blue: 60 / 255)
-    //static let background = Color(UIColor.systemBackground)
-}
-
 extension View {
     func iOS<Content: View>(_ modifier: (Self) -> Content) -> some View {
         #if os(iOS)

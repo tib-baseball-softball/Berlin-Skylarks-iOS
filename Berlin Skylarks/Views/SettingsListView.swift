@@ -7,36 +7,6 @@
 
 import SwiftUI
 
-//class UserSettings: ObservableObject {
-//    @Published var favoriteTeam: String {
-//        didSet {
-//            UserDefaults.standard.set(favoriteTeam, forKey: "favoriteTeam")
-//            //UserDefaults.standard.setCodableObject(favoriteTeam, forKey: "favoriteTeam")
-//        }
-//    }
-//
-//    @Published var sendPush: Bool {
-//        didSet {
-//            UserDefaults.standard.set(sendPush, forKey: "sendPush")
-//        }
-//    }
-//
-//    public var skylarksTeams = ["Team 1",
-//                                "Softball",
-//                                "Team 2",
-//                                "Team 3",
-//                                //"Team 4",
-//                                "Jugend",
-//                                "Schüler",
-//                                //"Tossball",
-//                                "Teeball" ]
-//
-//    init() {
-//        self.favoriteTeam = UserDefaults.standard.object(forKey: "favoriteTeam") as? String ?? "Team 1"
-//        self.sendPush = UserDefaults.standard.object(forKey: "sendPush") as? Bool ?? false
-//    }
-//}
-
 struct SettingsListView: View {
     
     //@ObservedObject var userSettings = UserSettings()
@@ -129,15 +99,10 @@ struct SettingsListView: View {
                         Text("App Info")
                     }
                 }
-//                HStack {
-//                    Text("©")
-//                        .font(.title)
-//                    Text("Acknowledgements")
-//                }
                 NavigationLink(
                     destination: InfoView()) {
                     HStack {
-                        Text("§")
+                        Image(systemName: "c.circle")
                             .font(.title2)
                             .frame(width: 25)
                         Text("Imprint")
@@ -184,6 +149,7 @@ struct SettingsListView: View {
     #if !os(watchOS)
         .listStyle(.insetGrouped)
     #endif
+        //Text("Test")
     
 //            .toolbar {
 //                ToolbarItem(placement: .automatic) {
@@ -220,5 +186,6 @@ struct SettingsListView_Previews: PreviewProvider {
         NavigationView {
             SettingsListView()
         }
+        .previewInterfaceOrientation(.landscapeLeft)
     }
 }

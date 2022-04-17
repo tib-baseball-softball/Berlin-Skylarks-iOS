@@ -10,46 +10,65 @@ import MapKit
 
 struct TestView: View {
 
-    var gamescore: GameScore
+    //var gamescore: GameScore
+    
+    @Environment(\.colorScheme) var colorScheme
+
+    #if !os(watchOS)
+//    init() {
+//        UITableView.appearance().backgroundColor = .clear
+//    }
+    #endif
     
     var body: some View {
         NavigationView {
-            List {
-                VStack {
-                    HStack {
-                        home_team_logo
-                            .resizable()
-                            .scaledToFit()
-                            .frame(maxWidth: 30, alignment: .center)
-                        Text(gamescore.home_league_entry.team.short_name)
-                            .font(.caption)
-                            .padding(.leading)
-                        Spacer()
+            ZStack {
+                Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
+                    .edgesIgnoringSafeArea(.all)
+                List {
+                    Group {
+                        Section(header: Text("Test Header"),
+                                footer: Text("Footer")) {
+                            HStack {
+                                Text("Hier steht was")
+                                Spacer()
+                                Text("was anderes")
+                            }
+                            
+                            .listItemTint(.skylarksRed)
+                            HStack {
+                                Text("Hier steht was")
+                                Spacer()
+                                Text("was anderes")
+                            }
+                        }
+                        HStack {
+                            Text("Hier steht was")
+                            Spacer()
+                            Text("was anderes")
+                        }
+                        HStack {
+                            Text("Hier steht was")
+                            Spacer()
+                            Text("was anderes")
+                        }
                     }
+                    //.listRowBackground(ScoresSubItemBackground)
                 }
-                .padding(.vertical)
+                .listStyle(.insetGrouped)
+            .frame(maxWidth: 600)
             }
-            //.font(.footnote)
-            //.padding()
-            #if !os(watchOS)
-            .toolbar {
-                ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Image(systemName: "list.bullet.circle")
-                }
-                ToolbarItemGroup(placement: .principal) {
-                    Image(systemName: "line.3.horizontal.decrease.circle")
-                }
-                ToolbarItemGroup(placement: .navigationBarLeading) {
-                    Image(systemName: "calendar.badge.plus")
-                }
-            }
-#endif
+            .navigationTitle("Test View")
+            //.navigationBarTitleDisplayMode(.inline)
         }
+        .navigationViewStyle(.stack)
     }
 }
 
 struct TestView_Previews: PreviewProvider {
     static var previews: some View {
-        TestView(gamescore: dummyGameScores[60])
+        TestView()
+            //.preferredColorScheme(.dark)
+            //.previewInterfaceOrientation(.landscapeLeft)
     }
 }

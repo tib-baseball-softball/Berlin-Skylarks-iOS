@@ -11,13 +11,7 @@ import SwiftUI
 
 struct StandingsTableView: View {
     
-//    let headlineHeight: CGFloat = 20
-//
-//    let winWidthHeadline: CGFloat = 24
-//    let lossWidthHeadline: CGFloat = 21
-//    let percentageWidthHeadline: CGFloat = 38
-//    let gamesBehindWidthHeadline: CGFloat = 28
-//    let streakWidthHeadline: CGFloat = 37
+    @Environment(\.colorScheme) var colorScheme
     
     @State var leagueTable: LeagueTable
     
@@ -73,6 +67,10 @@ struct StandingsTableView: View {
         
         #else
         ZStack {
+            #if !os(watchOS)
+            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
+                .edgesIgnoringSafeArea(.all)
+            #endif
             List {
                 Section {
                     HStack {
@@ -128,6 +126,7 @@ struct StandingsTableView: View {
                     //more rows here
                 }
             }
+            .frame(maxWidth: 650)
             .listStyle(.insetGrouped)
             .navigationTitle(leagueTable.league_name + " " + String(leagueTable.season))
             //.padding(.horizontal, padding)
@@ -146,6 +145,6 @@ struct StandingsTableView: View {
 struct StandingsTableView_Previews: PreviewProvider {
     static var previews: some View {
         StandingsTableView(leagueTable: dummyLeagueTable)
-            .preferredColorScheme(.dark)
+            //.preferredColorScheme(.dark)
     }
 }

@@ -11,6 +11,8 @@ import SwiftUI
 
 struct StandingsView: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @State private var leagueTableArray = [LeagueTable]()
     @State var leagueGroups = [LeagueGroup]()
     
@@ -44,72 +46,81 @@ struct StandingsView: View {
     }
     
     var body: some View {
-        List {
-            //Text(leagueGroups.debugDescription)
-            Section(header: Text("Please select your league")) {
-                if loadingInProgress == true {
-                    LoadingView()
-                } else {
-                    ForEach(leagueTableArray, id: \.self) { LeagueTable in
-                        
-                        NavigationLink(
-                            destination: StandingsTableView(leagueTable: LeagueTable),
-                            label: {
-                                HStack {
-                                    Image(systemName: "tablecells")
-                                        .padding(.trailing, 3)
-                                        .foregroundColor(Color.accentColor)
-                                    Text(LeagueTable.league_name)
-                                }
-                            })
+        ZStack {
+            #if !os(watchOS)
+            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
+                .edgesIgnoringSafeArea(.all)
+            #endif
+            List {
+                //Text(leagueGroups.debugDescription)
+                Section(header: Text("Please select your league")) {
+                    if loadingInProgress == true {
+                        LoadingView()
+                    } else {
+                        ForEach(leagueTableArray, id: \.self) { LeagueTable in
+                            
+                            NavigationLink(
+                                destination: StandingsTableView(leagueTable: LeagueTable),
+                                label: {
+                                    HStack {
+                                        Image(systemName: "tablecells")
+                                            .padding(.trailing, 3)
+                                            .foregroundColor(Color.accentColor)
+                                        Text(LeagueTable.league_name)
+                                    }
+                                })
+                        }
+                        .padding()
                     }
-                    .padding()
+                    if loadingInProgress == false && leagueTableArray == [] {
+                        Text("No table data found.")
+                    }
                 }
-                if loadingInProgress == false && leagueTableArray == [] {
-                    Text("No table data found.")
-                }
+                
             }
+            //this doesn't work - still crashes
+            #if !os(macOS)
+            .refreshable {
+                leagueTableArray = []
+                await loadAllTables()
+            }
+            #endif
             
-        }
-        //this doesn't work - still crashes
-        #if !os(macOS)
-        .refreshable {
-            leagueTableArray = []
-            await loadAllTables()
-        }
-        #endif
-        
-        .listStyle( {
-          #if os(watchOS)
-            .automatic
-          #else
-            .insetGrouped
-          #endif
-        } () )
-        
-        .navigationTitle("Standings" + " " + String(selectedSeason))
-        
-        //Fix on iPhone seems to work for now even without a container view, please double-check in practice!
-        
-        .onAppear(perform: {
-            if leagueTableArray == [] && tablesLoaded == false {
-                Task {
-                    await loadAllTables()
+            .listStyle( {
+              #if os(watchOS)
+                .automatic
+              #else
+                .insetGrouped
+              #endif
+            } () )
+            .frame(maxWidth: 600)
+            
+            .navigationTitle("Standings" + " " + String(selectedSeason))
+            
+            //Fix on iPhone seems to work for now even without a container view, please double-check in practice!
+            
+            .onAppear(perform: {
+                if leagueTableArray == [] && tablesLoaded == false {
+                    Task {
+                        await loadAllTables()
+                    }
+                    tablesLoaded = true
                 }
-                tablesLoaded = true
-            }
+            })
+            .onChange(of: selectedSeason, perform: { value in
+                leagueTableArray = []
+                tablesLoaded = false
+                //let's try to save some performance - don't need to load twice
+                //loadAllTables()
         })
-        .onChange(of: selectedSeason, perform: { value in
-            leagueTableArray = []
-            tablesLoaded = false
-            //let's try to save some performance - don't need to load twice
-            //loadAllTables()
-        })
+        }
     }
 }
 
 struct StandingsView_Previews: PreviewProvider {
     static var previews: some View {
         StandingsView()
+            //.preferredColorScheme(.dark)
+            //.previewInterfaceOrientation(.landscapeLeft)
     }
 }

@@ -84,7 +84,6 @@
 		CA78B7282596880200510621 /* NewsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B7272596880200510621 /* NewsDetailView.swift */; };
 		CA78B72B259688C100510621 /* PlayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B72A259688C100510621 /* PlayerDetailView.swift */; };
 		CA78B72E2596892E00510621 /* TeamListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B72D2596892E00510621 /* TeamListView.swift */; };
-		CA966D80275D2FEA002A6545 /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF839CF2705F4D9006FAD6B /* TestView.swift */; };
 		CA9A89B12739B193001BBFA8 /* SettingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA04A2598F449002A0FAB /* SettingsListView.swift */; };
 		CA9A89B32739DEFE001BBFA8 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A89B22739DEFE001BBFA8 /* ShareSheet.swift */; };
 		CA9B180E277A27FA00D24CFA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BF0259351D400B95813 /* ContentView.swift */; };
@@ -116,6 +115,8 @@
 		CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* BSMTeam.swift */; };
 		CAC49350280850C0009677C7 /* WidgetPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4934F280850C0009677C7 /* WidgetPreviewData.swift */; };
 		CAC49351280850C0009677C7 /* WidgetPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4934F280850C0009677C7 /* WidgetPreviewData.swift */; };
+		CAD42719280BF1C3001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
+		CAD4271A280BF1C6001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CAE134832771F2E000DFA745 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134822771F2E000DFA745 /* WidgetKit.framework */; };
 		CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
 		CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE134872771F2E000DFA745 /* WidgetSkylarks.swift */; };
@@ -539,14 +540,14 @@
 			path = Scores;
 			sourceTree = "<group>";
 		};
-		CAF839CC2704FD20006FAD6B /* Players */ = {
+		CAF839CC2704FD20006FAD6B /* Players_Teams */ = {
 			isa = PBXGroup;
 			children = (
 				CA78B72D2596892E00510621 /* TeamListView.swift */,
 				CA78B724259648F300510621 /* TeamDetailView.swift */,
 				CA78B72A259688C100510621 /* PlayerDetailView.swift */,
 			);
-			path = Players;
+			path = Players_Teams;
 			sourceTree = "<group>";
 		};
 		CAF839CD2704FD42006FAD6B /* Standings */ = {
@@ -590,7 +591,7 @@
 				CA97EAB7272370F5003055B6 /* Home_Dashboard */,
 				CAF839CE2704FD75006FAD6B /* News */,
 				CAF839CB2704FCC2006FAD6B /* Scores */,
-				CAF839CC2704FD20006FAD6B /* Players */,
+				CAF839CC2704FD20006FAD6B /* Players_Teams */,
 				CAF839CD2704FD42006FAD6B /* Standings */,
 				CA0DA04A2598F449002A0FAB /* SettingsListView.swift */,
 				CA0DA04D2598F570002A0FAB /* InfoView.swift */,
@@ -861,11 +862,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA966D80275D2FEA002A6545 /* TestView.swift in Sources */,
 				CA1C39B62731856B00BB194C /* NotificationController.swift in Sources */,
 				CA9B1815277A299700D24CFA /* ScoresDetailView.swift in Sources */,
 				CA1C3A172733473100BB194C /* watchOS_globals.swift in Sources */,
 				CA9A89B12739B193001BBFA8 /* SettingsListView.swift in Sources */,
+				CAD42719280BF1C3001CA68A /* ColorSets.swift in Sources */,
 				CA1C39F02731875800BB194C /* ModelData.swift in Sources */,
 				CA1C3A0B2733407400BB194C /* Ints_Floats.swift in Sources */,
 				CA1C3A132733444400BB194C /* InfoView.swift in Sources */,
@@ -981,6 +982,7 @@
 				CA28D67027A0601B00680067 /* BSMLeagueGroup.swift in Sources */,
 				CAC49350280850C0009677C7 /* WidgetPreviewData.swift in Sources */,
 				CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */,
+				CAD4271A280BF1C6001CA68A /* ColorSets.swift in Sources */,
 				CA9B1810277A289000D24CFA /* BSM_URL_Data.swift in Sources */,
 				CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */,
 				CA9B180F277A288900D24CFA /* Ints_Floats.swift in Sources */,

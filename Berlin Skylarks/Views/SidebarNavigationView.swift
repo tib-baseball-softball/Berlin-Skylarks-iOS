@@ -65,12 +65,12 @@ struct SidebarNavigationView: View {
                                 Text("Settings")
                                     .frame(width: 100, alignment: .leading)
                         }
-                        HStack {
-                            Image(systemName: "c.circle")
-                                .frame(width: 30)
-                            Text("Legal stuff")
-                                .frame(width: 100, alignment: .leading)
-                        }
+//                        HStack {
+//                            Image(systemName: "c.circle")
+//                                .frame(width: 30)
+//                            Text("Legal stuff")
+//                                .frame(width: 100, alignment: .leading)
+//                        }
                     }
                     HStack {
                         Spacer()
