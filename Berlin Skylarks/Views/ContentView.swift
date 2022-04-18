@@ -42,7 +42,8 @@ struct ContentView: View {
                 NavigationView {
                     UserHomeView()
                 }
-                .navigationViewStyle(.stack)
+                //TODO: check appearance for iPhone Pro Max
+                .navigationViewStyle(.automatic)
                     .tabItem {
                         Image(systemName: "star.square.fill")
                         Text("Home")
@@ -169,7 +170,7 @@ struct ContentView_Previews: PreviewProvider {
         Group {
             ContentView()
 //                .padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-                //.previewInterfaceOrientation(.landscapeLeft)
+                .previewInterfaceOrientation(.landscapeLeft)
         }
     }
 }

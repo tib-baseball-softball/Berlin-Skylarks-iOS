@@ -87,6 +87,7 @@ struct TeamDetailView: View {
                 }
             }
             .navigationTitle(team.name)
+            .navigationBarTitleDisplayMode(.inline)
             .frame(maxWidth: 600)
             .listStyle( {
               #if os(watchOS)

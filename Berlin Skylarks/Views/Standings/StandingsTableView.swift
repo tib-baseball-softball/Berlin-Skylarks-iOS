@@ -129,6 +129,7 @@ struct StandingsTableView: View {
             .frame(maxWidth: 650)
             .listStyle(.insetGrouped)
             .navigationTitle(leagueTable.league_name + " " + String(leagueTable.season))
+            .navigationBarTitleDisplayMode(.inline)
             //.padding(.horizontal, padding)
             
             

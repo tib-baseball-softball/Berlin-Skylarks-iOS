@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct SidebarNavigationView: View {
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -25,6 +26,7 @@ struct SidebarNavigationView: View {
                     }
                     Section(header: Text("Game Action")) {
                         NavigationLink(
+                            //destination: TestView()) {
                             destination: ScoresView()) {
                                 Image(systemName: "42.square.fill")
                                     .frame(width: 30)
@@ -40,15 +42,16 @@ struct SidebarNavigationView: View {
                         }
                     }
                     Section(header: Text("About the team")) {
-                        NavigationLink(
-                            destination: NewsView()) {
-                                HStack {
-                                    Image(systemName: "newspaper.fill")
-                                        .frame(width: 30)
-                                    Text("News")
-                                        .frame(width: 100, alignment: .leading)
-                                }
-                        }
+                        //not functional yet
+//                        NavigationLink(
+//                            destination: NewsView()) {
+//                                HStack {
+//                                    Image(systemName: "newspaper.fill")
+//                                        .frame(width: 30)
+//                                    Text("News")
+//                                        .frame(width: 100, alignment: .leading)
+//                                }
+//                        }
                         NavigationLink(
                             destination: TeamListView()) {
                                 Image(systemName: "person.3.fill")
@@ -89,9 +92,8 @@ struct SidebarNavigationView: View {
             .background(Color(UIColor.systemGroupedBackground))
             Text("Please select a category")
             
-            //this would create a third column
-            
-            //Text("Please select an app section")
+            //MARK: this creates a third column
+            Text("Please select an app section")
         }
     }
 }

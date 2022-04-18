@@ -22,7 +22,7 @@ struct ScoresOverView: View {
     
     var body: some View {
         #if !os(watchOS)
-        VStack(spacing: ScoresItemSpacing) {
+        VStack(spacing: 7) {
             VStack {
                 Text(gamescore.league.name)
                     .font(.title3)
@@ -42,7 +42,8 @@ struct ScoresOverView: View {
                             }
                         }
                     }
-                    .padding()
+                    .padding(.horizontal)
+                    .padding(.vertical, 1)
                     Spacer()
                     Divider()
                         .frame(height: 40)
@@ -50,11 +51,9 @@ struct ScoresOverView: View {
                     GameResultIndicator(gamescore: gamescore)
                     Spacer()
                 }
-                
             }
             HStack {
                 HStack {
-                    //away_team_logo
                     roadLogo
                         .resizable()
                         .scaledToFit()
@@ -72,7 +71,8 @@ struct ScoresOverView: View {
                 }
                 
             }
-            .padding()
+            .padding(.horizontal)
+            .padding(.vertical, 8)
             .background(ScoresSubItemBackground)
             .cornerRadius(NewsItemCornerRadius)
             HStack {
@@ -94,9 +94,11 @@ struct ScoresOverView: View {
                         .foregroundColor(awayScore > homeScore ? Color.secondary : Color.primary)
                 }
             }
-            .padding()
+            .padding(.horizontal)
+            .padding(.vertical, 8)
             .background(ScoresSubItemBackground)
             .cornerRadius(NewsItemCornerRadius)
+            
         }
         .padding()
         .background(.regularMaterial) //switch on or off depending on whether I use List or Grid

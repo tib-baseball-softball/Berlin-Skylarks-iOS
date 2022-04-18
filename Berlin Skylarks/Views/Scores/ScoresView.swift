@@ -32,7 +32,6 @@ struct ScoresView: View {
     @State private var searchText = ""
     
     @State var selection = "Current Gameday"
-    //@State var gameURLSelected = urlCurrentGameday
     
     @State private var filterDate = Date()
     
@@ -42,6 +41,7 @@ struct ScoresView: View {
         "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season"
     ]
     
+    //used for previous grid implementation
     let columns = [
         GridItem(.adaptive(minimum: 300), spacing: scoresGridSpacing),
     ]
@@ -82,17 +82,6 @@ struct ScoresView: View {
             scoresURLs[leagueGroup.name] = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
         }
         await loadGamesAndProcess()
-        
-//        loadBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self) { loadedLeagues  in
-//            leagueGroups = loadedLeagues
-//
-//            //add leagueGroup IDs to previously created dict using league names as key / add names to filter options for the user to select
-//            for leagueGroup in leagueGroups {
-//                filterOptions.append(leagueGroup.name)
-//                scoresURLs[leagueGroup.name] = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
-//                loadGamesAndProcess()
-//            }
-//        }
     }
     
     func loadGamesAndProcess() async {
@@ -119,43 +108,44 @@ struct ScoresView: View {
     }
     
     var body: some View {
-        #if !os(watchOS)
-        ScrollView {
-            LazyVGrid(columns: columns, spacing: scoresGridSpacing) {
-                if loadingInProgress == true {
-                    LoadingView()
-                }
-                ForEach(listData, id: \.id) { GameScore in
-                    NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
-                        ScoresOverView(gamescore: GameScore)
-                    }
-                    .foregroundColor(.primary)
-                }
-                if gamescores == [] && loadingInProgress == false {
-                    Text("There are no Skylarks games scheduled for the chosen time frame.")
-                }
+#if !os(watchOS)
+        //        ScrollView {
+        List {
+            if loadingInProgress == true {
+                LoadingView()
             }
-            .padding(scoresGridPadding)
-            .animation(.default, value: searchText)
-            .searchable(text: $searchText)
-            .onChange(of: searchText) { searchText in
-                searchResults = self.gamescores.filter({ gamescore in
-                    
-                    // list all fields that are searched
-                    gamescore.home_team_name.lowercased().contains(searchText.lowercased()) ||
-                    gamescore.away_team_name.lowercased().contains(searchText.lowercased()) ||
-                    gamescore.match_id.lowercased().contains(searchText.lowercased()) ||
-                    gamescore.league.name.lowercased().contains(searchText.lowercased()) ||
-                    //MARK: watch for index errors here
-                    gamescore.home_league_entry.team.clubs[0].name.lowercased().contains(searchText.lowercased()) ||
-                    gamescore.away_league_entry.team.clubs[0].name.lowercased().contains(searchText.lowercased()) ||
-                    gamescore.home_league_entry.team.clubs[0].short_name.lowercased().contains(searchText.lowercased()) ||
-                    gamescore.away_league_entry.team.clubs[0].short_name.lowercased().contains(searchText.lowercased()) ||
-                    gamescore.home_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased()) ||
-                    gamescore.away_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased())
-                })
+            ForEach(listData, id: \.id) { GameScore in
+                NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
+                    ScoresOverViewCompact(gamescore: GameScore)
+                }
+                .foregroundColor(.primary)
+            }
+            if gamescores == [] && loadingInProgress == false {
+                Text("There are no Skylarks games scheduled for the chosen time frame.")
             }
         }
+        //.padding(scoresGridPadding)
+        .animation(.default, value: searchText)
+        .animation(.default, value: gamescores)
+        .searchable(text: $searchText)
+        .onChange(of: searchText) { searchText in
+            searchResults = self.gamescores.filter({ gamescore in
+                
+                // list all fields that are searched
+                gamescore.home_team_name.lowercased().contains(searchText.lowercased()) ||
+                gamescore.away_team_name.lowercased().contains(searchText.lowercased()) ||
+                gamescore.match_id.lowercased().contains(searchText.lowercased()) ||
+                gamescore.league.name.lowercased().contains(searchText.lowercased()) ||
+                //MARK: watch for index errors here
+                gamescore.home_league_entry.team.clubs[0].name.lowercased().contains(searchText.lowercased()) ||
+                gamescore.away_league_entry.team.clubs[0].name.lowercased().contains(searchText.lowercased()) ||
+                gamescore.home_league_entry.team.clubs[0].short_name.lowercased().contains(searchText.lowercased()) ||
+                gamescore.away_league_entry.team.clubs[0].short_name.lowercased().contains(searchText.lowercased()) ||
+                gamescore.home_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased()) ||
+                gamescore.away_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased())
+            })
+        }
+        //       }
         .onAppear(perform: {
             if gamescores.isEmpty {
                 Task {
@@ -353,7 +343,9 @@ struct LoadingView: View {
 
 struct ScoresView_Previews: PreviewProvider {
     static var previews: some View {
-        ScoresView()
-            //.preferredColorScheme(.dark)
+        NavigationView {
+            ScoresView()
+                //.preferredColorScheme(.dark)
+        }
     }
 }

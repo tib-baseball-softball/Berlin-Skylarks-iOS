@@ -79,6 +79,7 @@ struct StandingsView: View {
                 
             }
             //this doesn't work - still crashes
+            .animation(.default, value: leagueTableArray)
             #if !os(macOS)
             .refreshable {
                 leagueTableArray = []
@@ -119,8 +120,10 @@ struct StandingsView: View {
 
 struct StandingsView_Previews: PreviewProvider {
     static var previews: some View {
-        StandingsView()
+        NavigationView {
+            StandingsView()
             //.preferredColorScheme(.dark)
             //.previewInterfaceOrientation(.landscapeLeft)
+        }
     }
 }

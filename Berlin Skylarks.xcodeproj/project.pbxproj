@@ -117,6 +117,7 @@
 		CAC49351280850C0009677C7 /* WidgetPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4934F280850C0009677C7 /* WidgetPreviewData.swift */; };
 		CAD42719280BF1C3001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CAD4271A280BF1C6001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
+		CAD4271C280DB10B001CA68A /* ScoresOverViewCompact.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4271B280DB10B001CA68A /* ScoresOverViewCompact.swift */; };
 		CAE134832771F2E000DFA745 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134822771F2E000DFA745 /* WidgetKit.framework */; };
 		CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
 		CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE134872771F2E000DFA745 /* WidgetSkylarks.swift */; };
@@ -281,6 +282,7 @@
 		CABF7BFC259351D500B95813 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CABF7C0A2593627900B95813 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		CAC4934F280850C0009677C7 /* WidgetPreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreviewData.swift; sourceTree = "<group>"; };
+		CAD4271B280DB10B001CA68A /* ScoresOverViewCompact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresOverViewCompact.swift; sourceTree = "<group>"; };
 		CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetSkylarksExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE134822771F2E000DFA745 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		CAE134842771F2E000DFA745 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -534,6 +536,7 @@
 			children = (
 				CA0DA04125974EAD002A0FAB /* ScoresView.swift */,
 				CA0DA0442598BB32002A0FAB /* ScoresOverView.swift */,
+				CAD4271B280DB10B001CA68A /* ScoresOverViewCompact.swift */,
 				CA0DA0472598BCB1002A0FAB /* ScoresDetailView.swift */,
 				CA9A89B22739DEFE001BBFA8 /* ShareSheet.swift */,
 			);
@@ -969,6 +972,7 @@
 				CABF7BFB259351D500B95813 /* Berlin_Skylarks.xcdatamodeld in Sources */,
 				CAE7740E26C292F900A57F66 /* StandingsTableView.swift in Sources */,
 				CA0DA04E2598F570002A0FAB /* InfoView.swift in Sources */,
+				CAD4271C280DB10B001CA68A /* ScoresOverViewCompact.swift in Sources */,
 				CA0DA04B2598F449002A0FAB /* SettingsListView.swift in Sources */,
 				CA9A89B32739DEFE001BBFA8 /* ShareSheet.swift in Sources */,
 			);
