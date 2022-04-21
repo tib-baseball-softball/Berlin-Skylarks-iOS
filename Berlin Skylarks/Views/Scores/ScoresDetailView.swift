@@ -37,6 +37,7 @@ struct ScoresDetailView: View {
                 VStack {
                     //extracted to subview to be used by OverView as well
                     GameResultIndicator(gamescore: gamescore)
+                        .font(.title)
                     
                     HStack {
                         VStack {
@@ -315,6 +316,7 @@ struct ScoreMainInfo: View {
         if let gameDate = gamescore.gameDate {
             HStack {
                 Image(systemName: "calendar")
+                Text(gameDate, format: Date.FormatStyle().weekday())
                 Text(gameDate, style: .date)
             }
             .padding(ScoresItemPadding)
@@ -336,13 +338,11 @@ struct GameResultIndicator: View {
     var body: some View {
         if gamescore.human_state.contains("geplant") {
             Text("TBD")
-                .font(.title)
                 .bold()
                 .padding()
         }
         if gamescore.human_state.contains("ausgefallen") {
             Text("PPD")
-                .font(.title)
                 .bold()
                 .padding()
         }
@@ -356,22 +356,19 @@ struct GameResultIndicator: View {
                 if !derby {
                     if win {
                         Text("W")
-                            .font(.title)
                             .bold()
-                            .foregroundColor(Color.green)
+                            .foregroundColor(.green)
                             .padding()
                     } else {
                         Text("L")
-                            .font(.title)
                             .bold()
-                            .foregroundColor(Color.accentColor)
+                            .foregroundColor(.accentColor)
                             .padding()
                     }
                 } else {
                     VStack {
                         Image(systemName: "heart.fill")
-                            .font(.title)
-                            .foregroundColor(Color.accentColor)
+                            .foregroundColor(.accentColor)
                         Text("Derby - Skylarks win either way")
                             .padding()
                     }

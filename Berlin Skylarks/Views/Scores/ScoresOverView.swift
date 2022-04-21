@@ -47,6 +47,8 @@ struct ScoresOverView: View {
                             .padding(.vertical, 3)
                     }
                     Spacer()
+                    GameResultIndicator(gamescore: gamescore)
+                        .font(.headline)
                 }
                 HStack {
                     roadLogo
@@ -98,6 +100,7 @@ struct ScoresOverView: View {
                     .font(.caption2)
                 if let gameDate = gamescore.gameDate {
                     HStack {
+                        Text(gameDate, format: Date.FormatStyle().weekday())
                         Text(gameDate, style: .date)
                         Text(gameDate, style: .time)
                     }
