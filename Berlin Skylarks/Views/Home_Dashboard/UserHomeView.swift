@@ -147,259 +147,234 @@ struct UserHomeView: View {
     
     var body: some View {
         
-        #if !os(watchOS)
-        ScrollView {
-            
-            //-------------------------------------------//
-            // Small grid with team info (from table data)
-            //-------------------------------------------//
-            
-            LazyVGrid(columns: smallColumns, spacing: 30) {
-                
-                //iPad already has a huge logo in the sidebar, to prevent logo overload
-                if UIDevice.current.userInterfaceIdiom == .phone {
-                    Image("Rondell")
-                        .resizable()
-                        .scaledToFit()
-                        .accessibilityLabel("Berlin Skylarks Logo")
-                }
-                VStack(alignment: .center, spacing: NewsItemSpacing) {
-                    HStack {
-                        Image(systemName: "star.fill")
-                            .font(.title)
-                        Text("Favorite Team")
-                            .font(.title2)
-                            .bold()
-                    }
-                    .padding(5)
-                    Divider()
-                        .frame(width: 100)
-                    if !displayTeam.league_entries.isEmpty {
-                        Text("\(displayTeam.name) (\(displayTeam.league_entries[0].league.acronym))")
-                            .font(.system(size: 18))
-                            .padding(5)
-                            .fixedSize(horizontal: false, vertical: true)
-                    }
-                }
-                .frame(minWidth: 150, minHeight: 150)
-                .background(ItemBackgroundColor)
-                .cornerRadius(NewsItemCornerRadius)
-                
-                VStack(alignment: .center, spacing: NewsItemSpacing) {
-                    HStack {
-                        Image(systemName: "tablecells")
-                            .font(.title)
-                        Text("League")
-                            .font(.title2)
-                            .bold()
-                    }
-                    .padding(5)
-                    Divider()
-                        .frame(width: 100)
-                    Text(userDashboard.leagueTable.league_name)
-                        .font(.system(size: 18))
-                        .padding(5)
-                }
-                .frame(minWidth: 150, minHeight: 150)
-                .background(ItemBackgroundColor)
-                .cornerRadius(NewsItemCornerRadius)
-                
-                VStack(alignment: .center, spacing: NewsItemSpacing) {
-                    HStack {
-                        Image(systemName: "sum")
-                            .font(.title)
-                        Text("Record")
-                            .font(.title2)
-                            .bold()
-                    }
-                    .padding(5)
-                    Divider()
-                        .frame(width: 100)
-                    HStack {
-                        Text(String(userDashboard.tableRow.wins_count))
-                            .bold()
-                            .padding(.vertical, 10)
-                        Text("-")
-                        Text(String(userDashboard.tableRow.losses_count))
-                            .bold()
-                            .padding(.vertical, 10)
-                    }
-                    .font(.largeTitle)
-                }
-                .frame(minWidth: 150, minHeight: 150)
-                .background(ItemBackgroundColor)
-                .cornerRadius(NewsItemCornerRadius)
-                
-                VStack(alignment: .center, spacing: NewsItemSpacing) {
-                    HStack {
-                        Image(systemName: "percent")
-                            .font(.title)
-                        Text("Wins")
-                            .font(.title2)
-                            .bold()
-                    }
-                    .padding(5)
-                    Divider()
-                        .frame(width: 100)
-                    Text(userDashboard.tableRow.quota)
-                        .bold()
-                        .padding(10)
-                        .font(.largeTitle)
-                }
-                .frame(minWidth: 150, minHeight: 150)
-                .background(ItemBackgroundColor)
-                .cornerRadius(NewsItemCornerRadius)
-                
-                VStack(alignment: .center, spacing: NewsItemSpacing) {
-                    HStack {
-                        Image(systemName: "number")
-                            .font(.title)
-                        Text("Rank")
-                            .font(.title2)
-                            .bold()
-                    }
-                    .padding(5)
-                    Divider()
-                        .frame(width: 100)
-                    HStack {
-                        if userDashboard.tableRow.rank == "1." {
-                            Image(systemName: "crown")
-                                .font(.title)
-                                .foregroundColor(Color.accentColor)
-                        }
-//                            else {
-//                                Image(systemName: "hexagon")
-//                                    .font(.title)
-//                                    .foregroundColor(Color.accentColor)
+        //MARK: parking this on tvOS for now during WIP
+//#if os(tvOS)
+//        ScrollView {
+//
+//            //-------------------------------------------//
+//            // Small grid with team info (from table data)
+//            //-------------------------------------------//
+//
+//            LazyVGrid(columns: smallColumns, spacing: 30) {
+//
+//                //iPad already has a huge logo in the sidebar, to prevent logo overload
+//                if UIDevice.current.userInterfaceIdiom == .phone {
+//                    Image("Rondell")
+//                        .resizable()
+//                        .scaledToFit()
+//                        .accessibilityLabel("Berlin Skylarks Logo")
+//                }
+//                VStack(alignment: .center, spacing: NewsItemSpacing) {
+//                    HStack {
+//                        Image(systemName: "star.fill")
+//                            .font(.title)
+//                        Text("Favorite Team")
+//                            .font(.title2)
+//                            .bold()
+//                    }
+//                    .padding(5)
+//                    Divider()
+//                        .frame(width: 100)
+//                    if !displayTeam.league_entries.isEmpty {
+//                        Text("\(displayTeam.name) (\(displayTeam.league_entries[0].league.acronym))")
+//                            .font(.system(size: 18))
+//                            .padding(5)
+//                            .fixedSize(horizontal: false, vertical: true)
+//                    }
+//                }
+//                .frame(minWidth: 150, minHeight: 150)
+//                .background(ItemBackgroundColor)
+//                .cornerRadius(NewsItemCornerRadius)
+//
+//                VStack(alignment: .center, spacing: NewsItemSpacing) {
+//                    HStack {
+//                        Image(systemName: "tablecells")
+//                            .font(.title)
+//                        Text("League")
+//                            .font(.title2)
+//                            .bold()
+//                    }
+//                    .padding(5)
+//                    Divider()
+//                        .frame(width: 100)
+//                    Text(userDashboard.leagueTable.league_name)
+//                        .font(.system(size: 18))
+//                        .padding(5)
+//                }
+//                .frame(minWidth: 150, minHeight: 150)
+//                .background(ItemBackgroundColor)
+//                .cornerRadius(NewsItemCornerRadius)
+//
+//                VStack(alignment: .center, spacing: NewsItemSpacing) {
+//                    HStack {
+//                        Image(systemName: "sum")
+//                            .font(.title)
+//                        Text("Record")
+//                            .font(.title2)
+//                            .bold()
+//                    }
+//                    .padding(5)
+//                    Divider()
+//                        .frame(width: 100)
+//                    HStack {
+//                        Text(String(userDashboard.tableRow.wins_count))
+//                            .bold()
+//                            .padding(.vertical, 10)
+//                        Text("-")
+//                        Text(String(userDashboard.tableRow.losses_count))
+//                            .bold()
+//                            .padding(.vertical, 10)
+//                    }
+//                    .font(.largeTitle)
+//                }
+//                .frame(minWidth: 150, minHeight: 150)
+//                .background(ItemBackgroundColor)
+//                .cornerRadius(NewsItemCornerRadius)
+//
+//                VStack(alignment: .center, spacing: NewsItemSpacing) {
+//                    HStack {
+//                        Image(systemName: "percent")
+//                            .font(.title)
+//                        Text("Wins")
+//                            .font(.title2)
+//                            .bold()
+//                    }
+//                    .padding(5)
+//                    Divider()
+//                        .frame(width: 100)
+//                    Text(userDashboard.tableRow.quota)
+//                        .bold()
+//                        .padding(10)
+//                        .font(.largeTitle)
+//                }
+//                .frame(minWidth: 150, minHeight: 150)
+//                .background(ItemBackgroundColor)
+//                .cornerRadius(NewsItemCornerRadius)
+//
+//                VStack(alignment: .center, spacing: NewsItemSpacing) {
+//                    HStack {
+//                        Image(systemName: "number")
+//                            .font(.title)
+//                        Text("Rank")
+//                            .font(.title2)
+//                            .bold()
+//                    }
+//                    .padding(5)
+//                    Divider()
+//                        .frame(width: 100)
+//                    HStack {
+//                        if userDashboard.tableRow.rank == "1." {
+//                            Image(systemName: "crown")
+//                                .font(.title)
+//                                .foregroundColor(Color.accentColor)
+//                        }
+//                        Text(userDashboard.tableRow.rank)
+//                            .bold()
+//                            .padding(10)
+//                            .font(.largeTitle)
+//                    }
+//                }
+//                .frame(minWidth: 150, minHeight: 150)
+//                .background(ItemBackgroundColor)
+//                .cornerRadius(NewsItemCornerRadius)
+//            }
+//            .padding(25)
+//
+//            //-------------------------------------------//
+//            //GRID with last game, next game and table
+//            //-------------------------------------------//
+//
+//            LazyVGrid(columns: bigColumns, spacing: 30) {
+//
+//                if showLastGame == true {
+//                    VStack(alignment: .leading) {
+//                        Text("Latest Score")
+//                            .font(.title)
+//                            .bold()
+//                            .padding(.leading, 15)
+//
+//                            ScoresOverView(gamescore: userDashboard.LastGame)
+//
+//                            .onTapGesture {
+//                                showingSheetLastGame.toggle()
 //                            }
-                        Text(userDashboard.tableRow.rank)
-                            .bold()
-                            .padding(10)
-                            .font(.largeTitle)
-                    }
-                }
-                .frame(minWidth: 150, minHeight: 150)
-                .background(ItemBackgroundColor)
-                .cornerRadius(NewsItemCornerRadius)
-            }
-            .padding(25)
-            
-            //-------------------------------------------//
-            //GRID with last game, next game and table
-            //-------------------------------------------//
-          
-            LazyVGrid(columns: bigColumns, spacing: 30) {
-                
-                if showLastGame == true {
-                    VStack(alignment: .leading) {
-                        Text("Latest Score")
-                            .font(.title)
-                            .bold()
-                            .padding(.leading, 15)
-                        
-                            ScoresOverView(gamescore: userDashboard.LastGame)
-                            
-                            .onTapGesture {
-                                showingSheetLastGame.toggle()
-                            }
-                            .sheet(isPresented: $showingSheetLastGame) {
-                                ScoresDetailView(gamescore: userDashboard.LastGame)
-                            }
-                    }
-                } else {
-                    VStack(alignment: .leading) {
-                        Text("Latest Score")
-                            .font(.title)
-                            .bold()
-                            .padding(.leading, 15)
-                        Text("There is no recent game to display.")
-                            .padding()
-                            .background(ScoresSubItemBackground)
-                            .cornerRadius(NewsItemCornerRadius)
-                    }
-                }
-                
-                if showNextGame == true {
-                    VStack(alignment: .leading) {
-                        Text("Next Game")
-                            .font(.title)
-                            .bold()
-                            .padding(.leading, 15)
-                            ScoresOverView(gamescore: userDashboard.NextGame)
-                            
-                            .onTapGesture {
-                                showingSheetNextGame.toggle()
-                            }
-                            .sheet(isPresented: $showingSheetNextGame) {
-                                ScoresDetailView(gamescore: userDashboard.NextGame)
-                            }
-                    }
-                } else {
-                    VStack(alignment: .leading) {
-                        Text("Next Game")
-                            .font(.title)
-                            .bold()
-                            .padding(.leading, 15)
-                        Text("There is no next game to display.")
-                            .padding()
-                            .background(ScoresSubItemBackground)
-                            .cornerRadius(NewsItemCornerRadius)
-                    }
-                }
-                
-                VStack(alignment: .leading) {
-                    Text("Standings")
-                        .font(.title)
-                        .bold()
-                        .padding(.leading, 15)
-                    if homeLeagueTables != [] {
-                        StandingsTableView(leagueTable: homeLeagueTables[0])
-                            .frame(height: 485)
-                        .cornerRadius(NewsItemCornerRadius)
-                    } else {
-                        Text("No standings available")
-                    }
-                }
-            }
-            .padding(homeViewPadding)
-            
-            VStack(alignment: .leading) {
-                Text("Team News")
-                    .font(.title)
-                    .bold()
-                    .padding(.leading, 15)
-                ScrollView(.horizontal) {
-                    LazyHStack {
-                        NewsItem()
-                        NewsItem()
-                        NewsItem()
-                        NewsItem()
-                        NewsItem()
-                    }
-                }
-                .frame(height: 450)
-            }
-            .padding(homeViewPadding)
-        }
-        .navigationTitle("Dashboard")
-        
-        .onAppear(perform: {
-            Task {
-                await loadProcessHomeData()
-            }
-        })
-        
-        .onChange(of: favoriteTeamID, perform: { favoriteTeam in
-            Task {
-                displayTeam = await setFavoriteTeam()
-            }
-            homeLeagueTables = []
-            homeGamescores = []
-            //check: commented out for performance reasons
-//            loadHomeTeamTable()
-//            loadHomeGameData()
-        })
-        
+//                            .sheet(isPresented: $showingSheetLastGame) {
+//                                ScoresDetailView(gamescore: userDashboard.LastGame)
+//                            }
+//                    }
+//                } else {
+//                    VStack(alignment: .leading) {
+//                        Text("Latest Score")
+//                            .font(.title)
+//                            .bold()
+//                            .padding(.leading, 15)
+//                        Text("There is no recent game to display.")
+//                            .padding()
+//                            .background(ScoresSubItemBackground)
+//                            .cornerRadius(NewsItemCornerRadius)
+//                    }
+//                }
+//
+//                if showNextGame == true {
+//                    VStack(alignment: .leading) {
+//                        Text("Next Game")
+//                            .font(.title)
+//                            .bold()
+//                            .padding(.leading, 15)
+//                        ScoresOverView(gamescore: userDashboard.NextGame)
+//
+//                        .onTapGesture {
+//                            showingSheetNextGame.toggle()
+//                        }
+//                        .sheet(isPresented: $showingSheetNextGame) {
+//                            ScoresDetailView(gamescore: userDashboard.NextGame)
+//                        }
+//                    }
+//                } else {
+//                    VStack(alignment: .leading) {
+//                        Text("Next Game")
+//                            .font(.title)
+//                            .bold()
+//                            .padding(.leading, 15)
+//                        Text("There is no next game to display.")
+//                            .padding()
+//                            .background(ScoresSubItemBackground)
+//                            .cornerRadius(NewsItemCornerRadius)
+//                    }
+//                }
+//
+//                VStack(alignment: .leading) {
+//                    Text("Standings")
+//                        .font(.title)
+//                        .bold()
+//                        .padding(.leading, 15)
+//                    if !homeLeagueTables.isEmpty {
+//                        StandingsTableView(leagueTable: homeLeagueTables[0])
+//                            .frame(height: 485)
+//                        .cornerRadius(NewsItemCornerRadius)
+//                    } else {
+//                        Text("No standings available")
+//                    }
+//                }
+//            }
+//            .padding(homeViewPadding)
+//        }
+//        .navigationTitle("Dashboard")
+//
+//        .onAppear(perform: {
+//            Task {
+//                await loadProcessHomeData()
+//            }
+//        })
+//
+//        .onChange(of: favoriteTeamID, perform: { favoriteTeam in
+//            Task {
+//                displayTeam = await setFavoriteTeam()
+//            }
+//            homeLeagueTables = []
+//            homeGamescores = []
+//        })
+//
     //we are showing the app settings here, but only on iPhone, since the 5 tab items are full. On iPad/Mac the sidebar has more than enough space to include settings
         //for now we have it back in the tab bar
     
@@ -422,14 +397,26 @@ struct UserHomeView: View {
 //                }
 //            }
 //        }
-        #else
+        
+        //---------------------------------------------------------//
+        //-----------start Apple Watch-specific code---------------//
+        //---------------------------------------------------------//
+        
+//#else
         List {
             Section(header: Text("Favorite Team")) {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {
-                        Image(systemName: "star")
-                            .foregroundColor(.skylarksRed)
-                        Text(displayTeam.name)
+//                        if UIDevice.current.userInterfaceIdiom == .mac || UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .phone {
+                            Image(systemName: "star.fill")
+                                .foregroundColor(.skylarksRed)
+                                
+//                        } else {
+//                            Image(systemName: "star")
+//                                .foregroundColor(.skylarksRed)
+//                        }
+
+                        Text("\(displayTeam.name) (\(displayTeam.league_entries[0].league.acronym))")
                             .padding(.leading)
                     }
                     .padding(.top)
@@ -455,7 +442,7 @@ struct UserHomeView: View {
                         HStack {
                             Image(systemName: "sum")
                                 .frame(maxWidth: 20)
-                            Text(String(userDashboard.tableRow.wins_count) + "-" + String(userDashboard.tableRow.losses_count))
+                            Text("\(userDashboard.tableRow.wins_count) - \(userDashboard.tableRow.losses_count)")
                                 .bold()
                                 .padding(.leading)
                         }
@@ -475,7 +462,7 @@ struct UserHomeView: View {
                         }
                     }
                 }
-                .padding()
+                .watchOS { $0.padding() }
             }
             Section(header: Text("Latest Score")) {
                 if showLastGame == true {
@@ -498,7 +485,7 @@ struct UserHomeView: View {
                 }
             }
             Section(header: Text("Standings")) {
-                if homeLeagueTables != [] {
+                if !homeLeagueTables.isEmpty {
                     NavigationLink(
                         destination: StandingsTableView(leagueTable: homeLeagueTables[0])) {
                             HStack {
@@ -528,12 +515,9 @@ struct UserHomeView: View {
             }
             homeLeagueTables = []
             homeGamescores = []
-            //check: commented out for performance reasons
-            //            loadHomeTeamTable()
-            //            loadHomeGameData()
         })
         
-        #endif
+//#endif
     }
 }
 

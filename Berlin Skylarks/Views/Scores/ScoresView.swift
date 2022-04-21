@@ -116,7 +116,7 @@ struct ScoresView: View {
             }
             ForEach(listData, id: \.id) { GameScore in
                 NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
-                    ScoresOverViewCompact(gamescore: GameScore)
+                    ScoresOverView(gamescore: GameScore)
                 }
                 .foregroundColor(.primary)
             }
@@ -124,6 +124,7 @@ struct ScoresView: View {
                 Text("There are no Skylarks games scheduled for the chosen time frame.")
             }
         }
+        .listStyle(.insetGrouped)
         //.padding(scoresGridPadding)
         .animation(.default, value: searchText)
         .animation(.default, value: gamescores)

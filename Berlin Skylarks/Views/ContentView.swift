@@ -170,7 +170,7 @@ struct ContentView_Previews: PreviewProvider {
         Group {
             ContentView()
 //                .padding(0.0).environment(\.managedObjectContext, PersistenceController.preview.container.viewContext)
-                .previewInterfaceOrientation(.landscapeLeft)
+                //.previewInterfaceOrientation(.landscapeLeft)
         }
     }
 }

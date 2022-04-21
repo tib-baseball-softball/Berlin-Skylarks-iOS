@@ -11,6 +11,12 @@ struct ScoresOverView: View {
     
     var gamescore: GameScore
     
+//    private var dayFormatter: DateFormatter = {
+//        let dayFormatter = DateFormatter()
+//        dayFormatter.dateFormat = "EEE"
+//        return dayFormatter
+//    }()
+    
     @State var roadLogo = away_team_logo
     @State var homeLogo = home_team_logo
     
@@ -21,99 +27,71 @@ struct ScoresOverView: View {
     }
     
     var body: some View {
-        #if !os(watchOS)
-        VStack(spacing: 7) {
-            VStack {
-                Text(gamescore.league.name)
-                    .font(.title3)
-                    .bold()
+#if !os(watchOS)
+        VStack {
                 HStack {
-                    VStack(alignment: .leading, spacing: 7) {
-                        HStack {
-                            Image(systemName: "calendar")
-                            if let date = gamescore.gameDate {
-                                Text(date, style: .date)
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text(gamescore.league.name)
+                            .font(.headline.smallCaps())
+                        if let gameDate = gamescore.gameDate {
+                            HStack {
+                                Text(gameDate, format: Date.FormatStyle().weekday())
+                                Text(gameDate, style: .date)
+                                Text(gameDate, style: .time)
                             }
+                            .foregroundColor(.secondary)
+                            .font(.subheadline)
                         }
-                        HStack {
-                            Image(systemName: "clock.fill")
-                            if let time = gamescore.gameDate {
-                                Text(time, style: .time)
-                            }
-                        }
+                        Divider()
+                            .frame(maxWidth: 200)
+                            .padding(.vertical, 3)
                     }
-                    .padding(.horizontal)
-                    .padding(.vertical, 1)
-                    Spacer()
-                    Divider()
-                        .frame(height: 40)
-                    Spacer()
-                    GameResultIndicator(gamescore: gamescore)
                     Spacer()
                 }
-            }
-            HStack {
                 HStack {
                     roadLogo
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 50, height: 50, alignment: .center)
+                        .frame(maxWidth: 40, alignment: .center)
                     Text(gamescore.away_team_name)
                         .padding(.leading)
+                    Spacer()
+                    if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
+                        Text(String(awayScore))
+                            .font(.title2)
+                            .bold()
+                            .frame(maxWidth: 40, alignment: .center)
+                            .foregroundColor(awayScore < homeScore ? Color.secondary : Color.primary)
+                    }
                 }
-                Spacer()
-                if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
-                    Text(String(awayScore))
-                        .font(.largeTitle)
-                        .bold()
-                        .padding(.horizontal)
-                        .foregroundColor(awayScore < homeScore ? Color.secondary : Color.primary)
-                }
-                
-            }
-            .padding(.horizontal)
-            .padding(.vertical, 8)
-            .background(ScoresSubItemBackground)
-            .cornerRadius(NewsItemCornerRadius)
-            HStack {
                 HStack {
                     homeLogo
                         .resizable()
                         .scaledToFit()
-                        .frame(width: 50, height: 50, alignment: .center)
+                        .frame(maxWidth: 40, alignment: .center)
                     Text(gamescore.home_team_name)
                         .padding(.leading)
+                    Spacer()
+                    if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
+                        Text(String(homeScore))
+                            .font(.title2)
+                            .bold()
+                            .frame(maxWidth: 40, alignment: .center)
+                            .foregroundColor(awayScore > homeScore ? Color.secondary : Color.primary)
+                    }
                 }
-                Spacer()
-                
-                if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
-                    Text(String(homeScore))
-                        .font(.largeTitle)
-                        .bold()
-                        .padding(.horizontal)
-                        .foregroundColor(awayScore > homeScore ? Color.secondary : Color.primary)
-                }
-            }
-            .padding(.horizontal)
-            .padding(.vertical, 8)
-            .background(ScoresSubItemBackground)
-            .cornerRadius(NewsItemCornerRadius)
-            
         }
-        .padding()
-        .background(.regularMaterial) //switch on or off depending on whether I use List or Grid
-        .cornerRadius(NewsItemCornerRadius)
-        
+        .padding(.vertical, 2)
         .onAppear(perform: {
             setLogos()
         })
-        #endif
+#endif
         
         //---------------------------------------------------------//
         //-----------start Apple Watch-specific code---------------//
         //---------------------------------------------------------//
         
-        #if os(watchOS)
+#if os(watchOS)
         VStack {
             VStack {
                 Text(gamescore.league.name)
@@ -174,11 +152,17 @@ struct ScoresOverView: View {
 struct ScoresOverView_Previews: PreviewProvider {
     
     static var previews: some View {
-        VStack {
-            ScoresOverView(gamescore: dummyGameScores[7])
-                //.preferredColorScheme(.dark)
+        List {
+            ScoresOverView(gamescore: dummyGameScores[3])
+            ScoresOverView(gamescore: dummyGameScores[47])
+            ScoresOverView(gamescore: dummyGameScores[25])
+            Section {
+                ScoresOverView(gamescore: dummyGameScores[8])
+            }
+            Section {
+                ScoresOverView(gamescore: dummyGameScores[57])
+            }
         }
-        //.background(Color.backgroundGrayPreview)
-        .cornerRadius(8)
+        //.preferredColorScheme(.dark)
     }
 }
