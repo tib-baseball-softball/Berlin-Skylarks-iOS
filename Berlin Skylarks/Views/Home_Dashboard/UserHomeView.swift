@@ -22,6 +22,11 @@ struct UserHomeView: View {
     @State var showNextGame = true
     @State var showLastGame = true
     
+    let now = Date.now
+    //10 days = 864000 seconds
+    let lastGameDayCutoff = Date.now.addingTimeInterval(-864000)
+    let nextGameDayCutoff = Date.now.addingTimeInterval(864000)
+    
     @State private var loadingScores = false
     @State private var loadingTables = false
     
@@ -147,8 +152,7 @@ struct UserHomeView: View {
     
     var body: some View {
         
-        //MARK: parking this on tvOS for now during WIP
-//#if os(tvOS)
+#if !os(watchOS)
 //        ScrollView {
 //
 //            //-------------------------------------------//
@@ -360,20 +364,135 @@ struct UserHomeView: View {
 //            .padding(homeViewPadding)
 //        }
 //        .navigationTitle("Dashboard")
+        
+        List {
+            Section(header: Text("Favorite Team")) {
+                HStack {
+                    Image(systemName: "star.fill")
+                        .foregroundColor(.skylarksRed)
+                    Text("\(displayTeam.name) (\(displayTeam.league_entries[0].league.acronym))")
+                        .padding(.leading)
+                }
+                HStack {
+                    Image(systemName: "tablecells")
+                        .frame(maxWidth: 20)
+                        .foregroundColor(Color.skylarksAdaptiveBlue)
+                    Text(userDashboard.leagueTable.league_name)
+                        .padding(.leading)
+                }
+                HStack {
+                    Image(systemName: "calendar.badge.clock")
+                        .frame(maxWidth: 20)
+                        .foregroundColor(Color.skylarksAdaptiveBlue)
+                    Text(String(userDashboard.leagueTable.season))
+                        .padding(.leading)
+                }
+            }
+            Section(header: Text("Standings/Record")) {
+                NavigationLink(destination: HomeTeamDetailView()) {
+                    VStack(alignment: .leading) {
+                        HStack {
+                            Image(systemName: "sum")
+                                .frame(maxWidth: 20)
+                                .foregroundColor(Color.skylarksAdaptiveBlue)
+                            Text("\(userDashboard.tableRow.wins_count) - \(userDashboard.tableRow.losses_count)")
+                                .bold()
+                                .padding(.leading)
+                        }
+                        Divider()
+                        HStack {
+                            Image(systemName: "percent")
+                                .frame(maxWidth: 20)
+                                .foregroundColor(Color.skylarksAdaptiveBlue)
+                            Text(userDashboard.tableRow.quota)
+                                .bold()
+                                .padding(.leading)
+                        }
+                        Divider()
+                        HStack {
+                            Image(systemName: "number")
+                                .frame(maxWidth: 20)
+                                .foregroundColor(Color.skylarksAdaptiveBlue)
+                            Text(userDashboard.tableRow.rank)
+                                .bold()
+                                .padding(.leading)
+                            if userDashboard.tableRow.rank == "1." {
+                                Image(systemName: "crown")
+                                    .foregroundColor(Color.skylarksRed)
+                            }
+                        }
+                    }
+                    .padding(.vertical, 6)
+                }
+                if !homeLeagueTables.isEmpty {
+                    NavigationLink(
+                        destination: StandingsTableView(leagueTable: homeLeagueTables[0])) {
+                            HStack {
+                                Image(systemName: "tablecells")
+                                    .foregroundColor(.skylarksRed)
+                                Text("See full Standings")
+                                    .padding(.leading)
+                            }
+                        }
+                } else {
+                    Text("No Standings available.")
+                }
+            }
+            Section(header: Text("Latest Score")) {
+                //this code works - but the fixed range is not very flexible
+                
+//                let range = lastGameDayCutoff...now
+//                ForEach(homeGamescores, id: \.id) { gameScore in
+//                    if let gameDate = gameScore.gameDate {
+//                        if range.contains(gameDate) {
+//                            NavigationLink(destination: ScoresDetailView(gamescore: gameScore)) {
+//                                ScoresOverView(gamescore: gameScore)
+//                            }
+//                        }
+//                    }
+//                }
+                if showLastGame == true {
+                    NavigationLink(
+                        destination: ScoresDetailView(gamescore: userDashboard.LastGame)) {
+                            ScoresOverView(gamescore: userDashboard.LastGame)
+                        }
+                } else {
+                    Text("There is no recent game to display.")
+                }
+            }
+            Section(header: Text("Next Game")) {
+                if showNextGame == true {
+                    NavigationLink(
+                        destination: ScoresDetailView(gamescore: userDashboard.NextGame)) {
+                            ScoresOverView(gamescore: userDashboard.NextGame)
+                        }
+                } else {
+                    Text("There is no next game to display.")
+                }
+            }
+        }
+        .listStyle( {
+          #if os(watchOS)
+            .automatic
+          #else
+            .insetGrouped
+          #endif
+        } () )
+        .navigationTitle("Dashboard")
 //
-//        .onAppear(perform: {
-//            Task {
-//                await loadProcessHomeData()
-//            }
-//        })
-//
-//        .onChange(of: favoriteTeamID, perform: { favoriteTeam in
-//            Task {
-//                displayTeam = await setFavoriteTeam()
-//            }
-//            homeLeagueTables = []
-//            homeGamescores = []
-//        })
+        .onAppear(perform: {
+            Task {
+                await loadProcessHomeData()
+            }
+        })
+
+        .onChange(of: favoriteTeamID, perform: { favoriteTeam in
+            Task {
+                displayTeam = await setFavoriteTeam()
+            }
+            homeLeagueTables = []
+            homeGamescores = []
+        })
 //
     //we are showing the app settings here, but only on iPhone, since the 5 tab items are full. On iPad/Mac the sidebar has more than enough space to include settings
         //for now we have it back in the tab bar
@@ -402,7 +521,7 @@ struct UserHomeView: View {
         //-----------start Apple Watch-specific code---------------//
         //---------------------------------------------------------//
         
-//#else
+#else
         List {
             Section(header: Text("Favorite Team")) {
                 VStack(alignment: .leading, spacing: 5) {
@@ -499,6 +618,13 @@ struct UserHomeView: View {
                 }
             }
         }
+        .listStyle( {
+          #if os(watchOS)
+            .automatic
+          #else
+            .insetGrouped
+          #endif
+        } () )
         .navigationTitle("Dashboard")
         
         //APPLE WATCH FUNCS //////////////////////////////////////////////////////////////
@@ -517,15 +643,15 @@ struct UserHomeView: View {
             homeGamescores = []
         })
         
-//#endif
+#endif
     }
 }
 
 struct UserHomeView_Previews: PreviewProvider {
     static var previews: some View {
-        Group {
+        //Group {
             UserHomeView()
                 //.preferredColorScheme(.dark)
-        }
+        //}
     }
 }

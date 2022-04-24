@@ -105,7 +105,7 @@ struct SettingsListView: View {
                         Image(systemName: "c.circle")
                             .font(.title2)
                             .frame(width: 25)
-                        Text("Imprint")
+                        Text("Legal Notice")
                     }
                 }
                 NavigationLink(

@@ -109,7 +109,6 @@ struct ScoresView: View {
     
     var body: some View {
 #if !os(watchOS)
-        //        ScrollView {
         List {
             if loadingInProgress == true {
                 LoadingView()
@@ -125,7 +124,6 @@ struct ScoresView: View {
             }
         }
         .listStyle(.insetGrouped)
-        //.padding(scoresGridPadding)
         .animation(.default, value: searchText)
         .animation(.default, value: gamescores)
         .searchable(text: $searchText)
@@ -146,7 +144,6 @@ struct ScoresView: View {
                 gamescore.away_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased())
             })
         }
-        //       }
         .onAppear(perform: {
             if gamescores.isEmpty {
                 Task {

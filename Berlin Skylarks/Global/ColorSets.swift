@@ -26,6 +26,8 @@ extension Color {
     //this is not adapting to dark mode!
     static let backgroundGrayPreview = Color(red: 58 / 255, green: 58 / 255, blue: 60 / 255)
     
+    static let skylarksAdaptiveBlue = Color("SkylarksAdaptiveBlue")
+    
     #if !os(watchOS)
     static let primaryBackground = Color(uiColor: .systemBackground)
     static let secondaryBackground = Color(uiColor: .secondarySystemBackground)

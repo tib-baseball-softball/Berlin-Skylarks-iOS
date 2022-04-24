@@ -255,6 +255,10 @@ struct TeamWidgetOverView: View {
                                 .frame(maxWidth: 20)
                             Text(entry.TableRow.rank)
                                 .bold()
+                            if entry.TableRow.rank == "1." {
+                                Image(systemName: "crown")
+                                    .foregroundColor(Color.skylarksRed)
+                            }
                         }
                     }
                 }
