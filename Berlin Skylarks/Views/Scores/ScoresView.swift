@@ -12,6 +12,8 @@ struct ScoresView: View {
     @State private var gamescores = [GameScore]()
     @State private var leagueGroups = [LeagueGroup]()
     
+    //@State var gameData = [GameData]()
+    
     @State private var searchResults = [GameScore]()
     
     var listData: [GameScore] {
@@ -99,8 +101,11 @@ struct ScoresView: View {
                 for (index, _) in gamescores.enumerated() {
                     gamescores[index].addDates()
                     gamescores[index].determineGameStatus()
+//                    gameData = gamescores.map { (gamescore) -> GameData in
+//                        let someData = GameData(gamescore: gamescore)
+//                        return someData
+//                    }
                 }
-                //gamescores = addDatesToGames(gamescores: gamescores)
                 
                 loadingInProgress = false
             }
@@ -110,6 +115,7 @@ struct ScoresView: View {
     var body: some View {
 #if !os(watchOS)
         List {
+            //Text(gameData.debugDescription)
             if loadingInProgress == true {
                 LoadingView()
             }

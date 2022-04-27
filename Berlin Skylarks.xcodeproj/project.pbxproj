@@ -46,6 +46,18 @@
 		CA1CB20C27567E870007D24E /* BSMTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* BSMTeam.swift */; };
 		CA1CB211275D15BA0007D24E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA1CB210275D15BA0007D24E /* README.md */; };
 		CA1CB212275D15BA0007D24E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA1CB210275D15BA0007D24E /* README.md */; };
+		CA1E035E2819949A00E2FF8F /* UserDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E035D2819949A00E2FF8F /* UserDashboard.swift */; };
+		CA1E0360281994EA00E2FF8F /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E035F281994EA00E2FF8F /* GameData.swift */; };
+		CA1E0361281994F000E2FF8F /* UserDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E035D2819949A00E2FF8F /* UserDashboard.swift */; };
+		CA1E0362281994F400E2FF8F /* UserDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E035D2819949A00E2FF8F /* UserDashboard.swift */; };
+		CA1E0363281994FA00E2FF8F /* UserDashboard.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E035D2819949A00E2FF8F /* UserDashboard.swift */; };
+		CA1E0364281994FE00E2FF8F /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E035F281994EA00E2FF8F /* GameData.swift */; };
+		CA1E0365281994FE00E2FF8F /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E035F281994EA00E2FF8F /* GameData.swift */; };
+		CA1E0366281994FF00E2FF8F /* GameData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E035F281994EA00E2FF8F /* GameData.swift */; };
+		CA1E03682819ABAA00E2FF8F /* TeamImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E03672819ABAA00E2FF8F /* TeamImageData.swift */; };
+		CA1E03692819ABAA00E2FF8F /* TeamImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E03672819ABAA00E2FF8F /* TeamImageData.swift */; };
+		CA1E036A2819ABAA00E2FF8F /* TeamImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E03672819ABAA00E2FF8F /* TeamImageData.swift */; };
+		CA1E036B2819ABAA00E2FF8F /* TeamImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E03672819ABAA00E2FF8F /* TeamImageData.swift */; };
 		CA283D0D279D849000271DC1 /* StandingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740D26C292F900A57F66 /* StandingsTableView.swift */; };
 		CA283D0E279D953500271DC1 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA056259CAC8E002A0FAB /* StandingsView.swift */; };
 		CA283D0F279DD56800271DC1 /* UserHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C427208A9200ADDE9D /* UserHomeView.swift */; };
@@ -249,6 +261,9 @@
 		CA1C3A1F27388BF300BB194C /* SidebarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigationView.swift; sourceTree = "<group>"; };
 		CA1CB20A27567E870007D24E /* BSMTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMTeam.swift; sourceTree = "<group>"; };
 		CA1CB210275D15BA0007D24E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		CA1E035D2819949A00E2FF8F /* UserDashboard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDashboard.swift; sourceTree = "<group>"; };
+		CA1E035F281994EA00E2FF8F /* GameData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameData.swift; sourceTree = "<group>"; };
+		CA1E03672819ABAA00E2FF8F /* TeamImageData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamImageData.swift; sourceTree = "<group>"; };
 		CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BSMLeagueGroup.swift; path = "Berlin Skylarks/Models/BSMLeagueGroup.swift"; sourceTree = SOURCE_ROOT; };
 		CA28FB8F280DDDC6007581FD /* HomeTeamDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTeamDetailView.swift; sourceTree = "<group>"; };
 		CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamedayWidgetView.swift; sourceTree = "<group>"; };
@@ -417,8 +432,18 @@
 				CAAB56C2271F62F800ADDE9D /* GlobalFunctions.swift */,
 				CA6042A02745B14000607011 /* ViewModifiers.swift */,
 				CA55F6E027601A4F0032302F /* API_Key.swift */,
+				CA1E03672819ABAA00E2FF8F /* TeamImageData.swift */,
 			);
 			path = Global;
+			sourceTree = "<group>";
+		};
+		CA1E035C2819939700E2FF8F /* Objects_Classes */ = {
+			isa = PBXGroup;
+			children = (
+				CA1E035D2819949A00E2FF8F /* UserDashboard.swift */,
+				CA1E035F281994EA00E2FF8F /* GameData.swift */,
+			);
+			path = Objects_Classes;
 			sourceTree = "<group>";
 		};
 		CA65FF4727F5EC4400F7845D /* Skylarks Intents */ = {
@@ -488,6 +513,7 @@
 			children = (
 				CABF7BEE259351D400B95813 /* Berlin_SkylarksApp.swift */,
 				CABF7BF7259351D500B95813 /* Persistence.swift */,
+				CA1E035C2819939700E2FF8F /* Objects_Classes */,
 				CA1C3A082733402800BB194C /* Global */,
 				CA1A240C26BC389E00A8D1C7 /* Berlin Skylarks.entitlements */,
 				CA0DA051259A46CC002A0FAB /* JSON data */,
@@ -868,6 +894,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA1E0361281994F000E2FF8F /* UserDashboard.swift in Sources */,
+				CA1E0364281994FE00E2FF8F /* GameData.swift in Sources */,
 				CA1C39B62731856B00BB194C /* NotificationController.swift in Sources */,
 				CA9B1815277A299700D24CFA /* ScoresDetailView.swift in Sources */,
 				CA1C3A172733473100BB194C /* watchOS_globals.swift in Sources */,
@@ -883,6 +911,7 @@
 				CA1722E227542DBE00E8BF36 /* PlayerModel.swift in Sources */,
 				CA1C39BA2731856B00BB194C /* ComplicationController.swift in Sources */,
 				CA9B1816277A299D00D24CFA /* GlobalFunctions.swift in Sources */,
+				CA1E03692819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
 				CA9B1814277A299400D24CFA /* ScoresOverView.swift in Sources */,
 				CA65FF3F27F5E60C00F7845D /* TeamListView.swift in Sources */,
 				CA1C39B82731856B00BB194C /* NotificationView.swift in Sources */,
@@ -929,9 +958,12 @@
 				CA65FF7327FF271C00F7845D /* PlayerModel.swift in Sources */,
 				CA65FF7027FF271000F7845D /* BSMLeagueGroup.swift in Sources */,
 				CA65FF6927F5F1C600F7845D /* API_Key.swift in Sources */,
+				CA1E0363281994FA00E2FF8F /* UserDashboard.swift in Sources */,
 				CA65FF6F27F882BF00F7845D /* BSMGameScore.swift in Sources */,
 				CA65FF6C27F5F1E300F7845D /* Ints_Floats.swift in Sources */,
 				CA65FF4927F5EC4400F7845D /* IntentHandler.swift in Sources */,
+				CA1E036B2819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
+				CA1E0366281994FF00E2FF8F /* GameData.swift in Sources */,
 				CAC49351280850C0009677C7 /* WidgetPreviewData.swift in Sources */,
 				CA65FF7127FF271600F7845D /* BSMStandingsTable.swift in Sources */,
 			);
@@ -946,6 +978,7 @@
 				CA1722E127542DBE00E8BF36 /* PlayerModel.swift in Sources */,
 				CABF7BF8259351D500B95813 /* Persistence.swift in Sources */,
 				CA6F9E8427B2A9EE00530629 /* UserOnboardingView.swift in Sources */,
+				CA1E03682819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
 				CAAB56C527208A9200ADDE9D /* UserHomeView.swift in Sources */,
 				CABF7BF1259351D400B95813 /* ContentView.swift in Sources */,
 				CAF839D02705F4D9006FAD6B /* TestView.swift in Sources */,
@@ -962,6 +995,8 @@
 				CA78B71C259507BC00510621 /* ColorSets.swift in Sources */,
 				CA78B725259648F300510621 /* TeamDetailView.swift in Sources */,
 				CA1C3A2027388BF300BB194C /* SidebarNavigationView.swift in Sources */,
+				CA1E0360281994EA00E2FF8F /* GameData.swift in Sources */,
+				CA1E035E2819949A00E2FF8F /* UserDashboard.swift in Sources */,
 				CAE7740C26C1709B00A57F66 /* BSMStandingsTable.swift in Sources */,
 				CAAB56C3271F62F800ADDE9D /* GlobalFunctions.swift in Sources */,
 				CA28FB90280DDDC6007581FD /* HomeTeamDetailView.swift in Sources */,
@@ -992,15 +1027,18 @@
 				CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */,
 				CAD4271A280BF1C6001CA68A /* ColorSets.swift in Sources */,
 				CA9B1810277A289000D24CFA /* BSM_URL_Data.swift in Sources */,
+				CA1E036A2819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
 				CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */,
 				CA9B180F277A288900D24CFA /* Ints_Floats.swift in Sources */,
 				CAC044A227749D3100AD9888 /* PlayerModel.swift in Sources */,
 				CAC0449F27749D1C00AD9888 /* ModelData.swift in Sources */,
 				CAF062E32774C28400B7A0B2 /* FavoriteTeamWidgetView.swift in Sources */,
+				CA1E0365281994FE00E2FF8F /* GameData.swift in Sources */,
 				CA48557E27748A9E004ED11A /* GamedayWidgetView.swift in Sources */,
 				CA9B1811277A289E00D24CFA /* API_Key.swift in Sources */,
 				CA48558127748DEE004ED11A /* ViewModifiers.swift in Sources */,
 				CAC044A027749D2C00AD9888 /* BSMGameScore.swift in Sources */,
+				CA1E0362281994F400E2FF8F /* UserDashboard.swift in Sources */,
 				CA9B1817277A299F00D24CFA /* GlobalFunctions.swift in Sources */,
 				CAC044A127749D2F00AD9888 /* BSMStandingsTable.swift in Sources */,
 			);

@@ -9,33 +9,6 @@ import Foundation
 import EventKit
 import SwiftUI
 
-//these are deprecated for actual use, but it's nevertheless helpful to have some fallback images defined
-
-var away_team_logo = Image("App_road_team_logo")
-var home_team_logo = Image("App_home_team_logo")
-
-let flamingosLogo = Image("Berlin_Flamingos_Logo_3D")
-let sluggersLogo = Image("Sluggers_Logo")
-
-let teamLogos = [
-    "Skylarks": skylarksSecondaryLogo,
-    "Roosters": Image("Roosters_Logo"),
-    "Sluggers": sluggersLogo,
-    "Eagles": Image("Mahlow-Eagles_Logo"),
-    "Ravens": Image("ravens_logo"),
-    "R´s": Image("ravens_logo"),
-    "Porcupines": Image("potsdam_logo"),
-    "Sliders": Image("Sliders_Rund_2021"),
-    "Flamingos": flamingosLogo,
-    "Challengers": Image("challengers_Logo"),
-    "Rams": Image("Rams-Logo"),
-    "Wizards": Image("Wizards_Logo"),
-    "Poor Pigs": Image("Poorpigs_Logo"),
-    "Dukes": Image("Dukes_Logo"),
-    "Roadrunners": Image("Roadrunners_Logo"),
-    "Dragons": Image("Dragons_Logo"),
-]
-
 func fetchCorrectLogos(gamescore: GameScore) -> (road: Image, home: Image) {
     
     var road = away_team_logo
@@ -156,22 +129,22 @@ func determineTableRow(team: BSMTeam, table: LeagueTable) -> LeagueTable.Row {
 
 //MARK: Generic load function that accepts any codable type
 
-func loadBSMData<T: Codable>(url: URL, dataType: T.Type, completion: @escaping ((T) -> Void)) {
-    
-    let request = URLRequest(url: url)
-    URLSession.shared.dataTask(with: request) { data, response, error in
-
-        if let data = data {
-            if let response_obj = try? JSONDecoder().decode(T.self, from: data) {
-
-                DispatchQueue.main.async {
-                    let loadedData = response_obj
-                    completion(loadedData)
-                }
-            }
-        }
-    }.resume()
-}
+//func loadBSMData<T: Codable>(url: URL, dataType: T.Type, completion: @escaping ((T) -> Void)) {
+//
+//    let request = URLRequest(url: url)
+//    URLSession.shared.dataTask(with: request) { data, response, error in
+//
+//        if let data = data {
+//            if let response_obj = try? JSONDecoder().decode(T.self, from: data) {
+//
+//                DispatchQueue.main.async {
+//                    let loadedData = response_obj
+//                    completion(loadedData)
+//                }
+//            }
+//        }
+//    }.resume()
+//}
 
 // new version with async/await
 

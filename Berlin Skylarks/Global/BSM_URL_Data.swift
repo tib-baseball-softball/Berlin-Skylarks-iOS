@@ -32,17 +32,7 @@ let idSchBB = "5148"
 let idTossBB = "4807" //not applicable for 2022
 let idTeeBB = "5149"
 
-//-------------------------------DASHBOARD---------------------------------//
-
-class UserDashboard: ObservableObject {
-    @Published var leagueTable = emptyTable
-    
-    @Published var tableRow = emptyRow
-    
-    @Published var NextGame = testGame
-    
-    @Published var LastGame = testGame
-}
+//-----------------------------empty Struct data--------------------------------//
 
 let emptyTable = LeagueTable(league_id: 1, league_name: " ", season: Calendar.current.component(.year, from: Date()), rows: [])
 

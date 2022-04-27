@@ -11,12 +11,6 @@ struct ScoresOverView: View {
     
     var gamescore: GameScore
     
-//    private var dayFormatter: DateFormatter = {
-//        let dayFormatter = DateFormatter()
-//        dayFormatter.dateFormat = "EEE"
-//        return dayFormatter
-//    }()
-    
     @State var roadLogo = away_team_logo
     @State var homeLogo = home_team_logo
     
@@ -29,64 +23,64 @@ struct ScoresOverView: View {
     var body: some View {
 #if !os(watchOS)
         VStack {
-                HStack {
-                    VStack(alignment: .leading, spacing: 2) {
-                        Text(gamescore.league.name)
-                            .font(.headline.smallCaps())
-                        if let gameDate = gamescore.gameDate {
-                            HStack {
-                                Text(gameDate, format: Date.FormatStyle().weekday())
-                                Text(gameDate, style: .date)
-                                Text(gameDate, style: .time)
-                            }
-                            .foregroundColor(.secondary)
-                            .font(.subheadline)
+            HStack {
+                VStack(alignment: .leading, spacing: 2) {
+                    Text(gamescore.league.name)
+                        .font(.headline.smallCaps())
+                    if let gameDate = gamescore.gameDate {
+                        HStack {
+                            Text(gameDate, format: Date.FormatStyle().weekday())
+                            Text(gameDate, style: .date)
+                            Text(gameDate, style: .time)
                         }
-                        Divider()
-                            .frame(maxWidth: 200)
-                            .padding(.vertical, 3)
+                        .foregroundColor(.secondary)
+                        .font(.subheadline)
                     }
-                    Spacer()
-                    GameResultIndicator(gamescore: gamescore)
-                        .font(.headline)
+                    Divider()
+                        .frame(maxWidth: 200)
+                        .padding(.vertical, 3)
                 }
-                HStack {
-                    roadLogo
-                        .resizable()
-                        .scaledToFit()
+                Spacer()
+                GameResultIndicator(gamescore: gamescore)
+                    .font(.headline)
+            }
+            HStack {
+                roadLogo
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: 40, alignment: .center)
+                Text(gamescore.away_team_name)
+                    .padding(.leading)
+                Spacer()
+                if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
+                    Text(String(awayScore))
+                        .font(.title2)
+                        .bold()
                         .frame(maxWidth: 40, alignment: .center)
-                    Text(gamescore.away_team_name)
-                        .padding(.leading)
-                    Spacer()
-                    if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
-                        Text(String(awayScore))
-                            .font(.title2)
-                            .bold()
-                            .frame(maxWidth: 40, alignment: .center)
-                            .foregroundColor(awayScore < homeScore ? Color.secondary : Color.primary)
-                    }
+                        .foregroundColor(awayScore < homeScore ? Color.secondary : Color.primary)
                 }
-                HStack {
-                    homeLogo
-                        .resizable()
-                        .scaledToFit()
+            }
+            HStack {
+                homeLogo
+                    .resizable()
+                    .scaledToFit()
+                    .frame(maxWidth: 40, alignment: .center)
+                Text(gamescore.home_team_name)
+                    .padding(.leading)
+                Spacer()
+                if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
+                    Text(String(homeScore))
+                        .font(.title2)
+                        .bold()
                         .frame(maxWidth: 40, alignment: .center)
-                    Text(gamescore.home_team_name)
-                        .padding(.leading)
-                    Spacer()
-                    if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
-                        Text(String(homeScore))
-                            .font(.title2)
-                            .bold()
-                            .frame(maxWidth: 40, alignment: .center)
-                            .foregroundColor(awayScore > homeScore ? Color.secondary : Color.primary)
-                    }
+                        .foregroundColor(awayScore > homeScore ? Color.secondary : Color.primary)
                 }
+            }
         }
         .padding(.vertical, 2)
-        .onAppear(perform: {
+        .onAppear {
             setLogos()
-        })
+        }
 #endif
         
         //---------------------------------------------------------//

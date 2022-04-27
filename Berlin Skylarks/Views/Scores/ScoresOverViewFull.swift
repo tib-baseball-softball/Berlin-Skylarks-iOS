@@ -20,7 +20,7 @@ struct ScoresOverViewFull: View {
         homeLogo = logos.home
     }
     
-    //old version that takes a lot of screen space
+    //MARK: old version that takes a lot of screen space, not used right now
     var body: some View {
         VStack(spacing: 7) {
             VStack {
