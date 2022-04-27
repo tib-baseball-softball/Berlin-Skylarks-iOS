@@ -21,6 +21,7 @@ struct UserHomeView: View {
     
     @State var showNextGame = false
     @State var showLastGame = false
+    @State var showingTableData = false
     
     let now = Date.now
     //10 days = 864000 seconds
@@ -81,6 +82,9 @@ struct UserHomeView: View {
         userDashboard.leagueTable = table
         userDashboard.tableRow = row
         
+        if !homeLeagueTables.isEmpty {
+            showingTableData = true
+        }
         loadingTables = false
     }
     
@@ -163,40 +167,42 @@ struct UserHomeView: View {
                 }
             }
             Section(header: Text("Standings/Record")) {
-                NavigationLink(destination: HomeTeamDetailView()) {
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Image(systemName: "sum")
-                                .frame(maxWidth: 20)
-                                .foregroundColor(Color.skylarksAdaptiveBlue)
-                            Text("\(userDashboard.tableRow.wins_count) - \(userDashboard.tableRow.losses_count)")
-                                .bold()
-                                .padding(.leading)
-                        }
-                        Divider()
-                        HStack {
-                            Image(systemName: "percent")
-                                .frame(maxWidth: 20)
-                                .foregroundColor(Color.skylarksAdaptiveBlue)
-                            Text(userDashboard.tableRow.quota)
-                                .bold()
-                                .padding(.leading)
-                        }
-                        Divider()
-                        HStack {
-                            Image(systemName: "number")
-                                .frame(maxWidth: 20)
-                                .foregroundColor(Color.skylarksAdaptiveBlue)
-                            Text(userDashboard.tableRow.rank)
-                                .bold()
-                                .padding(.leading)
-                            if userDashboard.tableRow.rank == "1." {
-                                Image(systemName: "crown")
-                                    .foregroundColor(Color.skylarksRed)
+                if showingTableData {
+                    NavigationLink(destination: HomeTeamDetailView()) {
+                        VStack(alignment: .leading) {
+                            HStack {
+                                Image(systemName: "sum")
+                                    .frame(maxWidth: 20)
+                                    .foregroundColor(Color.skylarksAdaptiveBlue)
+                                Text("\(userDashboard.tableRow.wins_count) - \(userDashboard.tableRow.losses_count)")
+                                    .bold()
+                                    .padding(.leading)
+                            }
+                            Divider()
+                            HStack {
+                                Image(systemName: "percent")
+                                    .frame(maxWidth: 20)
+                                    .foregroundColor(Color.skylarksAdaptiveBlue)
+                                Text(userDashboard.tableRow.quota)
+                                    .bold()
+                                    .padding(.leading)
+                            }
+                            Divider()
+                            HStack {
+                                Image(systemName: "number")
+                                    .frame(maxWidth: 20)
+                                    .foregroundColor(Color.skylarksAdaptiveBlue)
+                                Text(userDashboard.tableRow.rank)
+                                    .bold()
+                                    .padding(.leading)
+                                if userDashboard.tableRow.rank == "1." {
+                                    Image(systemName: "crown")
+                                        .foregroundColor(Color.skylarksRed)
+                                }
                             }
                         }
+                        .padding(.vertical, 6)
                     }
-                    .padding(.vertical, 6)
                 }
                 if !homeLeagueTables.isEmpty {
                     NavigationLink(
@@ -253,7 +259,11 @@ struct UserHomeView: View {
           #endif
         } () )
         .navigationTitle("Dashboard")
-//
+        
+        .animation(.default, value: userDashboard.tableRow)
+        .animation(.default, value: userDashboard.NextGame)
+        .animation(.default, value: userDashboard.LastGame)
+        
         .onAppear(perform: {
             Task {
                 await loadProcessHomeData()
@@ -329,29 +339,31 @@ struct UserHomeView: View {
                         Text(String(userDashboard.leagueTable.season))
                             .padding(.leading)
                     }
-                    Divider()
-                        .padding(.vertical)
-                    Group {
-                        HStack {
-                            Image(systemName: "sum")
-                                .frame(maxWidth: 20)
-                            Text("\(userDashboard.tableRow.wins_count) - \(userDashboard.tableRow.losses_count)")
-                                .bold()
-                                .padding(.leading)
-                        }
-                        HStack {
-                            Image(systemName: "percent")
-                                .frame(maxWidth: 20)
-                            Text(userDashboard.tableRow.quota)
-                                .bold()
-                                .padding(.leading)
-                        }
-                        HStack {
-                            Image(systemName: "number")
-                                .frame(maxWidth: 20)
-                            Text(userDashboard.tableRow.rank)
-                                .bold()
-                                .padding(.leading)
+                    if showingTableData {
+                        Divider()
+                            .padding(.vertical)
+                        Group {
+                            HStack {
+                                Image(systemName: "sum")
+                                    .frame(maxWidth: 20)
+                                Text("\(userDashboard.tableRow.wins_count) - \(userDashboard.tableRow.losses_count)")
+                                    .bold()
+                                    .padding(.leading)
+                            }
+                            HStack {
+                                Image(systemName: "percent")
+                                    .frame(maxWidth: 20)
+                                Text(userDashboard.tableRow.quota)
+                                    .bold()
+                                    .padding(.leading)
+                            }
+                            HStack {
+                                Image(systemName: "number")
+                                    .frame(maxWidth: 20)
+                                Text(userDashboard.tableRow.rank)
+                                    .bold()
+                                    .padding(.leading)
+                            }
                         }
                     }
                 }
