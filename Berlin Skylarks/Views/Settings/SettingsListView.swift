@@ -100,7 +100,7 @@ struct SettingsListView: View {
                     }
                 }
                 NavigationLink(
-                    destination: InfoView()) {
+                    destination: LegalNoticeView()) {
                     HStack {
                         Image(systemName: "c.circle")
                             .font(.title2)
@@ -109,7 +109,7 @@ struct SettingsListView: View {
                     }
                 }
                 NavigationLink(
-                    destination: InfoView()) {
+                    destination: PrivacyPolicyView()) {
                     HStack {
                         Image(systemName: "hand.raised.square.fill")
                             .font(.title2)
@@ -186,6 +186,5 @@ struct SettingsListView_Previews: PreviewProvider {
         NavigationView {
             SettingsListView()
         }
-        .previewInterfaceOrientation(.landscapeLeft)
     }
 }

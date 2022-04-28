@@ -71,3 +71,11 @@ extension View {
         }
     }
 }
+
+#if !os(watchOS)
+extension UIApplication {
+    static var appVersion: String? {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
+    }
+}
+#endif
