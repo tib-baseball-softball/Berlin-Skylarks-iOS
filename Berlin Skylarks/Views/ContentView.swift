@@ -26,7 +26,7 @@ struct ContentView: View {
     func checkForOnboarding() {
         if didLaunchBefore == false {
             showingSheetOnboarding = true
-            didLaunchBefore = true
+            //didLaunchBefore = true
         }
     }
     
@@ -88,7 +88,9 @@ struct ContentView: View {
             .onAppear(perform: {
                 checkForOnboarding()
             })
-            .sheet(isPresented: $showingSheetOnboarding) {
+            .sheet( isPresented: $showingSheetOnboarding, onDismiss: {
+                didLaunchBefore = true
+            }) {
                 UserOnboardingView()
             }
         }
@@ -100,7 +102,9 @@ struct ContentView: View {
                 .onAppear(perform: {
                     checkForOnboarding()
                 })
-                .sheet( isPresented: $showingSheetOnboarding) {
+                .sheet( isPresented: $showingSheetOnboarding, onDismiss: {
+                    didLaunchBefore = true
+                }) {
                     UserOnboardingView()
                 }
         }
@@ -158,6 +162,7 @@ struct ContentView: View {
                     
             }
             .navigationTitle("Home")
+            //TODO: needs to get favorite team info as well, either from parent app or via own view
         }
         #endif
     }

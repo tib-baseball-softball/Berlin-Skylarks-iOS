@@ -44,8 +44,8 @@ struct LegalNoticeView: View {
                 Source:
                 eRecht24
                 """)
+            .padding()
         }
-        .padding()
         .navigationTitle("Legal Notice")
     }
 }

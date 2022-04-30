@@ -12,9 +12,9 @@ struct UserOnboardingView: View {
     @State private var showingPicker = false
     @State var teams = [BSMTeam]()
     
+    //this is always the current year here, so it should be set immediately
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
     
-    //@ObservedObject var userSettings = UserSettings()
     @AppStorage("favoriteTeamID") var favoriteTeamID = 0
     
     func fetchTeams() async {
@@ -33,49 +33,61 @@ struct UserOnboardingView: View {
                 .frame(maxWidth: 200)
                 .padding(.bottom)
             //Spacer()
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 15) {
                 Text("Welcome to the app!")
                     .font(.title)
                     .bold()
-                    .padding(.vertical)
+                    .padding(.top)
                 Text("Please select your favorite team to optimize your experience. Your favorite team appears in the Home dashboard.")
                     .fixedSize(horizontal: false, vertical: true)
                     .font(.subheadline)
                     .foregroundColor(.secondary)
                 VStack {
-                    HStack {
-                        Image(systemName: "star.square.fill")
-                            .font(.title)
-                        Spacer()
-                        Text("Select Favorite Team")
-                            .bold()
-                        Spacer()
-                    }
-                    .font(.title3)
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.skylarksRed)
-                    .cornerRadius(10)
-                    
-                    .onTapGesture {
-                        withAnimation {
-                            showingPicker.toggle()
+                    if !teams.isEmpty {
+                        HStack {
+                            Image(systemName: "star.square.fill")
+                                .font(.title)
+                            Spacer()
+                            Text("Select Favorite Team")
+                                .bold()
+                            Spacer()
                         }
-                    }
-                    if showingPicker == true {
-                        Picker(selection: $favoriteTeamID,
-                               label:
-                                    Text("Favorite Team")
-                        ) {
-                            ForEach(teams, id: \.self) { team in
-                                if !team.league_entries.isEmpty {
-                                    Text("\(team.name) (\(team.league_entries[0].league.name))")
-                                        .tag(team.id)
-                                }
+                        .font(.title3)
+                        .padding()
+                        .foregroundColor(.white)
+                        .background(Color.skylarksRed)
+                        .cornerRadius(10)
+                        
+                        .onTapGesture {
+                            withAnimation {
+                                showingPicker.toggle()
                             }
                         }
-                        .transition(.scale)
-                        .pickerStyle(.wheel)
+                        if showingPicker == true {
+                            Picker(selection: $favoriteTeamID,
+                                   label:
+                                        Text("Favorite Team")
+                            ) {
+                                ForEach(teams, id: \.self) { team in
+                                    if !team.league_entries.isEmpty {
+                                        Text("\(team.name) (\(team.league_entries[0].league.name))")
+                                            .tag(team.id)
+                                    }
+                                }
+                            }
+                            .transition(.scale)
+                            .pickerStyle(.wheel)
+                        }
+                    } else {
+                        HStack {
+                            Text("Loading teams for current season...")
+                            Spacer()
+                            ProgressView()
+                        }
+                        .padding()
+                        .font(.title3)
+                        .background(ItemBackgroundColor)
+                        .cornerRadius(10)
                     }
                 }
                 .padding(.bottom)
@@ -85,6 +97,8 @@ struct UserOnboardingView: View {
             .cornerRadius(NewsItemCornerRadius)
         }
         .padding()
+        //cannot be closed as long as no team is selected
+        .interactiveDismissDisabled(favoriteTeamID == 0)
         
         .onAppear(perform: {
             Task {

@@ -14,6 +14,7 @@ struct UserHomeView: View {
     @AppStorage("favoriteTeam") var favoriteTeam: String = "Not set"
     @AppStorage("favoriteTeamID") var favoriteTeamID = 0
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
+    @AppStorage("didLaunchBefore") var didLaunchBefore = false
     
     @State private var showingSheetSettings = false
     @State private var showingSheetNextGame = false
@@ -277,6 +278,13 @@ struct UserHomeView: View {
             homeLeagueTables = []
             homeGamescores = []
         })
+        
+        //this triggers only after the first launch once the onboarding sheet is dismissed. This var starts false, is set to true after the user selects their favorite team and is never set back to false anywhere
+        .onChange(of: didLaunchBefore) { firstLaunch in
+            Task {
+                await loadProcessHomeData()
+            }
+        }
 //
     //we are showing the app settings here, but only on iPhone, since the 5 tab items are full. On iPad/Mac the sidebar has more than enough space to include settings
         //for now we have it back in the tab bar
@@ -428,6 +436,12 @@ struct UserHomeView: View {
             homeLeagueTables = []
             homeGamescores = []
         })
+        
+        .onChange(of: didLaunchBefore) { firstLaunch in
+            Task {
+                await loadProcessHomeData()
+            }
+        }
         
 #endif
     }
