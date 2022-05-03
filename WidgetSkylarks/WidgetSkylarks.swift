@@ -114,10 +114,11 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
             
             var entries: [FavoriteTeamEntry] = []
 
-            // Generate a timeline consisting of 3 entries an hour apart, starting from the current date. WAS FIVE!
+            //Original: Generate a timeline consisting of 3 entries an hour apart, starting from the current date.
+            //changed it to update every 20 minutes (hopefully) and created 5 timeline entries
             let currentDate = Date()
-            for hourOffset in 0 ..< 2 {
-                let entryDate = Calendar.current.date(byAdding: .hour, value: hourOffset, to: currentDate)!
+            for hourOffset in 0 ..< 4 {
+                let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset * 20, to: currentDate)!
                 let entry = FavoriteTeamEntry(date: entryDate, configuration: configuration, team: selectedTeam, lastGame: displayGames.last, lastGameRoadLogo: lastGameRoadLogo, lastGameHomeLogo: lastGameHomeLogo, nextGame: displayGames.next, nextGameOpponentLogo: nextGameOpponentLogo, skylarksAreRoadTeam: skylarksAreRoadTeam, Table: userDashboard.leagueTable, TableRow: userDashboard.tableRow)
                 entries.append(entry)
             }
@@ -125,30 +126,6 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
             let timeline = Timeline(entries: entries, policy: .atEnd)
             completion(timeline)
         }
-            
-                
-                // MARK: nested completion handlers work => but I should explore better options here, it is widely considered to be unreadable code!
-                //WIP: change to async/await
-                
-//                loadBSMData(url: team1.leagueTableURL, dataType: LeagueTable.self) { loadedTable in
-//                    userDashboard.leagueTable = loadedTable
-//
-//                    for row in userDashboard.leagueTable.rows where row.team_name.contains("Skylarks") {
-//
-//                        //we have two teams for BZL, so the function needs to account for the correct one
-////                        if selectedTeam == team3 {
-////                            if row.team_name == "Skylarks 3" {
-////                                userDashboard.tableRow = row
-////                            }
-////                        } else if selectedTeam == team4 {
-////                            if row.team_name == "Skylarks 4" {
-////                                userDashboard.tableRow = row
-////                            }
-////                        } else if selectedTeam != team3 && selectedTeam != team4 {
-//                            userDashboard.tableRow = row
-////                        }
-//                    }
-                    
     }
 }
 
