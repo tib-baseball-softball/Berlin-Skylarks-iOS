@@ -150,6 +150,10 @@ struct ScoresView: View {
                 gamescore.away_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased())
             })
         }
+        .refreshable {
+            gamescores = []
+            await loadGamesAndProcess()
+        }
         .onAppear(perform: {
             if gamescores.isEmpty {
                 Task {
