@@ -6,6 +6,7 @@
 //
 
 import ClockKit
+import SwiftUI
 
 
 class ComplicationController: NSObject, CLKComplicationDataSource {
@@ -14,7 +15,7 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
 
     func getComplicationDescriptors(handler: @escaping ([CLKComplicationDescriptor]) -> Void) {
         let descriptors = [
-            CLKComplicationDescriptor(identifier: "complication", displayName: "Berlin Skylarks", supportedFamilies: CLKComplicationFamily.allCases)
+            CLKComplicationDescriptor(identifier: "logo", displayName: "Skylarks", supportedFamilies: [.graphicCircular])
             // Multiple complication support can be added here with more descriptors
         ]
         
@@ -55,5 +56,50 @@ class ComplicationController: NSObject, CLKComplicationDataSource {
     func getLocalizableSampleTemplate(for complication: CLKComplication, withHandler handler: @escaping (CLKComplicationTemplate?) -> Void) {
         // This method will be called once per supported complication, and the results will be cached
         handler(nil)
+    }
+}
+
+struct LogoComplicationView: View {
+    
+    var body: some View {
+        ZStack {
+            Color.skylarksRed
+                //.complicationForeground()
+            skylarksSecondaryLogo
+                .resizable()
+                .scaledToFit()
+                .offset(x: -2, y: 0)
+                .frame(maxWidth: 42)
+        }
+    }
+}
+
+struct LogoComplicationView_Previews: PreviewProvider {
+    static var previews: some View {
+        Group {
+            CLKComplicationTemplateGraphicCircularView(
+            (LogoComplicationView())
+            ).previewContext(
+                faceColor: .multicolor
+            )
+            
+            CLKComplicationTemplateGraphicCircularView(
+            (LogoComplicationView())
+            ).previewContext(
+                faceColor: .blue
+            )
+            
+            CLKComplicationTemplateGraphicRectangularFullView(
+            (LogoComplicationView())
+            ).previewContext()
+            
+            CLKComplicationTemplateGraphicExtraLargeCircularView(
+            (LogoComplicationView())
+            ).previewContext()
+            
+            CLKComplicationTemplateGraphicCornerCircularView(
+            (LogoComplicationView())
+            ).previewContext()
+        }
     }
 }
