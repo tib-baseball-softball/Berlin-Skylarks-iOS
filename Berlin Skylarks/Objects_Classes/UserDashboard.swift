@@ -19,3 +19,5 @@ class UserDashboard: ObservableObject {
     
     @Published var LastGame = testGame
 }
+
+let dummyDashboard = UserDashboard()

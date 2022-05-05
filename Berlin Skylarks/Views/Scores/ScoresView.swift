@@ -124,6 +124,7 @@ struct ScoresView: View {
                     ScoresOverView(gamescore: GameScore)
                 }
                 .foregroundColor(.primary)
+                .listRowSeparatorTint(.skylarksRed)
             }
             if gamescores == [] && loadingInProgress == false {
                 Text("There are no Skylarks games scheduled for the chosen time frame.")
@@ -132,7 +133,7 @@ struct ScoresView: View {
         .listStyle(.insetGrouped)
         .animation(.default, value: searchText)
         .animation(.default, value: gamescores)
-        .searchable(text: $searchText)
+        .searchable(text: $searchText, prompt: Text("Filter")) //it doesn't let me change the prompt
         .onChange(of: searchText) { searchText in
             searchResults = self.gamescores.filter({ gamescore in
                 

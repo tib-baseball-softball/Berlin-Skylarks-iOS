@@ -169,7 +169,7 @@ struct UserHomeView: View {
             }
             Section(header: Text("Standings/Record")) {
                 if showingTableData {
-                    NavigationLink(destination: HomeTeamDetailView()) {
+                    NavigationLink(destination: HomeTeamDetailView(userDashboard: userDashboard)) {
                         VStack(alignment: .leading) {
                             HStack {
                                 Image(systemName: "sum")
