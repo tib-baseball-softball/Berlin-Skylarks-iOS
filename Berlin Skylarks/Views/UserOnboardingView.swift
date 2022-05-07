@@ -9,6 +9,8 @@ import SwiftUI
 
 struct UserOnboardingView: View {
     
+    @Environment(\.dismiss) var dismiss
+    
     @State private var showingPicker = false
     @State var teams = [BSMTeam]()
     
@@ -91,14 +93,31 @@ struct UserOnboardingView: View {
                     }
                 }
                 .padding(.bottom)
+                
             }
             .padding(.horizontal)
             .background(ScoresSubItemBackground)
             .cornerRadius(NewsItemCornerRadius)
+            HStack {
+                Spacer()
+                Button(action: {
+                    dismiss()
+                }) {
+                    Text("Accept selection")
+                }
+                .padding()
+                .font(.title3)
+                //tappable only after a favorite team is selected
+                .disabled(favoriteTeamID == 0)
+                Spacer()
+            }
+            .background(ScoresSubItemBackground)
+            .cornerRadius(NewsItemCornerRadius)
+            
         }
         .padding()
-        //cannot be closed as long as no team is selected
-        .interactiveDismissDisabled(favoriteTeamID == 0)
+        //cannot be closed by gesture
+        .interactiveDismissDisabled()
         
         .onAppear(perform: {
             Task {
