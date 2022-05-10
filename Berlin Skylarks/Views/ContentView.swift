@@ -169,6 +169,15 @@ struct ContentView: View {
             }
             .navigationTitle("Home")
             //TODO: needs to get favorite team info as well, either from parent app or via own view
+            .onAppear(perform: {
+                checkForOnboarding()
+            })
+            .sheet( isPresented: $showingSheetOnboarding, onDismiss: {
+                didLaunchBefore = true
+            }) {
+                UserOnboardingView()
+                    .navigationBarHidden(true)
+            }
         }
         #endif
     }

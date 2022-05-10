@@ -27,15 +27,16 @@ struct UserOnboardingView: View {
         }
     }
     
+
     var body: some View {
-        VStack {
+        
+#if !os(watchOS)
+        List {
             skylarksPrimaryLogo
                 .resizable()
                 .scaledToFit()
-                .frame(maxWidth: 200)
-                .padding(.bottom)
             //Spacer()
-            VStack(alignment: .leading, spacing: 15) {
+            VStack(alignment: .leading) {
                 Text("Welcome to the app!")
                     .font(.title)
                     .bold()
@@ -95,9 +96,6 @@ struct UserOnboardingView: View {
                 .padding(.bottom)
                 
             }
-            .padding(.horizontal)
-            .background(ScoresSubItemBackground)
-            .cornerRadius(NewsItemCornerRadius)
             HStack {
                 Spacer()
                 Button(action: {
@@ -111,9 +109,6 @@ struct UserOnboardingView: View {
                 .disabled(favoriteTeamID == 0)
                 Spacer()
             }
-            .background(ScoresSubItemBackground)
-            .cornerRadius(NewsItemCornerRadius)
-            
         }
         .padding()
         //cannot be closed by gesture
@@ -124,6 +119,91 @@ struct UserOnboardingView: View {
                 await fetchTeams()
             }
         })
+        
+        //---------------------------------------------------------//
+        //-----------start Apple Watch-specific code---------------//
+        //---------------------------------------------------------//
+#else
+        List {
+            //Spacer()
+            VStack(alignment: .leading) {
+                HStack {
+                    Text("Welcome to the app!")
+                    //.font(.title)
+                        .bold()
+                    Spacer()
+                    skylarksPrimaryLogo
+                        .resizable()
+                        .scaledToFit()
+                        .frame(maxWidth: 40)
+                }
+                Text("Please select your favorite team to optimize your experience. Your favorite team appears in the Home dashboard.")
+                    .fixedSize(horizontal: false, vertical: true)
+                    .font(.subheadline)
+                    .foregroundColor(.secondary)
+            }
+            if !teams.isEmpty {
+                
+                Button(action: {
+                    withAnimation {
+                        showingPicker.toggle()
+                    }
+                }) {
+                    HStack {
+                        Image(systemName: "star.square.fill")
+                            .foregroundColor(.skylarksRed)
+                        Text("Select Favorite Team")
+                            .bold()
+                    }
+                }
+                if showingPicker == true {
+                    Picker(selection: $favoriteTeamID,
+                           label:
+                                Text("Favorite Team")
+                    ) {
+                        ForEach(teams, id: \.self) { team in
+                            if !team.league_entries.isEmpty {
+                                Text("\(team.name) (\(team.league_entries[0].league.name))")
+                                    .tag(team.id)
+                            }
+                        }
+                    }
+                    .transition(.scale)
+                    .pickerStyle(.inline)
+                }
+            } else {
+                HStack {
+                    Text("Loading teams for current season...")
+                    Spacer()
+                    ProgressView()
+                }
+                .font(.title3)
+                .cornerRadius(10)
+            }
+            HStack {
+                Spacer()
+                Button(action: {
+                    dismiss()
+                }) {
+                    Text("Accept selection")
+                        .bold()
+                        .foregroundColor(.skylarksRed)
+                }
+                //tappable only after a favorite team is selected
+                .disabled(favoriteTeamID == 0)
+                Spacer()
+            }
+            //.listItemTint(.skylarksRed)
+        }
+        //cannot be closed by gesture
+        .interactiveDismissDisabled()
+        
+        .onAppear(perform: {
+            Task {
+                await fetchTeams()
+            }
+        })
+#endif
     }
 }
 

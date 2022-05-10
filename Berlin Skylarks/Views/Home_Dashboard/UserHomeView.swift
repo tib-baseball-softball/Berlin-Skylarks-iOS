@@ -328,6 +328,7 @@ struct UserHomeView: View {
 //                        }
 
                         Text("\(displayTeam.name) (\(displayTeam.league_entries[0].league.acronym))")
+                            .fixedSize(horizontal: false, vertical: true)
                             .padding(.leading)
                     }
                     .padding(.top)
