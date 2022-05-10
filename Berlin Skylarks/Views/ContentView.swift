@@ -8,6 +8,10 @@
 import SwiftUI
 import CoreData
 
+#if !os(watchOS)
+import WidgetKit
+#endif
+
 struct ContentView: View {
     
     @State private var showingSheetOnboarding = false
@@ -87,6 +91,7 @@ struct ContentView: View {
             }
             .onAppear(perform: {
                 checkForOnboarding()
+                WidgetCenter.shared.reloadAllTimelines()
             })
             .sheet( isPresented: $showingSheetOnboarding, onDismiss: {
                 didLaunchBefore = true
@@ -101,6 +106,7 @@ struct ContentView: View {
             SidebarNavigationView()
                 .onAppear(perform: {
                     checkForOnboarding()
+                    WidgetCenter.shared.reloadAllTimelines()
                 })
                 .sheet( isPresented: $showingSheetOnboarding, onDismiss: {
                     didLaunchBefore = true
