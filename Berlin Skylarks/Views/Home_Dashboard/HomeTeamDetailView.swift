@@ -9,15 +9,67 @@ import SwiftUI
 
 struct HomeTeamDetailView: View {
     
+    //Ideas: chart with wins/percentage gauge/"hot and cold streak"
+    
+    enum Segment: String, Identifiable, CaseIterable {
+        case chart, percentage, streak
+        
+        var displayName: String { rawValue.capitalized }
+        var id: String { self.rawValue }
+    }
+    
+    @Environment(\.colorScheme) var colorScheme
+    
     @ObservedObject var userDashboard: UserDashboard
     
+    @State var selection = Segment.chart
+    
     var body: some View {
-        List {
-            Section(
-                header: Text("Stuff"),
-                footer: Text("more Stuff")
-            ){
-                Text("Stuff")
+        ZStack {
+            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                Picker(selection: $selection, label:
+                        Text("Selected section")
+                ){
+                    ForEach(Segment.allCases) { segment in
+                        Text(segment.displayName)
+                            .tag(segment)
+                    }
+                }
+                .pickerStyle(.segmented)
+                .padding()
+                List {
+                    
+                    Section(
+                        header: Text("Stuff"),
+                        footer: Text("more Stuff")
+                    ){
+                        Text("Stuff")
+                    }
+                    Section(
+                        header: Text("Stuff"),
+                        footer: Text("more Stuff")
+                    ){
+                        Text("Stuff")
+                    }
+                    
+                }
+                .listStyle(.insetGrouped)
+                .navigationTitle("Favorite Team Details")
+    //            .toolbar {
+    //                ToolbarItemGroup(placement: .bottomBar) {
+    //                    Picker(selection: $selection, label:
+    //                            Text("Selected section")
+    //                    ){
+    //                        ForEach(Segment.allCases) { segment in
+    //                            Text(segment.displayName)
+    //                                .tag(segment)
+    //                        }
+    //                    }
+    //                    .pickerStyle(.segmented)
+    //                }
+    //            }
             }
         }
     }
@@ -25,6 +77,9 @@ struct HomeTeamDetailView: View {
 
 struct HomeTeamDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeTeamDetailView(userDashboard: dummyDashboard)
+        NavigationView {
+            HomeTeamDetailView(userDashboard: dummyDashboard)
+            //.preferredColorScheme(.dark)
+        }
     }
 }
