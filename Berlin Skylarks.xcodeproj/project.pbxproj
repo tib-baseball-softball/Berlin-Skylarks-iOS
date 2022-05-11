@@ -1186,6 +1186,7 @@
 				INFOPLIST_FILE = "WatchSkylarks WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Skylarks WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = ComplicationController;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "The Skylarks app needs access to your calendar to add game dates to it.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1219,6 +1220,7 @@
 				INFOPLIST_FILE = "WatchSkylarks WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Skylarks WatchKit Extension";
 				INFOPLIST_KEY_CLKComplicationPrincipalClass = ComplicationController;
+				INFOPLIST_KEY_NSCalendarsUsageDescription = "The Skylarks app needs access to your calendar to add game dates to it.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
 				LD_RUNPATH_SEARCH_PATHS = (

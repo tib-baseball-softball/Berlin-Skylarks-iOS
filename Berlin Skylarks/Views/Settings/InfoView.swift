@@ -13,16 +13,24 @@ struct InfoView: View {
         List {
             #if !os(watchOS)
             HStack {
-                Text("App version:")
+                Text("App Name:")
+                if let name = UIApplication.appName {
+                    Text(name)
+                }
+            }
+            HStack {
+                Text("App Version:")
                 if let version = UIApplication.appVersion {
                     Text(version)
                 }
             }
-            #endif
             HStack {
-                Text("Build:")
-                Text("some build ID")
+                Text("Build Number:")
+                if let build = UIApplication.appBuild {
+                    Text(build)
+                }
             }
+            #endif
         }
         .navigationTitle("App Info")
     }

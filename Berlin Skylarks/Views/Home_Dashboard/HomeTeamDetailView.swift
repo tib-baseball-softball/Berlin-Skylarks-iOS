@@ -22,7 +22,7 @@ struct HomeTeamDetailView: View {
     
     @ObservedObject var userDashboard: UserDashboard
     
-    @State var selection = Segment.chart
+    @State var selection = Segment.percentage
     
     var body: some View {
         ZStack {
@@ -40,23 +40,42 @@ struct HomeTeamDetailView: View {
                 .pickerStyle(.segmented)
                 .padding()
                 List {
-                    
-                    Section(
-                        header: Text("Stuff"),
-                        footer: Text("more Stuff")
-                    ){
-                        Text("Stuff")
+                    Text("...WORK IN PROGRESS...")
+                    if selection == Segment.chart {
+                        Section(
+                            header: Text("Stuff"),
+                            footer: Text("more Stuff")
+                        ){
+                            Text("Chart here")
+                        }
+                    } else if selection == Segment.percentage {
+                        Section(
+                            header: Text("Winning Percentage")
+                            //footer: Text("more Stuff")
+                        ){
+                            VStack {
+                                HStack {
+                                    Spacer()
+                                    Circle()
+                                        .strokeBorder(
+                                            LinearGradient(gradient: Gradient(colors: [.skylarksBlue, .skylarksRed]), startPoint: .leading, endPoint: .bottomTrailing)
+                                            ,
+                                            lineWidth: 15
+                                        )
+                                        .frame(width: 150, height: 150)
+                                        .padding()
+                                    Spacer()
+                                }
+                                Text(userDashboard.tableRow.quota)
+                            }
+                        }
+                        AngularGradient(colors: [.skylarksSand, .skylarksBlue, .skylarksRed], center: .center, startAngle: .zero, endAngle: .degrees(360))
+                        RadialGradient(colors: [.skylarksSand, .skylarksBlue, .skylarksRed], center: .center, startRadius: 50, endRadius: 100)
                     }
-                    Section(
-                        header: Text("Stuff"),
-                        footer: Text("more Stuff")
-                    ){
-                        Text("Stuff")
-                    }
-                    
                 }
                 .listStyle(.insetGrouped)
                 .navigationTitle("Favorite Team Details")
+                .animation(.easeInOut, value: selection)
     //            .toolbar {
     //                ToolbarItemGroup(placement: .bottomBar) {
     //                    Picker(selection: $selection, label:
@@ -79,7 +98,7 @@ struct HomeTeamDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             HomeTeamDetailView(userDashboard: dummyDashboard)
-            //.preferredColorScheme(.dark)
+            .preferredColorScheme(.dark)
         }
     }
 }

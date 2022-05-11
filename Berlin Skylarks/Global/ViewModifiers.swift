@@ -74,6 +74,12 @@ extension View {
 
 #if !os(watchOS)
 extension UIApplication {
+    static var appName: String? {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String
+    }
+    static var appBuild: String? {
+        return Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as? String
+    }
     static var appVersion: String? {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as? String
     }

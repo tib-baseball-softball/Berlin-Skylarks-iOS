@@ -17,7 +17,7 @@ struct LegalNoticeView: View {
                 Leibnizstrasse 40
                 10629 Berlin
                 Phone: 030-60947072
-                E-Mail: [vorstand@tib-baseball.de](mailto:vorstand@tib-baseball.de)
+                E-Mail: [app@tib-baseball.de](mailto:app@tib-baseball.de)
 
                 **Responsible for the content according to § 55 Abs. 2 RstV**
 

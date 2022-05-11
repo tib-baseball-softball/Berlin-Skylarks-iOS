@@ -72,19 +72,20 @@ struct TeamDetailView: View {
                         }
                     }
                 }
-                Section(header: Text("Player profiles")) {
-                    NavigationLink(destination: Text("Player List here")) {
-                        HStack {
-                            Image(systemName: "person.3.sequence.fill")
-                            Text("Show Player List")
-                        }
-                        .padding(.vertical)
-                    }
-                }
-                Section(header: Text("Standings")) {
-                    Text("temp")
-                        .padding(.vertical)
-                }
+                //TODO: maybe for a later feature (needs to be blocked for general public as player lists are sensitive data)
+//                Section(header: Text("Player profiles")) {
+//                    NavigationLink(destination: Text("Player List here")) {
+//                        HStack {
+//                            Image(systemName: "person.3.sequence.fill")
+//                            Text("Show Player List")
+//                        }
+//                        .padding(.vertical)
+//                    }
+//                }
+//                Section(header: Text("Standings")) {
+//                    Text("temp")
+//                        .padding(.vertical)
+//                }
             }
             .navigationTitle(team.name)
             .navigationBarTitleDisplayMode(.inline)

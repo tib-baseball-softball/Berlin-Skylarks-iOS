@@ -66,8 +66,8 @@ struct SettingsListView: View {
                             .font(.title3)
                         Text("Season")
                 }) {
-                    //TODO: change to start with 2021 (app does not work with older team names)
-                    ForEach(2015...Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!, id: \.self) { season in
+                    //theoretically works with years earlier than 2021, but the app filters games for team name, so older team names don't work in the current implementation and are not intended to be included
+                    ForEach(2021...Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!, id: \.self) { season in
                         Text(String(season))
                     }
                 }
