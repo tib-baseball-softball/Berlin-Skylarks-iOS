@@ -101,7 +101,7 @@ struct StandingsView: View {
             //Fix on iPhone seems to work for now even without a container view, please double-check in practice!
             
             .onAppear(perform: {
-                if leagueTableArray == [] && tablesLoaded == false {
+                if leagueTableArray.isEmpty && tablesLoaded == false {
                     Task {
                         await loadAllTables()
                     }

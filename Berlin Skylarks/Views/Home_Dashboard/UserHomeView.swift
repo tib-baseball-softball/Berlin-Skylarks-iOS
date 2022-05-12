@@ -24,10 +24,10 @@ struct UserHomeView: View {
     @State var showLastGame = false
     @State var showingTableData = false
     
-    let now = Date.now
-    //10 days = 864000 seconds
-    let lastGameDayCutoff = Date.now.addingTimeInterval(-864000)
-    let nextGameDayCutoff = Date.now.addingTimeInterval(864000)
+//    let now = Date.now
+//    //10 days = 864000 seconds
+//    let lastGameDayCutoff = Date.now.addingTimeInterval(-864000)
+//    let nextGameDayCutoff = Date.now.addingTimeInterval(864000)
     
     @State private var loadingScores = false
     @State private var loadingTables = false
@@ -279,10 +279,16 @@ struct UserHomeView: View {
         .animation(.default, value: userDashboard.LastGame)
         
         .onAppear(perform: {
-            Task {
-                await loadProcessHomeData()
+            if homeLeagueTables.isEmpty {
+                Task {
+                    await loadProcessHomeData()
+                }
             }
         })
+        
+        .refreshable {
+            await loadProcessHomeData()
+        }
 
         .onChange(of: favoriteTeamID, perform: { favoriteTeam in
             Task {
@@ -438,10 +444,16 @@ struct UserHomeView: View {
         //APPLE WATCH FUNCS //////////////////////////////////////////////////////////////
         
         .onAppear(perform: {
-            Task {
-                await loadProcessHomeData()
+            if homeLeagueTables.isEmpty {
+                Task {
+                    await loadProcessHomeData()
+                }
             }
         })
+        
+        .refreshable {
+            await loadProcessHomeData()
+        }
         
         .onChange(of: favoriteTeamID, perform: { favoriteTeam in
             Task {

@@ -31,10 +31,11 @@ struct UserOnboardingView: View {
     var body: some View {
         
 #if !os(watchOS)
-        List {
+        VStack {
             skylarksPrimaryLogo
                 .resizable()
                 .scaledToFit()
+                .frame(maxWidth: 250)
             //Spacer()
             VStack(alignment: .leading) {
                 Text("Welcome to the app!")
