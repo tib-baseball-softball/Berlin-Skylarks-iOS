@@ -168,7 +168,7 @@ struct UserHomeView: View {
                 }
             }
             Section(header: Text("Standings/Record")) {
-                if showingTableData {
+                if showingTableData && !loadingTables {
                     NavigationLink(destination: HomeTeamDetailView(userDashboard: userDashboard)) {
                         VStack(alignment: .leading) {
                             HStack {
@@ -205,7 +205,7 @@ struct UserHomeView: View {
                         .padding(.vertical, 6)
                     }
                 }
-                if !homeLeagueTables.isEmpty {
+                if !homeLeagueTables.isEmpty && !loadingTables {
                     NavigationLink(
                         destination: StandingsTableView(leagueTable: homeLeagueTables[0])) {
                             HStack {
@@ -217,6 +217,9 @@ struct UserHomeView: View {
                         }
                 } else {
                     Text("No Standings available.")
+                }
+                if loadingTables == true {
+                    LoadingView()
                 }
             }
             Section(header: Text("Latest Score")) {
@@ -232,23 +235,29 @@ struct UserHomeView: View {
 //                        }
 //                    }
 //                }
-                if showLastGame == true {
+                if showLastGame == true && !loadingScores {
                     NavigationLink(
                         destination: ScoresDetailView(gamescore: userDashboard.LastGame)) {
                             ScoresOverView(gamescore: userDashboard.LastGame)
                         }
-                } else {
+                } else if !showLastGame && !loadingScores {
                     Text("There is no recent game to display.")
+                }
+                if loadingScores == true {
+                    LoadingView()
                 }
             }
             Section(header: Text("Next Game")) {
-                if showNextGame == true {
+                if showNextGame == true && !loadingScores {
                     NavigationLink(
                         destination: ScoresDetailView(gamescore: userDashboard.NextGame)) {
                             ScoresOverView(gamescore: userDashboard.NextGame)
                         }
-                } else {
+                } else if !showNextGame && !loadingScores {
                     Text("There is no next game to display.")
+                }
+                if loadingScores == true {
+                    LoadingView()
                 }
             }
         }
