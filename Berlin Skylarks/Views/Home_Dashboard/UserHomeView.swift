@@ -48,9 +48,13 @@ struct UserHomeView: View {
     
     func loadProcessHomeData() async {
         displayTeam = await setFavoriteTeam()
+        loadingTables = true
+        loadingScores = true
         leagueGroups = await loadLeagueGroups(season: selectedSeason)
         await loadHomeTeamTable(team: displayTeam, leagueGroups: leagueGroups)
+        loadingTables = false
         await loadHomeGameData(team: displayTeam, leagueGroups: leagueGroups)
+        loadingScores = false
     }
     
     func setFavoriteTeam() async -> BSMTeam {
@@ -72,7 +76,7 @@ struct UserHomeView: View {
     
     func loadHomeTeamTable(team: BSMTeam, leagueGroups: [LeagueGroup]) async {
         
-        loadingTables = true
+        //loadingTables = true
         
         //load table for specific leagueGroup that corresponds to favorite team
         
@@ -86,13 +90,13 @@ struct UserHomeView: View {
         if !homeLeagueTables.isEmpty {
             showingTableData = true
         }
-        loadingTables = false
+        //loadingTables = false
     }
     
     func loadHomeGameData(team: BSMTeam, leagueGroups: [LeagueGroup]) async {
         
         //get the games, then process for next and last
-        loadingScores = true
+        //loadingScores = true
         
         //determine the correct leagueGroup
         for leagueGroup in leagueGroups where team.league_entries[0].league.name == leagueGroup.name {
@@ -127,7 +131,7 @@ struct UserHomeView: View {
         } else {
             showLastGame = false
         }
-        loadingScores = false
+        //loadingScores = false
     }
     
     //-------------------------------------------//
