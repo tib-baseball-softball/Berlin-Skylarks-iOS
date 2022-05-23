@@ -133,6 +133,9 @@
 		CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* BSMTeam.swift */; };
 		CAC49350280850C0009677C7 /* WidgetPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4934F280850C0009677C7 /* WidgetPreviewData.swift */; };
 		CAC49351280850C0009677C7 /* WidgetPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4934F280850C0009677C7 /* WidgetPreviewData.swift */; };
+		CACA4284283C25E3008F21FF /* SegmentPercentage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA4283283C25E3008F21FF /* SegmentPercentage.swift */; };
+		CACA4286283C26CF008F21FF /* SegmentChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA4285283C26CF008F21FF /* SegmentChart.swift */; };
+		CACA4288283C2D47008F21FF /* ChartElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA4287283C2D47008F21FF /* ChartElement.swift */; };
 		CAD42719280BF1C3001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CAD4271A280BF1C6001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CAD4271C280DB10B001CA68A /* ScoresOverViewFull.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4271B280DB10B001CA68A /* ScoresOverViewFull.swift */; };
@@ -308,6 +311,9 @@
 		CABF7BFC259351D500B95813 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CABF7C0A2593627900B95813 /* NewsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsView.swift; sourceTree = "<group>"; };
 		CAC4934F280850C0009677C7 /* WidgetPreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreviewData.swift; sourceTree = "<group>"; };
+		CACA4283283C25E3008F21FF /* SegmentPercentage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentPercentage.swift; sourceTree = "<group>"; };
+		CACA4285283C26CF008F21FF /* SegmentChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentChart.swift; sourceTree = "<group>"; };
+		CACA4287283C2D47008F21FF /* ChartElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartElement.swift; sourceTree = "<group>"; };
 		CAD4271B280DB10B001CA68A /* ScoresOverViewFull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresOverViewFull.swift; sourceTree = "<group>"; };
 		CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetSkylarksExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE134822771F2E000DFA745 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -492,6 +498,9 @@
 			children = (
 				CAAB56C427208A9200ADDE9D /* UserHomeView.swift */,
 				CA28FB8F280DDDC6007581FD /* HomeTeamDetailView.swift */,
+				CACA4285283C26CF008F21FF /* SegmentChart.swift */,
+				CACA4287283C2D47008F21FF /* ChartElement.swift */,
+				CACA4283283C25E3008F21FF /* SegmentPercentage.swift */,
 			);
 			path = Home_Dashboard;
 			sourceTree = "<group>";
@@ -998,6 +1007,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA1CB20B27567E870007D24E /* BSMTeam.swift in Sources */,
+				CACA4286283C26CF008F21FF /* SegmentChart.swift in Sources */,
 				CA28D66E27A0601B00680067 /* BSMLeagueGroup.swift in Sources */,
 				CA1722E127542DBE00E8BF36 /* PlayerModel.swift in Sources */,
 				CABF7BF8259351D500B95813 /* Persistence.swift in Sources */,
@@ -1015,6 +1025,7 @@
 				CA0A95B525BF704C00A7C7C3 /* BSMGameScore.swift in Sources */,
 				CABF7BEF259351D400B95813 /* Berlin_SkylarksApp.swift in Sources */,
 				CA0DA0482598BCB1002A0FAB /* ScoresDetailView.swift in Sources */,
+				CACA4288283C2D47008F21FF /* ChartElement.swift in Sources */,
 				CA1C3A0D273340C000BB194C /* BSM_URL_Data.swift in Sources */,
 				CABF7C0B2593627900B95813 /* NewsView.swift in Sources */,
 				CA78B71C259507BC00510621 /* ColorSets.swift in Sources */,
@@ -1028,6 +1039,7 @@
 				CA56299526943C0D00274BE4 /* WebArticleView.swift in Sources */,
 				CA55F6E127601A4F0032302F /* API_Key.swift in Sources */,
 				CA78B72E2596892E00510621 /* TeamListView.swift in Sources */,
+				CACA4284283C25E3008F21FF /* SegmentPercentage.swift in Sources */,
 				CA0DA0452598BB32002A0FAB /* ScoresOverView.swift in Sources */,
 				CAE1348E2771F2E100DFA745 /* WidgetSkylarks.intentdefinition in Sources */,
 				CA78B72B259688C100510621 /* PlayerDetailView.swift in Sources */,

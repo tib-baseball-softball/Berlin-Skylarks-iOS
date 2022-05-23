@@ -27,6 +27,7 @@ extension Color {
     static let backgroundGrayPreview = Color(red: 58 / 255, green: 58 / 255, blue: 60 / 255)
     
     static let skylarksAdaptiveBlue = Color("SkylarksAdaptiveBlue")
+    static let skylarksDynamicNavySand = Color("SkylarksDynamicNavySand")
     
     #if !os(watchOS)
     static let primaryBackground = Color(uiColor: .systemBackground)

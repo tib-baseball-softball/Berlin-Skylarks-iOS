@@ -10,60 +10,59 @@ import SwiftUI
 struct PrivacyPolicyView: View {
     var body: some View {
         ScrollView {
-            Text("WIP!")
             Text("""
-                 **Datenschutzerklärung gemäß  § 13 TMG**
+                 **Data protection statement according to § 13 TMG**.
 
-                 Diese Erklärung dient dazu, Besucher über die Richtlinien bezüglich der Sammlung, Verwendung und Weitergabe von personenbezogenen Daten zu informieren.
+                 This statement is intended to inform visitors about the policies regarding the collection, use and disclosure of personal information.
 
-                 Wenn Sie sich für die Nutzung der App entscheiden, erklären Sie sich mit der Sammlung und Nutzung von Informationen im Sinne dieser Richtlinie einverstanden. Die von mir gesammelten Daten werden für die Bereitstellung und Verbesserung des Dienstes verwendet. Ich werde Ihre Daten nur wie in dieser Datenschutzrichtlinie beschrieben verwenden oder weitergeben.
+                 If you choose to use the app, you consent to the collection and use of information in accordance with this policy. The information I collect will be used to provide and improve the service. I will only use or share your information as described in this Privacy Policy.
 
-                  Die App "Berlin Skylarks" wurde von David Battefeld als kostenlose und quelloffene App ohne jede Gewinnerzielungsabsicht entwickelt. Es handelt sich um eine App für die Bereitstellung der Spieldaten und weiterer Informationen des Berliner Baseballvereins "Skylarks". Die Skylarks sind eine rechtlich nicht selbstständige Abteilung innerhalb der Turngemeinde in Berlin 1848 e.V.
+                 The app "Berlin Skylarks" was developed by David Battefeld as a free and open source app without intention of any making any profit. It is an app for providing game data and other information for the Berlin baseball club "Skylarks". The Skylarks are a legally non-independent department within the Turngemeinde in Berlin 1848 e.V..
 
-                 Der Verein selbst ist nicht als Herausgeber oder Betreiber dieser App tätig, Betreiber im Sinne dieser Ordnung ist allein:
+                 The club itself does not act as publisher or operator of this app, operator in the sense of these rules is solely:
 
                  David Battefeld
-                 Leibnizstraße 40
+                 Leibnizstrasse 40
                  10629 Berlin
                  app@tib-baseball.de
-                 (nachfolgend "Betreiber")
+                 (hereinafter "operator")
 
-                 **1. Welche Daten werden erfasst?**
+                 **1. What data is collected?**
 
-                 Die App erfasst keinerlei personenbezogene Daten. Es gibt keine Möglichkeit, Namen, Mailadressen, Telefonnummern, IP-Adressen oder ähnliche Daten anzugeben oder zu speichern. Solche Daten werden auch nicht aus dem Geräte-Speicher ausgelesen, anderweitig erfasst oder verknüpft.
+                 The app does not collect any personal data. There is no possibility to enter or store names, mail addresses, phone numbers, IP addresses or similar data. Such data is also not read from device memory, otherwise collected or linked.
 
-                 Es ist außerdem kein App-Tracking irgendeiner Art eingerichtet. Die App erfasst keine Nutzungsstatistiken.
+                 There is also no app tracking of any kind. The app does not collect usage statistics.
 
-                 **2. Datenweitergabe an Dritte**
+                 **2. Data Sharing with Third Parties**.
 
-                 Da keine personenbezogenen Daten erfasst werden, können diese auch nicht mit Dritten geteilt werden.
+                 Since no personal data is collected, it cannot be shared with third parties.
 
-                 **3. Log-Daten/Absturzberichte**
+                 **3. Log data/crash reports**.
 
-                 Bei der Nutzung der App können im Falle eines Fehlers in der App Daten und Informationen auf Ihrem Gerät erheben werden, die als Protokolldaten bezeichnet werden. Diese Protokolldaten können Informationen wie den Gerätenamen, die Version des Betriebssystems, die Konfiguration der App bei der Nutzung meines Dienstes, die Uhrzeit und das Datum Ihrer Nutzung des Dienstes und andere Statistiken enthalten. Alle diese Daten sind grundsätzlich vollständig anonym und können nicht zu einzelnen Geräten oder Nutzern zurückgeführt werden.
+                 When using the App, data and information may be collected on your device in the event of an error in the App, which is referred to as log data. This log data may include information such as the device name, the version of the operating system, the configuration of the App when you use my Service, the time and date of your use of the Service, and other statistics. All of this data is generally completely anonymous and cannot be traced to individual devices or users.
 
-                 **4. Zugriff auf Kalender**
+                 **4. Calendar Access**.
 
-                 Die App kann in bestimmten Fällen den Zugriff auf die auf dem Endgerät des Nutzers gespeicherten Kalender anfragen. Diese Kalender werden nur für den Zweck genutzt, die in der App angezeigten Spiele in den gewünschten Kalender zu übertragen. Eine solche Übertragung erfolgt grundsätzlich auf explizite Anforderung des Nutzers und niemals im Hintergrund. Ein weiterer Zugriff, Auslesen, Verarbeiten oder Veränderung von Kalenderdaten findet nicht statt.
+                 The App may in certain cases request access to calendars stored on the User's device. These calendars are used only for the purpose of transferring the games displayed in the App to the requested calendar. Such transfer is always made at the explicit request of the user and never in the background. No further access, readout, processing or modification of calendar data takes place.
 
-                 **5. Verwendung externer Daten**
+                 **5. Use of external data**
 
-                 Die App verwendet für die Anzeige der Daten die Schnittstelle des Deutschen Baseball- und Softballverbandes (DBV), die unter https://bsm.baseball-softball.de/api_docs beschrieben ist. Der Anbieter der App übernimmt keine Verantwortung für die Richtigkeit, Vollständigkeit oder Aktualität der angezeigten Daten, die über diese Schnittstelle bezogen werden.
+                 The app uses the interface of the German Baseball and Softball Association (DBV) for the display of data, which is described at https://bsm.baseball-softball.de/api_docs. The app provider assumes no responsibility for the accuracy, completeness or timeliness of the displayed data obtained through this interface.
 
-                 **6. Links zu anderen Seiten**
+                 **6. Links to other sites**
 
-                 Die App kann Links zu anderen Websites enthalten. Wenn Sie auf einen Link eines Dritten klicken, werden Sie zu dieser Site weitergeleitet. Beachten Sie, dass diese externen Seiten nicht vom Betreiber dieser App betrieben werden. Dieser empfiehlt daher dringend, die Datenschutzrichtlinien dieser Websites zu lesen. Der Betreiber hat keine Kontrolle über und übernimmt keine Verantwortung für den Inhalt, die Datenschutzrichtlinien oder die Praktiken von Websites oder Diensten Dritter.
+                 The App may contain links to other websites. When you click on a third party link, you will be redirected to that site. Note that these external sites are not operated by the operator of this app. The latter therefore strongly recommends that you read the privacy policies of these websites. The Operator has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services.
 
-                 **7. Löschung aller Daten**
+                 **7. Deletion of all data**.
 
-                 Eine Löschung der App wird alle auf dem Endgerät des Nutzers gespeicherten Daten vollständig löschen. Es gibt keine Möglichkeit, diese wiederherzustellen, da sie zu keinem Zeitpunkt an einem anderen Ort gespeichert werden.
-                 Eine etwaige Erlaubnis zur Kalendernutzung im Sinne von Punkt 4 muss nach einer Neuinstallation der App neu erteilt werden.
+                 Deletion of the App will completely erase all data stored on the User's device. There is no way to recover it, as it will not be stored in any other location at any time.
+                 Any permission to use the user's calendar as explained in §4 must be granted again after reinstalling the app.
 
-                 **8. Änderungen dieser Datenschutzerklärung**
+                 **8. Changes to this privacy policy**.
 
-                 Der Betreiber kann unsere Datenschutzerklärung von Zeit zu Zeit aktualisieren. Wir empfehlen Ihnen daher, diese Seite regelmäßig auf Änderungen zu überprüfen. Der Betreiber wird Sie über alle Änderungen informieren, indem die neue Datenschutzerklärung auf dieser Seite veröffentlicht wird.
+                 The operator may update our privacy policy from time to time. We therefore recommend that you regularly check this page for changes. The Operator will notify you of any changes by posting the new Privacy Policy on this page.
 
-                 Diese Datenschutzerklärung ist gültig ab dem 11.5.2022.
+                 This privacy policy is valid as of 11/5/2022.
                  """)
             .padding()
         }
