@@ -65,11 +65,7 @@ struct SegmentPercentage: View {
                 ZStack {
                     Circle()
                         .trim(from: 0, to: percentage)
-                        .stroke(
-                            Color.green
-                            ,
-                            lineWidth: 15
-                        )
+                        .stroke(Color.green, style: StrokeStyle(lineWidth: 15, lineCap: .round))
                         .frame(width: 150, height: 150)
                         .padding()
                     //Text(".136")

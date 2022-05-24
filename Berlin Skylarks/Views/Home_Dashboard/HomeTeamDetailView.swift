@@ -44,6 +44,8 @@ struct HomeTeamDetailView: View {
                         SegmentChart(userDashboard: userDashboard)
                     } else if selection == Segment.percentage {
                         SegmentPercentage(userDashboard: userDashboard)
+                    } else if selection == Segment.streak {
+                        SegmentStreak(userDashboard: userDashboard)
                     }
                 }
                 .listStyle(.insetGrouped)
@@ -72,7 +74,7 @@ struct HomeTeamDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             HomeTeamDetailView(userDashboard: dummyDashboard)
-            .preferredColorScheme(.dark)
+            //.preferredColorScheme(.dark)
         }
     }
 }
