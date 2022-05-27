@@ -9,21 +9,26 @@ import SwiftUI
 
 struct StreakBar: View {
     
+    @ObservedObject var userDashboard: UserDashboard
+    
     var value: Double
     var total: Double
     
     var body: some View {
         Section(
             header: Text("Visualization of current streak"),
-            footer: Text("Blue indicates a losing streak, whereas red indicates a winning streak.")
+            footer: Text("Hot or cold - where does your team stand at the moment?")
         ){
             VStack {
                 ProgressView(value: value, total: total)
                     .progressViewStyle(StreakProgressViewStyle())
                 HStack {
                     Text("❄️")
-                    //                        Spacer()
-                    //                        Text("Even")
+                    Spacer()
+                    //Text("W10") //DEBUG
+                    Text(userDashboard.tableRow.streak)
+                        .font(.title)
+                        .bold()
                     Spacer()
                     Text("🔥")
                 }
@@ -63,7 +68,7 @@ struct StreakProgressViewStyle: ProgressViewStyle {
 struct StreakBar_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            StreakBar(value: 8, total: 20)
+            StreakBar(userDashboard: dummyDashboard, value: -25, total: 20)
         }
     }
 }
