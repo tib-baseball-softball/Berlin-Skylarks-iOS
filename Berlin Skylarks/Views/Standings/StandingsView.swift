@@ -52,8 +52,27 @@ struct StandingsView: View {
                 .edgesIgnoringSafeArea(.all)
             #endif
             List {
+                Section(header: HStack {
+                    Text("Club Standings")
+                    Spacer()
+                    Text("W/L")
+                },
+                    footer: Text("How are our teams doing?")) {
+                    if loadingInProgress == false {
+                        ForEach(leagueTableArray, id: \.self) { LeagueTable in
+                            ClubStandingsRow(leagueTable: LeagueTable)
+                        }
+                        .padding(.vertical, 2)
+                    } else {
+                        LoadingView()
+                    }
+                    if loadingInProgress == false && leagueTableArray.isEmpty {
+                        Text("No team data found.")
+                    }
+                }
                 //Text(leagueGroups.debugDescription)
-                Section(header: Text("Please select your league")) {
+                Section(header: Text("League Standings"),
+                        footer: Text("Please select a league for comprehensive data.")) {
                     if loadingInProgress == true {
                         LoadingView()
                     } else {
@@ -70,9 +89,9 @@ struct StandingsView: View {
                                     }
                                 })
                         }
-                        .padding()
+                        .padding(.vertical, 2)
                     }
-                    if loadingInProgress == false && leagueTableArray == [] {
+                    if loadingInProgress == false && leagueTableArray.isEmpty {
                         Text("No table data found.")
                     }
                 }

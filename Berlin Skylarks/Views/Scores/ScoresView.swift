@@ -182,7 +182,7 @@ struct ScoresView: View {
             ToolbarItemGroup(placement: .navigationBarLeading) {
                 Button(
                     action: {
-                        if gamescores != [] {
+                        if !gamescores.isEmpty {
                             showCalendarDialog.toggle()
                             getAvailableCalendars()
                         } else {
@@ -199,11 +199,9 @@ struct ScoresView: View {
                         Button(calendarString) {
                             for gamescore in gamescores {
                                 let gameDate = getDatefromBSMString(gamescore: gamescore)
-
-                                //if let localGameDate = gameDate {
-                                    addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendarString: calendarString)
-                                    showEventAlert = true
-                                //}
+                                
+                                addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendarString: calendarString)
+                                showEventAlert = true
                             }
                         }
                     }
@@ -342,9 +340,9 @@ struct ScoresView: View {
 struct LoadingView: View {
     var body: some View {
         HStack {
-            Text("Loading data...")
-                .padding()
-            ProgressView()
+            Spacer()
+            ProgressView("Loading data...")
+            Spacer()
         }
     }
 }
