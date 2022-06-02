@@ -38,6 +38,7 @@ struct GameScore: Hashable, Codable, Identifiable {
         var city: String?
         var street: String?
         var postal_code: String?
+        //it looks like these coordinates are in fact not NULL but instead 0 (zero) if there is no location data provided in the backend. Will keep them optional here anyway just in case.
         var latitude: Double?
         var longitude: Double?
     }
