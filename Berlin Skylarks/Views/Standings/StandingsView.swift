@@ -52,17 +52,17 @@ struct StandingsView: View {
                 .edgesIgnoringSafeArea(.all)
             #endif
             List {
-                Section(header: HStack {
-                    Text("Club Standings")
-                    Spacer()
-                    Text("W/L")
-                },
-                    footer: Text("How are our teams doing?")) {
+                Section(header: Text("Club Team Records"),
+                        footer: Text("How are our teams doing?")) {
                     if loadingInProgress == false {
-                        ForEach(leagueTableArray, id: \.self) { LeagueTable in
-                            ClubStandingsRow(leagueTable: LeagueTable)
+                        NavigationLink(destination: ClubStandingsView(leagueTables: leagueTableArray)) {
+                            HStack {
+                                Image(systemName: "person.3")
+                                    .foregroundColor(.skylarksDynamicNavySand)
+                                Text("See records for all teams")
+                            }
+                            .padding(.vertical)
                         }
-                        .padding(.vertical, 2)
                     } else {
                         LoadingView()
                     }
