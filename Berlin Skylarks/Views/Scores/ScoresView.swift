@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ScoresView: View {
     
+    @EnvironmentObject var calendarManager: CalendarManager
+    
     @State private var gamescores = [GameScore]()
     @State private var leagueGroups = [LeagueGroup]()
     
@@ -29,6 +31,7 @@ struct ScoresView: View {
     @State private var showCalendarDialog = false
     @State private var showEventAlert = false
     @State private var showAlertNoGames = false
+    @State private var showAlertNoAccess = false
     @State private var loadingInProgress = false
     
     @State private var searchText = ""
@@ -115,7 +118,7 @@ struct ScoresView: View {
     var body: some View {
 #if !os(watchOS)
         List {
-            //Text(gameData.debugDescription)
+            Text(calendarManager.calendarAccess.description.debugDescription)
             if loadingInProgress == true {
                 LoadingView()
             }
@@ -161,7 +164,8 @@ struct ScoresView: View {
                     await loadLeagueGroups()
                 }
             }
-            getAvailableCalendars()
+            //asking out of the blue upon loading is not allowed and also plain bad UX
+            //getAvailableCalendars()
         })
         
         .onChange(of: selection, perform: { value in
@@ -182,12 +186,29 @@ struct ScoresView: View {
             ToolbarItemGroup(placement: .navigationBarLeading) {
                 Button(
                     action: {
-                        if !gamescores.isEmpty {
-                            showCalendarDialog.toggle()
-                            getAvailableCalendars()
-                        } else {
-                            showAlertNoGames = true
+                        Task {
+                            await calendarManager.calendarAccess = calendarManager.checkAuthorizationStatus()
+                            
+                            if calendarManager.calendarAccess == true {
+                                if !gamescores.isEmpty {
+                                    //clear the array before loading the news ones
+                                    calendarManager.calendars = []
+                                    await calendarManager.calendars = calendarManager.getAvailableCalendars()
+                                    
+                                    if !calendarManager.calendars.isEmpty {
+                                        showCalendarDialog.toggle()
+                                    } else {
+                                        print("no calendar data")
+                                    }
+                                } else {
+                                    showAlertNoGames = true
+                                }
+                                
+                            } else {
+                                showAlertNoAccess = true
+                            }
                         }
+                        
                     }
                 ){
                     Image(systemName: "calendar.badge.plus")
@@ -195,12 +216,12 @@ struct ScoresView: View {
                 
                 .confirmationDialog("Choose a calendar to save the game(s)", isPresented: $showCalendarDialog, titleVisibility: .visible) {
                     
-                    ForEach(calendarStrings, id: \.self) { calendarString in
-                        Button(calendarString) {
+                    ForEach(calendarManager.calendars, id: \.self) { calendar in
+                        Button(calendar.title) {
                             for gamescore in gamescores {
                                 let gameDate = getDatefromBSMString(gamescore: gamescore)
                                 
-                                addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendarString: calendarString)
+                                calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendar: calendar)
                                 showEventAlert = true
                             }
                         }
@@ -218,6 +239,13 @@ struct ScoresView: View {
                     Button("OK") { }
                 } message: {
                     Text("There is no game data to save.")
+                }
+                .padding(.horizontal, 10)
+                
+                .alert("No access to calendar", isPresented: $showAlertNoAccess) {
+                    Button("OK") { }
+                } message: {
+                    Text("You have disabled access to your calendar. To save games please go to your device settings to enable it.")
                 }
                 .padding(.horizontal, 10)
             }
@@ -318,7 +346,8 @@ struct ScoresView: View {
                     await loadLeagueGroups()
                 }
             }
-            getAvailableCalendars()
+            //MARK: deactivated calendar functionality on Apple Watch
+            //getAvailableCalendars()
         })
         
         .onChange(of: selection, perform: { value in
@@ -337,22 +366,12 @@ struct ScoresView: View {
     }
 }
 
-struct LoadingView: View {
-    var body: some View {
-        HStack {
-            Spacer()
-            ProgressView("Loading data...")
-            Spacer()
-        }
-    }
-}
-
-
 struct ScoresView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             ScoresView()
                 //.preferredColorScheme(.dark)
+                .environmentObject(CalendarManager())
         }
     }
 }

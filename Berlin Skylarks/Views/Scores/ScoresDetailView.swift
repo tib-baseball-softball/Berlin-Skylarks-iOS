@@ -16,6 +16,8 @@ struct ScoresDetailView: View {
     @State private var isBookmarked = false
     @State private var showEventAlert = false
     
+    @State private var calendarStrings = [String]()
+    
     @State var roadLogo = away_team_logo
     @State var homeLogo = home_team_logo
     
@@ -116,6 +118,7 @@ struct ScoresDetailView: View {
         
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
+                
                 //MARK: bookmarks
 //                Button(action: {
 //                    isBookmarked.toggle()
@@ -127,21 +130,25 @@ struct ScoresDetailView: View {
                 
                 Spacer()
                 
-                Button(
-                    action: {
-                        getAvailableCalendars()
-                        showCalendarDialog.toggle()
-                    }
-                ){
-                    Image(systemName: "calendar.badge.plus")
-                }
+//                Button(
+//                    action: {
+//                        Task {
+//                            calendarAccessGranted = await getAvailableCalendars()
+//                            if !calendarStrings.isEmpty {
+//                                showCalendarDialog.toggle()
+//                            }
+//                        }
+//                    }
+//                ){
+//                    Image(systemName: "calendar.badge.plus")
+//                }
                 .confirmationDialog("Choose a calendar to save the game", isPresented: $showCalendarDialog, titleVisibility: .visible) {
                     
                     ForEach(calendarStrings, id: \.self) { calendarString in
                         Button(calendarString) {
                             //gameDate = getDatefromBSMString(gamescore: gamescore)
-                            let localGameDate = getDatefromBSMString(gamescore: gamescore)
-                            addGameToCalendar(gameDate: localGameDate, gamescore: gamescore, calendarString: calendarString)
+//                            let localGameDate = getDatefromBSMString(gamescore: gamescore)
+//                            addGameToCalendar(gameDate: localGameDate, gamescore: gamescore, calendarString: calendarString)
                             showEventAlert = true
                             
                         }

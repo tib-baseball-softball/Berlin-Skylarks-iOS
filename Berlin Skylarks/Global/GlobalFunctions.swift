@@ -198,85 +198,83 @@ func loadTableForTeam(team: BSMTeam, leagueGroups: [LeagueGroup]) async -> Leagu
 //-------------------------------CALENDAR EVENTS---------------------------------//
 //-------------------------------------------------------------------------------//
 
-var calendarStrings = [String]()
-
-func getAvailableCalendars() {
-    
-    let eventStore = EKEventStore()
-    //var calendars = [EKCalendar]()
-         
-    eventStore.requestAccess(to: .event) { (granted, error) in
-      
-      if (granted) && (error == nil) {
-          print("granted \(granted)")
-          print("error \(String(describing: error))")
-          
-          //let event:EKEvent = EKEvent(eventStore: eventStore)
-          let calendars = eventStore.calendars(for: .event)
-          
-          //clear the array before loading new
-          calendarStrings = []
-          
-          for calendar in calendars {
-              calendarStrings.append(calendar.title)
-          }
-          //print(calendars)
-      }
-      else {
-          print("Access not granted")
-      }
-    }
-}
-
-#if !os(watchOS)
-func addGameToCalendar(gameDate: Date, gamescore: GameScore, calendarString: String) {
-    let eventStore = EKEventStore()
-         
-    eventStore.requestAccess(to: .event) { (granted, error) in
-      
-      if (granted) && (error == nil) {
-          print("granted \(granted)")
-          print("error \(String(describing: error))")
-          
-          let event:EKEvent = EKEvent(eventStore: eventStore)
-          let calendars = eventStore.calendars(for: .event)
-          
-          event.title = "\(gamescore.league.name): \(gamescore.away_team_name) @ \(gamescore.home_team_name)"
-          event.startDate = gameDate
-          event.endDate = gameDate.addingTimeInterval(2 * 60 * 60)
-          
-          //add game location if there is data
-          
-          if let field = gamescore.field, let latitude = gamescore.field?.latitude, let longitude = gamescore.field?.longitude {
-              
-              let location = CLLocation(latitude: latitude, longitude: longitude)
-              let structuredLocation = EKStructuredLocation(title: "\(field.name) - \(field.street ?? ""), \(field.postal_code ?? "") \(field.city ?? "")")
-              structuredLocation.geoLocation = location
-              event.structuredLocation = structuredLocation
-          }
-          
-          event.notes = """
-                League: \(gamescore.league.name)
-                Match Number: \(gamescore.match_id)
-                
-                Field: \(gamescore.field?.name ?? "No data")
-                Address: \(gamescore.field?.street ?? ""), \(gamescore.field?.postal_code ?? "") \(gamescore.field?.city ?? "")
-            """
-          
-          for calendar in calendars where calendar.title == calendarString {
-                event.calendar = calendar
-          }
-          //event.calendar = eventStore.defaultCalendarForNewEvents
-          do {
-              try eventStore.save(event, span: .thisEvent)
-          } catch let error as NSError {
-              print("failed to save event with error : \(error)")
-          }
-          print("Saved Event successfully")
-      }
-      else {
-          print("failed to save event with error : \(String(describing: error)) or access not granted")
-      }
-    }
-}
-#endif
+//func getAvailableCalendars() async {
+//
+//    let eventStore = EKEventStore()
+//    //var calendars = [EKCalendar]()
+//
+//    eventStore.requestAccess(to: .event) { (granted, error) in
+//
+//      if (granted) && (error == nil) {
+//          print("granted \(granted)")
+//          print("error \(String(describing: error))")
+//          
+//          //let event:EKEvent = EKEvent(eventStore: eventStore)
+//          //let calendars = eventStore.calendars(for: .event)
+//
+////          //clear the array before loading new
+////          calendarStrings = []
+////
+////          for calendar in calendars {
+////              calendarStrings.append(calendar.title)
+////          }
+//          //print(calendars)
+//      }
+//      else {
+//          print("Access not granted")
+//      }
+//    }
+//}
+//
+//#if !os(watchOS)
+//func addGameToCalendar(gameDate: Date, gamescore: GameScore, calendarString: String) {
+//    let eventStore = EKEventStore()
+//
+//    eventStore.requestAccess(to: .event) { (granted, error) in
+//
+//      if (granted) && (error == nil) {
+//          print("granted \(granted)")
+//          print("error \(String(describing: error))")
+//
+//          let event:EKEvent = EKEvent(eventStore: eventStore)
+//          let calendars = eventStore.calendars(for: .event)
+//
+//          event.title = "\(gamescore.league.name): \(gamescore.away_team_name) @ \(gamescore.home_team_name)"
+//          event.startDate = gameDate
+//          event.endDate = gameDate.addingTimeInterval(2 * 60 * 60)
+//
+//          //add game location if there is data
+//
+//          if let field = gamescore.field, let latitude = gamescore.field?.latitude, let longitude = gamescore.field?.longitude {
+//
+//              let location = CLLocation(latitude: latitude, longitude: longitude)
+//              let structuredLocation = EKStructuredLocation(title: "\(field.name) - \(field.street ?? ""), \(field.postal_code ?? "") \(field.city ?? "")")
+//              structuredLocation.geoLocation = location
+//              event.structuredLocation = structuredLocation
+//          }
+//
+//          event.notes = """
+//                League: \(gamescore.league.name)
+//                Match Number: \(gamescore.match_id)
+//
+//                Field: \(gamescore.field?.name ?? "No data")
+//                Address: \(gamescore.field?.street ?? ""), \(gamescore.field?.postal_code ?? "") \(gamescore.field?.city ?? "")
+//            """
+//
+//          for calendar in calendars where calendar.title == calendarString {
+//                event.calendar = calendar
+//          }
+//          //event.calendar = eventStore.defaultCalendarForNewEvents
+//          do {
+//              try eventStore.save(event, span: .thisEvent)
+//          } catch let error as NSError {
+//              print("failed to save event with error : \(error)")
+//          }
+//          print("Saved Event successfully")
+//      }
+//      else {
+//          print("failed to save event with error : \(String(describing: error)) or access not granted")
+//      }
+//    }
+//}
+//#endif

@@ -10,11 +10,14 @@ import SwiftUI
 @main
 struct Berlin_SkylarksApp: App {
     let persistenceController = PersistenceController.shared
+    
+    @StateObject var calendarManager = CalendarManager()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
                 .environment(\.managedObjectContext, persistenceController.container.viewContext)
+                .environmentObject(calendarManager)
         }
     }
 }
