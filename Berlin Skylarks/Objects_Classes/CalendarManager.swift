@@ -30,7 +30,7 @@ class CalendarManager: ObservableObject {
         case .denied, .restricted:
             accessGranted = false
         @unknown default:
-            fatalError("Unknown EventKit authorization status")
+            print("Unknown EventKit authorization status")
         }
         return accessGranted
     }
@@ -41,10 +41,11 @@ class CalendarManager: ObservableObject {
         return try await eventStore.requestAccess(to: .event)
     }
     
-    func getAvailableCalendars() async -> [EKCalendar] {
+    func getAvailableCalendars() async -> [String] {
         
         let eventStore = EKEventStore()
         var calendars = [EKCalendar]()
+        var calendarTitles = [String]()
         
         do {
             let granted = try await askForCalPermission()
@@ -58,14 +59,18 @@ class CalendarManager: ObservableObject {
         } catch {
             print(error)
         }
+        
+        for calendar in calendars {
+            calendarTitles.append(calendar.title)
+        }
 
-        return calendars
+        return calendarTitles
     }
     
     //add games to loaded calendars
 
     #if !os(watchOS)
-    func addGameToCalendar(gameDate: Date, gamescore: GameScore, calendar: EKCalendar) {
+    func addGameToCalendar(gameDate: Date, gamescore: GameScore, calendarTitle: String) {
         let eventStore = EKEventStore()
              
         eventStore.requestAccess(to: .event) { (granted, error) in
@@ -75,7 +80,7 @@ class CalendarManager: ObservableObject {
               print("error \(String(describing: error))")
               
               let event:EKEvent = EKEvent(eventStore: eventStore)
-              //let calendars = eventStore.calendars(for: .event)
+              let calendars = eventStore.calendars(for: .event)
               
               event.title = "\(gamescore.league.name): \(gamescore.away_team_name) @ \(gamescore.home_team_name)"
               event.startDate = gameDate
@@ -99,8 +104,9 @@ class CalendarManager: ObservableObject {
                     Address: \(gamescore.field?.street ?? ""), \(gamescore.field?.postal_code ?? "") \(gamescore.field?.city ?? "")
                 """
             
-              //no strings involved, we just use the passed calendar directly
-              event.calendar = calendar
+              for calendar in calendars where calendar.title == calendarTitle {
+                  event.calendar = calendar
+              }
               
               //event.calendar = eventStore.defaultCalendarForNewEvents
               do {

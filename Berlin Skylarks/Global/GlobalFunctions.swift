@@ -28,6 +28,8 @@ func fetchCorrectLogos(gamescore: GameScore) -> (road: Image, home: Image) {
     return (road, home)
 }
 
+//sort of deprecated - the GameScore struct now has a addDates() method, but this is still used by the calendar export
+
 func getDatefromBSMString(gamescore: GameScore) -> Date {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "y-M-dd HH:mm:ss Z"

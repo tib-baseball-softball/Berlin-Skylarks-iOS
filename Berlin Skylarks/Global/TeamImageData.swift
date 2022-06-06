@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 //these are deprecated for actual use, but it's nevertheless helpful to have some fallback images defined
-
 var away_team_logo = Image("App_road_team_logo")
 var home_team_logo = Image("App_home_team_logo")
 

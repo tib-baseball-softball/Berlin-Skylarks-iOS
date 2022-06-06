@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import EventKit
 
 struct ScoresView: View {
     
@@ -17,6 +18,8 @@ struct ScoresView: View {
     //@State var gameData = [GameData]()
     
     @State private var searchResults = [GameScore]()
+    
+    @State private var calendarTitles = [String]()
     
     var listData: [GameScore] {
         if searchText.isEmpty {
@@ -44,11 +47,6 @@ struct ScoresView: View {
 
     @State var filterOptions = [
         "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season"
-    ]
-    
-    //used for previous grid implementation
-    let columns = [
-        GridItem(.adaptive(minimum: 300), spacing: scoresGridSpacing),
     ]
     
     func loadLeagueGroups() async {
@@ -115,10 +113,46 @@ struct ScoresView: View {
         }
     }
     
+#if !os(watchOS)
+    func checkAccess() async {
+        await calendarManager.calendarAccess = calendarManager.checkAuthorizationStatus()
+        if EKEventStore.authorizationStatus(for: .event) == .restricted || EKEventStore.authorizationStatus(for: .event) == .denied {
+            showAlertNoAccess = true
+        }
+        await getCalendars()
+    }
+    
+    func getCalendars() async {
+        if !gamescores.isEmpty {
+            //clear the array before loading the new ones
+            calendarTitles = []
+            await calendarTitles = calendarManager.getAvailableCalendars()
+            
+            if !calendarTitles.isEmpty {
+                showCalendarDialog = true
+            } else {
+                print("No calendar data")
+            }
+        } else {
+            showAlertNoGames = true
+        }
+    }
+    
+    func saveEvents(calendarTitle: String) {
+        for gamescore in gamescores {
+            let gameDate = getDatefromBSMString(gamescore: gamescore)
+            
+            calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendarTitle: calendarTitle)
+            showEventAlert = true
+        }
+    }
+    
+#endif
+    
     var body: some View {
 #if !os(watchOS)
         List {
-            Text(calendarManager.calendarAccess.description.debugDescription)
+            //Text(calendarManager.calendarAccess.description.debugDescription)
             if loadingInProgress == true {
                 LoadingView()
             }
@@ -187,28 +221,8 @@ struct ScoresView: View {
                 Button(
                     action: {
                         Task {
-                            await calendarManager.calendarAccess = calendarManager.checkAuthorizationStatus()
-                            
-                            if calendarManager.calendarAccess == true {
-                                if !gamescores.isEmpty {
-                                    //clear the array before loading the news ones
-                                    calendarManager.calendars = []
-                                    await calendarManager.calendars = calendarManager.getAvailableCalendars()
-                                    
-                                    if !calendarManager.calendars.isEmpty {
-                                        showCalendarDialog.toggle()
-                                    } else {
-                                        print("no calendar data")
-                                    }
-                                } else {
-                                    showAlertNoGames = true
-                                }
-                                
-                            } else {
-                                showAlertNoAccess = true
-                            }
+                            await checkAccess()
                         }
-                        
                     }
                 ){
                     Image(systemName: "calendar.badge.plus")
@@ -216,14 +230,9 @@ struct ScoresView: View {
                 
                 .confirmationDialog("Choose a calendar to save the game(s)", isPresented: $showCalendarDialog, titleVisibility: .visible) {
                     
-                    ForEach(calendarManager.calendars, id: \.self) { calendar in
-                        Button(calendar.title) {
-                            for gamescore in gamescores {
-                                let gameDate = getDatefromBSMString(gamescore: gamescore)
-                                
-                                calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendar: calendar)
-                                showEventAlert = true
-                            }
+                    ForEach(calendarTitles, id: \.self) { calendarTitle in
+                        Button(calendarTitle) {
+                            saveEvents(calendarTitle: calendarTitle)
                         }
                     }
                 }
@@ -276,19 +285,6 @@ struct ScoresView: View {
                 .pickerStyle(.menu)
                 .padding(.vertical, scoresGridPadding)
             }
-            //let's try to include refreshable here as well, the button is super ugly
-//                ToolbarItem(placement: .navigationBarTrailing) {
-//                    Button(action: {
-//                        print("trigger reload")
-//                        loadGameData(url: gameURLSelected)
-//                    }) {
-//                        Label("Test", systemImage: "arrow.counterclockwise.circle")
-//                            .padding(.horizontal, 15)
-//                            //.font(.title2)
-//                            //.frame(width: 10, height: 10, alignment: .trailing)
-//                    }
-//
-//                }
         }
         .navigationTitle("Scores " + String(selectedSeason))
         #endif

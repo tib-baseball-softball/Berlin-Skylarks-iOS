@@ -11,12 +11,16 @@ import EventKit
 
 struct ScoresDetailView: View {
     
+    @EnvironmentObject var calendarManager: CalendarManager
+    
     @State private var showingSheet = false
     @State private var showCalendarDialog = false
     @State private var isBookmarked = false
     @State private var showEventAlert = false
+    @State private var showAlertNoGames = false
+    @State private var showAlertNoAccess = false
     
-    @State private var calendarStrings = [String]()
+    @State private var calendarTitles = [String]()
     
     @State var roadLogo = away_team_logo
     @State var homeLogo = home_team_logo
@@ -26,6 +30,34 @@ struct ScoresDetailView: View {
         roadLogo = logos.road
         homeLogo = logos.home
     }
+    
+#if !os(watchOS)
+    
+    func checkAccess() async {
+        await calendarManager.calendarAccess = calendarManager.checkAuthorizationStatus()
+        if EKEventStore.authorizationStatus(for: .event) == .restricted || EKEventStore.authorizationStatus(for: .event) == .denied {
+            showAlertNoAccess = true
+        }
+        await getCalendars()
+    }
+    
+    func getCalendars() async {
+        calendarTitles = []
+        await calendarTitles = calendarManager.getAvailableCalendars()
+        
+        if !calendarTitles.isEmpty {
+            showCalendarDialog = true
+        } else {
+            print("No calendar data")
+        }
+    }
+    
+    func saveEvent(calendarTitle: String) {
+        let gameDate = getDatefromBSMString(gamescore: gamescore)
+        calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendarTitle: calendarTitle)
+        showEventAlert = true
+    }
+#endif
     
     var gamescore: GameScore
     
@@ -130,27 +162,20 @@ struct ScoresDetailView: View {
                 
                 Spacer()
                 
-//                Button(
-//                    action: {
-//                        Task {
-//                            calendarAccessGranted = await getAvailableCalendars()
-//                            if !calendarStrings.isEmpty {
-//                                showCalendarDialog.toggle()
-//                            }
-//                        }
-//                    }
-//                ){
-//                    Image(systemName: "calendar.badge.plus")
-//                }
+                Button(
+                    action: {
+                        Task {
+                            await checkAccess()
+                        }
+                    }
+                ){
+                    Image(systemName: "calendar.badge.plus")
+                }
                 .confirmationDialog("Choose a calendar to save the game", isPresented: $showCalendarDialog, titleVisibility: .visible) {
                     
-                    ForEach(calendarStrings, id: \.self) { calendarString in
-                        Button(calendarString) {
-                            //gameDate = getDatefromBSMString(gamescore: gamescore)
-//                            let localGameDate = getDatefromBSMString(gamescore: gamescore)
-//                            addGameToCalendar(gameDate: localGameDate, gamescore: gamescore, calendarString: calendarString)
-                            showEventAlert = true
-                            
+                    ForEach(calendarTitles, id: \.self) { calendarTitle in
+                        Button(calendarTitle) {
+                            saveEvent(calendarTitle: calendarTitle)
                         }
                     }
                 }
@@ -159,6 +184,15 @@ struct ScoresDetailView: View {
                 } message: {
                     Text("Game has been saved to calendar")
                 }
+                
+                .padding(.horizontal, 10)
+                
+                .alert("No access to calendar", isPresented: $showAlertNoAccess) {
+                    Button("OK") { }
+                } message: {
+                    Text("You have disabled access to your calendar. To save games please go to your device settings to enable it.")
+                }
+                .padding(.horizontal, 10)
                 
                 Spacer()
                 

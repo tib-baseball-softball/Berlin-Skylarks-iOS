@@ -39,8 +39,9 @@ struct UserHomeView: View {
     @State var leagueGroups = [LeagueGroup]()
     @State var displayTeam: BSMTeam = emptyTeam
     
-    @State var selectedHomeTablesURL = URL(string: "nonsense")!
-    @State var selectedHomeScoresURL = URL(string: "nonsense")!
+    //should be overridden before first network call
+    @State var selectedHomeTablesURL = URL(string: "https://www.tib-baseball.de")!
+    @State var selectedHomeScoresURL = URL(string: "https://www.tib-baseball.de")!
     
     //-------------------------------------------//
     //LOCAL FUNCTIONS
