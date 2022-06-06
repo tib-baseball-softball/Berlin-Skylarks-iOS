@@ -7,20 +7,20 @@
 
 import SwiftUI
 
-struct ShareSheet: View {
-    @Environment(\.dismiss) var dismiss
-    
-    var body: some View {
-        Button("Press to dismiss") {
-            dismiss()
-        }
-        .font(.title)
-        .padding()
-    }
-}
-
-struct ShareSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        ShareSheet()
-    }
-}
+//struct ShareSheet: View {
+//    @Environment(\.dismiss) var dismiss
+//
+//    var body: some View {
+//        Button("Press to dismiss") {
+//            dismiss()
+//        }
+//        .font(.title)
+//        .padding()
+//    }
+//}
+//
+//struct ShareSheet_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ShareSheet()
+//    }
+//}
