@@ -22,7 +22,14 @@ struct StandingsTableView: View {
         //the table for Apple Watch removes the columns for streak and games behind and changes the team display name to the short name (acronym with number)
         
         List {
-            Section {
+            Section(footer: Text(
+                """
+                Legend:
+                W: Wins
+                L: Losses
+                %: Winning Percentage
+                """
+                )) {
                 HStack {
                     Text("#")
                         .bold()
@@ -60,7 +67,6 @@ struct StandingsTableView: View {
                     }
                     .foregroundColor(tableRow.team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
                 }
-                //more rows here
             }
         }
         .navigationTitle(leagueTable.league_name)
@@ -72,7 +78,16 @@ struct StandingsTableView: View {
                 .edgesIgnoringSafeArea(.all)
             #endif
             List {
-                Section {
+                Section(footer: Text(
+                """
+                Legend:
+                W: Wins
+                L: Losses
+                %: Winning Percentage
+                GB: Games Behind (first place, assuming no ties)
+                Srk: Streak (winning or losing)
+                """
+                )) {
                     HStack {
                         Text("#")
                             .bold()
