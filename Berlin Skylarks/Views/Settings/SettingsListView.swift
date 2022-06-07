@@ -13,6 +13,8 @@ struct SettingsListView: View {
    
     @State var teams = [BSMTeam]()
     
+    @State var showingSheetTeams = false
+    
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
     @AppStorage("favoriteTeam") var favoriteTeam: String = "Not set"
     
@@ -68,6 +70,7 @@ struct SettingsListView: View {
                 }) {
                     //theoretically works with years earlier than 2021, but the app filters games for team name, so older team names don't work in the current implementation and are not intended to be included
                     ForEach(2021...Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!, id: \.self) { season in
+                        //not using string interpolation here because it adds weird formatting upon conversion!
                         Text(String(season))
                     }
                 }
@@ -177,6 +180,11 @@ struct SettingsListView: View {
         
         .onChange(of: selectedSeason, perform: { value in
             favoriteTeamID = 0
+            showingSheetTeams = true
+        })
+        
+        .sheet(isPresented: $showingSheetTeams, content: {
+            SelectTeamSheet()
         })
     }
 }
@@ -186,5 +194,6 @@ struct SettingsListView_Previews: PreviewProvider {
         NavigationView {
             SettingsListView()
         }
+        .preferredColorScheme(.dark)
     }
 }
