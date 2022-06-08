@@ -9,7 +9,8 @@ import SwiftUI
 
 struct SettingsListView: View {
     
-    //@ObservedObject var userSettings = UserSettings()
+    @EnvironmentObject var networkManager: NetworkManager
+    @State private var showAlertNoNetwork = false
    
     @State var teams = [BSMTeam]()
     
@@ -23,6 +24,10 @@ struct SettingsListView: View {
     let mailtoUrl = URL(string: "mailto:app@tib-baseball.de")!
     
     func fetchTeams() async {
+        if networkManager.isConnected == false {
+            showAlertNoNetwork = true
+        }
+        
         do {
             teams = try await loadSkylarksTeams(season: selectedSeason)
         } catch {
@@ -186,6 +191,13 @@ struct SettingsListView: View {
         .sheet(isPresented: $showingSheetTeams, content: {
             SelectTeamSheet()
         })
+        
+        .alert("No network connection", isPresented: $showAlertNoNetwork) {
+            Button("OK") { }
+        } message: {
+            Text("No active network connection has been detected. The app needs a connection to download its data.")
+        }
+        .padding(.horizontal, 10)
     }
 }
 

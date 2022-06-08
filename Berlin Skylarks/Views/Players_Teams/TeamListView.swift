@@ -17,6 +17,9 @@ struct TeamListView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
+    @EnvironmentObject var networkManager: NetworkManager
+    @State private var showAlertNoNetwork = false
+    
     @State var teams = [BSMTeam]()
     
     @State private var loadingInProgress = false
@@ -24,6 +27,9 @@ struct TeamListView: View {
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
     
     func loadTeamData() async {
+        if networkManager.isConnected == false {
+            showAlertNoNetwork = true
+        }
         
         let teamURL = URL(string:"https://bsm.baseball-softball.de/clubs/485/teams.json?filters[seasons][]=" + "\(selectedSeason)" + "&sort[league_sort]=asc&api_key=" + apiKey)!
         
@@ -118,6 +124,13 @@ struct TeamListView: View {
             .onChange(of: selectedSeason, perform: { value in
                 teams = []
             })
+            
+            .alert("No network connection", isPresented: $showAlertNoNetwork) {
+                Button("OK") { }
+            } message: {
+                Text("No active network connection has been detected. The app needs a connection to download its data.")
+            }
+            .padding(.horizontal, 10)
         }
     }
 }

@@ -13,6 +13,9 @@ struct StandingsView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
+    @EnvironmentObject var networkManager: NetworkManager
+    @State private var showAlertNoNetwork = false
+    
     @State private var leagueTableArray = [LeagueTable]()
     @State var leagueGroups = [LeagueGroup]()
     
@@ -22,6 +25,9 @@ struct StandingsView: View {
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
     
     func loadAllTables() async {
+        if networkManager.isConnected == false {
+            showAlertNoNetwork = true
+        }
         
         let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(selectedSeason)" + "&api_key=" + apiKey)!
         
@@ -54,7 +60,7 @@ struct StandingsView: View {
             List {
                 Section(header: Text("Club Team Records"),
                         footer: Text("How are our teams doing?")) {
-                    if loadingInProgress == false {
+                    if loadingInProgress == false && !leagueTableArray.isEmpty {
                         NavigationLink(destination: ClubStandingsView(leagueTables: leagueTableArray)) {
                             HStack {
                                 Image(systemName: "person.3")
@@ -132,7 +138,14 @@ struct StandingsView: View {
                 tablesLoaded = false
                 //let's try to save some performance - don't need to load twice
                 //loadAllTables()
-        })
+            })
+            
+            .alert("No network connection", isPresented: $showAlertNoNetwork) {
+                Button("OK") { }
+            } message: {
+                Text("No active network connection has been detected. The app needs a connection to download its data.")
+            }
+            .padding(.horizontal, 10)
         }
     }
 }

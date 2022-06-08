@@ -16,6 +16,9 @@ struct UserHomeView: View {
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
     @AppStorage("didLaunchBefore") var didLaunchBefore = false
     
+    @EnvironmentObject var networkManager: NetworkManager
+    @State private var showAlertNoNetwork = false
+    
     @State private var showingSheetSettings = false
     @State private var showingSheetNextGame = false
     @State private var showingSheetLastGame = false
@@ -48,6 +51,10 @@ struct UserHomeView: View {
     //-------------------------------------------//
     
     func loadProcessHomeData() async {
+        if networkManager.isConnected == false {
+            showAlertNoNetwork = true
+        }
+        
         displayTeam = await setFavoriteTeam()
         loadingTables = true
         loadingScores = true
@@ -305,6 +312,13 @@ struct UserHomeView: View {
                 await loadProcessHomeData()
             }
         }
+        
+        .alert("No network connection", isPresented: $showAlertNoNetwork) {
+            Button("OK") { }
+        } message: {
+            Text("No active network connection has been detected. The app needs a connection to download its data.")
+        }
+        .padding(.horizontal, 10)
 //
     //we are showing the app settings here, but only on iPhone, since the 5 tab items are full. On iPad/Mac the sidebar has more than enough space to include settings
         //for now we have it back in the tab bar

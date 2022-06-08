@@ -12,6 +12,9 @@ struct ScoresView: View {
     
     @EnvironmentObject var calendarManager: CalendarManager
     
+    @EnvironmentObject var networkManager: NetworkManager
+    @State private var showAlertNoNetwork = false
+    
     @State private var gamescores = [GameScore]()
     @State private var leagueGroups = [LeagueGroup]()
     
@@ -88,6 +91,10 @@ struct ScoresView: View {
     }
     
     func loadGamesAndProcess() async {
+        if networkManager.isConnected == false {
+            showAlertNoNetwork = true
+        }
+        
         for (string, url) in scoresURLs {
             if selection == string {
                 let gameURLSelected = url
@@ -255,6 +262,13 @@ struct ScoresView: View {
                     Button("OK") { }
                 } message: {
                     Text("You have disabled access to your calendar. To save games please go to your device settings to enable it.")
+                }
+                .padding(.horizontal, 10)
+                
+                .alert("No network connection", isPresented: $showAlertNoNetwork) {
+                    Button("OK") { }
+                } message: {
+                    Text("No active network connection has been detected. The app needs a connection to download its data.")
                 }
                 .padding(.horizontal, 10)
             }
