@@ -68,34 +68,50 @@ struct SettingsListView: View {
                 footer: Text("The selected season is applied globally in the app.")
             ) {
                 Picker(selection: $selectedSeason, label:
-                    HStack {
-                        Image(systemName: "deskclock.fill")
-                            .font(.title3)
-                        Text("Season")
-                }) {
+                HStack {
+                    Image(systemName: "deskclock.fill")
+                        .font(.title3)
+                    Text("Season")
+                }
+                    .listRowBackground(ColorStandingsTableHeadline)
+                ) {
                     //theoretically works with years earlier than 2021, but the app filters games for team name, so older team names don't work in the current implementation and are not intended to be included
                     ForEach(2021...Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!, id: \.self) { season in
                         //not using string interpolation here because it adds weird formatting upon conversion!
                         Text(String(season))
                     }
                 }
+#if !os(watchOS)
+                .pickerStyle(.inline)
+#endif
             }
             Section(
                 header: Text("Teams"),
                 footer: Text("Your favorite team appears in the Home dashboard tab.")) {
+                    HStack {
+                        Image(systemName: "star.square.fill")
+                            .font(.title2)
+                        Text("Favorite Team")
+                    }
+                    .listRowBackground(ColorStandingsTableHeadline)
                     Picker(selection: $favoriteTeamID, label:
-                        HStack {
-                            Image(systemName: "star.square.fill")
-                                .font(.title2)
-                            Text("Favorite Team")
+                            HStack {
+                        //                            Image(systemName: "star.square.fill")
+                        //                                .font(.title2)
+                        Text("Favorite Team")
                     }) {
                         ForEach(teams, id: \.self) { team in
                             if !team.league_entries.isEmpty {
                                 Text("\(team.name) (\(team.league_entries[0].league.name))")
                                     .tag(team.id)
+                                    
                             }
                         }
+                        .fixedSize(horizontal: false, vertical: true)
                     }
+#if !os(watchOS)
+                    .pickerStyle(.menu)
+#endif
             }
             Section(header: Text("Information")) {
                 NavigationLink(
@@ -186,6 +202,9 @@ struct SettingsListView: View {
         .onChange(of: selectedSeason, perform: { value in
             favoriteTeamID = 0
             showingSheetTeams = true
+            Task {
+                await fetchTeams()
+            }
         })
         
         .sheet(isPresented: $showingSheetTeams, content: {
@@ -206,5 +225,6 @@ struct SettingsListView_Previews: PreviewProvider {
             SettingsListView()
         }
         .preferredColorScheme(.dark)
+        .environmentObject(NetworkManager())
     }
 }
