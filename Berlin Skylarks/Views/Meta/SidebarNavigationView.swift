@@ -18,6 +18,7 @@ struct SidebarNavigationView: View {
                             destination: UserHomeView()) {
                                 HStack {
                                     Image(systemName: "star.square.fill")
+                                        .foregroundColor(.skylarksDynamicNavySand)
                                         .frame(width: 30)
                                     Text("Home")
                                         .frame(width: 100, alignment: .leading)
@@ -29,6 +30,7 @@ struct SidebarNavigationView: View {
                             //destination: TestView()) {
                             destination: ScoresView()) {
                                 Image(systemName: "42.square.fill")
+                                    .foregroundColor(.skylarksDynamicNavySand)
                                     .frame(width: 30)
                                 Text("Scores")
                                     .frame(width: 100, alignment: .leading)
@@ -36,6 +38,7 @@ struct SidebarNavigationView: View {
                         NavigationLink(
                             destination: StandingsView()) {
                                 Image(systemName: "tablecells.fill")
+                                    .foregroundColor(.skylarksDynamicNavySand)
                                     .frame(width: 30)
                                 Text("Standings")
                                     .frame(width: 100, alignment: .leading)
@@ -55,6 +58,7 @@ struct SidebarNavigationView: View {
                         NavigationLink(
                             destination: TeamListView()) {
                                 Image(systemName: "person.3.fill")
+                                    .foregroundColor(.skylarksDynamicNavySand)
                                     .frame(width: 30)
                                 Text("Teams")
                                     .frame(width: 100, alignment: .leading)
@@ -64,6 +68,7 @@ struct SidebarNavigationView: View {
                         NavigationLink(
                             destination: SettingsListView()) {
                                 Image(systemName: "gearshape.fill")
+                                    .foregroundColor(.skylarksDynamicNavySand)
                                     .frame(width: 30)
                                 Text("Settings")
                                     .frame(width: 100, alignment: .leading)
