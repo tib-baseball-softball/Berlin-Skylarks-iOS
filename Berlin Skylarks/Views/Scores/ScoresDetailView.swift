@@ -185,14 +185,11 @@ struct ScoresDetailView: View {
                     Text("Game has been saved to calendar")
                 }
                 
-                .padding(.horizontal, 10)
-                
                 .alert("No access to calendar", isPresented: $showAlertNoAccess) {
                     Button("OK") { }
                 } message: {
                     Text("You have disabled access to your calendar. To save games please go to your device settings to enable it.")
                 }
-                .padding(.horizontal, 10)
                 
                 Spacer()
                 

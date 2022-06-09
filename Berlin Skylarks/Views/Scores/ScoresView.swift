@@ -39,6 +39,7 @@ struct ScoresView: View {
     @State private var showAlertNoGames = false
     @State private var showAlertNoAccess = false
     @State private var loadingInProgress = false
+    @State private var scoresLoaded = false
     
     @State private var searchText = ""
     
@@ -197,13 +198,15 @@ struct ScoresView: View {
         }
         .refreshable {
             gamescores = []
+            scoresLoaded = false
             await loadGamesAndProcess()
         }
         .onAppear(perform: {
-            if gamescores.isEmpty {
+            if gamescores.isEmpty && scoresLoaded == false {
                 Task {
                     await loadLeagueGroups()
                 }
+                scoresLoaded = true
             }
             //asking out of the blue upon loading is not allowed and also plain bad UX
             //getAvailableCalendars()
@@ -211,6 +214,7 @@ struct ScoresView: View {
         
         .onChange(of: selection, perform: { value in
             gamescores = []
+            scoresLoaded = false
             Task {
                 await loadGamesAndProcess()
             }
@@ -218,6 +222,7 @@ struct ScoresView: View {
         
         .onChange(of: selectedSeason, perform: { value in
             gamescores = []
+            scoresLoaded = false
             //loadLeagueGroups()
         })
         
@@ -249,28 +254,24 @@ struct ScoresView: View {
                 } message: {
                     Text("All games have been saved.")
                 }
-                .padding(.horizontal, 10)
                 
                 .alert("Save to calendar", isPresented: $showAlertNoGames) {
                     Button("OK") { }
                 } message: {
                     Text("There is no game data to save.")
                 }
-                .padding(.horizontal, 10)
                 
                 .alert("No access to calendar", isPresented: $showAlertNoAccess) {
                     Button("OK") { }
                 } message: {
                     Text("You have disabled access to your calendar. To save games please go to your device settings to enable it.")
                 }
-                .padding(.horizontal, 10)
                 
                 .alert("No network connection", isPresented: $showAlertNoNetwork) {
                     Button("OK") { }
                 } message: {
                     Text("No active network connection has been detected. The app needs a connection to download its data.")
                 }
-                .padding(.horizontal, 10)
             }
             
             //not sure if I want this
@@ -351,17 +352,17 @@ struct ScoresView: View {
         //APPLE WATCH SEPARATE FUNCS/////////////////////////////////////////////////////////////////////
         
         .onAppear(perform: {
-            if gamescores.isEmpty {
+            if gamescores.isEmpty && scoresLoaded == false {
                 Task {
                     await loadLeagueGroups()
                 }
+                scoresLoaded = true
             }
-            //MARK: deactivated calendar functionality on Apple Watch
-            //getAvailableCalendars()
         })
         
         .onChange(of: selection, perform: { value in
             gamescores = []
+            scoresLoaded = false
             Task {
                 await loadGamesAndProcess()
             }
@@ -369,6 +370,7 @@ struct ScoresView: View {
         
         .onChange(of: selectedSeason, perform: { value in
             gamescores = []
+            scoresLoaded = false
             //loadLeagueGroups()
         })
         

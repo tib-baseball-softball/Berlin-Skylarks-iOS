@@ -197,7 +197,6 @@ struct SettingsListView: View {
         } message: {
             Text("No active network connection has been detected. The app needs a connection to download its data.")
         }
-        .padding(.horizontal, 10)
     }
 }
 

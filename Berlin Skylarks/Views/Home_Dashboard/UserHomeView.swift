@@ -318,7 +318,6 @@ struct UserHomeView: View {
         } message: {
             Text("No active network connection has been detected. The app needs a connection to download its data.")
         }
-        .padding(.horizontal, 10)
 //
     //we are showing the app settings here, but only on iPhone, since the 5 tab items are full. On iPad/Mac the sidebar has more than enough space to include settings
         //for now we have it back in the tab bar
