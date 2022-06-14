@@ -44,6 +44,9 @@ struct LegalNoticeView: View {
                 Source:
                 eRecht24
                 """)
+            #if !os(watchOS)
+            .textSelection(.enabled)
+            #endif
             .padding()
         }
         .navigationTitle("Legal Notice")

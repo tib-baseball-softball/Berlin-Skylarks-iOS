@@ -67,6 +67,7 @@ struct ScoresDetailView: View {
             Section(header: Text("Main info")) {
                 ScoreMainInfo(gamescore: gamescore)
             }
+            .textSelection(.enabled)
             Section(header: Text("Score")) {
                 VStack {
                     //extracted to subview to be used by OverView as well
@@ -125,25 +126,21 @@ struct ScoresDetailView: View {
                 //  .cornerRadius(NewsItemCornerRadius)
             }
             Section(header: Text("Location")) {
-                
                 //field is now optional - apparently that is not a required field in BSM (doesn't really make sense but okay...)
-                
                 BallparkLocation(gamescore: gamescore)
             }
+            .textSelection(.enabled)
             Section(header: Text("Status")) {
-                
                 ScoresStatusSection(gamescore: gamescore)
             }
             Section(header: Text("Game officials")) {
-                
-                //start umpire assignments.
-                
                 UmpireAssignments(gamescore: gamescore)
                 
                 //scorer assignments. I support two entries here to account for double scoring. Only the first one gets an else statement since second scorers are rare
                 
                 ScorerAssignments(gamescore: gamescore)
             }
+            .textSelection(.enabled)
         }
         .listStyle(.insetGrouped)
         .navigationTitle("Game Details")

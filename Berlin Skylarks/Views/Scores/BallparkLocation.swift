@@ -74,7 +74,7 @@ struct BallparkLocation: View {
             HStack {
                 Image(systemName: "map")
                 if let street = field.street, let postalCode = field.postal_code, let city = field.city {
-                    Text("\(street),\n \(postalCode) \(city)")
+                    Text("\(street), \(postalCode) \(city)")
                 } else {
                     Text("No address data provided")
                 }
@@ -91,6 +91,8 @@ struct BallparkLocation: View {
 
 struct BallparkLocation_Previews: PreviewProvider {
     static var previews: some View {
-        BallparkLocation(gamescore: testGame)
+        List {
+            BallparkLocation(gamescore: testGame)
+        }
     }
 }

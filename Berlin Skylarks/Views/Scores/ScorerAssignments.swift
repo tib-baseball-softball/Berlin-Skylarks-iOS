@@ -16,10 +16,11 @@ struct ScorerAssignments: View {
             ForEach(gamescore.scorer_assignments, id: \.self) { scorerEntry in
                 HStack {
                     Image(systemName: "pencil")
-                    Text(scorerEntry.license.person.last_name + ", " + scorerEntry.license.person.first_name)
-                    Spacer()
-                    Text(scorerEntry.license.number)
-                        .iOS { $0.font(.caption) }
+                    VStack(alignment: .leading, spacing: 2) {
+                        Text("\(scorerEntry.license.person.last_name), \(scorerEntry.license.person.first_name)")
+                        Text(scorerEntry.license.number)
+                            .foregroundColor(.secondary)
+                    }
                 }.padding(ScoresItemPadding)
             }
         } else {

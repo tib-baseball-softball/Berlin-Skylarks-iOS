@@ -30,8 +30,11 @@ struct InfoView: View {
                     Text(build)
                 }
             }
-            #endif
+#endif
         }
+#if !os(watchOS)
+        .textSelection(.enabled)
+#endif
         .navigationTitle("App Info")
     }
 }

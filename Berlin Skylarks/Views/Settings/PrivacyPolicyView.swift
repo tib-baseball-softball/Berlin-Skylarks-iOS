@@ -61,9 +61,12 @@ struct PrivacyPolicyView: View {
                  **8. Changes to this privacy policy**.
 
                  The operator may update our privacy policy from time to time. We therefore recommend that you regularly check this page for changes. The Operator will notify you of any changes by posting the new Privacy Policy on this page.
-
+                 
                  This privacy policy is valid as of 11/5/2022.
                  """)
+#if !os(watchOS)
+            .textSelection(.enabled)
+#endif
             .padding()
         }
         .navigationTitle("Privacy Policy")

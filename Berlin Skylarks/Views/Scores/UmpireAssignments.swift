@@ -11,14 +11,18 @@ struct UmpireAssignments: View {
     
     var gamescore: GameScore
     
+    var testvar = Font.caption
+    
     var body: some View {
         ForEach(gamescore.umpire_assignments, id: \.self) { umpireEntry in
             HStack {
                 Image(systemName: "person.fill")
-                Text(umpireEntry.license.person.last_name + ", " + umpireEntry.license.person.first_name)
-                Spacer()
-                Text(umpireEntry.license.number)
-                .iOS { $0.font(.caption) }
+                VStack(alignment: .leading, spacing: 2) {
+                    Text("\(umpireEntry.license.person.last_name), \(umpireEntry.license.person.first_name)")
+                    Text(umpireEntry.license.number)
+                        .foregroundColor(.secondary)
+                }
+                
             }.padding(ScoresItemPadding)
         }
         
@@ -42,6 +46,8 @@ struct UmpireAssignments: View {
 
 struct UmpireAssignments_Previews: PreviewProvider {
     static var previews: some View {
-        UmpireAssignments(gamescore: testGame)
+        List {
+            UmpireAssignments(gamescore: testGame)
+        }
     }
 }
