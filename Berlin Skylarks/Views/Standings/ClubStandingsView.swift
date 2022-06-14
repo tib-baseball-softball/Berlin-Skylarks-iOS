@@ -13,6 +13,24 @@ struct ClubStandingsView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
+    func calculateTotalCounts() -> (wins: Int, losses: Int) {
+        var winsCount = 0
+        var lossesCount = 0
+        for leagueTable in leagueTables {
+            for row in leagueTable.rows where row.team_name.contains("Skylarks") {
+                winsCount += row.wins_count
+                lossesCount += row.losses_count
+            }
+        }
+        return (winsCount, lossesCount)
+    }
+    
+    func calculatePercentage(wins: Int, losses: Int) -> CGFloat {
+        let winsCount = CGFloat(wins)
+        let lossesCount = CGFloat(losses)
+        return winsCount / (winsCount + lossesCount)
+    }
+    
     var body: some View {
         ZStack {
             #if !os(watchOS)
@@ -21,7 +39,7 @@ struct ClubStandingsView: View {
             #endif
             List {
                 Section(header: HStack {
-                    Text("Club Standings")
+                    Text("Club Team Records")
                     Spacer()
                     Text("W/L")
                 }) {
@@ -29,6 +47,27 @@ struct ClubStandingsView: View {
                         ClubStandingsRow(leagueTable: LeagueTable)
                     }
                     .padding(.vertical, 2)
+                }
+                let totalCounts = calculateTotalCounts()
+                Section(header: HStack {
+                    Text("Club Total")
+                }) {
+                    HStack {
+                        Spacer()
+                        Text("\(totalCounts.wins) - \(totalCounts.losses)")
+                            .font(.largeTitle)
+                            .bold()
+                        Spacer()
+                    }
+                    .padding()
+                    let percentage = calculatePercentage(wins: totalCounts.wins, losses: totalCounts.losses)
+                    let quotaString = String(format: "%.3f", percentage)
+                    HStack {
+                        Spacer()
+                        LargePercentageCircle(percentage: percentage, percentageText: String(quotaString.dropFirst()))
+                        Spacer()
+                    }
+                    .padding()
                 }
             }
             .frame(maxWidth: 650)
@@ -39,6 +78,6 @@ struct ClubStandingsView: View {
 
 struct ClubStandingsView_Previews: PreviewProvider {
     static var previews: some View {
-        ClubStandingsView(leagueTables: [dummyLeagueTable, dummyLeagueTable, dummyLeagueTable])
+        ClubStandingsView(leagueTables: [dummyLeagueTable, dummyLeagueTable, dummyLeagueTable, dummyLeagueTable])
     }
 }

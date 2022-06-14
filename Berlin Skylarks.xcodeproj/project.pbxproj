@@ -70,6 +70,8 @@
 		CA48557D27748A9E004ED11A /* GamedayWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */; };
 		CA48557E27748A9E004ED11A /* GamedayWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */; };
 		CA48558127748DEE004ED11A /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6042A02745B14000607011 /* ViewModifiers.swift */; };
+		CA4AA4422858BBFF00C83CED /* LargePercentageCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AA4412858BBFF00C83CED /* LargePercentageCircle.swift */; };
+		CA4AA4432858BBFF00C83CED /* LargePercentageCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AA4412858BBFF00C83CED /* LargePercentageCircle.swift */; };
 		CA55F6E127601A4F0032302F /* API_Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55F6E027601A4F0032302F /* API_Key.swift */; };
 		CA55F6E227601E350032302F /* API_Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55F6E027601A4F0032302F /* API_Key.swift */; };
 		CA56299526943C0D00274BE4 /* WebArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56299426943C0D00274BE4 /* WebArticleView.swift */; };
@@ -289,6 +291,7 @@
 		CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BSMLeagueGroup.swift; path = "Berlin Skylarks/Models/BSMLeagueGroup.swift"; sourceTree = SOURCE_ROOT; };
 		CA28FB8F280DDDC6007581FD /* HomeTeamDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTeamDetailView.swift; sourceTree = "<group>"; };
 		CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamedayWidgetView.swift; sourceTree = "<group>"; };
+		CA4AA4412858BBFF00C83CED /* LargePercentageCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargePercentageCircle.swift; sourceTree = "<group>"; };
 		CA55F6E027601A4F0032302F /* API_Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Key.swift; sourceTree = "<group>"; };
 		CA56299426943C0D00274BE4 /* WebArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebArticleView.swift; sourceTree = "<group>"; };
 		CA5CF5CA284E0DCF00ABD7E0 /* GameResultIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultIndicator.swift; sourceTree = "<group>"; };
@@ -499,6 +502,7 @@
 				CACA4285283C26CF008F21FF /* SegmentChart.swift */,
 				CACA4287283C2D47008F21FF /* ChartElement.swift */,
 				CACA4283283C25E3008F21FF /* SegmentPercentage.swift */,
+				CA4AA4412858BBFF00C83CED /* LargePercentageCircle.swift */,
 				CACA4289283D03FA008F21FF /* SegmentStreak.swift */,
 				CACA428D283D60EB008F21FF /* StreakEmoji.swift */,
 				CACA428B283D60C8008F21FF /* StreakBar.swift */,
@@ -921,6 +925,7 @@
 				CA5CF5CC284E0DCF00ABD7E0 /* GameResultIndicator.swift in Sources */,
 				CA9B1814277A299400D24CFA /* ScoresOverView.swift in Sources */,
 				CA65FF3F27F5E60C00F7845D /* TeamListView.swift in Sources */,
+				CA4AA4432858BBFF00C83CED /* LargePercentageCircle.swift in Sources */,
 				CA1C39B82731856B00BB194C /* NotificationView.swift in Sources */,
 				CA9B180E277A27FA00D24CFA /* ContentView.swift in Sources */,
 				CA65FF3E27EA14E700F7845D /* TeamDetailView.swift in Sources */,
@@ -998,6 +1003,7 @@
 				CACA42952848E684008F21FF /* ClubStandingsView.swift in Sources */,
 				CA5CF5E7284FF73000ABD7E0 /* SelectTeamSheet.swift in Sources */,
 				CAE7740C26C1709B00A57F66 /* BSMStandingsTable.swift in Sources */,
+				CA4AA4422858BBFF00C83CED /* LargePercentageCircle.swift in Sources */,
 				CAAB56C3271F62F800ADDE9D /* GlobalFunctions.swift in Sources */,
 				CA28FB90280DDDC6007581FD /* HomeTeamDetailView.swift in Sources */,
 				CA56299526943C0D00274BE4 /* WebArticleView.swift in Sources */,

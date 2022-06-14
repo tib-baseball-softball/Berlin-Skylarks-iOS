@@ -62,17 +62,7 @@ struct SegmentPercentage: View {
         ){
             HStack {
                 Spacer()
-                ZStack {
-                    Circle()
-                        .trim(from: 0, to: percentage)
-                        .stroke(Color.green, style: StrokeStyle(lineWidth: 15, lineCap: .round))
-                        .frame(width: 150, height: 150)
-                        .padding()
-                    //Text(".136")
-                    Text(userDashboard.tableRow.quota)
-                        .font(.title)
-                        .bold()
-                }
+                LargePercentageCircle(percentage: percentage, percentageText: userDashboard.tableRow.quota)
                 Spacer()
             }
         }
@@ -84,7 +74,7 @@ struct SegmentPercentage_Previews: PreviewProvider {
         List {
             SegmentPercentage(userDashboard: dummyDashboard)
         }
-        .preferredColorScheme(.dark)
+        //.preferredColorScheme(.dark)
         //.previewInterfaceOrientation(.landscapeLeft)
     }
 }
