@@ -55,7 +55,11 @@ struct ClubStandingsView: View {
                     HStack {
                         Spacer()
                         Text("\(totalCounts.wins) - \(totalCounts.losses)")
+                        #if !os(watchOS)
                             .font(.largeTitle)
+                        #else
+                            .font(.title2)
+                        #endif
                             .bold()
                         Spacer()
                     }

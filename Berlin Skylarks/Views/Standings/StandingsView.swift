@@ -64,7 +64,11 @@ struct StandingsView: View {
                         NavigationLink(destination: ClubStandingsView(leagueTables: leagueTableArray)) {
                             HStack {
                                 Image(systemName: "person.3")
+                                #if !os(watchOS)
                                     .foregroundColor(.skylarksDynamicNavySand)
+                                #else
+                                    .foregroundColor(.skylarksSand)
+                                #endif
                                 Text("See records for all teams")
                             }
                             .padding(.vertical)

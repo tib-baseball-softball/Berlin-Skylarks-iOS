@@ -13,6 +13,7 @@ struct LargePercentageCircle: View {
     var percentageText: String
     
     var body: some View {
+#if !os(watchOS)
         ZStack {
             Circle()
                 .trim(from: 0, to: percentage)
@@ -25,11 +26,19 @@ struct LargePercentageCircle: View {
                 .font(.title)
                 .bold()
         }
+#else
+        Gauge(value: percentage, in: 0...1) {
+            Text("%")
+        } currentValueLabel: {
+            Text(percentageText)
+        }
+        .gaugeStyle(CircularGaugeStyle(tint: .skylarksSand))
+#endif
     }
 }
 
 struct LargePercentageCircle_Previews: PreviewProvider {
     static var previews: some View {
-        LargePercentageCircle(percentage: 0.5, percentageText: ".156")
+        LargePercentageCircle(percentage: 0.5, percentageText: ".500")
     }
 }

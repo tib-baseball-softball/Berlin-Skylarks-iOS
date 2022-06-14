@@ -24,9 +24,11 @@ struct SettingsListView: View {
     let mailtoUrl = URL(string: "mailto:app@tib-baseball.de")!
     
     func fetchTeams() async {
+#if !os(watchOS)
         if networkManager.isConnected == false {
             showAlertNoNetwork = true
         }
+#endif
         
         do {
             teams = try await loadSkylarksTeams(season: selectedSeason)
@@ -114,6 +116,8 @@ struct SettingsListView: View {
 #endif
             }
             Section(header: Text("Information")) {
+                //App info does not show anything on watchOS, so we don't need to show it there
+#if !os(watchOS)
                 NavigationLink(
                     destination: InfoView()) {
                     HStack {
@@ -123,6 +127,7 @@ struct SettingsListView: View {
                         Text("App Info")
                     }
                 }
+#endif
                 NavigationLink(
                     destination: LegalNoticeView()) {
                     HStack {

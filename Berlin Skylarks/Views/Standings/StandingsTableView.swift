@@ -48,7 +48,7 @@ struct StandingsTableView: View {
                             .frame(width: 38, height: 20, alignment: .center)
                     }.padding(.horizontal, -5)
                 }
-                .font(.title3)
+                .font(.headline)
                 
                 ForEach(leagueTable.rows, id: \.rank) { tableRow in
                     HStack {

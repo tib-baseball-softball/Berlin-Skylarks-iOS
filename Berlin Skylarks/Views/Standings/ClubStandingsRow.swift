@@ -18,7 +18,11 @@ struct ClubStandingsRow: View {
     var body: some View {
         HStack {
             Image(systemName: "person.3")
+            #if !os(watchOS)
                 .foregroundColor(.skylarksDynamicNavySand)
+            #else
+                .foregroundColor(.skylarksSand)
+            #endif
             
             Text(leagueTable.league_name)
             
