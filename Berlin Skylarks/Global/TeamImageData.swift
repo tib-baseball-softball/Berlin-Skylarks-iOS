@@ -12,6 +12,9 @@ import SwiftUI
 var away_team_logo = Image("App_road_team_logo")
 var home_team_logo = Image("App_home_team_logo")
 
+let skylarksPrimaryLogo = Image("Rondell")
+let skylarksSecondaryLogo = Image("Bird_whiteoutline")
+
 let flamingosLogo = Image("Berlin_Flamingos_Logo_3D")
 let sluggersLogo = Image("Sluggers_Logo")
 

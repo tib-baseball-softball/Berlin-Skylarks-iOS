@@ -90,30 +90,35 @@ struct SettingsListView: View {
             Section(
                 header: Text("Teams"),
                 footer: Text("Your favorite team appears in the Home dashboard tab.")) {
-                    HStack {
-                        Image(systemName: "star.square.fill")
-                            .font(.title2)
-                        Text("Favorite Team")
-                    }
-                    .listRowBackground(ColorStandingsTableHeadline)
-                    Picker(selection: $favoriteTeamID, label:
-                            HStack {
-                        //                            Image(systemName: "star.square.fill")
-                        //                                .font(.title2)
-                        Text("Favorite Team")
-                    }) {
-                        ForEach(teams, id: \.self) { team in
-                            if !team.league_entries.isEmpty {
-                                Text("\(team.name) (\(team.league_entries[0].league.name))")
-                                    .tag(team.id)
+//                    HStack {
+//                        Image(systemName: "star.square.fill")
+//                            .font(.title2)
+//                        Text("Favorite Team")
+//                    }
+//                    .listRowBackground(ColorStandingsTableHeadline)
+                    
+                    if !teams.isEmpty {
+                        Picker(selection: $favoriteTeamID, label:
+                        HStack {
+                            Image(systemName: "star.square.fill")
+                                .font(.title2)
+                            Text("Favorite Team")
+                        }) {
+                            ForEach(teams, id: \.self) { team in
+                                if !team.league_entries.isEmpty {
+                                    Text("\(team.name) (\(team.league_entries[0].league.name))")
+                                        .tag(team.id)
                                     
+                                }
                             }
+                            .fixedSize(horizontal: false, vertical: true)
                         }
-                        .fixedSize(horizontal: false, vertical: true)
+//    #if !os(watchOS)
+//                        .pickerStyle(.menu)
+//    #endif
+                    } else {
+                        Text("Fetching Teams...")
                     }
-#if !os(watchOS)
-                    .pickerStyle(.menu)
-#endif
             }
             Section(header: Text("Information")) {
                 //App info does not show anything on watchOS, so we don't need to show it there
@@ -206,6 +211,7 @@ struct SettingsListView: View {
         
         .onChange(of: selectedSeason, perform: { value in
             favoriteTeamID = 0
+            teams = []
             showingSheetTeams = true
             Task {
                 await fetchTeams()

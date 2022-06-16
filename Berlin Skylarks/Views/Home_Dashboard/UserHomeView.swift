@@ -405,6 +405,10 @@ struct UserHomeView: View {
                                 Text(userDashboard.tableRow.rank)
                                     .bold()
                                     .padding(.leading)
+                                if userDashboard.tableRow.rank == "1." {
+                                    Image(systemName: "crown")
+                                        .foregroundColor(Color.skylarksRed)
+                                }
                             }
                         }
                     }
