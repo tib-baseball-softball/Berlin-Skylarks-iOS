@@ -72,6 +72,8 @@
 		CA48558127748DEE004ED11A /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6042A02745B14000607011 /* ViewModifiers.swift */; };
 		CA4AA4422858BBFF00C83CED /* LargePercentageCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AA4412858BBFF00C83CED /* LargePercentageCircle.swift */; };
 		CA4AA4432858BBFF00C83CED /* LargePercentageCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AA4412858BBFF00C83CED /* LargePercentageCircle.swift */; };
+		CA4AA445285B661700C83CED /* WatchRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AA444285B661700C83CED /* WatchRootView.swift */; };
+		CA4AA447285B669B00C83CED /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AA446285B669B00C83CED /* MainTabView.swift */; };
 		CA55F6E127601A4F0032302F /* API_Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55F6E027601A4F0032302F /* API_Key.swift */; };
 		CA55F6E227601E350032302F /* API_Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55F6E027601A4F0032302F /* API_Key.swift */; };
 		CA56299526943C0D00274BE4 /* WebArticleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56299426943C0D00274BE4 /* WebArticleView.swift */; };
@@ -292,6 +294,8 @@
 		CA28FB8F280DDDC6007581FD /* HomeTeamDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTeamDetailView.swift; sourceTree = "<group>"; };
 		CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamedayWidgetView.swift; sourceTree = "<group>"; };
 		CA4AA4412858BBFF00C83CED /* LargePercentageCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargePercentageCircle.swift; sourceTree = "<group>"; };
+		CA4AA444285B661700C83CED /* WatchRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRootView.swift; sourceTree = "<group>"; };
+		CA4AA446285B669B00C83CED /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		CA55F6E027601A4F0032302F /* API_Key.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = API_Key.swift; sourceTree = "<group>"; };
 		CA56299426943C0D00274BE4 /* WebArticleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebArticleView.swift; sourceTree = "<group>"; };
 		CA5CF5CA284E0DCF00ABD7E0 /* GameResultIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameResultIndicator.swift; sourceTree = "<group>"; };
@@ -522,6 +526,8 @@
 			isa = PBXGroup;
 			children = (
 				CABF7BF0259351D400B95813 /* ContentView.swift */,
+				CA4AA446285B669B00C83CED /* MainTabView.swift */,
+				CA4AA444285B661700C83CED /* WatchRootView.swift */,
 				CA1C3A1F27388BF300BB194C /* SidebarNavigationView.swift */,
 				CA6F9E8327B2A9EE00530629 /* UserOnboardingView.swift */,
 			);
@@ -926,6 +932,7 @@
 				CA9B1814277A299400D24CFA /* ScoresOverView.swift in Sources */,
 				CA65FF3F27F5E60C00F7845D /* TeamListView.swift in Sources */,
 				CA4AA4432858BBFF00C83CED /* LargePercentageCircle.swift in Sources */,
+				CA4AA445285B661700C83CED /* WatchRootView.swift in Sources */,
 				CA1C39B82731856B00BB194C /* NotificationView.swift in Sources */,
 				CA9B180E277A27FA00D24CFA /* ContentView.swift in Sources */,
 				CA65FF3E27EA14E700F7845D /* TeamDetailView.swift in Sources */,
@@ -979,6 +986,7 @@
 				CABF7BF1259351D400B95813 /* ContentView.swift in Sources */,
 				CAC2D49F28513AFB009EB877 /* NetworkManager.swift in Sources */,
 				CA1E036E281ACC9D00E2FF8F /* LegalNoticeView.swift in Sources */,
+				CA4AA447285B669B00C83CED /* MainTabView.swift in Sources */,
 				CAF839D02705F4D9006FAD6B /* TestView.swift in Sources */,
 				CA78B7282596880200510621 /* NewsDetailView.swift in Sources */,
 				CA6042A12745B14000607011 /* ViewModifiers.swift in Sources */,
@@ -1174,7 +1182,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchSkylarks WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Skylarks WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = ComplicationController;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "The Skylarks app needs access to your calendar to add game dates to it.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;
@@ -1207,7 +1214,6 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "WatchSkylarks WatchKit Extension/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Skylarks WatchKit Extension";
-				INFOPLIST_KEY_CLKComplicationPrincipalClass = ComplicationController;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "The Skylarks app needs access to your calendar to add game dates to it.";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				INFOPLIST_KEY_WKRunsIndependentlyOfCompanionApp = YES;

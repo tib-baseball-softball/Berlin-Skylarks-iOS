@@ -36,59 +36,13 @@ struct ContentView: View {
     
     var body: some View {
         
-        //iPhone/iPad/Mac
+        //MARK: iPhone/iPad/Mac
         
         #if !os(watchOS)
         //the interface on iPhone uses a tab bar at the bottom
         
         if UIDevice.current.userInterfaceIdiom == .phone {
-            TabView {
-                NavigationView {
-                    UserHomeView()
-                }
-                //TODO: check appearance for iPhone Pro Max
-                .navigationViewStyle(.automatic)
-                    .tabItem {
-                        Image(systemName: "star.square.fill")
-                        Text("Home")
-                    }
-                //since News is non-functional right now, let's rather have the settings back in the tab bar
-//                NavigationView {
-//                    NewsView()
-//                }
-//                    .tabItem {
-//                        Image(systemName: "newspaper.fill")
-//                        Text("News")
-//                    }
-                NavigationView {
-                    ScoresView()
-                }
-                    .tabItem {
-                        Image(systemName: "42.square.fill")
-                        Text("Scores")
-                    }
-                NavigationView {
-                    StandingsView()
-                }
-                    .tabItem {
-                        Image(systemName: "tablecells.fill")
-                        Text("Standings")
-                    }
-                NavigationView {
-                    TeamListView()
-                }
-                    .tabItem {
-                        Image(systemName: "person.3.fill")
-                        Text("Teams")
-                    }
-                NavigationView {
-                    SettingsListView()
-                }
-                    .tabItem {
-                        Image(systemName: "gearshape.fill")
-                        Text("Settings")
-                    }
-            }
+            MainTabView()
             .onAppear(perform: {
                 checkForOnboarding()
                 WidgetCenter.shared.reloadAllTimelines()
@@ -117,57 +71,11 @@ struct ContentView: View {
         
         #endif
         
-        //Apple Watch
+        //MARK: Apple Watch
         
         #if os(watchOS)
-        NavigationView {
-            List {
-                NavigationLink(
-                    destination: UserHomeView()){
-                        HStack {
-                            Image(systemName: "star")
-                                .foregroundColor(Color.accentColor)
-                            Text("Favorite Team")
-                        }
-                    }
-//                HStack {
-//                    Image(systemName: "newspaper")
-//                        .foregroundColor(Color.accentColor)
-//                    Text("News")
-//                }
-                NavigationLink(
-                    destination: ScoresView()) {
-                        HStack {
-                            Image(systemName: "42.square")
-                                .foregroundColor(Color.accentColor)
-                            Text("Scores")
-                        }
-                    }
-                NavigationLink(
-                    destination: StandingsView()) {
-                        HStack {
-                            Image(systemName: "tablecells")
-                                .foregroundColor(Color.accentColor)
-                            Text("Standings")
-                        }
-                    }
-                
-//                HStack {
-//                    Image(systemName: "person.3")
-//                        .foregroundColor(Color.accentColor)
-//                    Text("Players")
-//                }
-                NavigationLink(
-                    destination: SettingsListView()) {
-                        HStack {
-                            Image(systemName: "gearshape")
-                                .foregroundColor(Color.accentColor)
-                            Text("Settings")
-                        }
-                    }
-                    
-            }
-            .navigationTitle("Home")
+            WatchRootView()
+    
             //TODO: needs to get favorite team info as well, either from parent app or via own view
             .onAppear(perform: {
                 checkForOnboarding()
@@ -178,7 +86,6 @@ struct ContentView: View {
                 UserOnboardingView()
                     .navigationBarHidden(true)
             }
-        }
         #endif
     }
 }
