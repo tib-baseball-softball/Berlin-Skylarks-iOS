@@ -10,6 +10,8 @@ import EventKit
 
 struct ScoresView: View {
     
+    @Environment(\.colorScheme) var colorScheme
+    
     @EnvironmentObject var calendarManager: CalendarManager
     
     @EnvironmentObject var networkManager: NetworkManager
@@ -43,11 +45,16 @@ struct ScoresView: View {
     
     @State private var searchText = ""
     
-    @State var selection = "Current Gameday"
-    
     @State private var filterDate = Date()
     
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
+    
+    @State var selection = "Current Gameday"
+    @State var selectedTimeframe = "Current"
+    
+    @State var filterTimeframes = [
+        "Previous", "Current", "Next", "Full"
+    ]
 
     @State var filterOptions = [
         "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season"
@@ -159,195 +166,222 @@ struct ScoresView: View {
     
     var body: some View {
 #if !os(watchOS)
-        List {
-            //Text(calendarManager.calendarAccess.description.debugDescription)
-            if loadingInProgress == true {
-                LoadingView()
-            }
-            ForEach(listData, id: \.id) { GameScore in
-                NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
-                    ScoresOverView(gamescore: GameScore)
-                }
-                .foregroundColor(.primary)
-                .listRowSeparatorTint(.skylarksRed)
-            }
-            if gamescores == [] && loadingInProgress == false {
-                Text("There are no Skylarks games scheduled for the chosen time frame.")
-            }
-        }
-        .listStyle(.insetGrouped)
-        .animation(.default, value: searchText)
-        .animation(.default, value: gamescores)
-        .searchable(text: $searchText, prompt: Text("Filter")) //it doesn't let me change the prompt
-        .onChange(of: searchText) { searchText in
-            searchResults = self.gamescores.filter({ gamescore in
-                
-                // list all fields that are searched
-                gamescore.home_team_name.lowercased().contains(searchText.lowercased()) ||
-                gamescore.away_team_name.lowercased().contains(searchText.lowercased()) ||
-                gamescore.match_id.lowercased().contains(searchText.lowercased()) ||
-                gamescore.league.name.lowercased().contains(searchText.lowercased()) ||
-                //MARK: watch for index errors here
-                gamescore.home_league_entry.team.clubs[0].name.lowercased().contains(searchText.lowercased()) ||
-                gamescore.away_league_entry.team.clubs[0].name.lowercased().contains(searchText.lowercased()) ||
-                gamescore.home_league_entry.team.clubs[0].short_name.lowercased().contains(searchText.lowercased()) ||
-                gamescore.away_league_entry.team.clubs[0].short_name.lowercased().contains(searchText.lowercased()) ||
-                gamescore.home_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased()) ||
-                gamescore.away_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased())
-            })
-        }
-        .refreshable {
-            gamescores = []
-            scoresLoaded = false
-            await loadGamesAndProcess()
-        }
-        .onAppear(perform: {
-            if gamescores.isEmpty && scoresLoaded == false {
-                Task {
-                    await loadLeagueGroups()
-                }
-                scoresLoaded = true
-            }
-            //asking out of the blue upon loading is not allowed and also plain bad UX
-            //getAvailableCalendars()
-        })
-        
-        .onChange(of: selection, perform: { value in
-            gamescores = []
-            scoresLoaded = false
-            Task {
-                await loadGamesAndProcess()
-            }
-        })
-        
-        .onChange(of: selectedSeason, perform: { value in
-            gamescores = []
-            scoresLoaded = false
-            //loadLeagueGroups()
-        })
-        
-        // this is the toolbar with the picker in the top right corner where you can select which games to display.
-    
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarLeading) {
-                Button(
-                    action: {
-                        Task {
-                            await checkAccess()
-                        }
-                    }
-                ){
-                    Image(systemName: "calendar.badge.plus")
-                }
-                
-                .confirmationDialog("Choose a calendar to save the game(s)", isPresented: $showCalendarDialog, titleVisibility: .visible) {
-                    
-                    ForEach(calendarTitles, id: \.self) { calendarTitle in
-                        Button(calendarTitle) {
-                            saveEvents(calendarTitle: calendarTitle)
-                        }
-                    }
-                }
-                
-                .alert("Save to calendar", isPresented: $showEventAlert) {
-                    Button("OK") { }
-                } message: {
-                    Text("All games have been saved.")
-                }
-                
-                .alert("Save to calendar", isPresented: $showAlertNoGames) {
-                    Button("OK") { }
-                } message: {
-                    Text("There is no game data to save.")
-                }
-                
-                .alert("No access to calendar", isPresented: $showAlertNoAccess) {
-                    Button("OK") { }
-                } message: {
-                    Text("You have disabled access to your calendar. To save games please go to your device settings to enable it.")
-                }
-                
-                .alert("No network connection", isPresented: $showAlertNoNetwork) {
-                    Button("OK") { }
-                } message: {
-                    Text("No active network connection has been detected. The app needs a connection to download its data.")
-                }
-            }
-            
-            //not sure if I want this
-//            ToolbarItemGroup(placement: .principal) {
-//                DatePicker("Select a specific date", selection: $filterDate, displayedComponents: .date)
-//            }
-            
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
+        ZStack {
+            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
+                .edgesIgnoringSafeArea(.all)
+            VStack {
                 Picker(
-                    selection: $selection,
+                    selection: $selectedTimeframe,
                     //this actually does not show the label, just the selection
                     label: HStack {
                         Text("Show:")
                         //Text(selection)
                     },
                     content: {
-                        ForEach(filterOptions, id: \.self) { option in
-                            HStack {
-                                Image(systemName: "list.bullet.circle")
-                                Text(" " + option)
-                            }
+                        ForEach(filterTimeframes, id: \.self) { option in
+                            Text(option)
                             .tag(option)
                         }
                         
                 })
-                .pickerStyle(.menu)
-                .padding(.vertical, scoresGridPadding)
+                .pickerStyle(.segmented)
+                .padding(.horizontal)
+                .padding(.vertical, 3)
+                List {
+                    Section(header: Text("Selected Season: " + String(selectedSeason))){
+                        //Text(calendarManager.calendarAccess.description.debugDescription)
+                        if loadingInProgress == true {
+                            LoadingView()
+                        }
+                        ForEach(listData, id: \.id) { GameScore in
+                            NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
+                                ScoresOverView(gamescore: GameScore)
+                            }
+                            .foregroundColor(.primary)
+                            .listRowSeparatorTint(.skylarksRed)
+                        }
+                        if gamescores == [] && loadingInProgress == false {
+                            Text("There are no Skylarks games scheduled for the chosen time frame.")
+                        }
+                    }
+                }
+                .listStyle(.insetGrouped)
+                .animation(.default, value: searchText)
+                .animation(.default, value: gamescores)
+                .searchable(text: $searchText, prompt: Text("Filter")) //it doesn't let me change the prompt
+                .onChange(of: searchText) { searchText in
+                    searchResults = self.gamescores.filter({ gamescore in
+                        
+                        // list all fields that are searched
+                        gamescore.home_team_name.lowercased().contains(searchText.lowercased()) ||
+                        gamescore.away_team_name.lowercased().contains(searchText.lowercased()) ||
+                        gamescore.match_id.lowercased().contains(searchText.lowercased()) ||
+                        gamescore.league.name.lowercased().contains(searchText.lowercased()) ||
+                        //MARK: watch for index errors here
+                        gamescore.home_league_entry.team.clubs[0].name.lowercased().contains(searchText.lowercased()) ||
+                        gamescore.away_league_entry.team.clubs[0].name.lowercased().contains(searchText.lowercased()) ||
+                        gamescore.home_league_entry.team.clubs[0].short_name.lowercased().contains(searchText.lowercased()) ||
+                        gamescore.away_league_entry.team.clubs[0].short_name.lowercased().contains(searchText.lowercased()) ||
+                        gamescore.home_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased()) ||
+                        gamescore.away_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased())
+                    })
+                }
+                .refreshable {
+                    gamescores = []
+                    scoresLoaded = false
+                    await loadGamesAndProcess()
+                }
+                .onAppear(perform: {
+                    if gamescores.isEmpty && scoresLoaded == false {
+                        Task {
+                            await loadLeagueGroups()
+                        }
+                        scoresLoaded = true
+                    }
+                    //asking out of the blue upon loading is not allowed and also plain bad UX
+                    //getAvailableCalendars()
+                })
+                
+                .onChange(of: selection, perform: { value in
+                    gamescores = []
+                    scoresLoaded = false
+                    Task {
+                        await loadGamesAndProcess()
+                    }
+                })
+                
+                .onChange(of: selectedSeason, perform: { value in
+                    gamescores = []
+                    scoresLoaded = false
+                    //loadLeagueGroups()
+                })
+                
+                // this is the toolbar with the picker in the top right corner where you can select which games to display.
+            
+                .toolbar {
+                    ToolbarItemGroup(placement: .navigationBarLeading) {
+                        Button(
+                            action: {
+                                Task {
+                                    await checkAccess()
+                                }
+                            }
+                        ){
+                            Image(systemName: "calendar.badge.plus")
+                        }
+                        
+                        .confirmationDialog("Choose a calendar to save the game(s)", isPresented: $showCalendarDialog, titleVisibility: .visible) {
+                            
+                            ForEach(calendarTitles, id: \.self) { calendarTitle in
+                                Button(calendarTitle) {
+                                    saveEvents(calendarTitle: calendarTitle)
+                                }
+                            }
+                        }
+                        
+                        .alert("Save to calendar", isPresented: $showEventAlert) {
+                            Button("OK") { }
+                        } message: {
+                            Text("All games have been saved.")
+                        }
+                        
+                        .alert("Save to calendar", isPresented: $showAlertNoGames) {
+                            Button("OK") { }
+                        } message: {
+                            Text("There is no game data to save.")
+                        }
+                        
+                        .alert("No access to calendar", isPresented: $showAlertNoAccess) {
+                            Button("OK") { }
+                        } message: {
+                            Text("You have disabled access to your calendar. To save games please go to your device settings to enable it.")
+                        }
+                        
+                        .alert("No network connection", isPresented: $showAlertNoNetwork) {
+                            Button("OK") { }
+                        } message: {
+                            Text("No active network connection has been detected. The app needs a connection to download its data.")
+                        }
+                    }
+                    
+                    //not sure if I want this
+        //            ToolbarItemGroup(placement: .principal) {
+        //                DatePicker("Select a specific date", selection: $filterDate, displayedComponents: .date)
+        //            }
+                    
+                    ToolbarItemGroup(placement: .navigationBarTrailing) {
+                        Picker(
+                            selection: $selection,
+                            //this actually does not show the label, just the selection
+                            label: HStack {
+                                Text("Show:")
+                                //Text(selection)
+                            },
+                            content: {
+                                ForEach(filterOptions, id: \.self) { option in
+                                    HStack {
+                                        Image(systemName: "person.3")
+                                        Text(" " + option)
+                                    }
+                                    .tag(option)
+                                }
+                                
+                        })
+                        .pickerStyle(.menu)
+                        .padding(.vertical, scoresGridPadding)
+                    }
+                }
+            .navigationTitle("Scores")
             }
         }
-        .navigationTitle("Scores " + String(selectedSeason))
         #endif
         
         //---------------------------------------------------------//
         //-----------start Apple Watch-specific code---------------//
         //---------------------------------------------------------//
         
-        #if os(watchOS)
+#if os(watchOS)
         List {
-            if loadingInProgress == true {
-                LoadingView()
-            }
-            Picker(
-                selection: $selection ,
-                   
-                label: HStack {
-//                    Image(systemName: "list.bullet.circle")
-//                        .foregroundColor(.skylarksRed)
-                    Text(" Show:")
-                },
-            
-                content: {
-                    ForEach(filterOptions, id: \.self) { option in
-                        HStack {
-                            //Image(systemName: "list.bullet.circle")
-                            Text(" " + option)
+            Section(header: Text("Selected Season: " + String(selectedSeason))) {
+                if loadingInProgress == true {
+                    LoadingView()
+                }
+                Picker(
+                    selection: $selection ,
+                    
+                    label: HStack {
+                        //                    Image(systemName: "list.bullet.circle")
+                        //                        .foregroundColor(.skylarksRed)
+                        Text(" Show:")
+                    },
+                    
+                    content: {
+                        ForEach(filterOptions, id: \.self) { option in
+                            HStack {
+                                //Image(systemName: "list.bullet.circle")
+                                Text(" " + option)
+                            }
+                            .tag(option)
                         }
-                        .tag(option)
                     }
-                }
-            )
+                )
                 .pickerStyle(.automatic)
-            
-            ForEach(self.gamescores, id: \.id) { GameScore in
-                NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
-                    ScoresOverView(gamescore: GameScore)
+                
+                ForEach(self.gamescores, id: \.id) { GameScore in
+                    NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
+                        ScoresOverView(gamescore: GameScore)
+                    }
+                    .foregroundColor(.primary)
                 }
-                .foregroundColor(.primary)
-            }
-            if gamescores.isEmpty && loadingInProgress == false {
-                Text("There are no Skylarks games scheduled for the chosen time frame.")
-                    .font(.caption2)
-                    .padding()
+                if gamescores.isEmpty && loadingInProgress == false {
+                    Text("There are no Skylarks games scheduled for the chosen time frame.")
+                        .font(.caption2)
+                        .padding()
+                }
             }
         }
         //.listStyle(.carousel)
-        .navigationTitle("Scores " + String(selectedSeason))
+        .navigationTitle("Scores")
         
         //APPLE WATCH SEPARATE FUNCS/////////////////////////////////////////////////////////////////////
         

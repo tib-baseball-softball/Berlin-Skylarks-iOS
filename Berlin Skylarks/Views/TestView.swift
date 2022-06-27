@@ -15,10 +15,19 @@ struct TestView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        VStack {
-            Text("Link below")
-            NavigationLink( destination: ScoresView()) {
-                Text("Link to Scores proper")
+        ZStack {
+            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
+                .edgesIgnoringSafeArea(.all)
+            VStack {
+                Text("Link below")
+                List {
+                    Section(header: Text("header")) {
+                        Text("some")
+                        Text("elements")
+                        Text("in list")
+                    }
+                }
+                .listStyle(.insetGrouped)
             }
         }
     }

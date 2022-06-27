@@ -20,9 +20,12 @@ class IntentHandler: INExtension, FavoriteTeamIntentHandling {
         let teams = try await loadSkylarksTeams(season: Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!)
         
         let teamOptions = teams.map { (team) -> BEATeam in
-            //MARK: index error alert
-            let someTeam = BEATeam(identifier: team.league_entries[0].league.name, display: team.league_entries[0].league.name)
-            return someTeam
+            if !team.league_entries.isEmpty {
+                let someTeam = BEATeam(identifier: team.league_entries[0].league.name, display: team.league_entries[0].league.name)
+                return someTeam
+            } else {
+                return BEATeam(identifier: "League Name", display: "League Name")
+            }
         }
         
         let collection = INObjectCollection(items: teamOptions)

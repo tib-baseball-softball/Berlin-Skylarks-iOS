@@ -42,7 +42,7 @@ struct UserHomeView: View {
     @State var leagueGroups = [LeagueGroup]()
     @State var displayTeam: BSMTeam = emptyTeam
     
-    //should be overridden before first network call
+    //should be overridden before first network call - but isn't
     @State var selectedHomeTablesURL = URL(string: "https://www.tib-baseball.de")!
     @State var selectedHomeScoresURL = URL(string: "https://www.tib-baseball.de")!
     
@@ -234,6 +234,19 @@ struct UserHomeView: View {
                     LoadingView()
                 }
             }
+            Section(header: Text("Next Game")) {
+                if showNextGame == true && !loadingScores {
+                    NavigationLink(
+                        destination: ScoresDetailView(gamescore: userDashboard.NextGame)) {
+                            ScoresOverView(gamescore: userDashboard.NextGame)
+                        }
+                } else if !showNextGame && !loadingScores {
+                    Text("There is no next game to display.")
+                }
+                if loadingScores == true {
+                    LoadingView()
+                }
+            }
             Section(header: Text("Latest Score")) {
                 //this code works - but the fixed range is not very flexible
                 
@@ -254,19 +267,6 @@ struct UserHomeView: View {
                         }
                 } else if !showLastGame && !loadingScores {
                     Text("There is no recent game to display.")
-                }
-                if loadingScores == true {
-                    LoadingView()
-                }
-            }
-            Section(header: Text("Next Game")) {
-                if showNextGame == true && !loadingScores {
-                    NavigationLink(
-                        destination: ScoresDetailView(gamescore: userDashboard.NextGame)) {
-                            ScoresOverView(gamescore: userDashboard.NextGame)
-                        }
-                } else if !showNextGame && !loadingScores {
-                    Text("There is no next game to display.")
                 }
                 if loadingScores == true {
                     LoadingView()
@@ -415,16 +415,6 @@ struct UserHomeView: View {
                 }
                 .watchOS { $0.padding() }
             }
-            Section(header: Text("Latest Score")) {
-                if showLastGame == true {
-                    NavigationLink(
-                        destination: ScoresDetailView(gamescore: userDashboard.LastGame)) {
-                            ScoresOverView(gamescore: userDashboard.LastGame)
-                        }
-                } else {
-                    Text("There is no recent game to display.")
-                }
-            }
             Section(header: Text("Next Game")) {
                 if showNextGame == true {
                     NavigationLink(
@@ -433,6 +423,16 @@ struct UserHomeView: View {
                         }
                 } else {
                     Text("There is no next game to display.")
+                }
+            }
+            Section(header: Text("Latest Score")) {
+                if showLastGame == true {
+                    NavigationLink(
+                        destination: ScoresDetailView(gamescore: userDashboard.LastGame)) {
+                            ScoresOverView(gamescore: userDashboard.LastGame)
+                        }
+                } else {
+                    Text("There is no recent game to display.")
                 }
             }
             Section(header: Text("Standings")) {

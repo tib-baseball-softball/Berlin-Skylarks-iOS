@@ -58,7 +58,12 @@ struct StandingsView: View {
                 .edgesIgnoringSafeArea(.all)
             #endif
             List {
-                Section(header: Text("Club Team Records"),
+                Section(header:
+                    HStack {
+                        Text("Club Team Records")
+                        Spacer()
+                        Text("Season: " + String(selectedSeason))
+                },
                         footer: Text("How are our teams doing?")) {
                     if loadingInProgress == false && !leagueTableArray.isEmpty {
                         NavigationLink(destination: ClubStandingsView(leagueTables: leagueTableArray)) {
@@ -105,7 +110,6 @@ struct StandingsView: View {
                         Text("No table data found.")
                     }
                 }
-                
             }
             //this doesn't work - still crashes
             .animation(.default, value: leagueTableArray)
@@ -125,7 +129,7 @@ struct StandingsView: View {
             } () )
             .frame(maxWidth: 600)
             
-            .navigationTitle("Standings" + " " + String(selectedSeason))
+            .navigationTitle("Standings")
             
             //Fix on iPhone seems to work for now even without a container view, please double-check in practice!
             
@@ -157,8 +161,9 @@ struct StandingsView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
             StandingsView()
-            //.preferredColorScheme(.dark)
+            .preferredColorScheme(.dark)
             //.previewInterfaceOrientation(.landscapeLeft)
+            .environmentObject(NetworkManager())
         }
     }
 }
