@@ -15,21 +15,17 @@ struct TestView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        ZStack {
-            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
-                .edgesIgnoringSafeArea(.all)
-            VStack {
-                Text("Link below")
-                List {
-                    Section(header: Text("header")) {
-                        Text("some")
-                        Text("elements")
-                        Text("in list")
-                    }
-                }
-                .listStyle(.insetGrouped)
-            }
+        Group {
+#if !os(watchOS)
+        Text("This is non-watchOS text")
+#else
+        Text("This text appears only on Watch")
+#endif
         }
+        //this modifier is supposed to work for both platforms
+            .onAppear(perform: {
+                print("this is a pointless message")
+            })
     }
 }
 

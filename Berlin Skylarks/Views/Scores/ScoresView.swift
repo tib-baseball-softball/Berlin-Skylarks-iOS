@@ -49,40 +49,47 @@ struct ScoresView: View {
     
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
     
-    @State var selection = "Current Gameday"
-    @State var selectedTimeframe = "Current"
+    enum Gameday: String, Identifiable, CaseIterable {
+        case previous
+        case current
+        case next
+        case any
+        
+        var displayName: String { rawValue.capitalized }
+        var id: String { self.rawValue }
+    }
     
-    @State var filterTimeframes = [
-        "Previous", "Current", "Next", "Full"
-    ]
+    @State var selectedTeam = "All Teams"
+    @State var selectedTeamID: Int = 0
+    @State var selectedTimeframe = Gameday.current
 
-    @State var filterOptions = [
-        "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season"
+    @State var filterTeams = [
+        "All Teams",
     ]
     
     func loadLeagueGroups() async {
-        let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(selectedSeason)" + "&api_key=" + apiKey)!
-        
         //reset filter options to default
-        filterOptions = [
-            "Previous Gameday", "Current Gameday", "Next Gameday", "Full Season",
+        filterTeams = [
+            "All Teams",
         ]
         
         //old format, club ID is not used anymore - check for errors:
         //URL(string: "https://bsm.baseball-softball.de/clubs/" + skylarksID + "/matches.json?filter[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=previous&api_key=" + apiKey)!
         
-        let urlPreviousGameday = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=previous&api_key=" + apiKey)!
-        let urlCurrentGameday = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=current&api_key=" + apiKey)!
-        let urlNextGameday = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=next&api_key=" + apiKey)!
-        let urlFullSeason = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=any&api_key=" + apiKey)!
+//        let urlPreviousGameday = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=previous&api_key=" + apiKey)!
+//        let urlCurrentGameday = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=current&api_key=" + apiKey)!
+//        let urlNextGameday = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=next&api_key=" + apiKey)!
+//        let urlFullSeason = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=any&api_key=" + apiKey)!
 
         //provide default values for dict/reset on change of season
-        scoresURLs = [
-            "Previous Gameday": urlPreviousGameday,
-            "Current Gameday": urlCurrentGameday,
-            "Next Gameday": urlNextGameday,
-            "Full Season": urlFullSeason,
-        ]
+//        scoresURLs = [
+//            "Previous": urlPreviousGameday,
+//            "Current": urlCurrentGameday,
+//            "Next": urlNextGameday,
+//            "Full": urlFullSeason,
+//        ]
+        
+        let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(selectedSeason)" + "&api_key=" + apiKey)!
         
         do {
             leagueGroups = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
@@ -92,8 +99,8 @@ struct ScoresView: View {
         
         //add leagueGroup IDs to previously created dict using league names as key / add names to filter options for the user to select
         for leagueGroup in leagueGroups {
-            filterOptions.append(leagueGroup.name)
-            scoresURLs[leagueGroup.name] = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
+            filterTeams.append(leagueGroup.name)
+//            scoresURLs[leagueGroup.name] = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
         }
         await loadGamesAndProcess()
     }
@@ -102,29 +109,37 @@ struct ScoresView: View {
         if networkManager.isConnected == false {
             showAlertNoNetwork = true
         }
+        loadingInProgress = true
+        var gameURLSelected: URL? = nil
         
-        for (string, url) in scoresURLs {
-            if selection == string {
-                let gameURLSelected = url
-                loadingInProgress = true
-                
-                do {
-                    gamescores = try await fetchBSMData(url: gameURLSelected, dataType: [GameScore].self)
-                } catch {
-                    print("Request failed with error: \(error)")
-                }
-                
-                for (index, _) in gamescores.enumerated() {
-                    gamescores[index].addDates()
-                    gamescores[index].determineGameStatus()
-//                    gameData = gamescores.map { (gamescore) -> GameData in
-//                        let someData = GameData(gamescore: gamescore)
-//                        return someData
-//                    }
-                }
-                
-                loadingInProgress = false
-            }
+        //if we're not filtering by any team, then we do not use the URL parameter at all
+        if selectedTeam == "All Teams" {
+            gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=" + selectedTimeframe.rawValue + "&api_key=" + apiKey)!
+        }
+        //in any other case we filter the API request by team ID
+        else {
+            gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[leagues][]=" + "\(selectedTeamID)" + "&filters[gamedays][]=" + selectedTimeframe.rawValue + "&api_key=" + apiKey)!
+        }
+        
+        do {
+            gamescores = try await fetchBSMData(url: gameURLSelected!, dataType: [GameScore].self)
+        } catch {
+            print("Request failed with error: \(error)")
+        }
+        
+        for (index, _) in gamescores.enumerated() {
+            gamescores[index].addDates()
+            gamescores[index].determineGameStatus()
+        }
+        
+        loadingInProgress = false
+    }
+    
+    func setTeamID() async {
+        //set it back to 0 to make sure it does not keep the former value
+        selectedTeamID = 0
+        for leagueGroup in leagueGroups where leagueGroup.name == selectedTeam {
+            selectedTeamID = leagueGroup.id
         }
     }
     
@@ -178,9 +193,9 @@ struct ScoresView: View {
                         //Text(selection)
                     },
                     content: {
-                        ForEach(filterTimeframes, id: \.self) { option in
-                            Text(option)
-                            .tag(option)
+                        ForEach(Gameday.allCases) { gameday in
+                            Text(gameday.displayName)
+                            .tag(gameday)
                         }
                         
                 })
@@ -238,11 +253,18 @@ struct ScoresView: View {
                         }
                         scoresLoaded = true
                     }
-                    //asking out of the blue upon loading is not allowed and also plain bad UX
-                    //getAvailableCalendars()
                 })
                 
-                .onChange(of: selection, perform: { value in
+                .onChange(of: selectedTeam, perform: { value in
+                    gamescores = []
+                    scoresLoaded = false
+                    Task {
+                        await setTeamID()
+                        await loadGamesAndProcess()
+                    }
+                })
+                
+                .onChange(of: selectedTimeframe, perform: { value in
                     gamescores = []
                     scoresLoaded = false
                     Task {
@@ -311,14 +333,14 @@ struct ScoresView: View {
                     
                     ToolbarItemGroup(placement: .navigationBarTrailing) {
                         Picker(
-                            selection: $selection,
+                            selection: $selectedTeam,
                             //this actually does not show the label, just the selection
                             label: HStack {
                                 Text("Show:")
                                 //Text(selection)
                             },
                             content: {
-                                ForEach(filterOptions, id: \.self) { option in
+                                ForEach(filterTeams, id: \.self) { option in
                                     HStack {
                                         Image(systemName: "person.3")
                                         Text(" " + option)
@@ -346,26 +368,27 @@ struct ScoresView: View {
                 if loadingInProgress == true {
                     LoadingView()
                 }
-                Picker(
-                    selection: $selection ,
-                    
-                    label: HStack {
-                        //                    Image(systemName: "list.bullet.circle")
-                        //                        .foregroundColor(.skylarksRed)
-                        Text(" Show:")
-                    },
-                    
-                    content: {
-                        ForEach(filterOptions, id: \.self) { option in
-                            HStack {
-                                //Image(systemName: "list.bullet.circle")
-                                Text(" " + option)
-                            }
-                            .tag(option)
-                        }
-                    }
-                )
-                .pickerStyle(.automatic)
+                //TODO: put back in
+//                Picker(
+//                    selection: $selection ,
+//
+//                    label: HStack {
+//                        //                    Image(systemName: "list.bullet.circle")
+//                        //                        .foregroundColor(.skylarksRed)
+//                        Text(" Show:")
+//                    },
+//
+//                    content: {
+//                        ForEach(filterOptions, id: \.self) { option in
+//                            HStack {
+//                                //Image(systemName: "list.bullet.circle")
+//                                Text(" " + option)
+//                            }
+//                            .tag(option)
+//                        }
+//                    }
+//                )
+//                .pickerStyle(.automatic)
                 
                 ForEach(self.gamescores, id: \.id) { GameScore in
                     NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
@@ -394,7 +417,7 @@ struct ScoresView: View {
             }
         })
         
-        .onChange(of: selection, perform: { value in
+        .onChange(of: selectedTeam, perform: { value in
             gamescores = []
             scoresLoaded = false
             Task {
