@@ -13,14 +13,12 @@ struct ScoresView: View {
     @Environment(\.colorScheme) var colorScheme
     
     @EnvironmentObject var calendarManager: CalendarManager
-    
     @EnvironmentObject var networkManager: NetworkManager
+    
     @State private var showAlertNoNetwork = false
     
     @State private var gamescores = [GameScore]()
     @State private var leagueGroups = [LeagueGroup]()
-    
-    //@State var gameData = [GameData]()
     
     @State private var searchResults = [GameScore]()
     
@@ -73,22 +71,6 @@ struct ScoresView: View {
             "All Teams",
         ]
         
-        //old format, club ID is not used anymore - check for errors:
-        //URL(string: "https://bsm.baseball-softball.de/clubs/" + skylarksID + "/matches.json?filter[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=previous&api_key=" + apiKey)!
-        
-//        let urlPreviousGameday = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=previous&api_key=" + apiKey)!
-//        let urlCurrentGameday = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=current&api_key=" + apiKey)!
-//        let urlNextGameday = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=next&api_key=" + apiKey)!
-//        let urlFullSeason = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=any&api_key=" + apiKey)!
-
-        //provide default values for dict/reset on change of season
-//        scoresURLs = [
-//            "Previous": urlPreviousGameday,
-//            "Current": urlCurrentGameday,
-//            "Next": urlNextGameday,
-//            "Full": urlFullSeason,
-//        ]
-        
         let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(selectedSeason)" + "&api_key=" + apiKey)!
         
         do {
@@ -97,10 +79,9 @@ struct ScoresView: View {
             print("Request failed with error: \(error)")
         }
         
-        //add leagueGroup IDs to previously created dict using league names as key / add names to filter options for the user to select
+        //add teams to filter
         for leagueGroup in leagueGroups {
             filterTeams.append(leagueGroup.name)
-//            scoresURLs[leagueGroup.name] = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
         }
         await loadGamesAndProcess()
     }
@@ -223,7 +204,8 @@ struct ScoresView: View {
                 .listStyle(.insetGrouped)
                 .animation(.default, value: searchText)
                 .animation(.default, value: gamescores)
-                .searchable(text: $searchText, prompt: Text("Filter")) //it doesn't let me change the prompt
+                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: Text("Filter")) //it doesn't let me change the prompt
+               
                 .onChange(of: searchText) { searchText in
                     searchResults = self.gamescores.filter({ gamescore in
                         
@@ -368,27 +350,39 @@ struct ScoresView: View {
                 if loadingInProgress == true {
                     LoadingView()
                 }
-                //TODO: put back in
-//                Picker(
-//                    selection: $selection ,
-//
-//                    label: HStack {
-//                        //                    Image(systemName: "list.bullet.circle")
-//                        //                        .foregroundColor(.skylarksRed)
-//                        Text(" Show:")
-//                    },
-//
-//                    content: {
-//                        ForEach(filterOptions, id: \.self) { option in
-//                            HStack {
-//                                //Image(systemName: "list.bullet.circle")
-//                                Text(" " + option)
-//                            }
-//                            .tag(option)
-//                        }
-//                    }
-//                )
-//                .pickerStyle(.automatic)
+                Picker(
+                    selection: $selectedTeam,
+
+                    label: HStack {
+                        //                    Image(systemName: "list.bullet.circle")
+                        //                        .foregroundColor(.skylarksRed)
+                        Text("Team:")
+                    },
+
+                    content: {
+                        ForEach(filterTeams, id: \.self) { option in
+                            HStack {
+                                //Image(systemName: "list.bullet.circle")
+                                Text(" " + option)
+                            }
+                            .tag(option)
+                        }
+                    }
+                )
+                Picker(
+                    selection: $selectedTimeframe,
+                    //this actually does not show the label, just the selection
+                    label: HStack {
+                        Text("Gameday:")
+                        //Text(selection)
+                    },
+                    content: {
+                        ForEach(Gameday.allCases) { gameday in
+                            Text(gameday.displayName)
+                            .tag(gameday)
+                        }
+                        
+                })
                 
                 ForEach(self.gamescores, id: \.id) { GameScore in
                     NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
@@ -403,11 +397,16 @@ struct ScoresView: View {
                 }
             }
         }
-        //.listStyle(.carousel)
+        .animation(.default, value: gamescores)
         .navigationTitle("Scores")
         
         //APPLE WATCH SEPARATE FUNCS/////////////////////////////////////////////////////////////////////
         
+        .refreshable {
+            gamescores = []
+            scoresLoaded = false
+            await loadGamesAndProcess()
+        }
         .onAppear(perform: {
             if gamescores.isEmpty && scoresLoaded == false {
                 Task {
@@ -418,6 +417,15 @@ struct ScoresView: View {
         })
         
         .onChange(of: selectedTeam, perform: { value in
+            gamescores = []
+            scoresLoaded = false
+            Task {
+                await setTeamID()
+                await loadGamesAndProcess()
+            }
+        })
+        
+        .onChange(of: selectedTimeframe, perform: { value in
             gamescores = []
             scoresLoaded = false
             Task {
