@@ -90,7 +90,7 @@ struct TeamWidgetLastGameView: View {
                             .bold()
                             .foregroundColor(awayScore < homeScore ? Color.secondary : Color.primary)
                             //was hidden on Mac, watch if this helps
-                            .layoutPriority(1)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
                 .padding(.vertical, 1.5)
@@ -106,7 +106,7 @@ struct TeamWidgetLastGameView: View {
                             .font(.headline)
                             .bold()
                             .foregroundColor(awayScore > homeScore ? Color.secondary : Color.primary)
-                            .layoutPriority(1)
+                            .fixedSize(horizontal: false, vertical: true)
                     }
                 }
                 .padding(.vertical, 1.5)

@@ -10,105 +10,51 @@ import WidgetKit
 
 struct GamedayWidgetView: View {
     
-    //var gamescore: GameScore
+    var entry: GamedayTimeline.Entry
+    
     @Environment(\.widgetFamily) var widgetFamily
+    @Environment(\.colorScheme) var colorScheme
     
     var body: some View {
-        
-        switch widgetFamily {
-        case .systemMedium:
-            Text("MEDIUM")
-        case .systemSmall:
-            ZStack {
-                //LinearGradient(colors: [Color.skylarksBlue, Color.skylarksRed], startPoint: .topLeading, endPoint: .bottomTrailing)
-                Color(UIColor.systemBackground)
-                //Color.skylarksBlue
+        ZStack {
+            //LinearGradient(colors: [Color.skylarksBlue, Color.skylarksRed], startPoint: .topLeading, endPoint: .bottomTrailing)
+            //Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
+            //Color.skylarksBlue
+            //Color.skylarksRed
+            VStack(alignment: .leading) {
+                //Text(entry.gamescores.debugDescription)
                 HStack {
-                    VStack(alignment: .leading) {
-                        Text("Scores")
-                            .font(Font.callout.smallCaps())
-                            .foregroundColor(Color.skylarksRed)
-                        //Divider()
-                        VStack(alignment: .leading) {
-                            HStack {
-    //                            Image("Bird_whiteoutline")
-    //                                .resizable()
-    //                                .scaledToFit()
-                                Text("BEA")
-                                Spacer()
-                                Text("12")
-                                    .bold()
-                            }
-                            .font(.caption)
-                            HStack {
-    //                            Image("Sluggers_Logo")
-    //                                .resizable()
-    //                                .scaledToFit()
-                                Text("BES2")
-                                Spacer()
-                                Text("11")
-                                    .bold()
-                            }
-                            .font(.caption)
-                        }
-                        .padding(.all, 3.0)
-                        .background(ContainerRelativeShape().fill(Color(UIColor.tertiarySystemFill)))
-                        VStack(alignment: .leading) {
-                            HStack {
-    //                            Image("Bird_whiteoutline")
-    //                                .resizable()
-    //                                .scaledToFit()
-                                Text("BEA")
-                                Spacer()
-                                Text("8")
-                                    .bold()
-                            }
-                            .font(.caption)
-                            HStack {
-    //                            Image("Sluggers_Logo")
-    //                                .resizable()
-    //                                .scaledToFit()
-                                Text("BES2")
-                                Spacer()
-                                Text("6")
-                                    .bold()
-                            }
-                            .font(.caption)
-                        }
-                        .padding(.all, 3.0)
-                        .background(ContainerRelativeShape().fill(Color(UIColor.tertiarySystemFill)))
-                    }
+                    Text("Scores")
+                        .font(Font.headline.smallCaps())
+                        .foregroundColor(Color.skylarksRed)
+                    //.shadow(color: .white, radius: 15)
                     Spacer()
-                    
+                    Text("Current Gameday")
+                        .font(Font.caption.smallCaps())
+                        //.foregroundColor(.skylarksDynamicNavySand)
                 }
-                .padding()
+                Divider()
+                    .foregroundColor(.skylarksDynamicNavySand)
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 90))], spacing: 10) {
+                    ForEach(entry.gamescores) { gamescore in
+                        GamedayTeamBlock(gamescore: gamescore)
+                    }
+                }
+                Spacer()
             }
-        case .systemLarge:
-            Text("dbfbfd")
-        case .systemExtraLarge:
-            Text("kdfbnhg")
-        @unknown default:
-            Text("default")
+            .padding()
         }
-        
     }
 }
 
 struct GamedayWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            GamedayWidgetView()
-                .previewContext(WidgetPreviewContext(family: .systemSmall))
-                //.environment(\.colorScheme, .dark)
-            GamedayWidgetView()
-                .previewContext(WidgetPreviewContext(family: .systemMedium))
-//            GamedayWidgetView(gamescore: dummyGameScores[5])
-//                .previewContext(WidgetPreviewContext(family: .systemMedium))
-//            GamedayWidgetView(gamescore: dummyGameScores[5])
-//                .previewContext(WidgetPreviewContext(family: .systemLarge))
-//            GamedayWidgetView(gamescore: dummyGameScores[5])
-//                .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
+            GamedayWidgetView(entry: GamedayEntry(date: Date(), gamescores: dummyGameScores))
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
+            //.environment(\.colorScheme, .dark)
+            //GamedayWidgetView()
+            //    .previewContext(WidgetPreviewContext(family: .systemMedium))
         }
-        
     }
 }
