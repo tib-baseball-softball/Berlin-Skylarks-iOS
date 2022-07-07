@@ -35,6 +35,10 @@ struct GamedayTimeline: TimelineProvider {
                 print("Request failed with error: \(error)")
             }
             
+            for (index, _) in gamescores.enumerated() {
+                gamescores[index].addDates()
+            }
+            
             var entries: [GamedayEntry] = []
             
             let currentDate = Date()

@@ -30,12 +30,12 @@ struct GamedayWidgetView: View {
                     //.shadow(color: .white, radius: 15)
                     Spacer()
                     Text("Current Gameday")
-                        .font(Font.caption.smallCaps())
+                        .font(Font.subheadline.smallCaps())
                         //.foregroundColor(.skylarksDynamicNavySand)
                 }
                 Divider()
                     .foregroundColor(.skylarksDynamicNavySand)
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 90))], spacing: 10) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: widgetFamily == .systemExtraLarge ? 130 : 90))], spacing: 10) {
                     ForEach(entry.gamescores) { gamescore in
                         GamedayTeamBlock(gamescore: gamescore)
                     }
@@ -52,9 +52,8 @@ struct GamedayWidgetView_Previews: PreviewProvider {
         Group {
             GamedayWidgetView(entry: GamedayEntry(date: Date(), gamescores: dummyGameScores))
                 .previewContext(WidgetPreviewContext(family: .systemLarge))
-            //.environment(\.colorScheme, .dark)
-            //GamedayWidgetView()
-            //    .previewContext(WidgetPreviewContext(family: .systemMedium))
+            GamedayWidgetView(entry: GamedayEntry(date: Date(), gamescores: dummyGameScores))
+                .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
         }
     }
 }

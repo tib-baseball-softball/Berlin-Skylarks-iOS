@@ -151,13 +151,13 @@ struct ScoresOverView_Previews: PreviewProvider {
     static var previews: some View {
         List {
             ScoresOverView(gamescore: dummyGameScores[3])
-            ScoresOverView(gamescore: dummyGameScores[47])
-            ScoresOverView(gamescore: dummyGameScores[25])
+            ScoresOverView(gamescore: dummyGameScores[0])
+            ScoresOverView(gamescore: dummyGameScores[2])
             Section {
-                ScoresOverView(gamescore: dummyGameScores[8])
+                ScoresOverView(gamescore: dummyGameScores[1])
             }
             Section {
-                ScoresOverView(gamescore: dummyGameScores[57])
+                ScoresOverView(gamescore: dummyGameScores[0])
             }
         }
         //.preferredColorScheme(.dark)

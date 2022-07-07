@@ -9,6 +9,7 @@ import WidgetKit
 import SwiftUI
 import Intents
 
+//@main
 struct GamedayWidget: Widget {
     let kind: String = "GamedayWidget"
     
@@ -46,10 +47,3 @@ struct SkylarksWidgetBundle: WidgetBundle {
         GamedayWidget()
     }
 }
-
-//struct WidgetSkylarks_Previews: PreviewProvider {
-//    static var previews: some View {
-//        WidgetSkylarksEntryView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: team1))
-//            .previewContext(WidgetPreviewContext(family: .systemSmall))
-//    }
-//}
