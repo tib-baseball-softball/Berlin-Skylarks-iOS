@@ -9,7 +9,6 @@ import WidgetKit
 import SwiftUI
 import Intents
 
-//@main
 struct GamedayWidget: Widget {
     let kind: String = "GamedayWidget"
     

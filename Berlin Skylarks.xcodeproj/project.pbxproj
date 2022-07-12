@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA01EF17287DB9A70056166F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134822771F2E000DFA745 /* WidgetKit.framework */; };
+		CA01EF18287DB9A70056166F /* WidgetKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134822771F2E000DFA745 /* WidgetKit.framework */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CA0A95B525BF704C00A7C7C3 /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
 		CA0DA04225974EAD002A0FAB /* ScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA04125974EAD002A0FAB /* ScoresView.swift */; };
 		CA0DA0452598BB32002A0FAB /* ScoresOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA0442598BB32002A0FAB /* ScoresOverView.swift */; };
@@ -180,8 +182,6 @@
 		CAD42719280BF1C3001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CAD4271A280BF1C6001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CAD4271C280DB10B001CA68A /* ScoresOverViewFull.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4271B280DB10B001CA68A /* ScoresOverViewFull.swift */; };
-		CADA8708287387040051505F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
-		CAE134832771F2E000DFA745 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134822771F2E000DFA745 /* WidgetKit.framework */; };
 		CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
 		CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE134872771F2E000DFA745 /* WidgetSkylarks.swift */; };
 		CAE1348B2771F2E100DFA745 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAE1348A2771F2E100DFA745 /* Assets.xcassets */; };
@@ -229,6 +229,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		CA01EF19287DB9A70056166F /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				CA01EF18287DB9A70056166F /* WidgetKit.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CA1C39DB2731856C00BB194C /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -406,7 +417,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */,
-				CAE134832771F2E000DFA745 /* WidgetKit.framework in Frameworks */,
+				CA01EF17287DB9A70056166F /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -618,20 +629,36 @@
 		CAE134862771F2E000DFA745 /* WidgetSkylarks */ = {
 			isa = PBXGroup;
 			children = (
+				CAF131F4287DB35700D85702 /* FavoriteTeam */,
+				CAF131F3287DB34D00D85702 /* Gameday */,
 				CAE134892771F2E000DFA745 /* WidgetSkylarks.intentdefinition */,
 				CAE1348A2771F2E100DFA745 /* Assets.xcassets */,
 				CAE1348C2771F2E100DFA745 /* Info.plist */,
 				CAE134872771F2E000DFA745 /* WidgetSkylarks.swift */,
-				CA183EE6287371A00088F085 /* FavoriteTeamWidgetData.swift */,
-				CA183EEC2873762F0088F085 /* GamedayWidgetData.swift */,
-				CA183EE8287374FC0088F085 /* FavoriteTeamEntry.swift */,
-				CA183EEA2873757C0088F085 /* GamedayEntry.swift */,
-				CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */,
-				CA183EE4287353660088F085 /* GamedayTeamBlock.swift */,
-				CAF062E12774C28400B7A0B2 /* FavoriteTeamWidgetView.swift */,
 				CAC4934F280850C0009677C7 /* WidgetPreviewData.swift */,
 			);
 			path = WidgetSkylarks;
+			sourceTree = "<group>";
+		};
+		CAF131F3287DB34D00D85702 /* Gameday */ = {
+			isa = PBXGroup;
+			children = (
+				CA183EEC2873762F0088F085 /* GamedayWidgetData.swift */,
+				CA183EEA2873757C0088F085 /* GamedayEntry.swift */,
+				CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */,
+				CA183EE4287353660088F085 /* GamedayTeamBlock.swift */,
+			);
+			path = Gameday;
+			sourceTree = "<group>";
+		};
+		CAF131F4287DB35700D85702 /* FavoriteTeam */ = {
+			isa = PBXGroup;
+			children = (
+				CA183EE6287371A00088F085 /* FavoriteTeamWidgetData.swift */,
+				CA183EE8287374FC0088F085 /* FavoriteTeamEntry.swift */,
+				CAF062E12774C28400B7A0B2 /* FavoriteTeamWidgetView.swift */,
+			);
+			path = FavoriteTeam;
 			sourceTree = "<group>";
 		};
 		CAF839CB2704FCC2006FAD6B /* Scores */ = {
@@ -796,6 +823,7 @@
 				CAE1347C2771F2DF00DFA745 /* Sources */,
 				CAE1347D2771F2DF00DFA745 /* Frameworks */,
 				CAE1347E2771F2DF00DFA745 /* Resources */,
+				CA01EF19287DB9A70056166F /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -882,7 +910,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CADA8708287387040051505F /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

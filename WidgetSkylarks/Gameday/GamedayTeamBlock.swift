@@ -17,6 +17,18 @@ struct GamedayTeamBlock: View {
     @State var roadLogo = away_team_logo
     @State var homeLogo = home_team_logo
     
+    func getShortDates(date: Date) -> (date: String, time: String) {
+        let formatter1 = DateFormatter()
+        let formatter2 = DateFormatter()
+        formatter1.dateStyle = .short
+        formatter2.timeStyle = .short
+        
+        let returnDate = formatter1.string(from: date)
+        let returnTime = formatter2.string(from: date)
+        
+        return (returnDate, returnTime)
+    }
+    
     func setLogos() {
         let logos = fetchCorrectLogos(gamescore: gamescore)
         roadLogo = logos.road
@@ -39,10 +51,10 @@ struct GamedayTeamBlock: View {
                         .font(isExtraLarge ? .subheadline.smallCaps() : .caption.smallCaps())
                         .foregroundColor(.skylarksRed)
                     if let gameDate = gamescore.gameDate {
+                        let dateInfo = getShortDates(date: gameDate)
                         HStack {
-                            Text(gameDate, format: Date.FormatStyle().weekday())
-                            Text(gameDate, style: .date)
-                            Text(gameDate, style: .time)
+                            Text(dateInfo.date)
+                            Text(dateInfo.time)
                         }
                         .foregroundColor(.secondary)
                     }
