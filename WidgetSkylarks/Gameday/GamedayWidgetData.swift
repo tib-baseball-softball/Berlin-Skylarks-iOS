@@ -42,7 +42,7 @@ struct GamedayTimeline: TimelineProvider {
             var entries: [GamedayEntry] = []
             
             let currentDate = Date()
-            for hourOffset in 0 ..< 4 {
+            for hourOffset in 0 ..< 1 {
                 let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset * 20, to: currentDate)!
                 let entry = GamedayEntry(date: entryDate, gamescores: gamescores)
                 entries.append(entry)

@@ -117,7 +117,7 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
             //Original: Generate a timeline consisting of 3 entries an hour apart, starting from the current date.
             //changed it to update every 20 minutes (hopefully) and created 5 timeline entries
             let currentDate = Date()
-            for hourOffset in 0 ..< 4 {
+            for hourOffset in 0 ..< 1 {
                 let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset * 20, to: currentDate)!
                 let entry = FavoriteTeamEntry(date: entryDate, configuration: configuration, team: selectedTeam, lastGame: displayGames.last, lastGameRoadLogo: lastGameRoadLogo, lastGameHomeLogo: lastGameHomeLogo, nextGame: displayGames.next, nextGameOpponentLogo: nextGameOpponentLogo, skylarksAreRoadTeam: skylarksAreRoadTeam, Table: userDashboard.leagueTable, TableRow: userDashboard.tableRow)
                 entries.append(entry)

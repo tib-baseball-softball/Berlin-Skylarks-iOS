@@ -21,7 +21,7 @@ struct FavoriteTeamWidgetView: View {
             //Color.skylarksBlue
             VStack {
                 
-                //MARK: this is needed because of error in preview
+                //MARK: this is needed because of error in preview in Xcode 13
                 //if widgetFamily == .systemMedium {
                 //MARK: real code
                 if widgetFamily == .systemLarge || widgetFamily == .systemExtraLarge {
@@ -38,7 +38,7 @@ struct FavoriteTeamWidgetView: View {
                     if widgetFamily != .systemSmall {
                         Divider()
                             .padding(.vertical)
-                        TeamWidgetNextGameView(entry: entry) //MARK: this is obviously WIP
+                        TeamWidgetNextGameView(entry: entry)
                     }
                 }
             }
@@ -89,8 +89,8 @@ struct TeamWidgetLastGameView: View {
                             .font(.headline)
                             .bold()
                             .foregroundColor(awayScore < homeScore ? Color.secondary : Color.primary)
-                            //was hidden on Mac, watch if this helps
-                            .fixedSize(horizontal: false, vertical: true)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
                     }
                 }
                 .padding(.vertical, 1.5)
@@ -106,7 +106,8 @@ struct TeamWidgetLastGameView: View {
                             .font(.headline)
                             .bold()
                             .foregroundColor(awayScore > homeScore ? Color.secondary : Color.primary)
-                            .fixedSize(horizontal: false, vertical: true)
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.5)
                     }
                 }
                 .padding(.vertical, 1.5)
