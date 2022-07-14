@@ -32,6 +32,16 @@ struct ScoresView: View {
         }
     }
     
+    //new computed property: this returns an empty string if we just want to show our all games, and the search URL parameter from BSM if we want to pre-filter
+    
+    var skylarksURLFilter: String {
+        if showOtherTeams == true {
+            return ""
+        } else {
+            return "&search=skylarks"
+        }
+    }
+    
     @State private var scoresURLs: [String : URL] = [:]
     
     @State private var showCalendarDialog = false
@@ -40,6 +50,8 @@ struct ScoresView: View {
     @State private var showAlertNoAccess = false
     @State private var loadingInProgress = false
     @State private var scoresLoaded = false
+    
+    @AppStorage("showOtherTeams") var showOtherTeams = false
     
     @State private var searchText = ""
     
@@ -58,7 +70,7 @@ struct ScoresView: View {
     }
     
     @State var selectedTeam = "All Teams"
-    @State var selectedTeamID: Int = 0
+    @State var selectedTeamID: Int = 0 //this is in fact a league ID now
     @State var selectedTimeframe = Gameday.current
 
     @State var filterTeams = [
@@ -93,13 +105,13 @@ struct ScoresView: View {
         loadingInProgress = true
         var gameURLSelected: URL? = nil
         
-        //if we're not filtering by any team, then we do not use the URL parameter at all
+        //if we're not filtering by any league, then we do not use the URL parameter at all
         if selectedTeam == "All Teams" {
-            gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[gamedays][]=" + selectedTimeframe.rawValue + "&api_key=" + apiKey)!
+            gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "\(skylarksURLFilter)" + "&filters[gamedays][]=" + selectedTimeframe.rawValue + "&api_key=" + apiKey)!
         }
-        //in any other case we filter the API request by team ID
+        //in any other case we filter the API request by league ID
         else {
-            gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[leagues][]=" + "\(selectedTeamID)" + "&filters[gamedays][]=" + selectedTimeframe.rawValue + "&api_key=" + apiKey)!
+            gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "\(skylarksURLFilter)" + "&filters[leagues][]=" + "\(selectedTeamID)" + "&filters[gamedays][]=" + selectedTimeframe.rawValue + "&api_key=" + apiKey)!
         }
         
         do {
@@ -199,6 +211,8 @@ struct ScoresView: View {
                         if gamescores == [] && loadingInProgress == false {
                             Text("There are no Skylarks games scheduled for the chosen time frame.")
                         }
+                        Toggle("Show non-Skylarks Games", isOn: $showOtherTeams)
+                            .tint(.skylarksRed)
                     }
                 }
                 .listStyle(.insetGrouped)
@@ -247,6 +261,14 @@ struct ScoresView: View {
                 })
                 
                 .onChange(of: selectedTimeframe, perform: { value in
+                    gamescores = []
+                    scoresLoaded = false
+                    Task {
+                        await loadGamesAndProcess()
+                    }
+                })
+                
+                .onChange(of: showOtherTeams, perform: { value in
                     gamescores = []
                     scoresLoaded = false
                     Task {
@@ -306,6 +328,8 @@ struct ScoresView: View {
                         } message: {
                             Text("No active network connection has been detected. The app needs a connection to download its data.")
                         }
+                        
+                        //Toggle("Show other teams", isOn: $showOtherTeams)
                     }
                     
                     //not sure if I want this
@@ -395,6 +419,8 @@ struct ScoresView: View {
                         .font(.caption2)
                         .padding()
                 }
+                Toggle("Show non-Skylarks Games", isOn: $showOtherTeams)
+                    .tint(.skylarksRed)
             }
         }
         .animation(.default, value: gamescores)
@@ -426,6 +452,14 @@ struct ScoresView: View {
         })
         
         .onChange(of: selectedTimeframe, perform: { value in
+            gamescores = []
+            scoresLoaded = false
+            Task {
+                await loadGamesAndProcess()
+            }
+        })
+        
+        .onChange(of: showOtherTeams, perform: { value in
             gamescores = []
             scoresLoaded = false
             Task {
