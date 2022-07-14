@@ -45,8 +45,8 @@ struct MainTabView: View {
                 TeamListView()
             }
                 .tabItem {
-                    Image(systemName: "person.3.fill")
-                    Text("Teams")
+                    Image(systemName: "shield.fill")
+                    Text("Club")
                 }
             NavigationView {
                 SettingsListView()

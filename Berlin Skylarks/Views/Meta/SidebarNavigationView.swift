@@ -57,10 +57,10 @@ struct SidebarNavigationView: View {
 //                        }
                         NavigationLink(
                             destination: TeamListView()) {
-                                Image(systemName: "person.3.fill")
+                                Image(systemName: "shield.fill")
                                     .foregroundColor(.skylarksDynamicNavySand)
                                     .frame(width: 30)
-                                Text("Teams")
+                                Text("Club")
                                     .frame(width: 100, alignment: .leading)
                         }
                     }
@@ -73,12 +73,6 @@ struct SidebarNavigationView: View {
                                 Text("Settings")
                                     .frame(width: 100, alignment: .leading)
                         }
-//                        HStack {
-//                            Image(systemName: "c.circle")
-//                                .frame(width: 30)
-//                            Text("Legal stuff")
-//                                .frame(width: 100, alignment: .leading)
-//                        }
                     }
                     HStack {
                         Spacer()

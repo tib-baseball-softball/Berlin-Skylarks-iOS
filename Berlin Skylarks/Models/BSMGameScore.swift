@@ -85,14 +85,7 @@ struct GameScore: Hashable, Codable, Identifiable {
     struct Team: Hashable, Codable {
         var name: String
         var short_name: String
-        var clubs: [Club]
-    }
-    
-    struct Club: Hashable, Codable {
-        var id: Int
-        var name: String
-        var short_name: String
-        var acronym: String
+        var clubs: [BSMClub]
     }
     
     mutating func determineGameStatus() {
