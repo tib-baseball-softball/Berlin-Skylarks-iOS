@@ -22,7 +22,7 @@ struct GameResultIndicator: View {
                 .bold()
                 .padding()
         }
-        if let derby = gamescore.isDerby, let win = gamescore.skylarksWin {
+        if let derby = gamescore.isDerby, let win = gamescore.skylarksWin, let external = gamescore.isExternalGame {
             if gamescore.human_state.contains("gespielt") ||
                 gamescore.human_state.contains("Forfeit") ||
                 gamescore.human_state.contains("Nichtantreten") ||
@@ -30,15 +30,19 @@ struct GameResultIndicator: View {
                 gamescore.human_state.contains("Rückzug") ||
                 gamescore.human_state.contains("Ausschluss") {
                 if !derby {
-                    if win {
+                    if win && !external {
                         Text("W")
                             .bold()
                             .foregroundColor(.green)
                             .padding()
-                    } else {
+                    } else if !win && !external {
                         Text("L")
                             .bold()
                             .foregroundColor(.accentColor)
+                            .padding()
+                    } else if external {
+                        Text("F")
+                            .bold()
                             .padding()
                     }
                 } else {

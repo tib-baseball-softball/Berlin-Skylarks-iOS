@@ -32,6 +32,7 @@ struct GameScore: Hashable, Codable, Identifiable {
     var skylarksAreHomeTeam: Bool?
     var skylarksWin: Bool?
     var isDerby: Bool?
+    var isExternalGame: Bool?
     
     struct Field: Hashable, Codable {
         var name: String
@@ -94,17 +95,27 @@ struct GameScore: Hashable, Codable, Identifiable {
         skylarksWin = false
         skylarksAreHomeTeam = false
         isDerby = false
+        //new value since we now support non-Skylarks games
+        isExternalGame = false
         
+        //we are the home team
         if home_team_name.contains("Skylarks") && !away_team_name.contains("Skylarks") {
             skylarksAreHomeTeam = true
             isDerby = false
+        // we are the road team
         } else if away_team_name.contains("Skylarks") && !home_team_name.contains("Skylarks") {
             skylarksAreHomeTeam = false
             isDerby = false
         }
+        //the game consists of two Skylarks teams
         if away_team_name.contains("Skylarks") && home_team_name.contains("Skylarks") {
             isDerby = true
         }
+        //neither team is Skylarks - external game
+        if !away_team_name.contains("Skylarks") && !home_team_name.contains("Skylarks") {
+            isExternalGame = true
+        }
+        
         if skylarksAreHomeTeam! && !isDerby! {
             if let awayScore = away_runs, let homeScore = home_runs {
                 if homeScore > awayScore {
