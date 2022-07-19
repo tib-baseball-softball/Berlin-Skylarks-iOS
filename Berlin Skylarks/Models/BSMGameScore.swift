@@ -20,7 +20,7 @@ struct GameScore: Hashable, Codable, Identifiable {
     var away_team_name: String
     var human_state: String
     var scoresheet_url: String?
-    var field: Field?
+    var field: BSMField?
     var league: League
     var home_league_entry: LeagueEntry
     var away_league_entry: LeagueEntry
@@ -34,15 +34,15 @@ struct GameScore: Hashable, Codable, Identifiable {
     var isDerby: Bool?
     var isExternalGame: Bool?
     
-    struct Field: Hashable, Codable {
-        var name: String
-        var city: String?
-        var street: String?
-        var postal_code: String?
-        //it looks like these coordinates are in fact not NULL but instead 0 (zero) if there is no location data provided in the backend. Will keep them optional here anyway just in case.
-        var latitude: Double?
-        var longitude: Double?
-    }
+//    struct Field: Hashable, Codable {
+//        var name: String
+//        var city: String?
+//        var street: String?
+//        var postal_code: String?
+//        //it looks like these coordinates are in fact not NULL but instead 0 (zero) if there is no location data provided in the backend. Will keep them optional here anyway just in case.
+//        var latitude: Double?
+//        var longitude: Double?
+//    }
  
     //now global (used elsewhere as well)
 //    struct League: Hashable, Codable {
@@ -140,10 +140,4 @@ struct GameScore: Hashable, Codable, Identifiable {
     mutating func addDates() {
         gameDate = getDatefromBSMString(gamescore: self)
     }
-}
-
-struct Ballpark: Identifiable {
-    let id = UUID()
-    var name: String
-    var coordinate: CLLocationCoordinate2D
 }

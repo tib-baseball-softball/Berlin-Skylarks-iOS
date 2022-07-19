@@ -42,7 +42,7 @@ struct MainTabView: View {
                     Text("Standings")
                 }
             NavigationView {
-                TeamListView()
+                ClubView()
             }
                 .tabItem {
                     Image(systemName: "shield.fill")
@@ -62,5 +62,6 @@ struct MainTabView: View {
 struct MainTabView_Previews: PreviewProvider {
     static var previews: some View {
         MainTabView()
+            .environmentObject(NetworkManager())
     }
 }

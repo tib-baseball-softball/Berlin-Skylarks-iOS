@@ -56,7 +56,7 @@ struct SidebarNavigationView: View {
 //                                }
 //                        }
                         NavigationLink(
-                            destination: TeamListView()) {
+                            destination: ClubView()) {
                                 Image(systemName: "shield.fill")
                                     .foregroundColor(.skylarksDynamicNavySand)
                                     .frame(width: 30)

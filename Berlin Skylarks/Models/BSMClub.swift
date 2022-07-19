@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BSMClub: Hashable, Codable {
+struct BSMClub: Hashable, Codable, Identifiable {
     var id: Int
     var name: String
     var short_name: String
@@ -27,3 +27,5 @@ struct BSMClub: Hashable, Codable {
     var longitude: Double
     var successes: String
 }
+
+let previewClub = BSMClub(id: 42, name: "Berlin Wallpeckers", short_name: "Wallpeckers", acronym: "BPP", organization_id: 0, number: 4564, headquarter: "", main_club: "Example e.V.", chairman: "John Doe", registered_association: "Example e.V.", address_addon: "Stadion XY", street: "Test Street", postal_code: "12345", city: "Berlin", country: "DE", latitude: 45.5, longitude: 21.0, successes: "Decisive victory in the fall of 1989")

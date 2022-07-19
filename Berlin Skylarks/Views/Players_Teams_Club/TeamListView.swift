@@ -43,12 +43,6 @@ struct TeamListView: View {
         loadingInProgress = false
     }
     
-    #if !os(watchOS)
-//    init() {
-//        UITableView.appearance().backgroundColor = .clear
-//    }
-    #endif
-    
     var body: some View {
         ZStack {
             #if !os(watchOS)
@@ -137,6 +131,7 @@ struct TeamListView: View {
 struct TeamListView_Previews: PreviewProvider {
     static var previews: some View {
         TeamListView()
+            .environmentObject(NetworkManager())
             //.preferredColorScheme(.dark)
     }
 }
