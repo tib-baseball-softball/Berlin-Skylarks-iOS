@@ -32,17 +32,7 @@ struct ScoresView: View {
         }
     }
     
-    //new computed property: this returns an empty string if we just want to show our all games, and the search URL parameter from BSM if we want to pre-filter
-    
-    var skylarksURLFilter: String {
-        if showOtherTeams == true {
-            return ""
-        } else {
-            return "&search=skylarks"
-        }
-    }
-    
-    @State private var scoresURLs: [String : URL] = [:]
+    //@State private var scoresURLs: [String : URL] = [:]
     
     @State private var showCalendarDialog = false
     @State private var showEventAlert = false
@@ -105,13 +95,24 @@ struct ScoresView: View {
         loadingInProgress = true
         var gameURLSelected: URL? = nil
         
+        //check: setting this variable locally now instead of computed property in view
+        var skylarksURLFilter = ""
+        
+        if showOtherTeams == true {
+            skylarksURLFilter = ""
+        } else {
+            skylarksURLFilter = "&search=skylarks"
+        }
+        
         //if we're not filtering by any league, then we do not use the URL parameter at all
         if selectedTeam == "All Teams" {
             gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "\(skylarksURLFilter)" + "&filters[gamedays][]=" + selectedTimeframe.rawValue + "&api_key=" + apiKey)!
+            print(gameURLSelected!)
         }
         //in any other case we filter the API request by league ID
         else {
             gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "\(skylarksURLFilter)" + "&filters[leagues][]=" + "\(selectedTeamID)" + "&filters[gamedays][]=" + selectedTimeframe.rawValue + "&api_key=" + apiKey)!
+            print(gameURLSelected!)
         }
         
         do {
@@ -197,10 +198,17 @@ struct ScoresView: View {
                 .padding(.vertical, 3)
                 List {
                     Section(header: Text("Selected Season: " + String(selectedSeason))){
-                        //Text(calendarManager.calendarAccess.description.debugDescription)
+                        
+                        //Switch to external games/only our games
+                        Toggle("Show non-Skylarks Games", isOn: $showOtherTeams)
+                            .tint(.skylarksRed)
+                        
+                        //Loading in progress
                         if loadingInProgress == true {
                             LoadingView()
                         }
+                        
+                        //the actual game data
                         ForEach(listData, id: \.id) { GameScore in
                             NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
                                 ScoresOverView(gamescore: GameScore)
@@ -208,11 +216,11 @@ struct ScoresView: View {
                             .foregroundColor(.primary)
                             .listRowSeparatorTint(.skylarksRed)
                         }
+                        
+                        //fallback if there are no games
                         if gamescores == [] && loadingInProgress == false {
-                            Text("There are no Skylarks games scheduled for the chosen time frame.")
+                            Text("There are no games scheduled for the chosen time frame.")
                         }
-                        Toggle("Show non-Skylarks Games", isOn: $showOtherTeams)
-                            .tint(.skylarksRed)
                     }
                 }
                 .listStyle(.insetGrouped)
