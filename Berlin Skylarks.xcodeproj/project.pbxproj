@@ -177,6 +177,18 @@
 		CAA7C194289D296700CC0615 /* MapViewWithPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C192289D296700CC0615 /* MapViewWithPin.swift */; };
 		CAA7C195289D2BFE00CC0615 /* MapViewWithPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C192289D296700CC0615 /* MapViewWithPin.swift */; };
 		CAA7C196289D2F8B00CC0615 /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
+		CAA7C198289D4F8100CC0615 /* UmpireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C197289D4F8100CC0615 /* UmpireView.swift */; };
+		CAA7C199289D4F8100CC0615 /* UmpireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C197289D4F8100CC0615 /* UmpireView.swift */; };
+		CAA7C19B289D553100CC0615 /* LicenseSportIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C19A289D553100CC0615 /* LicenseSportIndicator.swift */; };
+		CAA7C19C289D553100CC0615 /* LicenseSportIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C19A289D553100CC0615 /* LicenseSportIndicator.swift */; };
+		CAA7C19E289D555200CC0615 /* LicenseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C19D289D555200CC0615 /* LicenseRow.swift */; };
+		CAA7C19F289D555200CC0615 /* LicenseRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C19D289D555200CC0615 /* LicenseRow.swift */; };
+		CAA7C1A1289D5E4300CC0615 /* LicenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C1A0289D5E4300CC0615 /* LicenseManager.swift */; };
+		CAA7C1A2289D5E4300CC0615 /* LicenseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C1A0289D5E4300CC0615 /* LicenseManager.swift */; };
+		CAA7C1A4289D720200CC0615 /* LicenseLevelIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C1A3289D720200CC0615 /* LicenseLevelIndicator.swift */; };
+		CAA7C1A5289D720200CC0615 /* LicenseLevelIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C1A3289D720200CC0615 /* LicenseLevelIndicator.swift */; };
+		CAA7C1A7289D72A900CC0615 /* UmpireDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C1A6289D72A900CC0615 /* UmpireDetailView.swift */; };
+		CAA7C1A8289D72A900CC0615 /* UmpireDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C1A6289D72A900CC0615 /* UmpireDetailView.swift */; };
 		CAAB4021277B7C4800F45C7A /* BSM_Games_2020_human_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0DA052259A46FA002A0FAB /* BSM_Games_2020_human_readable.json */; };
 		CAAB4022277B7C4B00F45C7A /* VLBB_2021_Standings.json in Resources */ = {isa = PBXBuildFile; fileRef = CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */; };
 		CAAB4024277B7C5700F45C7A /* VLBB_2021_Standings.json in Resources */ = {isa = PBXBuildFile; fileRef = CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */; };
@@ -383,6 +395,12 @@
 		CA9A89B22739DEFE001BBFA8 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		CA9D3EE328738A6C00835953 /* ScoreNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreNumber.swift; sourceTree = "<group>"; };
 		CAA7C192289D296700CC0615 /* MapViewWithPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewWithPin.swift; sourceTree = "<group>"; };
+		CAA7C197289D4F8100CC0615 /* UmpireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UmpireView.swift; sourceTree = "<group>"; };
+		CAA7C19A289D553100CC0615 /* LicenseSportIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseSportIndicator.swift; sourceTree = "<group>"; };
+		CAA7C19D289D555200CC0615 /* LicenseRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseRow.swift; sourceTree = "<group>"; };
+		CAA7C1A0289D5E4300CC0615 /* LicenseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseManager.swift; sourceTree = "<group>"; };
+		CAA7C1A3289D720200CC0615 /* LicenseLevelIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseLevelIndicator.swift; sourceTree = "<group>"; };
+		CAA7C1A6289D72A900CC0615 /* UmpireDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UmpireDetailView.swift; sourceTree = "<group>"; };
 		CAAB56C2271F62F800ADDE9D /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		CAAB56C427208A9200ADDE9D /* UserHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeView.swift; sourceTree = "<group>"; };
 		CABDB6ED2848F83B00B16E8F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
@@ -521,6 +539,7 @@
 				CABDB6F4284A82B800B16E8F /* CalendarManager.swift */,
 				CAC2D49E28513AFB009EB877 /* NetworkManager.swift */,
 				CA04403528875C7100DAE315 /* ClubDataManager.swift */,
+				CAA7C1A0289D5E4300CC0615 /* LicenseManager.swift */,
 			);
 			path = Objects_Classes;
 			sourceTree = "<group>";
@@ -720,6 +739,11 @@
 			children = (
 				CA56F3DD2887259700138195 /* ClubView.swift */,
 				CA044032288755AC00DAE315 /* ClubDetailView.swift */,
+				CAA7C197289D4F8100CC0615 /* UmpireView.swift */,
+				CAA7C1A6289D72A900CC0615 /* UmpireDetailView.swift */,
+				CAA7C19D289D555200CC0615 /* LicenseRow.swift */,
+				CAA7C1A3289D720200CC0615 /* LicenseLevelIndicator.swift */,
+				CAA7C19A289D553100CC0615 /* LicenseSportIndicator.swift */,
 				CAA7C192289D296700CC0615 /* MapViewWithPin.swift */,
 				CA56F3E52887356100138195 /* ClubGridItem.swift */,
 				CA890D4D28874BB700EC862D /* ClubInfoSection.swift */,
@@ -994,8 +1018,10 @@
 				CA1E0361281994F000E2FF8F /* UserDashboard.swift in Sources */,
 				CA5CF5E8284FF73000ABD7E0 /* SelectTeamSheet.swift in Sources */,
 				CA1E0364281994FE00E2FF8F /* GameData.swift in Sources */,
+				CAA7C1A5289D720200CC0615 /* LicenseLevelIndicator.swift in Sources */,
 				CA1C39B62731856B00BB194C /* NotificationController.swift in Sources */,
 				CA9B1815277A299700D24CFA /* ScoresDetailView.swift in Sources */,
+				CAA7C19C289D553100CC0615 /* LicenseSportIndicator.swift in Sources */,
 				CA1C3A172733473100BB194C /* watchOS_globals.swift in Sources */,
 				CABDB6EF2848F83B00B16E8F /* LoadingView.swift in Sources */,
 				CA56F3DA2880607E00138195 /* BSMLicense.swift in Sources */,
@@ -1028,9 +1054,11 @@
 				CA1E03692819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
 				CA1E036F281ACC9D00E2FF8F /* LegalNoticeView.swift in Sources */,
 				CAF98F98282A972D00451946 /* UserOnboardingView.swift in Sources */,
+				CAA7C19F289D555200CC0615 /* LicenseRow.swift in Sources */,
 				CA5CF5CC284E0DCF00ABD7E0 /* GameResultIndicator.swift in Sources */,
 				CA9B1814277A299400D24CFA /* ScoresOverView.swift in Sources */,
 				CA65FF3F27F5E60C00F7845D /* TeamListView.swift in Sources */,
+				CAA7C1A2289D5E4300CC0615 /* LicenseManager.swift in Sources */,
 				CA4AA4432858BBFF00C83CED /* LargePercentageCircle.swift in Sources */,
 				CA4AA445285B661700C83CED /* WatchRootView.swift in Sources */,
 				CA1C39B82731856B00BB194C /* NotificationView.swift in Sources */,
@@ -1039,11 +1067,13 @@
 				CA1CB20C27567E870007D24E /* BSMTeam.swift in Sources */,
 				CA1C39EA2731875800BB194C /* BSMGameScore.swift in Sources */,
 				CA044034288755AC00DAE315 /* ClubDetailView.swift in Sources */,
+				CAA7C199289D4F8100CC0615 /* UmpireView.swift in Sources */,
 				CA283D0E279D953500271DC1 /* StandingsView.swift in Sources */,
 				CA9B1813277A290900D24CFA /* ScoresView.swift in Sources */,
 				CA1C3A0E273340C000BB194C /* BSM_URL_Data.swift in Sources */,
 				CA55F6E227601E350032302F /* API_Key.swift in Sources */,
 				CA56F3CB2880569A00138195 /* BSMFunctionary.swift in Sources */,
+				CAA7C1A8289D72A900CC0615 /* UmpireDetailView.swift in Sources */,
 				CA283D0F279DD56800271DC1 /* UserHomeView.swift in Sources */,
 				CA04403728875C7100DAE315 /* ClubDataManager.swift in Sources */,
 				CA56F3E228872A1900138195 /* BSMField.swift in Sources */,
@@ -1095,12 +1125,14 @@
 				CA6F9E8427B2A9EE00530629 /* UserOnboardingView.swift in Sources */,
 				CA56F3DE2887259700138195 /* ClubView.swift in Sources */,
 				CA1E03682819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
+				CAA7C19B289D553100CC0615 /* LicenseSportIndicator.swift in Sources */,
 				CAAB56C527208A9200ADDE9D /* UserHomeView.swift in Sources */,
 				CABF7BF1259351D400B95813 /* ContentView.swift in Sources */,
 				CAC2D49F28513AFB009EB877 /* NetworkManager.swift in Sources */,
 				CA1E036E281ACC9D00E2FF8F /* LegalNoticeView.swift in Sources */,
 				CA56F3E128872A1900138195 /* BSMField.swift in Sources */,
 				CA4AA447285B669B00C83CED /* MainTabView.swift in Sources */,
+				CAA7C1A7289D72A900CC0615 /* UmpireDetailView.swift in Sources */,
 				CAF839D02705F4D9006FAD6B /* TestView.swift in Sources */,
 				CA78B7282596880200510621 /* NewsDetailView.swift in Sources */,
 				CA6042A12745B14000607011 /* ViewModifiers.swift in Sources */,
@@ -1133,10 +1165,12 @@
 				CA044033288755AC00DAE315 /* ClubDetailView.swift in Sources */,
 				CA28FB90280DDDC6007581FD /* HomeTeamDetailView.swift in Sources */,
 				CA56299526943C0D00274BE4 /* WebArticleView.swift in Sources */,
+				CAA7C1A1289D5E4300CC0615 /* LicenseManager.swift in Sources */,
 				CA5CF5D7284E0EBA00ABD7E0 /* ScorerAssignments.swift in Sources */,
 				CA55F6E127601A4F0032302F /* API_Key.swift in Sources */,
 				CA78B72E2596892E00510621 /* TeamListView.swift in Sources */,
 				CA5CF5DB284E0EDF00ABD7E0 /* BallparkLocation.swift in Sources */,
+				CAA7C1A4289D720200CC0615 /* LicenseLevelIndicator.swift in Sources */,
 				CABDB6EE2848F83B00B16E8F /* LoadingView.swift in Sources */,
 				CA5CF5E3284E0F3E00ABD7E0 /* ScoreMainInfo.swift in Sources */,
 				CACA4284283C25E3008F21FF /* SegmentPercentage.swift in Sources */,
@@ -1148,10 +1182,12 @@
 				CA1C3A0A2733407400BB194C /* Ints_Floats.swift in Sources */,
 				CAFDC1FD25BF7F09000A5922 /* ModelData.swift in Sources */,
 				CABF7BFB259351D500B95813 /* Berlin_Skylarks.xcdatamodeld in Sources */,
+				CAA7C198289D4F8100CC0615 /* UmpireView.swift in Sources */,
 				CA5CF5CB284E0DCF00ABD7E0 /* GameResultIndicator.swift in Sources */,
 				CA56F3E62887356100138195 /* ClubGridItem.swift in Sources */,
 				CA1E0371281AD4D100E2FF8F /* PrivacyPolicyView.swift in Sources */,
 				CAE7740E26C292F900A57F66 /* StandingsTableView.swift in Sources */,
+				CAA7C19E289D555200CC0615 /* LicenseRow.swift in Sources */,
 				CA56F3CF2880578700138195 /* BSMPerson.swift in Sources */,
 				CA5CF5D3284E0E7400ABD7E0 /* UmpireAssignments.swift in Sources */,
 				CA0DA04E2598F570002A0FAB /* InfoView.swift in Sources */,

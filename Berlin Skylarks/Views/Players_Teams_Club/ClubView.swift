@@ -17,6 +17,7 @@ struct ClubView: View {
     @State private var loadingInProgress = false
     
     @StateObject var clubData = ClubData()
+    @StateObject var licenseManager = LicenseManager()
     
     func loadClubData() async {
         if networkManager.isConnected == false {
@@ -50,8 +51,10 @@ struct ClubView: View {
                         ClubGridItem(systemImage: "info.circle.fill", itemName: "Detailed Info")
                             .padding(3)
                     }
-                    ClubGridItem(systemImage: "person.crop.rectangle.stack", itemName: "Umpire")
-                        .padding(3)
+                    NavigationLink(destination: UmpireView(licenseManager: licenseManager)) {
+                        ClubGridItem(systemImage: "person.crop.rectangle.stack", itemName: "Umpire")
+                            .padding(3)
+                    }
                     ClubGridItem(systemImage: "pencil", itemName: "Scorer")
                         .padding(3)
                     NavigationLink(destination: TeamListView()){
@@ -92,6 +95,6 @@ struct ClubView_Previews: PreviewProvider {
             ClubView()
                 .environmentObject(NetworkManager())
         }
-        .preferredColorScheme(.dark)
+        //.preferredColorScheme(.dark)
     }
 }
