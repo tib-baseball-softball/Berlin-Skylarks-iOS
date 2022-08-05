@@ -24,7 +24,7 @@ struct UmpireView: View {
                 }
                 ForEach(licenseManager.umpires, id: \.self) { umpireLicense in
                     if umpireLicense.baseball == true {
-                        NavigationLink(destination: UmpireDetailView(license: umpireLicense)) {
+                        NavigationLink(destination: LicenseDetailView(license: umpireLicense)) {
                             LicenseRow(license: umpireLicense)
                         }
                     }
@@ -45,7 +45,7 @@ struct UmpireView: View {
                 }
                 ForEach(licenseManager.umpires, id: \.self) { umpireLicense in
                     if umpireLicense.softball == true {
-                        NavigationLink(destination: UmpireDetailView(license: umpireLicense)) {
+                        NavigationLink(destination: LicenseDetailView(license: umpireLicense)) {
                             LicenseRow(license: umpireLicense)
                         }
                     }

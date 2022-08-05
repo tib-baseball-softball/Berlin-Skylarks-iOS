@@ -55,18 +55,22 @@ struct ClubView: View {
                         ClubGridItem(systemImage: "person.crop.rectangle.stack", itemName: "Umpire")
                             .padding(3)
                     }
-                    ClubGridItem(systemImage: "pencil", itemName: "Scorer")
-                        .padding(3)
+                    NavigationLink(destination: ScorersView(licenseManager: licenseManager)) {
+                        ClubGridItem(systemImage: "pencil", itemName: "Scorer")
+                            .padding(3)
+                    }
                     NavigationLink(destination: TeamListView()){
                         ClubGridItem(systemImage: "person.3.fill", itemName: "Teams")
                             .padding(3)
                     }
                     ClubGridItem(systemImage: "diamond.fill", itemName: "Ballpark")
                         .padding(3)
-//                    ClubGridItem(systemImage: "person.fill", itemName: "Coaches")
-//                        .padding(3)
-                    ClubGridItem(systemImage: "person.2.fill", itemName: "Officials")
-                        .padding(3)
+                    //                    ClubGridItem(systemImage: "person.fill", itemName: "Coaches")
+                    //                        .padding(3)
+                    NavigationLink(destination: FunctionaryView(clubData: clubData)) {
+                        ClubGridItem(systemImage: "person.2.fill", itemName: "Officials")
+                            .padding(3)
+                    }
                 }
                 .foregroundColor(.primary)
                 .padding([.top, .horizontal])

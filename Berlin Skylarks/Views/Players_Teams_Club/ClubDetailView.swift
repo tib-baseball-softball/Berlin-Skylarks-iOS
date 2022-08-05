@@ -37,9 +37,9 @@ struct ClubDetailView: View {
                     Image(systemName: "shield")
                         .clubIconStyleRed()
                     Text(clubData.club.main_club)
-                    #if !os(watchOS)
+#if !os(watchOS)
                         .textSelection(.enabled)
-                    #endif
+#endif
                 }
             }
 #if !os(watchOS)
@@ -50,25 +50,25 @@ struct ClubDetailView: View {
                     Image(systemName: "person")
                         .clubIconStyleDynamic()
                     Text(clubData.club.chairman)
-                        #if !os(watchOS)
+#if !os(watchOS)
                         .textSelection(.enabled)
-                    #endif
+#endif
                 }
                 HStack {
                     Image(systemName: "number")
                         .clubIconStyleDynamic()
                     Text(clubData.club.registered_association)
-                        #if !os(watchOS)
+#if !os(watchOS)
                         .textSelection(.enabled)
-                    #endif
+#endif
                 }
                 HStack {
                     Image(systemName: "building.columns")
                         .clubIconStyleDynamic()
                     Text(clubData.club.court)
-                        #if !os(watchOS)
+#if !os(watchOS)
                         .textSelection(.enabled)
-                    #endif
+#endif
                 }
             }
 #if !os(watchOS)
@@ -84,9 +84,9 @@ struct ClubDetailView: View {
                     Image(systemName: "map")
                         .clubIconStyleDynamic()
                     Text("\(clubData.club.street), \(clubData.club.postal_code) \(clubData.club.city), \(clubData.club.country)")
-                        #if !os(watchOS)
+#if !os(watchOS)
                         .textSelection(.enabled)
-                    #endif
+#endif
                 }
                 MapViewWithPin(latitude: clubData.club.latitude, longitude: clubData.club.longitude, name: clubData.club.name)
             }

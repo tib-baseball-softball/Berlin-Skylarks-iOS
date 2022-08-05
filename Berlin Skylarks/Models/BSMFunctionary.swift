@@ -9,7 +9,10 @@ import Foundation
 
 struct BSMFunctionary: Hashable, Codable, Identifiable {
     var id: Int
-    var function: String
+    var category: String //set by BSM (Enum)
+    var function: String //set by user (Freitext)
     var mail: String
     var person: Person
 }
+
+let previewFunctionary = BSMFunctionary(id: 2, category: "Vorstand/Abteilungsleitung", function: "Abteilungsleitung Baseball", mail: "mail@example.com", person: previewPerson)

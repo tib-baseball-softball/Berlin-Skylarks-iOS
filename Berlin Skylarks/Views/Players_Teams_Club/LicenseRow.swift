@@ -32,5 +32,6 @@ struct LicenseRow_Previews: PreviewProvider {
         List {
             LicenseRow(license: previewLicense)
         }
+        .preferredColorScheme(.dark)
     }
 }

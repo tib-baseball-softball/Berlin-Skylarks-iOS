@@ -1,5 +1,5 @@
 //
-//  UmpireDetailView.swift
+//  LicenseDetailView.swift
 //  Berlin Skylarks
 //
 //  Created by David Battefeld on 05.08.22.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct UmpireDetailView: View {
+struct LicenseDetailView: View {
     var license: BSMLicense
     
     var body: some View {
@@ -15,7 +15,7 @@ struct UmpireDetailView: View {
             Section {
                 HStack {
                     LicenseLevelIndicator(level: license.level)
-                            .font(.title)
+                        .font(.title)
                     Text(license.category)
                 }
                 if license.baseball {
@@ -43,20 +43,20 @@ struct UmpireDetailView: View {
             }
             Section {
                 HStack {
-                    Image(systemName: "person.fill")
+                    Image(systemName: license.category == "Scorer" ? "pencil" : "person.fill")
                         .clubIconStyleDynamic()
                     Text("\(license.person.first_name) \(license.person.last_name)")
-                        #if !os(watchOS)
+#if !os(watchOS)
                         .textSelection(.enabled)
-                    #endif
+#endif
                 }
                 HStack {
                     Image(systemName: "number")
                         .clubIconStyleDynamic()
                     Text(license.number)
-                        #if !os(watchOS)
+#if !os(watchOS)
                         .textSelection(.enabled)
-                    #endif
+#endif
                 }
                 HStack {
                     Image(systemName: "calendar")
@@ -80,10 +80,10 @@ struct UmpireDetailView: View {
     }
 }
 
-struct UmpireDetailView_Previews: PreviewProvider {
+struct LicenseDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            UmpireDetailView(license: previewLicense)
+            LicenseDetailView(license: previewLicense)
         }
     }
 }
