@@ -235,7 +235,7 @@ struct SettingsListView_Previews: PreviewProvider {
         NavigationView {
             SettingsListView()
         }
-        .preferredColorScheme(.dark)
+        //.preferredColorScheme(.dark)
         .environmentObject(NetworkManager())
     }
 }

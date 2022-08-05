@@ -8,5 +8,5 @@
 import Foundation
 
 class ClubData: ObservableObject {
-    @Published var club = BSMClub(id: 485, name: "Berlin Skylarks", short_name: "Skylarks", acronym: "BEA", organization_id: 9, number: 1100, headquarter: "Clombiadamm", main_club: "TiB", chairman: "", registered_association: "", address_addon: "", street: "", postal_code: "", city: "", country: "", latitude: 0, longitude: 0, successes: "")
+    @Published var club = BSMClub(id: 485, name: "Berlin Skylarks", short_name: "Skylarks", acronym: "BEA", organization_id: 9, number: 1100, headquarter: "Columbiadamm", main_club: "TiB", chairman: "Johannes Russ", registered_association: "VR xyz", court: "OLG Berlin", address_addon: "Geschäftsstelle", street: "Straße 12", postal_code: "12345", city: "Berlin", country: "DE", latitude: 0, longitude: 0, successes: "winning")
 }

@@ -85,3 +85,35 @@ extension UIApplication {
     }
 }
 #endif
+
+
+
+struct ClubIconStyleDynamic: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(width: 25, height: 20, alignment: .center)
+            .font(.title2)
+            .foregroundColor(.skylarksDynamicNavySand)
+    }
+}
+
+extension View {
+    func clubIconStyleDynamic() -> some View {
+        modifier(ClubIconStyleDynamic())
+    }
+}
+
+struct ClubIconStyleRed: ViewModifier {
+    func body(content: Content) -> some View {
+        content
+            .frame(width: 25, height: 20, alignment: .center)
+            .font(.title2)
+            .foregroundColor(.skylarksRed)
+    }
+}
+
+extension View {
+    func clubIconStyleRed() -> some View {
+        modifier(ClubIconStyleRed())
+    }
+}

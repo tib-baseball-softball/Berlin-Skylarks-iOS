@@ -34,27 +34,7 @@ struct BallparkLocation: View {
                     }
                     .padding(ScoresItemPadding)
                 } else {
-                    let fieldPin = [
-                        Ballpark(name: field.name, coordinate: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude)),
-                    ]
-                    Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: coordinateLatitude, longitude: coordinateLongitude), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))), interactionModes: [], annotationItems: fieldPin) {
-                        MapMarker(coordinate: $0.coordinate, tint: Color.accentColor)
-                    }
-                    #if !os(watchOS)
-                    .frame(height: expandMap ? 500 : 200)
-                    #else
-                    .frame(height: 200)
-                    #endif
-                    
-                    .onTapGesture(perform: {
-                        if !fieldPin.isEmpty {
-                            let coordinate = fieldPin[0].coordinate
-                            let placemark = MKPlacemark(coordinate: coordinate)
-                            let mapItem = MKMapItem(placemark: placemark)
-                            mapItem.name = fieldPin[0].name
-                            mapItem.openInMaps()
-                        }
-                    })
+                    MapViewWithPin(latitude: coordinateLatitude, longitude: coordinateLongitude, name: field.name)
                 }
                 
             } else {

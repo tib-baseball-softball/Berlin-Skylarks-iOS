@@ -23,25 +23,19 @@ struct ClubInfoSection: View {
                 VStack(alignment: .leading) {
                     HStack {
                         Image(systemName: "heart.text.square")
-                            .frame(width: 25, height: 20, alignment: .center)
-                            .font(.title2)
-                            .foregroundColor(.skylarksRed)
+                            .clubIconStyleRed()
                         Text(clubData.club.short_name)
                     }
                     Divider()
                     HStack {
                         Image(systemName: "creditcard")
-                            .frame(width: 25, height: 20, alignment: .center)
-                            .font(.title2)
-                            .foregroundColor(.skylarksRed)
+                            .clubIconStyleRed()
                         Text("\(clubData.club.acronym) / 0\(clubData.club.organization_id) \(clubData.club.number)")
                     }
                     Divider()
                     HStack {
                         Image(systemName: "shield")
-                            .frame(width: 25, height: 20, alignment: .center)
-                            .font(.title2)
-                            .foregroundColor(.skylarksRed)
+                            .clubIconStyleRed()
                         Text(clubData.club.main_club)
                     }
                 }
