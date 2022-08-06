@@ -17,6 +17,9 @@ struct FunctionaryDetailView: View {
                     FunctionaryIcon(functionary: functionary)
                         .clubIconStyleDynamic()
                     Text(functionary.function)
+#if !os(watchOS)
+                        .textSelection(.enabled)
+#endif
                 }
                 HStack {
                     Image(systemName: "info.circle")
@@ -24,6 +27,9 @@ struct FunctionaryDetailView: View {
                         .clubIconStyleDynamic()
                     Text(functionary.category)
                         .foregroundColor(.secondary)
+#if !os(watchOS)
+                        .textSelection(.enabled)
+#endif
                 }
             }
 #if !os(watchOS)
@@ -35,7 +41,10 @@ struct FunctionaryDetailView: View {
                         .clubIconStyleDynamic()
                     Text("\(functionary.person.last_name), \(functionary.person.first_name)")
                         .font(.headline)
-                    .padding(.vertical, 1)
+                        .padding(.vertical, 1)
+#if !os(watchOS)
+                        .textSelection(.enabled)
+#endif
                 }
 #if !os(watchOS)
                 let mailtoUrl = URL(string: "mailto:\(functionary.mail)")!

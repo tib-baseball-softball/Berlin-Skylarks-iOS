@@ -63,8 +63,10 @@ struct ClubView: View {
                         ClubGridItem(systemImage: "person.3.fill", itemName: "Teams")
                             .padding(3)
                     }
-                    ClubGridItem(systemImage: "diamond.fill", itemName: "Ballpark")
-                        .padding(3)
+                    NavigationLink(destination: BallparkView(clubData: clubData)) {
+                        ClubGridItem(systemImage: "diamond.fill", itemName: "Ballpark")
+                            .padding(3)
+                    }
                     //                    ClubGridItem(systemImage: "person.fill", itemName: "Coaches")
                     //                        .padding(3)
                     NavigationLink(destination: FunctionaryView(clubData: clubData)) {
@@ -78,12 +80,13 @@ struct ClubView: View {
                 
             }
         }
-        .onAppear(perform: {
+        .onAppear {
             //check for performance!
             Task {
                 await loadClubData()
+                await clubData.loadFields()
             }
-        })
+        }
         
         .alert("No network connection", isPresented: $showAlertNoNetwork) {
             Button("OK") { }

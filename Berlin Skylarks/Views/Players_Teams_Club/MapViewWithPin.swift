@@ -33,6 +33,7 @@ struct MapViewWithPin: View {
         Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))), interactionModes: [], annotationItems: fieldPin) {
             MapMarker(coordinate: $0.coordinate, tint: Color.skylarksRed)
         }
+        .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
         #if !os(watchOS)
         .frame(height: expandMap ? 500 : 200)
         #else
@@ -53,6 +54,8 @@ struct MapViewWithPin: View {
 
 struct MapViewWithPin_Previews: PreviewProvider {
     static var previews: some View {
-        MapViewWithPin(latitude: 20, longitude: 10, name: "Important Location")
+        List {
+            MapViewWithPin(latitude: 15, longitude: 35, name: "Important Location")
+        }
     }
 }

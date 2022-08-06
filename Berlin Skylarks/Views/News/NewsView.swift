@@ -36,7 +36,6 @@ struct NewsItem: View {
                 .bold()
                 .padding(.horizontal, 10)
             Text("Skylarks gewinnen durch Homerun im 9. Inning nach heroischer Performance")
-                .lineLimit(nil)
                 .padding(10)
         }
         .background(ItemBackgroundColor)

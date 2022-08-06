@@ -90,6 +90,7 @@ struct ClubDetailView: View {
                 }
                 MapViewWithPin(latitude: clubData.club.latitude, longitude: clubData.club.longitude, name: clubData.club.name)
             }
+            //TODO: add successes
 #if !os(watchOS)
             .listRowSeparatorTint(.skylarksSand)
 #endif
