@@ -20,7 +20,7 @@ struct BallparkView: View {
                 }
             }
         }
-        .navigationTitle("Ballparks")
+        .navigationTitle("Ballpark")
         .animation(.default, value: clubData.fieldObjects)
         
         .refreshable {

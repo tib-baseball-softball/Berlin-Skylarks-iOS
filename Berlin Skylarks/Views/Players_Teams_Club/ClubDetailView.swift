@@ -45,6 +45,17 @@ struct ClubDetailView: View {
 #if !os(watchOS)
             .listRowSeparatorTint(.skylarksSand)
 #endif
+            Section {
+                HStack {
+                    Image(systemName: "flag.2.crossed.fill")
+                        .clubIconStyleRed()
+                    Text("Achievements")
+                        .font(.headline)
+                        .padding(5)
+                }
+                Text(clubData.club.successes)
+            }
+            
             Section(header: Text("Legal info")) {
                 HStack {
                     Image(systemName: "person")
@@ -74,7 +85,10 @@ struct ClubDetailView: View {
 #if !os(watchOS)
             .listRowSeparatorTint(.skylarksSand)
 #endif
-            Section(header: Text("Location")) {
+            Section(header: HStack {
+                        Text("Location")
+                        Image(systemName: "location")
+            }){
                 HStack {
                     Image(systemName: "building")
                         .clubIconStyleDynamic()
@@ -90,7 +104,6 @@ struct ClubDetailView: View {
                 }
                 MapViewWithPin(latitude: clubData.club.latitude, longitude: clubData.club.longitude, name: clubData.club.name)
             }
-            //TODO: add successes
 #if !os(watchOS)
             .listRowSeparatorTint(.skylarksSand)
 #endif

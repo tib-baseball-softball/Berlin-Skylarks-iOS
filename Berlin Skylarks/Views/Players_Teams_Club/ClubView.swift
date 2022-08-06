@@ -46,9 +46,10 @@ struct ClubView: View {
             ScrollView {
                 ClubInfoSection(clubData: clubData)
                     .padding(.horizontal)
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 150, maximum: 200))]) {
+                LazyVGrid(columns: [GridItem(.adaptive(minimum: 140, maximum: 200))]) {
                     NavigationLink(destination: ClubDetailView(clubData: clubData)){
                         ClubGridItem(systemImage: "info.circle.fill", itemName: "Detailed Info")
+                            
                             .padding(3)
                     }
                     NavigationLink(destination: UmpireView(licenseManager: licenseManager)) {

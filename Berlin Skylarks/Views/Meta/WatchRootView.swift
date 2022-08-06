@@ -19,11 +19,6 @@ struct WatchRootView: View {
                             Text("Favorite Team")
                         }
                     }
-                //                HStack {
-                //                    Image(systemName: "newspaper")
-                //                        .foregroundColor(Color.accentColor)
-                //                    Text("News")
-                //                }
                 NavigationLink(
                     destination: ScoresView()) {
                         HStack {
@@ -40,12 +35,15 @@ struct WatchRootView: View {
                             Text("Standings")
                         }
                     }
-                
-                //                HStack {
-                //                    Image(systemName: "person.3")
-                //                        .foregroundColor(Color.accentColor)
-                //                    Text("Players")
-                //                }
+                NavigationLink(destination: ClubView()) {
+                    HStack {
+                        Image(systemName: "shield")
+                            .font(.title3)
+                            .foregroundColor(.skylarksRed)
+                        Text("Club")
+                            .padding(.leading, -1)
+                    }
+                }
                 NavigationLink(
                     destination: SettingsListView()) {
                         HStack {
@@ -54,7 +52,6 @@ struct WatchRootView: View {
                             Text("Settings")
                         }
                     }
-                
             }
             .navigationTitle("Home")
         }

@@ -23,6 +23,7 @@ struct ClubGridItem: View {
                         .font(.title2)
                         .foregroundColor(.skylarksDynamicNavySand)
                     Text(itemName)
+                        .fixedSize()
                         .font(.headline)
                 }
                 Spacer()

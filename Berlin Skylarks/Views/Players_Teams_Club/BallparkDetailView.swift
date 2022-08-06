@@ -70,7 +70,29 @@ struct BallparkDetailView: View {
                         Text("Seats: \(seats)")
                     }
                 }
-                
+            }
+            if let latitude = fieldObject.field.latitude, let longitude = fieldObject.field.longitude, let street = fieldObject.field.street, let postalCode = fieldObject.field.postal_code, let city = fieldObject.field.city {
+                Section(header: HStack {
+                    Text("Location")
+                    Image(systemName: "location")
+                }) {
+                    MapViewWithPin(latitude: latitude, longitude: longitude, name: fieldObject.field.name)
+                    HStack {
+                        Image(systemName: "map")
+                            .clubIconStyleDynamic()
+                        Text("\(street), \(postalCode) \(city)")
+    #if !os(watchOS)
+                            .textSelection(.enabled)
+    #endif
+                    }
+                }
+            } else {
+                //this should never happen since we can control whether we have an address set or not (BSM access)
+                HStack {
+                    Image(systemName: "map")
+                        .clubIconStyleDynamic()
+                    Text("No location data available.")
+                }
             }
             Section(header: HStack {
                 Text("Directions")
