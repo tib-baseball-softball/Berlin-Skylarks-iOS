@@ -18,6 +18,24 @@ class ClubData: ObservableObject {
     
     @Published var loadingInProgress = false
     
+    func loadClubData() async {
+//        if networkManager.isConnected == false {
+//            showAlertNoNetwork = true
+//        }
+        
+        //our ID 485 should really never change
+        let clubURL = URL(string:"https://bsm.baseball-softball.de/clubs/485.json?api_key=" + apiKey)!
+        
+        loadingInProgress = true
+        
+        do {
+            club = try await fetchBSMData(url: clubURL, dataType: BSMClub.self)
+        } catch {
+            print("Request failed with error: \(error)")
+        }
+        loadingInProgress = false
+    }
+    
     func loadFunctionaries() async {
         loadingInProgress = true
         

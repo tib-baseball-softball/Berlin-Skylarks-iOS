@@ -53,7 +53,7 @@ struct TeamDetailView: View {
                         }
                         .padding(.vertical)
                         HStack {
-                            Image(systemName: "ticket")
+                            LicenseSportIndicator(baseball: team.league_entries[0].league.sport.contains("Baseball") ? true : false)
                             Text(String(team.league_entries[0].league.sport))
                         }
                         .padding(.vertical)

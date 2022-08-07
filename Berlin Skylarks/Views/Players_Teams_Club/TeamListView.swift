@@ -7,12 +7,6 @@
 
 import SwiftUI
 
-struct TeamDetailListHeader: View {
-    var body: some View {
-        Text("Team data")
-    }
-}
-
 struct TeamListView: View {
     
     @Environment(\.colorScheme) var colorScheme
@@ -43,6 +37,8 @@ struct TeamListView: View {
         loadingInProgress = false
     }
     
+    //TODO: switch to Table in iOS 16
+    
     var body: some View {
         ZStack {
             #if !os(watchOS)
@@ -50,11 +46,13 @@ struct TeamListView: View {
                 .edgesIgnoringSafeArea(.all)
             #endif
             List {
-                Section(header: TeamDetailListHeader()) {
+                Section(header: Text("Team data")) {
                     HStack {
                         Image(systemName: "person.3.fill")
                             .padding(.trailing)
+#if !os(watchOS)
                         Text("Team")
+#endif
                         Spacer()
                         Text("League")
                             .frame(maxWidth: 110, alignment: .leading)
@@ -75,7 +73,9 @@ struct TeamListView: View {
                                     Image(systemName: "person.3")
                                         .foregroundColor(.skylarksRed)
                                         .padding(.trailing)
+#if !os(watchOS)
                                     Text(team.name)
+#endif
                                     Spacer()
                                     if !team.league_entries.isEmpty {
                                         Text(team.league_entries[0].league.name)

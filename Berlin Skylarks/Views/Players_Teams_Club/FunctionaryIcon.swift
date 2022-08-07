@@ -24,17 +24,17 @@ struct FunctionaryIcon: View {
             //iOS 16
             //Image(systemName: "figure.and.child.holdinghands")
             Image(systemName: "person.2")
-                .foregroundColor(.skylarksDynamicNavySand)
+                .colorDynamicNavySandWatchOS()
         } else if functionary.category.contains("Umpire") {
             Image(systemName: "person")
-                .foregroundColor(.skylarksDynamicNavySand)
+                .colorDynamicNavySandWatchOS()
         } else if functionary.category.contains("Scorer") {
             Image(systemName: "pencil")
-                .foregroundColor(.skylarksDynamicNavySand)
+                .colorDynamicNavySandWatchOS()
         } else {
             //fallback image if none apply
             Image(systemName: "person")
-                .foregroundColor(.skylarksDynamicNavySand)
+                .colorDynamicNavySandWatchOS()
         }
     }
 }

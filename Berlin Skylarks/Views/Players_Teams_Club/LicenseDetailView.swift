@@ -15,7 +15,11 @@ struct LicenseDetailView: View {
             Section {
                 HStack {
                     LicenseLevelIndicator(level: license.level)
-                        .font(.title)
+#if !os(watchOS)
+                .font(.title)
+#else
+                .font(.title2)
+#endif
                     Text(license.category)
                 }
                 if license.baseball {

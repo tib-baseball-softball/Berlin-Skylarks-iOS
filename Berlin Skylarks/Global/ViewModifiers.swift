@@ -90,10 +90,16 @@ extension UIApplication {
 
 struct ClubIconStyleDynamic: ViewModifier {
     func body(content: Content) -> some View {
+        #if !os(watchOS)
         content
             .frame(width: 25, height: 20, alignment: .center)
             .font(.title2)
             .foregroundColor(.skylarksDynamicNavySand)
+        #else
+        content
+            .frame(width: 20, height: 20, alignment: .center)
+            .foregroundColor(.skylarksSand)
+        #endif
     }
 }
 
@@ -105,15 +111,42 @@ extension View {
 
 struct ClubIconStyleRed: ViewModifier {
     func body(content: Content) -> some View {
+#if !os(watchOS)
         content
             .frame(width: 25, height: 20, alignment: .center)
             .font(.title2)
             .foregroundColor(.skylarksRed)
+#else
+        content
+            .frame(width: 20, height: 20, alignment: .center)
+            .foregroundColor(.skylarksRed)
+#endif
     }
 }
 
 extension View {
     func clubIconStyleRed() -> some View {
         modifier(ClubIconStyleRed())
+    }
+}
+
+//  this is needed because even though the Apple Watch always uses a dark interface,
+//  it does not count as "dark mode" for the purpose of selecting the color with the appropriate contrast
+
+struct ColorDynamicNavySandWatchOS: ViewModifier {
+    func body(content: Content) -> some View {
+#if !os(watchOS)
+        content
+            .foregroundColor(.skylarksDynamicNavySand)
+#else
+        content
+            .foregroundColor(.skylarksSand)
+#endif
+    }
+}
+
+extension View {
+    func colorDynamicNavySandWatchOS() -> some View {
+        modifier(ColorDynamicNavySandWatchOS())
     }
 }

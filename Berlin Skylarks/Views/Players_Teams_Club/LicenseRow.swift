@@ -13,7 +13,11 @@ struct LicenseRow: View {
     var body: some View {
         HStack {
             LicenseLevelIndicator(level: license.level)
+#if !os(watchOS)
                 .font(.title)
+#else
+                .font(.title3)
+#endif
                 .clubIconStyleDynamic()
             Text("\(license.person.last_name), \(license.person.first_name)")
 //            Spacer()

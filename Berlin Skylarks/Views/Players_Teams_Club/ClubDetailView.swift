@@ -19,7 +19,11 @@ struct ClubDetailView: View {
                     skylarksPrimaryLogo
                         .resizable()
                         .scaledToFit()
+#if !os(watchOS)
                         .frame(maxWidth: 200)
+#else
+                        .frame(maxWidth: 100)
+#endif
                     Spacer()
                 }
                 //.listRowBackground(Color.clear)

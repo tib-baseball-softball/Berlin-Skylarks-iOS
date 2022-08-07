@@ -15,7 +15,11 @@ struct LicenseSportIndicator: View {
         if baseball == true {
             ZStack {
                 Image(systemName: "circle.fill")
-                    .font(.title)
+#if !os(watchOS)
+                .font(.title)
+#else
+                .font(.title2)
+#endif
                     .foregroundColor(.skylarksRed)
                 Text("BB")
                     .bold()
@@ -25,7 +29,11 @@ struct LicenseSportIndicator: View {
         } else {
             ZStack {
                 Image(systemName: "circle.fill")
-                    .font(.title)
+#if !os(watchOS)
+                .font(.title)
+#else
+                .font(.title2)
+#endif
                     .foregroundColor(.skylarksDynamicNavySand)
                 Text("SB")
                     .foregroundColor(.white)

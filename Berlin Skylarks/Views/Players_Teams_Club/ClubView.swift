@@ -19,37 +19,23 @@ struct ClubView: View {
     @StateObject var clubData = ClubData()
     @StateObject var licenseManager = LicenseManager()
     
-    func loadClubData() async {
-        if networkManager.isConnected == false {
-            showAlertNoNetwork = true
-        }
-        
-        //our ID 485 should really never change
-        let clubURL = URL(string:"https://bsm.baseball-softball.de/clubs/485.json?api_key=" + apiKey)!
-        
-        loadingInProgress = true
-        
-        do {
-            clubData.club = try await fetchBSMData(url: clubURL, dataType: BSMClub.self)
-        } catch {
-            print("Request failed with error: \(error)")
-        }
-        loadingInProgress = false
-    }
-    
     var body: some View {
         ZStack {
             #if !os(watchOS)
             Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
                 .edgesIgnoringSafeArea(.all)
-            #endif
+#endif
             ScrollView {
                 ClubInfoSection(clubData: clubData)
                     .padding(.horizontal)
-                LazyVGrid(columns: [GridItem(.adaptive(minimum: 140, maximum: 200))]) {
+#if !os(watchOS)
+                let columns = [GridItem(.adaptive(minimum: 140, maximum: 200))]
+#else
+                let columns = [GridItem(.adaptive(minimum: 80, maximum: 100))]
+#endif
+                LazyVGrid(columns: columns) {
                     NavigationLink(destination: ClubDetailView(clubData: clubData)){
-                        ClubGridItem(systemImage: "info.circle.fill", itemName: "Detailed Info")
-                            
+                        ClubGridItem(systemImage: "info.circle.fill", itemName: "Details")
                             .padding(3)
                     }
                     NavigationLink(destination: UmpireView(licenseManager: licenseManager)) {
@@ -68,8 +54,6 @@ struct ClubView: View {
                         ClubGridItem(systemImage: "diamond.fill", itemName: "Ballpark")
                             .padding(3)
                     }
-                    //                    ClubGridItem(systemImage: "person.fill", itemName: "Coaches")
-                    //                        .padding(3)
                     NavigationLink(destination: FunctionaryView(clubData: clubData)) {
                         ClubGridItem(systemImage: "person.2.fill", itemName: "Officials")
                             .padding(3)
@@ -84,7 +68,7 @@ struct ClubView: View {
         .onAppear {
             //check for performance!
             Task {
-                await loadClubData()
+                await clubData.loadClubData()
                 await clubData.loadFields()
             }
         }

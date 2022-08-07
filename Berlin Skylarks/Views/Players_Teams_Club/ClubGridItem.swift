@@ -20,11 +20,20 @@ struct ClubGridItem: View {
             HStack {
                 VStack(alignment: .leading, spacing: 10) {
                     Image(systemName: systemImage)
+#if !os(watchOS)
                         .font(.title2)
                         .foregroundColor(.skylarksDynamicNavySand)
+#else
+                        .font(.title3)
+                        .foregroundColor(.skylarksSand)
+#endif
                     Text(itemName)
                         .fixedSize()
+#if !os(watchOS)
                         .font(.headline)
+#else
+                        .font(.body)
+#endif
                 }
                 Spacer()
             }

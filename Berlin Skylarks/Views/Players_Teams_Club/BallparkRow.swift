@@ -20,19 +20,23 @@ struct BallparkRow: View {
                         .resizable()
                         .scaledToFill()
                         .clipShape(Circle())
+#if !os(watchOS)
                         .frame(maxWidth: 100, maxHeight: 100)
+#else
+                        .frame(width: 40, height: 40)
+#endif
                 } placeholder: {
                     ProgressView()
                         .padding()
                 }
             }
-//            if let image = fieldObject.image {
-//                image
-//                    .resizable()
-//                    .scaledToFill()
-//                    .clipShape(Circle())
-//                    .frame(maxWidth: 100, maxHeight: 100)
-//            }
+            //            if let image = fieldObject.image {
+            //                image
+            //                    .resizable()
+            //                    .scaledToFill()
+            //                    .clipShape(Circle())
+            //                    .frame(maxWidth: 100, maxHeight: 100)
+            //            }
             Text(fieldObject.field.name)
             Spacer()
             //MARK: maybe change to ball icons in iOS 16
