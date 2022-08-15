@@ -134,6 +134,17 @@ func determineTableRow(team: BSMTeam, table: LeagueTable) -> LeagueTable.Row {
 //    }.resume()
 //}
 
+//not sure if this works, but URLSession.shared is always cached
+
+//extension URLSession {
+//    static let noCacheSession: URLSession = {
+//        let config = URLSessionConfiguration.ephemeral
+//        config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
+//        config.urlCache = nil
+//        return URLSession(configuration: config)
+//    }()
+//}
+
 // new version with async/await
 
 func fetchBSMData<T: Codable>(url: URL, dataType: T.Type) async throws -> T {

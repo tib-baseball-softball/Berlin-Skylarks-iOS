@@ -22,14 +22,22 @@ struct ScoresView: View {
     
     @State private var searchResults = [GameScore]()
     
+    @State private var skylarksGamescores = [GameScore]()
+    
     @State private var calendarTitles = [String]()
     
     var listData: [GameScore] {
-        if searchText.isEmpty {
+        if showOtherTeams == false && searchText.isEmpty {
+            return skylarksGamescores
+        } else if showOtherTeams == false && !searchText.isEmpty {
+            return searchResults //should always be the correct filter
+        } else if showOtherTeams == true && searchText.isEmpty {
             return gamescores
-        } else {
+        } else if showOtherTeams == true && !searchText.isEmpty {
             return searchResults
         }
+        //fallback, should never be executed
+        return gamescores
     }
     
     //@State private var scoresURLs: [String : URL] = [:]
@@ -95,24 +103,15 @@ struct ScoresView: View {
         loadingInProgress = true
         var gameURLSelected: URL? = nil
         
-        //check: setting this variable locally now instead of computed property in view
-        var skylarksURLFilter = ""
-        
-        if showOtherTeams == true {
-            skylarksURLFilter = ""
-        } else {
-            skylarksURLFilter = "&search=skylarks"
-        }
-        
         //if we're not filtering by any league, then we do not use the URL parameter at all
         if selectedTeam == "All Teams" {
-            gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "\(skylarksURLFilter)" + "&filters[gamedays][]=" + selectedTimeframe.rawValue + "&api_key=" + apiKey)!
-            print(gameURLSelected!)
+            gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&filters[gamedays][]=" + selectedTimeframe.rawValue + "&api_key=" + apiKey)!
+            //print(gameURLSelected!)
         }
         //in any other case we filter the API request by league ID
         else {
-            gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "\(skylarksURLFilter)" + "&filters[leagues][]=" + "\(selectedTeamID)" + "&filters[gamedays][]=" + selectedTimeframe.rawValue + "&api_key=" + apiKey)!
-            print(gameURLSelected!)
+            gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&filters[leagues][]=" + "\(selectedTeamID)" + "&filters[gamedays][]=" + selectedTimeframe.rawValue + "&api_key=" + apiKey)!
+            //print(gameURLSelected!)
         }
         
         do {
@@ -120,11 +119,17 @@ struct ScoresView: View {
         } catch {
             print("Request failed with error: \(error)")
         }
-        
+        //DEBUG
+        //print(gamescores.count)
         for (index, _) in gamescores.enumerated() {
             gamescores[index].addDates()
             gamescores[index].determineGameStatus()
         }
+        
+        //set up separate object for just Skylarks games
+        skylarksGamescores = gamescores.filter({ gamescore in
+            gamescore.home_team_name.contains("Skylarks") || gamescore.away_team_name.contains("Skylarks")
+        })
         
         loadingInProgress = false
     }
@@ -218,18 +223,25 @@ struct ScoresView: View {
                         }
                         
                         //fallback if there are no games
-                        if gamescores == [] && loadingInProgress == false {
+                        if gamescores.isEmpty && loadingInProgress == false {
                             Text("There are no games scheduled for the chosen time frame.")
+                        }
+                        //convoluted conditions, basically just means: we show just our games, there are none, but there are others that have been filtered out
+                        if skylarksGamescores == [] && !gamescores.isEmpty && showOtherTeams == false && loadingInProgress == false {
+                            Text("There are no Skylarks games scheduled for the chosen time frame.")
                         }
                     }
                 }
                 .listStyle(.insetGrouped)
                 .animation(.default, value: searchText)
                 .animation(.default, value: gamescores)
+                .animation(.default, value: showOtherTeams)
+                
                 .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: Text("Filter")) //it doesn't let me change the prompt
                
                 .onChange(of: searchText) { searchText in
-                    searchResults = self.gamescores.filter({ gamescore in
+                    let searchedObjects = showOtherTeams ? gamescores : skylarksGamescores
+                    searchResults = searchedObjects.filter({ gamescore in
                         
                         // list all fields that are searched
                         gamescore.home_team_name.lowercased().contains(searchText.lowercased()) ||
@@ -245,6 +257,7 @@ struct ScoresView: View {
                         gamescore.away_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased())
                     })
                 }
+                
                 .refreshable {
                     gamescores = []
                     scoresLoaded = false
@@ -269,14 +282,6 @@ struct ScoresView: View {
                 })
                 
                 .onChange(of: selectedTimeframe, perform: { value in
-                    gamescores = []
-                    scoresLoaded = false
-                    Task {
-                        await loadGamesAndProcess()
-                    }
-                })
-                
-                .onChange(of: showOtherTeams, perform: { value in
                     gamescores = []
                     scoresLoaded = false
                     Task {
@@ -413,9 +418,9 @@ struct ScoresView: View {
                             Text(gameday.displayName)
                             .tag(gameday)
                         }
-                        
                 })
-                
+                Toggle("Show non-Skylarks Games", isOn: $showOtherTeams)
+                    .tint(.skylarksRed)
                 ForEach(self.gamescores, id: \.id) { GameScore in
                     NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
                         ScoresOverView(gamescore: GameScore)
@@ -423,12 +428,10 @@ struct ScoresView: View {
                     .foregroundColor(.primary)
                 }
                 if gamescores.isEmpty && loadingInProgress == false {
-                    Text("There are no Skylarks games scheduled for the chosen time frame.")
+                    Text("There are no games scheduled for the chosen time frame.")
                         .font(.caption2)
                         .padding()
                 }
-                Toggle("Show non-Skylarks Games", isOn: $showOtherTeams)
-                    .tint(.skylarksRed)
             }
         }
         .animation(.default, value: gamescores)
