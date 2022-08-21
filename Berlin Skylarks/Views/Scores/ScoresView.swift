@@ -75,6 +75,10 @@ struct ScoresView: View {
         "All Teams",
     ]
     
+    //---------------------------------------------------------//
+    //-----------local funcs-----------------------------------//
+    //---------------------------------------------------------//
+    
     func loadLeagueGroups() async {
         //reset filter options to default
         filterTeams = [
@@ -106,12 +110,12 @@ struct ScoresView: View {
         //if we're not filtering by any league, then we do not use the URL parameter at all
         if selectedTeam == "All Teams" {
             gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&filters[gamedays][]=" + selectedTimeframe.rawValue + "&api_key=" + apiKey)!
-            //print(gameURLSelected!)
+            print(gameURLSelected!)
         }
         //in any other case we filter the API request by league ID
         else {
             gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&filters[leagues][]=" + "\(selectedTeamID)" + "&filters[gamedays][]=" + selectedTimeframe.rawValue + "&api_key=" + apiKey)!
-            //print(gameURLSelected!)
+            print(gameURLSelected!)
         }
         
         do {
@@ -119,8 +123,7 @@ struct ScoresView: View {
         } catch {
             print("Request failed with error: \(error)")
         }
-        //DEBUG
-        //print(gamescores.count)
+        
         for (index, _) in gamescores.enumerated() {
             gamescores[index].addDates()
             gamescores[index].determineGameStatus()
@@ -130,6 +133,10 @@ struct ScoresView: View {
         skylarksGamescores = gamescores.filter({ gamescore in
             gamescore.home_team_name.contains("Skylarks") || gamescore.away_team_name.contains("Skylarks")
         })
+        
+        //DEBUG
+        print("gamescores has \(gamescores.count) items")
+        print("skylarksGamescores has \(skylarksGamescores.count) items")
         
         loadingInProgress = false
     }
@@ -141,6 +148,52 @@ struct ScoresView: View {
             selectedTeamID = leagueGroup.id
         }
     }
+    
+    //---------------------------------------------------------//
+    //-------------------func shortcuts------------------------//
+    //---------------------------------------------------------//
+    
+    func refresh() async {
+        gamescores = []
+        scoresLoaded = false
+        await loadGamesAndProcess()
+    }
+    
+    func initialLoad() {
+        if gamescores.isEmpty && scoresLoaded == false {
+            Task {
+                await loadLeagueGroups()
+            }
+            scoresLoaded = true
+        }
+    }
+    
+    func teamChanged() {
+        gamescores = []
+        scoresLoaded = false
+        Task {
+            await setTeamID()
+            await loadGamesAndProcess()
+        }
+    }
+    
+    func timeframeChanged() {
+        gamescores = []
+        scoresLoaded = false
+        Task {
+            await loadGamesAndProcess()
+        }
+    }
+    
+    func seasonChanged() {
+        gamescores = []
+        skylarksGamescores = []
+        scoresLoaded = false
+    }
+    
+    //---------------------------------------------------------//
+    //-------------------calendar funcs------------------------//
+    //---------------------------------------------------------//
     
 #if !os(watchOS)
     func checkAccess() async {
@@ -177,6 +230,10 @@ struct ScoresView: View {
     }
     
 #endif
+    
+    //---------------------------------------------------------//
+    //-------------------iOS/macOS view------------------------//
+    //---------------------------------------------------------//
     
     var body: some View {
 #if !os(watchOS)
@@ -259,40 +316,22 @@ struct ScoresView: View {
                 }
                 
                 .refreshable {
-                    gamescores = []
-                    scoresLoaded = false
-                    await loadGamesAndProcess()
+                    await refresh()
                 }
-                .onAppear(perform: {
-                    if gamescores.isEmpty && scoresLoaded == false {
-                        Task {
-                            await loadLeagueGroups()
-                        }
-                        scoresLoaded = true
-                    }
-                })
+                .onAppear {
+                    initialLoad()
+                }
                 
                 .onChange(of: selectedTeam, perform: { value in
-                    gamescores = []
-                    scoresLoaded = false
-                    Task {
-                        await setTeamID()
-                        await loadGamesAndProcess()
-                    }
+                    teamChanged()
                 })
                 
                 .onChange(of: selectedTimeframe, perform: { value in
-                    gamescores = []
-                    scoresLoaded = false
-                    Task {
-                        await loadGamesAndProcess()
-                    }
+                    timeframeChanged()
                 })
                 
                 .onChange(of: selectedSeason, perform: { value in
-                    gamescores = []
-                    scoresLoaded = false
-                    //loadLeagueGroups()
+                    seasonChanged()
                 })
                 
                 // this is the toolbar with the picker in the top right corner where you can select which games to display.
@@ -421,7 +460,7 @@ struct ScoresView: View {
                 })
                 Toggle("Show non-Skylarks Games", isOn: $showOtherTeams)
                     .tint(.skylarksRed)
-                ForEach(self.gamescores, id: \.id) { GameScore in
+                ForEach(listData, id: \.id) { GameScore in
                     NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
                         ScoresOverView(gamescore: GameScore)
                     }
@@ -435,53 +474,28 @@ struct ScoresView: View {
             }
         }
         .animation(.default, value: gamescores)
+        .animation(.default, value: showOtherTeams)
         .navigationTitle("Scores")
         
         //APPLE WATCH SEPARATE FUNCS/////////////////////////////////////////////////////////////////////
         
         .refreshable {
-            gamescores = []
-            scoresLoaded = false
-            await loadGamesAndProcess()
+            await refresh()
         }
         .onAppear(perform: {
-            if gamescores.isEmpty && scoresLoaded == false {
-                Task {
-                    await loadLeagueGroups()
-                }
-                scoresLoaded = true
-            }
+            initialLoad()
         })
         
         .onChange(of: selectedTeam, perform: { value in
-            gamescores = []
-            scoresLoaded = false
-            Task {
-                await setTeamID()
-                await loadGamesAndProcess()
-            }
+            teamChanged()
         })
         
         .onChange(of: selectedTimeframe, perform: { value in
-            gamescores = []
-            scoresLoaded = false
-            Task {
-                await loadGamesAndProcess()
-            }
-        })
-        
-        .onChange(of: showOtherTeams, perform: { value in
-            gamescores = []
-            scoresLoaded = false
-            Task {
-                await loadGamesAndProcess()
-            }
+            timeframeChanged()
         })
         
         .onChange(of: selectedSeason, perform: { value in
-            gamescores = []
-            scoresLoaded = false
-            //loadLeagueGroups()
+            seasonChanged()
         })
         
         #endif
