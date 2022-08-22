@@ -72,6 +72,7 @@
 		CA28D66F27A0601B00680067 /* BSMLeagueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */; };
 		CA28D67027A0601B00680067 /* BSMLeagueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */; };
 		CA28FB90280DDDC6007581FD /* HomeTeamDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28FB8F280DDDC6007581FD /* HomeTeamDetailView.swift */; };
+		CA3C4C2F28B40C3400F72841 /* BerlinSkylarksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4C2E28B40C3400F72841 /* BerlinSkylarksTests.swift */; };
 		CA48557B277383D5004ED11A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
 		CA48557E27748A9E004ED11A /* GamedayWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */; };
 		CA48558127748DEE004ED11A /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6042A02745B14000607011 /* ViewModifiers.swift */; };
@@ -272,6 +273,13 @@
 			remoteGlobalIDString = CA1C39A32731856B00BB194C;
 			remoteInfo = WatchSkylarks;
 		};
+		CA3C4C3028B40C3400F72841 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CABF7BE3259351D400B95813 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CABF7BEA259351D400B95813;
+			remoteInfo = "Berlin Skylarks";
+		};
 		CA65FF5D27F5EC4400F7845D /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CABF7BE3259351D400B95813 /* Project object */;
@@ -366,6 +374,8 @@
 		CA1E0370281AD4D100E2FF8F /* PrivacyPolicyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyPolicyView.swift; sourceTree = "<group>"; };
 		CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BSMLeagueGroup.swift; path = "Berlin Skylarks/Models/BSMLeagueGroup.swift"; sourceTree = SOURCE_ROOT; };
 		CA28FB8F280DDDC6007581FD /* HomeTeamDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTeamDetailView.swift; sourceTree = "<group>"; };
+		CA3C4C2C28B40C3400F72841 /* BerlinSkylarksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BerlinSkylarksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA3C4C2E28B40C3400F72841 /* BerlinSkylarksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinSkylarksTests.swift; sourceTree = "<group>"; };
 		CA3CBFAE28AAE8870001DE31 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainInterface.strings; sourceTree = "<group>"; };
 		CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamedayWidgetView.swift; sourceTree = "<group>"; };
 		CA4AA4412858BBFF00C83CED /* LargePercentageCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargePercentageCircle.swift; sourceTree = "<group>"; };
@@ -465,6 +475,13 @@
 
 /* Begin PBXFrameworksBuildPhase section */
 		CA1C39A92731856B00BB194C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA3C4C2928B40C3400F72841 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -577,6 +594,14 @@
 			path = Settings;
 			sourceTree = "<group>";
 		};
+		CA3C4C2D28B40C3400F72841 /* BerlinSkylarksTests */ = {
+			isa = PBXGroup;
+			children = (
+				CA3C4C2E28B40C3400F72841 /* BerlinSkylarksTests.swift */,
+			);
+			path = BerlinSkylarksTests;
+			sourceTree = "<group>";
+		};
 		CA65FF4727F5EC4400F7845D /* Skylarks Intents */ = {
 			isa = PBXGroup;
 			children = (
@@ -645,6 +670,7 @@
 				CAE134862771F2E000DFA745 /* WidgetSkylarks */,
 				CA65FF4727F5EC4400F7845D /* Skylarks Intents */,
 				CA65FF5227F5EC4400F7845D /* Skylarks IntentsUI */,
+				CA3C4C2D28B40C3400F72841 /* BerlinSkylarksTests */,
 				CAE134812771F2DF00DFA745 /* Frameworks */,
 				CABF7BEC259351D400B95813 /* Products */,
 			);
@@ -658,6 +684,7 @@
 				CA1C39AC2731856B00BB194C /* WatchSkylarks WatchKit Extension.appex */,
 				CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */,
 				CA65FF4427F5EC4400F7845D /* Skylarks Intents.appex */,
+				CA3C4C2C28B40C3400F72841 /* BerlinSkylarksTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -875,6 +902,24 @@
 			productReference = CA1C39AC2731856B00BB194C /* WatchSkylarks WatchKit Extension.appex */;
 			productType = "com.apple.product-type.watchkit2-extension";
 		};
+		CA3C4C2B28B40C3400F72841 /* BerlinSkylarksTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CA3C4C3428B40C3400F72841 /* Build configuration list for PBXNativeTarget "BerlinSkylarksTests" */;
+			buildPhases = (
+				CA3C4C2828B40C3400F72841 /* Sources */,
+				CA3C4C2928B40C3400F72841 /* Frameworks */,
+				CA3C4C2A28B40C3400F72841 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CA3C4C3128B40C3400F72841 /* PBXTargetDependency */,
+			);
+			name = BerlinSkylarksTests;
+			productName = BerlinSkylarksTests;
+			productReference = CA3C4C2C28B40C3400F72841 /* BerlinSkylarksTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CA65FF4327F5EC4400F7845D /* Skylarks Intents */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CA65FF6427F5EC4400F7845D /* Build configuration list for PBXNativeTarget "Skylarks Intents" */;
@@ -937,7 +982,7 @@
 		CABF7BE3259351D400B95813 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1330;
+				LastSwiftUpdateCheck = 1340;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					CA1C39A32731856B00BB194C = {
@@ -945,6 +990,10 @@
 					};
 					CA1C39AB2731856B00BB194C = {
 						CreatedOnToolsVersion = 13.1;
+					};
+					CA3C4C2B28B40C3400F72841 = {
+						CreatedOnToolsVersion = 13.4.1;
+						TestTargetID = CABF7BEA259351D400B95813;
 					};
 					CA65FF4327F5EC4400F7845D = {
 						CreatedOnToolsVersion = 13.3;
@@ -976,6 +1025,7 @@
 				CA1C39AB2731856B00BB194C /* WatchSkylarks WatchKit Extension */,
 				CAE1347F2771F2DF00DFA745 /* WidgetSkylarksExtension */,
 				CA65FF4327F5EC4400F7845D /* Skylarks Intents */,
+				CA3C4C2B28B40C3400F72841 /* BerlinSkylarksTests */,
 			);
 		};
 /* End PBXProject section */
@@ -1001,6 +1051,13 @@
 				CA1C39EC2731875800BB194C /* Assets.xcassets in Resources */,
 				CA1C39BC2731856C00BB194C /* Assets.xcassets in Resources */,
 				CA1C39ED2731875800BB194C /* BSM_Games_2020_human_readable.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA3C4C2A28B40C3400F72841 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1115,6 +1172,14 @@
 				CA56F3E228872A1900138195 /* BSMField.swift in Sources */,
 				CA1C39EE2731875800BB194C /* BSMStandingsTable.swift in Sources */,
 				CAA7C1AB289DA7BC00CC0615 /* ScorersView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CA3C4C2828B40C3400F72841 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CA3C4C2F28B40C3400F72841 /* BerlinSkylarksTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1302,6 +1367,11 @@
 			target = CA1C39A32731856B00BB194C /* WatchSkylarks */;
 			targetProxy = CA1C39D82731856C00BB194C /* PBXContainerItemProxy */;
 		};
+		CA3C4C3128B40C3400F72841 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CABF7BEA259351D400B95813 /* Berlin Skylarks */;
+			targetProxy = CA3C4C3028B40C3400F72841 /* PBXContainerItemProxy */;
+		};
 		CA65FF5E27F5EC4400F7845D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CA65FF4327F5EC4400F7845D /* Skylarks Intents */;
@@ -1446,6 +1516,46 @@
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 8.0;
+			};
+			name = Release;
+		};
+		CA3C4C3228B40C3400F72841 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.tib-baseball.BerlinSkylarksTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Berlin Skylarks.app/Berlin Skylarks";
+			};
+			name = Debug;
+		};
+		CA3C4C3328B40C3400F72841 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.5;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.tib-baseball.BerlinSkylarksTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Berlin Skylarks.app/Berlin Skylarks";
 			};
 			name = Release;
 		};
@@ -1764,6 +1874,15 @@
 			buildConfigurations = (
 				CA1C39DC2731856C00BB194C /* Debug */,
 				CA1C39DD2731856C00BB194C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CA3C4C3428B40C3400F72841 /* Build configuration list for PBXNativeTarget "BerlinSkylarksTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CA3C4C3228B40C3400F72841 /* Debug */,
+				CA3C4C3328B40C3400F72841 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

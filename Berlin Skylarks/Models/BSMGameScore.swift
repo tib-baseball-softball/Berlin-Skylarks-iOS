@@ -34,35 +34,10 @@ struct GameScore: Hashable, Codable, Identifiable {
     var isDerby: Bool?
     var isExternalGame: Bool?
     
-//    struct Field: Hashable, Codable {
-//        var name: String
-//        var city: String?
-//        var street: String?
-//        var postal_code: String?
-//        //it looks like these coordinates are in fact not NULL but instead 0 (zero) if there is no location data provided in the backend. Will keep them optional here anyway just in case.
-//        var latitude: Double?
-//        var longitude: Double?
-//    }
- 
-    //now global (used elsewhere as well)
-//    struct League: Hashable, Codable {
-//        var id: Int
-//        var season: Int
-//        var name: String
-//    }
-    
     struct LeagueEntry: Hashable, Codable {
         var team: Team
         //var league: League?
     }
-    
-//    struct Home_League_Entry: Hashable, Codable {
-//        var team: Team
-//    }
-//
-//    struct Away_League_Entry: Hashable, Codable {
-//        var team: Team
-//    }
     
     struct Umpire_Assignments: Hashable, Codable {
         var license: License

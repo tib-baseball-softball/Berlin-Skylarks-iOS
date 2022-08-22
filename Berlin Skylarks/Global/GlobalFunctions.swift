@@ -117,23 +117,6 @@ func determineTableRow(team: BSMTeam, table: LeagueTable) -> LeagueTable.Row {
 
 //MARK: Generic load function that accepts any codable type
 
-//func loadBSMData<T: Codable>(url: URL, dataType: T.Type, completion: @escaping ((T) -> Void)) {
-//
-//    let request = URLRequest(url: url)
-//    URLSession.shared.dataTask(with: request) { data, response, error in
-//
-//        if let data = data {
-//            if let response_obj = try? JSONDecoder().decode(T.self, from: data) {
-//
-//                DispatchQueue.main.async {
-//                    let loadedData = response_obj
-//                    completion(loadedData)
-//                }
-//            }
-//        }
-//    }.resume()
-//}
-
 //not sure if this works, but URLSession.shared is always cached
 
 //extension URLSession {

@@ -62,6 +62,16 @@
                ReferencedContainer = "container:Berlin Skylarks.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "CA3C4C2B28B40C3400F72841"
+               BuildableName = "BerlinSkylarksTests.xctest"
+               BlueprintName = "BerlinSkylarksTests"
+               ReferencedContainer = "container:Berlin Skylarks.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
@@ -75,8 +85,10 @@
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
       notificationPayloadFile = "WatchSkylarks WatchKit Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/(null)">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CA1C39A32731856B00BB194C"
@@ -84,7 +96,7 @@
             BlueprintName = "WatchSkylarks"
             ReferencedContainer = "container:Berlin Skylarks.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"
@@ -93,8 +105,10 @@
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES"
       notificationPayloadFile = "WatchSkylarks WatchKit Extension/PushNotificationPayload.apns">
-      <BuildableProductRunnable
-         runnableDebuggingMode = "0">
+      <RemoteRunnable
+         runnableDebuggingMode = "2"
+         BundleIdentifier = "com.apple.Carousel"
+         RemotePath = "/(null)">
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "CA1C39A32731856B00BB194C"
@@ -102,7 +116,16 @@
             BlueprintName = "WatchSkylarks"
             ReferencedContainer = "container:Berlin Skylarks.xcodeproj">
          </BuildableReference>
-      </BuildableProductRunnable>
+      </RemoteRunnable>
+      <MacroExpansion>
+         <BuildableReference
+            BuildableIdentifier = "primary"
+            BlueprintIdentifier = "CA1C39A32731856B00BB194C"
+            BuildableName = "Skylarks.app"
+            BlueprintName = "WatchSkylarks"
+            ReferencedContainer = "container:Berlin Skylarks.xcodeproj">
+         </BuildableReference>
+      </MacroExpansion>
    </ProfileAction>
    <AnalyzeAction
       buildConfiguration = "Debug">
