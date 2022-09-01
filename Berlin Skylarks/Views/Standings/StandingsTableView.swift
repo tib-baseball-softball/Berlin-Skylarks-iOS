@@ -57,9 +57,9 @@ struct StandingsTableView: View {
                             //.padding(.horizontal, teamPadding)
                         Spacer()
                         HStack {
-                            Text(String(tableRow.wins_count))
+                            Text(String(Int(tableRow.wins_count)))
                                 .frame(width: 21, height: 20, alignment: .center)
-                            Text(String(tableRow.losses_count))
+                            Text(String(Int(tableRow.losses_count)))
                                 .frame(width: 21, height: 20, alignment: .center)
                             Text(tableRow.quota)
                                 .frame(width: 42, height: 20, alignment: .center)
@@ -120,36 +120,32 @@ struct StandingsTableView: View {
                         HStack {
                             Text(tableRow.rank)
                             Text(tableRow.team_name)
-                                .padding(.horizontal, teamPadding)
+                                .padding(.horizontal, 3)
                             Spacer()
                             HStack {
-                                Text(String(tableRow.wins_count))
+                                Text(String(Int(tableRow.wins_count)))
                                     .frame(width: 21, height: 20, alignment: .center)
-                                Text(String(tableRow.losses_count))
+                                Text(String(Int(tableRow.losses_count)))
                                     .frame(width: 21, height: 20, alignment: .center)
                                 Text(tableRow.quota)
                                     .frame(width: 42, height: 20, alignment: .center)
                                 Text(String(tableRow.games_behind))
-                                    .frame(width: 26, height: 20, alignment: .center)
+                                    .fixedSize()
+                                    .frame(width: 31, height: 20, alignment: .center)
                                 Text(tableRow.streak)
                                     .frame(width: 37, height: 20, alignment: .center)
                                     
-                            }.padding(.horizontal, -8)
+                            }
+                            .padding(.horizontal, -8)
                         }
                         .foregroundColor(tableRow.team_name.contains("Skylarks") ? Color.accentColor : Color.primary)
                     }
-                    //more rows here
                 }
             }
             .frame(maxWidth: 650)
             .listStyle(.insetGrouped)
             .navigationTitle(leagueTable.league_name + " " + String(leagueTable.season))
             .navigationBarTitleDisplayMode(.inline)
-            //.padding(.horizontal, padding)
-            
-            
-            //this is sort of needed for dashboard, but breaks all other occurrences
-            //.frame(width: 500, height: 500)
         }
         .iOS { $0.background(colorStandingsBackground) }
         #endif

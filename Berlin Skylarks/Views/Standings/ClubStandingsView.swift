@@ -18,8 +18,9 @@ struct ClubStandingsView: View {
         var lossesCount = 0
         for leagueTable in leagueTables {
             for row in leagueTable.rows where row.team_name.contains("Skylarks") {
-                winsCount += row.wins_count
-                lossesCount += row.losses_count
+                //these used to be just Ints, but during season 2022 there were ties possible in Kinderliga
+                winsCount += Int(row.wins_count)
+                lossesCount += Int(row.losses_count)
             }
         }
         return (winsCount, lossesCount)

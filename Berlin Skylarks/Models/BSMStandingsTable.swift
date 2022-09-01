@@ -20,10 +20,10 @@ struct LeagueTable: Hashable, Codable {
         var team_name: String
         var short_team_name: String
         var match_count: Int //those might be optionals!
-        var wins_count: Int
-        var losses_count: Int
+        var wins_count: Double //apparently sometimes there are half wins
+        var losses_count: Double
         var quota: String
         var games_behind: String
-        var streak: String //I need to check the error that occurred when the Poor Pigs retreated from the league and had an Int instead of a string in the original JSON! => fixed it in my dummy data
+        var streak: String //sometimes BSM is dumb and has an Int (0) instead of a string in the original JSON! => fixed it in my dummy data
     }
 }

@@ -45,7 +45,7 @@ struct StandingsView: View {
                 let table = try await fetchBSMData(url: url, dataType: LeagueTable.self)
                 leagueTableArray.append(table)
             } catch {
-                print("Request failed with error: \(error)")
+                print("Request failed with error: \(error) while parsing \(leagueGroup.name) with id \(leagueGroup.id)")
             }
         }
         loadingInProgress = false

@@ -42,12 +42,12 @@ struct SegmentPercentage: View {
         ){
             HStack {
                 Spacer()
-                Text("\(userDashboard.tableRow.wins_count)")
+                Text("\(Int(userDashboard.tableRow.wins_count))")
                     .bold()
                     .padding(.horizontal)
                 Text("-")
                     .bold()
-                Text("\(userDashboard.tableRow.losses_count)")
+                Text("\(Int(userDashboard.tableRow.losses_count))")
                     .bold()
                     .padding(.horizontal)
                 Spacer()

@@ -88,12 +88,13 @@ struct UserHomeView: View {
         
         //load table for specific leagueGroup that corresponds to favorite team
         
-        let table = await loadTableForTeam(team: team, leagueGroups: leagueGroups)
-        let row = determineTableRow(team: team, table: table)
-        
-        homeLeagueTables.append(table)
-        userDashboard.leagueTable = table
-        userDashboard.tableRow = row
+        if let table = await loadTableForTeam(team: team, leagueGroups: leagueGroups) {
+            let row = determineTableRow(team: team, table: table)
+            
+            homeLeagueTables.append(table)
+            userDashboard.leagueTable = table
+            userDashboard.tableRow = row
+        }
         
         if !homeLeagueTables.isEmpty {
             showingTableData = true
@@ -187,7 +188,7 @@ struct UserHomeView: View {
                                 Image(systemName: "sum")
                                     .frame(maxWidth: 20)
                                     .foregroundColor(Color.skylarksAdaptiveBlue)
-                                Text("\(userDashboard.tableRow.wins_count) - \(userDashboard.tableRow.losses_count)")
+                                Text("\(Int(userDashboard.tableRow.wins_count)) - \(Int(userDashboard.tableRow.losses_count))")
                                     .bold()
                                     .padding(.leading)
                             }

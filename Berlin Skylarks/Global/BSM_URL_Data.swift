@@ -29,7 +29,7 @@ let skylarksID = "485" // this is probably never going to change - but most API 
 
 //-----------------------------empty Struct data--------------------------------//
 
-let emptyTable = LeagueTable(league_id: 1, league_name: "Loading...", season: Calendar.current.component(.year, from: Date()), rows: [])
+let emptyTable = LeagueTable(league_id: 1, league_name: "League", season: Calendar.current.component(.year, from: Date()), rows: [])
 
 let emptyRow = LeagueTable.Row(rank: " ", team_name: " ", short_team_name: " ", match_count: 0, wins_count: 0, losses_count: 0, quota: " ", games_behind: " ", streak: " ")
 

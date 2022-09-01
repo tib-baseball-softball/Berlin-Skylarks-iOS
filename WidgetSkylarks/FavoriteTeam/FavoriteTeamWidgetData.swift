@@ -62,8 +62,11 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
             
             let leagueGroups = await loadLeagueGroups(season: season)
             
-            userDashboard.leagueTable = await loadTableForTeam(team: selectedTeam, leagueGroups: leagueGroups)
-            userDashboard.tableRow = determineTableRow(team: selectedTeam, table: userDashboard.leagueTable)
+            if let table = await loadTableForTeam(team: selectedTeam, leagueGroups: leagueGroups) {
+                userDashboard.leagueTable = table
+                userDashboard.tableRow = determineTableRow(team: selectedTeam, table: userDashboard.leagueTable)
+            }
+            
             
             var gamescores = [GameScore]()
             

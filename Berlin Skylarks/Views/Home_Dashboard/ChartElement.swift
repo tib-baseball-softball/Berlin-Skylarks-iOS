@@ -15,7 +15,7 @@ struct ChartElement: View {
     
     var body: some View {
         VStack {
-            Text("\(tableRow.wins_count)")
+            Text("\(Int(tableRow.wins_count))")
             Spacer()
             RoundedRectangle(cornerRadius: 10, style: .continuous)
                 .foregroundColor(tableRow.team_name.contains("Skylarks") ? Color.skylarksRed : .skylarksDynamicNavySand)

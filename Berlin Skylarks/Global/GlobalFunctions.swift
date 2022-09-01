@@ -159,7 +159,7 @@ func loadLeagueGroups(season: Int) async -> [LeagueGroup] {
     return loadedLeagues
 }
 
-func loadTableForTeam(team: BSMTeam, leagueGroups: [LeagueGroup]) async -> LeagueTable {
+func loadTableForTeam(team: BSMTeam, leagueGroups: [LeagueGroup]) async -> LeagueTable? {
     var correctTable = emptyTable
     
     for leagueGroup in leagueGroups where team.league_entries[0].league.name == leagueGroup.name {
@@ -171,6 +171,7 @@ func loadTableForTeam(team: BSMTeam, leagueGroups: [LeagueGroup]) async -> Leagu
             correctTable = table
         } catch {
             print("Request failed with error: \(error)")
+            return nil
         }
     }
     return correctTable

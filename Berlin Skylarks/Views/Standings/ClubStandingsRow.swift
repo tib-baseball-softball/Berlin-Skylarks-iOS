@@ -29,7 +29,7 @@ struct ClubStandingsRow: View {
             Spacer()
             
             ForEach(tableRows, id: \.self) { row in
-                Text("\(row.wins_count)-\(row.losses_count)")
+                Text("\(Int(row.wins_count))-\(Int(row.losses_count))")
                     .font(.headline)
             }
         }
