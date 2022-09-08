@@ -97,10 +97,10 @@ struct StandingsTableView: View {
                         HStack {
                             Text("W")
                                 .bold()
-                                .frame(width: 24, height: 20, alignment: .center)
+                                .frame(width: 22, height: 20, alignment: .center)
                             Text("L ")
                                 .bold()
-                                .frame(width: 21, height: 20, alignment: .center)
+                                .frame(width: 30, height: 20, alignment: .center)
                             Text("%")
                                 .bold()
                                 .frame(width: 38, height: 20, alignment: .center)
