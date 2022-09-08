@@ -27,11 +27,6 @@ struct UserHomeView: View {
     @State var showLastGame = false
     @State var showingTableData = false
     
-//    let now = Date.now
-//    //10 days = 864000 seconds
-//    let lastGameDayCutoff = Date.now.addingTimeInterval(-864000)
-//    let nextGameDayCutoff = Date.now.addingTimeInterval(864000)
-    
     @State private var loadingScores = false
     @State private var loadingTables = false
     
@@ -143,19 +138,7 @@ struct UserHomeView: View {
         //loadingScores = false
     }
     
-    //-------------------------------------------//
-    
-    // 110 is good for iPhone SE, spacing lower than 38 makes elements overlap on iPad landscape orientation. Still looks terrible on some Mac sizes...
-    
-    let smallColumns = [
-        GridItem(.adaptive(minimum: 110), spacing: 38),
-    ]
-    let bigColumns = [
-        GridItem(.adaptive(minimum: 300), spacing: 30, alignment: .topLeading),
-    ]
-    
     var body: some View {
-        
 #if !os(watchOS)
         List {
             Section(header: Text("Favorite Team")) {
@@ -249,18 +232,6 @@ struct UserHomeView: View {
                 }
             }
             Section(header: Text("Latest Score")) {
-                //this code works - but the fixed range is not very flexible
-                
-//                let range = lastGameDayCutoff...now
-//                ForEach(homeGamescores, id: \.id) { gameScore in
-//                    if let gameDate = gameScore.gameDate {
-//                        if range.contains(gameDate) {
-//                            NavigationLink(destination: ScoresDetailView(gamescore: gameScore)) {
-//                                ScoresOverView(gamescore: gameScore)
-//                            }
-//                        }
-//                    }
-//                }
                 if showLastGame == true && !loadingScores {
                     NavigationLink(
                         destination: ScoresDetailView(gamescore: userDashboard.LastGame)) {
@@ -352,15 +323,8 @@ struct UserHomeView: View {
             Section(header: Text("Favorite Team")) {
                 VStack(alignment: .leading, spacing: 5) {
                     HStack {
-//                        if UIDevice.current.userInterfaceIdiom == .mac || UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .phone {
-                            Image(systemName: "star.fill")
+                        Image(systemName: "star.fill")
                                 .foregroundColor(.skylarksRed)
-                                
-//                        } else {
-//                            Image(systemName: "star")
-//                                .foregroundColor(.skylarksRed)
-//                        }
-
                         Text("\(displayTeam.name) (\(displayTeam.league_entries[0].league.acronym))")
                             .fixedSize(horizontal: false, vertical: true)
                             .padding(.leading)

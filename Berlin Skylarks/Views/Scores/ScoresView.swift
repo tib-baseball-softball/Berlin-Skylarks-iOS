@@ -384,11 +384,6 @@ struct ScoresView: View {
                         //Toggle("Show other teams", isOn: $showOtherTeams)
                     }
                     
-                    //not sure if I want this
-        //            ToolbarItemGroup(placement: .principal) {
-        //                DatePicker("Select a specific date", selection: $filterDate, displayedComponents: .date)
-        //            }
-                    
                     ToolbarItemGroup(placement: .navigationBarTrailing) {
                         Picker(
                             selection: $selectedTeam,
