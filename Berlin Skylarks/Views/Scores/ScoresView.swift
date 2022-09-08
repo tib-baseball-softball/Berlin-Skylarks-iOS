@@ -108,12 +108,12 @@ struct ScoresView: View {
         //if we're not filtering by any league, then we do not use the URL parameter at all
         if selectedTeam == "All Teams" {
             gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=\(selectedSeason)&filters[gamedays][]=\(selectedTimeframe.rawValue)&api_key=\(apiKey)")!
-            print(gameURLSelected!)
+            //print(gameURLSelected!)
         }
         //in any other case we filter the API request by league ID
         else {
             gameURLSelected = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=\(selectedSeason)&filters[leagues][]=\(selectedTeamID)&filters[gamedays][]=\(selectedTimeframe.rawValue)&api_key=\(apiKey)")!
-            print(gameURLSelected!)
+            //print(gameURLSelected!)
         }
         
         do {
@@ -133,10 +133,10 @@ struct ScoresView: View {
         })
         
         //DEBUG
-        print("gamescores has \(gamescores.count) items")
-        print("skylarksGamescores has \(skylarksGamescores.count) items")
-        print("Memory: \(URLCache.shared.currentMemoryUsage) bytes")
-        print("Disk: \(URLCache.shared.currentDiskUsage) bytes")
+//        print("gamescores has \(gamescores.count) items")
+//        print("skylarksGamescores has \(skylarksGamescores.count) items")
+//        print("Memory: \(URLCache.shared.currentMemoryUsage) bytes")
+//        print("Disk: \(URLCache.shared.currentDiskUsage) bytes")
         
         loadingInProgress = false
     }

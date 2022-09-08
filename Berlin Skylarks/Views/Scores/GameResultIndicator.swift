@@ -46,13 +46,9 @@ struct GameResultIndicator: View {
                             .padding()
                     }
                 } else {
-                    VStack {
-                        Image(systemName: "heart.fill")
-                            .foregroundColor(.accentColor)
-                        Text("Derby - Skylarks win either way")
-                            .padding()
-                    }
-                    .padding()
+                    Image(systemName: "heart.fill")
+                        .foregroundColor(.skylarksRed)
+                        .padding()
                 }
             }
         }

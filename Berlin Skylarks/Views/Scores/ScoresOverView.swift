@@ -26,15 +26,19 @@ struct ScoresOverView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     Text(gamescore.league.name)
+                        .fixedSize(horizontal: false, vertical: true)
                         .font(.headline.smallCaps())
+                        .allowsTightening(true)
                     if let gameDate = gamescore.gameDate {
                         HStack {
                             Text(gameDate, format: Date.FormatStyle().weekday())
                             Text(gameDate, style: .date)
                             Text(gameDate, style: .time)
                         }
+                        .fixedSize(horizontal: false, vertical: true)
                         .foregroundColor(.secondary)
                         .font(.subheadline)
+                        .allowsTightening(true)
                     }
                     Divider()
                         .frame(maxWidth: 200)
@@ -150,9 +154,11 @@ struct ScoresOverView_Previews: PreviewProvider {
     
     static var previews: some View {
         List {
-            ScoresOverView(gamescore: dummyGameScores[3])
-            ScoresOverView(gamescore: dummyGameScores[0])
-            ScoresOverView(gamescore: dummyGameScores[2])
+            Section {
+                ScoresOverView(gamescore: dummyGameScores[3])
+                ScoresOverView(gamescore: dummyGameScores[0])
+                ScoresOverView(gamescore: GameScore(id: 45, match_id: "43464", time: "none", league_id: 5464, home_runs: 5, away_runs: 12, home_team_name: "Skylarks", away_team_name: "Away Team", human_state: "gespielt", league: League(id: 56, season: 2022, name: "Jugendaufbauliga Baseball fsdhdfjdfjdf sdhdfj ukdfkudf", acronym: "JugABB", sport: "Baseball", classification: "Kreisliga"), home_league_entry: homeEntry, away_league_entry: awayEntry, umpire_assignments: [], scorer_assignments: []))
+            }
             Section {
                 ScoresOverView(gamescore: dummyGameScores[1])
             }

@@ -389,7 +389,7 @@ struct UserHomeView: View {
                             HStack {
                                 Image(systemName: "sum")
                                     .frame(maxWidth: 20)
-                                Text("\(userDashboard.tableRow.wins_count) - \(userDashboard.tableRow.losses_count)")
+                                Text("\(Int(userDashboard.tableRow.wins_count)) - \(Int(userDashboard.tableRow.losses_count))")
                                     .bold()
                                     .padding(.leading)
                             }

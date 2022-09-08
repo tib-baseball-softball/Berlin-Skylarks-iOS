@@ -48,14 +48,20 @@ struct SegmentStreak: View {
         if 7...8 ~= streakNumber {
             emoji = "😕"
         }
-        if 9...11 ~= streakNumber {
+        if 9 ~= streakNumber {
             emoji = "😐"
         }
-        if 12...14 ~= streakNumber {
+        if 10 ~= streakNumber {
+            emoji = "😶"
+        }
+        if 11 ~= streakNumber {
             emoji = "🙂"
         }
-        if 15...16 ~= streakNumber {
+        if 12...14 ~= streakNumber {
             emoji = "😀"
+        }
+        if 15...16 ~= streakNumber {
+            emoji = "😄"
         }
         if 17...19 ~= streakNumber {
             emoji = "🤩"
