@@ -11,7 +11,9 @@ import EventKit
 
 struct ScoresDetailView: View {
     
+#if !os(watchOS)
     @EnvironmentObject var calendarManager: CalendarManager
+#endif
     
     @State private var showingSheet = false
     @State private var showCalendarDialog = false

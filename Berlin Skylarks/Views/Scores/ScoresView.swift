@@ -12,7 +12,10 @@ struct ScoresView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
+#if !os(watchOS)
     @EnvironmentObject var calendarManager: CalendarManager
+#endif
+    
     @EnvironmentObject var networkManager: NetworkManager
     
     @State private var showAlertNoNetwork = false
