@@ -46,19 +46,15 @@ struct StreakProgressViewStyle: ProgressViewStyle {
         return ZStack(alignment: .leading) {
             RoundedRectangle(cornerRadius: 30)
                 .fill(LinearGradient(gradient: Gradient(colors: [.skylarksBlue, .skylarksRed]), startPoint: .leading, endPoint: .trailing))
-//                .overlay(
-//                    RoundedRectangle(cornerRadius: 30)
-//                        .stroke(Color.skylarksSand)
-//                )
                 .padding(.vertical)
                 .overlay(
                     GeometryReader { geo in
                         Circle()
                             .fill(.white)
                             .shadow(color: .gray, radius: 2)
-                            .frame(maxWidth: 25)
-                        //12.5 points is half the radius of the circle to center it since GeometryReader aligns Views to the top left in stead of centered
-                            .offset(x: geo.size.width * CGFloat(fractionCompleted) - 12.5, y: 0)
+                            .frame(maxWidth: 28)
+                        //12.5 points is half the radius of the circle to center it since GeometryReader aligns Views to the top left instead of centered
+                            .offset(x: geo.size.width * CGFloat(fractionCompleted) - 12.5, y: 15)
                     }
                 )
         }
