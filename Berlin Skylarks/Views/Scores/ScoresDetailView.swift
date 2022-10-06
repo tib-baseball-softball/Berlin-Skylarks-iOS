@@ -192,15 +192,8 @@ struct ScoresDetailView: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    shareGameSheet()
-                    
-                }, label: {
-                    Image(systemName: "square.and.arrow.up")
-                })
-                //                .sheet(isPresented: $showingSheet) {
-                //                    ShareSheet()
-                //                }
+                let shareItem = createShareGameData()
+                ShareLink(item: shareItem)
             }
             //            ToolbarItem(placement: .principal) {
             //                Button(action: {
@@ -293,9 +286,9 @@ struct ScoresDetailView: View {
         })
         #endif
     }
-    #if !os(watchOS)
     
-    func shareGameSheet() {
+    #if !os(watchOS)
+    func createShareGameData() -> String {
         let formatter1 = DateFormatter()
         let formatter2 = DateFormatter()
         formatter1.dateStyle = .short
@@ -327,17 +320,7 @@ struct ScoresDetailView: View {
         Link to Scoresheet: \(gamescore.scoresheet_url ?? "Not available yet")
         """
         
-        //TODO: this works, but it's UIKit, it's an absolute performance nightmare. Refactor me as soon as native share sheet support is in SwiftUI!
-        
-        let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-        if let vc = UIApplication.shared.windows.first?.rootViewController {
-            av.popoverPresentationController?.sourceView = vc.view
-            //Setup share activity position on screen on bottom center
-            av.popoverPresentationController?.sourceRect = CGRect(x: UIScreen.main.bounds.width, y: UIScreen.main.bounds.height / 2, width: 0, height: 0)
-            av.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.right
-            vc.present(av, animated: true, completion: nil)
-            //UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
-        }
+        return data
     }
     #endif
 }
