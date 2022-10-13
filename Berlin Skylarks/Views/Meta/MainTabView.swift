@@ -10,11 +10,9 @@ import SwiftUI
 struct MainTabView: View {
     var body: some View {
         TabView {
-            NavigationView {
+            NavigationStack {
                 UserHomeView()
             }
-            //TODO: check appearance for iPhone Pro Max
-            .navigationViewStyle(.automatic)
                 .tabItem {
                     Image(systemName: "star.square.fill")
                     Text("Home")
@@ -27,28 +25,28 @@ struct MainTabView: View {
 //                        Image(systemName: "newspaper.fill")
 //                        Text("News")
 //                    }
-            NavigationView {
+            NavigationStack {
                 ScoresView()
             }
                 .tabItem {
                     Image(systemName: "42.square.fill")
                     Text("Scores")
                 }
-            NavigationView {
+            NavigationStack {
                 StandingsView()
             }
                 .tabItem {
                     Image(systemName: "tablecells.fill")
                     Text("Standings")
                 }
-            NavigationView {
+            NavigationStack {
                 ClubView()
             }
                 .tabItem {
                     Image(systemName: "shield.fill")
                     Text("Club")
                 }
-            NavigationView {
+            NavigationStack {
                 SettingsListView()
             }
                 .tabItem {

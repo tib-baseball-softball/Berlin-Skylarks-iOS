@@ -10,42 +10,40 @@ import SwiftUI
 struct SidebarNavigationView: View {
     
     var body: some View {
-        NavigationView {
-            VStack {
-                List {
-                    Section(header: Text("Dashboard")) {
-                        NavigationLink(
-                            destination: UserHomeView()) {
-                                HStack {
-                                    Image(systemName: "star.square.fill")
-                                        .foregroundColor(.skylarksDynamicNavySand)
-                                        .frame(width: 30)
-                                    Text("Home")
-                                        .frame(width: 100, alignment: .leading)
-                                }
-                        }
-                    }
-                    Section(header: Text("Game Action")) {
-                        NavigationLink(
-                            //destination: TestView()) {
-                            destination: ScoresView()) {
-                                Image(systemName: "42.square.fill")
+        NavigationSplitView {
+            List {
+                Section(header: Text("Dashboard")) {
+                    NavigationLink(
+                        destination: UserHomeView()) {
+                            HStack {
+                                Image(systemName: "star.square.fill")
                                     .foregroundColor(.skylarksDynamicNavySand)
                                     .frame(width: 30)
-                                Text("Scores")
+                                Text("Home")
                                     .frame(width: 100, alignment: .leading)
-                        }
-                        NavigationLink(
-                            destination: StandingsView()) {
-                                Image(systemName: "tablecells.fill")
-                                    .foregroundColor(.skylarksDynamicNavySand)
-                                    .frame(width: 30)
-                                Text("Standings")
-                                    .frame(width: 100, alignment: .leading)
-                        }
+                            }
                     }
-                    Section(header: Text("About the team")) {
-                        //not functional yet
+                }
+                Section(header: Text("Game Action")) {
+                    NavigationLink(
+                        destination: ScoresView()) {
+                            Image(systemName: "42.square.fill")
+                                .foregroundColor(.skylarksDynamicNavySand)
+                                .frame(width: 30)
+                            Text("Scores")
+                                .frame(width: 100, alignment: .leading)
+                    }
+                    NavigationLink(
+                        destination: StandingsView()) {
+                            Image(systemName: "tablecells.fill")
+                                .foregroundColor(.skylarksDynamicNavySand)
+                                .frame(width: 30)
+                            Text("Standings")
+                                .frame(width: 100, alignment: .leading)
+                    }
+                }
+                Section(header: Text("About the team")) {
+                    //not functional yet
 //                        NavigationLink(
 //                            destination: NewsView()) {
 //                                HStack {
@@ -55,45 +53,44 @@ struct SidebarNavigationView: View {
 //                                        .frame(width: 100, alignment: .leading)
 //                                }
 //                        }
-                        NavigationLink(
-                            destination: ClubView()) {
-                                Image(systemName: "shield.fill")
-                                    .foregroundColor(.skylarksDynamicNavySand)
-                                    .frame(width: 30)
-                                Text("Club")
-                                    .frame(width: 100, alignment: .leading)
-                        }
-                    }
-                    Section(header: Text("Preferences")) {
-                        NavigationLink(
-                            destination: SettingsListView()) {
-                                Image(systemName: "gearshape.fill")
-                                    .foregroundColor(.skylarksDynamicNavySand)
-                                    .frame(width: 30)
-                                Text("Settings")
-                                    .frame(width: 100, alignment: .leading)
-                        }
-                    }
-                    HStack {
-                        Spacer()
-                        Image("Rondell")
-                            .resizable()
-                            .scaledToFit()
-                            .accessibilityLabel("Berlin Skylarks Logo")
-                        .frame(width: 150, height: 150, alignment: .center)
-                        Spacer()
+                    NavigationLink(
+                        destination: ClubView()) {
+                            Image(systemName: "shield.fill")
+                                .foregroundColor(.skylarksDynamicNavySand)
+                                .frame(width: 30)
+                            Text("Club")
+                                .frame(width: 100, alignment: .leading)
                     }
                 }
-                .listStyle(.sidebar)
-                
-                
+                Section(header: Text("Preferences")) {
+                    NavigationLink(
+                        destination: SettingsListView()) {
+                            Image(systemName: "gearshape.fill")
+                                .foregroundColor(.skylarksDynamicNavySand)
+                                .frame(width: 30)
+                            Text("Settings")
+                                .frame(width: 100, alignment: .leading)
+                    }
+                }
+                HStack {
+                    Spacer()
+                    Image("Rondell")
+                        .resizable()
+                        .scaledToFit()
+                        .accessibilityLabel("Berlin Skylarks Logo")
+                    .frame(width: 150, height: 150, alignment: .center)
+                    Spacer()
+                }
             }
-            .background(Color(UIColor.systemGroupedBackground))
+            .listStyle(.sidebar)
+        } content: {
             Text("Please select a category")
-            
-            //MARK: this creates a third column
+                .navigationSplitViewColumnWidth(min: 200, ideal: 600, max: 800)
+        } detail: {
             Text("Please select an app section")
         }
+//            }
+//            .background(Color(UIColor.systemGroupedBackground))
     }
 }
 

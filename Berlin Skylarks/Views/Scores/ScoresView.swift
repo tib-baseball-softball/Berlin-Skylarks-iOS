@@ -502,10 +502,8 @@ struct ScoresView: View {
 
 struct ScoresView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
             ScoresView()
                 //.preferredColorScheme(.dark)
                 .environmentObject(CalendarManager())
-        }
     }
 }
