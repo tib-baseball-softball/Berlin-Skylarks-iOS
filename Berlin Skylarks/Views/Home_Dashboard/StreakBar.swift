@@ -64,7 +64,7 @@ struct StreakProgressViewStyle: ProgressViewStyle {
 struct StreakBar_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            StreakBar(userDashboard: dummyDashboard, value: -25, total: 20)
+            StreakBar(userDashboard: UserDashboard(), value: -25, total: 20)
         }
     }
 }

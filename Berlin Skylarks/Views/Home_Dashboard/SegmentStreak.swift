@@ -86,7 +86,7 @@ struct SegmentStreak: View {
 struct SegmentStreak_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            SegmentStreak(userDashboard: dummyDashboard)
+            SegmentStreak(userDashboard: UserDashboard())
         }
         //.preferredColorScheme(.dark)
     }

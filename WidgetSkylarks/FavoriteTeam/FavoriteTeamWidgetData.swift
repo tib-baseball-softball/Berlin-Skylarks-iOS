@@ -13,7 +13,7 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
     
     typealias Entry = FavoriteTeamEntry
     
-    var userDashboard = UserDashboard()
+    var widgetData = FavoriteTeamWidgetData()
     
     //always uses current season
     let season = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
@@ -43,12 +43,12 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
     
     func placeholder(in context: Context) -> FavoriteTeamEntry {
         //note sure where this data is displayed
-        FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: flamingosLogo, lastGameHomeLogo: skylarksSecondaryLogo, nextGame: widgetPreviewNextGame, nextGameOpponentLogo: sluggersLogo, skylarksAreRoadTeam: false, Table: userDashboard.leagueTable, TableRow: userDashboard.tableRow)
+        FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: flamingosLogo, lastGameHomeLogo: skylarksSecondaryLogo, nextGame: widgetPreviewNextGame, nextGameOpponentLogo: sluggersLogo, skylarksAreRoadTeam: false, Table: widgetData.leagueTable, TableRow: widgetData.tableRow)
     }
 
     func getSnapshot(for configuration: FavoriteTeamIntent, in context: Context, completion: @escaping (FavoriteTeamEntry) -> ()) {
         //this method provides the data for the preview in the widget gallery
-        let entry = FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: flamingosLogo, lastGameHomeLogo: skylarksSecondaryLogo, nextGame: widgetPreviewNextGame, nextGameOpponentLogo: sluggersLogo, skylarksAreRoadTeam: false, Table: userDashboard.leagueTable, TableRow: userDashboard.tableRow)
+        let entry = FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: flamingosLogo, lastGameHomeLogo: skylarksSecondaryLogo, nextGame: widgetPreviewNextGame, nextGameOpponentLogo: sluggersLogo, skylarksAreRoadTeam: false, Table: widgetData.leagueTable, TableRow: widgetData.tableRow)
         completion(entry)
     }
 
@@ -63,8 +63,8 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
             let leagueGroups = await loadLeagueGroups(season: season)
             
             if let table = await loadTableForTeam(team: selectedTeam, leagueGroups: leagueGroups) {
-                userDashboard.leagueTable = table
-                userDashboard.tableRow = determineTableRow(team: selectedTeam, table: userDashboard.leagueTable)
+                widgetData.leagueTable = table
+                widgetData.tableRow = determineTableRow(team: selectedTeam, table: widgetData.leagueTable)
             }
             
             
@@ -122,7 +122,7 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
             let currentDate = Date()
             for hourOffset in 0 ..< 1 {
                 let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset * 20, to: currentDate)!
-                let entry = FavoriteTeamEntry(date: entryDate, configuration: configuration, team: selectedTeam, lastGame: displayGames.last, lastGameRoadLogo: lastGameRoadLogo, lastGameHomeLogo: lastGameHomeLogo, nextGame: displayGames.next, nextGameOpponentLogo: nextGameOpponentLogo, skylarksAreRoadTeam: skylarksAreRoadTeam, Table: userDashboard.leagueTable, TableRow: userDashboard.tableRow)
+                let entry = FavoriteTeamEntry(date: entryDate, configuration: configuration, team: selectedTeam, lastGame: displayGames.last, lastGameRoadLogo: lastGameRoadLogo, lastGameHomeLogo: lastGameHomeLogo, nextGame: displayGames.next, nextGameOpponentLogo: nextGameOpponentLogo, skylarksAreRoadTeam: skylarksAreRoadTeam, Table: widgetData.leagueTable, TableRow: widgetData.tableRow)
                 entries.append(entry)
             }
 

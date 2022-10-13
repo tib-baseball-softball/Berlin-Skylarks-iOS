@@ -56,7 +56,7 @@ struct UserHomeView: View {
         leagueGroups = await loadLeagueGroups(season: selectedSeason)
         await loadHomeTeamTable(team: displayTeam, leagueGroups: leagueGroups)
         loadingTables = false
-        await loadHomeGameData(team: displayTeam, leagueGroups: leagueGroups)
+        await userDashboard.loadHomeGameData(team: displayTeam, leagueGroups: leagueGroups, season: selectedSeason)
         loadingScores = false
     }
     
@@ -97,46 +97,7 @@ struct UserHomeView: View {
         //loadingTables = false
     }
     
-    func loadHomeGameData(team: BSMTeam, leagueGroups: [LeagueGroup]) async {
-        
-        //get the games, then process for next and last
-        //loadingScores = true
-        
-        //determine the correct leagueGroup
-        for leagueGroup in leagueGroups where team.league_entries[0].league.name == leagueGroup.name {
-            selectedHomeScoresURL = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
-        }
     
-        //load data
-        do {
-            homeGamescores = try await fetchBSMData(url: selectedHomeScoresURL, dataType: [GameScore].self)
-        } catch {
-            print("Request failed with error: \(error)")
-        }
-        
-        for (index, _) in homeGamescores.enumerated() {
-            homeGamescores[index].addDates()
-            homeGamescores[index].determineGameStatus()
-        }
-        
-        //call func to check for next and last game
-        let displayGames = processGameDates(gamescores: homeGamescores)
-        
-        if let nextGame = displayGames.next {
-            userDashboard.NextGame = nextGame
-            showNextGame = true
-        } else {
-            showNextGame = false
-        }
-        
-        if let lastGame = displayGames.last {
-            userDashboard.LastGame = lastGame
-            showLastGame = true
-        } else {
-            showLastGame = false
-        }
-        //loadingScores = false
-    }
     
     var body: some View {
 #if !os(watchOS)
@@ -218,8 +179,19 @@ struct UserHomeView: View {
                     LoadingView()
                 }
             }
+            if userDashboard.playoffParticipation {
+                Section(header: Text("Playoffs")) {
+                    HStack {
+                        Image(systemName: "trophy.fill")
+                            .foregroundColor(.skylarksRed)
+                        NavigationLink(destination: PlayoffSeriesView(gamescores: userDashboard.playoffGames)) {
+                            Text("See playoff series")
+                        }
+                    }
+                }
+            }
             Section(header: Text("Next Game")) {
-                if showNextGame == true && !loadingScores {
+                if userDashboard.showNextGame == true && !loadingScores {
                     NavigationLink(
                         destination: ScoresDetailView(gamescore: userDashboard.NextGame)) {
                             ScoresOverView(gamescore: userDashboard.NextGame)
@@ -232,7 +204,7 @@ struct UserHomeView: View {
                 }
             }
             Section(header: Text("Latest Score")) {
-                if showLastGame == true && !loadingScores {
+                if userDashboard.showLastGame == true && !loadingScores {
                     NavigationLink(
                         destination: ScoresDetailView(gamescore: userDashboard.LastGame)) {
                             ScoresOverView(gamescore: userDashboard.LastGame)

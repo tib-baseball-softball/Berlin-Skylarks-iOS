@@ -44,7 +44,7 @@ struct SegmentChart: View {
 struct SegmentChart_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            SegmentChart(userDashboard: dummyDashboard)
+            SegmentChart(userDashboard: UserDashboard())
         }
         .preferredColorScheme(.dark)
     }

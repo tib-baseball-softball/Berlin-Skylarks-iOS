@@ -72,7 +72,7 @@ struct SegmentPercentage: View {
 struct SegmentPercentage_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            SegmentPercentage(userDashboard: dummyDashboard)
+            SegmentPercentage(userDashboard: UserDashboard())
         }
         //.preferredColorScheme(.dark)
         //.previewInterfaceOrientation(.landscapeLeft)

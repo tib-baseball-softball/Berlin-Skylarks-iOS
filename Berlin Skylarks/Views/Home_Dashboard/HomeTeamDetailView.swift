@@ -73,7 +73,7 @@ struct HomeTeamDetailView: View {
 struct HomeTeamDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            HomeTeamDetailView(userDashboard: dummyDashboard)
+            HomeTeamDetailView(userDashboard: UserDashboard())
             //.preferredColorScheme(.dark)
         }
     }
