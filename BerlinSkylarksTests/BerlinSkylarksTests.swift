@@ -48,12 +48,34 @@ class BerlinSkylarksTests: XCTestCase {
         //Then
         XCTAssertNotNil(gamescore.gameDate)
     }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        measure {
-            // Put the code you want to measure the time of here.
+    
+    func testPlayoffSeries() throws {
+        
+        // Given
+        let playoffSeries = PlayoffSeries()
+        var gamescores = [testGame, testGame, testGame, testGame, testGame, testGame, testGame]  //7 game series
+        
+        //When
+        for (index, _) in gamescores.enumerated() {
+            gamescores[index].addDates()
+            gamescores[index].determineGameStatus()
         }
+        playoffSeries.getSeriesStatus(gamescores: gamescores)
+        
+        //Then
+        XCTAssertEqual(gamescores.count, playoffSeries.seriesLength)
+        XCTAssertNotEqual(playoffSeries.leadingTeam, playoffSeries.trailingTeam)
+        XCTAssertEqual(playoffSeries.status, PlayoffSeries.Status.won)
+        XCTAssertEqual(playoffSeries.leadingTeam.wins, 7)
+        XCTAssertEqual(playoffSeries.trailingTeam.wins, 0)
+        XCTAssertNotEqual(playoffSeries.firstTeam.name, "Team A")
     }
+
+//    func testPerformanceExample() throws {
+//        // This is an example of a performance test case.
+//        measure {
+//            // Put the code you want to measure the time of here.
+//        }
+//    }
 
 }

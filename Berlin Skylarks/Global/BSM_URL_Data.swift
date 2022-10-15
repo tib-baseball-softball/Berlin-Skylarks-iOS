@@ -13,20 +13,6 @@ import SwiftUI
 var currentSeason = "2022" //Deprecated - using Int from AppStorage in future, but still needed for transition!
 let skylarksID = "485" // this is probably never going to change - but most API calls work without it anyway
 
-//-----------------------------change league IDs here--------------------------------//
-
-//those IDs are not the LEAGUE IDs in BSM, they are the LEAGUEGROUP IDs (slightly different)
-//MARK: Deprecated - process is dynamic now
-
-//let idVLBB = "5137"
-//let idVLSB = "5150"
-//let idLLBB = "5138"
-//let idBZLBB = "5145"
-//let idJugBB = "5147"
-//let idSchBB = "5148"
-//let idTossBB = "4807" //not applicable for 2022
-//let idTeeBB = "5149"
-
 //-----------------------------empty Struct data--------------------------------//
 
 let emptyTable = LeagueTable(league_id: 1, league_name: "League", season: Calendar.current.component(.year, from: Date()), rows: [])
@@ -38,7 +24,7 @@ let emptyScoreTeam = GameScore.Team(name: "Team Name", short_name: "ACR", clubs:
 let homeEntry = GameScore.LeagueEntry(team: emptyScoreTeam)
 let awayEntry = GameScore.LeagueEntry(team: emptyScoreTeam)
 
-let testGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", league_id: 1, home_runs: 0, away_runs: 0, home_team_name: "Home", away_team_name: "Road", human_state: "getestet", scoresheet_url: nil, field: nil, league: emptyLeague, home_league_entry: homeEntry, away_league_entry: awayEntry, umpire_assignments: [], scorer_assignments: [], gameDate: .now)
+let testGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", league_id: 1, home_runs: 2, away_runs: 1, home_team_name: "Home Team", away_team_name: "Road Team", human_state: "getestet", scoresheet_url: nil, field: nil, league: emptyLeague, home_league_entry: homeEntry, away_league_entry: awayEntry, umpire_assignments: [], scorer_assignments: [], gameDate: .now)
 
 //&sorted[time]=asc/desc
 
