@@ -73,6 +73,10 @@
 		CA28D67027A0601B00680067 /* BSMLeagueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */; };
 		CA28FB90280DDDC6007581FD /* HomeTeamDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28FB8F280DDDC6007581FD /* HomeTeamDetailView.swift */; };
 		CA3C4C2F28B40C3400F72841 /* BerlinSkylarksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4C2E28B40C3400F72841 /* BerlinSkylarksTests.swift */; };
+		CA45D0A228FAF6650073515C /* PlayoffSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA45D0A128FAF6650073515C /* PlayoffSeries.swift */; };
+		CA45D0A328FAF6650073515C /* PlayoffSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA45D0A128FAF6650073515C /* PlayoffSeries.swift */; };
+		CA45D0A428FAF6650073515C /* PlayoffSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA45D0A128FAF6650073515C /* PlayoffSeries.swift */; };
+		CA45D0A528FB069C0073515C /* PlayoffSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA45D0A128FAF6650073515C /* PlayoffSeries.swift */; };
 		CA48557B277383D5004ED11A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
 		CA48557E27748A9E004ED11A /* GamedayWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */; };
 		CA48558127748DEE004ED11A /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6042A02745B14000607011 /* ViewModifiers.swift */; };
@@ -382,6 +386,7 @@
 		CA3C4C2C28B40C3400F72841 /* BerlinSkylarksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BerlinSkylarksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA3C4C2E28B40C3400F72841 /* BerlinSkylarksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinSkylarksTests.swift; sourceTree = "<group>"; };
 		CA3CBFAE28AAE8870001DE31 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainInterface.strings; sourceTree = "<group>"; };
+		CA45D0A128FAF6650073515C /* PlayoffSeries.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayoffSeries.swift; sourceTree = "<group>"; };
 		CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GamedayWidgetView.swift; sourceTree = "<group>"; };
 		CA4AA4412858BBFF00C83CED /* LargePercentageCircle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LargePercentageCircle.swift; sourceTree = "<group>"; };
 		CA4AA444285B661700C83CED /* WatchRootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WatchRootView.swift; sourceTree = "<group>"; };
@@ -589,6 +594,7 @@
 				CA04403528875C7100DAE315 /* ClubDataManager.swift */,
 				CAA7C1A0289D5E4300CC0615 /* LicenseManager.swift */,
 				CA54A4F928F8BB33005E9969 /* FavoriteTeamWidgetObject.swift */,
+				CA45D0A128FAF6650073515C /* PlayoffSeries.swift */,
 			);
 			path = Objects_Classes;
 			sourceTree = "<group>";
@@ -1148,6 +1154,7 @@
 				CAA7C194289D296700CC0615 /* MapViewWithPin.swift in Sources */,
 				CA5CF5E4284E0F3E00ABD7E0 /* ScoreMainInfo.swift in Sources */,
 				CAA7C1BA289E499D00CC0615 /* BallparkView.swift in Sources */,
+				CA45D0A328FAF6650073515C /* PlayoffSeries.swift in Sources */,
 				CA5CF5D4284E0E7400ABD7E0 /* UmpireAssignments.swift in Sources */,
 				CA1722E227542DBE00E8BF36 /* PlayerModel.swift in Sources */,
 				CA1E0372281AD4D100E2FF8F /* PrivacyPolicyView.swift in Sources */,
@@ -1217,6 +1224,7 @@
 				CA65FF6F27F882BF00F7845D /* BSMGameScore.swift in Sources */,
 				CA56F3D7288059DA00138195 /* BSMClub.swift in Sources */,
 				CA65FF6C27F5F1E300F7845D /* Ints_Floats.swift in Sources */,
+				CA45D0A528FB069C0073515C /* PlayoffSeries.swift in Sources */,
 				CA65FF4927F5EC4400F7845D /* IntentHandler.swift in Sources */,
 				CA1E036B2819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
 				CAA7C196289D2F8B00CC0615 /* ColorSets.swift in Sources */,
@@ -1243,6 +1251,7 @@
 				CAA7C1AD289DAD8000CC0615 /* FunctionaryView.swift in Sources */,
 				CA1E03682819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
 				CAA7C19B289D553100CC0615 /* LicenseSportIndicator.swift in Sources */,
+				CA45D0A228FAF6650073515C /* PlayoffSeries.swift in Sources */,
 				CAAB56C527208A9200ADDE9D /* UserHomeView.swift in Sources */,
 				CABF7BF1259351D400B95813 /* ContentView.swift in Sources */,
 				CAC2D49F28513AFB009EB877 /* NetworkManager.swift in Sources */,
@@ -1358,6 +1367,7 @@
 				CA5CF5CD284E0DCF00ABD7E0 /* GameResultIndicator.swift in Sources */,
 				CA56F3E328872A1900138195 /* BSMField.swift in Sources */,
 				CA48557E27748A9E004ED11A /* GamedayWidgetView.swift in Sources */,
+				CA45D0A428FAF6650073515C /* PlayoffSeries.swift in Sources */,
 				CA9B1811277A289E00D24CFA /* API_Key.swift in Sources */,
 				CA48558127748DEE004ED11A /* ViewModifiers.swift in Sources */,
 				CAC044A027749D2C00AD9888 /* BSMGameScore.swift in Sources */,

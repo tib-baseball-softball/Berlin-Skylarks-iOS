@@ -97,8 +97,6 @@ struct UserHomeView: View {
         //loadingTables = false
     }
     
-    
-    
     var body: some View {
 #if !os(watchOS)
         List {
@@ -184,7 +182,8 @@ struct UserHomeView: View {
                     HStack {
                         Image(systemName: "trophy.fill")
                             .foregroundColor(.skylarksRed)
-                        NavigationLink(destination: PlayoffSeriesView(gamescores: userDashboard.playoffGames)) {
+                        //TODO: error on this line (type-check)
+                        NavigationLink(destination: PlayoffSeriesView(userDashboard: userDashboard)) {
                             Text("See playoff series")
                         }
                     }
@@ -229,6 +228,7 @@ struct UserHomeView: View {
         .animation(.default, value: userDashboard.tableRow)
         .animation(.default, value: userDashboard.NextGame)
         .animation(.default, value: userDashboard.LastGame)
+        .animation(.default, value: userDashboard.playoffParticipation)
         
         .onAppear(perform: {
             if homeLeagueTables.isEmpty {

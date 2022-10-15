@@ -17,7 +17,7 @@ struct PlayoffScoreOverView: View {
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     let gameNumber = String(gamescore.match_id.suffix(1))
-                    Text("\(gamescore.league.name) Playoff Game \(gameNumber)")
+                    Text("\(gamescore.league.acronym) Playoff Game \(gameNumber)")
                         .fixedSize(horizontal: false, vertical: true)
                         .font(.headline.smallCaps())
                         .allowsTightening(true)

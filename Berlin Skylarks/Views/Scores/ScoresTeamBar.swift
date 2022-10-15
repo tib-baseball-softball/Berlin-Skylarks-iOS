@@ -19,7 +19,7 @@ struct ScoresTeamBar: View {
                 .resizable()
                 .scaledToFit()
                 .frame(maxWidth: 40, alignment: .center)
-            Text(gamescore.away_team_name)
+            Text(home ? gamescore.home_team_name : gamescore.away_team_name)
                 .padding(.leading)
             Spacer()
             if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {

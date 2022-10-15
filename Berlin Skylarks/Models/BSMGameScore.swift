@@ -12,7 +12,7 @@ import CoreLocation
 struct GameScore: Hashable, Codable, Identifiable {
     var id: Int
     var match_id: String
-    var time: String // gets converted by DateFormatter() in view
+    var time: String // gets converted by DateFormatter()
     var league_id: Int
     var home_runs: Int? //those really should be Ints
     var away_runs: Int?
@@ -33,6 +33,7 @@ struct GameScore: Hashable, Codable, Identifiable {
     var skylarksWin: Bool?
     var isDerby: Bool?
     var isExternalGame: Bool?
+    var homeTeamWin: Bool?
     
     struct LeagueEntry: Hashable, Codable {
         var team: Team
@@ -72,6 +73,8 @@ struct GameScore: Hashable, Codable, Identifiable {
         isDerby = false
         //new value since we now support non-Skylarks games
         isExternalGame = false
+        //necessary for some calculations
+        homeTeamWin = false
         
         //we are the home team
         if home_team_name.contains("Skylarks") && !away_team_name.contains("Skylarks") {
@@ -108,6 +111,14 @@ struct GameScore: Hashable, Codable, Identifiable {
                 if homeScore < awayScore {
                     skylarksWin = true
                 }
+            }
+        }
+        
+        if let awayScore = away_runs, let homeScore = home_runs {
+            if homeScore > awayScore {
+                homeTeamWin = true
+            } else {
+                homeTeamWin = false
             }
         }
     }

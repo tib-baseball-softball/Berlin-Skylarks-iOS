@@ -83,6 +83,7 @@ struct SidebarNavigationView: View {
                 }
             }
             .listStyle(.sidebar)
+            .navigationSplitViewColumnWidth(ideal: 270)
         } content: {
             Text("Please select a category")
                 .navigationSplitViewColumnWidth(min: 200, ideal: 600, max: 800)

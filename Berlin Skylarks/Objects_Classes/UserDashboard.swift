@@ -19,6 +19,8 @@ class UserDashboard: ObservableObject {
     @Published var homeGamescores: [GameScore] = []
     @Published var playoffGames: [GameScore] = []
     
+    @Published var playoffSeries = PlayoffSeries()
+    
     @Published var NextGame = testGame
     @Published var LastGame = testGame
     
@@ -66,10 +68,11 @@ class UserDashboard: ObservableObject {
             showLastGame = false
         }
         
-        //get playoff games (if applicable)
+        //get playoff games (if applicable) - kind of a hacky solution since there is no definite info in the data structure identifying a single game as a playoff game
         playoffGames = homeGamescores.filter { $0.match_id.contains("PO")}
         if !playoffGames.isEmpty {
             playoffParticipation = true
+            playoffSeries.getSeriesStatus(gamescores: playoffGames)
         } else {
             playoffParticipation = false
         }
