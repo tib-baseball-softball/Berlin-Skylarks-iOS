@@ -11,16 +11,11 @@ struct ScoresOverView: View {
     
     var gamescore: GameScore
     
-    @State var roadLogo = away_team_logo
-    @State var homeLogo = home_team_logo
-    
-    func setLogos() {
-        let logos = fetchCorrectLogos(gamescore: gamescore)
-        roadLogo = logos.road
-        homeLogo = logos.home
-    }
-    
     var body: some View {
+        
+        //logos now set here instead of .onAppear
+        let logos = fetchCorrectLogos(gamescore: gamescore)
+        
 #if !os(watchOS)
         VStack {
             HStack {
@@ -38,13 +33,10 @@ struct ScoresOverView: View {
                 GameResultIndicator(gamescore: gamescore)
                     .font(.headline)
             }
-            ScoresTeamBar(teamLogo: roadLogo, gamescore: gamescore, home: false)
-            ScoresTeamBar(teamLogo: homeLogo, gamescore: gamescore, home: true)
+            ScoresTeamBar(teamLogo: logos.road, gamescore: gamescore, home: false)
+            ScoresTeamBar(teamLogo: logos.home, gamescore: gamescore, home: true)
         }
         .padding(.vertical, 2)
-        .onAppear {
-            setLogos()
-        }
 #endif
         
         //---------------------------------------------------------//
@@ -68,7 +60,7 @@ struct ScoresOverView: View {
                 Divider()
                     .padding(.horizontal)
                 HStack {
-                    roadLogo
+                    logos.road
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 30, alignment: .center)
@@ -85,7 +77,7 @@ struct ScoresOverView: View {
                     }
                 }
                 HStack {
-                    homeLogo
+                    logos.home
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 30, alignment: .center)
@@ -103,9 +95,6 @@ struct ScoresOverView: View {
                 }
             }
         }
-        .onAppear(perform: {
-            setLogos()
-        })
         #endif
     }
 }
