@@ -9,6 +9,19 @@ import WidgetKit
 import SwiftUI
 import Intents
 
+struct TeamLogoWidget: Widget {
+    let kind = "LogoWidget"
+    
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: TeamLogoProvider()) { entry in
+            TeamLogoEntryView(entry: entry)
+        }
+        .configurationDisplayName("Team Logo")
+        .description("Show off your team pride with the Skylarks team logo")
+        .supportedFamilies([.accessoryCircular])
+    }
+}
+
 struct GamedayWidget: Widget {
     let kind: String = "GamedayWidget"
     
@@ -43,6 +56,7 @@ struct SkylarksWidgetBundle: WidgetBundle {
     @WidgetBundleBuilder
     var body: some Widget {
         FavoriteTeamWidget()
-        GamedayWidget()
+        //GamedayWidget()
+        TeamLogoWidget()
     }
 }

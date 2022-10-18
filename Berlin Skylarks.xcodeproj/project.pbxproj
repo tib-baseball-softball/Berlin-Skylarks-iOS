@@ -217,6 +217,12 @@
 		CAAB4025277B7C5B00F45C7A /* BSM_Games_2020_human_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0DA052259A46FA002A0FAB /* BSM_Games_2020_human_readable.json */; };
 		CAAB56C3271F62F800ADDE9D /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C2271F62F800ADDE9D /* GlobalFunctions.swift */; };
 		CAAB56C527208A9200ADDE9D /* UserHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C427208A9200ADDE9D /* UserHomeView.swift */; };
+		CAB26C4F28FEF171005ACFA7 /* TeamLogoWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C4D28FEF171005ACFA7 /* TeamLogoWidgetView.swift */; };
+		CAB26C5028FEF171005ACFA7 /* TeamLogoWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C4D28FEF171005ACFA7 /* TeamLogoWidgetView.swift */; };
+		CAB26C5228FEF74C005ACFA7 /* LogoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C5128FEF74B005ACFA7 /* LogoEntry.swift */; };
+		CAB26C5328FEF74C005ACFA7 /* LogoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C5128FEF74B005ACFA7 /* LogoEntry.swift */; };
+		CAB26C5528FEF7B4005ACFA7 /* TeamLogoWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C5428FEF7B4005ACFA7 /* TeamLogoWidgetData.swift */; };
+		CAB26C5628FEF7B4005ACFA7 /* TeamLogoWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C5428FEF7B4005ACFA7 /* TeamLogoWidgetData.swift */; };
 		CABDB6EE2848F83B00B16E8F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABDB6ED2848F83B00B16E8F /* LoadingView.swift */; };
 		CABDB6EF2848F83B00B16E8F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABDB6ED2848F83B00B16E8F /* LoadingView.swift */; };
 		CABDB6F5284A82B800B16E8F /* CalendarManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABDB6F4284A82B800B16E8F /* CalendarManager.swift */; };
@@ -450,6 +456,9 @@
 		CAA7C1BE289E4BEB00CC0615 /* BallparkRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BallparkRow.swift; sourceTree = "<group>"; };
 		CAAB56C2271F62F800ADDE9D /* GlobalFunctions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalFunctions.swift; sourceTree = "<group>"; };
 		CAAB56C427208A9200ADDE9D /* UserHomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserHomeView.swift; sourceTree = "<group>"; };
+		CAB26C4D28FEF171005ACFA7 /* TeamLogoWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamLogoWidgetView.swift; sourceTree = "<group>"; };
+		CAB26C5128FEF74B005ACFA7 /* LogoEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoEntry.swift; sourceTree = "<group>"; };
+		CAB26C5428FEF7B4005ACFA7 /* TeamLogoWidgetData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamLogoWidgetData.swift; sourceTree = "<group>"; };
 		CABDB6ED2848F83B00B16E8F /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		CABDB6F4284A82B800B16E8F /* CalendarManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarManager.swift; sourceTree = "<group>"; };
 		CABF7BEB259351D400B95813 /* Berlin Skylarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Berlin Skylarks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -657,6 +666,16 @@
 			path = Home_Dashboard;
 			sourceTree = "<group>";
 		};
+		CAB26C4C28FEF132005ACFA7 /* TeamLogo */ = {
+			isa = PBXGroup;
+			children = (
+				CAB26C4D28FEF171005ACFA7 /* TeamLogoWidgetView.swift */,
+				CAB26C5128FEF74B005ACFA7 /* LogoEntry.swift */,
+				CAB26C5428FEF7B4005ACFA7 /* TeamLogoWidgetData.swift */,
+			);
+			path = TeamLogo;
+			sourceTree = "<group>";
+		};
 		CABDB6EB2848F7F500B16E8F /* Utility */ = {
 			isa = PBXGroup;
 			children = (
@@ -749,6 +768,7 @@
 		CAE134862771F2E000DFA745 /* WidgetSkylarks */ = {
 			isa = PBXGroup;
 			children = (
+				CAB26C4C28FEF132005ACFA7 /* TeamLogo */,
 				CAF131F4287DB35700D85702 /* FavoriteTeam */,
 				CAF131F3287DB34D00D85702 /* Gameday */,
 				CAE134892771F2E000DFA745 /* WidgetSkylarks.intentdefinition */,
@@ -1129,6 +1149,7 @@
 				CAA7C1A5289D720200CC0615 /* LicenseLevelIndicator.swift in Sources */,
 				CA1C39B62731856B00BB194C /* NotificationController.swift in Sources */,
 				CA9B1815277A299700D24CFA /* ScoresDetailView.swift in Sources */,
+				CAB26C5228FEF74C005ACFA7 /* LogoEntry.swift in Sources */,
 				CAA7C19C289D553100CC0615 /* LicenseSportIndicator.swift in Sources */,
 				CA1C3A172733473100BB194C /* watchOS_globals.swift in Sources */,
 				CABDB6EF2848F83B00B16E8F /* LoadingView.swift in Sources */,
@@ -1165,6 +1186,7 @@
 				CA9B1816277A299D00D24CFA /* GlobalFunctions.swift in Sources */,
 				CA1E03692819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
 				CA1E036F281ACC9D00E2FF8F /* LegalNoticeView.swift in Sources */,
+				CAB26C5528FEF7B4005ACFA7 /* TeamLogoWidgetData.swift in Sources */,
 				CAF98F98282A972D00451946 /* UserOnboardingView.swift in Sources */,
 				CAA7C19F289D555200CC0615 /* LicenseRow.swift in Sources */,
 				CA5CF5CC284E0DCF00ABD7E0 /* GameResultIndicator.swift in Sources */,
@@ -1186,6 +1208,7 @@
 				CA9B1813277A290900D24CFA /* ScoresView.swift in Sources */,
 				CA1C3A0E273340C000BB194C /* BSM_URL_Data.swift in Sources */,
 				CA55F6E227601E350032302F /* API_Key.swift in Sources */,
+				CAB26C4F28FEF171005ACFA7 /* TeamLogoWidgetView.swift in Sources */,
 				CA56F3CB2880569A00138195 /* BSMFunctionary.swift in Sources */,
 				CAA7C1A8289D72A900CC0615 /* LicenseDetailView.swift in Sources */,
 				CAA7C1BD289E4B3C00CC0615 /* BallparkDetailView.swift in Sources */,
@@ -1352,6 +1375,7 @@
 				CA183EED2873762F0088F085 /* GamedayWidgetData.swift in Sources */,
 				CA5CF5D5284E0E7400ABD7E0 /* UmpireAssignments.swift in Sources */,
 				CA183EE7287371A00088F085 /* FavoriteTeamWidgetData.swift in Sources */,
+				CAB26C5628FEF7B4005ACFA7 /* TeamLogoWidgetData.swift in Sources */,
 				CA9B1810277A289000D24CFA /* BSM_URL_Data.swift in Sources */,
 				CA1E036A2819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
 				CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */,
@@ -1366,6 +1390,7 @@
 				CAF062E32774C28400B7A0B2 /* FavoriteTeamWidgetView.swift in Sources */,
 				CA5CF5CD284E0DCF00ABD7E0 /* GameResultIndicator.swift in Sources */,
 				CA56F3E328872A1900138195 /* BSMField.swift in Sources */,
+				CAB26C5328FEF74C005ACFA7 /* LogoEntry.swift in Sources */,
 				CA48557E27748A9E004ED11A /* GamedayWidgetView.swift in Sources */,
 				CA45D0A428FAF6650073515C /* PlayoffSeries.swift in Sources */,
 				CA9B1811277A289E00D24CFA /* API_Key.swift in Sources */,
@@ -1375,6 +1400,7 @@
 				CA56F3D12880578700138195 /* BSMPerson.swift in Sources */,
 				CA183EEB2873757C0088F085 /* GamedayEntry.swift in Sources */,
 				CA56F3CC2880569A00138195 /* BSMFunctionary.swift in Sources */,
+				CAB26C5028FEF171005ACFA7 /* TeamLogoWidgetView.swift in Sources */,
 				CA1E0362281994F400E2FF8F /* UserDashboard.swift in Sources */,
 				CA54A4FA28F8BB33005E9969 /* FavoriteTeamWidgetObject.swift in Sources */,
 				CA183EE9287374FC0088F085 /* FavoriteTeamEntry.swift in Sources */,
