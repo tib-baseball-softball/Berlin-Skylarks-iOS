@@ -22,6 +22,7 @@ struct TeamLogoWidget: Widget {
     }
 }
 
+#if !os(watchOS)
 struct GamedayWidget: Widget {
     let kind: String = "GamedayWidget"
     
@@ -50,13 +51,16 @@ struct FavoriteTeamWidget: Widget {
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
     }
 }
+#endif
 
 @main
 struct SkylarksWidgetBundle: WidgetBundle {
     @WidgetBundleBuilder
     var body: some Widget {
+#if !os(watchOS)
         FavoriteTeamWidget()
         //GamedayWidget()
+#endif
         TeamLogoWidget()
     }
 }
