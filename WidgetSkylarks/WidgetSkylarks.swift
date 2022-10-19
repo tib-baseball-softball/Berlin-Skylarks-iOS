@@ -48,7 +48,7 @@ struct FavoriteTeamWidget: Widget {
         .description("Shows info about your favorite Skylarks team.")
         
         //TODO: add support for extraLarge
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryInline, .accessoryCircular, .accessoryRectangular])
     }
 }
 #endif

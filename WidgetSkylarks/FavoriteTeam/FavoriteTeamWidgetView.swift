@@ -42,10 +42,21 @@ struct FavoriteTeamWidgetView: View {
                 }
             }
         case .accessoryCircular:
-            Text("Test")
-        case .accessoryRectangular:
+            let value = entry.TableRow.wins_count / Double(entry.TableRow.match_count)
+            
             ZStack {
                 AccessoryWidgetBackground()
+                ProgressView(value: value)
+                    .progressViewStyle(.circular)
+                VStack {
+                    Image(systemName: "baseball")
+                        //.foregroundColor(.skylarksRed)
+                    Text("**\(Int(entry.TableRow.wins_count))-\(Int(entry.TableRow.losses_count))**")
+                }
+            }
+        case .accessoryRectangular:
+            ZStack {
+                //AccessoryWidgetBackground()
                 VStack(alignment: .leading) {
                     HStack {
                         Image(systemName: "baseball")
@@ -58,7 +69,7 @@ struct FavoriteTeamWidgetView: View {
                         }
                     }
                     Text("Record: **\(Int(entry.TableRow.wins_count))-\(Int(entry.TableRow.losses_count))**")
-                    Text("Rank: **\(entry.TableRow.rank)**") + Text(" (\(entry.TableRow.quota), \(entry.TableRow.games_behind) GB)")
+                    Text("Rank: **\(entry.TableRow.rank)**") + Text(" (\(entry.TableRow.quota))")
                         .foregroundColor(.secondary)
                 }
             }
@@ -321,6 +332,9 @@ struct FavoriteTeamWidgetView_Previews: PreviewProvider {
             FavoriteTeamWidgetView(entry: dummyEntry)
                 .previewContext(WidgetPreviewContext(family: .accessoryInline))
                 .previewDisplayName("Inline")
+            FavoriteTeamWidgetView(entry: dummyEntry)
+                .previewContext(WidgetPreviewContext(family: .accessoryCircular))
+                .previewDisplayName("Circular")
 //            FavoriteTeamWidgetView(entry: dummyEntry)
 //                .previewContext(WidgetPreviewContext(family: .systemSmall))
 //                //.environment(\.colorScheme, .dark)

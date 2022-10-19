@@ -41,6 +41,25 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
         return selectedTeam
     }
     
+    //TODO: this seems to do absolutely nothing right now. Since the team() func always returns a team even if nothing is set in the intent, the result is actually okay
+    func recommendations() async -> [IntentRecommendation<FavoriteTeamIntent>] {
+        var teams = [BSMTeam]()
+        
+        do {
+            teams = try await loadSkylarksTeams(season: season)
+        } catch {
+            print("Request failed with error: \(error)")
+        }
+        
+        return teams.map { team in
+            let team = BSMTeam(id: team.id, name: team.name, short_name: team.short_name, league_entries: team.league_entries)
+            let intent = FavoriteTeamIntent()
+            intent.team = BEATeam(identifier: team.league_entries[0].league.name, display: team.league_entries[0].league.name)
+            
+            return IntentRecommendation(intent: intent, description: Text(team.league_entries[0].league.name))
+        }
+    }
+    
     func placeholder(in context: Context) -> FavoriteTeamEntry {
         //note sure where this data is displayed
         FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: flamingosLogo, lastGameHomeLogo: skylarksSecondaryLogo, nextGame: widgetPreviewNextGame, nextGameOpponentLogo: sluggersLogo, skylarksAreRoadTeam: false, Table: widgetData.leagueTable, TableRow: widgetData.tableRow)
