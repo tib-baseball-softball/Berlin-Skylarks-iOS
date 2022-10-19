@@ -216,11 +216,9 @@
 		CAAB4025277B7C5B00F45C7A /* BSM_Games_2020_human_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0DA052259A46FA002A0FAB /* BSM_Games_2020_human_readable.json */; };
 		CAAB56C3271F62F800ADDE9D /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C2271F62F800ADDE9D /* GlobalFunctions.swift */; };
 		CAAB56C527208A9200ADDE9D /* UserHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C427208A9200ADDE9D /* UserHomeView.swift */; };
-		CAB26C4F28FEF171005ACFA7 /* TeamLogoWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C4D28FEF171005ACFA7 /* TeamLogoWidgetView.swift */; };
 		CAB26C5028FEF171005ACFA7 /* TeamLogoWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C4D28FEF171005ACFA7 /* TeamLogoWidgetView.swift */; };
 		CAB26C5228FEF74C005ACFA7 /* LogoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C5128FEF74B005ACFA7 /* LogoEntry.swift */; };
 		CAB26C5328FEF74C005ACFA7 /* LogoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C5128FEF74B005ACFA7 /* LogoEntry.swift */; };
-		CAB26C5528FEF7B4005ACFA7 /* TeamLogoWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C5428FEF7B4005ACFA7 /* TeamLogoWidgetData.swift */; };
 		CAB26C5628FEF7B4005ACFA7 /* TeamLogoWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C5428FEF7B4005ACFA7 /* TeamLogoWidgetData.swift */; };
 		CABDB6EE2848F83B00B16E8F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABDB6ED2848F83B00B16E8F /* LoadingView.swift */; };
 		CABDB6EF2848F83B00B16E8F /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABDB6ED2848F83B00B16E8F /* LoadingView.swift */; };
@@ -255,6 +253,17 @@
 		CAD42719280BF1C3001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CAD4271A280BF1C6001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CAD4271C280DB10B001CA68A /* ScoresOverViewFull.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4271B280DB10B001CA68A /* ScoresOverViewFull.swift */; };
+		CADB992628FFF5300061D1B3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134822771F2E000DFA745 /* WidgetKit.framework */; };
+		CADB992728FFF5300061D1B3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
+		CADB992A28FFF5300061D1B3 /* Complication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADB992928FFF5300061D1B3 /* Complication.swift */; };
+		CADB992D28FFF5320061D1B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CADB992C28FFF5320061D1B3 /* Assets.xcassets */; };
+		CADB992F28FFF5320061D1B3 /* Complication.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CADB992B28FFF5300061D1B3 /* Complication.intentdefinition */; };
+		CADB993028FFF5320061D1B3 /* Complication.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CADB992B28FFF5300061D1B3 /* Complication.intentdefinition */; };
+		CADB993328FFF5320061D1B3 /* ComplicationExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CADB992528FFF5300061D1B3 /* ComplicationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CADB993828FFF58F0061D1B3 /* TeamLogoWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C4D28FEF171005ACFA7 /* TeamLogoWidgetView.swift */; };
+		CADB993928FFF5FB0061D1B3 /* LogoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C5128FEF74B005ACFA7 /* LogoEntry.swift */; };
+		CADB993A28FFF5FE0061D1B3 /* TeamLogoWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C5428FEF7B4005ACFA7 /* TeamLogoWidgetData.swift */; };
+		CADB993B28FFF6090061D1B3 /* WidgetSkylarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE134872771F2E000DFA745 /* WidgetSkylarks.swift */; };
 		CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
 		CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE134872771F2E000DFA745 /* WidgetSkylarks.swift */; };
 		CAE1348B2771F2E100DFA745 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAE1348A2771F2E100DFA745 /* Assets.xcassets */; };
@@ -301,6 +310,13 @@
 			remoteGlobalIDString = CA65FF4327F5EC4400F7845D;
 			remoteInfo = "Skylarks Intents";
 		};
+		CADB993128FFF5320061D1B3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CABF7BE3259351D400B95813 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CADB992428FFF5300061D1B3;
+			remoteInfo = ComplicationExtension;
+		};
 		CAE1348F2771F2E100DFA745 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CABF7BE3259351D400B95813 /* Project object */;
@@ -331,6 +347,17 @@
 				CA1C39AD2731856B00BB194C /* WatchSkylarks WatchKit Extension.appex in Embed App Extensions */,
 			);
 			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CADB993728FFF5320061D1B3 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CADB993328FFF5320061D1B3 /* ComplicationExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		CAE134932771F2E100DFA745 /* Embed App Extensions */ = {
@@ -479,6 +506,11 @@
 		CACA4291284642DF008F21FF /* ClubStandingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubStandingsRow.swift; sourceTree = "<group>"; };
 		CACA42942848E684008F21FF /* ClubStandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubStandingsView.swift; sourceTree = "<group>"; };
 		CAD4271B280DB10B001CA68A /* ScoresOverViewFull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresOverViewFull.swift; sourceTree = "<group>"; };
+		CADB992528FFF5300061D1B3 /* ComplicationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ComplicationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CADB992928FFF5300061D1B3 /* Complication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Complication.swift; sourceTree = "<group>"; };
+		CADB992B28FFF5300061D1B3 /* Complication.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Complication.intentdefinition; sourceTree = "<group>"; };
+		CADB992C28FFF5320061D1B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CADB992E28FFF5320061D1B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetSkylarksExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE134822771F2E000DFA745 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		CAE134842771F2E000DFA745 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -522,6 +554,15 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CADB992228FFF5300061D1B3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CADB992728FFF5300061D1B3 /* SwiftUI.framework in Frameworks */,
+				CADB992628FFF5300061D1B3 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -705,6 +746,7 @@
 				CA65FF4727F5EC4400F7845D /* Skylarks Intents */,
 				CA65FF5227F5EC4400F7845D /* Skylarks IntentsUI */,
 				CA3C4C2D28B40C3400F72841 /* BerlinSkylarksTests */,
+				CADB992828FFF5300061D1B3 /* Complication */,
 				CAE134812771F2DF00DFA745 /* Frameworks */,
 				CABF7BEC259351D400B95813 /* Products */,
 			);
@@ -719,6 +761,7 @@
 				CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */,
 				CA65FF4427F5EC4400F7845D /* Skylarks Intents.appex */,
 				CA3C4C2C28B40C3400F72841 /* BerlinSkylarksTests.xctest */,
+				CADB992528FFF5300061D1B3 /* ComplicationExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -749,6 +792,17 @@
 				CABF7BF5259351D500B95813 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CADB992828FFF5300061D1B3 /* Complication */ = {
+			isa = PBXGroup;
+			children = (
+				CADB992928FFF5300061D1B3 /* Complication.swift */,
+				CADB992B28FFF5300061D1B3 /* Complication.intentdefinition */,
+				CADB992C28FFF5320061D1B3 /* Assets.xcassets */,
+				CADB992E28FFF5320061D1B3 /* Info.plist */,
+			);
+			path = Complication;
 			sourceTree = "<group>";
 		};
 		CAE134812771F2DF00DFA745 /* Frameworks */ = {
@@ -930,10 +984,12 @@
 				CA1C39A82731856B00BB194C /* Sources */,
 				CA1C39A92731856B00BB194C /* Frameworks */,
 				CA1C39AA2731856B00BB194C /* Resources */,
+				CADB993728FFF5320061D1B3 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CADB993228FFF5320061D1B3 /* PBXTargetDependency */,
 			);
 			name = "WatchSkylarks WatchKit Extension";
 			productName = "WatchSkylarks WatchKit Extension";
@@ -997,6 +1053,23 @@
 			productReference = CABF7BEB259351D400B95813 /* Berlin Skylarks.app */;
 			productType = "com.apple.product-type.application";
 		};
+		CADB992428FFF5300061D1B3 /* ComplicationExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CADB993428FFF5320061D1B3 /* Build configuration list for PBXNativeTarget "ComplicationExtension" */;
+			buildPhases = (
+				CADB992128FFF5300061D1B3 /* Sources */,
+				CADB992228FFF5300061D1B3 /* Frameworks */,
+				CADB992328FFF5300061D1B3 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ComplicationExtension;
+			productName = ComplicationExtension;
+			productReference = CADB992528FFF5300061D1B3 /* ComplicationExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		CAE1347F2771F2DF00DFA745 /* WidgetSkylarksExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAE134962771F2E100DFA745 /* Build configuration list for PBXNativeTarget "WidgetSkylarksExtension" */;
@@ -1020,7 +1093,7 @@
 		CABF7BE3259351D400B95813 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1340;
+				LastSwiftUpdateCheck = 1400;
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					CA1C39A32731856B00BB194C = {
@@ -1038,6 +1111,9 @@
 					};
 					CABF7BEA259351D400B95813 = {
 						CreatedOnToolsVersion = 12.3;
+					};
+					CADB992428FFF5300061D1B3 = {
+						CreatedOnToolsVersion = 14.0.1;
 					};
 					CAE1347F2771F2DF00DFA745 = {
 						CreatedOnToolsVersion = 13.2.1;
@@ -1064,6 +1140,7 @@
 				CAE1347F2771F2DF00DFA745 /* WidgetSkylarksExtension */,
 				CA65FF4327F5EC4400F7845D /* Skylarks Intents */,
 				CA3C4C2B28B40C3400F72841 /* BerlinSkylarksTests */,
+				CADB992428FFF5300061D1B3 /* ComplicationExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -1116,6 +1193,14 @@
 				CA1CB211275D15BA0007D24E /* README.md in Resources */,
 				CABF7BF3259351D500B95813 /* Assets.xcassets in Resources */,
 				CAE7740A26C1702900A57F66 /* VLBB_2021_Standings.json in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		CADB992328FFF5300061D1B3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CADB992D28FFF5320061D1B3 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1182,7 +1267,6 @@
 				CA9B1816277A299D00D24CFA /* GlobalFunctions.swift in Sources */,
 				CA1E03692819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
 				CA1E036F281ACC9D00E2FF8F /* LegalNoticeView.swift in Sources */,
-				CAB26C5528FEF7B4005ACFA7 /* TeamLogoWidgetData.swift in Sources */,
 				CAF98F98282A972D00451946 /* UserOnboardingView.swift in Sources */,
 				CAA7C19F289D555200CC0615 /* LicenseRow.swift in Sources */,
 				CA5CF5CC284E0DCF00ABD7E0 /* GameResultIndicator.swift in Sources */,
@@ -1196,6 +1280,7 @@
 				CA65FF3E27EA14E700F7845D /* TeamDetailView.swift in Sources */,
 				CA1CB20C27567E870007D24E /* BSMTeam.swift in Sources */,
 				CA1C39EA2731875800BB194C /* BSMGameScore.swift in Sources */,
+				CADB993028FFF5320061D1B3 /* Complication.intentdefinition in Sources */,
 				CAA7C1B4289DB0C600CC0615 /* FunctionaryIcon.swift in Sources */,
 				CAA7C1B1289DAF7F00CC0615 /* FunctionaryRow.swift in Sources */,
 				CA044034288755AC00DAE315 /* ClubDetailView.swift in Sources */,
@@ -1204,7 +1289,6 @@
 				CA9B1813277A290900D24CFA /* ScoresView.swift in Sources */,
 				CA1C3A0E273340C000BB194C /* BSM_URL_Data.swift in Sources */,
 				CA55F6E227601E350032302F /* API_Key.swift in Sources */,
-				CAB26C4F28FEF171005ACFA7 /* TeamLogoWidgetView.swift in Sources */,
 				CA56F3CB2880569A00138195 /* BSMFunctionary.swift in Sources */,
 				CAA7C1A8289D72A900CC0615 /* LicenseDetailView.swift in Sources */,
 				CAA7C1BD289E4B3C00CC0615 /* BallparkDetailView.swift in Sources */,
@@ -1354,6 +1438,19 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		CADB992128FFF5300061D1B3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CADB993828FFF58F0061D1B3 /* TeamLogoWidgetView.swift in Sources */,
+				CADB993A28FFF5FE0061D1B3 /* TeamLogoWidgetData.swift in Sources */,
+				CADB993928FFF5FB0061D1B3 /* LogoEntry.swift in Sources */,
+				CADB993B28FFF6090061D1B3 /* WidgetSkylarks.swift in Sources */,
+				CADB992F28FFF5320061D1B3 /* Complication.intentdefinition in Sources */,
+				CADB992A28FFF5300061D1B3 /* Complication.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CAE1347C2771F2DF00DFA745 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1428,6 +1525,11 @@
 			isa = PBXTargetDependency;
 			target = CA65FF4327F5EC4400F7845D /* Skylarks Intents */;
 			targetProxy = CA65FF5D27F5EC4400F7845D /* PBXContainerItemProxy */;
+		};
+		CADB993228FFF5320061D1B3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CADB992428FFF5300061D1B3 /* ComplicationExtension */;
+			targetProxy = CADB993128FFF5320061D1B3 /* PBXContainerItemProxy */;
 		};
 		CAE134902771F2E100DFA745 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -1849,6 +1951,68 @@
 			};
 			name = Release;
 		};
+		CADB993528FFF5320061D1B3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Complication/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Complication;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.watchkitapp.watchkitextension.Complication";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Debug;
+		};
+		CADB993628FFF5320061D1B3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Complication/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = Complication;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+					"@executable_path/../../../../Frameworks",
+				);
+				MARKETING_VERSION = 1.1;
+				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.watchkitapp.watchkitextension.Complication";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+			};
+			name = Release;
+		};
 		CAE134942771F2E100DFA745 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1964,6 +2128,15 @@
 			buildConfigurations = (
 				CABF7C00259351D500B95813 /* Debug */,
 				CABF7C01259351D500B95813 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CADB993428FFF5320061D1B3 /* Build configuration list for PBXNativeTarget "ComplicationExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CADB993528FFF5320061D1B3 /* Debug */,
+				CADB993628FFF5320061D1B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

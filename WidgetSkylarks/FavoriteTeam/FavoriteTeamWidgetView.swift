@@ -15,33 +15,64 @@ struct FavoriteTeamWidgetView: View {
     var entry: FavoriteTeamProvider.Entry
     
     var body: some View {
-        ZStack {
-            //LinearGradient(colors: [Color.skylarksBlue, Color.skylarksRed], startPoint: .topLeading, endPoint: .bottomTrailing)
-            Color(UIColor.systemBackground)
-            //Color.skylarksBlue
-            VStack {
-                
-                //MARK: this is needed because of error in preview in Xcode 13
-                //if widgetFamily == .systemMedium {
-                //MARK: real code
-                if widgetFamily == .systemLarge || widgetFamily == .systemExtraLarge {
-                    
-                    TeamWidgetOverView(entry: entry)
-                    Divider()
-                        .padding(.horizontal)
-                }
-                
-                HStack(alignment: .top) {
-                    
-                    TeamWidgetLastGameView(entry: entry)
-                    
-                    if widgetFamily != .systemSmall {
+        switch widgetFamily {
+        case .systemSmall, .systemMedium, .systemLarge, .systemExtraLarge :
+            ZStack {
+                //LinearGradient(colors: [Color.skylarksBlue, Color.skylarksRed], startPoint: .topLeading, endPoint: .bottomTrailing)
+                Color(UIColor.systemBackground)
+                //Color.skylarksBlue
+                VStack {
+                    if widgetFamily == .systemLarge || widgetFamily == .systemExtraLarge {
+                        
+                        TeamWidgetOverView(entry: entry)
                         Divider()
-                            .padding(.vertical)
-                        TeamWidgetNextGameView(entry: entry)
+                            .padding(.horizontal)
+                    }
+                    
+                    HStack(alignment: .top) {
+                        
+                        TeamWidgetLastGameView(entry: entry)
+                        
+                        if widgetFamily != .systemSmall {
+                            Divider()
+                                .padding(.vertical)
+                            TeamWidgetNextGameView(entry: entry)
+                        }
                     }
                 }
             }
+        case .accessoryCircular:
+            Text("Test")
+        case .accessoryRectangular:
+            ZStack {
+                AccessoryWidgetBackground()
+                VStack(alignment: .leading) {
+                    HStack {
+                        Image(systemName: "baseball")
+                            //.foregroundColor(.skylarksRed) //always changed to white on iPhone
+                        if !entry.team.league_entries.isEmpty {
+                            Text("\(entry.team.name)") + Text(" (\(entry.team.league_entries[0].league.acronym))")
+                                .foregroundColor(.secondary)
+                        } else {
+                            Text("\(entry.team.name)")
+                        }
+                    }
+                    Text("Record: **\(Int(entry.TableRow.wins_count))-\(Int(entry.TableRow.losses_count))**")
+                    Text("Rank: **\(entry.TableRow.rank)**") + Text(" (\(entry.TableRow.quota), \(entry.TableRow.games_behind) GB)")
+                        .foregroundColor(.secondary)
+                }
+            }
+        case .accessoryInline:
+            HStack {
+                Image(systemName: "baseball")
+                if !entry.team.league_entries.isEmpty {
+                    Text("\(entry.team.name): \(Int(entry.TableRow.wins_count))-\(Int(entry.TableRow.losses_count))") +  Text(" (\(entry.team.league_entries[0].league.acronym))").foregroundColor(.secondary)
+                } else {
+                    Text("\(entry.team.name): \(Int(entry.TableRow.wins_count))-\(Int(entry.TableRow.losses_count))")
+                }
+            }
+        @unknown default:
+            Text("Widget Family could not be determined")
         }
     }
 }
@@ -281,16 +312,24 @@ struct TeamWidgetOverView: View {
 struct FavoriteTeamWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         let dummyDashboard = UserDashboard()
+        let dummyEntry = FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: flamingosLogo, lastGameHomeLogo: skylarksSecondaryLogo, nextGame: widgetPreviewNextGame, nextGameOpponentLogo: sluggersLogo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyLeagueTable.rows[0])
+        
         Group {
-              FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: flamingosLogo, lastGameHomeLogo: skylarksSecondaryLogo, nextGame: widgetPreviewNextGame, nextGameOpponentLogo: sluggersLogo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
-                .previewContext(WidgetPreviewContext(family: .systemSmall))
-                //.environment(\.colorScheme, .dark)
-            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: flamingosLogo, lastGameHomeLogo: skylarksSecondaryLogo, nextGame: widgetPreviewNextGame, nextGameOpponentLogo: sluggersLogo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
-                .previewContext(WidgetPreviewContext(family: .systemMedium))
-                //.environment(\.colorScheme, .dark)
-            FavoriteTeamWidgetView(entry: FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: flamingosLogo, lastGameHomeLogo: skylarksSecondaryLogo, nextGame: widgetPreviewNextGame, nextGameOpponentLogo: sluggersLogo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyDashboard.tableRow))
-                .previewContext(WidgetPreviewContext(family: .systemLarge))
-                //.environment(\.colorScheme, .dark)
+            FavoriteTeamWidgetView(entry: dummyEntry)
+                .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
+                .previewDisplayName("Rectangular")
+            FavoriteTeamWidgetView(entry: dummyEntry)
+                .previewContext(WidgetPreviewContext(family: .accessoryInline))
+                .previewDisplayName("Inline")
+//            FavoriteTeamWidgetView(entry: dummyEntry)
+//                .previewContext(WidgetPreviewContext(family: .systemSmall))
+//                //.environment(\.colorScheme, .dark)
+//            FavoriteTeamWidgetView(entry: dummyEntry)
+//                .previewContext(WidgetPreviewContext(family: .systemMedium))
+//                //.environment(\.colorScheme, .dark)
+//            FavoriteTeamWidgetView(entry: dummyEntry)
+//                .previewContext(WidgetPreviewContext(family: .systemLarge))
+//                //.environment(\.colorScheme, .dark)
         }
     }
 }

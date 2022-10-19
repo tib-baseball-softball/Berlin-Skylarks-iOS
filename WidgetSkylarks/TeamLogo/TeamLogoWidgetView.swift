@@ -13,13 +13,14 @@ struct TeamLogoWidgetView: View {
     
     var body: some View {
         ZStack {
-            Color.skylarksRed
-            skylarksSecondaryLogo
-                .resizable()
-                .scaledToFit()
+            //Color.skylarksRed
+            Text("Logo")
+            //skylarksSecondaryLogo
+//                .resizable()
+//                .scaledToFit()
             //this really should be relative
-                .frame(width: 52)
-                .offset(x: -2)
+//                .frame(width: 52)
+//                .offset(x: -2)
         }
     }
 }
