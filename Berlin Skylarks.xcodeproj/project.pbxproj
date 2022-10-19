@@ -31,7 +31,6 @@
 		CA1C39AD2731856B00BB194C /* WatchSkylarks WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CA1C39AC2731856B00BB194C /* WatchSkylarks WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CA1C39B62731856B00BB194C /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39B52731856B00BB194C /* NotificationController.swift */; };
 		CA1C39B82731856B00BB194C /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39B72731856B00BB194C /* NotificationView.swift */; };
-		CA1C39BA2731856B00BB194C /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39B92731856B00BB194C /* ComplicationController.swift */; };
 		CA1C39BC2731856C00BB194C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA1C39BB2731856C00BB194C /* Assets.xcassets */; };
 		CA1C39BF2731856C00BB194C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA1C39BE2731856C00BB194C /* Preview Assets.xcassets */; };
 		CA1C39DA2731856C00BB194C /* Skylarks.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = CA1C39A42731856B00BB194C /* Skylarks.app */; platformFilter = ios; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -371,7 +370,6 @@
 		CA1C39AC2731856B00BB194C /* WatchSkylarks WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "WatchSkylarks WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1C39B52731856B00BB194C /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
 		CA1C39B72731856B00BB194C /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
-		CA1C39B92731856B00BB194C /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
 		CA1C39BB2731856C00BB194C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA1C39BE2731856C00BB194C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		CA1C39C02731856C00BB194C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -562,7 +560,6 @@
 				CA1C39F727318C6D00BB194C /* Berlin_SkylarksApp.swift */,
 				CA1C39B52731856B00BB194C /* NotificationController.swift */,
 				CA1C39B72731856B00BB194C /* NotificationView.swift */,
-				CA1C39B92731856B00BB194C /* ComplicationController.swift */,
 				CA1C3A162733473100BB194C /* watchOS_globals.swift */,
 				CA1C39BB2731856C00BB194C /* Assets.xcassets */,
 				CA1C39C02731856C00BB194C /* Info.plist */,
@@ -1179,7 +1176,6 @@
 				CA5CF5D4284E0E7400ABD7E0 /* UmpireAssignments.swift in Sources */,
 				CA1722E227542DBE00E8BF36 /* PlayerModel.swift in Sources */,
 				CA1E0372281AD4D100E2FF8F /* PrivacyPolicyView.swift in Sources */,
-				CA1C39BA2731856B00BB194C /* ComplicationController.swift in Sources */,
 				CA5CF5D0284E0E3F00ABD7E0 /* ScoresStatusSection.swift in Sources */,
 				CA56F3E72887356100138195 /* ClubGridItem.swift in Sources */,
 				CACA42962848E684008F21FF /* ClubStandingsView.swift in Sources */,
