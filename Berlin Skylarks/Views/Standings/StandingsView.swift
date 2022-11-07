@@ -22,7 +22,10 @@ struct StandingsView: View {
     @State var tablesLoaded = false
     @State private var loadingInProgress = false
     
+    @StateObject var teamsLoader = TeamsLoader()
+    
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
+    @AppStorage("favoriteTeamID") var favoriteTeamID = 0
     
     func loadAllTables() async {
         if networkManager.isConnected == false {
@@ -48,6 +51,8 @@ struct StandingsView: View {
                 print("Request failed with error: \(error) while parsing \(leagueGroup.name) with id \(leagueGroup.id)")
             }
         }
+        await teamsLoader.loadTeamData(selectedSeason: selectedSeason)
+        
         loadingInProgress = false
     }
     
@@ -100,7 +105,18 @@ struct StandingsView: View {
                                         Image(systemName: "tablecells")
                                             .padding(.trailing, 3)
                                             .foregroundColor(Color.accentColor)
-                                        Text(LeagueTable.league_name)
+                                        HStack {
+                                            //von hinten durch die Brust ins Auge
+                                            let favTeam = teamsLoader.getFavoriteTeam(favID: favoriteTeamID)
+                                            Text(LeagueTable.league_name)
+                                            if !favTeam.league_entries.isEmpty {
+                                                //MARK: check, it might be needed to switch to "contains" should names diverge at some point
+                                                if favTeam.league_entries[0].league.name == LeagueTable.league_name {
+                                                    Image(systemName: "star")
+                                                        .foregroundColor(.skylarksRed)
+                                                }
+                                            }
+                                        }
                                     }
                                 })
                         }

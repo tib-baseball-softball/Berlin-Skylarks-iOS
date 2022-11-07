@@ -12,6 +12,9 @@
 		CA044034288755AC00DAE315 /* ClubDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA044032288755AC00DAE315 /* ClubDetailView.swift */; };
 		CA04403628875C7100DAE315 /* ClubDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA04403528875C7100DAE315 /* ClubDataManager.swift */; };
 		CA04403728875C7100DAE315 /* ClubDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA04403528875C7100DAE315 /* ClubDataManager.swift */; };
+		CA08D9B329198DF5000D8CC3 /* TeamsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA08D9B229198DF5000D8CC3 /* TeamsLoader.swift */; };
+		CA08D9B429198DF5000D8CC3 /* TeamsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA08D9B229198DF5000D8CC3 /* TeamsLoader.swift */; };
+		CA08D9B529198DF5000D8CC3 /* TeamsLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA08D9B229198DF5000D8CC3 /* TeamsLoader.swift */; };
 		CA0A95B525BF704C00A7C7C3 /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
 		CA0DA04225974EAD002A0FAB /* ScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA04125974EAD002A0FAB /* ScoresView.swift */; };
 		CA0DA0452598BB32002A0FAB /* ScoresOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA0442598BB32002A0FAB /* ScoresOverView.swift */; };
@@ -377,6 +380,7 @@
 /* Begin PBXFileReference section */
 		CA044032288755AC00DAE315 /* ClubDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDetailView.swift; sourceTree = "<group>"; };
 		CA04403528875C7100DAE315 /* ClubDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubDataManager.swift; sourceTree = "<group>"; };
+		CA08D9B229198DF5000D8CC3 /* TeamsLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamsLoader.swift; sourceTree = "<group>"; };
 		CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMGameScore.swift; sourceTree = "<group>"; };
 		CA0DA04125974EAD002A0FAB /* ScoresView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresView.swift; sourceTree = "<group>"; };
 		CA0DA0442598BB32002A0FAB /* ScoresOverView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresOverView.swift; sourceTree = "<group>"; };
@@ -642,6 +646,7 @@
 				CAA7C1A0289D5E4300CC0615 /* LicenseManager.swift */,
 				CA54A4F928F8BB33005E9969 /* FavoriteTeamWidgetObject.swift */,
 				CA45D0A128FAF6650073515C /* PlayoffSeries.swift */,
+				CA08D9B229198DF5000D8CC3 /* TeamsLoader.swift */,
 			);
 			path = Objects_Classes;
 			sourceTree = "<group>";
@@ -1283,6 +1288,7 @@
 				CADB993028FFF5320061D1B3 /* Complication.intentdefinition in Sources */,
 				CAA7C1B4289DB0C600CC0615 /* FunctionaryIcon.swift in Sources */,
 				CAA7C1B1289DAF7F00CC0615 /* FunctionaryRow.swift in Sources */,
+				CA08D9B429198DF5000D8CC3 /* TeamsLoader.swift in Sources */,
 				CA044034288755AC00DAE315 /* ClubDetailView.swift in Sources */,
 				CAA7C199289D4F8100CC0615 /* UmpireView.swift in Sources */,
 				CA283D0E279D953500271DC1 /* StandingsView.swift in Sources */,
@@ -1355,6 +1361,7 @@
 				CA1E03682819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
 				CAA7C19B289D553100CC0615 /* LicenseSportIndicator.swift in Sources */,
 				CA45D0A228FAF6650073515C /* PlayoffSeries.swift in Sources */,
+				CA08D9B329198DF5000D8CC3 /* TeamsLoader.swift in Sources */,
 				CAAB56C527208A9200ADDE9D /* UserHomeView.swift in Sources */,
 				CABF7BF1259351D400B95813 /* ContentView.swift in Sources */,
 				CAC2D49F28513AFB009EB877 /* NetworkManager.swift in Sources */,
@@ -1461,6 +1468,7 @@
 				CA28D67027A0601B00680067 /* BSMLeagueGroup.swift in Sources */,
 				CAC49350280850C0009677C7 /* WidgetPreviewData.swift in Sources */,
 				CA56F3E82887356100138195 /* ClubGridItem.swift in Sources */,
+				CA08D9B529198DF5000D8CC3 /* TeamsLoader.swift in Sources */,
 				CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */,
 				CA5CF5D1284E0E3F00ABD7E0 /* ScoresStatusSection.swift in Sources */,
 				CA5CF5E5284E0F3E00ABD7E0 /* ScoreMainInfo.swift in Sources */,

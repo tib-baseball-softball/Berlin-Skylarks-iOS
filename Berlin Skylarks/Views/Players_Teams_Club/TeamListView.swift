@@ -19,6 +19,7 @@ struct TeamListView: View {
     @State private var loadingInProgress = false
     
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
+    @AppStorage("favoriteTeamID") var favoriteTeamID = 0
     
     func loadTeamData() async {
         if networkManager.isConnected == false {
@@ -71,10 +72,16 @@ struct TeamListView: View {
                             destination: TeamDetailView(team: team)){
                                 HStack {
                                     Image(systemName: "person.3")
-                                        .foregroundColor(.skylarksRed)
+                                        .foregroundColor(.skylarksDynamicNavySand)
                                         .padding(.trailing)
 #if !os(watchOS)
-                                    Text(team.name)
+                                    HStack {
+                                        Text(team.name)
+                                        if team.id == favoriteTeamID {
+                                            Image(systemName: "star")
+                                                .foregroundColor(.skylarksRed)
+                                        }
+                                    }
 #endif
                                     Spacer()
                                     if !team.league_entries.isEmpty {
