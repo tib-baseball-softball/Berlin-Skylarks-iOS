@@ -13,6 +13,9 @@ import SwiftUI
 var currentSeason = "2022" //Deprecated - using Int from AppStorage in future, but still needed for transition!
 let skylarksID = "485" // this is probably never going to change - but most API calls work without it anyway
 
+//this ID is used for the favoriteTeamID to refer to no team at all
+let noTeamID = 9999
+
 //-----------------------------empty Struct data--------------------------------//
 
 let emptyTable = LeagueTable(league_id: 1, league_name: "League", season: Calendar.current.component(.year, from: Date()), rows: [])

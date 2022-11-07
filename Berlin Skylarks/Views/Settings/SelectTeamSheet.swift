@@ -36,8 +36,8 @@ struct SelectTeamSheet: View {
 #endif
             Form {
                 Section(
-                    header: Text("Team selection required"),
-                    footer: Text("You have changed the season. Please select a new favorite team for the home dashboard.")) {
+                    header: Text("Team selection"),
+                    footer: Text("Please select a new favorite team for the home dashboard.")) {
                         if loadingTeams {
                             LoadingView()
                         } else {
@@ -45,6 +45,8 @@ struct SelectTeamSheet: View {
                                    label:
                                     Text("Favorite Team")
                             ) {
+                                Text("No Team")
+                                    .tag(noTeamID)
                                 ForEach(teams, id: \.self) { team in
                                     if !team.league_entries.isEmpty {
                                         Text("\(team.name) (\(team.league_entries[0].league.name))")
