@@ -9,8 +9,6 @@ import SwiftUI
 
 struct HomeTeamDetailView: View {
     
-    //Ideas: chart with wins/percentage gauge/"hot and cold streak"
-    
     enum Segment: String, Identifiable, CaseIterable {
         case chart, percentage, streak
         
@@ -51,20 +49,6 @@ struct HomeTeamDetailView: View {
                 .listStyle(.insetGrouped)
                 .navigationTitle("Favorite Team Details")
                 .animation(.easeInOut, value: selection)
-                
-    //            .toolbar {
-    //                ToolbarItemGroup(placement: .bottomBar) {
-    //                    Picker(selection: $selection, label:
-    //                            Text("Selected section")
-    //                    ){
-    //                        ForEach(Segment.allCases) { segment in
-    //                            Text(segment.displayName)
-    //                                .tag(segment)
-    //                        }
-    //                    }
-    //                    .pickerStyle(.segmented)
-    //                }
-    //            }
             }
         }
     }

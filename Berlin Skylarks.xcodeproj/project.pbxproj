@@ -46,8 +46,8 @@
 		CA1C39F827318C6D00BB194C /* Berlin_SkylarksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39F727318C6D00BB194C /* Berlin_SkylarksApp.swift */; };
 		CA1C3A0A2733407400BB194C /* Ints_Floats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A092733407400BB194C /* Ints_Floats.swift */; };
 		CA1C3A0B2733407400BB194C /* Ints_Floats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A092733407400BB194C /* Ints_Floats.swift */; };
-		CA1C3A0D273340C000BB194C /* BSM_URL_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */; };
-		CA1C3A0E273340C000BB194C /* BSM_URL_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */; };
+		CA1C3A0D273340C000BB194C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A0C273340C000BB194C /* Constants.swift */; };
+		CA1C3A0E273340C000BB194C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A0C273340C000BB194C /* Constants.swift */; };
 		CA1C3A132733444400BB194C /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA04D2598F570002A0FAB /* InfoView.swift */; };
 		CA1C3A172733473100BB194C /* watchOS_globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A162733473100BB194C /* watchOS_globals.swift */; };
 		CA1C3A2027388BF300BB194C /* SidebarNavigationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A1F27388BF300BB194C /* SidebarNavigationView.swift */; };
@@ -151,7 +151,7 @@
 		CA65FF6827F5F1A800F7845D /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C2271F62F800ADDE9D /* GlobalFunctions.swift */; };
 		CA65FF6927F5F1C600F7845D /* API_Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55F6E027601A4F0032302F /* API_Key.swift */; };
 		CA65FF6A27F5F1D600F7845D /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6042A02745B14000607011 /* ViewModifiers.swift */; };
-		CA65FF6B27F5F1DA00F7845D /* BSM_URL_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */; };
+		CA65FF6B27F5F1DA00F7845D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A0C273340C000BB194C /* Constants.swift */; };
 		CA65FF6C27F5F1E300F7845D /* Ints_Floats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A092733407400BB194C /* Ints_Floats.swift */; };
 		CA65FF6E27F882AA00F7845D /* BSMTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* BSMTeam.swift */; };
 		CA65FF6F27F882BF00F7845D /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
@@ -171,7 +171,7 @@
 		CA9A89B32739DEFE001BBFA8 /* ShareSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9A89B22739DEFE001BBFA8 /* ShareSheet.swift */; };
 		CA9B180E277A27FA00D24CFA /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BF0259351D400B95813 /* ContentView.swift */; };
 		CA9B180F277A288900D24CFA /* Ints_Floats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A092733407400BB194C /* Ints_Floats.swift */; };
-		CA9B1810277A289000D24CFA /* BSM_URL_Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */; };
+		CA9B1810277A289000D24CFA /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A0C273340C000BB194C /* Constants.swift */; };
 		CA9B1811277A289E00D24CFA /* API_Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55F6E027601A4F0032302F /* API_Key.swift */; };
 		CA9B1813277A290900D24CFA /* ScoresView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA04125974EAD002A0FAB /* ScoresView.swift */; };
 		CA9B1814277A299400D24CFA /* ScoresOverView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA0442598BB32002A0FAB /* ScoresOverView.swift */; };
@@ -246,7 +246,7 @@
 		CACA4284283C25E3008F21FF /* SegmentPercentage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA4283283C25E3008F21FF /* SegmentPercentage.swift */; };
 		CACA4286283C26CF008F21FF /* SegmentChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA4285283C26CF008F21FF /* SegmentChart.swift */; };
 		CACA428A283D03FA008F21FF /* SegmentStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA4289283D03FA008F21FF /* SegmentStreak.swift */; };
-		CACA428C283D60C8008F21FF /* StreakBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA428B283D60C8008F21FF /* StreakBar.swift */; };
+		CACA428C283D60C8008F21FF /* StreakChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA428B283D60C8008F21FF /* StreakChart.swift */; };
 		CACA428E283D60EB008F21FF /* StreakEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA428D283D60EB008F21FF /* StreakEmoji.swift */; };
 		CACA4292284642DF008F21FF /* ClubStandingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA4291284642DF008F21FF /* ClubStandingsRow.swift */; };
 		CACA42932846437F008F21FF /* ClubStandingsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA4291284642DF008F21FF /* ClubStandingsRow.swift */; };
@@ -406,7 +406,7 @@
 		CA1C39C12731856C00BB194C /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		CA1C39F727318C6D00BB194C /* Berlin_SkylarksApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Berlin_SkylarksApp.swift; sourceTree = "<group>"; };
 		CA1C3A092733407400BB194C /* Ints_Floats.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Ints_Floats.swift; sourceTree = "<group>"; };
-		CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSM_URL_Data.swift; sourceTree = "<group>"; };
+		CA1C3A0C273340C000BB194C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		CA1C3A162733473100BB194C /* watchOS_globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchOS_globals.swift; sourceTree = "<group>"; };
 		CA1C3A1F27388BF300BB194C /* SidebarNavigationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SidebarNavigationView.swift; sourceTree = "<group>"; };
 		CA1CB20A27567E870007D24E /* BSMTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMTeam.swift; sourceTree = "<group>"; };
@@ -503,7 +503,7 @@
 		CACA4283283C25E3008F21FF /* SegmentPercentage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentPercentage.swift; sourceTree = "<group>"; };
 		CACA4285283C26CF008F21FF /* SegmentChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentChart.swift; sourceTree = "<group>"; };
 		CACA4289283D03FA008F21FF /* SegmentStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentStreak.swift; sourceTree = "<group>"; };
-		CACA428B283D60C8008F21FF /* StreakBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakBar.swift; sourceTree = "<group>"; };
+		CACA428B283D60C8008F21FF /* StreakChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakChart.swift; sourceTree = "<group>"; };
 		CACA428D283D60EB008F21FF /* StreakEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakEmoji.swift; sourceTree = "<group>"; };
 		CACA4291284642DF008F21FF /* ClubStandingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubStandingsRow.swift; sourceTree = "<group>"; };
 		CACA42942848E684008F21FF /* ClubStandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubStandingsView.swift; sourceTree = "<group>"; };
@@ -625,7 +625,7 @@
 			children = (
 				CA1C3A092733407400BB194C /* Ints_Floats.swift */,
 				CA78B71B259507BC00510621 /* ColorSets.swift */,
-				CA1C3A0C273340C000BB194C /* BSM_URL_Data.swift */,
+				CA1C3A0C273340C000BB194C /* Constants.swift */,
 				CAAB56C2271F62F800ADDE9D /* GlobalFunctions.swift */,
 				CA6042A02745B14000607011 /* ViewModifiers.swift */,
 				CA55F6E027601A4F0032302F /* API_Key.swift */,
@@ -701,7 +701,7 @@
 				CA4AA4412858BBFF00C83CED /* LargePercentageCircle.swift */,
 				CACA4289283D03FA008F21FF /* SegmentStreak.swift */,
 				CACA428D283D60EB008F21FF /* StreakEmoji.swift */,
-				CACA428B283D60C8008F21FF /* StreakBar.swift */,
+				CACA428B283D60C8008F21FF /* StreakChart.swift */,
 			);
 			path = Home_Dashboard;
 			sourceTree = "<group>";
@@ -1290,7 +1290,7 @@
 				CAA7C199289D4F8100CC0615 /* UmpireView.swift in Sources */,
 				CA283D0E279D953500271DC1 /* StandingsView.swift in Sources */,
 				CA9B1813277A290900D24CFA /* ScoresView.swift in Sources */,
-				CA1C3A0E273340C000BB194C /* BSM_URL_Data.swift in Sources */,
+				CA1C3A0E273340C000BB194C /* Constants.swift in Sources */,
 				CA55F6E227601E350032302F /* API_Key.swift in Sources */,
 				CA56F3CB2880569A00138195 /* BSMFunctionary.swift in Sources */,
 				CAA7C1A8289D72A900CC0615 /* LicenseDetailView.swift in Sources */,
@@ -1319,7 +1319,7 @@
 				CA65FF6727F5ECF000F7845D /* WidgetSkylarks.intentdefinition in Sources */,
 				CA65FF6E27F882AA00F7845D /* BSMTeam.swift in Sources */,
 				CA65FF7227FF271900F7845D /* ModelData.swift in Sources */,
-				CA65FF6B27F5F1DA00F7845D /* BSM_URL_Data.swift in Sources */,
+				CA65FF6B27F5F1DA00F7845D /* Constants.swift in Sources */,
 				CA65FF6827F5F1A800F7845D /* GlobalFunctions.swift in Sources */,
 				CA65FF7327FF271C00F7845D /* PlayerModel.swift in Sources */,
 				CA56F3CD2880569A00138195 /* BSMFunctionary.swift in Sources */,
@@ -1379,14 +1379,14 @@
 				CABF7BEF259351D400B95813 /* Berlin_SkylarksApp.swift in Sources */,
 				CA0DA0482598BCB1002A0FAB /* ScoresDetailView.swift in Sources */,
 				CA56F3D4288059DA00138195 /* BSMClub.swift in Sources */,
-				CA1C3A0D273340C000BB194C /* BSM_URL_Data.swift in Sources */,
+				CA1C3A0D273340C000BB194C /* Constants.swift in Sources */,
 				CA56F3D92880607E00138195 /* BSMLicense.swift in Sources */,
 				CABF7C0B2593627900B95813 /* NewsView.swift in Sources */,
 				CA78B71C259507BC00510621 /* ColorSets.swift in Sources */,
 				CA54A4F828F8B059005E9969 /* PlayoffScoreOverView.swift in Sources */,
 				CA78B725259648F300510621 /* TeamDetailView.swift in Sources */,
 				CA1C3A2027388BF300BB194C /* SidebarNavigationView.swift in Sources */,
-				CACA428C283D60C8008F21FF /* StreakBar.swift in Sources */,
+				CACA428C283D60C8008F21FF /* StreakChart.swift in Sources */,
 				CACA428E283D60EB008F21FF /* StreakEmoji.swift in Sources */,
 				CA1E035E2819949A00E2FF8F /* UserDashboard.swift in Sources */,
 				CAA7C1B9289E499D00CC0615 /* BallparkView.swift in Sources */,
@@ -1473,7 +1473,7 @@
 				CA5CF5D5284E0E7400ABD7E0 /* UmpireAssignments.swift in Sources */,
 				CA183EE7287371A00088F085 /* FavoriteTeamWidgetData.swift in Sources */,
 				CAB26C5628FEF7B4005ACFA7 /* TeamLogoWidgetData.swift in Sources */,
-				CA9B1810277A289000D24CFA /* BSM_URL_Data.swift in Sources */,
+				CA9B1810277A289000D24CFA /* Constants.swift in Sources */,
 				CA1E036A2819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
 				CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */,
 				CA5CF5DD284E0EDF00ABD7E0 /* BallparkLocation.swift in Sources */,

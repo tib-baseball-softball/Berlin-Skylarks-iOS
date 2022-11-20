@@ -24,6 +24,6 @@ struct LeagueTable: Hashable, Codable {
         var losses_count: Double
         var quota: String
         var games_behind: String
-        var streak: String //sometimes BSM is dumb and has an Int (0) instead of a string in the original JSON! => fixed it in my dummy data
+        var streak: String //sometimes BSM is dumb and has an Int (0) instead of a string in the original JSON! => fixed upstream after I reported it
     }
 }
