@@ -245,7 +245,6 @@
 		CAC49351280850C0009677C7 /* WidgetPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAC4934F280850C0009677C7 /* WidgetPreviewData.swift */; };
 		CACA4284283C25E3008F21FF /* SegmentPercentage.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA4283283C25E3008F21FF /* SegmentPercentage.swift */; };
 		CACA4286283C26CF008F21FF /* SegmentChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA4285283C26CF008F21FF /* SegmentChart.swift */; };
-		CACA4288283C2D47008F21FF /* ChartElement.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA4287283C2D47008F21FF /* ChartElement.swift */; };
 		CACA428A283D03FA008F21FF /* SegmentStreak.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA4289283D03FA008F21FF /* SegmentStreak.swift */; };
 		CACA428C283D60C8008F21FF /* StreakBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA428B283D60C8008F21FF /* StreakBar.swift */; };
 		CACA428E283D60EB008F21FF /* StreakEmoji.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA428D283D60EB008F21FF /* StreakEmoji.swift */; };
@@ -503,7 +502,6 @@
 		CAC4934F280850C0009677C7 /* WidgetPreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreviewData.swift; sourceTree = "<group>"; };
 		CACA4283283C25E3008F21FF /* SegmentPercentage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentPercentage.swift; sourceTree = "<group>"; };
 		CACA4285283C26CF008F21FF /* SegmentChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentChart.swift; sourceTree = "<group>"; };
-		CACA4287283C2D47008F21FF /* ChartElement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartElement.swift; sourceTree = "<group>"; };
 		CACA4289283D03FA008F21FF /* SegmentStreak.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentStreak.swift; sourceTree = "<group>"; };
 		CACA428B283D60C8008F21FF /* StreakBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakBar.swift; sourceTree = "<group>"; };
 		CACA428D283D60EB008F21FF /* StreakEmoji.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakEmoji.swift; sourceTree = "<group>"; };
@@ -699,7 +697,6 @@
 				CA54A4F528F8AF2F005E9969 /* PlayoffSeriesView.swift */,
 				CA28FB8F280DDDC6007581FD /* HomeTeamDetailView.swift */,
 				CACA4285283C26CF008F21FF /* SegmentChart.swift */,
-				CACA4287283C2D47008F21FF /* ChartElement.swift */,
 				CACA4283283C25E3008F21FF /* SegmentPercentage.swift */,
 				CA4AA4412858BBFF00C83CED /* LargePercentageCircle.swift */,
 				CACA4289283D03FA008F21FF /* SegmentStreak.swift */,
@@ -1382,7 +1379,6 @@
 				CABF7BEF259351D400B95813 /* Berlin_SkylarksApp.swift in Sources */,
 				CA0DA0482598BCB1002A0FAB /* ScoresDetailView.swift in Sources */,
 				CA56F3D4288059DA00138195 /* BSMClub.swift in Sources */,
-				CACA4288283C2D47008F21FF /* ChartElement.swift in Sources */,
 				CA1C3A0D273340C000BB194C /* BSM_URL_Data.swift in Sources */,
 				CA56F3D92880607E00138195 /* BSMLicense.swift in Sources */,
 				CABF7C0B2593627900B95813 /* NewsView.swift in Sources */,
