@@ -8,13 +8,11 @@
 import Foundation
 import SwiftUI
 
-//changed IDs to 2022 season on 15-3-2022
-
 var currentSeason = "2022" //Deprecated - using Int from AppStorage in future, but still needed for transition!
 let skylarksID = "485" // this is probably never going to change - but most API calls work without it anyway
 
-//this ID is used for the favoriteTeamID to refer to no team at all
-let noTeamID = 9999
+//this ID is used for favoriteTeamID to refer to no team at all, single digit to (hopefully) ensure there won't be a real one with this ID
+let noTeamID = 9
 
 //-----------------------------empty Struct data--------------------------------//
 
@@ -28,12 +26,3 @@ let homeEntry = GameScore.LeagueEntry(team: emptyScoreTeam)
 let awayEntry = GameScore.LeagueEntry(team: emptyScoreTeam)
 
 let testGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", league_id: 1, home_runs: 2, away_runs: 1, home_team_name: "Home Team", away_team_name: "Road Team", human_state: "getestet", scoresheet_url: nil, field: nil, league: emptyLeague, home_league_entry: homeEntry, away_league_entry: awayEntry, umpire_assignments: [], scorer_assignments: [], gameDate: .now)
-
-//&sorted[time]=asc/desc
-
-//https://bsm.baseball-softball.de/clubs/485/team_clubs.json?filters[seasons][]=2021&api_key=
-//=> this yields all officially registered teams
-
-//-------------------------------FUNKTIONÄRE---------------------------------//
-
-//https://bsm.baseball-softball.de/clubs/485/club_functions.json

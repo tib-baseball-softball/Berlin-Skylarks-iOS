@@ -77,4 +77,29 @@ class UserDashboard: ObservableObject {
             playoffParticipation = false
         }
     }
+    
+    func createStreakDataEntries() -> [StreakDataEntry] {
+        var entries: [StreakDataEntry] = []
+        var wins = 0
+        
+        for (index, game) in homeGamescores.enumerated() where !game.human_state.contains("geplant") && !game.human_state.contains("ausgefallen") {
+            let number = index + 1
+            var won = false
+            
+            if let skylarksWonGame = game.skylarksWin {
+                if skylarksWonGame {
+                    wins += 1
+                    won = true
+                }
+            }
+            entries.append(StreakDataEntry(game: "\(number)", wonGame: won, winsCount: wins))
+        }
+        return entries
+    }
+}
+
+struct StreakDataEntry: Hashable {
+    var game: String //this is a string because we don't want SwiftUI to dynamically leave out values on the x axis
+    var wonGame: Bool
+    var winsCount: Int
 }
