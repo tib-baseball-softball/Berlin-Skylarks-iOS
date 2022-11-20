@@ -1,0 +1,9 @@
+/* Bundle display name */
+"CFBundleDisplayName" = "Skylarks";
+
+/* Bundle name */
+"CFBundleName" = "Berlin Skylarks";
+
+/* Privacy - Calendars Usage Description */
+"NSCalendarsUsageDescription" = "Die Skylarks-App braucht Zugriff auf deine Kalender, um Spieldaten darin zu speichern.";
+
