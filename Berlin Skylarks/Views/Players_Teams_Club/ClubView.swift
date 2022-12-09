@@ -33,6 +33,7 @@ struct ClubView: View {
 #else
                 let columns = [GridItem(.adaptive(minimum: 80, maximum: 100))]
 #endif
+                //TODO: Localize
                 LazyVGrid(columns: columns) {
                     NavigationLink(destination: ClubDetailView(clubData: clubData)){
                         ClubGridItem(systemImage: "info.circle.fill", itemName: "Details")

@@ -65,6 +65,7 @@ struct ScoresView: View {
         case any
         
         var displayName: String { rawValue.capitalized }
+        var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue.capitalized) }
         var id: String { self.rawValue }
     }
     
@@ -253,7 +254,7 @@ struct ScoresView: View {
                     },
                     content: {
                         ForEach(Gameday.allCases) { gameday in
-                            Text(gameday.displayName)
+                            Text(gameday.localizedName)
                             .tag(gameday)
                         }
                         
@@ -262,6 +263,7 @@ struct ScoresView: View {
                 .padding(.horizontal)
                 .padding(.vertical, 3)
                 List {
+                    //TODO: Localize
                     Section(header: Text("Selected Season: " + String(selectedSeason))){
                         
                         //Switch to external games/only our games

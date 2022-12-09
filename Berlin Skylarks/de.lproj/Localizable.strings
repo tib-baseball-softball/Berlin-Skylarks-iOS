@@ -1,3 +1,51 @@
+"Show non-Skylarks Games" = "Zeige externe Spiele";
+
+"Visit the team website" = "Besuche die Team-Webseite";
+
+"Contribute on GitHub" = "Auf GitHub beitragen";
+
+"Contact the developer" = "Entwickler kontaktieren";
+
+"Save favorite team" = "Lieblingsteam speichern";
+
+"Loading data..." = "Datenabruf läuft...";
+
+"Chart" = "Graph";
+
+"Percentage" = "Prozentsatz";
+
+"Streak" = "Serie";
+
+"Favorite Team Details" = "Team-Details";
+
+"Team Records" = "Team-Bilanzen";
+
+"Selected Season: " = "Gewählte Saison: ";
+
+"Previous" = "Vorheriger";
+
+"Current" = "Aktueller";
+
+"Next" = "Nächster";
+
+"Any" = "Alle";
+
+"Contact Details" = "Kontaktdetails";
+
+"Club Officials" = "Funktionäre";
+
+"Officials" = "Funktionäre";
+
+"Ballpark" = "Ballpark";
+
+"Ballpark Detail" = "Ballpark-Details";
+
+"Team Scorers" = "Team-Scorer";
+
+"Team Umpires" = "Team-Umpire";
+
+"Detailed Info" = "Detail-Infos";
+
 /* No comment provided by engineer. */
 "-" = "-";
 
@@ -75,7 +123,7 @@
 "Club Total" = "Gesamt für Verein";
 
 /* No comment provided by engineer. */
-"Clubhouse champagne celebration or dugout fights?" = "Champagner-Party im Clubhouse oder Kämpfe im Dugout?";
+"Clubhouse champagne celebration or dugout fights?" = "Champagner-Party im Clubhouse oder Streit im Dugout?";
 
 /* No comment provided by engineer. */
 "Dashboard" = "Dashboard";
@@ -93,7 +141,7 @@
 "Favorite Team" = "Lieblingsteam";
 
 /* No comment provided by engineer. */
-"Filter" = "Filter";
+"Filter" = "Filtern";
 
 /* No comment provided by engineer. */
 "Game Action" = "Spielbetrieb";
@@ -259,7 +307,7 @@
 "Please select a league for comprehensive data." = "Wähle eine Liga für umfassende Daten.";
 
 /* No comment provided by engineer. */
-"Please select a new favorite team for the home dashboard." = "Bitte wähle ein Team für den";
+"Please select a new favorite team for the home dashboard." = "Bitte wähle ein Lieblingsteam für die App.";
 
 /* No comment provided by engineer. */
 "Please select an app section" = "Bitte wähle eine App-Sektion";

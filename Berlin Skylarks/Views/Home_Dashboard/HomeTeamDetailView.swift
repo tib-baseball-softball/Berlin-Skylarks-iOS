@@ -13,6 +13,7 @@ struct HomeTeamDetailView: View {
         case chart, percentage, streak
         
         var displayName: String { rawValue.capitalized }
+        var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue.capitalized) }
         var id: String { self.rawValue }
     }
     
@@ -31,7 +32,7 @@ struct HomeTeamDetailView: View {
                         Text("Selected section")
                 ){
                     ForEach(Segment.allCases) { segment in
-                        Text(segment.displayName)
+                        Text(segment.localizedName)
                             .tag(segment)
                     }
                 }

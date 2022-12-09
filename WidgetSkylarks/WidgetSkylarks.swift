@@ -47,7 +47,7 @@ struct FavoriteTeamWidget: Widget {
         .configurationDisplayName("Team Overview")
         .description("Shows info about your favorite Skylarks team.")
         
-        //TODO: add support for extraLarge
+        //MARK: add support for extraLarge
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryInline, .accessoryCircular, .accessoryRectangular])
     }
 }

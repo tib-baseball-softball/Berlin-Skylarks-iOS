@@ -184,7 +184,7 @@
 		CA9D3EE428738A6C00835953 /* ScoreNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9D3EE328738A6C00835953 /* ScoreNumber.swift */; };
 		CA9D3EE528738A6C00835953 /* ScoreNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9D3EE328738A6C00835953 /* ScoreNumber.swift */; };
 		CA9D3EE628738A6C00835953 /* ScoreNumber.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA9D3EE328738A6C00835953 /* ScoreNumber.swift */; };
-		CA9E4CDE2943D5AE00D82D3D /* WatchSkylarks-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA9E4CDC2943D5AE00D82D3D /* WatchSkylarks-InfoPlist.strings */; };
+		CA9E4CE22943DDFF00D82D3D /* WatchSkylarks-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA9E4CE02943DDFF00D82D3D /* WatchSkylarks-InfoPlist.strings */; };
 		CAA7C193289D296700CC0615 /* MapViewWithPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C192289D296700CC0615 /* MapViewWithPin.swift */; };
 		CAA7C194289D296700CC0615 /* MapViewWithPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C192289D296700CC0615 /* MapViewWithPin.swift */; };
 		CAA7C195289D2BFE00CC0615 /* MapViewWithPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C192289D296700CC0615 /* MapViewWithPin.swift */; };
@@ -457,8 +457,8 @@
 		CA940B9E2943D0BE00D91508 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CA9A89B22739DEFE001BBFA8 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
 		CA9D3EE328738A6C00835953 /* ScoreNumber.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreNumber.swift; sourceTree = "<group>"; };
-		CA9E4CDD2943D5AE00D82D3D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "de.lproj/WatchSkylarks-InfoPlist.strings"; sourceTree = "<group>"; };
 		CA9E4CDF2943D6BA00D82D3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
+		CA9E4CE12943DDFF00D82D3D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "WatchSkylarks WatchKit Extension/de.lproj/WatchSkylarks-InfoPlist.strings"; sourceTree = "<group>"; };
 		CAA7C192289D296700CC0615 /* MapViewWithPin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewWithPin.swift; sourceTree = "<group>"; };
 		CAA7C197289D4F8100CC0615 /* UmpireView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UmpireView.swift; sourceTree = "<group>"; };
 		CAA7C19A289D553100CC0615 /* LicenseSportIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LicenseSportIndicator.swift; sourceTree = "<group>"; };
@@ -733,8 +733,8 @@
 		CABF7BE2259351D400B95813 = {
 			isa = PBXGroup;
 			children = (
-				CA9E4CDC2943D5AE00D82D3D /* WatchSkylarks-InfoPlist.strings */,
 				CAE134922771F2E100DFA745 /* WidgetSkylarksExtension.entitlements */,
+				CA9E4CE02943DDFF00D82D3D /* WatchSkylarks-InfoPlist.strings */,
 				CA1CB210275D15BA0007D24E /* README.md */,
 				CABF7BED259351D400B95813 /* Berlin Skylarks */,
 				CA1C39A52731856B00BB194C /* WatchSkylarks */,
@@ -1135,7 +1135,7 @@
 				CA940B9F2943D0BE00D91508 /* Localizable.strings in Resources */,
 				CA1C39EC2731875800BB194C /* Assets.xcassets in Resources */,
 				CA1C39BC2731856C00BB194C /* Assets.xcassets in Resources */,
-				CA9E4CDE2943D5AE00D82D3D /* WatchSkylarks-InfoPlist.strings in Resources */,
+				CA9E4CE22943DDFF00D82D3D /* WatchSkylarks-InfoPlist.strings in Resources */,
 				CA1C39A72731856B00BB194C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1562,13 +1562,12 @@
 			name = Localizable.strings;
 			sourceTree = "<group>";
 		};
-		CA9E4CDC2943D5AE00D82D3D /* WatchSkylarks-InfoPlist.strings */ = {
+		CA9E4CE02943DDFF00D82D3D /* WatchSkylarks-InfoPlist.strings */ = {
 			isa = PBXVariantGroup;
 			children = (
-				CA9E4CDD2943D5AE00D82D3D /* de */,
+				CA9E4CE12943DDFF00D82D3D /* de */,
 			);
 			name = "WatchSkylarks-InfoPlist.strings";
-			path = WatchSkylarks;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

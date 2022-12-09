@@ -70,7 +70,7 @@ struct TeamDetailView: View {
                         }
                     }
                 }
-                //TODO: maybe for a later feature (needs to be blocked for general public as player lists are sensitive data)
+                //MARK: maybe for a later feature (needs to be blocked for general public as player lists are sensitive data)
 //                Section(header: Text("Player profiles")) {
 //                    NavigationLink(destination: Text("Player List here")) {
 //                        HStack {
