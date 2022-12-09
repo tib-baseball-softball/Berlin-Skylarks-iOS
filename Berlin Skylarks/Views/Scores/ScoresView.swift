@@ -265,7 +265,7 @@ struct ScoresView: View {
                     Section(header: Text("Selected Season: " + String(selectedSeason))){
                         
                         //Switch to external games/only our games
-                        Toggle("Show non-Skylarks Games", isOn: $showOtherTeams)
+                        Toggle(String(localized: "Show non-Skylarks Games", comment: "toggle in ScoresView"), isOn: $showOtherTeams)
                             .tint(.skylarksRed)
                         
                         //Loading in progress

@@ -78,7 +78,7 @@ struct ScoresDetailView: View {
                     
                     HStack {
                         VStack {
-                            Text("Guest")
+                            Text("Road", comment: "reference to the road team")
                                 .bold()
                             roadLogo
                                 .resizable()
@@ -90,7 +90,7 @@ struct ScoresDetailView: View {
                         }
                         Spacer()
                         VStack {
-                            Text("Home")
+                            Text("Home", comment: "Reference to the home team")
                                 .bold()
                             homeLogo
                                 .resizable()

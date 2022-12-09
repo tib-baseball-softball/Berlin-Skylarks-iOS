@@ -15,7 +15,7 @@ struct MainTabView: View {
             }
                 .tabItem {
                     Image(systemName: "star.square.fill")
-                    Text("Home")
+                    Text("HomeTab", comment: "refers to the home tab in the tab view")
                 }
             //since News is non-functional right now, let's rather have the settings back in the tab bar
 //                NavigationView {
@@ -30,28 +30,28 @@ struct MainTabView: View {
             }
                 .tabItem {
                     Image(systemName: "42.square.fill")
-                    Text("Scores")
+                    Text("Scores", comment: "tab view")
                 }
             NavigationStack {
                 StandingsView()
             }
                 .tabItem {
                     Image(systemName: "tablecells.fill")
-                    Text("Standings")
+                    Text("Standings", comment: "tab view")
                 }
             NavigationStack {
                 ClubView()
             }
                 .tabItem {
                     Image(systemName: "shield.fill")
-                    Text("Club")
+                    Text("Club", comment: "tab view")
                 }
             NavigationStack {
                 SettingsListView()
             }
                 .tabItem {
                     Image(systemName: "gearshape.fill")
-                    Text("Settings")
+                    Text("Settings", comment: "tab view")
                 }
         }
     }

@@ -61,7 +61,8 @@
 /* No comment provided by engineer. */
 "Capacity: %@" = "Kapazität: %@";
 
-/* No comment provided by engineer. */
+/* main navigation
+   tab view */
 "Club" = "Verein";
 
 /* No comment provided by engineer. */
@@ -80,25 +81,16 @@
 "Dashboard" = "Dashboard";
 
 /* No comment provided by engineer. */
-"David Battefeld" = "David Battefeld";
-
-/* No comment provided by engineer. */
 "Directions" = "Anfahrt";
 
 /* No comment provided by engineer. */
 "Disclaimer: All license data is derived from BSM and managed by the BSVBB. The club has no control over the displayed data." = "Disclaimer: Alle Lizenzdaten werden aus BSM gezogen und vom BSVBB verwaltet. Der Verein hat keinerlei Kontrolle, welche Daten hier angezeigt werden.";
 
 /* No comment provided by engineer. */
-"Eventbericht" = "Eventbericht";
-
-/* No comment provided by engineer. */
 "F" = "F";
 
 /* No comment provided by engineer. */
 "Favorite Team" = "Lieblingsteam";
-
-/* No comment provided by engineer. */
-"Fazit und Ausblick" = "Fazit und Ausblick";
 
 /* No comment provided by engineer. */
 "Filter" = "Filter";
@@ -131,13 +123,17 @@
 "Get involved" = "Mitmachen";
 
 /* No comment provided by engineer. */
-"Guest" = "Auswärts";
-
-/* No comment provided by engineer. */
 "Hello World" = "Hallo Welt";
 
-/* No comment provided by engineer. */
-"Home" = "Home";
+/* main navigation
+   Reference to the home team
+   refers to the home tab in the tab view */
+"Home" = "Heim";
+
+/* main navigation
+   Reference to the home team
+   refers to the home tab in the tab view */
+"HomeTab" = "Home";
 
 /* No comment provided by engineer. */
 "Hot or cold - how is your team's season going?" = "Gut drauf oder eher schleppend - wie läuft's für dein Team diese Saison?";
@@ -292,6 +288,9 @@
 /* No comment provided by engineer. */
 "Right" = "Rechts";
 
+/* reference to the road team */
+"Road" = "Auswärts";
+
 /* No comment provided by engineer. */
 "SB" = "SB";
 
@@ -301,7 +300,8 @@
 /* No comment provided by engineer. */
 "Scorer" = "Scorer";
 
-/* No comment provided by engineer. */
+/* main navigation
+   tab view */
 "Scores" = "Spiele";
 
 /* No comment provided by engineer. */
@@ -343,7 +343,8 @@
 /* No comment provided by engineer. */
 "Series tied" = "Serie ausgeglichen";
 
-/* No comment provided by engineer. */
+/* main navigation
+   tab view */
 "Settings" = "Einstellungen";
 
 /* No comment provided by engineer. */
@@ -358,7 +359,8 @@
 /* No comment provided by engineer. */
 "Srk" = "Srk";
 
-/* No comment provided by engineer. */
+/* main navigation
+   tab view */
 "Standings" = "Tabellen";
 
 /* No comment provided by engineer. */

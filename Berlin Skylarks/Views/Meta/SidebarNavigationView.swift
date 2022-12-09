@@ -19,7 +19,7 @@ struct SidebarNavigationView: View {
                                 Image(systemName: "star.square.fill")
                                     .foregroundColor(.skylarksDynamicNavySand)
                                     .frame(width: 30)
-                                Text("Home")
+                                Text("Home", comment: "main navigation")
                                     .frame(width: 100, alignment: .leading)
                             }
                     }
@@ -30,7 +30,7 @@ struct SidebarNavigationView: View {
                             Image(systemName: "42.square.fill")
                                 .foregroundColor(.skylarksDynamicNavySand)
                                 .frame(width: 30)
-                            Text("Scores")
+                            Text("Scores", comment: "main navigation")
                                 .frame(width: 100, alignment: .leading)
                     }
                     NavigationLink(
@@ -38,7 +38,7 @@ struct SidebarNavigationView: View {
                             Image(systemName: "tablecells.fill")
                                 .foregroundColor(.skylarksDynamicNavySand)
                                 .frame(width: 30)
-                            Text("Standings")
+                            Text("Standings", comment: "main navigation")
                                 .frame(width: 100, alignment: .leading)
                     }
                 }
@@ -58,7 +58,7 @@ struct SidebarNavigationView: View {
                             Image(systemName: "shield.fill")
                                 .foregroundColor(.skylarksDynamicNavySand)
                                 .frame(width: 30)
-                            Text("Club")
+                            Text("Club", comment: "main navigation")
                                 .frame(width: 100, alignment: .leading)
                     }
                 }
@@ -68,7 +68,7 @@ struct SidebarNavigationView: View {
                             Image(systemName: "gearshape.fill")
                                 .foregroundColor(.skylarksDynamicNavySand)
                                 .frame(width: 30)
-                            Text("Settings")
+                            Text("Settings", comment: "main navigation")
                                 .frame(width: 100, alignment: .leading)
                     }
                 }
