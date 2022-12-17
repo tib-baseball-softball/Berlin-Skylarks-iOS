@@ -10,7 +10,7 @@ import SwiftUI
 struct PrivacyPolicyView: View {
     var body: some View {
         ScrollView {
-            Text(privacyPolicyText)
+            Text("privacyPolicyText")
 #if !os(watchOS)
             .textSelection(.enabled)
 #endif

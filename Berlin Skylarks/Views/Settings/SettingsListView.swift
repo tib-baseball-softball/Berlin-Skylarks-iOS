@@ -37,6 +37,14 @@ struct SettingsListView: View {
         }
     }
     
+    func getLanguageCode() -> String {
+        if Locale.autoupdatingCurrent.language.languageCode?.identifier == "de" {
+            return "de"
+        } else {
+            return "en"
+        }
+    }
+    
     var body: some View {
         List {
             Section(
@@ -87,8 +95,9 @@ struct SettingsListView: View {
                     }
                 }
 #endif
+                let code = getLanguageCode()
                 NavigationLink(
-                    destination: LegalNoticeView()) {
+                    destination: LegalNoticeView(languageCode: code)) {
                     HStack {
                         Image(systemName: "c.circle")
                             .font(.title2)

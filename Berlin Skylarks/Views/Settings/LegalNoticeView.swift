@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct LegalNoticeView: View {
+    var languageCode: String
+    
     var body: some View {
         ScrollView {
-            Text(legalNoticeText)
+            let legalNoticeText = MarkdownFile(stringLiteral: "app_impressum_\(languageCode).md")
+            Text(legalNoticeText.rawMarkdown ?? "Default Legal Notice text.")
             #if !os(watchOS)
             .textSelection(.enabled)
             #endif
@@ -22,6 +25,6 @@ struct LegalNoticeView: View {
 
 struct SwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
-        LegalNoticeView()
+        LegalNoticeView(languageCode: "en")
     }
 }
