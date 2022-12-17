@@ -1,5 +1,3 @@
-**Legal Notice** 
-
 **Information according to § 5 TMG**
 
 David Battefeld  

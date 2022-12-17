@@ -13,7 +13,8 @@ struct LegalNoticeView: View {
     var body: some View {
         ScrollView {
             let legalNoticeText = MarkdownFile(stringLiteral: "app_impressum_\(languageCode).md")
-            Text(legalNoticeText.rawMarkdown ?? "Default Legal Notice text.")
+            
+            Text(try! AttributedString(markdown: legalNoticeText.rawMarkdown ?? "Default Legal Notice text.", options: AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace)))
             #if !os(watchOS)
             .textSelection(.enabled)
             #endif

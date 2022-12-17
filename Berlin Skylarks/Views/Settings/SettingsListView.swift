@@ -96,6 +96,7 @@ struct SettingsListView: View {
                 }
 #endif
                 let code = getLanguageCode()
+                
                 NavigationLink(
                     destination: LegalNoticeView(languageCode: code)) {
                     HStack {
@@ -106,7 +107,7 @@ struct SettingsListView: View {
                     }
                 }
                 NavigationLink(
-                    destination: PrivacyPolicyView()) {
+                    destination: PrivacyPolicyView(languageCode: code)) {
                     HStack {
                         Image(systemName: "hand.raised.square.fill")
                             .font(.title2)
