@@ -62,13 +62,12 @@ struct BallparkDetailView: View {
                     HStack {
                         Image(systemName: "person.2.fill")
                             .clubIconStyleDynamic()
-                        //TODO: Localize
-                        Text("Capacity: \(total)")
+                        Text("Capacity: ") + Text(String(total))
                     }
                     HStack {
                         Image(systemName: "ticket.fill")
                             .clubIconStyleDynamic()
-                        Text("Seats: \(seats)")
+                        Text("Seats: ") + Text(String(seats))
                     }
                 }
             }

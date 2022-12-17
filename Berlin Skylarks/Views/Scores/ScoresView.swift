@@ -73,9 +73,7 @@ struct ScoresView: View {
     @State var selectedTeamID: Int = 0 //this is in fact a league ID now
     @State var selectedTimeframe = Gameday.current
 
-    @State var filterTeams = [
-        "All Teams",
-    ]
+    @State var filterTeams = ["All Teams", ]
     
     //---------------------------------------------------------//
     //-----------local funcs-----------------------------------//
@@ -83,9 +81,7 @@ struct ScoresView: View {
     
     func loadLeagueGroups() async {
         //reset filter options to default
-        filterTeams = [
-            "All Teams",
-        ]
+        filterTeams = ["All Teams", ]
         
         let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(selectedSeason)" + "&api_key=" + apiKey)!
         
@@ -135,12 +131,6 @@ struct ScoresView: View {
         skylarksGamescores = gamescores.filter({ gamescore in
             gamescore.home_team_name.contains("Skylarks") || gamescore.away_team_name.contains("Skylarks")
         })
-        
-        //DEBUG
-//        print("gamescores has \(gamescores.count) items")
-//        print("skylarksGamescores has \(skylarksGamescores.count) items")
-//        print("Memory: \(URLCache.shared.currentMemoryUsage) bytes")
-//        print("Disk: \(URLCache.shared.currentDiskUsage) bytes")
         
         loadingInProgress = false
     }
@@ -263,8 +253,7 @@ struct ScoresView: View {
                 .padding(.horizontal)
                 .padding(.vertical, 3)
                 List {
-                    //TODO: Localize
-                    Section(header: Text("Selected Season: " + String(selectedSeason))){
+                    Section(header: Text("Selected Season: ") + Text(String(selectedSeason))){
                         
                         //Switch to external games/only our games
                         Toggle(String(localized: "Show non-Skylarks Games", comment: "toggle in ScoresView"), isOn: $showOtherTeams)
@@ -353,7 +342,7 @@ struct ScoresView: View {
                             Image(systemName: "calendar.badge.plus")
                         }
                         
-                        .confirmationDialog("Choose a calendar to save the game(s)", isPresented: $showCalendarDialog, titleVisibility: .visible) {
+                        .confirmationDialog("Choose a calendar for exporting", isPresented: $showCalendarDialog, titleVisibility: .visible) {
                             
                             ForEach(calendarTitles, id: \.self) { calendarTitle in
                                 Button(calendarTitle) {

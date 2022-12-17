@@ -46,6 +46,28 @@
 
 "Detailed Info" = "Detail-Infos";
 
+"Capacity: " = "Kapazität: ";
+
+"Seats: " = "Sitzplätze: ";
+
+"Selected Season: " = " Gewählte Saison: ";
+
+"Save to calendar" = "Kalenderexport";
+
+"Choose a calendar for exporting" = "Wähle einen Kalender für den Spielexport";
+
+"No access to calendar" = "Kein Zugriff auf Kalender";
+
+"No network connection" = "Keine Netzwerkverbindung";
+
+"Game Details" = "Spieldetails";
+
+"Link to Scoresheet" = "Link zum Scoresheet";
+
+"Officials" = "Funktionäre";
+
+"Details" = "Details";
+
 /* No comment provided by engineer. */
 "-" = "-";
 

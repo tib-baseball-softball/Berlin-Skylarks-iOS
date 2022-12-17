@@ -153,7 +153,7 @@ struct ScoresDetailView: View {
                 //MARK: bookmarks
 //                Button(action: {
 //                    isBookmarked.toggle()
-//                    //TODO: actually do stuff here
+//                    //actually do stuff here
 //                }, label: {
 //                    //the button changes its appearance if a bookmark is set
 //                    Image(systemName: isBookmarked == true ? "bookmark.fill" : "bookmark")
@@ -170,7 +170,7 @@ struct ScoresDetailView: View {
                 ){
                     Image(systemName: "calendar.badge.plus")
                 }
-                .confirmationDialog("Choose a calendar to save the game", isPresented: $showCalendarDialog, titleVisibility: .visible) {
+                .confirmationDialog("Choose a calendar for exporting", isPresented: $showCalendarDialog, titleVisibility: .visible) {
                     
                     ForEach(calendarTitles, id: \.self) { calendarTitle in
                         Button(calendarTitle) {
@@ -195,14 +195,6 @@ struct ScoresDetailView: View {
                 let shareItem = createShareGameData()
                 ShareLink(item: shareItem)
             }
-            //            ToolbarItem(placement: .principal) {
-            //                Button(action: {
-            //                    print("doc button pressed")
-            //
-            //                }, label: {
-            //                    Image(systemName: "doc.on.doc")
-            //                })
-            //            }
         }
         .onAppear(perform: {
             setLogos()
@@ -302,6 +294,7 @@ struct ScoresDetailView: View {
             time = formatter2.string(from: gameDate)
         }
             
+        //TODO: localise
         let data = """
         Game data - sent from Skylarks app
         

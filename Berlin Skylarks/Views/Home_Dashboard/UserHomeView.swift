@@ -188,7 +188,6 @@ struct UserHomeView: View {
                         HStack {
                             Image(systemName: "trophy.fill")
                                 .foregroundColor(.skylarksRed)
-                            //TODO: error on this line (type-check)
                             NavigationLink(destination: PlayoffSeriesView(userDashboard: userDashboard)) {
                                 Text("See playoff series")
                             }
