@@ -70,7 +70,7 @@ struct ScoresView: View {
     }
     
     @State var selectedTeam = "All Teams"
-    @State var selectedTeamID: Int = 0 //this is in fact a league ID now
+    @State var selectedTeamID: Int = 0 // this is in fact a league ID now - TODO: rename me
     @State var selectedTimeframe = Gameday.current
 
     @State var filterTeams = ["All Teams", ]
@@ -383,8 +383,7 @@ struct ScoresView: View {
                             selection: $selectedTeam,
                             //this actually does not show the label, just the selection
                             label: HStack {
-                                Text("Show:")
-                                //Text(selection)
+                                //Text(selectedTeam)
                             },
                             content: {
                                 ForEach(filterTeams, id: \.self) { option in

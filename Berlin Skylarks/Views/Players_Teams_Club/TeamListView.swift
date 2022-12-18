@@ -38,8 +38,6 @@ struct TeamListView: View {
         loadingInProgress = false
     }
     
-    //TODO: switch to Table in iOS 16
-    
     var body: some View {
         ZStack {
             #if !os(watchOS)

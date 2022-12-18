@@ -69,7 +69,7 @@ struct SidebarNavigationView: View {
                                 .foregroundColor(.skylarksDynamicNavySand)
                                 .frame(width: 30)
                             Text("Settings", comment: "main navigation")
-                                .frame(width: 100, alignment: .leading)
+                                .frame(width: 110, alignment: .leading)
                     }
                 }
                 HStack {
