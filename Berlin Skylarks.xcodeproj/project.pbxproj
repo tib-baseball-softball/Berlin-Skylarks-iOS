@@ -95,6 +95,11 @@
 		CA28D66F27A0601B00680067 /* BSMLeagueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */; };
 		CA28D67027A0601B00680067 /* BSMLeagueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */; };
 		CA28FB90280DDDC6007581FD /* HomeTeamDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28FB8F280DDDC6007581FD /* HomeTeamDetailView.swift */; };
+		CA2D5171294F754F00CF465E /* TeamImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E03672819ABAA00E2FF8F /* TeamImageData.swift */; };
+		CA2D5172294F758A00CF465E /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
+		CA2D5173294F772A00CF465E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
+		CA2D5174294F773100CF465E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
+		CA2D5175294F773200CF465E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
 		CA3C4C2F28B40C3400F72841 /* BerlinSkylarksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4C2E28B40C3400F72841 /* BerlinSkylarksTests.swift */; };
 		CA45D0A228FAF6650073515C /* PlayoffSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA45D0A128FAF6650073515C /* PlayoffSeries.swift */; };
 		CA45D0A328FAF6650073515C /* PlayoffSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA45D0A128FAF6650073515C /* PlayoffSeries.swift */; };
@@ -1187,6 +1192,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA25ABD6294E4108002FA8A6 /* app_pp_en.md in Resources */,
+				CA2D5175294F773200CF465E /* Assets.xcassets in Resources */,
 				CA25ABDC294E4108002FA8A6 /* app_pp_de.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1196,6 +1202,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA25ABD5294E4108002FA8A6 /* app_pp_en.md in Resources */,
+				CA2D5174294F773100CF465E /* Assets.xcassets in Resources */,
 				CA25ABDB294E4108002FA8A6 /* app_pp_de.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1227,6 +1234,7 @@
 				CA25ABD7294E4108002FA8A6 /* app_pp_en.md in Resources */,
 				CA940B8B292A963A00D91508 /* Localizable.strings in Resources */,
 				CA25ABDD294E4108002FA8A6 /* app_pp_de.md in Resources */,
+				CA2D5173294F772A00CF465E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1479,7 +1487,9 @@
 			files = (
 				CADB993828FFF58F0061D1B3 /* TeamLogoWidgetView.swift in Sources */,
 				CADB993A28FFF5FE0061D1B3 /* TeamLogoWidgetData.swift in Sources */,
+				CA2D5171294F754F00CF465E /* TeamImageData.swift in Sources */,
 				CADB993928FFF5FB0061D1B3 /* LogoEntry.swift in Sources */,
+				CA2D5172294F758A00CF465E /* ColorSets.swift in Sources */,
 				CADB993B28FFF6090061D1B3 /* WidgetSkylarks.swift in Sources */,
 				CA25ABCF294E3BAF002FA8A6 /* MarkdownFile.swift in Sources */,
 				CADB992F28FFF5320061D1B3 /* Complication.intentdefinition in Sources */,

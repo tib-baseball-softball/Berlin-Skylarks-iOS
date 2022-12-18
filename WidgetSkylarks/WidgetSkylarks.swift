@@ -61,6 +61,7 @@ struct SkylarksWidgetBundle: WidgetBundle {
         FavoriteTeamWidget()
         //GamedayWidget()
 #endif
-        TeamLogoWidget()
+        //MARK: comment me back in when loading the image on a physical watch works
+        //TeamLogoWidget()
     }
 }
