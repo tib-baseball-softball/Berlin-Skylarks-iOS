@@ -75,19 +75,16 @@
 		CA25ABCC294E3BAF002FA8A6 /* MarkdownFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA25ABC9294E3BAE002FA8A6 /* MarkdownFile.swift */; };
 		CA25ABCD294E3BAF002FA8A6 /* MarkdownFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA25ABC9294E3BAE002FA8A6 /* MarkdownFile.swift */; };
 		CA25ABCE294E3BAF002FA8A6 /* MarkdownFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA25ABC9294E3BAE002FA8A6 /* MarkdownFile.swift */; };
-		CA25ABCF294E3BAF002FA8A6 /* MarkdownFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA25ABC9294E3BAE002FA8A6 /* MarkdownFile.swift */; };
 		CA25ABD2294E4108002FA8A6 /* app_pp_en.md in Resources */ = {isa = PBXBuildFile; fileRef = CA25ABD0294E4108002FA8A6 /* app_pp_en.md */; };
 		CA25ABD3294E4108002FA8A6 /* app_pp_en.md in Resources */ = {isa = PBXBuildFile; fileRef = CA25ABD0294E4108002FA8A6 /* app_pp_en.md */; };
 		CA25ABD4294E4108002FA8A6 /* app_pp_en.md in Resources */ = {isa = PBXBuildFile; fileRef = CA25ABD0294E4108002FA8A6 /* app_pp_en.md */; };
 		CA25ABD5294E4108002FA8A6 /* app_pp_en.md in Resources */ = {isa = PBXBuildFile; fileRef = CA25ABD0294E4108002FA8A6 /* app_pp_en.md */; };
 		CA25ABD6294E4108002FA8A6 /* app_pp_en.md in Resources */ = {isa = PBXBuildFile; fileRef = CA25ABD0294E4108002FA8A6 /* app_pp_en.md */; };
-		CA25ABD7294E4108002FA8A6 /* app_pp_en.md in Resources */ = {isa = PBXBuildFile; fileRef = CA25ABD0294E4108002FA8A6 /* app_pp_en.md */; };
 		CA25ABD8294E4108002FA8A6 /* app_pp_de.md in Resources */ = {isa = PBXBuildFile; fileRef = CA25ABD1294E4108002FA8A6 /* app_pp_de.md */; };
 		CA25ABD9294E4108002FA8A6 /* app_pp_de.md in Resources */ = {isa = PBXBuildFile; fileRef = CA25ABD1294E4108002FA8A6 /* app_pp_de.md */; };
 		CA25ABDA294E4108002FA8A6 /* app_pp_de.md in Resources */ = {isa = PBXBuildFile; fileRef = CA25ABD1294E4108002FA8A6 /* app_pp_de.md */; };
 		CA25ABDB294E4108002FA8A6 /* app_pp_de.md in Resources */ = {isa = PBXBuildFile; fileRef = CA25ABD1294E4108002FA8A6 /* app_pp_de.md */; };
 		CA25ABDC294E4108002FA8A6 /* app_pp_de.md in Resources */ = {isa = PBXBuildFile; fileRef = CA25ABD1294E4108002FA8A6 /* app_pp_de.md */; };
-		CA25ABDD294E4108002FA8A6 /* app_pp_de.md in Resources */ = {isa = PBXBuildFile; fileRef = CA25ABD1294E4108002FA8A6 /* app_pp_de.md */; };
 		CA283D0D279D849000271DC1 /* StandingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740D26C292F900A57F66 /* StandingsTableView.swift */; };
 		CA283D0E279D953500271DC1 /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA056259CAC8E002A0FAB /* StandingsView.swift */; };
 		CA283D0F279DD56800271DC1 /* UserHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C427208A9200ADDE9D /* UserHomeView.swift */; };
@@ -95,9 +92,6 @@
 		CA28D66F27A0601B00680067 /* BSMLeagueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */; };
 		CA28D67027A0601B00680067 /* BSMLeagueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */; };
 		CA28FB90280DDDC6007581FD /* HomeTeamDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28FB8F280DDDC6007581FD /* HomeTeamDetailView.swift */; };
-		CA2D5171294F754F00CF465E /* TeamImageData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E03672819ABAA00E2FF8F /* TeamImageData.swift */; };
-		CA2D5172294F758A00CF465E /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
-		CA2D5173294F772A00CF465E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
 		CA2D5174294F773100CF465E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
 		CA2D5175294F773200CF465E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
 		CA3C4C2F28B40C3400F72841 /* BerlinSkylarksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4C2E28B40C3400F72841 /* BerlinSkylarksTests.swift */; };
@@ -194,7 +188,6 @@
 		CA890D4F28874BB700EC862D /* ClubInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA890D4D28874BB700EC862D /* ClubInfoSection.swift */; };
 		CA940B85292A963A00D91508 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA940B83292A963A00D91508 /* InfoPlist.strings */; };
 		CA940B88292A963A00D91508 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA940B86292A963A00D91508 /* Localizable.strings */; };
-		CA940B8B292A963A00D91508 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA940B89292A963A00D91508 /* Localizable.strings */; };
 		CA940B91292A963A00D91508 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA940B8F292A963A00D91508 /* InfoPlist.strings */; };
 		CA940B9F2943D0BE00D91508 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA940B9D2943D0BE00D91508 /* Localizable.strings */; };
 		CA9A89B12739B193001BBFA8 /* SettingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA04A2598F449002A0FAB /* SettingsListView.swift */; };
@@ -286,17 +279,6 @@
 		CAD42719280BF1C3001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CAD4271A280BF1C6001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CAD4271C280DB10B001CA68A /* ScoresOverViewFull.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4271B280DB10B001CA68A /* ScoresOverViewFull.swift */; };
-		CADB992628FFF5300061D1B3 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134822771F2E000DFA745 /* WidgetKit.framework */; };
-		CADB992728FFF5300061D1B3 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
-		CADB992A28FFF5300061D1B3 /* Complication.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADB992928FFF5300061D1B3 /* Complication.swift */; };
-		CADB992D28FFF5320061D1B3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CADB992C28FFF5320061D1B3 /* Assets.xcassets */; };
-		CADB992F28FFF5320061D1B3 /* Complication.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CADB992B28FFF5300061D1B3 /* Complication.intentdefinition */; };
-		CADB993028FFF5320061D1B3 /* Complication.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CADB992B28FFF5300061D1B3 /* Complication.intentdefinition */; };
-		CADB993328FFF5320061D1B3 /* ComplicationExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CADB992528FFF5300061D1B3 /* ComplicationExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CADB993828FFF58F0061D1B3 /* TeamLogoWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C4D28FEF171005ACFA7 /* TeamLogoWidgetView.swift */; };
-		CADB993928FFF5FB0061D1B3 /* LogoEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C5128FEF74B005ACFA7 /* LogoEntry.swift */; };
-		CADB993A28FFF5FE0061D1B3 /* TeamLogoWidgetData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C5428FEF7B4005ACFA7 /* TeamLogoWidgetData.swift */; };
-		CADB993B28FFF6090061D1B3 /* WidgetSkylarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE134872771F2E000DFA745 /* WidgetSkylarks.swift */; };
 		CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
 		CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE134872771F2E000DFA745 /* WidgetSkylarks.swift */; };
 		CAE1348B2771F2E100DFA745 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAE1348A2771F2E100DFA745 /* Assets.xcassets */; };
@@ -336,13 +318,6 @@
 			remoteGlobalIDString = CA65FF4327F5EC4400F7845D;
 			remoteInfo = "Skylarks Intents";
 		};
-		CAAEBB11292A8AFB0088B91C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = CABF7BE3259351D400B95813 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = CADB992428FFF5300061D1B3;
-			remoteInfo = ComplicationExtension;
-		};
 		CAE1348F2771F2E100DFA745 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CABF7BE3259351D400B95813 /* Project object */;
@@ -370,7 +345,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 13;
 			files = (
-				CADB993328FFF5320061D1B3 /* ComplicationExtension.appex in Embed Foundation Extensions */,
 			);
 			name = "Embed Foundation Extensions";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,7 +457,6 @@
 		CA890D4D28874BB700EC862D /* ClubInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubInfoSection.swift; sourceTree = "<group>"; };
 		CA940B84292A963A00D91508 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA940B87292A963A00D91508 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		CA940B8A292A963A00D91508 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CA940B90292A963A00D91508 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA940B9E2943D0BE00D91508 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
 		CA9A89B22739DEFE001BBFA8 /* ShareSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareSheet.swift; sourceTree = "<group>"; };
@@ -531,11 +504,6 @@
 		CACA4291284642DF008F21FF /* ClubStandingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubStandingsRow.swift; sourceTree = "<group>"; };
 		CACA42942848E684008F21FF /* ClubStandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubStandingsView.swift; sourceTree = "<group>"; };
 		CAD4271B280DB10B001CA68A /* ScoresOverViewFull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresOverViewFull.swift; sourceTree = "<group>"; };
-		CADB992528FFF5300061D1B3 /* ComplicationExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = ComplicationExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
-		CADB992928FFF5300061D1B3 /* Complication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Complication.swift; sourceTree = "<group>"; };
-		CADB992B28FFF5300061D1B3 /* Complication.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Complication.intentdefinition; sourceTree = "<group>"; };
-		CADB992C28FFF5320061D1B3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CADB992E28FFF5320061D1B3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetSkylarksExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE134822771F2E000DFA745 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		CAE134842771F2E000DFA745 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -579,15 +547,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CADB992228FFF5300061D1B3 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CADB992728FFF5300061D1B3 /* SwiftUI.framework in Frameworks */,
-				CADB992628FFF5300061D1B3 /* WidgetKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -785,7 +744,6 @@
 				CA65FF4727F5EC4400F7845D /* Skylarks Intents */,
 				CA65FF5227F5EC4400F7845D /* Skylarks IntentsUI */,
 				CA3C4C2D28B40C3400F72841 /* BerlinSkylarksTests */,
-				CADB992828FFF5300061D1B3 /* Complication */,
 				CAE134812771F2DF00DFA745 /* Frameworks */,
 				CABF7BEC259351D400B95813 /* Products */,
 			);
@@ -799,7 +757,6 @@
 				CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */,
 				CA65FF4427F5EC4400F7845D /* Skylarks Intents.appex */,
 				CA3C4C2C28B40C3400F72841 /* BerlinSkylarksTests.xctest */,
-				CADB992528FFF5300061D1B3 /* ComplicationExtension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -833,18 +790,6 @@
 				CABF7BF5259351D500B95813 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		CADB992828FFF5300061D1B3 /* Complication */ = {
-			isa = PBXGroup;
-			children = (
-				CADB992928FFF5300061D1B3 /* Complication.swift */,
-				CADB992B28FFF5300061D1B3 /* Complication.intentdefinition */,
-				CADB992C28FFF5320061D1B3 /* Assets.xcassets */,
-				CADB992E28FFF5320061D1B3 /* Info.plist */,
-				CA940B89292A963A00D91508 /* Localizable.strings */,
-			);
-			path = Complication;
 			sourceTree = "<group>";
 		};
 		CAE134812771F2DF00DFA745 /* Frameworks */ = {
@@ -1014,7 +959,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				CAAEBB12292A8AFB0088B91C /* PBXTargetDependency */,
 			);
 			name = WatchSkylarks;
 			productName = WatchSkylarks;
@@ -1078,23 +1022,6 @@
 			productReference = CABF7BEB259351D400B95813 /* Berlin Skylarks.app */;
 			productType = "com.apple.product-type.application";
 		};
-		CADB992428FFF5300061D1B3 /* ComplicationExtension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = CADB993428FFF5320061D1B3 /* Build configuration list for PBXNativeTarget "ComplicationExtension" */;
-			buildPhases = (
-				CADB992128FFF5300061D1B3 /* Sources */,
-				CADB992228FFF5300061D1B3 /* Frameworks */,
-				CADB992328FFF5300061D1B3 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = ComplicationExtension;
-			productName = ComplicationExtension;
-			productReference = CADB992528FFF5300061D1B3 /* ComplicationExtension.appex */;
-			productType = "com.apple.product-type.app-extension";
-		};
 		CAE1347F2771F2DF00DFA745 /* WidgetSkylarksExtension */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CAE134962771F2E100DFA745 /* Build configuration list for PBXNativeTarget "WidgetSkylarksExtension" */;
@@ -1134,9 +1061,6 @@
 					CABF7BEA259351D400B95813 = {
 						CreatedOnToolsVersion = 12.3;
 					};
-					CADB992428FFF5300061D1B3 = {
-						CreatedOnToolsVersion = 14.0.1;
-					};
 					CAE1347F2771F2DF00DFA745 = {
 						CreatedOnToolsVersion = 13.2.1;
 					};
@@ -1161,7 +1085,6 @@
 				CAE1347F2771F2DF00DFA745 /* WidgetSkylarksExtension */,
 				CA65FF4327F5EC4400F7845D /* Skylarks Intents */,
 				CA3C4C2B28B40C3400F72841 /* BerlinSkylarksTests */,
-				CADB992428FFF5300061D1B3 /* ComplicationExtension */,
 			);
 		};
 /* End PBXProject section */
@@ -1223,18 +1146,6 @@
 				CA25ABBC294E38A5002FA8A6 /* app_impressum_de.md in Resources */,
 				CABF7BF3259351D500B95813 /* Assets.xcassets in Resources */,
 				CAE7740A26C1702900A57F66 /* VLBB_2021_Standings.json in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		CADB992328FFF5300061D1B3 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CADB992D28FFF5320061D1B3 /* Assets.xcassets in Resources */,
-				CA25ABD7294E4108002FA8A6 /* app_pp_en.md in Resources */,
-				CA940B8B292A963A00D91508 /* Localizable.strings in Resources */,
-				CA25ABDD294E4108002FA8A6 /* app_pp_de.md in Resources */,
-				CA2D5173294F772A00CF465E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1320,7 +1231,6 @@
 				CA65FF3E27EA14E700F7845D /* TeamDetailView.swift in Sources */,
 				CA1CB20C27567E870007D24E /* BSMTeam.swift in Sources */,
 				CA1C39EA2731875800BB194C /* BSMGameScore.swift in Sources */,
-				CADB993028FFF5320061D1B3 /* Complication.intentdefinition in Sources */,
 				CAA7C1B4289DB0C600CC0615 /* FunctionaryIcon.swift in Sources */,
 				CAA7C1B1289DAF7F00CC0615 /* FunctionaryRow.swift in Sources */,
 				CA08D9B429198DF5000D8CC3 /* TeamsLoader.swift in Sources */,
@@ -1481,22 +1391,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CADB992128FFF5300061D1B3 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				CADB993828FFF58F0061D1B3 /* TeamLogoWidgetView.swift in Sources */,
-				CADB993A28FFF5FE0061D1B3 /* TeamLogoWidgetData.swift in Sources */,
-				CA2D5171294F754F00CF465E /* TeamImageData.swift in Sources */,
-				CADB993928FFF5FB0061D1B3 /* LogoEntry.swift in Sources */,
-				CA2D5172294F758A00CF465E /* ColorSets.swift in Sources */,
-				CADB993B28FFF6090061D1B3 /* WidgetSkylarks.swift in Sources */,
-				CA25ABCF294E3BAF002FA8A6 /* MarkdownFile.swift in Sources */,
-				CADB992F28FFF5320061D1B3 /* Complication.intentdefinition in Sources */,
-				CADB992A28FFF5300061D1B3 /* Complication.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		CAE1347C2771F2DF00DFA745 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -1569,11 +1463,6 @@
 			target = CA65FF4327F5EC4400F7845D /* Skylarks Intents */;
 			targetProxy = CA65FF5D27F5EC4400F7845D /* PBXContainerItemProxy */;
 		};
-		CAAEBB12292A8AFB0088B91C /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = CADB992428FFF5300061D1B3 /* ComplicationExtension */;
-			targetProxy = CAAEBB11292A8AFB0088B91C /* PBXContainerItemProxy */;
-		};
 		CAE134902771F2E100DFA745 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CAE1347F2771F2DF00DFA745 /* WidgetSkylarksExtension */;
@@ -1604,14 +1493,6 @@
 			children = (
 				CA940B87292A963A00D91508 /* de */,
 				CA9E4CDF2943D6BA00D82D3D /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		CA940B89292A963A00D91508 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA940B8A292A963A00D91508 /* de */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
@@ -1991,68 +1872,6 @@
 			};
 			name = Release;
 		};
-		CADB993528FFF5320061D1B3 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Complication/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Complication;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.watchkitapp.Complication";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = Debug;
-		};
-		CADB993628FFF5320061D1B3 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
-				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
-				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = Complication/Info.plist;
-				INFOPLIST_KEY_CFBundleDisplayName = Complication;
-				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-					"@executable_path/../../../../Frameworks",
-				);
-				MARKETING_VERSION = 1.1;
-				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.watchkitapp.Complication";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_EMIT_LOC_STRINGS = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
-			};
-			name = Release;
-		};
 		CAE134942771F2E100DFA745 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -2159,15 +1978,6 @@
 			buildConfigurations = (
 				CABF7C00259351D500B95813 /* Debug */,
 				CABF7C01259351D500B95813 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		CADB993428FFF5320061D1B3 /* Build configuration list for PBXNativeTarget "ComplicationExtension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				CADB993528FFF5320061D1B3 /* Debug */,
-				CADB993628FFF5320061D1B3 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

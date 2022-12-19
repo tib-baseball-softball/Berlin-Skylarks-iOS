@@ -69,6 +69,7 @@ struct ScoresView: View {
         var id: String { self.rawValue }
     }
     
+    //TODO: localise
     @State var selectedTeam = "All Teams"
     @State var selectedTeamID: Int = 0 // this is in fact a league ID now - TODO: rename me
     @State var selectedTimeframe = Gameday.current
