@@ -12,6 +12,15 @@ struct StreakBar: View {
     
     @ObservedObject var userDashboard: UserDashboard
     
+    var itemWidth: CGFloat {
+        //MARK: would need to be adjusted for watchOS if used there later
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            return 25
+        } else {
+            return 35
+        }
+    }
+    
     var body: some View {
         let data = userDashboard.createStreakDataEntries()
         Section(
@@ -19,21 +28,24 @@ struct StreakBar: View {
             footer: Text("Hot or cold - how is your team's season going?")
         ){
             VStack {
-                Chart {
-                    ForEach(data, id: \.self) { dataEntry in
-                        LineMark(x: .value("Gameday", dataEntry.game),
-                                 y: .value("Streak", dataEntry.winsCount)
-                        )
-                        .foregroundStyle(Color.secondary)
-                        PointMark(x: .value("Gameday", dataEntry.game),
-                                 y: .value("Streak", dataEntry.winsCount)
-                        )
-                        .foregroundStyle(dataEntry.wonGame ? Color.green : Color.red)
+                ScrollView(.horizontal) {
+                    Chart {
+                        ForEach(data, id: \.self) { dataEntry in
+                            LineMark(x: .value("Gameday", dataEntry.game),
+                                     y: .value("Streak", dataEntry.winsCount)
+                            )
+                            .foregroundStyle(Color.secondary)
+                            PointMark(x: .value("Gameday", dataEntry.game),
+                                     y: .value("Streak", dataEntry.winsCount)
+                            )
+                            .foregroundStyle(dataEntry.wonGame ? Color.green : Color.red)
+                        }
                     }
+                    .chartXAxisLabel(LocalizedStringKey("Gamedays"))
+                    .chartYAxisLabel(LocalizedStringKey("Wins Count"))
+                    .padding(.vertical)
+                    .frame(width: CGFloat(data.count) * itemWidth)
                 }
-                .chartXAxisLabel("Gamedays")
-                .chartYAxisLabel("Wins Count")
-                .padding(.vertical)
                 Text(userDashboard.tableRow.streak)
                 //Text("W6") //DEBUG
                     .font(.title)
