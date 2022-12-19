@@ -37,7 +37,7 @@ struct StandingsView: View {
         loadingInProgress = true
         
         do {
-           leagueGroups = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
+            leagueGroups = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
         } catch {
             print("Request failed with error: \(error)")
         }
@@ -58,27 +58,27 @@ struct StandingsView: View {
     
     var body: some View {
         ZStack {
-            #if !os(watchOS)
+#if !os(watchOS)
             Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
                 .edgesIgnoringSafeArea(.all)
-            #endif
+#endif
             List {
                 Section(header:
-                    HStack {
-                        Text("Club Team Records")
-                        Spacer()
-                        Text("Season: " + String(selectedSeason))
+                            HStack {
+                    Text("Club Team Records")
+                    Spacer()
+                    Text("Season: " + String(selectedSeason))
                 },
                         footer: Text("How are our teams doing?")) {
                     if loadingInProgress == false && !leagueTableArray.isEmpty {
                         NavigationLink(destination: ClubStandingsView(leagueTables: leagueTableArray)) {
                             HStack {
                                 Image(systemName: "person.3")
-                                #if !os(watchOS)
+#if !os(watchOS)
                                     .foregroundColor(.skylarksDynamicNavySand)
-                                #else
+#else
                                     .foregroundColor(.skylarksSand)
-                                #endif
+#endif
                                 Text("See records for all teams")
                             }
                             .padding(.vertical)
@@ -96,29 +96,26 @@ struct StandingsView: View {
                     if loadingInProgress == true {
                         LoadingView()
                     } else {
-                        ForEach(leagueTableArray, id: \.self) { LeagueTable in
-                            
-                            NavigationLink(
-                                destination: StandingsTableView(leagueTable: LeagueTable),
-                                label: {
+                        ForEach(leagueTableArray, id: \.self) { leagueTable in
+                            NavigationLink(destination: StandingsTableView(leagueTable: leagueTable)) {
+                                HStack {
+                                    Image(systemName: "tablecells")
+                                        .padding(.trailing, 3)
+                                        .foregroundColor(Color.accentColor)
                                     HStack {
-                                        Image(systemName: "tablecells")
-                                            .padding(.trailing, 3)
-                                            .foregroundColor(Color.accentColor)
-                                        HStack {
-                                            //von hinten durch die Brust ins Auge
-                                            let favTeam = teamsLoader.getFavoriteTeam(favID: favoriteTeamID)
-                                            Text(LeagueTable.league_name)
-                                            if !favTeam.league_entries.isEmpty {
-                                                //MARK: check, it might be needed to switch to "contains" should names diverge at some point
-                                                if favTeam.league_entries[0].league.name == LeagueTable.league_name {
-                                                    Image(systemName: "star")
-                                                        .foregroundColor(.skylarksRed)
-                                                }
+                                        //von hinten durch die Brust ins Auge
+                                        let favTeam = teamsLoader.getFavoriteTeam(favID: favoriteTeamID)
+                                        Text(leagueTable.league_name)
+                                        if !favTeam.league_entries.isEmpty {
+                                            //MARK: check, it might be needed to switch to "contains" should names diverge at some point
+                                            if favTeam.league_entries[0].league.name == leagueTable.league_name {
+                                                Image(systemName: "star")
+                                                    .foregroundColor(.skylarksRed)
                                             }
                                         }
                                     }
-                                })
+                                }
+                            }
                         }
                         .padding(.vertical, 2)
                     }
@@ -129,26 +126,25 @@ struct StandingsView: View {
             }
             //this doesn't work - still crashes
             .animation(.default, value: leagueTableArray)
-            #if !os(macOS)
+#if !os(macOS)
             .refreshable {
                 leagueTableArray = []
                 await loadAllTables()
             }
-            #endif
+#endif
             
             .listStyle( {
-              #if os(watchOS)
+#if os(watchOS)
                 .automatic
-              #else
+#else
                 .insetGrouped
-              #endif
+#endif
             } () )
             .frame(maxWidth: 600)
             
             .navigationTitle("Standings")
             
-            //Fix on iPhone seems to work for now even without a container view, please double-check in practice!
-            
+            // Fix on iPhone seems to work for now even without a container view
             .onAppear(perform: {
                 if leagueTableArray.isEmpty && tablesLoaded == false {
                     Task {
@@ -175,11 +171,11 @@ struct StandingsView: View {
 
 struct StandingsView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationStack {
             StandingsView()
-            .preferredColorScheme(.dark)
+                .preferredColorScheme(.dark)
             //.previewInterfaceOrientation(.landscapeLeft)
-            .environmentObject(NetworkManager())
+                .environmentObject(NetworkManager())
         }
     }
 }

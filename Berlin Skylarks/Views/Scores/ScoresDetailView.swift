@@ -24,15 +24,6 @@ struct ScoresDetailView: View {
     
     @State private var calendarTitles = [String]()
     
-    @State var roadLogo = away_team_logo
-    @State var homeLogo = home_team_logo
-    
-    func setLogos() {
-        let logos = fetchCorrectLogos(gamescore: gamescore)
-        roadLogo = logos.road
-        homeLogo = logos.home
-    }
-    
 #if !os(watchOS)
     
     func checkAccess() async {
@@ -64,6 +55,8 @@ struct ScoresDetailView: View {
     var gamescore: GameScore
     
     var body: some View {
+        let logos = fetchCorrectLogos(gamescore: gamescore)
+        
         #if !os(watchOS)
         List {
             Section(header: Text("Main info")) {
@@ -80,7 +73,7 @@ struct ScoresDetailView: View {
                         VStack {
                             Text("Road", comment: "reference to the road team")
                                 .bold()
-                            roadLogo
+                            logos.road
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50, alignment: .center)
@@ -92,7 +85,7 @@ struct ScoresDetailView: View {
                         VStack {
                             Text("Home", comment: "Reference to the home team")
                                 .bold()
-                            homeLogo
+                            logos.home
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50, alignment: .center)
@@ -196,9 +189,6 @@ struct ScoresDetailView: View {
                 ShareLink(item: shareItem)
             }
         }
-        .onAppear(perform: {
-            setLogos()
-        })
         
         #endif
         
@@ -214,7 +204,7 @@ struct ScoresDetailView: View {
             Section(header: Text("Score")) {
                 VStack {
                     HStack {
-                        roadLogo
+                        logos.road
                             .resizable()
                             .scaledToFit()
                             .frame(maxWidth: 30, alignment: .center)
@@ -231,7 +221,7 @@ struct ScoresDetailView: View {
                         }
                     }
                     HStack {
-                        homeLogo
+                        logos.home
                             .resizable()
                             .scaledToFit()
                             .frame(maxWidth: 30, alignment: .center)
@@ -272,10 +262,6 @@ struct ScoresDetailView: View {
         }
         .listStyle(.automatic)
         .navigationTitle("Game Details")
-        
-        .onAppear(perform: {
-            setLogos()
-        })
         #endif
     }
     
