@@ -11,28 +11,28 @@ struct BallparkView: View {
     @ObservedObject var clubData: ClubData
     
     var body: some View {
-        List {
-            Section {
-                ForEach(clubData.fieldObjects, id: \.id) { fieldObject in
-                    NavigationLink(destination: BallparkDetailView(fieldObject: fieldObject)) {
-                        BallparkRow(fieldObject: fieldObject)
+        NavigationStack {
+            List {
+                Section {
+                    ForEach(clubData.fieldObjects, id: \.id) { fieldObject in
+                        NavigationLink(destination: BallparkDetailView(fieldObject: fieldObject)) {
+                            BallparkRow(fieldObject: fieldObject)
+                        }
                     }
                 }
             }
-        }
-        .navigationTitle("Ballpark")
-        .animation(.default, value: clubData.fieldObjects)
-        
-        .refreshable {
-            await clubData.loadFields()
+            .navigationTitle("Ballpark")
+            .animation(.default, value: clubData.fieldObjects)
+            
+            .refreshable {
+                await clubData.loadFields()
+            }
         }
     }
 }
 
 struct BallparkView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
-            BallparkView(clubData: ClubData())
-        }
+        BallparkView(clubData: ClubData())
     }
 }
