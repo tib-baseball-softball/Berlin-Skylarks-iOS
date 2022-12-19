@@ -63,11 +63,10 @@ struct StandingsView: View {
                 .edgesIgnoringSafeArea(.all)
 #endif
             List {
-                Section(header:
-                            HStack {
+                Section(header: HStack {
                     Text("Club Team Records")
                     Spacer()
-                    Text("Season: " + String(selectedSeason))
+                    Text("Season: ") + Text(String(selectedSeason))
                 },
                         footer: Text("How are our teams doing?")) {
                     if loadingInProgress == false && !leagueTableArray.isEmpty {
@@ -93,6 +92,8 @@ struct StandingsView: View {
                 //Text(leagueGroups.debugDescription)
                 Section(header: Text("League Standings"),
                         footer: Text("Please select a league for comprehensive data.")) {
+                    let favTeam = teamsLoader.getFavoriteTeam(favID: favoriteTeamID)
+                    
                     if loadingInProgress == true {
                         LoadingView()
                     } else {
@@ -104,7 +105,6 @@ struct StandingsView: View {
                                         .foregroundColor(Color.accentColor)
                                     HStack {
                                         //von hinten durch die Brust ins Auge
-                                        let favTeam = teamsLoader.getFavoriteTeam(favID: favoriteTeamID)
                                         Text(leagueTable.league_name)
                                         if !favTeam.league_entries.isEmpty {
                                             //MARK: check, it might be needed to switch to "contains" should names diverge at some point
