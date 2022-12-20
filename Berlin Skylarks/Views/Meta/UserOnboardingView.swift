@@ -72,6 +72,8 @@ struct UserOnboardingView: View {
                                    label:
                                         Text("Favorite Team")
                             ) {
+                                Text("No Team")
+                                    .tag(noTeamID)
                                 ForEach(teams, id: \.self) { team in
                                     if !team.league_entries.isEmpty {
                                         Text("\(team.name) (\(team.league_entries[0].league.name))")

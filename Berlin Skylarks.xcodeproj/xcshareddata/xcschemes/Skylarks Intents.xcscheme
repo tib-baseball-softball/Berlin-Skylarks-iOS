@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1320"
+   LastUpgradeVersion = "1410"
+   wasCreatedForAppExtension = "YES"
    version = "2.0">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,9 +15,9 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CA1C39A32731856B00BB194C"
-               BuildableName = "Skylarks.app"
-               BlueprintName = "WatchSkylarks"
+               BlueprintIdentifier = "CA65FF4327F5EC4400F7845D"
+               BuildableName = "Skylarks Intents.appex"
+               BlueprintName = "Skylarks Intents"
                ReferencedContainer = "container:Berlin Skylarks.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
@@ -42,37 +43,27 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
-         <TestableReference
-            skipped = "NO">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CA3C4C2B28B40C3400F72841"
-               BuildableName = "BerlinSkylarksTests.xctest"
-               BlueprintName = "BerlinSkylarksTests"
-               ReferencedContainer = "container:Berlin Skylarks.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
       </Testables>
    </TestAction>
    <LaunchAction
       buildConfiguration = "Debug"
-      selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
-      selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
+      selectedDebuggerIdentifier = ""
+      selectedLauncherIdentifier = "Xcode.IDEFoundation.Launcher.PosixSpawn"
       launchStyle = "0"
+      askForAppToLaunch = "Yes"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES"
-      launchAutomaticallySubstyle = "32"
-      notificationPayloadFile = "WatchSkylarks WatchKit Extension/PushNotificationPayload.apns">
+      launchAutomaticallySubstyle = "2">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA1C39A32731856B00BB194C"
-            BuildableName = "Skylarks.app"
-            BlueprintName = "WatchSkylarks"
+            BlueprintIdentifier = "CABF7BEA259351D400B95813"
+            BuildableName = "Berlin Skylarks.app"
+            BlueprintName = "Berlin Skylarks"
             ReferencedContainer = "container:Berlin Skylarks.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
@@ -83,14 +74,15 @@
       savedToolIdentifier = ""
       useCustomWorkingDirectory = "NO"
       debugDocumentVersioning = "YES"
-      launchAutomaticallySubstyle = "32">
+      askForAppToLaunch = "Yes"
+      launchAutomaticallySubstyle = "2">
       <BuildableProductRunnable
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "CA1C39A32731856B00BB194C"
-            BuildableName = "Skylarks.app"
-            BlueprintName = "WatchSkylarks"
+            BlueprintIdentifier = "CABF7BEA259351D400B95813"
+            BuildableName = "Berlin Skylarks.app"
+            BlueprintName = "Berlin Skylarks"
             ReferencedContainer = "container:Berlin Skylarks.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>

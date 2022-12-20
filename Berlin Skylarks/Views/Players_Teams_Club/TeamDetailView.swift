@@ -7,9 +7,6 @@
 
 import SwiftUI
 
-let previewImageSize: CGFloat = 50.0
-let SpacerWidth: CGFloat = 15
-
 struct PlayerDetailListHeader: View {
     var body: some View {
         HStack {
@@ -27,6 +24,7 @@ struct TeamDetailView: View {
     @Environment(\.colorScheme) var colorScheme
     
     var team: BSMTeam
+    let listRowPadding:CGFloat = 3
     
     var body: some View {
         ZStack {
@@ -40,23 +38,23 @@ struct TeamDetailView: View {
                         Image(systemName: "person.3.fill")
                         Text(team.name)
                     }
-                    .padding(.vertical)
+                    .padding(.vertical, listRowPadding)
                     if !team.league_entries.isEmpty {
                         HStack {
                             Image(systemName: "list.number")
                             Text(team.league_entries[0].league.name)
                         }
-                        .padding(.vertical)
+                        .padding(.vertical, listRowPadding)
                         HStack {
                             Image(systemName: "calendar")
                             Text(String(team.league_entries[0].league.season))
                         }
-                        .padding(.vertical)
+                        .padding(.vertical, listRowPadding)
                         HStack {
                             LicenseSportIndicator(baseball: team.league_entries[0].league.sport.contains("Baseball") ? true : false)
                             Text(String(team.league_entries[0].league.sport))
                         }
-                        .padding(.vertical)
+                        .padding(.vertical, listRowPadding)
                         //check if there is ever a need to display the classification separately - it's usually the same as the league name
     //                    HStack {
     //                        Image(systemName: "calendar")
@@ -68,11 +66,11 @@ struct TeamDetailView: View {
                                 Image(systemName: "note")
                                 Text(String(ageGroup))
                             }
-                            .padding(.vertical)
+                            .padding(.vertical, listRowPadding)
                         }
                     }
                 }
-                //TODO: maybe for a later feature (needs to be blocked for general public as player lists are sensitive data)
+                //MARK: maybe for a later feature (needs to be blocked for general public as player lists are sensitive data)
 //                Section(header: Text("Player profiles")) {
 //                    NavigationLink(destination: Text("Player List here")) {
 //                        HStack {

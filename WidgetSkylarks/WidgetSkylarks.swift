@@ -9,6 +9,20 @@ import WidgetKit
 import SwiftUI
 import Intents
 
+struct TeamLogoWidget: Widget {
+    let kind = "LogoWidget"
+    
+    var body: some WidgetConfiguration {
+        StaticConfiguration(kind: kind, provider: TeamLogoProvider()) { entry in
+            TeamLogoEntryView(entry: entry)
+        }
+        .configurationDisplayName("Team Logo")
+        .description("Show off your team pride with the Skylarks team logo")
+        .supportedFamilies([.accessoryCircular])
+    }
+}
+
+#if !os(watchOS)
 struct GamedayWidget: Widget {
     let kind: String = "GamedayWidget"
     
@@ -33,16 +47,21 @@ struct FavoriteTeamWidget: Widget {
         .configurationDisplayName("Team Overview")
         .description("Shows info about your favorite Skylarks team.")
         
-        //TODO: add support for extraLarge
-        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        //MARK: add support for extraLarge
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryInline, .accessoryCircular, .accessoryRectangular])
     }
 }
+#endif
 
 @main
 struct SkylarksWidgetBundle: WidgetBundle {
     @WidgetBundleBuilder
     var body: some Widget {
+#if !os(watchOS)
         FavoriteTeamWidget()
-        GamedayWidget()
+        //GamedayWidget()
+#endif
+        //MARK: comment me back in when loading the image on a physical watch works
+        //TeamLogoWidget()
     }
 }

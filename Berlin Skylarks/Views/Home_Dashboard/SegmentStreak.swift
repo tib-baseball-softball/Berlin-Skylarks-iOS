@@ -11,20 +11,23 @@ struct SegmentStreak: View {
     
     @ObservedObject var userDashboard: UserDashboard
     
+    let startValue: Double = 10
+    let maxValue: Double = 20
+    
     private func getStreak() -> Double {
         //Internal logic: Losing Streak from L10 to Winning Streak W10. This gets converted to a simple scale from 0 to 20 and used as values for the slider. Every streak longer than 10 gets subsumed (should it ever happen).
         
         let streak = userDashboard.tableRow.streak
         //we start at 10 - right in the middle if there is no other data
-        var streakNumber: Double = 10
+        var streakNumber: Double = startValue
         
         if streak.contains("W") {
             if let number = Int(streak.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
-                streakNumber = Double(number) + 10
+                streakNumber = Double(number) + startValue
             }
         } else if streak.contains("L") {
             if let number = Int(streak.components(separatedBy: CharacterSet.decimalDigits.inverted).joined()) {
-                streakNumber = 10 - Double(number)
+                streakNumber = startValue - Double(number)
             }
         }
         return streakNumber
@@ -73,10 +76,8 @@ struct SegmentStreak: View {
     }
     
     var body: some View {
-        //calculate the correct value
         let value = getStreak()
-        //we pass along the calculated value and a static 20
-        StreakBar(userDashboard: userDashboard, value: value, total: 20)
+        StreakBar(userDashboard: userDashboard)
         
         let emoji = getEmoji(streakNumber: value)
         StreakEmoji(emoji: emoji)
@@ -86,7 +87,7 @@ struct SegmentStreak: View {
 struct SegmentStreak_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            SegmentStreak(userDashboard: dummyDashboard)
+            SegmentStreak(userDashboard: UserDashboard())
         }
         //.preferredColorScheme(.dark)
     }

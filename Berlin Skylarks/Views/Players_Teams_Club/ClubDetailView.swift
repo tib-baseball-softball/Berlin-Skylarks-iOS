@@ -51,7 +51,7 @@ struct ClubDetailView: View {
 #endif
             Section {
                 HStack {
-                    Image(systemName: "flag.2.crossed.fill")
+                    Image(systemName: "trophy")
                         .clubIconStyleRed()
                     Text("Achievements")
                         .font(.headline)

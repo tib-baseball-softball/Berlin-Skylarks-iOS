@@ -1,0 +1,562 @@
+"Team Overview" = "Teamübersicht";
+
+"Shows info about your favorite Skylarks team." = "Zeigt Infos über dein Lieblingsteam.";
+
+"Selected Team" = "Gewähltes Team";
+
+"Show non-Skylarks Games" = "Zeige externe Spiele";
+
+"Visit the team website" = "Besuche die Team-Webseite";
+
+"Contribute on GitHub" = "Auf GitHub beitragen";
+
+"Contact the developer" = "Entwickler kontaktieren";
+
+"Save favorite team" = "Lieblingsteam speichern";
+
+"Loading data..." = "Datenabruf läuft...";
+
+"Chart" = "Graph";
+
+"Percentage" = "Prozentsatz";
+
+"Streak" = "Serie";
+
+"Favorite Team Details" = "Team-Details";
+
+"Team Records" = "Team-Bilanzen";
+
+"Selected Season: " = "Gewählte Saison: ";
+
+"Previous" = "Vorheriger";
+
+"Current" = "Aktueller";
+
+"Next" = "Nächster";
+
+"Any" = "Alle";
+
+"Contact Details" = "Kontaktdetails";
+
+"Club Officials" = "Funktionäre";
+
+"Officials" = "Funktionäre";
+
+"Ballpark" = "Ballpark";
+
+"Ballpark Detail" = "Ballpark-Details";
+
+"Team Scorers" = "Team-Scorer";
+
+"Team Umpires" = "Team-Umpire";
+
+"Detailed Info" = "Detail-Infos";
+
+"Capacity: " = "Kapazität: ";
+
+"Seats: " = "Sitzplätze: ";
+
+"Selected Season: " = " Gewählte Saison: ";
+
+"Save to calendar" = "Kalenderexport";
+
+"Choose a calendar for exporting" = "Wähle einen Kalender für den Spielexport";
+
+"No access to calendar" = "Kein Zugriff auf Kalender";
+
+"No network connection" = "Keine Netzwerkverbindung";
+
+"Game Details" = "Spieldetails";
+
+"Link to Scoresheet" = "Link zum Scoresheet";
+
+"Officials" = "Funktionäre";
+
+"Details" = "Details";
+
+"Gamedays" = "Spieltage";
+
+"Wins Count" = "Sieganzahl";
+
+"Series Length: " = "Länge der Serie: ";
+
+"Season: " = "Saison: ";
+
+"Season" = "Saison";
+
+/* No comment provided by engineer. */
+"-" = "-";
+
+/* No comment provided by engineer. */
+"%" = "%";
+
+/* No comment provided by engineer. */
+"%@ lead series" = "%@ führen in der Serie";
+
+/* No comment provided by engineer. */
+"%@ Playoff Game %@" = "%1$@ Playoff-Spiel %2$@";
+
+/* No comment provided by engineer. */
+"%@ win series" = "%@ gewinnen die Serie";
+
+/* No comment provided by engineer. */
+"25" = "25";
+
+/* No comment provided by engineer. */
+"A" = "A";
+
+/* No comment provided by engineer. */
+"About the team" = "Über das Team";
+
+/* No comment provided by engineer. */
+"Accept selection" = "Auswahl bestätigen";
+
+/* No comment provided by engineer. */
+"Achievements" = "Erfolge";
+
+/* No comment provided by engineer. */
+"Age" = "Alter";
+
+/* No comment provided by engineer. */
+"All games have been saved." = "Alle Spiele wurden gespeichert.";
+
+/* No comment provided by engineer. */
+"App Info" = "Info über die App";
+
+/* No comment provided by engineer. */
+"App Name:" = "App-Name:";
+
+/* No comment provided by engineer. */
+"App Version:" = "App-Version:";
+
+/* No comment provided by engineer. */
+"Baseball" = "Baseball";
+
+/* No comment provided by engineer. */
+"Bats" = "Schlägt";
+
+/* No comment provided by engineer. */
+"BB" = "BB";
+
+/* No comment provided by engineer. */
+"Build Number:" = "Build-Nummer:";
+
+/* No comment provided by engineer. */
+"C" = "C";
+
+/* No comment provided by engineer. */
+"Capacity: %@" = "Kapazität: %@";
+
+/* main navigation
+   tab view */
+"Club" = "Verein";
+
+/* No comment provided by engineer. */
+"Club Member since" = "Vereinsmitglied seit";
+
+/* No comment provided by engineer. */
+"Club Team Records" = "Bilanzen aller Teams";
+
+/* No comment provided by engineer. */
+"Club Total" = "Gesamt für Verein";
+
+/* No comment provided by engineer. */
+"Clubhouse champagne celebration or dugout fights?" = "Champagner-Party im Clubhouse oder Streit im Dugout?";
+
+/* No comment provided by engineer. */
+"Dashboard" = "Dashboard";
+
+/* No comment provided by engineer. */
+"Directions" = "Anfahrt";
+
+/* No comment provided by engineer. */
+"Disclaimer: All license data is derived from BSM and managed by the BSVBB. The club has no control over the displayed data." = "Disclaimer: Alle Lizenzdaten werden aus BSM gezogen und vom BSVBB verwaltet. Der Verein hat keinerlei Kontrolle, welche Daten hier angezeigt werden.";
+
+/* No comment provided by engineer. */
+"F" = "F";
+
+/* No comment provided by engineer. */
+"Favorite Team" = "Lieblingsteam";
+
+/* No comment provided by engineer. */
+"Filter" = "Filtern";
+
+/* No comment provided by engineer. */
+"Game Action" = "Spielbetrieb";
+
+/* No comment provided by engineer. */
+"Game has been saved to calendar" = "Das Spiel wurde im Kalender gespeichert.";
+
+/* No comment provided by engineer. */
+"Game officials" = "Offizielle";
+
+/* No comment provided by engineer. */
+"Game time" = "Spielrelevantes";
+
+/* No comment provided by engineer. */
+"Gameday:" = "Spieltag:";
+
+/* No comment provided by engineer. */
+"Games" = "Spiele";
+
+/* No comment provided by engineer. */
+"GB" = "GB";
+
+/* No comment provided by engineer. */
+"General Data" = "Allgemeine Daten";
+
+/* No comment provided by engineer. */
+"Get involved" = "Mitmachen";
+
+/* No comment provided by engineer. */
+"Hello World" = "Hallo Welt";
+
+/* main navigation
+   Reference to the home team
+   refers to the home tab in the tab view */
+"Home" = "Heim";
+
+/* main navigation
+   Reference to the home team
+   refers to the home tab in the tab view */
+"HomeTab" = "Home";
+
+/* No comment provided by engineer. */
+"Hot or cold - how is your team's season going?" = "Gut drauf oder eher schleppend - wie läuft's für dein Team diese Saison?";
+
+/* No comment provided by engineer. */
+"How are our teams doing?" = "Wie läuft es bei den Teams im Verein?";
+
+/* No comment provided by engineer. */
+"Information" = "Information";
+
+/* No comment provided by engineer. */
+"Jersey Number" = "Trikotnummer";
+
+/* No comment provided by engineer. */
+"L" = "L";
+
+/* No comment provided by engineer. */
+"Latest Score" = "Letztes Spiel";
+
+/* No comment provided by engineer. */
+"League" = "Liga";
+
+/* No comment provided by engineer. */
+"League Standings" = "Ligatabellen";
+
+/* No comment provided by engineer. */
+"Legal info" = "Rechtliche Infos";
+
+/* No comment provided by engineer. */
+"Legal Notice" = "Impressum";
+
+/* No comment provided by engineer. */
+"Legend:\nW: Wins\nL: Losses\n%: Winning Percentage" = "Legende:\nW: Siege\nL: Niederlagen\n%: Prozentsatz an Siegen";
+
+/* No comment provided by engineer. */
+"Legend:\nW: Wins\nL: Losses\n%: Winning Percentage\nGB: Games Behind (first place, assuming no ties)\nSrk: Streak (winning or losing)" = "Legende:\nW: Siege\nL: Niederlagen\n%: Prozentsatz an Siegen\nGB: Anzahl an Spielen, die der Erste voraushat\nSrk: Streak (aktuelle Serie)";
+
+/* No comment provided by engineer. */
+"Licenses" = "Lizenzen";
+
+/* No comment provided by engineer. */
+"Loading teams for current season..." = "Lade Teams für aktuelle Saison...";
+
+/* No comment provided by engineer. */
+"Location" = "Ort";
+
+/* No comment provided by engineer. */
+"Main" = "Haupt";
+
+/* No comment provided by engineer. */
+"Main info" = "Hauptinfos";
+
+/* No comment provided by engineer. */
+"Name" = "Name";
+
+/* No comment provided by engineer. */
+"News" = "News";
+
+/* No comment provided by engineer. */
+"Next Game" = "Nächstes Spiel";
+
+/* No comment provided by engineer. */
+"No active network connection has been detected. The app needs a connection to download its data." = "Es wurde keine Netzwerkverbindung gefunden. Die App braucht Internetzugriff zum Herunterladen der Spieldaten.";
+
+/* No comment provided by engineer. */
+"No address data provided" = "Keine Adressdaten angegeben.";
+
+/* No comment provided by engineer. */
+"No date info." = "Keine Info zum Datum.";
+
+/* No comment provided by engineer. */
+"No field coordinates provided" = "Keine Feldkoordinaten angegeben";
+
+/* No comment provided by engineer. */
+"No first umpire assigned yet" = "Bisher kein erster Umpire eingetragen";
+
+/* No comment provided by engineer. */
+"No location data available." = "Keine Ortsdaten verfügbar";
+
+/* No comment provided by engineer. */
+"No location/field data" = "Keine Orts/Feldtaten";
+
+/* No comment provided by engineer. */
+"No map data provided" = "Keine Kartendaten verfügbar";
+
+/* No comment provided by engineer. */
+"No scorer assigned yet" = "Bisher keine Scorer:in eingetragen";
+
+/* No comment provided by engineer. */
+"No second umpire assigned yet" = "Bisher kein zweiter Umpire eingetragen";
+
+/* No comment provided by engineer. */
+"No standings available." = "Keine Tabellen verfügbar";
+
+/* No comment provided by engineer. */
+"No Standings available." = "Keine Tabellen verfügbar.";
+
+/* No comment provided by engineer. */
+"No table data found." = "Keine Tabellendaten gefunden";
+
+/* No comment provided by engineer. */
+"No Team" = "Kein Team";
+
+/* No comment provided by engineer. */
+"No team data found." = "Keine Teamdaten gefunden";
+
+/* No comment provided by engineer. */
+"No team data." = "Keine Teamdaten.";
+
+/* No comment provided by engineer. */
+"nothing" = "nichts";
+
+/* No comment provided by engineer. */
+"Player profiles" = "Spielerprofile";
+
+/* No comment provided by engineer. */
+"Playoffs" = "Playoffs";
+
+/* No comment provided by engineer. */
+"Please select a category" = "Bitte wähle eine Kategorie";
+
+/* No comment provided by engineer. */
+"Please select a league for comprehensive data." = "Wähle eine Liga für umfassende Daten.";
+
+/* No comment provided by engineer. */
+"Please select a new favorite team for the home dashboard." = "Bitte wähle ein Lieblingsteam für die App.";
+
+/* No comment provided by engineer. */
+"Please select an app section" = "Bitte wähle eine App-Sektion";
+
+/* No comment provided by engineer. */
+"Please select your favorite team to optimize your experience. Your favorite team appears in the Home dashboard." = "Bitte wähle ein Lieblingsteam, um deine Benutzererfahrung zu optimieren. Dein Lieblingsteam erscheint im Dashboard.";
+
+/* No comment provided by engineer. */
+"Portrait" = "Porträt";
+
+/* No comment provided by engineer. */
+"Position" = "Position";
+
+/* No comment provided by engineer. */
+"PPD" = "PPD";
+
+/* No comment provided by engineer. */
+"Preferences" = "Einstellungen";
+
+/* No comment provided by engineer. */
+"Privacy Policy" = "Datenschutzerklärung";
+
+/* No comment provided by engineer. */
+"Rank" = "Rang";
+
+/* No comment provided by engineer. */
+"Right" = "Rechts";
+
+/* reference to the road team */
+"Road" = "Auswärts";
+
+/* No comment provided by engineer. */
+"SB" = "SB";
+
+/* No comment provided by engineer. */
+"Score" = "Ergebnis";
+
+/* No comment provided by engineer. */
+"Scorer" = "Scorer";
+
+/* main navigation
+   tab view */
+"Scores" = "Spiele";
+
+/* No comment provided by engineer. */
+"Scoresheet unavailable" = "Scoresheet nicht verfügbar";
+
+/* No comment provided by engineer. */
+"Season" = "Saison";
+
+/* No comment provided by engineer. */
+"Season: " = "Saison:";
+
+/* No comment provided by engineer. */
+"Seats: %@" = "Sitzplätze: %@";
+
+/* No comment provided by engineer. */
+"See full Standings" = "Zeige gesamte Tabelle";
+
+/* No comment provided by engineer. */
+"See playoff series" = "Zeige Playoff-Serie";
+
+/* No comment provided by engineer. */
+"See records for all teams" = "Bilanzen für alle Teams";
+
+/* No comment provided by engineer. */
+"See Standings" = "Zeige Tabellen";
+
+/* No comment provided by engineer. */
+"Select Favorite Team" = "Wähle dein Lieblingsteam";
+
+/* No comment provided by engineer. */
+"Selected Season: " = "Gewählte Saison: ";
+
+/* No comment provided by engineer. */
+"Selected section" = "Gewählte Sektion";
+
+/* No comment provided by engineer. */
+"Series Length: Best of %@" = "Serie angesetzt: Best of %@";
+
+/* No comment provided by engineer. */
+"Series tied" = "Serie ausgeglichen";
+
+/* main navigation
+   tab view */
+"Settings" = "Einstellungen";
+
+/* No comment provided by engineer. */
+"Show Player List" = "Zeige Spielerliste";
+
+/* No comment provided by engineer. */
+"Show:" = "Zeige: ";
+
+/* No comment provided by engineer. */
+"Softball" = "Softball";
+
+/* No comment provided by engineer. */
+"Srk" = "Srk";
+
+/* main navigation
+   tab view */
+"Standings" = "Tabellen";
+
+/* No comment provided by engineer. */
+"Standings/Record" = "Tabelle/Bilanz";
+
+/* No comment provided by engineer. */
+"Status" = "Status";
+
+/* No comment provided by engineer. */
+"TBD" = "TBD";
+
+/* No comment provided by engineer. */
+"Team" = "Team";
+
+/* No comment provided by engineer. */
+"Team Basics" = "Grundlegendes";
+
+/* No comment provided by engineer. */
+"Team data" = "Teamdaten";
+
+/* No comment provided by engineer. */
+"Team mood" = "Stimmung im Team";
+
+/* No comment provided by engineer. */
+"Team selection" = "Team-Auswahl";
+
+/* No comment provided by engineer. */
+"Team:" = "Team: ";
+
+/* No comment provided by engineer. */
+"Team(s)" = "Team(s)";
+
+/* No comment provided by engineer. */
+"Teams" = "Teams";
+
+/* No comment provided by engineer. */
+"Test" = "Test";
+
+/* No comment provided by engineer. */
+"The chart shows the absolute number of wins in the league selected." = "Die Tabelle zeigt die absolute Anzahl an Siegen in der gewählten Liga.";
+
+/* No comment provided by engineer. */
+"The selected season is applied globally in the app." = "The gewählte Saison wirkt sich global in der App aus.";
+
+/* No comment provided by engineer. */
+"There are no games scheduled for the chosen time frame." = "Es sind für den gewählten Zeitraum keine Spiele angesetzt.";
+
+/* No comment provided by engineer. */
+"There are no Skylarks games scheduled for the chosen time frame." = "Es sind für den gewählten Zeitraum keine Spiele mit Skylarks-Beteiligung angesetzt.";
+
+/* No comment provided by engineer. */
+"There is no data to display." = "Keine Daten anzuzeigen";
+
+/* No comment provided by engineer. */
+"There is no game data to save." = "Es gibt keine Spieldaten zu speichern.";
+
+/* No comment provided by engineer. */
+"There is no next game to display." = "Kein nächstes Spiel verfügbar.";
+
+/* No comment provided by engineer. */
+"There is no recent game to display." = "Kein voriges Spiel verfügbar.";
+
+/* No comment provided by engineer. */
+"There is no scorer data to display." = "Keine Scorerdaten verfügbar.";
+
+/* No comment provided by engineer. */
+"There is no umpire data to display." = "Keine Schiedsrichterdaten verfügbar.";
+
+/* No comment provided by engineer. */
+"Throws" = "Wirft";
+
+/* No comment provided by engineer. */
+"Time Range" = "Zeitraum";
+
+/* No comment provided by engineer. */
+"Umpire" = "Umpire";
+
+/* No comment provided by engineer. */
+"Visual Chart of Wins count" = "Visuelle Grafik der Anzahl an Siegen";
+
+/* No comment provided by engineer. */
+"Visualization of current season" = "Visualisierung der aktuellen Saison";
+
+/* No comment provided by engineer. */
+"W" = "W";
+
+/* No comment provided by engineer. */
+"W/L" = "W/L";
+
+/* No comment provided by engineer. */
+"W6" = "W6";
+
+/* No comment provided by engineer. */
+"Welcome to the app!" = "Willkommen in der App!";
+
+/* No comment provided by engineer. */
+"Winning Percentage" = "Sieg-Prozentsatz";
+
+/* No comment provided by engineer. */
+"Wins/Losses" = "Siege/Niederlagen";
+
+/* No comment provided by engineer. */
+"You have disabled access to your calendar. To save games please go to your device settings to enable it." = "Du hast den Zugriff auf den Kalender deaktiviert. Um Spiele speichern zu können, musst du den Zugriff in den Geräteeinstellungen wieder aktivieren.";
+
+/* No comment provided by engineer. */
+"You haven't selected a favorite Team yet. Select one in settings to have its latest standings and scores appear here." = "Du hast bisher kein Lieblingsteam ausgewählt. Dessen Tabellen und Ergebnisse erscheinen dann hier.";
+
+/* No comment provided by engineer. */
+"You haven't selected a favorite Team yet. Select one via the button in the toolbar to have its latest standings and scores appear here." = "Du hast bisher kein Lieblingsteam ausgewählt. Dessen Tabellen und Ergebnisse erscheinen dann hier.";
+
+/* No comment provided by engineer. */
+"Your favorite team appears in the Home dashboard tab." = "Dein Lieblingsteam erscheint im Home Dashboard-Tab.";
+

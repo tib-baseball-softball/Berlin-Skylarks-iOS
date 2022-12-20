@@ -24,15 +24,6 @@ struct ScoresDetailView: View {
     
     @State private var calendarTitles = [String]()
     
-    @State var roadLogo = away_team_logo
-    @State var homeLogo = home_team_logo
-    
-    func setLogos() {
-        let logos = fetchCorrectLogos(gamescore: gamescore)
-        roadLogo = logos.road
-        homeLogo = logos.home
-    }
-    
 #if !os(watchOS)
     
     func checkAccess() async {
@@ -64,6 +55,8 @@ struct ScoresDetailView: View {
     var gamescore: GameScore
     
     var body: some View {
+        let logos = fetchCorrectLogos(gamescore: gamescore)
+        
         #if !os(watchOS)
         List {
             Section(header: Text("Main info")) {
@@ -78,9 +71,9 @@ struct ScoresDetailView: View {
                     
                     HStack {
                         VStack {
-                            Text("Guest")
+                            Text("Road", comment: "reference to the road team")
                                 .bold()
-                            roadLogo
+                            logos.road
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50, alignment: .center)
@@ -90,9 +83,9 @@ struct ScoresDetailView: View {
                         }
                         Spacer()
                         VStack {
-                            Text("Home")
+                            Text("Home", comment: "Reference to the home team")
                                 .bold()
-                            homeLogo
+                            logos.home
                                 .resizable()
                                 .scaledToFit()
                                 .frame(width: 50, height: 50, alignment: .center)
@@ -153,7 +146,7 @@ struct ScoresDetailView: View {
                 //MARK: bookmarks
 //                Button(action: {
 //                    isBookmarked.toggle()
-//                    //TODO: actually do stuff here
+//                    //actually do stuff here
 //                }, label: {
 //                    //the button changes its appearance if a bookmark is set
 //                    Image(systemName: isBookmarked == true ? "bookmark.fill" : "bookmark")
@@ -170,7 +163,7 @@ struct ScoresDetailView: View {
                 ){
                     Image(systemName: "calendar.badge.plus")
                 }
-                .confirmationDialog("Choose a calendar to save the game", isPresented: $showCalendarDialog, titleVisibility: .visible) {
+                .confirmationDialog("Choose a calendar for exporting", isPresented: $showCalendarDialog, titleVisibility: .visible) {
                     
                     ForEach(calendarTitles, id: \.self) { calendarTitle in
                         Button(calendarTitle) {
@@ -192,28 +185,10 @@ struct ScoresDetailView: View {
                 
                 Spacer()
                 
-                Button(action: {
-                    shareGameSheet()
-                    
-                }, label: {
-                    Image(systemName: "square.and.arrow.up")
-                })
-                //                .sheet(isPresented: $showingSheet) {
-                //                    ShareSheet()
-                //                }
+                let shareItem = createShareGameData()
+                ShareLink(item: shareItem)
             }
-            //            ToolbarItem(placement: .principal) {
-            //                Button(action: {
-            //                    print("doc button pressed")
-            //
-            //                }, label: {
-            //                    Image(systemName: "doc.on.doc")
-            //                })
-            //            }
         }
-        .onAppear(perform: {
-            setLogos()
-        })
         
         #endif
         
@@ -229,7 +204,7 @@ struct ScoresDetailView: View {
             Section(header: Text("Score")) {
                 VStack {
                     HStack {
-                        roadLogo
+                        logos.road
                             .resizable()
                             .scaledToFit()
                             .frame(maxWidth: 30, alignment: .center)
@@ -246,7 +221,7 @@ struct ScoresDetailView: View {
                         }
                     }
                     HStack {
-                        homeLogo
+                        logos.home
                             .resizable()
                             .scaledToFit()
                             .frame(maxWidth: 30, alignment: .center)
@@ -287,15 +262,11 @@ struct ScoresDetailView: View {
         }
         .listStyle(.automatic)
         .navigationTitle("Game Details")
-        
-        .onAppear(perform: {
-            setLogos()
-        })
         #endif
     }
-    #if !os(watchOS)
     
-    func shareGameSheet() {
+    #if !os(watchOS)
+    func createShareGameData() -> String {
         let formatter1 = DateFormatter()
         let formatter2 = DateFormatter()
         formatter1.dateStyle = .short
@@ -309,6 +280,7 @@ struct ScoresDetailView: View {
             time = formatter2.string(from: gameDate)
         }
             
+        //TODO: localise
         let data = """
         Game data - sent from Skylarks app
         
@@ -327,17 +299,7 @@ struct ScoresDetailView: View {
         Link to Scoresheet: \(gamescore.scoresheet_url ?? "Not available yet")
         """
         
-        //TODO: this works, but it's UIKit, it's an absolute performance nightmare. Refactor me as soon as native share sheet support is in SwiftUI!
-        
-        let av = UIActivityViewController(activityItems: [data], applicationActivities: nil)
-        if let vc = UIApplication.shared.windows.first?.rootViewController {
-            av.popoverPresentationController?.sourceView = vc.view
-            //Setup share activity position on screen on bottom center
-            av.popoverPresentationController?.sourceRect = CGRect(x: UIScreen.main.bounds.width, y: UIScreen.main.bounds.height / 2, width: 0, height: 0)
-            av.popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection.right
-            vc.present(av, animated: true, completion: nil)
-            //UIApplication.shared.windows.first?.rootViewController?.present(av, animated: true, completion: nil)
-        }
+        return data
     }
     #endif
 }

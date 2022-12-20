@@ -65,16 +65,16 @@ struct ScoresView: View {
         case any
         
         var displayName: String { rawValue.capitalized }
+        var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue.capitalized) }
         var id: String { self.rawValue }
     }
     
+    //TODO: localise
     @State var selectedTeam = "All Teams"
-    @State var selectedTeamID: Int = 0 //this is in fact a league ID now
+    @State var selectedTeamID: Int = 0 // this is in fact a league ID now - TODO: rename me
     @State var selectedTimeframe = Gameday.current
 
-    @State var filterTeams = [
-        "All Teams",
-    ]
+    @State var filterTeams = ["All Teams", ]
     
     //---------------------------------------------------------//
     //-----------local funcs-----------------------------------//
@@ -82,9 +82,7 @@ struct ScoresView: View {
     
     func loadLeagueGroups() async {
         //reset filter options to default
-        filterTeams = [
-            "All Teams",
-        ]
+        filterTeams = ["All Teams", ]
         
         let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(selectedSeason)" + "&api_key=" + apiKey)!
         
@@ -134,12 +132,6 @@ struct ScoresView: View {
         skylarksGamescores = gamescores.filter({ gamescore in
             gamescore.home_team_name.contains("Skylarks") || gamescore.away_team_name.contains("Skylarks")
         })
-        
-        //DEBUG
-//        print("gamescores has \(gamescores.count) items")
-//        print("skylarksGamescores has \(skylarksGamescores.count) items")
-//        print("Memory: \(URLCache.shared.currentMemoryUsage) bytes")
-//        print("Disk: \(URLCache.shared.currentDiskUsage) bytes")
         
         loadingInProgress = false
     }
@@ -253,7 +245,7 @@ struct ScoresView: View {
                     },
                     content: {
                         ForEach(Gameday.allCases) { gameday in
-                            Text(gameday.displayName)
+                            Text(gameday.localizedName)
                             .tag(gameday)
                         }
                         
@@ -262,10 +254,10 @@ struct ScoresView: View {
                 .padding(.horizontal)
                 .padding(.vertical, 3)
                 List {
-                    Section(header: Text("Selected Season: " + String(selectedSeason))){
+                    Section(header: Text("Selected Season: ") + Text(String(selectedSeason))){
                         
                         //Switch to external games/only our games
-                        Toggle("Show non-Skylarks Games", isOn: $showOtherTeams)
+                        Toggle(String(localized: "Show non-Skylarks Games", comment: "toggle in ScoresView"), isOn: $showOtherTeams)
                             .tint(.skylarksRed)
                         
                         //Loading in progress
@@ -351,7 +343,7 @@ struct ScoresView: View {
                             Image(systemName: "calendar.badge.plus")
                         }
                         
-                        .confirmationDialog("Choose a calendar to save the game(s)", isPresented: $showCalendarDialog, titleVisibility: .visible) {
+                        .confirmationDialog("Choose a calendar for exporting", isPresented: $showCalendarDialog, titleVisibility: .visible) {
                             
                             ForEach(calendarTitles, id: \.self) { calendarTitle in
                                 Button(calendarTitle) {
@@ -392,8 +384,7 @@ struct ScoresView: View {
                             selection: $selectedTeam,
                             //this actually does not show the label, just the selection
                             label: HStack {
-                                Text("Show:")
-                                //Text(selection)
+                                //Text(selectedTeam)
                             },
                             content: {
                                 ForEach(filterTeams, id: \.self) { option in
@@ -420,7 +411,7 @@ struct ScoresView: View {
         
 #if os(watchOS)
         List {
-            Section(header: Text("Selected Season: " + String(selectedSeason))) {
+            Section(header: Text("Selected Season: ") + Text(String(selectedSeason))) {
                 if loadingInProgress == true {
                     LoadingView()
                 }
@@ -452,7 +443,7 @@ struct ScoresView: View {
                     },
                     content: {
                         ForEach(Gameday.allCases) { gameday in
-                            Text(gameday.displayName)
+                            Text(gameday.localizedName)
                             .tag(gameday)
                         }
                 })
@@ -502,10 +493,8 @@ struct ScoresView: View {
 
 struct ScoresView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
             ScoresView()
                 //.preferredColorScheme(.dark)
                 .environmentObject(CalendarManager())
-        }
     }
 }

@@ -9,12 +9,11 @@ import SwiftUI
 
 struct HomeTeamDetailView: View {
     
-    //Ideas: chart with wins/percentage gauge/"hot and cold streak"
-    
     enum Segment: String, Identifiable, CaseIterable {
         case chart, percentage, streak
         
         var displayName: String { rawValue.capitalized }
+        var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue.capitalized) }
         var id: String { self.rawValue }
     }
     
@@ -33,7 +32,7 @@ struct HomeTeamDetailView: View {
                         Text("Selected section")
                 ){
                     ForEach(Segment.allCases) { segment in
-                        Text(segment.displayName)
+                        Text(segment.localizedName)
                             .tag(segment)
                     }
                 }
@@ -51,20 +50,6 @@ struct HomeTeamDetailView: View {
                 .listStyle(.insetGrouped)
                 .navigationTitle("Favorite Team Details")
                 .animation(.easeInOut, value: selection)
-                
-    //            .toolbar {
-    //                ToolbarItemGroup(placement: .bottomBar) {
-    //                    Picker(selection: $selection, label:
-    //                            Text("Selected section")
-    //                    ){
-    //                        ForEach(Segment.allCases) { segment in
-    //                            Text(segment.displayName)
-    //                                .tag(segment)
-    //                        }
-    //                    }
-    //                    .pickerStyle(.segmented)
-    //                }
-    //            }
             }
         }
     }
@@ -73,7 +58,7 @@ struct HomeTeamDetailView: View {
 struct HomeTeamDetailView_Previews: PreviewProvider {
     static var previews: some View {
         NavigationView {
-            HomeTeamDetailView(userDashboard: dummyDashboard)
+            HomeTeamDetailView(userDashboard: UserDashboard())
             //.preferredColorScheme(.dark)
         }
     }

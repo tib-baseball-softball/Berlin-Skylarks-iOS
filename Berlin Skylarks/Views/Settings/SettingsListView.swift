@@ -17,7 +17,7 @@ struct SettingsListView: View {
     @State var showingSheetTeams = false
     
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
-    @AppStorage("favoriteTeam") var favoriteTeam: String = "Not set"
+    //@AppStorage("favoriteTeam") var favoriteTeam: String = "Not set"
     
     @AppStorage("favoriteTeamID") var favoriteTeamID = 0
     
@@ -37,40 +37,22 @@ struct SettingsListView: View {
         }
     }
     
+    func getLanguageCode() -> String {
+        if Locale.autoupdatingCurrent.language.languageCode?.identifier == "de" {
+            return "de"
+        } else {
+            return "en"
+        }
+    }
+    
     var body: some View {
         List {
-            //MARK: commented out for beta testing (not functional yet)
-//            Section(
-//                    header: Text("Notifications"),
-//                    footer: Text("Receive notifications for all Skylarks teams or just your favorite team.")) {
-//                Toggle(isOn: $userSettings.sendPush) {
-//                        Text("Send Push Notifications")
-//                }
-//                .toggleStyle(SwitchToggleStyle(tint: Color("AccentColor")))
-//
-//                NavigationLink(
-//                    destination: InfoView()) {
-//                    HStack {
-//                        Image(systemName: "bell.badge.fill")
-//                            .font(.title3)
-//                        Text("Notify on")
-//                    }
-//                }
-//                NavigationLink(
-//                    destination: InfoView()) {
-//                    HStack {
-//                        Image(systemName: "person.2.fill")
-//                            .font(.title3)
-//                        Text("Frequency")
-//                    }
-//                }
-//            }
             Section(
                 header: Text("Time Range"),
                 footer: Text("The selected season is applied globally in the app.")
             ) {
                 Picker(selection: $selectedSeason, label:
-                HStack {
+                        HStack {
                     Image(systemName: "deskclock.fill")
                         .font(.title3)
                     Text("Season")
@@ -90,35 +72,15 @@ struct SettingsListView: View {
             Section(
                 header: Text("Teams"),
                 footer: Text("Your favorite team appears in the Home dashboard tab.")) {
-//                    HStack {
-//                        Image(systemName: "star.square.fill")
-//                            .font(.title2)
-//                        Text("Favorite Team")
-//                    }
-//                    .listRowBackground(ColorStandingsTableHeadline)
-                    
-                    if !teams.isEmpty {
-                        Picker(selection: $favoriteTeamID, label:
+                    Button(action: {
+                        showingSheetTeams = true
+                    }, label: {
                         HStack {
                             Image(systemName: "star.square.fill")
                                 .font(.title2)
                             Text("Favorite Team")
-                        }) {
-                            ForEach(teams, id: \.self) { team in
-                                if !team.league_entries.isEmpty {
-                                    Text("\(team.name) (\(team.league_entries[0].league.name))")
-                                        .tag(team.id)
-                                    
-                                }
-                            }
-                            .fixedSize(horizontal: false, vertical: true)
                         }
-//    #if !os(watchOS)
-//                        .pickerStyle(.menu)
-//    #endif
-                    } else {
-                        Text("Fetching Teams...")
-                    }
+                    })
             }
             Section(header: Text("Information")) {
                 //App info does not show anything on watchOS, so we don't need to show it there
@@ -133,8 +95,10 @@ struct SettingsListView: View {
                     }
                 }
 #endif
+                let code = getLanguageCode()
+                
                 NavigationLink(
-                    destination: LegalNoticeView()) {
+                    destination: LegalNoticeView(languageCode: code)) {
                     HStack {
                         Image(systemName: "c.circle")
                             .font(.title2)
@@ -143,7 +107,7 @@ struct SettingsListView: View {
                     }
                 }
                 NavigationLink(
-                    destination: PrivacyPolicyView()) {
+                    destination: PrivacyPolicyView(languageCode: code)) {
                     HStack {
                         Image(systemName: "hand.raised.square.fill")
                             .font(.title2)

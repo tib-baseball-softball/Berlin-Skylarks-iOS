@@ -8,17 +8,11 @@
 import SwiftUI
 
 //right now all news items lead to the same page
+let newsPlaceholder = "Lorem Ipsum"
 
 struct NewsView: View {
     var body: some View {
-//        if UIDevice.current.userInterfaceIdiom == .phone {
-//            NavigationView {
-//                NewsBody()
-//            }
-//        } else {
-            NewsBody()
-//        }
-        
+        NewsBody()
     }
 }
 
@@ -31,11 +25,11 @@ struct NewsItem: View {
             Image("dummy_field")
                 .resizable()
                 .scaledToFit()
-            Text("Spielbericht")
+            Text(newsPlaceholder)
                 .font(.title2)
                 .bold()
                 .padding(.horizontal, 10)
-            Text("Skylarks gewinnen durch Homerun im 9. Inning nach heroischer Performance")
+            Text(newsPlaceholder)
                 .padding(10)
         }
         .background(ItemBackgroundColor)
@@ -53,31 +47,6 @@ struct NewsBody: View {
                 destination: NewsDetailView()) {
                     NewsItem()
             }
-            NavigationLink(
-                
-                //here a hardcoded link to a WebView is used for testing
-                
-                destination: WebArticleView()) {
-                    VStack(
-                        alignment: .leading,
-                        spacing: NewsItemSpacing
-                    ) {
-                        Image("dummy_kids")
-                            .resizable()
-                            .scaledToFit()
-                        Text("Eventbericht")
-                            .font(.title3)
-                            .padding(10)
-                        Text("Kinder hatten ganz viel Spaß")
-                            .font(.headline)
-                            .lineLimit(nil)
-                            .padding(10)
-                    }
-                    .background(ItemBackgroundColor)
-                    .cornerRadius(NewsItemCornerRadius)
-                    .padding(NewsItemPadding)
-                    .foregroundColor(.primary)
-            }
         }
         .navigationTitle("News")
         .listStyle(.inset)
@@ -85,10 +54,6 @@ struct NewsBody: View {
         .navigationViewStyle(.stack)
     }
 }
-
-
-
-//DEBUG
 
 struct NewsView_Previews: PreviewProvider {
     static var previews: some View {

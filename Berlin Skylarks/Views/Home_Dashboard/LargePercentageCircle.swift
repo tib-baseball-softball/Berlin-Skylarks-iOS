@@ -21,7 +21,6 @@ struct LargePercentageCircle: View {
                 .frame(width: 150, height: 150)
                 .rotationEffect(.degrees(-90))
                 .padding()
-            //Text(".136")
             Text(percentageText)
                 .font(.title)
                 .bold()

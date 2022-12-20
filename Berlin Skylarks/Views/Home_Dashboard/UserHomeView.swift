@@ -22,16 +22,14 @@ struct UserHomeView: View {
     @State private var showingSheetSettings = false
     @State private var showingSheetNextGame = false
     @State private var showingSheetLastGame = false
+    @State var showingSheetTeams = false
     
-    @State var showNextGame = false
-    @State var showLastGame = false
     @State var showingTableData = false
     
     @State private var loadingScores = false
     @State private var loadingTables = false
     
     @StateObject var userDashboard = UserDashboard()
-    @State private var homeGamescores = [GameScore]()
     @State var homeLeagueTables = [LeagueTable]()
     @State var teams = [BSMTeam]()
     @State var leagueGroups = [LeagueGroup]()
@@ -56,7 +54,7 @@ struct UserHomeView: View {
         leagueGroups = await loadLeagueGroups(season: selectedSeason)
         await loadHomeTeamTable(team: displayTeam, leagueGroups: leagueGroups)
         loadingTables = false
-        await loadHomeGameData(team: displayTeam, leagueGroups: leagueGroups)
+        await userDashboard.loadHomeGameData(team: displayTeam, leagueGroups: leagueGroups, season: selectedSeason)
         loadingScores = false
     }
     
@@ -97,151 +95,127 @@ struct UserHomeView: View {
         //loadingTables = false
     }
     
-    func loadHomeGameData(team: BSMTeam, leagueGroups: [LeagueGroup]) async {
-        
-        //get the games, then process for next and last
-        //loadingScores = true
-        
-        //determine the correct leagueGroup
-        for leagueGroup in leagueGroups where team.league_entries[0].league.name == leagueGroup.name {
-            selectedHomeScoresURL = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(selectedSeason)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
-        }
-    
-        //load data
-        do {
-            homeGamescores = try await fetchBSMData(url: selectedHomeScoresURL, dataType: [GameScore].self)
-        } catch {
-            print("Request failed with error: \(error)")
-        }
-        
-        for (index, _) in homeGamescores.enumerated() {
-            homeGamescores[index].addDates()
-            homeGamescores[index].determineGameStatus()
-        }
-        
-        //call func to check for next and last game
-        let displayGames = processGameDates(gamescores: homeGamescores)
-        
-        if let nextGame = displayGames.next {
-            userDashboard.NextGame = nextGame
-            showNextGame = true
-        } else {
-            showNextGame = false
-        }
-        
-        if let lastGame = displayGames.last {
-            userDashboard.LastGame = lastGame
-            showLastGame = true
-        } else {
-            showLastGame = false
-        }
-        //loadingScores = false
-    }
-    
     var body: some View {
 #if !os(watchOS)
         List {
-            Section(header: Text("Favorite Team")) {
-                HStack {
-                    Image(systemName: "star.fill")
-                        .foregroundColor(.skylarksRed)
-                    Text("\(displayTeam.name) (\(displayTeam.league_entries[0].league.acronym))")
-                        .padding(.leading)
+            if favoriteTeamID == noTeamID || favoriteTeamID == 0 {
+                Section(header: Text("Favorite Team")) {
+                    Text("You haven't selected a favorite Team yet. Select one via the button in the toolbar to have its latest standings and scores appear here.")
                 }
-                HStack {
-                    Image(systemName: "tablecells")
-                        .frame(maxWidth: 20)
-                        .foregroundColor(Color.skylarksAdaptiveBlue)
-                    Text(userDashboard.leagueTable.league_name)
-                        .padding(.leading)
-                }
-                HStack {
-                    Image(systemName: "calendar.badge.clock")
-                        .frame(maxWidth: 20)
-                        .foregroundColor(Color.skylarksAdaptiveBlue)
-                    Text(String(userDashboard.leagueTable.season))
-                        .padding(.leading)
-                }
-            }
-            Section(header: Text("Standings/Record")) {
-                if showingTableData && !loadingTables {
-                    NavigationLink(destination: HomeTeamDetailView(userDashboard: userDashboard)) {
-                        VStack(alignment: .leading) {
-                            HStack {
-                                Image(systemName: "sum")
-                                    .frame(maxWidth: 20)
-                                    .foregroundColor(Color.skylarksAdaptiveBlue)
-                                Text("\(Int(userDashboard.tableRow.wins_count)) - \(Int(userDashboard.tableRow.losses_count))")
-                                    .bold()
-                                    .padding(.leading)
-                            }
-                            Divider()
-                            HStack {
-                                Image(systemName: "percent")
-                                    .frame(maxWidth: 20)
-                                    .foregroundColor(Color.skylarksAdaptiveBlue)
-                                Text(userDashboard.tableRow.quota)
-                                    .bold()
-                                    .padding(.leading)
-                            }
-                            Divider()
-                            HStack {
-                                Image(systemName: "number")
-                                    .frame(maxWidth: 20)
-                                    .foregroundColor(Color.skylarksAdaptiveBlue)
-                                Text(userDashboard.tableRow.rank)
-                                    .bold()
-                                    .padding(.leading)
-                                if userDashboard.tableRow.rank == "1." {
-                                    Image(systemName: "crown")
-                                        .foregroundColor(Color.skylarksRed)
-                                }
-                            }
-                        }
-                        .padding(.vertical, 6)
+            } else {
+                Section(header: Text("Favorite Team")) {
+                    HStack {
+                        Image(systemName: "star.fill")
+                            .foregroundColor(.skylarksRed)
+                        Text("\(displayTeam.name) (\(displayTeam.league_entries[0].league.acronym))")
+                            .padding(.leading)
+                    }
+                    HStack {
+                        Image(systemName: "tablecells")
+                            .frame(maxWidth: 20)
+                            .foregroundColor(Color.skylarksAdaptiveBlue)
+                        Text(userDashboard.leagueTable.league_name)
+                            .padding(.leading)
+                    }
+                    HStack {
+                        Image(systemName: "calendar.badge.clock")
+                            .frame(maxWidth: 20)
+                            .foregroundColor(Color.skylarksAdaptiveBlue)
+                        Text(String(userDashboard.leagueTable.season))
+                            .padding(.leading)
                     }
                 }
-                if !homeLeagueTables.isEmpty && !loadingTables {
-                    NavigationLink(
-                        destination: StandingsTableView(leagueTable: homeLeagueTables[0])) {
-                            HStack {
-                                Image(systemName: "tablecells")
-                                    .foregroundColor(.skylarksRed)
-                                Text("See full Standings")
-                                    .padding(.leading)
+                Section(header: Text("Standings/Record")) {
+                    if showingTableData && !loadingTables {
+                        NavigationLink(destination: HomeTeamDetailView(userDashboard: userDashboard)) {
+                            VStack(alignment: .leading) {
+                                HStack {
+                                    Image(systemName: "sum")
+                                        .frame(maxWidth: 20)
+                                        .foregroundColor(Color.skylarksAdaptiveBlue)
+                                    Text("\(Int(userDashboard.tableRow.wins_count)) - \(Int(userDashboard.tableRow.losses_count))")
+                                        .bold()
+                                        .padding(.leading)
+                                }
+                                Divider()
+                                HStack {
+                                    Image(systemName: "percent")
+                                        .frame(maxWidth: 20)
+                                        .foregroundColor(Color.skylarksAdaptiveBlue)
+                                    Text(userDashboard.tableRow.quota)
+                                        .bold()
+                                        .padding(.leading)
+                                }
+                                Divider()
+                                HStack {
+                                    Image(systemName: "number")
+                                        .frame(maxWidth: 20)
+                                        .foregroundColor(Color.skylarksAdaptiveBlue)
+                                    Text(userDashboard.tableRow.rank)
+                                        .bold()
+                                        .padding(.leading)
+                                    if userDashboard.tableRow.rank == "1." {
+                                        Image(systemName: "crown")
+                                            .foregroundColor(Color.skylarksRed)
+                                    }
+                                }
+                            }
+                            .padding(.vertical, 6)
+                        }
+                    }
+                    if !homeLeagueTables.isEmpty && !loadingTables {
+                        NavigationLink(
+                            destination: StandingsTableView(leagueTable: homeLeagueTables[0])) {
+                                HStack {
+                                    Image(systemName: "tablecells")
+                                        .foregroundColor(.skylarksRed)
+                                    Text("See full Standings")
+                                        .padding(.leading)
+                                }
+                            }
+                    } else {
+                        Text("No Standings available.")
+                    }
+                    if loadingTables == true {
+                        LoadingView()
+                    }
+                }
+                if userDashboard.playoffParticipation {
+                    Section(header: Text("Playoffs")) {
+                        HStack {
+                            Image(systemName: "trophy.fill")
+                                .foregroundColor(.skylarksRed)
+                            NavigationLink(destination: PlayoffSeriesView(userDashboard: userDashboard)) {
+                                Text("See playoff series")
                             }
                         }
-                } else {
-                    Text("No Standings available.")
+                    }
                 }
-                if loadingTables == true {
-                    LoadingView()
+                Section(header: Text("Next Game")) {
+                    if userDashboard.showNextGame == true && !loadingScores {
+                        NavigationLink(
+                            destination: ScoresDetailView(gamescore: userDashboard.NextGame)) {
+                                ScoresOverView(gamescore: userDashboard.NextGame)
+                            }
+                    } else if !userDashboard.showNextGame && !loadingScores {
+                        Text("There is no next game to display.")
+                    }
+                    if loadingScores == true {
+                        LoadingView()
+                    }
                 }
-            }
-            Section(header: Text("Next Game")) {
-                if showNextGame == true && !loadingScores {
-                    NavigationLink(
-                        destination: ScoresDetailView(gamescore: userDashboard.NextGame)) {
-                            ScoresOverView(gamescore: userDashboard.NextGame)
-                        }
-                } else if !showNextGame && !loadingScores {
-                    Text("There is no next game to display.")
-                }
-                if loadingScores == true {
-                    LoadingView()
-                }
-            }
-            Section(header: Text("Latest Score")) {
-                if showLastGame == true && !loadingScores {
-                    NavigationLink(
-                        destination: ScoresDetailView(gamescore: userDashboard.LastGame)) {
-                            ScoresOverView(gamescore: userDashboard.LastGame)
-                        }
-                } else if !showLastGame && !loadingScores {
-                    Text("There is no recent game to display.")
-                }
-                if loadingScores == true {
-                    LoadingView()
+                Section(header: Text("Latest Score")) {
+                    if userDashboard.showLastGame == true && !loadingScores {
+                        NavigationLink(
+                            destination: ScoresDetailView(gamescore: userDashboard.LastGame)) {
+                                ScoresOverView(gamescore: userDashboard.LastGame)
+                            }
+                    } else if !userDashboard.showLastGame && !loadingScores {
+                        Text("There is no recent game to display.")
+                    }
+                    if loadingScores == true {
+                        LoadingView()
+                    }
                 }
             }
         }
@@ -257,6 +231,7 @@ struct UserHomeView: View {
         .animation(.default, value: userDashboard.tableRow)
         .animation(.default, value: userDashboard.NextGame)
         .animation(.default, value: userDashboard.LastGame)
+        .animation(.default, value: userDashboard.playoffParticipation)
         
         .onAppear(perform: {
             if homeLeagueTables.isEmpty {
@@ -275,7 +250,7 @@ struct UserHomeView: View {
                 displayTeam = await setFavoriteTeam()
             }
             homeLeagueTables = []
-            homeGamescores = []
+            userDashboard.homeGamescores = []
         })
         
         //this triggers only after the first launch once the onboarding sheet is dismissed. This var starts false, is set to true after the user selects their favorite team and is never set back to false anywhere
@@ -285,17 +260,30 @@ struct UserHomeView: View {
             }
         }
         
+        .sheet(isPresented: $showingSheetTeams, onDismiss: {
+            Task {
+                await loadProcessHomeData()
+            }
+        }, content: {
+            SelectTeamSheet()
+                .presentationDetents([.fraction(0.8)])
+        })
+        
         .alert("No network connection", isPresented: $showAlertNoNetwork) {
             Button("OK") { }
         } message: {
             Text("No active network connection has been detected. The app needs a connection to download its data.")
         }
-//
-    //we are showing the app settings here, but only on iPhone, since the 5 tab items are full. On iPad/Mac the sidebar has more than enough space to include settings
-        //for now we have it back in the tab bar
-    
-//        .toolbar {
-//            ToolbarItemGroup(placement: .navigationBarTrailing) {
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button(action: {
+                    showingSheetTeams = true
+                }) {
+                    Image(systemName: "person.3")
+                        .foregroundColor(.skylarksRed)
+                }
+                //we are showing the app settings here, but only on iPhone, since the 5 tab items are full. On iPad/Mac the sidebar has more than enough space to include settings
+                    //for now we have it back in the tab bar
 //                if UIDevice.current.userInterfaceIdiom == .phone {
 //                    Button(
 //                        action: {
@@ -311,8 +299,8 @@ struct UserHomeView: View {
 //                        }
 //                    }
 //                }
-//            }
-//        }
+            }
+        }
         
         //---------------------------------------------------------//
         //-----------start Apple Watch-specific code---------------//
@@ -320,107 +308,113 @@ struct UserHomeView: View {
         
 #else
         List {
-            Section(header: Text("Favorite Team")) {
-                VStack(alignment: .leading, spacing: 5) {
-                    HStack {
-                        Image(systemName: "star.fill")
+            if favoriteTeamID == noTeamID || favoriteTeamID == 0 {
+                Section(header: Text("Favorite Team")) {
+                    Text("You haven't selected a favorite Team yet. Select one in settings to have its latest standings and scores appear here.")
+                }
+            } else {
+                Section(header: Text("Favorite Team")) {
+                    VStack(alignment: .leading, spacing: 5) {
+                        HStack {
+                            Image(systemName: "star.fill")
                                 .foregroundColor(.skylarksRed)
-                        Text("\(displayTeam.name) (\(displayTeam.league_entries[0].league.acronym))")
-                            .fixedSize(horizontal: false, vertical: true)
-                            .padding(.leading)
-                    }
-                    .padding(.top)
-                    Divider()
-                        .padding(.vertical)
-                    HStack {
-                        Image(systemName: "tablecells")
-                            .frame(maxWidth: 20)
-                            .foregroundColor(.skylarksSand)
-                        Text(userDashboard.leagueTable.league_name)
-                            .padding(.leading)
-                    }
-                    HStack {
-                        Image(systemName: "calendar.badge.clock")
-                            .frame(maxWidth: 20)
-                            .foregroundColor(.skylarksSand)
-                        Text(String(userDashboard.leagueTable.season))
-                            .padding(.leading)
-                    }
-                    if showingTableData {
+                            Text("\(displayTeam.name) (\(displayTeam.league_entries[0].league.acronym))")
+                                .fixedSize(horizontal: false, vertical: true)
+                                .padding(.leading)
+                        }
+                        .padding(.top)
                         Divider()
                             .padding(.vertical)
-                        Group {
-                            HStack {
-                                Image(systemName: "sum")
-                                    .frame(maxWidth: 20)
-                                Text("\(Int(userDashboard.tableRow.wins_count)) - \(Int(userDashboard.tableRow.losses_count))")
-                                    .bold()
-                                    .padding(.leading)
-                            }
-                            HStack {
-                                Image(systemName: "percent")
-                                    .frame(maxWidth: 20)
-                                Text(userDashboard.tableRow.quota)
-                                    .bold()
-                                    .padding(.leading)
-                            }
-                            HStack {
-                                Image(systemName: "number")
-                                    .frame(maxWidth: 20)
-                                Text(userDashboard.tableRow.rank)
-                                    .bold()
-                                    .padding(.leading)
-                                if userDashboard.tableRow.rank == "1." {
-                                    Image(systemName: "crown")
-                                        .foregroundColor(Color.skylarksRed)
+                        HStack {
+                            Image(systemName: "tablecells")
+                                .frame(maxWidth: 20)
+                                .foregroundColor(.skylarksSand)
+                            Text(userDashboard.leagueTable.league_name)
+                                .padding(.leading)
+                        }
+                        HStack {
+                            Image(systemName: "calendar.badge.clock")
+                                .frame(maxWidth: 20)
+                                .foregroundColor(.skylarksSand)
+                            Text(String(userDashboard.leagueTable.season))
+                                .padding(.leading)
+                        }
+                        if showingTableData {
+                            Divider()
+                                .padding(.vertical)
+                            Group {
+                                HStack {
+                                    Image(systemName: "sum")
+                                        .frame(maxWidth: 20)
+                                    Text("\(Int(userDashboard.tableRow.wins_count)) - \(Int(userDashboard.tableRow.losses_count))")
+                                        .bold()
+                                        .padding(.leading)
+                                }
+                                HStack {
+                                    Image(systemName: "percent")
+                                        .frame(maxWidth: 20)
+                                    Text(userDashboard.tableRow.quota)
+                                        .bold()
+                                        .padding(.leading)
+                                }
+                                HStack {
+                                    Image(systemName: "number")
+                                        .frame(maxWidth: 20)
+                                    Text(userDashboard.tableRow.rank)
+                                        .bold()
+                                        .padding(.leading)
+                                    if userDashboard.tableRow.rank == "1." {
+                                        Image(systemName: "crown")
+                                            .foregroundColor(Color.skylarksRed)
+                                    }
                                 }
                             }
                         }
                     }
+                    .watchOS { $0.padding() }
                 }
-                .watchOS { $0.padding() }
-            }
-            Section(header: Text("Next Game")) {
-                if showNextGame == true {
-                    NavigationLink(
-                        destination: ScoresDetailView(gamescore: userDashboard.NextGame)) {
-                            ScoresOverView(gamescore: userDashboard.NextGame)
-                        }
-                } else {
-                    Text("There is no next game to display.")
-                }
-            }
-            Section(header: Text("Latest Score")) {
-                if showLastGame == true {
-                    NavigationLink(
-                        destination: ScoresDetailView(gamescore: userDashboard.LastGame)) {
-                            ScoresOverView(gamescore: userDashboard.LastGame)
-                        }
-                } else {
-                    Text("There is no recent game to display.")
-                }
-            }
-            Section(header: Text("Standings")) {
-                if !homeLeagueTables.isEmpty {
-                    NavigationLink(
-                        destination: StandingsTableView(leagueTable: homeLeagueTables[0])) {
-                            HStack {
-                                Image(systemName: "tablecells")
-                                    .foregroundColor(.skylarksRed)
-                                Text("See Standings")
+                Section(header: Text("Next Game")) {
+                    if userDashboard.showNextGame == true {
+                        NavigationLink(
+                            destination: ScoresDetailView(gamescore: userDashboard.NextGame)) {
+                                ScoresOverView(gamescore: userDashboard.NextGame)
                             }
-                        }
-                } else {
-                    Text("No standings available.")
+                    } else {
+                        Text("There is no next game to display.")
+                    }
+                }
+                Section(header: Text("Latest Score")) {
+                    if userDashboard.showLastGame == true {
+                        NavigationLink(
+                            destination: ScoresDetailView(gamescore: userDashboard.LastGame)) {
+                                ScoresOverView(gamescore: userDashboard.LastGame)
+                            }
+                    } else {
+                        Text("There is no recent game to display.")
+                    }
+                }
+                Section(header: Text("Standings")) {
+                    if !homeLeagueTables.isEmpty {
+                        NavigationLink(
+                            destination: StandingsTableView(leagueTable: homeLeagueTables[0])) {
+                                HStack {
+                                    Image(systemName: "tablecells")
+                                        .foregroundColor(.skylarksRed)
+                                    Text("See Standings")
+                                }
+                            }
+                    } else {
+                        Text("No standings available.")
+                    }
                 }
             }
         }
         .listStyle( {
-          #if os(watchOS)
+#if os(watchOS)
             .automatic
-          #else
+#else
             .insetGrouped
-          #endif
+#endif
         } () )
         .navigationTitle("Dashboard")
         
@@ -443,7 +437,7 @@ struct UserHomeView: View {
                 displayTeam = await setFavoriteTeam()
             }
             homeLeagueTables = []
-            homeGamescores = []
+            userDashboard.homeGamescores = []
         })
         
         .onChange(of: didLaunchBefore) { firstLaunch in

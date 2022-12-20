@@ -11,16 +11,11 @@ struct ScoresOverView: View {
     
     var gamescore: GameScore
     
-    @State var roadLogo = away_team_logo
-    @State var homeLogo = home_team_logo
-    
-    func setLogos() {
-        let logos = fetchCorrectLogos(gamescore: gamescore)
-        roadLogo = logos.road
-        homeLogo = logos.home
-    }
-    
     var body: some View {
+        
+        //logos now set here instead of .onAppear
+        let logos = fetchCorrectLogos(gamescore: gamescore)
+        
 #if !os(watchOS)
         VStack {
             HStack {
@@ -29,17 +24,7 @@ struct ScoresOverView: View {
                         .fixedSize(horizontal: false, vertical: true)
                         .font(.headline.smallCaps())
                         .allowsTightening(true)
-                    if let gameDate = gamescore.gameDate {
-                        HStack {
-                            Text(gameDate, format: Date.FormatStyle().weekday())
-                            Text(gameDate, style: .date)
-                            Text(gameDate, style: .time)
-                        }
-                        .fixedSize(horizontal: false, vertical: true)
-                        .foregroundColor(.secondary)
-                        .font(.subheadline)
-                        .allowsTightening(true)
-                    }
+                    ScoresDateBar(gamescore: gamescore)
                     Divider()
                         .frame(maxWidth: 200)
                         .padding(.vertical, 3)
@@ -48,43 +33,10 @@ struct ScoresOverView: View {
                 GameResultIndicator(gamescore: gamescore)
                     .font(.headline)
             }
-            HStack {
-                roadLogo
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 40, alignment: .center)
-                Text(gamescore.away_team_name)
-                    .padding(.leading)
-                Spacer()
-                if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
-                    Text(String(awayScore))
-                        .font(.title2)
-                        .bold()
-                        .frame(maxWidth: 40, alignment: .center)
-                        .foregroundColor(awayScore < homeScore ? Color.secondary : Color.primary)
-                }
-            }
-            HStack {
-                homeLogo
-                    .resizable()
-                    .scaledToFit()
-                    .frame(maxWidth: 40, alignment: .center)
-                Text(gamescore.home_team_name)
-                    .padding(.leading)
-                Spacer()
-                if let awayScore = gamescore.away_runs, let homeScore = gamescore.home_runs {
-                    Text(String(homeScore))
-                        .font(.title2)
-                        .bold()
-                        .frame(maxWidth: 40, alignment: .center)
-                        .foregroundColor(awayScore > homeScore ? Color.secondary : Color.primary)
-                }
-            }
+            ScoresTeamBar(teamLogo: logos.road, gamescore: gamescore, home: false)
+            ScoresTeamBar(teamLogo: logos.home, gamescore: gamescore, home: true)
         }
         .padding(.vertical, 2)
-        .onAppear {
-            setLogos()
-        }
 #endif
         
         //---------------------------------------------------------//
@@ -108,7 +60,7 @@ struct ScoresOverView: View {
                 Divider()
                     .padding(.horizontal)
                 HStack {
-                    roadLogo
+                    logos.road
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 30, alignment: .center)
@@ -125,7 +77,7 @@ struct ScoresOverView: View {
                     }
                 }
                 HStack {
-                    homeLogo
+                    logos.home
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 30, alignment: .center)
@@ -143,9 +95,6 @@ struct ScoresOverView: View {
                 }
             }
         }
-        .onAppear(perform: {
-            setLogos()
-        })
         #endif
     }
 }

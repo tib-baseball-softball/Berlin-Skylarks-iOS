@@ -16,13 +16,16 @@ struct StandingsView: View {
     @EnvironmentObject var networkManager: NetworkManager
     @State private var showAlertNoNetwork = false
     
-    @State private var leagueTableArray = [LeagueTable]()
+    @State private var leagueTables = [LeagueTable]()
     @State var leagueGroups = [LeagueGroup]()
     
     @State var tablesLoaded = false
     @State private var loadingInProgress = false
     
+    @StateObject var teamsLoader = TeamsLoader()
+    
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
+    @AppStorage("favoriteTeamID") var favoriteTeamID = 0
     
     func loadAllTables() async {
         if networkManager.isConnected == false {
@@ -34,7 +37,7 @@ struct StandingsView: View {
         loadingInProgress = true
         
         do {
-           leagueGroups = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
+            leagueGroups = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
         } catch {
             print("Request failed with error: \(error)")
         }
@@ -43,37 +46,38 @@ struct StandingsView: View {
             
             do {
                 let table = try await fetchBSMData(url: url, dataType: LeagueTable.self)
-                leagueTableArray.append(table)
+                leagueTables.append(table)
             } catch {
                 print("Request failed with error: \(error) while parsing \(leagueGroup.name) with id \(leagueGroup.id)")
             }
         }
+        await teamsLoader.loadTeamData(selectedSeason: selectedSeason)
+        
         loadingInProgress = false
     }
     
     var body: some View {
         ZStack {
-            #if !os(watchOS)
+#if !os(watchOS)
             Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
                 .edgesIgnoringSafeArea(.all)
-            #endif
+#endif
             List {
-                Section(header:
-                    HStack {
-                        Text("Club Team Records")
-                        Spacer()
-                        Text("Season: " + String(selectedSeason))
+                Section(header: HStack {
+                    Text("Club Team Records")
+                    Spacer()
+                    Text("Season: ") + Text(String(selectedSeason))
                 },
                         footer: Text("How are our teams doing?")) {
-                    if loadingInProgress == false && !leagueTableArray.isEmpty {
-                        NavigationLink(destination: ClubStandingsView(leagueTables: leagueTableArray)) {
+                    if loadingInProgress == false && !leagueTables.isEmpty {
+                        NavigationLink(destination: ClubStandingsView(leagueTables: leagueTables)) {
                             HStack {
                                 Image(systemName: "person.3")
-                                #if !os(watchOS)
+#if !os(watchOS)
                                     .foregroundColor(.skylarksDynamicNavySand)
-                                #else
+#else
                                     .foregroundColor(.skylarksSand)
-                                #endif
+#endif
                                 Text("See records for all teams")
                             }
                             .padding(.vertical)
@@ -81,60 +85,68 @@ struct StandingsView: View {
                     } else {
                         LoadingView()
                     }
-                    if loadingInProgress == false && leagueTableArray.isEmpty {
+                    if loadingInProgress == false && leagueTables.isEmpty {
                         Text("No team data found.")
                     }
                 }
                 //Text(leagueGroups.debugDescription)
                 Section(header: Text("League Standings"),
                         footer: Text("Please select a league for comprehensive data.")) {
+                    let favTeam = teamsLoader.getFavoriteTeam(favID: favoriteTeamID)
+                    
                     if loadingInProgress == true {
                         LoadingView()
                     } else {
-                        ForEach(leagueTableArray, id: \.self) { LeagueTable in
-                            
-                            NavigationLink(
-                                destination: StandingsTableView(leagueTable: LeagueTable),
-                                label: {
+                        ForEach(leagueTables, id: \.league_id) { leagueTable in
+                            NavigationLink(destination: StandingsTableView(leagueTable: leagueTable)) {
+                                HStack {
+                                    Image(systemName: "tablecells")
+                                        .padding(.trailing, 3)
+                                        .foregroundColor(Color.accentColor)
                                     HStack {
-                                        Image(systemName: "tablecells")
-                                            .padding(.trailing, 3)
-                                            .foregroundColor(Color.accentColor)
-                                        Text(LeagueTable.league_name)
+                                        //von hinten durch die Brust ins Auge
+                                        Text(leagueTable.league_name)
+                                        if !favTeam.league_entries.isEmpty {
+                                            //MARK: check, it might be needed to switch to "contains" should names diverge at some point
+                                            if favTeam.league_entries[0].league.name == leagueTable.league_name {
+                                                Image(systemName: "star")
+                                                    .foregroundColor(.skylarksRed)
+                                            }
+                                        }
                                     }
-                                })
+                                }
+                            }
                         }
                         .padding(.vertical, 2)
                     }
-                    if loadingInProgress == false && leagueTableArray.isEmpty {
+                    if loadingInProgress == false && leagueTables.isEmpty {
                         Text("No table data found.")
                     }
                 }
             }
             //this doesn't work - still crashes
-            .animation(.default, value: leagueTableArray)
-            #if !os(macOS)
+            .animation(.default, value: leagueTables)
+#if !os(macOS)
             .refreshable {
-                leagueTableArray = []
+                leagueTables = []
                 await loadAllTables()
             }
-            #endif
+#endif
             
             .listStyle( {
-              #if os(watchOS)
+#if os(watchOS)
                 .automatic
-              #else
+#else
                 .insetGrouped
-              #endif
+#endif
             } () )
             .frame(maxWidth: 600)
             
             .navigationTitle("Standings")
             
-            //Fix on iPhone seems to work for now even without a container view, please double-check in practice!
-            
+            // Fix on iPhone seems to work for now even without a container view
             .onAppear(perform: {
-                if leagueTableArray.isEmpty && tablesLoaded == false {
+                if leagueTables.isEmpty && tablesLoaded == false {
                     Task {
                         await loadAllTables()
                     }
@@ -142,7 +154,7 @@ struct StandingsView: View {
                 }
             })
             .onChange(of: selectedSeason, perform: { value in
-                leagueTableArray = []
+                leagueTables = []
                 tablesLoaded = false
                 //let's try to save some performance - don't need to load twice
                 //loadAllTables()
@@ -159,11 +171,13 @@ struct StandingsView: View {
 
 struct StandingsView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationView {
+        NavigationSplitView {
+            Text("some stuff here")
+        } content: {
             StandingsView()
-            .preferredColorScheme(.dark)
-            //.previewInterfaceOrientation(.landscapeLeft)
-            .environmentObject(NetworkManager())
+                .environmentObject(NetworkManager())
+        } detail: {
+            Text("some details here")
         }
     }
 }

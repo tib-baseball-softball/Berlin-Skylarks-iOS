@@ -27,12 +27,12 @@ struct ClubGridItem: View {
                         .font(.title3)
                         .foregroundColor(.skylarksSand)
 #endif
-                    Text(itemName)
+                    Text(LocalizedStringKey(itemName))
                         .fixedSize()
 #if !os(watchOS)
                         .font(.headline)
 #else
-                        .font(.body)
+                        .font(.footnote)
 #endif
                 }
                 Spacer()
