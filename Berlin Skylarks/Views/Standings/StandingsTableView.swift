@@ -13,13 +13,15 @@ struct StandingsTableView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
-    @State var leagueTable: LeagueTable
+    var leagueTable: LeagueTable
     
     var body: some View {
         
         #if os(watchOS)
         
-        //the table for Apple Watch removes the columns for streak and games behind and changes the team display name to the short name (acronym with number)
+        //------------------------------------------------------------//
+        // the table for Apple Watch removes the columns for streak and games behind and changes the team display name to the short name (acronym with number)
+        //------------------------------------------------------------//
         
         List {
             Section(footer: Text(

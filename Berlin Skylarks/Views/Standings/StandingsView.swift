@@ -16,7 +16,7 @@ struct StandingsView: View {
     @EnvironmentObject var networkManager: NetworkManager
     @State private var showAlertNoNetwork = false
     
-    @State private var leagueTableArray = [LeagueTable]()
+    @State private var leagueTables = [LeagueTable]()
     @State var leagueGroups = [LeagueGroup]()
     
     @State var tablesLoaded = false
@@ -46,7 +46,7 @@ struct StandingsView: View {
             
             do {
                 let table = try await fetchBSMData(url: url, dataType: LeagueTable.self)
-                leagueTableArray.append(table)
+                leagueTables.append(table)
             } catch {
                 print("Request failed with error: \(error) while parsing \(leagueGroup.name) with id \(leagueGroup.id)")
             }
@@ -69,8 +69,8 @@ struct StandingsView: View {
                     Text("Season: ") + Text(String(selectedSeason))
                 },
                         footer: Text("How are our teams doing?")) {
-                    if loadingInProgress == false && !leagueTableArray.isEmpty {
-                        NavigationLink(destination: ClubStandingsView(leagueTables: leagueTableArray)) {
+                    if loadingInProgress == false && !leagueTables.isEmpty {
+                        NavigationLink(destination: ClubStandingsView(leagueTables: leagueTables)) {
                             HStack {
                                 Image(systemName: "person.3")
 #if !os(watchOS)
@@ -85,7 +85,7 @@ struct StandingsView: View {
                     } else {
                         LoadingView()
                     }
-                    if loadingInProgress == false && leagueTableArray.isEmpty {
+                    if loadingInProgress == false && leagueTables.isEmpty {
                         Text("No team data found.")
                     }
                 }
@@ -97,7 +97,7 @@ struct StandingsView: View {
                     if loadingInProgress == true {
                         LoadingView()
                     } else {
-                        ForEach(leagueTableArray, id: \.self) { leagueTable in
+                        ForEach(leagueTables, id: \.league_id) { leagueTable in
                             NavigationLink(destination: StandingsTableView(leagueTable: leagueTable)) {
                                 HStack {
                                     Image(systemName: "tablecells")
@@ -119,16 +119,16 @@ struct StandingsView: View {
                         }
                         .padding(.vertical, 2)
                     }
-                    if loadingInProgress == false && leagueTableArray.isEmpty {
+                    if loadingInProgress == false && leagueTables.isEmpty {
                         Text("No table data found.")
                     }
                 }
             }
             //this doesn't work - still crashes
-            .animation(.default, value: leagueTableArray)
+            .animation(.default, value: leagueTables)
 #if !os(macOS)
             .refreshable {
-                leagueTableArray = []
+                leagueTables = []
                 await loadAllTables()
             }
 #endif
@@ -146,7 +146,7 @@ struct StandingsView: View {
             
             // Fix on iPhone seems to work for now even without a container view
             .onAppear(perform: {
-                if leagueTableArray.isEmpty && tablesLoaded == false {
+                if leagueTables.isEmpty && tablesLoaded == false {
                     Task {
                         await loadAllTables()
                     }
@@ -154,7 +154,7 @@ struct StandingsView: View {
                 }
             })
             .onChange(of: selectedSeason, perform: { value in
-                leagueTableArray = []
+                leagueTables = []
                 tablesLoaded = false
                 //let's try to save some performance - don't need to load twice
                 //loadAllTables()
@@ -171,11 +171,13 @@ struct StandingsView: View {
 
 struct StandingsView_Previews: PreviewProvider {
     static var previews: some View {
-        NavigationStack {
+        NavigationSplitView {
+            Text("some stuff here")
+        } content: {
             StandingsView()
-                .preferredColorScheme(.dark)
-            //.previewInterfaceOrientation(.landscapeLeft)
                 .environmentObject(NetworkManager())
+        } detail: {
+            Text("some details here")
         }
     }
 }
