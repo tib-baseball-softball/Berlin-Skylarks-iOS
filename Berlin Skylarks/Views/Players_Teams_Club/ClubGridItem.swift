@@ -32,7 +32,7 @@ struct ClubGridItem: View {
 #if !os(watchOS)
                         .font(.headline)
 #else
-                        .font(.body)
+                        .font(.footnote)
 #endif
                 }
                 Spacer()

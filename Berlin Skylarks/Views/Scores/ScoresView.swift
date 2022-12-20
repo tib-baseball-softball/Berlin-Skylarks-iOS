@@ -411,7 +411,7 @@ struct ScoresView: View {
         
 #if os(watchOS)
         List {
-            Section(header: Text("Selected Season: " + String(selectedSeason))) {
+            Section(header: Text("Selected Season: ") + Text(String(selectedSeason))) {
                 if loadingInProgress == true {
                     LoadingView()
                 }
@@ -443,7 +443,7 @@ struct ScoresView: View {
                     },
                     content: {
                         ForEach(Gameday.allCases) { gameday in
-                            Text(gameday.displayName)
+                            Text(gameday.localizedName)
                             .tag(gameday)
                         }
                 })

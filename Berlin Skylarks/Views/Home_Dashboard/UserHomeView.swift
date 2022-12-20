@@ -24,15 +24,12 @@ struct UserHomeView: View {
     @State private var showingSheetLastGame = false
     @State var showingSheetTeams = false
     
-    @State var showNextGame = false
-    @State var showLastGame = false
     @State var showingTableData = false
     
     @State private var loadingScores = false
     @State private var loadingTables = false
     
     @StateObject var userDashboard = UserDashboard()
-    @State private var homeGamescores = [GameScore]()
     @State var homeLeagueTables = [LeagueTable]()
     @State var teams = [BSMTeam]()
     @State var leagueGroups = [LeagueGroup]()
@@ -200,7 +197,7 @@ struct UserHomeView: View {
                             destination: ScoresDetailView(gamescore: userDashboard.NextGame)) {
                                 ScoresOverView(gamescore: userDashboard.NextGame)
                             }
-                    } else if !showNextGame && !loadingScores {
+                    } else if !userDashboard.showNextGame && !loadingScores {
                         Text("There is no next game to display.")
                     }
                     if loadingScores == true {
@@ -213,7 +210,7 @@ struct UserHomeView: View {
                             destination: ScoresDetailView(gamescore: userDashboard.LastGame)) {
                                 ScoresOverView(gamescore: userDashboard.LastGame)
                             }
-                    } else if !showLastGame && !loadingScores {
+                    } else if !userDashboard.showLastGame && !loadingScores {
                         Text("There is no recent game to display.")
                     }
                     if loadingScores == true {
@@ -253,7 +250,7 @@ struct UserHomeView: View {
                 displayTeam = await setFavoriteTeam()
             }
             homeLeagueTables = []
-            homeGamescores = []
+            userDashboard.homeGamescores = []
         })
         
         //this triggers only after the first launch once the onboarding sheet is dismissed. This var starts false, is set to true after the user selects their favorite team and is never set back to false anywhere
@@ -377,7 +374,7 @@ struct UserHomeView: View {
                     .watchOS { $0.padding() }
                 }
                 Section(header: Text("Next Game")) {
-                    if showNextGame == true {
+                    if userDashboard.showNextGame == true {
                         NavigationLink(
                             destination: ScoresDetailView(gamescore: userDashboard.NextGame)) {
                                 ScoresOverView(gamescore: userDashboard.NextGame)
@@ -387,7 +384,7 @@ struct UserHomeView: View {
                     }
                 }
                 Section(header: Text("Latest Score")) {
-                    if showLastGame == true {
+                    if userDashboard.showLastGame == true {
                         NavigationLink(
                             destination: ScoresDetailView(gamescore: userDashboard.LastGame)) {
                                 ScoresOverView(gamescore: userDashboard.LastGame)
@@ -440,7 +437,7 @@ struct UserHomeView: View {
                 displayTeam = await setFavoriteTeam()
             }
             homeLeagueTables = []
-            homeGamescores = []
+            userDashboard.homeGamescores = []
         })
         
         .onChange(of: didLaunchBefore) { firstLaunch in
