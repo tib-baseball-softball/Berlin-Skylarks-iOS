@@ -158,7 +158,7 @@ struct TeamWidgetLastGameView: View {
             //.border(Color.skylarksSand)
             //Divider()
             } else {
-                Text("There is no last game to display.")
+                Text("There is no recent game to display.")
                     .font(.subheadline)
             }
         }
