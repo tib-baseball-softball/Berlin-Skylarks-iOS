@@ -21,6 +21,11 @@ struct ScoreMainInfo: View {
             Text("\(gamescore.match_id)")
         }
         .padding(ScoresItemPadding)
+        HStack {
+            Image(systemName: "baseball.diamond.bases")
+            Text(String(gamescore.planned_innings)) + Text(" planned Innings")
+        }
+        .padding(ScoresItemPadding)
         if let gameDate = gamescore.gameDate {
             HStack {
                 Image(systemName: "calendar")

@@ -25,4 +25,4 @@ let emptyScoreTeam = GameScore.Team(name: "Team Name", short_name: "ACR", clubs:
 let homeEntry = GameScore.LeagueEntry(team: emptyScoreTeam)
 let awayEntry = GameScore.LeagueEntry(team: emptyScoreTeam)
 
-let testGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", league_id: 1, home_runs: 2, away_runs: 1, home_team_name: "Home Team", away_team_name: "Road Team", human_state: "getestet", scoresheet_url: nil, field: nil, league: emptyLeague, home_league_entry: homeEntry, away_league_entry: awayEntry, umpire_assignments: [], scorer_assignments: [], gameDate: .now)
+let testGame = GameScore(id: 999, match_id: "111", time: "2020-08-08 17:00:00 +0200", league_id: 1, home_runs: 2, away_runs: 1, home_team_name: "Home Team", away_team_name: "Road Team", planned_innings: 7, human_state: "getestet", scoresheet_url: nil, field: nil, league: emptyLeague, home_league_entry: homeEntry, away_league_entry: awayEntry, umpire_assignments: [], scorer_assignments: [], gameDate: .now)

@@ -1,89 +1,3 @@
-"Team Overview" = "Teamübersicht";
-
-"Shows info about your favorite Skylarks team." = "Zeigt Infos über dein Lieblingsteam.";
-
-"Selected Team" = "Gewähltes Team";
-
-"Show non-Skylarks Games" = "Zeige externe Spiele";
-
-"Visit the team website" = "Besuche die Team-Webseite";
-
-"Contribute on GitHub" = "Auf GitHub beitragen";
-
-"Contact the developer" = "Entwickler kontaktieren";
-
-"Save favorite team" = "Lieblingsteam speichern";
-
-"Loading data..." = "Datenabruf läuft...";
-
-"Chart" = "Graph";
-
-"Percentage" = "Prozentsatz";
-
-"Streak" = "Serie";
-
-"Favorite Team Details" = "Team-Details";
-
-"Team Records" = "Team-Bilanzen";
-
-"Selected Season: " = "Gewählte Saison: ";
-
-"Previous" = "Vorheriger";
-
-"Current" = "Aktueller";
-
-"Next" = "Nächster";
-
-"Any" = "Alle";
-
-"Contact Details" = "Kontaktdetails";
-
-"Club Officials" = "Funktionäre";
-
-"Officials" = "Funktionäre";
-
-"Ballpark" = "Ballpark";
-
-"Ballpark Detail" = "Ballpark-Details";
-
-"Team Scorers" = "Team-Scorer";
-
-"Team Umpires" = "Team-Umpire";
-
-"Detailed Info" = "Detail-Infos";
-
-"Capacity: " = "Kapazität: ";
-
-"Seats: " = "Sitzplätze: ";
-
-"Selected Season: " = " Gewählte Saison: ";
-
-"Save to calendar" = "Kalenderexport";
-
-"Choose a calendar for exporting" = "Wähle einen Kalender für den Spielexport";
-
-"No access to calendar" = "Kein Zugriff auf Kalender";
-
-"No network connection" = "Keine Netzwerkverbindung";
-
-"Game Details" = "Spieldetails";
-
-"Link to Scoresheet" = "Link zum Scoresheet";
-
-"Officials" = "Funktionäre";
-
-"Details" = "Details";
-
-"Gamedays" = "Spieltage";
-
-"Wins Count" = "Sieganzahl";
-
-"Series Length: " = "Länge der Serie: ";
-
-"Season: " = "Saison: ";
-
-"Season" = "Saison";
-
 /* No comment provided by engineer. */
 "-" = "-";
 
@@ -92,6 +6,9 @@
 
 /* No comment provided by engineer. */
 "%@ lead series" = "%@ führen in der Serie";
+
+/* No comment provided by engineer. */
+" planned Innings" = " geplante Innings";
 
 /* No comment provided by engineer. */
 "%@ Playoff Game %@" = "%1$@ Playoff-Spiel %2$@";
@@ -130,6 +47,12 @@
 "App Version:" = "App-Version:";
 
 /* No comment provided by engineer. */
+"Ballpark" = "Ballpark";
+
+/* No comment provided by engineer. */
+"Ballpark Detail" = "Ballpark-Details";
+
+/* No comment provided by engineer. */
 "Baseball" = "Baseball";
 
 /* No comment provided by engineer. */
@@ -145,7 +68,7 @@
 "C" = "C";
 
 /* No comment provided by engineer. */
-"Capacity: %@" = "Kapazität: %@";
+"Capacity: " = "Kapazität: ";
 
 /* main navigation
    tab view */
@@ -153,6 +76,9 @@
 
 /* No comment provided by engineer. */
 "Club Member since" = "Vereinsmitglied seit";
+
+/* No comment provided by engineer. */
+"Club Officials" = "Funktionäre";
 
 /* No comment provided by engineer. */
 "Club Team Records" = "Bilanzen aller Teams";
@@ -164,7 +90,16 @@
 "Clubhouse champagne celebration or dugout fights?" = "Champagner-Party im Clubhouse oder Streit im Dugout?";
 
 /* No comment provided by engineer. */
+"Contact Details" = "Kontaktdetails";
+
+/* No comment provided by engineer. */
+"Contribute on GitHub" = "Auf GitHub beitragen";
+
+/* No comment provided by engineer. */
 "Dashboard" = "Dashboard";
+
+/* No comment provided by engineer. */
+"Detailed Info" = "Detail-Infos";
 
 /* No comment provided by engineer. */
 "Directions" = "Anfahrt";
@@ -175,7 +110,7 @@
 /* No comment provided by engineer. */
 "F" = "F";
 
-/* No comment provided by engineer. */
+/* main navigation */
 "Favorite Team" = "Lieblingsteam";
 
 /* No comment provided by engineer. */
@@ -183,6 +118,9 @@
 
 /* No comment provided by engineer. */
 "Game Action" = "Spielbetrieb";
+
+/* No comment provided by engineer. */
+"Game Details" = "Spieldetails";
 
 /* No comment provided by engineer. */
 "Game has been saved to calendar" = "Das Spiel wurde im Kalender gespeichert.";
@@ -212,13 +150,10 @@
 "Hello World" = "Hallo Welt";
 
 /* main navigation
-   Reference to the home team
-   refers to the home tab in the tab view */
+   Reference to the home team */
 "Home" = "Heim";
 
-/* main navigation
-   Reference to the home team
-   refers to the home tab in the tab view */
+/* refers to the home tab in the tab view */
 "HomeTab" = "Home";
 
 /* No comment provided by engineer. */
@@ -259,6 +194,12 @@
 
 /* No comment provided by engineer. */
 "Licenses" = "Lizenzen";
+
+/* No comment provided by engineer. */
+"Link to Scoresheet" = "Link zum Scoresheet";
+
+/* No comment provided by engineer. */
+"Loading data..." = "Datenabruf läuft...";
 
 /* No comment provided by engineer. */
 "Loading teams for current season..." = "Lade Teams für aktuelle Saison...";
@@ -306,6 +247,9 @@
 "No map data provided" = "Keine Kartendaten verfügbar";
 
 /* No comment provided by engineer. */
+"No network connection" = "Keine Netzwerkverbindung";
+
+/* No comment provided by engineer. */
 "No scorer assigned yet" = "Bisher keine Scorer:in eingetragen";
 
 /* No comment provided by engineer. */
@@ -328,9 +272,6 @@
 
 /* No comment provided by engineer. */
 "No team data." = "Keine Teamdaten.";
-
-/* No comment provided by engineer. */
-"nothing" = "nichts";
 
 /* No comment provided by engineer. */
 "Player profiles" = "Spielerprofile";
@@ -378,6 +319,9 @@
 "Road" = "Auswärts";
 
 /* No comment provided by engineer. */
+"Save favorite team" = "Lieblingsteam speichern";
+
+/* No comment provided by engineer. */
 "SB" = "SB";
 
 /* No comment provided by engineer. */
@@ -400,7 +344,7 @@
 "Season: " = "Saison:";
 
 /* No comment provided by engineer. */
-"Seats: %@" = "Sitzplätze: %@";
+"Seats: " = "Sitzplätze: ";
 
 /* No comment provided by engineer. */
 "See full Standings" = "Zeige gesamte Tabelle";
@@ -424,7 +368,7 @@
 "Selected section" = "Gewählte Sektion";
 
 /* No comment provided by engineer. */
-"Series Length: Best of %@" = "Serie angesetzt: Best of %@";
+"Series Length: " = "Länge der Serie: ";
 
 /* No comment provided by engineer. */
 "Series tied" = "Serie ausgeglichen";
@@ -434,10 +378,16 @@
 "Settings" = "Einstellungen";
 
 /* No comment provided by engineer. */
+"Show non-Skylarks Games" = "Zeige externe Spiele";
+
+/* No comment provided by engineer. */
 "Show Player List" = "Zeige Spielerliste";
 
 /* No comment provided by engineer. */
 "Show:" = "Zeige: ";
+
+/* No comment provided by engineer. */
+"Shows info about your favorite Skylarks team." = "Zeigt Infos über dein Lieblingsteam.";
 
 /* No comment provided by engineer. */
 "Softball" = "Softball";
@@ -471,7 +421,19 @@
 "Team mood" = "Stimmung im Team";
 
 /* No comment provided by engineer. */
+"Team Overview" = "Teamübersicht";
+
+/* No comment provided by engineer. */
+"Team Records" = "Team-Bilanzen";
+
+/* No comment provided by engineer. */
+"Team Scorers" = "Team-Scorer";
+
+/* No comment provided by engineer. */
 "Team selection" = "Team-Auswahl";
+
+/* No comment provided by engineer. */
+"Team Umpires" = "Team-Umpire";
 
 /* No comment provided by engineer. */
 "Team:" = "Team: ";
@@ -523,6 +485,9 @@
 
 /* No comment provided by engineer. */
 "Umpire" = "Umpire";
+
+/* No comment provided by engineer. */
+"Visit the team website" = "Besuche die Team-Webseite";
 
 /* No comment provided by engineer. */
 "Visual Chart of Wins count" = "Visuelle Grafik der Anzahl an Siegen";

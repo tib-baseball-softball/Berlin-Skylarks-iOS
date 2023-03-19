@@ -18,6 +18,7 @@ struct GameScore: Hashable, Codable, Identifiable {
     var away_runs: Int?
     var home_team_name: String
     var away_team_name: String
+    var planned_innings: Int
     var human_state: String
     var scoresheet_url: String?
     var field: BSMField?
