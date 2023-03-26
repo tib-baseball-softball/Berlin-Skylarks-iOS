@@ -216,7 +216,9 @@ struct ScoresView: View {
     }
     
     func saveEvents(calendarTitle: String) {
-        for gamescore in gamescores {
+        let scoresToUse = showOtherTeams ? gamescores : skylarksGamescores
+        
+        for gamescore in scoresToUse {
             let gameDate = getDatefromBSMString(gamescore: gamescore)
             
             calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendarTitle: calendarTitle)

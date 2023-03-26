@@ -111,10 +111,11 @@ class CalendarManager: ObservableObject {
               //event.calendar = eventStore.defaultCalendarForNewEvents
               do {
                   try eventStore.save(event, span: .thisEvent)
+                  print("Saved Event \(String(describing: event.title)) with start time \(String(describing: event.startDate)) successfully")
               } catch let error as NSError {
-                  print("failed to save event with error : \(error)")
+                  print("failed to save event \(String(describing: event.title)) with start time \(String(describing: event.startDate)) with error : \(error)")
               }
-              print("Saved Event successfully")
+              
           }
           else {
               print("failed to save event with error : \(String(describing: error)) or access not granted")
