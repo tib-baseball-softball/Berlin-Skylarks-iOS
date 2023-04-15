@@ -1,0 +1,5 @@
+import Foundation
+
+let apiKey = "INSERT_API_KEY_HERE"
+
+// insert key and rename file to .swift

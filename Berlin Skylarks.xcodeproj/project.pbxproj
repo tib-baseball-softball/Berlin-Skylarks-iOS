@@ -282,6 +282,7 @@
 		CAD42719280BF1C3001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CAD4271A280BF1C6001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CAD4271C280DB10B001CA68A /* ScoresOverViewFull.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4271B280DB10B001CA68A /* ScoresOverViewFull.swift */; };
+		CADBDF4929EB4028005F060A /* API_Key.dist in Resources */ = {isa = PBXBuildFile; fileRef = CADBDF4829EB4028005F060A /* API_Key.dist */; };
 		CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
 		CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE134872771F2E000DFA745 /* WidgetSkylarks.swift */; };
 		CAE1348B2771F2E100DFA745 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAE1348A2771F2E100DFA745 /* Assets.xcassets */; };
@@ -506,6 +507,7 @@
 		CACA4291284642DF008F21FF /* ClubStandingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubStandingsRow.swift; sourceTree = "<group>"; };
 		CACA42942848E684008F21FF /* ClubStandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubStandingsView.swift; sourceTree = "<group>"; };
 		CAD4271B280DB10B001CA68A /* ScoresOverViewFull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresOverViewFull.swift; sourceTree = "<group>"; };
+		CADBDF4829EB4028005F060A /* API_Key.dist */ = {isa = PBXFileReference; lastKnownFileType = text; path = API_Key.dist; sourceTree = "<group>"; };
 		CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetSkylarksExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE134822771F2E000DFA745 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		CAE134842771F2E000DFA745 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
@@ -613,6 +615,7 @@
 				CA6042A02745B14000607011 /* ViewModifiers.swift */,
 				CA55F6E027601A4F0032302F /* API_Key.swift */,
 				CA1E03672819ABAA00E2FF8F /* TeamImageData.swift */,
+				CADBDF4829EB4028005F060A /* API_Key.dist */,
 			);
 			path = Global;
 			sourceTree = "<group>";
@@ -1145,6 +1148,7 @@
 				CA940B88292A963A00D91508 /* Localizable.strings in Resources */,
 				CA25ABBC294E38A5002FA8A6 /* app_impressum_de.md in Resources */,
 				CABF7BF3259351D500B95813 /* Assets.xcassets in Resources */,
+				CADBDF4929EB4028005F060A /* API_Key.dist in Resources */,
 				CAE7740A26C1702900A57F66 /* VLBB_2021_Standings.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
