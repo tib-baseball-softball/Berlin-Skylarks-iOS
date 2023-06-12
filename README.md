@@ -19,12 +19,10 @@ Note: The app requires a BSM API key to function which is not shipped in the pub
 
 Contact info: app@tib-baseball.de
 
-______
+## Development History
 
-Please note: I am not a programmer. This project represents my learning experience to coding and iOS development as a complete beginner. So please do not expect anything refined. However, I still aim to create a working and functional app at some point in the future.
+- Started as a learning project into Programming in general as a complete beginner - therefore very different standards of code quality present.
 
+## Roadmap
 
-______
-
-
-So, let the potatoes begin! 🥔
+- Mostly feature complete and not under active development at the moment, maintenance releases for new iOS versions.
