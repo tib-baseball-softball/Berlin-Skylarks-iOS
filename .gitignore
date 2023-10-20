@@ -4,6 +4,6 @@
 # no API keys
 API_Key.swift
 
-.xcuserstate
+*.xcuserstate
 
-.xcsettings
+*.xcsettings
