@@ -8,7 +8,6 @@
 import Foundation
 import SwiftUI
 
-var currentSeason = "2022" //Deprecated - using Int from AppStorage in future, but still needed for transition!
 let skylarksID = 485 // this is probably never going to change - but most API calls work without it anyway
 
 //this ID is used for favoriteTeamID to refer to no team at all, single digit to (hopefully) ensure there won't be a real one with this ID

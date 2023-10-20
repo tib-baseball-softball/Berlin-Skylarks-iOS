@@ -282,23 +282,6 @@ struct UserHomeView: View {
                     Image(systemName: "person.3")
                         .foregroundColor(.skylarksRed)
                 }
-                //we are showing the app settings here, but only on iPhone, since the 5 tab items are full. On iPad/Mac the sidebar has more than enough space to include settings
-                    //for now we have it back in the tab bar
-//                if UIDevice.current.userInterfaceIdiom == .phone {
-//                    Button(
-//                        action: {
-//                            showingSheetSettings.toggle()
-//                        }
-//                    ){
-//                        Image(systemName: "gearshape.fill")
-//                    }
-//                    .padding(.horizontal, 5)
-//                    .sheet( isPresented: $showingSheetSettings) {
-//                        NavigationView {
-//                            SettingsListView()
-//                        }
-//                    }
-//                }
             }
         }
         

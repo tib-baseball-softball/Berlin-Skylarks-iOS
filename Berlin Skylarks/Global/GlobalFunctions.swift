@@ -117,19 +117,6 @@ func determineTableRow(team: BSMTeam, table: LeagueTable) -> LeagueTable.Row {
 
 //MARK: Generic load function that accepts any codable type
 
-//not sure if this works, but URLSession.shared is always cached
-
-//extension URLSession {
-//    static let noCacheSession: URLSession = {
-//        let config = URLSessionConfiguration.ephemeral
-//        config.requestCachePolicy = .reloadIgnoringLocalAndRemoteCacheData
-//        config.urlCache = nil
-//        return URLSession(configuration: config)
-//    }()
-//}
-
-// new version with async/await
-
 func fetchBSMData<T: Codable>(url: URL, dataType: T.Type) async throws -> T {
     
     let (data, _) = try await URLSession.shared.data(from: url)
