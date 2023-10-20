@@ -27,10 +27,19 @@ class PlayoffSeries {
         secondTeam.name = playoffSeriesGames[0].home_team_name
         
         for gamescore in playoffSeriesGames where firstTeam.name == gamescore.home_team_name && gamescore.homeTeamWin == true || firstTeam.name == gamescore.away_team_name && gamescore.homeTeamWin == false {
-            firstTeam.wins += 1
+            if gamescore.state == .played {
+                firstTeam.wins += 1
+            }
         }
         for gamescore in playoffSeriesGames where secondTeam.name == gamescore.home_team_name && gamescore.homeTeamWin == true || secondTeam.name == gamescore.away_team_name && gamescore.homeTeamWin == false {
-            secondTeam.wins += 1
+            if gamescore.state == .played {
+                secondTeam.wins += 1
+            }
+        }
+        
+        // series hasn't started yet, saves us the calculations below
+        if firstTeam.wins == 0 && secondTeam.wins == 0 {
+            return
         }
         
         //seriesStatus

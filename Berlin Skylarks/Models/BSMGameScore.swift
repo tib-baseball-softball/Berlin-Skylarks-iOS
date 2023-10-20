@@ -10,6 +10,10 @@ import SwiftUI
 import CoreLocation
 
 struct GameScore: Hashable, Codable, Identifiable {
+    enum GameState: Codable {
+        case planned, played, cancelled
+    }
+    
     var id: Int
     var match_id: String
     var time: String // gets converted by DateFormatter()
@@ -35,6 +39,7 @@ struct GameScore: Hashable, Codable, Identifiable {
     var isDerby: Bool?
     var isExternalGame: Bool?
     var homeTeamWin: Bool?
+    var state: GameState?
     
     struct LeagueEntry: Hashable, Codable {
         var team: Team
@@ -77,6 +82,15 @@ struct GameScore: Hashable, Codable, Identifiable {
         //necessary for some calculations
         homeTeamWin = false
         
+        switch human_state {
+        case "gespielt":
+            state = .played
+        case "geplant":
+            state = .planned
+        default:
+            state = .planned
+        }
+        
         //we are the home team
         if home_team_name.contains("Skylarks") && !away_team_name.contains("Skylarks") {
             skylarksAreHomeTeam = true
@@ -118,9 +132,13 @@ struct GameScore: Hashable, Codable, Identifiable {
         if let awayScore = away_runs, let homeScore = home_runs {
             if homeScore > awayScore {
                 homeTeamWin = true
-            } else {
+                state = .played
+            } else if homeScore < awayScore {
                 homeTeamWin = false
+                state = .played
             }
+        } else {
+            state = .planned
         }
     }
     
