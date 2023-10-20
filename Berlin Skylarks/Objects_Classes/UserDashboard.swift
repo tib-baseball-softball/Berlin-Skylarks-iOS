@@ -72,7 +72,7 @@ class UserDashboard: ObservableObject {
         playoffGames = homeGamescores.filter { $0.match_id.contains("PO")}
         if !playoffGames.isEmpty {
             playoffParticipation = true
-            playoffSeries.getSeriesStatus(gamescores: playoffGames)
+            playoffSeries.getSeriesStatus(playoffSeriesGames: playoffGames)
         } else {
             playoffParticipation = false
         }

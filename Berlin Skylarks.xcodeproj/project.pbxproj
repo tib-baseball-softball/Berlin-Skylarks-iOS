@@ -188,6 +188,10 @@
 		CA78B7282596880200510621 /* NewsDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B7272596880200510621 /* NewsDetailView.swift */; };
 		CA78B72B259688C100510621 /* PlayerDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B72A259688C100510621 /* PlayerDetailView.swift */; };
 		CA78B72E2596892E00510621 /* TeamListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B72D2596892E00510621 /* TeamListView.swift */; };
+		CA8008E32AE3173F00609ADC /* PlayoffTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8008E22AE3173F00609ADC /* PlayoffTeam.swift */; };
+		CA8008E42AE3173F00609ADC /* PlayoffTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8008E22AE3173F00609ADC /* PlayoffTeam.swift */; };
+		CA8008E52AE3174900609ADC /* PlayoffTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8008E22AE3173F00609ADC /* PlayoffTeam.swift */; };
+		CA8008E62AE3174A00609ADC /* PlayoffTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8008E22AE3173F00609ADC /* PlayoffTeam.swift */; };
 		CA890D4E28874BB700EC862D /* ClubInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA890D4D28874BB700EC862D /* ClubInfoSection.swift */; };
 		CA890D4F28874BB700EC862D /* ClubInfoSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA890D4D28874BB700EC862D /* ClubInfoSection.swift */; };
 		CA940B85292A963A00D91508 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA940B83292A963A00D91508 /* InfoPlist.strings */; };
@@ -458,6 +462,7 @@
 		CA78B7272596880200510621 /* NewsDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsDetailView.swift; sourceTree = "<group>"; };
 		CA78B72A259688C100510621 /* PlayerDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerDetailView.swift; sourceTree = "<group>"; };
 		CA78B72D2596892E00510621 /* TeamListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TeamListView.swift; sourceTree = "<group>"; };
+		CA8008E22AE3173F00609ADC /* PlayoffTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayoffTeam.swift; sourceTree = "<group>"; };
 		CA890D4D28874BB700EC862D /* ClubInfoSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubInfoSection.swift; sourceTree = "<group>"; };
 		CA940B84292A963A00D91508 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA940B87292A963A00D91508 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -632,6 +637,7 @@
 				CA45D0A128FAF6650073515C /* PlayoffSeries.swift */,
 				CA08D9B229198DF5000D8CC3 /* TeamsLoader.swift */,
 				CA25ABC9294E3BAE002FA8A6 /* MarkdownFile.swift */,
+				CA8008E22AE3173F00609ADC /* PlayoffTeam.swift */,
 			);
 			path = Objects_Classes;
 			sourceTree = "<group>";
@@ -1186,6 +1192,7 @@
 				CAA7C1A5289D720200CC0615 /* LicenseLevelIndicator.swift in Sources */,
 				CA1C39B62731856B00BB194C /* NotificationController.swift in Sources */,
 				CA9B1815277A299700D24CFA /* ScoresDetailView.swift in Sources */,
+				CA8008E42AE3173F00609ADC /* PlayoffTeam.swift in Sources */,
 				CAB26C5228FEF74C005ACFA7 /* LogoEntry.swift in Sources */,
 				CAA7C19C289D553100CC0615 /* LicenseSportIndicator.swift in Sources */,
 				CA1C3A172733473100BB194C /* watchOS_globals.swift in Sources */,
@@ -1269,6 +1276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA8008E62AE3174A00609ADC /* PlayoffTeam.swift in Sources */,
 				CA25ABCD294E3BAF002FA8A6 /* MarkdownFile.swift in Sources */,
 				CA65FF6A27F5F1D600F7845D /* ViewModifiers.swift in Sources */,
 				CA2D517E2950CFEF00CF465E /* WidgetSkylarks.intentdefinition in Sources */,
@@ -1369,6 +1377,7 @@
 				CABDB6F5284A82B800B16E8F /* CalendarManager.swift in Sources */,
 				CA0DA0452598BB32002A0FAB /* ScoresOverView.swift in Sources */,
 				CA890D4E28874BB700EC862D /* ClubInfoSection.swift in Sources */,
+				CA8008E32AE3173F00609ADC /* PlayoffTeam.swift in Sources */,
 				CA2D517C2950CFEF00CF465E /* WidgetSkylarks.intentdefinition in Sources */,
 				CA78B72B259688C100510621 /* PlayerDetailView.swift in Sources */,
 				CA1C3A0A2733407400BB194C /* Ints_Floats.swift in Sources */,
@@ -1422,6 +1431,7 @@
 				CA9B180F277A288900D24CFA /* Ints_Floats.swift in Sources */,
 				CAC044A227749D3100AD9888 /* PlayerModel.swift in Sources */,
 				CAE9C2BC28A9A2740079AB87 /* IntentHandler.swift in Sources */,
+				CA8008E52AE3174900609ADC /* PlayoffTeam.swift in Sources */,
 				CA5CF5D9284E0EBA00ABD7E0 /* ScorerAssignments.swift in Sources */,
 				CA9D3EE628738A6C00835953 /* ScoreNumber.swift in Sources */,
 				CA183EE5287353660088F085 /* GamedayTeamBlock.swift in Sources */,
