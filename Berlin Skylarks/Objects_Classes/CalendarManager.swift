@@ -11,8 +11,6 @@ import EventKit
 class CalendarManager: ObservableObject {
     @Published var calendarAccess = false
     
-    @Published var calendars = [EKCalendar]()
-    
     //get user calendars
     
     func checkAuthorizationStatus() async -> Bool {
@@ -20,14 +18,14 @@ class CalendarManager: ObservableObject {
         let eventStore = EKEventStore()
         
         switch (EKEventStore.authorizationStatus(for: .event)) {
-        case .authorized:
+        case .fullAccess:
             accessGranted = true
         case .notDetermined:
             accessGranted = false
             eventStore.requestAccess(to: .event) { granted, error in
                 accessGranted = granted
             }
-        case .denied, .restricted:
+        case .denied, .restricted, .writeOnly:
             accessGranted = false
         @unknown default:
             print("Unknown EventKit authorization status")
