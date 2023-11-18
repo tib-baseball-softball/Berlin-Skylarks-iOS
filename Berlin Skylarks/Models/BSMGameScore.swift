@@ -39,7 +39,7 @@ struct GameScore: Hashable, Codable, Identifiable {
     var isDerby: Bool?
     var isExternalGame: Bool?
     var homeTeamWin: Bool?
-    var state: GameState?
+    var gameState: GameState?
     
     struct LeagueEntry: Hashable, Codable {
         var team: Team
@@ -84,11 +84,11 @@ struct GameScore: Hashable, Codable, Identifiable {
         
         switch human_state {
         case "gespielt":
-            state = .played
+            gameState = .played
         case "geplant":
-            state = .planned
+            gameState = .planned
         default:
-            state = .planned
+            gameState = .planned
         }
         
         //we are the home team
@@ -132,13 +132,13 @@ struct GameScore: Hashable, Codable, Identifiable {
         if let awayScore = away_runs, let homeScore = home_runs {
             if homeScore > awayScore {
                 homeTeamWin = true
-                state = .played
+                gameState = .played
             } else if homeScore < awayScore {
                 homeTeamWin = false
-                state = .played
+                gameState = .played
             }
         } else {
-            state = .planned
+            gameState = .planned
         }
     }
     
