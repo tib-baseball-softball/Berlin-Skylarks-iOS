@@ -64,6 +64,9 @@
 		CA1E036F281ACC9D00E2FF8F /* LegalNoticeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E036D281ACC9D00E2FF8F /* LegalNoticeView.swift */; };
 		CA1E0371281AD4D100E2FF8F /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E0370281AD4D100E2FF8F /* PrivacyPolicyView.swift */; };
 		CA1E0372281AD4D100E2FF8F /* PrivacyPolicyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1E0370281AD4D100E2FF8F /* PrivacyPolicyView.swift */; };
+		CA23513F2B08B09200D90863 /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
+		CA2351402B08B12900D90863 /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
+		CA2351422B08B13700D90863 /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6042A02745B14000607011 /* ViewModifiers.swift */; };
 		CA25ABBC294E38A5002FA8A6 /* app_impressum_de.md in Resources */ = {isa = PBXBuildFile; fileRef = CA25ABBA294E38A5002FA8A6 /* app_impressum_de.md */; };
 		CA25ABBD294E38A6002FA8A6 /* app_impressum_de.md in Resources */ = {isa = PBXBuildFile; fileRef = CA25ABBA294E38A5002FA8A6 /* app_impressum_de.md */; };
 		CA25ABBE294E38A6002FA8A6 /* app_impressum_de.md in Resources */ = {isa = PBXBuildFile; fileRef = CA25ABBA294E38A5002FA8A6 /* app_impressum_de.md */; };
@@ -104,7 +107,6 @@
 		CA45D0A528FB069C0073515C /* PlayoffSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA45D0A128FAF6650073515C /* PlayoffSeries.swift */; };
 		CA48557B277383D5004ED11A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
 		CA48557E27748A9E004ED11A /* GamedayWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA48557C27748A9E004ED11A /* GamedayWidgetView.swift */; };
-		CA48558127748DEE004ED11A /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6042A02745B14000607011 /* ViewModifiers.swift */; };
 		CA4AA4422858BBFF00C83CED /* LargePercentageCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AA4412858BBFF00C83CED /* LargePercentageCircle.swift */; };
 		CA4AA4432858BBFF00C83CED /* LargePercentageCircle.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AA4412858BBFF00C83CED /* LargePercentageCircle.swift */; };
 		CA4AA445285B661700C83CED /* WatchRootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA4AA444285B661700C83CED /* WatchRootView.swift */; };
@@ -173,7 +175,6 @@
 		CA65FF5F27F5EC4400F7845D /* Skylarks Intents.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CA65FF4427F5EC4400F7845D /* Skylarks Intents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CA65FF6827F5F1A800F7845D /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C2271F62F800ADDE9D /* GlobalFunctions.swift */; };
 		CA65FF6927F5F1C600F7845D /* API_Key.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55F6E027601A4F0032302F /* API_Key.swift */; };
-		CA65FF6A27F5F1D600F7845D /* ViewModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6042A02745B14000607011 /* ViewModifiers.swift */; };
 		CA65FF6B27F5F1DA00F7845D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A0C273340C000BB194C /* Constants.swift */; };
 		CA65FF6C27F5F1E300F7845D /* Ints_Floats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A092733407400BB194C /* Ints_Floats.swift */; };
 		CA65FF6E27F882AA00F7845D /* BSMTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* BSMTeam.swift */; };
@@ -215,7 +216,6 @@
 		CAA7C193289D296700CC0615 /* MapViewWithPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C192289D296700CC0615 /* MapViewWithPin.swift */; };
 		CAA7C194289D296700CC0615 /* MapViewWithPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C192289D296700CC0615 /* MapViewWithPin.swift */; };
 		CAA7C195289D2BFE00CC0615 /* MapViewWithPin.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C192289D296700CC0615 /* MapViewWithPin.swift */; };
-		CAA7C196289D2F8B00CC0615 /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CAA7C198289D4F8100CC0615 /* UmpireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C197289D4F8100CC0615 /* UmpireView.swift */; };
 		CAA7C199289D4F8100CC0615 /* UmpireView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C197289D4F8100CC0615 /* UmpireView.swift */; };
 		CAA7C19B289D553100CC0615 /* LicenseSportIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C19A289D553100CC0615 /* LicenseSportIndicator.swift */; };
@@ -284,7 +284,6 @@
 		CACA42952848E684008F21FF /* ClubStandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA42942848E684008F21FF /* ClubStandingsView.swift */; };
 		CACA42962848E684008F21FF /* ClubStandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CACA42942848E684008F21FF /* ClubStandingsView.swift */; };
 		CAD42719280BF1C3001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
-		CAD4271A280BF1C6001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CAD4271C280DB10B001CA68A /* ScoresOverViewFull.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4271B280DB10B001CA68A /* ScoresOverViewFull.swift */; };
 		CADBDF4929EB4028005F060A /* API_Key.dist in Resources */ = {isa = PBXBuildFile; fileRef = CADBDF4829EB4028005F060A /* API_Key.dist */; };
 		CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
@@ -1279,7 +1278,6 @@
 			files = (
 				CA8008E62AE3174A00609ADC /* PlayoffTeam.swift in Sources */,
 				CA25ABCD294E3BAF002FA8A6 /* MarkdownFile.swift in Sources */,
-				CA65FF6A27F5F1D600F7845D /* ViewModifiers.swift in Sources */,
 				CA2D517E2950CFEF00CF465E /* WidgetSkylarks.intentdefinition in Sources */,
 				CA65FF6E27F882AA00F7845D /* BSMTeam.swift in Sources */,
 				CA65FF7227FF271900F7845D /* ModelData.swift in Sources */,
@@ -1294,10 +1292,10 @@
 				CA65FF6F27F882BF00F7845D /* BSMGameScore.swift in Sources */,
 				CA56F3D7288059DA00138195 /* BSMClub.swift in Sources */,
 				CA65FF6C27F5F1E300F7845D /* Ints_Floats.swift in Sources */,
+				CA2351402B08B12900D90863 /* ColorSets.swift in Sources */,
 				CA45D0A528FB069C0073515C /* PlayoffSeries.swift in Sources */,
 				CA65FF4927F5EC4400F7845D /* IntentHandler.swift in Sources */,
 				CA1E036B2819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
-				CAA7C196289D2F8B00CC0615 /* ColorSets.swift in Sources */,
 				CA56F3D22880578700138195 /* BSMPerson.swift in Sources */,
 				CA56F3DC2880607E00138195 /* BSMLicense.swift in Sources */,
 				CAC49351280850C0009677C7 /* WidgetPreviewData.swift in Sources */,
@@ -1420,7 +1418,6 @@
 				CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */,
 				CA5CF5D1284E0E3F00ABD7E0 /* ScoresStatusSection.swift in Sources */,
 				CA5CF5E5284E0F3E00ABD7E0 /* ScoreMainInfo.swift in Sources */,
-				CAD4271A280BF1C6001CA68A /* ColorSets.swift in Sources */,
 				CA183EED2873762F0088F085 /* GamedayWidgetData.swift in Sources */,
 				CA5CF5D5284E0E7400ABD7E0 /* UmpireAssignments.swift in Sources */,
 				CA183EE7287371A00088F085 /* FavoriteTeamWidgetData.swift in Sources */,
@@ -1429,6 +1426,7 @@
 				CA1E036A2819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
 				CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */,
 				CA5CF5DD284E0EDF00ABD7E0 /* BallparkLocation.swift in Sources */,
+				CA23513F2B08B09200D90863 /* ColorSets.swift in Sources */,
 				CA9B180F277A288900D24CFA /* Ints_Floats.swift in Sources */,
 				CAC044A227749D3100AD9888 /* PlayerModel.swift in Sources */,
 				CAE9C2BC28A9A2740079AB87 /* IntentHandler.swift in Sources */,
@@ -1445,8 +1443,8 @@
 				CA48557E27748A9E004ED11A /* GamedayWidgetView.swift in Sources */,
 				CA45D0A428FAF6650073515C /* PlayoffSeries.swift in Sources */,
 				CA9B1811277A289E00D24CFA /* API_Key.swift in Sources */,
-				CA48558127748DEE004ED11A /* ViewModifiers.swift in Sources */,
 				CAC044A027749D2C00AD9888 /* BSMGameScore.swift in Sources */,
+				CA2351422B08B13700D90863 /* ViewModifiers.swift in Sources */,
 				CA56F3D6288059DA00138195 /* BSMClub.swift in Sources */,
 				CA56F3D12880578700138195 /* BSMPerson.swift in Sources */,
 				CA183EEB2873757C0088F085 /* GamedayEntry.swift in Sources */,
@@ -1559,6 +1557,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "The Skylarks app needs access to your calendar to add game dates to it.";
@@ -1570,6 +1569,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.watchkitapp";
 				PRODUCT_NAME = Skylarks;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1592,6 +1592,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "The Skylarks app needs access to your calendar to add game dates to it.";
@@ -1603,6 +1604,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.watchkitapp";
 				PRODUCT_NAME = Skylarks;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1621,9 +1623,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.tib-baseball.BerlinSkylarksTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1639,9 +1643,11 @@
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.tib-baseball.BerlinSkylarksTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
@@ -1654,9 +1660,11 @@
 		CA65FF6527F5EC4400F7845D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = "Skylarks Intents/Skylarks Intents.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Skylarks Intents/Info.plist";
@@ -1668,6 +1676,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.Skylarks-Intents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1681,9 +1690,11 @@
 		CA65FF6627F5EC4400F7845D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = "Skylarks Intents/Skylarks Intents.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "Skylarks Intents/Info.plist";
@@ -1695,6 +1706,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.Skylarks-Intents";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1709,6 +1721,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
@@ -1776,6 +1789,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
 				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1842,6 +1856,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Berlin Skylarks/Berlin Skylarks.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Berlin Skylarks/Preview Content\"";
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				ENABLE_PREVIEWS = YES;
@@ -1853,9 +1868,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
@@ -1870,6 +1887,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Berlin Skylarks/Berlin Skylarks.entitlements";
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"Berlin Skylarks/Preview Content\"";
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				ENABLE_PREVIEWS = YES;
@@ -1881,9 +1899,11 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SUPPORTS_MACCATALYST = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
@@ -1893,11 +1913,13 @@
 		CAE134942771F2E100DFA745 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = WidgetSkylarksExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WidgetSkylarks/Info.plist;
@@ -1909,6 +1931,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.WidgetSkylarks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1922,11 +1945,13 @@
 		CAE134952771F2E100DFA745 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = WidgetSkylarksExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = WidgetSkylarks/Info.plist;
@@ -1938,6 +1963,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
+				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.WidgetSkylarks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
