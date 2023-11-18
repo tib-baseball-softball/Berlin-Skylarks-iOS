@@ -213,13 +213,13 @@ struct ScoresView: View {
         }
     }
     
-    func saveEvents(calendarTitle: String) {
+    func saveEvents(calendarTitle: String) async {
         let scoresToUse = showOtherTeams ? gamescores : skylarksGamescores
         
         for gamescore in scoresToUse {
             let gameDate = getDatefromBSMString(gamescore: gamescore)
             
-            calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendarTitle: calendarTitle)
+            await calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendarTitle: calendarTitle)
             showEventAlert = true
         }
     }
@@ -347,7 +347,9 @@ struct ScoresView: View {
                             
                             ForEach(calendarTitles, id: \.self) { calendarTitle in
                                 Button(calendarTitle) {
-                                    saveEvents(calendarTitle: calendarTitle)
+                                    Task {
+                                        await saveEvents(calendarTitle: calendarTitle)
+                                    }
                                 }
                             }
                         }
@@ -495,6 +497,8 @@ struct ScoresView_Previews: PreviewProvider {
     static var previews: some View {
             ScoresView()
                 //.preferredColorScheme(.dark)
+#if !os(watchOS)
                 .environmentObject(CalendarManager())
+#endif
     }
 }

@@ -8,6 +8,7 @@
 import Foundation
 import EventKit
 
+#if !os(watchOS)
 class CalendarManager: ObservableObject {
     @Published var calendarAccess = false
     
@@ -22,8 +23,14 @@ class CalendarManager: ObservableObject {
             accessGranted = true
         case .notDetermined:
             accessGranted = false
-            eventStore.requestAccess(to: .event) { granted, error in
-                accessGranted = granted
+            if #available(iOS 17.0, *) {
+                eventStore.requestWriteOnlyAccessToEvents() { granted, error in
+                    accessGranted = granted
+                }
+            } else {
+                eventStore.requestAccess(to: .event) { granted, error in
+                    accessGranted = granted
+                }
             }
         case .denied, .restricted, .writeOnly:
             accessGranted = false
@@ -36,7 +43,11 @@ class CalendarManager: ObservableObject {
     func askForCalPermission() async throws -> Bool {
         let eventStore = EKEventStore()
         
-        return try await eventStore.requestAccess(to: .event)
+        if #available(iOS 17.0, *) {
+            return try await eventStore.requestWriteOnlyAccessToEvents()
+        } else {
+            return try await eventStore.requestAccess(to: .event)
+        }
     }
     
     func getAvailableCalendars() async -> [String] {
@@ -67,58 +78,64 @@ class CalendarManager: ObservableObject {
     
     //add games to loaded calendars
 
-    #if !os(watchOS)
-    func addGameToCalendar(gameDate: Date, gamescore: GameScore, calendarTitle: String) {
+    
+    func addGameToCalendar(gameDate: Date, gamescore: GameScore, calendarTitle: String) async {
         let eventStore = EKEventStore()
+        var granted = false
              
-        eventStore.requestAccess(to: .event) { (granted, error) in
+        if #available(iOS 17.0, *) {
+            do {
+                granted = try await eventStore.requestWriteOnlyAccessToEvents()
+            } catch {
+                print("error \(String(describing: error))")
+            }
+        } else {
+            do {
+                granted = try await eventStore.requestAccess(to: .event)
+            } catch {
+                print("error \(String(describing: error))")
+            }
+        }
+        if granted {
+          let event:EKEvent = EKEvent(eventStore: eventStore)
+          let calendars = eventStore.calendars(for: .event)
           
-          if (granted) && (error == nil) {
-              print("granted \(granted)")
-              print("error \(String(describing: error))")
+          event.title = "\(gamescore.league.name): \(gamescore.away_team_name) @ \(gamescore.home_team_name)"
+          event.startDate = gameDate
+          event.endDate = gameDate.addingTimeInterval(2 * 60 * 60)
+          
+          //add game location if there is data
+          
+          if let field = gamescore.field, let latitude = gamescore.field?.latitude, let longitude = gamescore.field?.longitude {
               
-              let event:EKEvent = EKEvent(eventStore: eventStore)
-              let calendars = eventStore.calendars(for: .event)
-              
-              event.title = "\(gamescore.league.name): \(gamescore.away_team_name) @ \(gamescore.home_team_name)"
-              event.startDate = gameDate
-              event.endDate = gameDate.addingTimeInterval(2 * 60 * 60)
-              
-              //add game location if there is data
-              
-              if let field = gamescore.field, let latitude = gamescore.field?.latitude, let longitude = gamescore.field?.longitude {
-                  
-                  let location = CLLocation(latitude: latitude, longitude: longitude)
-                  let structuredLocation = EKStructuredLocation(title: "\(field.name) - \(field.street ?? ""), \(field.postal_code ?? "") \(field.city ?? "")")
-                  structuredLocation.geoLocation = location
-                  event.structuredLocation = structuredLocation
-              }
-              
-              event.notes = """
-                    League: \(gamescore.league.name)
-                    Match Number: \(gamescore.match_id)
-                    
-                    Field: \(gamescore.field?.name ?? "No data")
-                    Address: \(gamescore.field?.street ?? ""), \(gamescore.field?.postal_code ?? "") \(gamescore.field?.city ?? "")
-                """
-            
-              for calendar in calendars where calendar.title == calendarTitle {
-                  event.calendar = calendar
-              }
-              
-              //event.calendar = eventStore.defaultCalendarForNewEvents
-              do {
-                  try eventStore.save(event, span: .thisEvent)
-                  print("Saved Event \(String(describing: event.title)) with start time \(String(describing: event.startDate)) successfully")
-              } catch let error as NSError {
-                  print("failed to save event \(String(describing: event.title)) with start time \(String(describing: event.startDate)) with error : \(error)")
-              }
-              
+              let location = CLLocation(latitude: latitude, longitude: longitude)
+              let structuredLocation = EKStructuredLocation(title: "\(field.name) - \(field.street ?? ""), \(field.postal_code ?? "") \(field.city ?? "")")
+              structuredLocation.geoLocation = location
+              event.structuredLocation = structuredLocation
           }
-          else {
-              print("failed to save event with error : \(String(describing: error)) or access not granted")
+          
+          event.notes = """
+                League: \(gamescore.league.name)
+                Match Number: \(gamescore.match_id)
+                
+                Field: \(gamescore.field?.name ?? "No data")
+                Address: \(gamescore.field?.street ?? ""), \(gamescore.field?.postal_code ?? "") \(gamescore.field?.city ?? "")
+            """
+
+          for calendar in calendars where calendar.title == calendarTitle {
+              event.calendar = calendar
+          }
+          
+          do {
+              try eventStore.save(event, span: .thisEvent)
+              print("Saved Event \(String(describing: event.title)) with start time \(String(describing: event.startDate)) successfully")
+          } catch let error as NSError {
+              print("failed to save event \(String(describing: event.title)) with start time \(String(describing: event.startDate)) with error : \(error)")
           }
         }
+        else {
+          print("failed to save event with error: error fetching it or access not granted")
+        }
     }
-    #endif
 }
+#endif

@@ -45,9 +45,9 @@ struct ScoresDetailView: View {
         }
     }
     
-    func saveEvent(calendarTitle: String) {
+    func saveEvent(calendarTitle: String) async {
         let gameDate = getDatefromBSMString(gamescore: gamescore)
-        calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendarTitle: calendarTitle)
+        await calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendarTitle: calendarTitle)
         showEventAlert = true
     }
 #endif
@@ -167,7 +167,9 @@ struct ScoresDetailView: View {
                     
                     ForEach(calendarTitles, id: \.self) { calendarTitle in
                         Button(calendarTitle) {
-                            saveEvent(calendarTitle: calendarTitle)
+                            Task {
+                                await saveEvent(calendarTitle: calendarTitle)
+                            }
                         }
                     }
                 }
