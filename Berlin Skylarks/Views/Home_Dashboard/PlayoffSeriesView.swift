@@ -16,8 +16,10 @@ struct PlayoffSeriesView: View {
     var body: some View {
         NavigationStack {
             ZStack {
+                #if !os(macOS)
                 Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
                     .edgesIgnoringSafeArea(.all)
+                #endif
                 List {
                     Section(
                         header: Text("Status"),

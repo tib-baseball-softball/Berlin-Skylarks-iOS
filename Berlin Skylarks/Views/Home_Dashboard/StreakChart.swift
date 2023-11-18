@@ -13,12 +13,14 @@ struct StreakBar: View {
     @ObservedObject var userDashboard: UserDashboard
     
     var itemWidth: CGFloat {
-        //MARK: would need to be adjusted for watchOS if used there later
+        #if !os(macOS)
         if UIDevice.current.userInterfaceIdiom == .phone {
             return 25
         } else {
             return 35
         }
+        #endif
+        return 35
     }
     
     var body: some View {

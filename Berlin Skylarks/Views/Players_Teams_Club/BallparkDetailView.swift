@@ -22,10 +22,12 @@ struct BallparkDetailView: View {
                         image
                             .resizable()
                             .scaledToFill()
-                        #if !os(watchOS)
+                        #if !os(watchOS) && !os(macOS)
                             .frame(maxHeight: verticalSizeClass == .regular && UIDevice.current.userInterfaceIdiom != .phone ? 400 : 200)
-                        #else
+                        #elseif os(watchOS)
                             .frame(maxHeight: 100)
+                        #elseif os(macOS)
+                            .frame(height: 400)
                         #endif
                     } placeholder: {
                         HStack {

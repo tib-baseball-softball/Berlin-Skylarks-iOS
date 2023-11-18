@@ -75,7 +75,7 @@ struct StandingsTableView: View {
         
         #else
         ZStack {
-            #if !os(watchOS)
+            #if !os(watchOS) && !os(macOS)
             Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
                 .edgesIgnoringSafeArea(.all)
             #endif
@@ -147,7 +147,9 @@ struct StandingsTableView: View {
             .frame(maxWidth: 650)
             .listStyle(.insetGrouped)
             .navigationTitle(leagueTable.league_name + " " + String(leagueTable.season))
+            #if !os(macOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
         }
         .iOS { $0.background(colorStandingsBackground) }
         #endif

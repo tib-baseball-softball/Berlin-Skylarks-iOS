@@ -42,7 +42,7 @@ struct ClubInfoSection: View {
                 Spacer()
             }
             .padding()
-#if !os(watchOS)
+#if !os(watchOS) && !os(macOS)
             .background(colorScheme == .light ? .white : .secondaryBackground)
 #endif
             .cornerRadius(15)

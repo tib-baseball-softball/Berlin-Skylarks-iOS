@@ -10,7 +10,7 @@ import MapKit
 
 struct BallparkLocation: View {
     
-#if !os(watchOS)
+#if !os(watchOS) && !os(macOS)
     @Environment(\.verticalSizeClass) var verticalSizeClass
     
     //computed property to use a bigger map on larger screens, but not on portrait iPhones

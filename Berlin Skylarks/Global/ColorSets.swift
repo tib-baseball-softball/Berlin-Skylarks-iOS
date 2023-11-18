@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-#if !os(watchOS)
+#if !os(watchOS) && !os(macOS)
 let ScoresSubItemBackground = Color(UIColor.tertiarySystemFill)
 let ColorStandingsTableHeadline = Color(UIColor.secondarySystemFill)
 
@@ -17,6 +17,12 @@ let ItemBackgroundColor = Color(UIColor.tertiarySystemFill)
 
 //is that one actually needed?
 let colorStandingsBackground = Color(UIColor.systemGroupedBackground)
+#endif
+
+#if os(macOS)
+let ScoresSubItemBackground = Color(NSColor.tertiarySystemFill)
+let ColorStandingsTableHeadline = Color(NSColor.secondarySystemFill)
+let colorStandingsBackground = Color(NSColor.quaternarySystemFill)
 #endif
 
 extension Color {
@@ -29,7 +35,7 @@ extension Color {
     static let skylarksAdaptiveBlue = Color("SkylarksAdaptiveBlue")
     static let skylarksDynamicNavySand = Color("SkylarksDynamicNavySand")
     
-    #if !os(watchOS)
+    #if !os(watchOS) && !os(macOS)
     static let primaryBackground = Color(uiColor: .systemBackground)
     static let secondaryBackground = Color(uiColor: .secondarySystemBackground)
     #endif

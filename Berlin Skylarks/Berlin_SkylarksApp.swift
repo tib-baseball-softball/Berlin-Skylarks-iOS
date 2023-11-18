@@ -9,15 +9,12 @@ import SwiftUI
 
 @main
 struct Berlin_SkylarksApp: App {
-    let persistenceController = PersistenceController.shared
-    
     @StateObject var calendarManager = CalendarManager()
     @StateObject var networkManager = NetworkManager()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environment(\.managedObjectContext, persistenceController.container.viewContext)
                 .environmentObject(calendarManager)
                 .environmentObject(networkManager)
         }
@@ -25,10 +22,11 @@ struct Berlin_SkylarksApp: App {
 }
 
 //this makes views immediately appear (instead of being hidden behind back buttons)
-
+#if !os(macOS)
 extension UISplitViewController {
     open override func viewDidLoad() {
         super.viewDidLoad()
         self.show(.primary)
     }
 }
+#endif

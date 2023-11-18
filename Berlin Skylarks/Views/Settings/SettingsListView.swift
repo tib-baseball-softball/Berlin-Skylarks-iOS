@@ -129,7 +129,7 @@ struct SettingsListView: View {
                         .frame(width: 25)
                     Link("Contribute on GitHub", destination: URL(string: "https://github.com/Obnoxieux/Berlin-Skylarks")!)
                 }
-                #if !os(watchOS)
+                #if !os(watchOS) && !os(macOS)
                 //watchOS does not support UIApplication
                 HStack {
                     Image(systemName: "envelope.fill")
@@ -142,28 +142,15 @@ struct SettingsListView: View {
                     })
                 }
                 #endif
+                #if os(macOS)
+                Label("Contact the developer", systemImage: "envelope.fill")
+                    .textSelection(.enabled)
+                #endif
             }
         }
-    #if !os(watchOS)
+    #if !os(watchOS) && !os(macOS)
         .listStyle(.insetGrouped)
     #endif
-        //Text("Test")
-    
-//            .toolbar {
-//                ToolbarItem(placement: .automatic) {
-//                    Button(
-//                        action: {
-//                            showingTestView.toggle()
-//                        }
-//                    ){
-//                        Image(systemName: "info.circle.fill")
-//                    }
-//                    .padding(.horizontal, 5)
-//                    .sheet( isPresented: $showingTestView) {
-//                        TestView()
-//                    }
-//                }
-//            }
         
         .navigationTitle("Settings")
         

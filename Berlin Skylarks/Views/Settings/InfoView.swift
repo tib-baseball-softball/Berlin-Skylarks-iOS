@@ -11,7 +11,7 @@ struct InfoView: View {
 
     var body: some View {
         List {
-            #if !os(watchOS)
+            #if !os(watchOS) && !os(macOS)
             HStack {
                 Text("App Name:")
                 if let name = UIApplication.appName {
