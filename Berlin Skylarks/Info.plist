@@ -60,5 +60,7 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCalendarsWriteOnlyAccessUsageDescription</key>
+	<string>The Skylarks app needs access to your calendars to add game dates to the calendar of your choosing.</string>
 </dict>
 </plist>

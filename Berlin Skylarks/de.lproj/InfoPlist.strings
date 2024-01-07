@@ -7,3 +7,5 @@
 /* Privacy - Calendars Usage Description */
 "NSCalendarsUsageDescription" = "Die Skylarks-App braucht Zugriff auf deine Kalender, um Spieldaten darin zu speichern.";
 
+/* Privacy - Calendars Write Only Usage Description */
+"NSCalendarsWriteOnlyAccessUsageDescription" = "Die Skylarks-App braucht Zugriff auf deine Kalender, um Spieldaten in deinem gewünschten Kalender zu speichern.";
