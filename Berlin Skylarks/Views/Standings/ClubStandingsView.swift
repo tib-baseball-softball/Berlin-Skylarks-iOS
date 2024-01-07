@@ -18,7 +18,7 @@ struct ClubStandingsView: View {
         var lossesCount = 0
         for leagueTable in leagueTables {
             for row in leagueTable.rows where row.team_name.contains("Skylarks") {
-                //these used to be just Ints, but during season 2022 there ties were possible in Kinderliga
+                //these used to be just Ints, but during season 2022 ties were possible in Kinderliga
                 winsCount += Int(row.wins_count)
                 lossesCount += Int(row.losses_count)
             }
@@ -29,6 +29,10 @@ struct ClubStandingsView: View {
     func calculatePercentage(wins: Int, losses: Int) -> CGFloat {
         let winsCount = CGFloat(wins)
         let lossesCount = CGFloat(losses)
+        
+        if (winsCount + lossesCount) == 0 {
+            return 0.0
+        }
         return winsCount / (winsCount + lossesCount)
     }
     
