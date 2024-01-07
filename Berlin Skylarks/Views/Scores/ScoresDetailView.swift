@@ -22,32 +22,22 @@ struct ScoresDetailView: View {
     @State private var showAlertNoGames = false
     @State private var showAlertNoAccess = false
     
-    @State private var calendarTitles = [String]()
+    @State var showCalendarChooser = false
+    @State private var calendar: EKCalendar?
     
 #if !os(watchOS)
     
-    func checkAccess() async {
-        await calendarManager.calendarAccess = calendarManager.checkAuthorizationStatus()
+    func checkAccess() {
         if EKEventStore.authorizationStatus(for: .event) == .restricted || EKEventStore.authorizationStatus(for: .event) == .denied {
             showAlertNoAccess = true
-        }
-        await getCalendars()
-    }
-    
-    func getCalendars() async {
-        calendarTitles = []
-        await calendarTitles = calendarManager.getAvailableCalendars()
-        
-        if !calendarTitles.isEmpty {
-            showCalendarDialog = true
         } else {
-            print("No calendar data")
+            showCalendarDialog = true
         }
     }
     
-    func saveEvent(calendarTitle: String) async {
+    func saveEvent() async {
         let gameDate = getDatefromBSMString(gamescore: gamescore)
-        await calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendarTitle: calendarTitle)
+        await calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendar: calendar)
         showEventAlert = true
     }
 #endif
@@ -115,10 +105,6 @@ struct ScoresDetailView: View {
                     }
                     .padding(ScoresItemPadding)
                 }
-                //don't want the darker background color with rounded corners here
-                //  .padding(ScoresItemPadding)
-                //  .background(ScoresSubItemBackground)
-                //  .cornerRadius(NewsItemCornerRadius)
             }
             Section(header: Text("Location")) {
                 //field is now optional - apparently that is not a required field in BSM (doesn't really make sense but okay...)
@@ -142,35 +128,53 @@ struct ScoresDetailView: View {
         
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-                
-                //MARK: bookmarks
-//                Button(action: {
-//                    isBookmarked.toggle()
-//                    //actually do stuff here
-//                }, label: {
-//                    //the button changes its appearance if a bookmark is set
-//                    Image(systemName: isBookmarked == true ? "bookmark.fill" : "bookmark")
-//                })
-                
                 Spacer()
                 
                 Button(
                     action: {
-                        Task {
-                            await checkAccess()
-                        }
+                        checkAccess()
                     }
                 ){
                     Image(systemName: "calendar.badge.plus")
                 }
-                .confirmationDialog("Choose a calendar for exporting", isPresented: $showCalendarDialog, titleVisibility: .visible) {
-                    
-                    ForEach(calendarTitles, id: \.self) { calendarTitle in
-                        Button(calendarTitle) {
-                            Task {
-                                await saveEvent(calendarTitle: calendarTitle)
+                .sheet(isPresented: $showCalendarDialog) {
+                    Form {
+                        Section {
+                            HStack {
+                                Spacer()
+                                Button("Select Calendar to save to") {
+                                    showCalendarChooser.toggle()
+                                }
+                                .buttonStyle(.bordered)
+                                .padding(.vertical)
+                                Spacer()
+                            }
+                            HStack {
+                                Spacer()
+                                Text("Selected Calendar:")
+                                Text(calendar?.title ?? String(localized: "Default"))
+                                Spacer()
                             }
                         }
+                        Section {
+                            HStack {
+                                Spacer()
+                                Button("Save game data") {
+                                    showCalendarDialog = false
+                                    Task {
+                                        await saveEvent()
+                                    }
+                                }
+                                .buttonStyle(.borderedProminent)
+                                .padding(.vertical)
+                                Spacer()
+                            }
+                        }
+                    }
+                    .presentationDetents([.medium])
+                    
+                    .sheet(isPresented: $showCalendarChooser) {
+                        CalendarChooser(calendar: $calendar)
                     }
                 }
                 .alert("Save to calendar", isPresented: $showEventAlert) {

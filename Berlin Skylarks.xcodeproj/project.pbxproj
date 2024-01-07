@@ -100,6 +100,8 @@
 		CA2D517C2950CFEF00CF465E /* WidgetSkylarks.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CA2D51802950CFEF00CF465E /* WidgetSkylarks.intentdefinition */; };
 		CA2D517D2950CFEF00CF465E /* WidgetSkylarks.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CA2D51802950CFEF00CF465E /* WidgetSkylarks.intentdefinition */; };
 		CA2D517E2950CFEF00CF465E /* WidgetSkylarks.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CA2D51802950CFEF00CF465E /* WidgetSkylarks.intentdefinition */; };
+		CA32CB832B4AC0BA00A929CD /* CalendarChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA32CB822B4AC0BA00A929CD /* CalendarChooser.swift */; };
+		CA32CB842B4AC0BA00A929CD /* CalendarChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA32CB822B4AC0BA00A929CD /* CalendarChooser.swift */; };
 		CA3C4C2F28B40C3400F72841 /* BerlinSkylarksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4C2E28B40C3400F72841 /* BerlinSkylarksTests.swift */; };
 		CA45D0A228FAF6650073515C /* PlayoffSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA45D0A128FAF6650073515C /* PlayoffSeries.swift */; };
 		CA45D0A328FAF6650073515C /* PlayoffSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA45D0A128FAF6650073515C /* PlayoffSeries.swift */; };
@@ -416,6 +418,7 @@
 		CA2D517F2950CFEF00CF465E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/WidgetSkylarks.intentdefinition; sourceTree = "<group>"; };
 		CA2D51822950CFF400CF465E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/WidgetSkylarks.strings; sourceTree = "<group>"; };
 		CA2D51832950D08600CF465E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Base; path = "Base.lproj/Skylarks Intents.entitlements"; sourceTree = "<group>"; };
+		CA32CB822B4AC0BA00A929CD /* CalendarChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarChooser.swift; sourceTree = "<group>"; };
 		CA3C4C2C28B40C3400F72841 /* BerlinSkylarksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BerlinSkylarksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA3C4C2E28B40C3400F72841 /* BerlinSkylarksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinSkylarksTests.swift; sourceTree = "<group>"; };
 		CA3CBFAE28AAE8870001DE31 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainInterface.strings; sourceTree = "<group>"; };
@@ -866,6 +869,7 @@
 				CA5CF5D6284E0EBA00ABD7E0 /* ScorerAssignments.swift */,
 				CA9A89B22739DEFE001BBFA8 /* ShareSheet.swift */,
 				CA9D3EE328738A6C00835953 /* ScoreNumber.swift */,
+				CA32CB822B4AC0BA00A929CD /* CalendarChooser.swift */,
 			);
 			path = Scores;
 			sourceTree = "<group>";
@@ -1269,6 +1273,7 @@
 			files = (
 				CA25ABCE294E3BAF002FA8A6 /* MarkdownFile.swift in Sources */,
 				CA3C4C2F28B40C3400F72841 /* BerlinSkylarksTests.swift in Sources */,
+				CA32CB842B4AC0BA00A929CD /* CalendarChooser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1392,6 +1397,7 @@
 				CAE7740E26C292F900A57F66 /* StandingsTableView.swift in Sources */,
 				CAA7C19E289D555200CC0615 /* LicenseRow.swift in Sources */,
 				CAA7C1BC289E4B3C00CC0615 /* BallparkDetailView.swift in Sources */,
+				CA32CB832B4AC0BA00A929CD /* CalendarChooser.swift in Sources */,
 				CA56F3CF2880578700138195 /* BSMPerson.swift in Sources */,
 				CA5CF5D3284E0E7400ABD7E0 /* UmpireAssignments.swift in Sources */,
 				CA0DA04E2598F570002A0FAB /* InfoView.swift in Sources */,

@@ -27,7 +27,8 @@ struct ScoresView: View {
     
     @State private var skylarksGamescores = [GameScore]()
     
-    @State private var calendarTitles = [String]()
+    @State var showCalendarChooser = false
+    @State private var calendar: EKCalendar?
     
     var listData: [GameScore] {
         if showOtherTeams == false && searchText.isEmpty {
@@ -189,37 +190,21 @@ struct ScoresView: View {
     //---------------------------------------------------------//
     
 #if !os(watchOS)
-    func checkAccess() async {
-        await calendarManager.calendarAccess = calendarManager.checkAuthorizationStatus()
+    func checkAccess() {
         if EKEventStore.authorizationStatus(for: .event) == .restricted || EKEventStore.authorizationStatus(for: .event) == .denied {
             showAlertNoAccess = true
-        }
-        await getCalendars()
-    }
-    
-    func getCalendars() async {
-        if !gamescores.isEmpty {
-            //clear the array before loading the new ones
-            calendarTitles = []
-            await calendarTitles = calendarManager.getAvailableCalendars()
-            
-            if !calendarTitles.isEmpty {
-                showCalendarDialog = true
-            } else {
-                print("No calendar data")
-            }
         } else {
-            showAlertNoGames = true
+            showCalendarDialog = true
         }
     }
     
-    func saveEvents(calendarTitle: String) async {
+    func saveEvents() async {
         let scoresToUse = showOtherTeams ? gamescores : skylarksGamescores
         
         for gamescore in scoresToUse {
             let gameDate = getDatefromBSMString(gamescore: gamescore)
             
-            await calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendarTitle: calendarTitle)
+            await calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendar: calendar)
             showEventAlert = true
         }
     }
@@ -336,21 +321,51 @@ struct ScoresView: View {
                         Button(
                             action: {
                                 Task {
-                                    await checkAccess()
+                                    checkAccess()
                                 }
                             }
                         ){
                             Image(systemName: "calendar.badge.plus")
                         }
                         
-                        .confirmationDialog("Choose a calendar for exporting", isPresented: $showCalendarDialog, titleVisibility: .visible) {
-                            
-                            ForEach(calendarTitles, id: \.self) { calendarTitle in
-                                Button(calendarTitle) {
-                                    Task {
-                                        await saveEvents(calendarTitle: calendarTitle)
+                        .sheet(isPresented: $showCalendarDialog) {
+                            Form {
+                                Section {
+                                    HStack {
+                                        Spacer()
+                                        Button("Select Calendar to save to") {
+                                            showCalendarChooser.toggle()
+                                        }
+                                        .buttonStyle(.bordered)
+                                        .padding(.vertical)
+                                        Spacer()
+                                    }
+                                    HStack {
+                                        Spacer()
+                                        Text("Selected Calendar:")
+                                        Text(calendar?.title ?? String(localized: "Default"))
+                                        Spacer()
                                     }
                                 }
+                                Section {
+                                    HStack {
+                                        Spacer()
+                                        Button("Save game data") {
+                                            showCalendarDialog = false
+                                            Task {
+                                                await saveEvents()
+                                            }
+                                        }
+                                        .buttonStyle(.borderedProminent)
+                                        .padding(.vertical)
+                                        Spacer()
+                                    }
+                                }
+                            }
+                            .presentationDetents([.medium])
+                            
+                            .sheet(isPresented: $showCalendarChooser) {
+                                CalendarChooser(calendar: $calendar)
                             }
                         }
                         
