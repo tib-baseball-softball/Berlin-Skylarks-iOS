@@ -121,9 +121,9 @@ struct TeamListView: View {
                     }
                 })
                 
-                .onChange(of: selectedSeason, perform: { value in
+                .onChange(of: selectedSeason) {
                     teams = []
-                })
+                }
                 
                 .alert("No network connection", isPresented: $showAlertNoNetwork) {
                     Button("OK") { }

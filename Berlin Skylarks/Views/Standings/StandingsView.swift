@@ -153,12 +153,12 @@ struct StandingsView: View {
                     tablesLoaded = true
                 }
             })
-            .onChange(of: selectedSeason, perform: { value in
+            .onChange(of: selectedSeason) {
                 leagueTables = []
                 tablesLoaded = false
                 //let's try to save some performance - don't need to load twice
                 //loadAllTables()
-            })
+            }
             
             .alert("No network connection", isPresented: $showAlertNoNetwork) {
                 Button("OK") { }

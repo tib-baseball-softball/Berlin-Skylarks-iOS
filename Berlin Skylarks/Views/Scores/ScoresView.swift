@@ -291,7 +291,7 @@ struct ScoresView: View {
                 
                 .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: Text("Filter")) //it doesn't let me change the prompt
                
-                .onChange(of: searchText) { searchText in
+                .onChange(of: searchText) {
                     let searchedObjects = showOtherTeams ? gamescores : skylarksGamescores
                     searchResults = searchedObjects.filter({ gamescore in
                         
@@ -317,17 +317,17 @@ struct ScoresView: View {
                     initialLoad()
                 }
                 
-                .onChange(of: selectedTeam, perform: { value in
+                .onChange(of: selectedTeam) {
                     teamChanged()
-                })
+                }
                 
-                .onChange(of: selectedTimeframe, perform: { value in
+                .onChange(of: selectedTimeframe) {
                     timeframeChanged()
-                })
+                }
                 
-                .onChange(of: selectedSeason, perform: { value in
+                .onChange(of: selectedSeason) {
                     seasonChanged()
-                })
+                }
                 
                 // this is the toolbar with the picker in the top right corner where you can select which games to display.
             
