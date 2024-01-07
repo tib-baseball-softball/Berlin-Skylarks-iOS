@@ -415,15 +415,15 @@ struct UserHomeView: View {
             await loadProcessHomeData()
         }
         
-        .onChange(of: favoriteTeamID, perform: { favoriteTeam in
+        .onChange(of: favoriteTeamID) {
             Task {
                 displayTeam = await setFavoriteTeam()
             }
             homeLeagueTables = []
             userDashboard.homeGamescores = []
-        })
+        }
         
-        .onChange(of: didLaunchBefore) { firstLaunch in
+        .onChange(of: didLaunchBefore) {
             Task {
                 await loadProcessHomeData()
             }
