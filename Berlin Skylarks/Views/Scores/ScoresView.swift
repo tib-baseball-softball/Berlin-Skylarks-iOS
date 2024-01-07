@@ -477,17 +477,17 @@ struct ScoresView: View {
             initialLoad()
         })
         
-        .onChange(of: selectedTeam, perform: { value in
+        .onChange(of: selectedTeam) {
             teamChanged()
-        })
+        }
         
-        .onChange(of: selectedTimeframe, perform: { value in
+        .onChange(of: selectedTimeframe) {
             timeframeChanged()
-        })
+        }
         
-        .onChange(of: selectedSeason, perform: { value in
+        .onChange(of: selectedSeason) {
             seasonChanged()
-        })
+        }
         
         #endif
     }
