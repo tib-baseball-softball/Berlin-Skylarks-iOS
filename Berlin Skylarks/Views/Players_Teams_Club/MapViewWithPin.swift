@@ -30,8 +30,22 @@ struct MapViewWithPin: View {
         let fieldPin = [
             Ballpark(name: name, coordinate: CLLocationCoordinate2D(latitude: latitude, longitude: longitude)),
         ]
-        Map(coordinateRegion: .constant(MKCoordinateRegion(center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude), span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015))), interactionModes: [], annotationItems: fieldPin) {
-            MapMarker(coordinate: $0.coordinate, tint: Color.skylarksRed)
+        let position = MapCameraPosition.region(
+            MKCoordinateRegion(
+                center: CLLocationCoordinate2D(latitude: latitude, longitude: longitude),
+                span: MKCoordinateSpan(latitudeDelta: 0.015, longitudeDelta: 0.015)
+            )
+        )
+        Map(initialPosition: position, interactionModes: []) {
+            ForEach(fieldPin) { pin in
+                Annotation(pin.name, coordinate: pin.coordinate) {
+                    Image(systemName: "baseball")
+                        .font(.headline)
+                        .background(Color.skylarksRed)
+                        .foregroundStyle(.white)
+                        .clipShape(.circle)
+                }
+            }
         }
         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
         #if !os(watchOS)
