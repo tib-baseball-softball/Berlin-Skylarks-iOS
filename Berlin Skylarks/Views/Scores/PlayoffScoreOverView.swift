@@ -13,7 +13,7 @@ struct PlayoffScoreOverView: View {
     
     var body: some View {
         VStack {
-            let logos = fetchCorrectLogos(gamescore: gamescore)
+            let logos = TeamImageData.fetchCorrectLogos(gamescore: gamescore)
             HStack {
                 VStack(alignment: .leading, spacing: 2) {
                     let gameNumber = String(gamescore.match_id.suffix(1))

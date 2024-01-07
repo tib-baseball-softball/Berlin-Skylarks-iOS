@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "dummy_field.jpg",
+      "filename" : "elmshorn.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "dummy_field@2x.jpg",
+      "filename" : "elmshorn 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "dummy_field@3x.jpg",
+      "filename" : "elmshorn 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }

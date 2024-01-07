@@ -32,7 +32,7 @@ struct UserOnboardingView: View {
         
 #if !os(watchOS)
         VStack {
-            skylarksPrimaryLogo
+            TeamImageData.skylarksPrimaryLogo
                 .resizable()
                 .scaledToFit()
                 .frame(maxWidth: 250)
@@ -135,7 +135,7 @@ struct UserOnboardingView: View {
                     //.font(.title)
                         .bold()
                     Spacer()
-                    skylarksPrimaryLogo
+                    TeamImageData.skylarksPrimaryLogo
                         .resizable()
                         .scaledToFit()
                         .frame(maxWidth: 40)

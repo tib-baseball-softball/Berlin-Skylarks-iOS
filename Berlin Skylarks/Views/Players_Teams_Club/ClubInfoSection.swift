@@ -15,7 +15,7 @@ struct ClubInfoSection: View {
     
     var body: some View {
         VStack {
-            skylarksPrimaryLogo
+            TeamImageData.skylarksPrimaryLogo
                 .resizable()
                 .scaledToFit()
                 .frame(maxWidth: 100)

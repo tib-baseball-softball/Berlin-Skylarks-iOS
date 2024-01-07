@@ -621,7 +621,6 @@
 				CAAB56C2271F62F800ADDE9D /* GlobalFunctions.swift */,
 				CA6042A02745B14000607011 /* ViewModifiers.swift */,
 				CA55F6E027601A4F0032302F /* API_Key.swift */,
-				CA1E03672819ABAA00E2FF8F /* TeamImageData.swift */,
 				CADBDF4829EB4028005F060A /* API_Key.dist */,
 			);
 			path = Global;
@@ -637,6 +636,7 @@
 				CAA7C1A0289D5E4300CC0615 /* LicenseManager.swift */,
 				CA54A4F928F8BB33005E9969 /* FavoriteTeamWidgetObject.swift */,
 				CA45D0A128FAF6650073515C /* PlayoffSeries.swift */,
+				CA1E03672819ABAA00E2FF8F /* TeamImageData.swift */,
 				CA08D9B229198DF5000D8CC3 /* TeamsLoader.swift */,
 				CA25ABC9294E3BAE002FA8A6 /* MarkdownFile.swift */,
 				CA8008E22AE3173F00609ADC /* PlayoffTeam.swift */,

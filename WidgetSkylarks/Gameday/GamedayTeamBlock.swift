@@ -14,8 +14,8 @@ struct GamedayTeamBlock: View {
     
     @Environment(\.widgetFamily) var widgetFamily
     
-    @State var roadLogo = away_team_logo
-    @State var homeLogo = home_team_logo
+    @State var roadLogo = TeamImageData.away_team_logo
+    @State var homeLogo = TeamImageData.home_team_logo
     
     func getShortDates(date: Date) -> (date: String, time: String) {
         let formatter1 = DateFormatter()
@@ -30,7 +30,7 @@ struct GamedayTeamBlock: View {
     }
     
     func setLogos() {
-        let logos = fetchCorrectLogos(gamescore: gamescore)
+        let logos = TeamImageData.fetchCorrectLogos(gamescore: gamescore)
         roadLogo = logos.road
         homeLogo = logos.home
     }

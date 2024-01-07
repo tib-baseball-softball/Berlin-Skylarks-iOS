@@ -45,7 +45,7 @@ struct ScoresDetailView: View {
     var gamescore: GameScore
     
     var body: some View {
-        let logos = fetchCorrectLogos(gamescore: gamescore)
+        let logos = TeamImageData.fetchCorrectLogos(gamescore: gamescore)
         
         #if !os(watchOS)
         List {

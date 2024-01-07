@@ -16,7 +16,7 @@ struct ClubDetailView: View {
             Section(header: Text("Team Basics")) {
                 HStack {
                     Spacer()
-                    skylarksPrimaryLogo
+                    TeamImageData.skylarksPrimaryLogo
                         .resizable()
                         .scaledToFit()
 #if !os(watchOS)
