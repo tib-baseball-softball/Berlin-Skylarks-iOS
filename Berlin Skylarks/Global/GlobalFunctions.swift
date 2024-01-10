@@ -130,7 +130,7 @@ func loadLeagueGroups(season: Int) async -> [LeagueGroup] {
 func loadTableForTeam(team: BSMTeam, leagueGroups: [LeagueGroup]) async -> LeagueTable? {
     var correctTable = emptyTable
     
-    for leagueGroup in leagueGroups where team.league_entries[0].league.name == leagueGroup.name {
+    for leagueGroup in leagueGroups where team.league_entries[0].league.id == leagueGroup.league.id {
         let url = URL(string: "https://bsm.baseball-softball.de/leagues/" + "\(leagueGroup.id)" + "/table.json")!
         
         do {
