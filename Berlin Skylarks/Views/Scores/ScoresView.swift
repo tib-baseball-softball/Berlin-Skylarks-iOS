@@ -190,11 +190,17 @@ struct ScoresView: View {
     //---------------------------------------------------------//
     
 #if !os(watchOS)
-    func checkAccess() {
-        if EKEventStore.authorizationStatus(for: .event) == .restricted || EKEventStore.authorizationStatus(for: .event) == .denied {
+    func checkAccess() async {
+        switch EKEventStore.authorizationStatus(for: .event) {
+        case .denied, .restricted:
             showAlertNoAccess = true
-        } else {
+        case .writeOnly, .fullAccess:
             showCalendarDialog = true
+        default:
+            let granted = await calendarManager.requestAccess()
+            if granted {
+                showCalendarDialog = true
+            }
         }
     }
     
@@ -321,7 +327,7 @@ struct ScoresView: View {
                         Button(
                             action: {
                                 Task {
-                                    checkAccess()
+                                    await checkAccess()
                                 }
                             }
                         ){

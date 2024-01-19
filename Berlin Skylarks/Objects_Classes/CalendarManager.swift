@@ -14,14 +14,19 @@ class CalendarManager: ObservableObject {
     
     let eventStore = EKEventStore()
     
-    func addGameToCalendar(gameDate: Date, gamescore: GameScore, calendar: EKCalendar? = nil) async {
-        var granted = false
-             
+    func requestAccess() async -> Bool {
         do {
-            granted = try await eventStore.requestWriteOnlyAccessToEvents()
+            return try await eventStore.requestWriteOnlyAccessToEvents()
         } catch {
             print("error \(String(describing: error))")
         }
+        return false
+    }
+    
+    func addGameToCalendar(gameDate: Date, gamescore: GameScore, calendar: EKCalendar? = nil) async {
+        var granted = false
+             
+        granted = await requestAccess()
       
         if granted {
           let event = EKEvent(eventStore: eventStore)
