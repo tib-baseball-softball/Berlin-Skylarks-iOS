@@ -65,19 +65,15 @@ struct UserHomeView: View {
         } catch {
             print("Request failed with error: \(error)")
         }
-        //check for the favorite one
         
+        //check for the favorite one
         for team in teams where team.id == favoriteTeamID {
             displayTeam = team
-//            selectedHomeTablesURL = displayTeam.leagueTableURL
-//            selectedHomeScoresURL = displayTeam.scoresURL
         }
         return displayTeam
     }
     
     func loadHomeTeamTable(team: BSMTeam, leagueGroups: [LeagueGroup]) async {
-        
-        //loadingTables = true
         
         //load table for specific leagueGroup that corresponds to favorite team
         
@@ -92,7 +88,6 @@ struct UserHomeView: View {
         if !homeLeagueTables.isEmpty {
             showingTableData = true
         }
-        //loadingTables = false
     }
     
     var body: some View {
