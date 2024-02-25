@@ -90,7 +90,7 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
             var gamescores = [GameScore]()
             
             //get correct URL for team
-            for leagueGroup in leagueGroups where selectedTeam.league_entries[0].league.name == leagueGroup.name {
+            for leagueGroup in leagueGroups where selectedTeam.league_entries[0].league.id == leagueGroup.league.id {
                 let scoresURL = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(season)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
                 
                 //load games
