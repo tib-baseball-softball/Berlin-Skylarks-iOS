@@ -304,7 +304,7 @@ struct ScoresView: View {
         }
         
         .toolbar {
-            ToolbarItemGroup(placement: .secondaryAction) {
+            ToolbarItemGroup(placement: .primaryAction) {
                 Button(
                     action: {
                         Task {
@@ -379,9 +379,7 @@ struct ScoresView: View {
                 } message: {
                     Text("No active network connection has been detected. The app needs a connection to download its data.")
                 }
-            }
-            
-            ToolbarItemGroup(placement: .primaryAction) {
+                
                 Picker(
                     selection: $selectedTeam,
                     //this actually does not show the label, just the selection
