@@ -27,7 +27,8 @@ struct ScoresView: View {
     
     @State private var skylarksGamescores = [GameScore]()
     
-    @State private var calendarTitles = [String]()
+    @State var showCalendarChooser = false
+    @State private var calendar: EKCalendar?
     
     var listData: [GameScore] {
         if showOtherTeams == false && searchText.isEmpty {
@@ -190,36 +191,26 @@ struct ScoresView: View {
     
 #if !os(watchOS)
     func checkAccess() async {
-        await calendarManager.calendarAccess = calendarManager.checkAuthorizationStatus()
-        if EKEventStore.authorizationStatus(for: .event) == .restricted || EKEventStore.authorizationStatus(for: .event) == .denied {
+        switch EKEventStore.authorizationStatus(for: .event) {
+        case .denied, .restricted:
             showAlertNoAccess = true
-        }
-        await getCalendars()
-    }
-    
-    func getCalendars() async {
-        if !gamescores.isEmpty {
-            //clear the array before loading the new ones
-            calendarTitles = []
-            await calendarTitles = calendarManager.getAvailableCalendars()
-            
-            if !calendarTitles.isEmpty {
+        case .writeOnly, .fullAccess:
+            showCalendarDialog = true
+        default:
+            let granted = await calendarManager.requestAccess()
+            if granted {
                 showCalendarDialog = true
-            } else {
-                print("No calendar data")
             }
-        } else {
-            showAlertNoGames = true
         }
     }
     
-    func saveEvents(calendarTitle: String) async {
+    func saveEvents() async {
         let scoresToUse = showOtherTeams ? gamescores : skylarksGamescores
         
         for gamescore in scoresToUse {
             let gameDate = getDatefromBSMString(gamescore: gamescore)
             
-            await calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendarTitle: calendarTitle)
+            await calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendar: calendar)
             showEventAlert = true
         }
     }
@@ -291,7 +282,7 @@ struct ScoresView: View {
                 
                 .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: Text("Filter")) //it doesn't let me change the prompt
                
-                .onChange(of: searchText) { searchText in
+                .onChange(of: searchText) {
                     let searchedObjects = showOtherTeams ? gamescores : skylarksGamescores
                     searchResults = searchedObjects.filter({ gamescore in
                         
@@ -317,17 +308,17 @@ struct ScoresView: View {
                     initialLoad()
                 }
                 
-                .onChange(of: selectedTeam, perform: { value in
+                .onChange(of: selectedTeam) {
                     teamChanged()
-                })
+                }
                 
-                .onChange(of: selectedTimeframe, perform: { value in
+                .onChange(of: selectedTimeframe) {
                     timeframeChanged()
-                })
+                }
                 
-                .onChange(of: selectedSeason, perform: { value in
+                .onChange(of: selectedSeason) {
                     seasonChanged()
-                })
+                }
                 
                 // this is the toolbar with the picker in the top right corner where you can select which games to display.
             
@@ -343,14 +334,44 @@ struct ScoresView: View {
                             Image(systemName: "calendar.badge.plus")
                         }
                         
-                        .confirmationDialog("Choose a calendar for exporting", isPresented: $showCalendarDialog, titleVisibility: .visible) {
-                            
-                            ForEach(calendarTitles, id: \.self) { calendarTitle in
-                                Button(calendarTitle) {
-                                    Task {
-                                        await saveEvents(calendarTitle: calendarTitle)
+                        .sheet(isPresented: $showCalendarDialog) {
+                            Form {
+                                Section {
+                                    HStack {
+                                        Spacer()
+                                        Button("Select Calendar to save to") {
+                                            showCalendarChooser.toggle()
+                                        }
+                                        .buttonStyle(.bordered)
+                                        .padding(.vertical)
+                                        Spacer()
+                                    }
+                                    HStack {
+                                        Spacer()
+                                        Text("Selected Calendar:")
+                                        Text(calendar?.title ?? String(localized: "Default"))
+                                        Spacer()
                                     }
                                 }
+                                Section {
+                                    HStack {
+                                        Spacer()
+                                        Button("Save game data") {
+                                            showCalendarDialog = false
+                                            Task {
+                                                await saveEvents()
+                                            }
+                                        }
+                                        .buttonStyle(.borderedProminent)
+                                        .padding(.vertical)
+                                        Spacer()
+                                    }
+                                }
+                            }
+                            .presentationDetents([.medium])
+                            
+                            .sheet(isPresented: $showCalendarChooser) {
+                                CalendarChooser(calendar: $calendar)
                             }
                         }
                         
@@ -477,17 +498,17 @@ struct ScoresView: View {
             initialLoad()
         })
         
-        .onChange(of: selectedTeam, perform: { value in
+        .onChange(of: selectedTeam) {
             teamChanged()
-        })
+        }
         
-        .onChange(of: selectedTimeframe, perform: { value in
+        .onChange(of: selectedTimeframe) {
             timeframeChanged()
-        })
+        }
         
-        .onChange(of: selectedSeason, perform: { value in
+        .onChange(of: selectedSeason) {
             seasonChanged()
-        })
+        }
         
         #endif
     }

@@ -35,6 +35,6 @@ struct ScoresTeamBar: View {
 
 struct ScoresTeamBar_Previews: PreviewProvider {
     static var previews: some View {
-        ScoresTeamBar(teamLogo: skylarksSecondaryLogo, gamescore: testGame, home: true)
+        ScoresTeamBar(teamLogo: TeamImageData.skylarksSecondaryLogo, gamescore: testGame, home: true)
     }
 }

@@ -12,97 +12,30 @@ import EventKit
 class CalendarManager: ObservableObject {
     @Published var calendarAccess = false
     
-    //get user calendars
+    let eventStore = EKEventStore()
     
-    func checkAuthorizationStatus() async -> Bool {
-        var accessGranted = false
-        let eventStore = EKEventStore()
-        
-        switch (EKEventStore.authorizationStatus(for: .event)) {
-        case .fullAccess:
-            accessGranted = true
-        case .notDetermined:
-            accessGranted = false
-            if #available(iOS 17.0, *) {
-                eventStore.requestWriteOnlyAccessToEvents() { granted, error in
-                    accessGranted = granted
-                }
-            } else {
-                eventStore.requestAccess(to: .event) { granted, error in
-                    accessGranted = granted
-                }
-            }
-        case .denied, .restricted, .writeOnly:
-            accessGranted = false
-        @unknown default:
-            print("Unknown EventKit authorization status")
-        }
-        return accessGranted
-    }
-    
-    func askForCalPermission() async throws -> Bool {
-        let eventStore = EKEventStore()
-        
-        if #available(iOS 17.0, *) {
-            return try await eventStore.requestWriteOnlyAccessToEvents()
-        } else {
-            return try await eventStore.requestAccess(to: .event)
-        }
-    }
-    
-    func getAvailableCalendars() async -> [String] {
-        
-        let eventStore = EKEventStore()
-        var calendars = [EKCalendar]()
-        var calendarTitles = [String]()
-        
+    func requestAccess() async -> Bool {
         do {
-            let granted = try await askForCalPermission()
-            
-            if granted {
-                calendars = eventStore.calendars(for: .event)
-            } else {
-                print("no calendar access")
-            }
-            
+            return try await eventStore.requestWriteOnlyAccessToEvents()
         } catch {
-            print(error)
+            print("error \(String(describing: error))")
         }
-        
-        for calendar in calendars {
-            calendarTitles.append(calendar.title)
-        }
-
-        return calendarTitles
+        return false
     }
     
-    //add games to loaded calendars
-
-    
-    func addGameToCalendar(gameDate: Date, gamescore: GameScore, calendarTitle: String) async {
-        let eventStore = EKEventStore()
+    func addGameToCalendar(gameDate: Date, gamescore: GameScore, calendar: EKCalendar? = nil) async {
         var granted = false
              
-        if #available(iOS 17.0, *) {
-            do {
-                granted = try await eventStore.requestWriteOnlyAccessToEvents()
-            } catch {
-                print("error \(String(describing: error))")
-            }
-        } else {
-            do {
-                granted = try await eventStore.requestAccess(to: .event)
-            } catch {
-                print("error \(String(describing: error))")
-            }
-        }
+        granted = await requestAccess()
+      
         if granted {
-          let event:EKEvent = EKEvent(eventStore: eventStore)
-          let calendars = eventStore.calendars(for: .event)
+          let event = EKEvent(eventStore: eventStore)
           
+          event.calendar = calendar ?? eventStore.defaultCalendarForNewEvents
           event.title = "\(gamescore.league.name): \(gamescore.away_team_name) @ \(gamescore.home_team_name)"
           event.startDate = gameDate
           event.endDate = gameDate.addingTimeInterval(2 * 60 * 60)
+          event.timeZone = TimeZone(identifier: "Europe/Berlin")
           
           //add game location if there is data
           
@@ -121,10 +54,6 @@ class CalendarManager: ObservableObject {
                 Field: \(gamescore.field?.name ?? "No data")
                 Address: \(gamescore.field?.street ?? ""), \(gamescore.field?.postal_code ?? "") \(gamescore.field?.city ?? "")
             """
-
-          for calendar in calendars where calendar.title == calendarTitle {
-              event.calendar = calendar
-          }
           
           do {
               try eventStore.save(event, span: .thisEvent)

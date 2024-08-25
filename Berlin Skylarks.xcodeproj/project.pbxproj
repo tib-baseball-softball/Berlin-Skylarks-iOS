@@ -100,6 +100,8 @@
 		CA2D517C2950CFEF00CF465E /* WidgetSkylarks.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CA2D51802950CFEF00CF465E /* WidgetSkylarks.intentdefinition */; };
 		CA2D517D2950CFEF00CF465E /* WidgetSkylarks.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CA2D51802950CFEF00CF465E /* WidgetSkylarks.intentdefinition */; };
 		CA2D517E2950CFEF00CF465E /* WidgetSkylarks.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CA2D51802950CFEF00CF465E /* WidgetSkylarks.intentdefinition */; };
+		CA32CB832B4AC0BA00A929CD /* CalendarChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA32CB822B4AC0BA00A929CD /* CalendarChooser.swift */; };
+		CA32CB842B4AC0BA00A929CD /* CalendarChooser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA32CB822B4AC0BA00A929CD /* CalendarChooser.swift */; };
 		CA3C4C2F28B40C3400F72841 /* BerlinSkylarksTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA3C4C2E28B40C3400F72841 /* BerlinSkylarksTests.swift */; };
 		CA45D0A228FAF6650073515C /* PlayoffSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA45D0A128FAF6650073515C /* PlayoffSeries.swift */; };
 		CA45D0A328FAF6650073515C /* PlayoffSeries.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA45D0A128FAF6650073515C /* PlayoffSeries.swift */; };
@@ -413,6 +415,7 @@
 		CA2D517F2950CFEF00CF465E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/WidgetSkylarks.intentdefinition; sourceTree = "<group>"; };
 		CA2D51822950CFF400CF465E /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/WidgetSkylarks.strings; sourceTree = "<group>"; };
 		CA2D51832950D08600CF465E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Base; path = "Base.lproj/Skylarks Intents.entitlements"; sourceTree = "<group>"; };
+		CA32CB822B4AC0BA00A929CD /* CalendarChooser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarChooser.swift; sourceTree = "<group>"; };
 		CA3C4C2C28B40C3400F72841 /* BerlinSkylarksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BerlinSkylarksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA3C4C2E28B40C3400F72841 /* BerlinSkylarksTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BerlinSkylarksTests.swift; sourceTree = "<group>"; };
 		CA3CBFAE28AAE8870001DE31 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/MainInterface.strings; sourceTree = "<group>"; };
@@ -612,7 +615,6 @@
 				CAAB56C2271F62F800ADDE9D /* GlobalFunctions.swift */,
 				CA6042A02745B14000607011 /* ViewModifiers.swift */,
 				CA55F6E027601A4F0032302F /* API_Key.swift */,
-				CA1E03672819ABAA00E2FF8F /* TeamImageData.swift */,
 				CADBDF4829EB4028005F060A /* API_Key.dist */,
 			);
 			path = Global;
@@ -628,6 +630,7 @@
 				CAA7C1A0289D5E4300CC0615 /* LicenseManager.swift */,
 				CA54A4F928F8BB33005E9969 /* FavoriteTeamWidgetObject.swift */,
 				CA45D0A128FAF6650073515C /* PlayoffSeries.swift */,
+				CA1E03672819ABAA00E2FF8F /* TeamImageData.swift */,
 				CA08D9B229198DF5000D8CC3 /* TeamsLoader.swift */,
 				CA25ABC9294E3BAE002FA8A6 /* MarkdownFile.swift */,
 				CA8008E22AE3173F00609ADC /* PlayoffTeam.swift */,
@@ -860,6 +863,7 @@
 				CA5CF5D6284E0EBA00ABD7E0 /* ScorerAssignments.swift */,
 				CA9A89B22739DEFE001BBFA8 /* ShareSheet.swift */,
 				CA9D3EE328738A6C00835953 /* ScoreNumber.swift */,
+				CA32CB822B4AC0BA00A929CD /* CalendarChooser.swift */,
 			);
 			path = Scores;
 			sourceTree = "<group>";
@@ -1252,6 +1256,7 @@
 			files = (
 				CA25ABCE294E3BAF002FA8A6 /* MarkdownFile.swift in Sources */,
 				CA3C4C2F28B40C3400F72841 /* BerlinSkylarksTests.swift in Sources */,
+				CA32CB842B4AC0BA00A929CD /* CalendarChooser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1372,6 +1377,7 @@
 				CAE7740E26C292F900A57F66 /* StandingsTableView.swift in Sources */,
 				CAA7C19E289D555200CC0615 /* LicenseRow.swift in Sources */,
 				CAA7C1BC289E4B3C00CC0615 /* BallparkDetailView.swift in Sources */,
+				CA32CB832B4AC0BA00A929CD /* CalendarChooser.swift in Sources */,
 				CA56F3CF2880578700138195 /* BSMPerson.swift in Sources */,
 				CA5CF5D3284E0E7400ABD7E0 /* UmpireAssignments.swift in Sources */,
 				CA0DA04E2598F570002A0FAB /* InfoView.swift in Sources */,
@@ -1538,7 +1544,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "The Skylarks app needs access to your calendar to add game dates to it.";
@@ -1550,7 +1556,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.watchkitapp";
 				PRODUCT_NAME = Skylarks;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1559,7 +1565,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -1573,7 +1579,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "The Skylarks app needs access to your calendar to add game dates to it.";
@@ -1585,7 +1591,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks.watchkitapp";
 				PRODUCT_NAME = Skylarks;
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -1594,7 +1600,7 @@
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
@@ -1607,7 +1613,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.tib-baseball.BerlinSkylarksTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1630,7 +1636,7 @@
 				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.3;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.tib-baseball.BerlinSkylarksTests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1657,7 +1663,7 @@
 				INFOPLIST_FILE = "Skylarks Intents/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Skylarks Intents";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1689,7 +1695,7 @@
 				INFOPLIST_FILE = "Skylarks Intents/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Skylarks Intents";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1763,7 +1769,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.3;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
@@ -1772,7 +1778,7 @@
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2,6";
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Debug;
 		};
@@ -1826,7 +1832,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				MARKETING_VERSION = 1.3;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
@@ -1835,7 +1841,7 @@
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				TARGETED_DEVICE_FAMILY = "1,2,6";
 				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 9.0;
+				WATCHOS_DEPLOYMENT_TARGET = 10.0;
 			};
 			name = Release;
 		};
@@ -1847,19 +1853,19 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Berlin Skylarks/Berlin Skylarks.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Berlin Skylarks/Preview Content\"";
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Berlin Skylarks/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Skylarks;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -1878,19 +1884,19 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = "Berlin Skylarks/Berlin Skylarks.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Berlin Skylarks/Preview Content\"";
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Berlin Skylarks/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Skylarks;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				MARKETING_VERSION = 1.3;
+				MARKETING_VERSION = 1.4;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
@@ -1916,7 +1922,7 @@
 				INFOPLIST_FILE = WidgetSkylarks/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Skylarks;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1950,7 +1956,7 @@
 				INFOPLIST_FILE = WidgetSkylarks/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Skylarks;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

@@ -160,14 +160,14 @@ struct SettingsListView: View {
             }
         })
         
-        .onChange(of: selectedSeason, perform: { value in
+        .onChange(of: selectedSeason) {
             favoriteTeamID = 0
             teams = []
             showingSheetTeams = true
             Task {
                 await fetchTeams()
             }
-        })
+        }
         
         .sheet(isPresented: $showingSheetTeams, content: {
             SelectTeamSheet()

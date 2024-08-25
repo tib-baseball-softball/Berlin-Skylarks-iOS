@@ -9,25 +9,6 @@ import Foundation
 import EventKit
 import SwiftUI
 
-func fetchCorrectLogos(gamescore: GameScore) -> (road: Image, home: Image) {
-    
-    var road = away_team_logo
-    var home = home_team_logo
-    
-    for (name, image) in teamLogos {
-        if gamescore.away_team_name.contains(name) {
-            road = image
-        }
-    }
-    
-    for (name, image) in teamLogos {
-        if gamescore.home_team_name.contains(name) {
-            home = image
-        }
-    }
-    return (road, home)
-}
-
 //sort of deprecated - the GameScore struct now has a addDates() method, but this is still used by the calendar export
 
 func getDatefromBSMString(gamescore: GameScore) -> Date {
@@ -137,7 +118,6 @@ func loadLeagueGroups(season: Int) async -> [LeagueGroup] {
     let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(season)" + "&api_key=" + apiKey)!
     var loadedLeagues = [LeagueGroup]()
     
-    //load all leagueGroups
     do {
        loadedLeagues = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
     } catch {
@@ -149,7 +129,7 @@ func loadLeagueGroups(season: Int) async -> [LeagueGroup] {
 func loadTableForTeam(team: BSMTeam, leagueGroups: [LeagueGroup]) async -> LeagueTable? {
     var correctTable = emptyTable
     
-    for leagueGroup in leagueGroups where team.league_entries[0].league.name == leagueGroup.name {
+    for leagueGroup in leagueGroups where team.league_entries[0].league.id == leagueGroup.league.id {
         let url = URL(string: "https://bsm.baseball-softball.de/leagues/" + "\(leagueGroup.id)" + "/table.json")!
         
         do {

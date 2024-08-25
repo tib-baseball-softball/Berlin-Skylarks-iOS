@@ -17,10 +17,6 @@ struct FavoriteTeamWidgetView: View {
     var body: some View {
         switch widgetFamily {
         case .systemSmall, .systemMedium, .systemLarge, .systemExtraLarge :
-            ZStack {
-                //LinearGradient(colors: [Color.skylarksBlue, Color.skylarksRed], startPoint: .topLeading, endPoint: .bottomTrailing)
-                Color(UIColor.systemBackground)
-                //Color.skylarksBlue
                 VStack {
                     if widgetFamily == .systemLarge || widgetFamily == .systemExtraLarge {
                         
@@ -39,8 +35,11 @@ struct FavoriteTeamWidgetView: View {
                             TeamWidgetNextGameView(entry: entry)
                         }
                     }
+                    .padding(widgetFamily == .systemLarge || widgetFamily == .systemExtraLarge ? 5 : 1)
                 }
-            }
+                .containerBackground(for: .widget) {
+                    Color(UIColor.systemBackground)
+                }
         case .accessoryCircular:
             let value = entry.TableRow.wins_count / Double(entry.TableRow.match_count)
             
@@ -163,7 +162,6 @@ struct TeamWidgetLastGameView: View {
             }
         }
         .font(.subheadline)
-        .padding()
     }
 }
 
@@ -241,7 +239,6 @@ struct TeamWidgetNextGameView: View {
             }
         }
         .font(.subheadline)
-        .padding()
     }
 }
 
@@ -323,27 +320,27 @@ struct TeamWidgetOverView: View {
 struct FavoriteTeamWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         let dummyDashboard = UserDashboard()
-        let dummyEntry = FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: flamingosLogo, lastGameHomeLogo: skylarksSecondaryLogo, nextGame: widgetPreviewNextGame, nextGameOpponentLogo: sluggersLogo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyLeagueTable.rows[0])
+        let dummyEntry = FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: TeamImageData.flamingosLogo, lastGameHomeLogo: TeamImageData.skylarksSecondaryLogo, nextGame: widgetPreviewNextGame, nextGameOpponentLogo: TeamImageData.sluggersLogo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyLeagueTable.rows[0])
         
         Group {
-            FavoriteTeamWidgetView(entry: dummyEntry)
-                .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
-                .previewDisplayName("Rectangular")
-            FavoriteTeamWidgetView(entry: dummyEntry)
-                .previewContext(WidgetPreviewContext(family: .accessoryInline))
-                .previewDisplayName("Inline")
-            FavoriteTeamWidgetView(entry: dummyEntry)
-                .previewContext(WidgetPreviewContext(family: .accessoryCircular))
-                .previewDisplayName("Circular")
 //            FavoriteTeamWidgetView(entry: dummyEntry)
-//                .previewContext(WidgetPreviewContext(family: .systemSmall))
-//                //.environment(\.colorScheme, .dark)
+//                .previewContext(WidgetPreviewContext(family: .accessoryRectangular))
+//                .previewDisplayName("Rectangular")
 //            FavoriteTeamWidgetView(entry: dummyEntry)
-//                .previewContext(WidgetPreviewContext(family: .systemMedium))
-//                //.environment(\.colorScheme, .dark)
+//                .previewContext(WidgetPreviewContext(family: .accessoryInline))
+//                .previewDisplayName("Inline")
 //            FavoriteTeamWidgetView(entry: dummyEntry)
-//                .previewContext(WidgetPreviewContext(family: .systemLarge))
-//                //.environment(\.colorScheme, .dark)
+//                .previewContext(WidgetPreviewContext(family: .accessoryCircular))
+//                .previewDisplayName("Circular")
+            FavoriteTeamWidgetView(entry: dummyEntry)
+                .previewContext(WidgetPreviewContext(family: .systemSmall))
+                //.environment(\.colorScheme, .dark)
+            FavoriteTeamWidgetView(entry: dummyEntry)
+                .previewContext(WidgetPreviewContext(family: .systemMedium))
+                //.environment(\.colorScheme, .dark)
+            FavoriteTeamWidgetView(entry: dummyEntry)
+                .previewContext(WidgetPreviewContext(family: .systemLarge))
+                //.environment(\.colorScheme, .dark)
         }
     }
 }

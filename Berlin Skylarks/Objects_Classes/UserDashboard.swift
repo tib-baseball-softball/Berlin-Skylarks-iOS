@@ -35,7 +35,7 @@ class UserDashboard: ObservableObject {
         var selectedHomeScoresURL = URL(string: "https://www.tib-baseball.de")!
         
         //determine the correct leagueGroup
-        for leagueGroup in leagueGroups where team.league_entries[0].league.name == leagueGroup.name {
+        for leagueGroup in leagueGroups where team.league_entries[0].league.id == leagueGroup.league.id {
             selectedHomeScoresURL = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(season)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
         }
     

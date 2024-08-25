@@ -47,7 +47,7 @@ struct BallparkLocation: View {
                 .padding(ScoresItemPadding)
             }
             HStack {
-                Image(systemName: "diamond.fill") //this really needs a custom icon
+                Image(systemName: "baseball.diamond.bases")
                 Text(String(field.name))
             }
             .padding(ScoresItemPadding)

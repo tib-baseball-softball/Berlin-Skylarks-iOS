@@ -65,19 +65,15 @@ struct UserHomeView: View {
         } catch {
             print("Request failed with error: \(error)")
         }
-        //check for the favorite one
         
+        //check for the favorite one
         for team in teams where team.id == favoriteTeamID {
             displayTeam = team
-//            selectedHomeTablesURL = displayTeam.leagueTableURL
-//            selectedHomeScoresURL = displayTeam.scoresURL
         }
         return displayTeam
     }
     
     func loadHomeTeamTable(team: BSMTeam, leagueGroups: [LeagueGroup]) async {
-        
-        //loadingTables = true
         
         //load table for specific leagueGroup that corresponds to favorite team
         
@@ -92,7 +88,6 @@ struct UserHomeView: View {
         if !homeLeagueTables.isEmpty {
             showingTableData = true
         }
-        //loadingTables = false
     }
     
     var body: some View {
@@ -245,16 +240,16 @@ struct UserHomeView: View {
             await loadProcessHomeData()
         }
 
-        .onChange(of: favoriteTeamID, perform: { favoriteTeam in
+        .onChange(of: favoriteTeamID) {
             Task {
                 displayTeam = await setFavoriteTeam()
             }
             homeLeagueTables = []
             userDashboard.homeGamescores = []
-        })
+        }
         
         //this triggers only after the first launch once the onboarding sheet is dismissed. This var starts false, is set to true after the user selects their favorite team and is never set back to false anywhere
-        .onChange(of: didLaunchBefore) { firstLaunch in
+        .onChange(of: didLaunchBefore) {
             Task {
                 await loadProcessHomeData()
             }
@@ -415,15 +410,15 @@ struct UserHomeView: View {
             await loadProcessHomeData()
         }
         
-        .onChange(of: favoriteTeamID, perform: { favoriteTeam in
+        .onChange(of: favoriteTeamID) {
             Task {
                 displayTeam = await setFavoriteTeam()
             }
             homeLeagueTables = []
             userDashboard.homeGamescores = []
-        })
+        }
         
-        .onChange(of: didLaunchBefore) { firstLaunch in
+        .onChange(of: didLaunchBefore) {
             Task {
                 await loadProcessHomeData()
             }

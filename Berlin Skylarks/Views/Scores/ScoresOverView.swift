@@ -14,7 +14,7 @@ struct ScoresOverView: View {
     var body: some View {
         
         //logos now set here instead of .onAppear
-        let logos = fetchCorrectLogos(gamescore: gamescore)
+        let logos = TeamImageData.fetchCorrectLogos(gamescore: gamescore)
         
 #if !os(watchOS)
         VStack {
