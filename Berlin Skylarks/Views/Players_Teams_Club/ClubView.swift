@@ -20,53 +20,47 @@ struct ClubView: View {
     @StateObject var licenseManager = LicenseManager()
     
     var body: some View {
-        ZStack {
-            #if !os(watchOS)
-//            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
-//                .edgesIgnoringSafeArea(.all)
-#endif
-            ScrollView {
-                ClubInfoSection(clubData: clubData)
-                    .padding(.horizontal)
+        ScrollView {
+            ClubInfoSection(clubData: clubData)
+                .padding(.horizontal)
 #if !os(watchOS)
-                let columns = [GridItem(.adaptive(minimum: 140, maximum: 200))]
+            let columns = [GridItem(.adaptive(minimum: 140, maximum: 200))]
 #else
-                let columns = [GridItem(.adaptive(minimum: 80, maximum: 100))]
+            let columns = [GridItem(.adaptive(minimum: 80, maximum: 100))]
 #endif
-                LazyVGrid(columns: columns) {
-                    NavigationLink(destination: ClubDetailView(clubData: clubData)){
-                        ClubGridItem(systemImage: "info.circle.fill", itemName: "Details")
-                            .padding(3)
-                    }
-                    NavigationLink(destination: UmpireView(licenseManager: licenseManager)) {
-                        ClubGridItem(systemImage: "person.crop.rectangle.stack", itemName: "Umpire")
-                            .padding(3)
-                    }
-                    NavigationLink(destination: ScorersView(licenseManager: licenseManager)) {
-                        ClubGridItem(systemImage: "pencil", itemName: "Scorer")
-                            .padding(3)
-                    }
-                    NavigationLink(destination: TeamListView()){
-                        ClubGridItem(systemImage: "person.3.fill", itemName: "Teams")
-                            .padding(3)
-                    }
-                    NavigationLink(destination: BallparkView(clubData: clubData)) {
-                        ClubGridItem(systemImage: "diamond.fill", itemName: "Ballpark")
-                            .padding(3)
-                    }
-                    NavigationLink(destination: FunctionaryView(clubData: clubData)) {
-                        ClubGridItem(systemImage: "person.2.fill", itemName: "Officials")
-                            .padding(3)
-                    }
+            LazyVGrid(columns: columns) {
+                NavigationLink(destination: ClubDetailView(clubData: clubData)){
+                    ClubGridItem(systemImage: "info.circle.fill", itemName: "Details")
+                        .padding(3)
                 }
-                .foregroundColor(.primary)
-                .padding([.top, .horizontal])
-                .navigationTitle("Club")
-                
+                NavigationLink(destination: UmpireView(licenseManager: licenseManager)) {
+                    ClubGridItem(systemImage: "person.crop.rectangle.stack", itemName: "Umpire")
+                        .padding(3)
+                }
+                NavigationLink(destination: ScorersView(licenseManager: licenseManager)) {
+                    ClubGridItem(systemImage: "pencil", itemName: "Scorer")
+                        .padding(3)
+                }
+                NavigationLink(destination: TeamListView()){
+                    ClubGridItem(systemImage: "person.3.fill", itemName: "Teams")
+                        .padding(3)
+                }
+                NavigationLink(destination: BallparkView(clubData: clubData)) {
+                    ClubGridItem(systemImage: "diamond.fill", itemName: "Ballpark")
+                        .padding(3)
+                }
+                NavigationLink(destination: FunctionaryView(clubData: clubData)) {
+                    ClubGridItem(systemImage: "person.2.fill", itemName: "Officials")
+                        .padding(3)
+                }
             }
+            .foregroundColor(.primary)
+            .padding([.top, .horizontal])
+            .navigationTitle("Club")
+            
         }
+        
         .onAppear {
-            //check for performance!
             Task {
                 await clubData.loadClubData()
                 await clubData.loadFields()
@@ -81,12 +75,9 @@ struct ClubView: View {
     }
 }
 
-struct ClubView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            ClubView()
-                .environmentObject(NetworkManager())
-        }
-        //.preferredColorScheme(.dark)
+#Preview {
+    NavigationView {
+        ClubView()
+            .environmentObject(NetworkManager())
     }
 }

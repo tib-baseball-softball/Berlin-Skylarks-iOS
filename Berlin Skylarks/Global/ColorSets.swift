@@ -43,6 +43,6 @@ extension Color {
     
     #if os(macOS)
     static let primaryBackground = Color(nsColor: NSColor.windowBackgroundColor)
-    static let secondaryBackground = Color(nsColor: NSColor.quinarySystemFill)
+    static let secondaryBackground = Color(nsColor: NSColor.tertiarySystemFill)
     #endif
 }
