@@ -284,6 +284,10 @@
 		CAD42719280BF1C3001CA68A /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
 		CAD4271C280DB10B001CA68A /* ScoresOverViewFull.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD4271B280DB10B001CA68A /* ScoresOverViewFull.swift */; };
 		CAD6DA882C7B3E9C00D049AC /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0FD3182C7B3DA400285CB0 /* Onboarding.swift */; };
+		CAD6DA8C2C7B4F2300D049AC /* Gameday.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD6DA8B2C7B4F2300D049AC /* Gameday.swift */; };
+		CAD6DA8D2C7B4F2300D049AC /* Gameday.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD6DA8B2C7B4F2300D049AC /* Gameday.swift */; };
+		CAD6DA8E2C7B4F2300D049AC /* Gameday.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD6DA8B2C7B4F2300D049AC /* Gameday.swift */; };
+		CAD6DA8F2C7B4F2300D049AC /* Gameday.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAD6DA8B2C7B4F2300D049AC /* Gameday.swift */; };
 		CADBDF4929EB4028005F060A /* API_Key.dist in Resources */ = {isa = PBXBuildFile; fileRef = CADBDF4829EB4028005F060A /* API_Key.dist */; };
 		CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
 		CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE134872771F2E000DFA745 /* WidgetSkylarks.swift */; };
@@ -508,6 +512,7 @@
 		CACA4291284642DF008F21FF /* ClubStandingsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubStandingsRow.swift; sourceTree = "<group>"; };
 		CACA42942848E684008F21FF /* ClubStandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClubStandingsView.swift; sourceTree = "<group>"; };
 		CAD4271B280DB10B001CA68A /* ScoresOverViewFull.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresOverViewFull.swift; sourceTree = "<group>"; };
+		CAD6DA8B2C7B4F2300D049AC /* Gameday.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Gameday.swift; sourceTree = "<group>"; };
 		CADBDF4829EB4028005F060A /* API_Key.dist */ = {isa = PBXFileReference; lastKnownFileType = text; path = API_Key.dist; sourceTree = "<group>"; };
 		CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetSkylarksExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE134822771F2E000DFA745 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
@@ -778,6 +783,7 @@
 				CA25ABB9294E3869002FA8A6 /* Legal */,
 				CA0DA051259A46CC002A0FAB /* JSON data */,
 				CAFDC20225C0BC77000A5922 /* Views */,
+				CAD6DA8A2C7B4EDF00D049AC /* Enums */,
 				CAFDC20025C0BC63000A5922 /* Models */,
 				CABF7BF2259351D500B95813 /* Assets.xcassets */,
 				CABF7BFC259351D500B95813 /* Info.plist */,
@@ -795,6 +801,14 @@
 				CABF7BF5259351D500B95813 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		CAD6DA8A2C7B4EDF00D049AC /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+				CAD6DA8B2C7B4F2300D049AC /* Gameday.swift */,
+			);
+			path = Enums;
 			sourceTree = "<group>";
 		};
 		CAE134812771F2DF00DFA745 /* Frameworks */ = {
@@ -1242,6 +1256,7 @@
 				CA56F3CB2880569A00138195 /* BSMFunctionary.swift in Sources */,
 				CAA7C1A8289D72A900CC0615 /* LicenseDetailView.swift in Sources */,
 				CAA7C1BD289E4B3C00CC0615 /* BallparkDetailView.swift in Sources */,
+				CAD6DA8D2C7B4F2300D049AC /* Gameday.swift in Sources */,
 				CA283D0F279DD56800271DC1 /* UserHomeView.swift in Sources */,
 				CA04403728875C7100DAE315 /* ClubDataManager.swift in Sources */,
 				CA56F3E228872A1900138195 /* BSMField.swift in Sources */,
@@ -1255,6 +1270,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA25ABCE294E3BAF002FA8A6 /* MarkdownFile.swift in Sources */,
+				CAD6DA8F2C7B4F2300D049AC /* Gameday.swift in Sources */,
 				CA3C4C2F28B40C3400F72841 /* BerlinSkylarksTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1348,6 +1364,7 @@
 				CA4AA4422858BBFF00C83CED /* LargePercentageCircle.swift in Sources */,
 				CAAB56C3271F62F800ADDE9D /* GlobalFunctions.swift in Sources */,
 				CA044033288755AC00DAE315 /* ClubDetailView.swift in Sources */,
+				CAD6DA8C2C7B4F2300D049AC /* Gameday.swift in Sources */,
 				CA28FB90280DDDC6007581FD /* HomeTeamDetailView.swift in Sources */,
 				CAA7C1A1289D5E4300CC0615 /* LicenseManager.swift in Sources */,
 				CA5CF5D7284E0EBA00ABD7E0 /* ScorerAssignments.swift in Sources */,
@@ -1410,6 +1427,7 @@
 				CAB26C5628FEF7B4005ACFA7 /* TeamLogoWidgetData.swift in Sources */,
 				CA9B1810277A289000D24CFA /* Constants.swift in Sources */,
 				CA1E036A2819ABAA00E2FF8F /* TeamImageData.swift in Sources */,
+				CAD6DA8E2C7B4F2300D049AC /* Gameday.swift in Sources */,
 				CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */,
 				CA5CF5DD284E0EDF00ABD7E0 /* BallparkLocation.swift in Sources */,
 				CA23513F2B08B09200D90863 /* ColorSets.swift in Sources */,

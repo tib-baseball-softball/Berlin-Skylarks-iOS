@@ -9,7 +9,6 @@ import SwiftUI
 import EventKit
 
 struct ScoresView: View {
-    
     @Environment(\.colorScheme) var colorScheme
     
 #if !os(watchOS)
@@ -58,17 +57,6 @@ struct ScoresView: View {
     @State private var filterDate = Date()
     
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
-    
-    enum Gameday: String, Identifiable, CaseIterable {
-        case previous
-        case current
-        case next
-        case any
-        
-        var displayName: String { rawValue.capitalized }
-        var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue.capitalized) }
-        var id: String { self.rawValue }
-    }
     
     //TODO: localise
     @State var selectedTeam = "All Teams"
@@ -226,10 +214,8 @@ struct ScoresView: View {
         List {
             Picker(
                 selection: $selectedTimeframe,
-                //this actually does not show the label, just the selection
                 label: HStack {
                     Text("Show:")
-                    //Text(selection)
                 },
                 content: {
                     ForEach(Gameday.allCases) { gameday in
@@ -239,6 +225,8 @@ struct ScoresView: View {
                     
                 })
             .pickerStyle(.segmented)
+            .listRowInsets(.init())
+            .listRowBackground(Color.clear)
             
             Section(header: Text("Selected Season: ") + Text(String(selectedSeason))){
                 
@@ -270,6 +258,7 @@ struct ScoresView: View {
                 }
             }
         }
+        .navigationTitle("Scores")
         .animation(.default, value: searchText)
         .animation(.default, value: gamescores)
         .animation(.default, value: showOtherTeams)
@@ -313,8 +302,6 @@ struct ScoresView: View {
         .onChange(of: selectedSeason) {
             seasonChanged()
         }
-        
-        // this is the toolbar with the picker in the top right corner where you can select which games to display.
         
         .toolbar {
             ToolbarItemGroup(placement: .secondaryAction) {
@@ -392,11 +379,9 @@ struct ScoresView: View {
                 } message: {
                     Text("No active network connection has been detected. The app needs a connection to download its data.")
                 }
-                
-                //Toggle("Show other teams", isOn: $showOtherTeams)
             }
             
-            ToolbarItemGroup(placement: .principal) {
+            ToolbarItemGroup(placement: .primaryAction) {
                 Picker(
                     selection: $selectedTeam,
                     //this actually does not show the label, just the selection
@@ -416,103 +401,100 @@ struct ScoresView: View {
                 .pickerStyle(.menu)
                 .padding(.vertical, scoresGridPadding)
             }
-            .navigationTitle("Scores")
         }
-    }
+        
 #endif
-    
-    //---------------------------------------------------------//
-    //-----------start Apple Watch-specific code---------------//
-    //---------------------------------------------------------//
-    
+        
+        //---------------------------------------------------------//
+        //-----------start Apple Watch-specific code---------------//
+        //---------------------------------------------------------//
+        
 #if os(watchOS)
-    List {
-        Section(header: Text("Selected Season: ") + Text(String(selectedSeason))) {
-            if loadingInProgress == true {
-                LoadingView()
-            }
-            Picker(
-                selection: $selectedTeam,
-                
-                label: HStack {
-                    //                    Image(systemName: "list.bullet.circle")
-                    //                        .foregroundColor(.skylarksRed)
-                    Text("Team:")
-                },
-                
-                content: {
-                    ForEach(filterTeams, id: \.self) { option in
-                        HStack {
-                            //Image(systemName: "list.bullet.circle")
-                            Text(" " + option)
+        List {
+            Section(header: Text("Selected Season: ") + Text(String(selectedSeason))) {
+                if loadingInProgress == true {
+                    LoadingView()
+                }
+                Picker(
+                    selection: $selectedTeam,
+                    
+                    label: HStack {
+                        //                    Image(systemName: "list.bullet.circle")
+                        //                        .foregroundColor(.skylarksRed)
+                        Text("Team:")
+                    },
+                    
+                    content: {
+                        ForEach(filterTeams, id: \.self) { option in
+                            HStack {
+                                //Image(systemName: "list.bullet.circle")
+                                Text(" " + option)
+                            }
+                            .tag(option)
                         }
-                        .tag(option)
                     }
-                }
-            )
-            Picker(
-                selection: $selectedTimeframe,
-                //this actually does not show the label, just the selection
-                label: HStack {
-                    Text("Gameday:")
-                    //Text(selection)
-                },
-                content: {
-                    ForEach(Gameday.allCases) { gameday in
-                        Text(gameday.localizedName)
-                            .tag(gameday)
+                )
+                Picker(
+                    selection: $selectedTimeframe,
+                    //this actually does not show the label, just the selection
+                    label: HStack {
+                        Text("Gameday:")
+                        //Text(selection)
+                    },
+                    content: {
+                        ForEach(Gameday.allCases) { gameday in
+                            Text(gameday.localizedName)
+                                .tag(gameday)
+                        }
+                    })
+                Toggle("Show non-Skylarks Games", isOn: $showOtherTeams)
+                    .tint(.skylarksRed)
+                ForEach(listData, id: \.id) { GameScore in
+                    NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
+                        ScoresOverView(gamescore: GameScore)
                     }
-                })
-            Toggle("Show non-Skylarks Games", isOn: $showOtherTeams)
-                .tint(.skylarksRed)
-            ForEach(listData, id: \.id) { GameScore in
-                NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
-                    ScoresOverView(gamescore: GameScore)
+                    .foregroundColor(.primary)
                 }
-                .foregroundColor(.primary)
-            }
-            if gamescores.isEmpty && loadingInProgress == false {
-                Text("There are no games scheduled for the chosen time frame.")
-                    .font(.caption2)
-                    .padding()
+                if gamescores.isEmpty && loadingInProgress == false {
+                    Text("There are no games scheduled for the chosen time frame.")
+                        .font(.caption2)
+                        .padding()
+                }
             }
         }
-    }
-    .animation(.default, value: gamescores)
-    .animation(.default, value: showOtherTeams)
-    .navigationTitle("Scores")
-    
-    //APPLE WATCH SEPARATE FUNCS/////////////////////////////////////////////////////////////////////
-    
-    .refreshable {
-        await refresh()
-    }
-    .onAppear(perform: {
-        initialLoad()
-    })
-    
-    .onChange(of: selectedTeam) {
-        teamChanged()
-    }
-    
-    .onChange(of: selectedTimeframe) {
-        timeframeChanged()
-    }
-    
-    .onChange(of: selectedSeason) {
-        seasonChanged()
-    }
-    
+        .animation(.default, value: gamescores)
+        .animation(.default, value: showOtherTeams)
+        .navigationTitle("Scores")
+        
+        //APPLE WATCH SEPARATE FUNCS/////////////////////////////////////////////////////////////////////
+        
+        .refreshable {
+            await refresh()
+        }
+        .onAppear(perform: {
+            initialLoad()
+        })
+        
+        .onChange(of: selectedTeam) {
+            teamChanged()
+        }
+        
+        .onChange(of: selectedTimeframe) {
+            timeframeChanged()
+        }
+        
+        .onChange(of: selectedSeason) {
+            seasonChanged()
+        }
+        
 #endif
-}
+    }
 }
 
-struct ScoresView_Previews: PreviewProvider {
-    static var previews: some View {
-        ScoresView()
-        //.preferredColorScheme(.dark)
+#Preview {
+    ScoresView()
 #if !os(watchOS)
-            .environmentObject(CalendarManager())
+        .environmentObject(CalendarManager())
+        .environmentObject(NetworkManager())
 #endif
-    }
 }
