@@ -145,7 +145,6 @@ struct StandingsTableView: View {
                 }
             }
             .frame(maxWidth: 650)
-            .listStyle(.insetGrouped)
             .navigationTitle(leagueTable.league_name + " " + String(leagueTable.season))
             #if !os(macOS)
             .navigationBarTitleDisplayMode(.inline)

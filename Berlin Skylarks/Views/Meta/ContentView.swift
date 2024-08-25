@@ -13,84 +13,40 @@ import WidgetKit
 #endif
 
 struct ContentView: View {
-    
     @State private var showingSheetOnboarding = false
     
     @AppStorage("didLaunchBefore") var didLaunchBefore = false
-    
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
-    
-//    @Environment(\.managedObjectContext) private var viewContext
-//
-//    @FetchRequest(
-//        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
-//        animation: .default)
-//    private var items: FetchedResults<Item>
-    
-    func checkForOnboarding() {
-        if didLaunchBefore == false {
-            showingSheetOnboarding = true
-            //didLaunchBefore = true
-        }
-    }
     
     var body: some View {
         
-        //MARK: iPhone/iPad/Mac
+        //MARK: iPhone/iPad
         
-        #if !os(watchOS)
-        //the interface on iPhone uses a tab bar at the bottom
+        #if os(iOS)
         
         if UIDevice.current.userInterfaceIdiom == .phone {
             MainTabView()
-            .onAppear(perform: {
-                checkForOnboarding()
-                WidgetCenter.shared.reloadAllTimelines()
-            })
-            .sheet( isPresented: $showingSheetOnboarding, onDismiss: {
-                didLaunchBefore = true
-            }) {
-                UserOnboardingView()
-            }
-        }
-            
-        //on iPad and macOS we use a sidebar navigation to make better use of the ample space
-        
-        if UIDevice.current.userInterfaceIdiom == .pad || UIDevice.current.userInterfaceIdiom == .mac {
+                .onboarding(showingSheetOnboarding: $showingSheetOnboarding, didLaunchBefore: $didLaunchBefore)
+        } else if UIDevice.current.userInterfaceIdiom == .pad {
             SidebarNavigationView()
-                .onAppear(perform: {
-                    checkForOnboarding()
-                    WidgetCenter.shared.reloadAllTimelines()
-                })
-                .sheet( isPresented: $showingSheetOnboarding, onDismiss: {
-                    didLaunchBefore = true
-                }) {
-                    UserOnboardingView()
-                }
+                .onboarding(showingSheetOnboarding: $showingSheetOnboarding, didLaunchBefore: $didLaunchBefore)
         }
         
+        #elseif os(macOS)
+        SidebarNavigationView()
+            .onboarding(showingSheetOnboarding: $showingSheetOnboarding, didLaunchBefore: $didLaunchBefore)
         #endif
+            
         
         //MARK: Apple Watch
         
         #if os(watchOS)
-            WatchRootView()
-    
+        WatchRootView()
+            .onboarding(showingSheetOnboarding: $showingSheetOnboarding, didLaunchBefore: $didLaunchBefore)
             //TODO: needs to get favorite team info as well, either from parent app or via own view
-            .onAppear(perform: {
-                checkForOnboarding()
-            })
-            .sheet( isPresented: $showingSheetOnboarding, onDismiss: {
-                didLaunchBefore = true
-            }) {
-                UserOnboardingView()
-                    .navigationBarHidden(true)
-            }
         #endif
     }
 }
-
-//preview settings
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

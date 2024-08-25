@@ -6,8 +6,11 @@
 //
 
 import Foundation
-import EventKitUI
 import SwiftUI
+import EventKit
+
+#if canImport(EventKitUI)
+import EventKitUI
 
 struct CalendarChooser: UIViewControllerRepresentable {
     typealias UIViewControllerType = UINavigationController
@@ -68,3 +71,14 @@ struct CalendarChooser: UIViewControllerRepresentable {
         }
     }
 }
+#else
+
+// TODO: make work on macOS
+struct CalendarChooser: View {
+    @Binding var calendar: EKCalendar?
+    
+    var body: some View {
+        Text("Calendar Export is not currently working on native macOS.")
+    }
+}
+#endif

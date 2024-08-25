@@ -22,8 +22,8 @@ struct ClubView: View {
     var body: some View {
         ZStack {
             #if !os(watchOS)
-            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
-                .edgesIgnoringSafeArea(.all)
+//            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
+//                .edgesIgnoringSafeArea(.all)
 #endif
             ScrollView {
                 ClubInfoSection(clubData: clubData)

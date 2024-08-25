@@ -82,7 +82,7 @@ struct UserOnboardingView: View {
                                 }
                             }
                             .transition(.scale)
-                            .pickerStyle(.wheel)
+                            .pickerStyle(.menu)
                         }
                     } else {
                         HStack {
@@ -210,9 +210,6 @@ struct UserOnboardingView: View {
     }
 }
 
-struct UserOnboardingView_Previews: PreviewProvider {
-    static var previews: some View {
-        UserOnboardingView()
-            .preferredColorScheme(.dark)
-    }
+#Preview {
+    UserOnboardingView()
 }

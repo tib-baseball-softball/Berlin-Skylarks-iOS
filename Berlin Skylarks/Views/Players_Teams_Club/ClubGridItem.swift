@@ -39,7 +39,7 @@ struct ClubGridItem: View {
             }
             .padding()
 #if !os(watchOS)
-            .background(colorScheme == .light ? .white : .secondaryBackground)
+            //.background(colorScheme == .light ? .white : .secondaryBackground)
 #endif
             
         }

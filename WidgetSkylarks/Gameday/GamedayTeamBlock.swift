@@ -91,7 +91,7 @@ struct GamedayTeamBlock: View {
         .font(isExtraLarge ? .subheadline : .caption)
         .padding(4)
         //.foregroundColor(.white)
-        .background(ContainerRelativeShape().fill(Color(UIColor.secondarySystemBackground)))
+        .background(ContainerRelativeShape().fill(Color.secondaryBackground))
         .overlay(RoundedRectangle(cornerRadius: 5)
             .stroke(Color.skylarksSand)
         )

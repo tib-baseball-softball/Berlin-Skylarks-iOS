@@ -129,11 +129,10 @@ struct ScoresDetailView: View {
             }
             .textSelection(.enabled)
         }
-        .listStyle(.insetGrouped)
         .navigationTitle("Game Details")
         
         .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
+            ToolbarItemGroup(placement: .primaryAction) {
                 Spacer()
                 
                 Button(

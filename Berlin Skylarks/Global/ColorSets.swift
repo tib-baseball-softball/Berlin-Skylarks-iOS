@@ -23,6 +23,7 @@ let colorStandingsBackground = Color(UIColor.systemGroupedBackground)
 let ScoresSubItemBackground = Color(NSColor.tertiarySystemFill)
 let ColorStandingsTableHeadline = Color(NSColor.secondarySystemFill)
 let colorStandingsBackground = Color(NSColor.quaternarySystemFill)
+let ItemBackgroundColor = Color(NSColor.tertiarySystemFill)
 #endif
 
 extension Color {
@@ -38,5 +39,10 @@ extension Color {
     #if !os(watchOS) && !os(macOS)
     static let primaryBackground = Color(uiColor: .systemBackground)
     static let secondaryBackground = Color(uiColor: .secondarySystemBackground)
+    #endif
+    
+    #if os(macOS)
+    static let primaryBackground = Color(nsColor: NSColor.windowBackgroundColor)
+    static let secondaryBackground = Color(nsColor: NSColor.quinarySystemFill)
     #endif
 }

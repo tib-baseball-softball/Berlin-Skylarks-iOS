@@ -12,6 +12,12 @@ struct SegmentChart: View {
     
     @ObservedObject var userDashboard: UserDashboard
     
+    #if !os(macOS)
+    let showShortenedTeamName = UIDevice.current.userInterfaceIdiom != .phone
+    #else
+    let showShortenedTeamName = false
+    #endif
+    
     var body: some View {
         Section(
             header: Text("Visual Chart of Wins count"),
@@ -20,7 +26,7 @@ struct SegmentChart: View {
             Chart {
                 ForEach(userDashboard.leagueTable.rows, id: \.self) { row in
                     BarMark(
-                        x: .value("Team Name", UIDevice.current.userInterfaceIdiom == .phone ? row.short_team_name : row.team_name),
+                        x: .value("Team Name", showShortenedTeamName ? row.short_team_name : row.team_name),
                         y: .value("Wins Count", row.wins_count)
                     )
                     .foregroundStyle(row.team_name.contains("Skylarks") ? Color.skylarksRed : Color.skylarksDynamicNavySand)

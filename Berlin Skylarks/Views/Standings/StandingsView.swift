@@ -59,8 +59,8 @@ struct StandingsView: View {
     var body: some View {
         ZStack {
 #if !os(watchOS)
-            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
-                .edgesIgnoringSafeArea(.all)
+//            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
+//                .edgesIgnoringSafeArea(.all)
 #endif
             List {
                 Section(header: HStack {
@@ -132,14 +132,6 @@ struct StandingsView: View {
                 await loadAllTables()
             }
 #endif
-            
-            .listStyle( {
-#if os(watchOS)
-                .automatic
-#else
-                .insetGrouped
-#endif
-            } () )
             .frame(maxWidth: 600)
             
             .navigationTitle("Standings")

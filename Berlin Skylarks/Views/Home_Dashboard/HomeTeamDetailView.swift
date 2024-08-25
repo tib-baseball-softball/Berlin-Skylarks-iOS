@@ -25,8 +25,8 @@ struct HomeTeamDetailView: View {
     
     var body: some View {
         ZStack {
-            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
-                .edgesIgnoringSafeArea(.all)
+//            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
+//                .edgesIgnoringSafeArea(.all)
             VStack {
                 Picker(selection: $selection, label:
                         Text("Selected section")
@@ -47,7 +47,6 @@ struct HomeTeamDetailView: View {
                         SegmentStreak(userDashboard: userDashboard)
                     }
                 }
-                .listStyle(.insetGrouped)
                 .navigationTitle("Favorite Team Details")
                 .animation(.easeInOut, value: selection)
             }
