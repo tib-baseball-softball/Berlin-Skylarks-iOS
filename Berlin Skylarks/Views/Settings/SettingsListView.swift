@@ -11,7 +11,7 @@ struct SettingsListView: View {
     
     @EnvironmentObject var networkManager: NetworkManager
     @State private var showAlertNoNetwork = false
-   
+    
     @State var teams = [BSMTeam]()
     
     @State var showingSheetTeams = false
@@ -81,40 +81,40 @@ struct SettingsListView: View {
                             Text("Favorite Team")
                         }
                     })
-            }
+                }
             Section(header: Text("Information")) {
                 //App info does not show anything on watchOS, so we don't need to show it there
 #if !os(watchOS)
                 NavigationLink(
                     destination: InfoView()) {
-                    HStack {
-                        Image(systemName: "info.circle.fill")
-                            .font(.title3)
-                            .frame(width: 25)
-                        Text("App Info")
+                        HStack {
+                            Image(systemName: "info.circle.fill")
+                                .font(.title3)
+                                .frame(width: 25)
+                            Text("App Info")
+                        }
                     }
-                }
 #endif
                 let code = getLanguageCode()
                 
                 NavigationLink(
                     destination: LegalNoticeView(languageCode: code)) {
-                    HStack {
-                        Image(systemName: "c.circle")
-                            .font(.title2)
-                            .frame(width: 25)
-                        Text("Legal Notice")
+                        HStack {
+                            Image(systemName: "c.circle")
+                                .font(.title2)
+                                .frame(width: 25)
+                            Text("Legal Notice")
+                        }
                     }
-                }
                 NavigationLink(
                     destination: PrivacyPolicyView(languageCode: code)) {
-                    HStack {
-                        Image(systemName: "hand.raised.square.fill")
-                            .font(.title2)
-                            .frame(width: 25)
-                        Text("Privacy Policy")
+                        HStack {
+                            Image(systemName: "hand.raised.square.fill")
+                                .font(.title2)
+                                .frame(width: 25)
+                            Text("Privacy Policy")
+                        }
                     }
-                }
             }
             Section(header: Text("Get involved")) {
                 HStack {
@@ -127,30 +127,20 @@ struct SettingsListView: View {
                     Image(systemName: "arrow.triangle.branch")
                         .font(.title3)
                         .frame(width: 25)
-                    Link("Contribute on GitHub", destination: URL(string: "https://github.com/Obnoxieux/Berlin-Skylarks")!)
+                    Link("Contribute on GitHub", destination: URL(string: "https://github.com/tib-baseball-softball/Berlin-Skylarks-iOS")!)
                 }
-                #if !os(watchOS) && !os(macOS)
-                //watchOS does not support UIApplication
+#if !os(watchOS)
                 HStack {
                     Image(systemName: "envelope.fill")
-                        //.font(.title3)
                         .frame(width: 25)
-                    Button("Contact the developer", action: {
-                        if UIApplication.shared.canOpenURL(mailtoUrl) {
-                                UIApplication.shared.open(mailtoUrl, options: [:])
-                        }
-                    })
+                    Link("Contact the developer", destination: mailtoUrl)
                 }
-                #endif
-                #if os(macOS)
-                Label("Contact the developer", systemImage: "envelope.fill")
-                    .textSelection(.enabled)
-                #endif
+#endif
             }
         }
-    #if !os(watchOS) && !os(macOS)
+#if !os(watchOS) && !os(macOS)
         .listStyle(.insetGrouped)
-    #endif
+#endif
         
         .navigationTitle("Settings")
         
@@ -181,12 +171,9 @@ struct SettingsListView: View {
     }
 }
 
-struct SettingsListView_Previews: PreviewProvider {
-    static var previews: some View {
-        NavigationView {
-            SettingsListView()
-        }
-        //.preferredColorScheme(.dark)
-        .environmentObject(NetworkManager())
+#Preview {
+    NavigationStack {
+        SettingsListView()
+            .environmentObject(NetworkManager())
     }
 }
