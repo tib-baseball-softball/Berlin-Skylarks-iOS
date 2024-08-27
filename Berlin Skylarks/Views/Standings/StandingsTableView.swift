@@ -159,7 +159,7 @@ struct StandingsTableView: View {
 
 struct StandingsTableView_Previews: PreviewProvider {
     static var previews: some View {
-        StandingsTableView(leagueTable: dummyLeagueTable)
+        StandingsTableView(leagueTable: emptyTable)
             //.preferredColorScheme(.dark)
     }
 }

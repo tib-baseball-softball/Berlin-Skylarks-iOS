@@ -39,7 +39,7 @@ struct ClubStandingsRow: View {
 struct ClubStandingsRow_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            ClubStandingsRow(leagueTable: dummyLeagueTable)
+            ClubStandingsRow(leagueTable: emptyTable)
         }
         .preferredColorScheme(.dark)
     }

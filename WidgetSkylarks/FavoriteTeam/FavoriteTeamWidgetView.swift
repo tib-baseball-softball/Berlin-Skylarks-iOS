@@ -318,7 +318,7 @@ struct TeamWidgetOverView: View {
 struct FavoriteTeamWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         let dummyDashboard = UserDashboard()
-        let dummyEntry = FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: TeamImageData.flamingosLogo, lastGameHomeLogo: TeamImageData.skylarksSecondaryLogo, nextGame: widgetPreviewNextGame, nextGameOpponentLogo: TeamImageData.sluggersLogo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyLeagueTable.rows[0])
+        let dummyEntry = FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: TeamImageData.flamingosLogo, lastGameHomeLogo: TeamImageData.skylarksSecondaryLogo, nextGame: widgetPreviewNextGame, nextGameOpponentLogo: TeamImageData.sluggersLogo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: emptyRow)
         
         Group {
 //            FavoriteTeamWidgetView(entry: dummyEntry)

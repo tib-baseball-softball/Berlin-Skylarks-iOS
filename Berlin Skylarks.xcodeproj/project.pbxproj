@@ -21,7 +21,6 @@
 		CA0DA0482598BCB1002A0FAB /* ScoresDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA0472598BCB1002A0FAB /* ScoresDetailView.swift */; };
 		CA0DA04B2598F449002A0FAB /* SettingsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA04A2598F449002A0FAB /* SettingsListView.swift */; };
 		CA0DA04E2598F570002A0FAB /* InfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA04D2598F570002A0FAB /* InfoView.swift */; };
-		CA0DA053259A46FA002A0FAB /* BSM_Games_2020_human_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0DA052259A46FA002A0FAB /* BSM_Games_2020_human_readable.json */; };
 		CA0DA057259CAC8E002A0FAB /* StandingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0DA056259CAC8E002A0FAB /* StandingsView.swift */; };
 		CA0FD3192C7B3DA400285CB0 /* Onboarding.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0FD3182C7B3DA400285CB0 /* Onboarding.swift */; };
 		CA1722E127542DBE00E8BF36 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1722E027542DBE00E8BF36 /* PlayerModel.swift */; };
@@ -40,7 +39,6 @@
 		CA1C39EA2731875800BB194C /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
 		CA1C39EC2731875800BB194C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
 		CA1C39EE2731875800BB194C /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
-		CA1C39F02731875800BB194C /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFDC1FC25BF7F09000A5922 /* ModelData.swift */; };
 		CA1C39F827318C6D00BB194C /* Berlin_SkylarksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39F727318C6D00BB194C /* Berlin_SkylarksApp.swift */; };
 		CA1C3A0A2733407400BB194C /* Ints_Floats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A092733407400BB194C /* Ints_Floats.swift */; };
 		CA1C3A0B2733407400BB194C /* Ints_Floats.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C3A092733407400BB194C /* Ints_Floats.swift */; };
@@ -182,7 +180,6 @@
 		CA65FF6F27F882BF00F7845D /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
 		CA65FF7027FF271000F7845D /* BSMLeagueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */; };
 		CA65FF7127FF271600F7845D /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
-		CA65FF7227FF271900F7845D /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFDC1FC25BF7F09000A5922 /* ModelData.swift */; };
 		CA65FF7327FF271C00F7845D /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1722E027542DBE00E8BF36 /* PlayerModel.swift */; };
 		CA6F9E8427B2A9EE00530629 /* UserOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6F9E8327B2A9EE00530629 /* UserOnboardingView.swift */; };
 		CA78B71C259507BC00510621 /* ColorSets.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA78B71B259507BC00510621 /* ColorSets.swift */; };
@@ -243,10 +240,6 @@
 		CAA7C1BD289E4B3C00CC0615 /* BallparkDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C1BB289E4B3C00CC0615 /* BallparkDetailView.swift */; };
 		CAA7C1BF289E4BEB00CC0615 /* BallparkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C1BE289E4BEB00CC0615 /* BallparkRow.swift */; };
 		CAA7C1C0289E4BEB00CC0615 /* BallparkRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA7C1BE289E4BEB00CC0615 /* BallparkRow.swift */; };
-		CAAB4021277B7C4800F45C7A /* BSM_Games_2020_human_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0DA052259A46FA002A0FAB /* BSM_Games_2020_human_readable.json */; };
-		CAAB4022277B7C4B00F45C7A /* VLBB_2021_Standings.json in Resources */ = {isa = PBXBuildFile; fileRef = CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */; };
-		CAAB4024277B7C5700F45C7A /* VLBB_2021_Standings.json in Resources */ = {isa = PBXBuildFile; fileRef = CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */; };
-		CAAB4025277B7C5B00F45C7A /* BSM_Games_2020_human_readable.json in Resources */ = {isa = PBXBuildFile; fileRef = CA0DA052259A46FA002A0FAB /* BSM_Games_2020_human_readable.json */; };
 		CAAB56C3271F62F800ADDE9D /* GlobalFunctions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C2271F62F800ADDE9D /* GlobalFunctions.swift */; };
 		CAAB56C527208A9200ADDE9D /* UserHomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAAB56C427208A9200ADDE9D /* UserHomeView.swift */; };
 		CAB26C5028FEF171005ACFA7 /* TeamLogoWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAB26C4D28FEF171005ACFA7 /* TeamLogoWidgetView.swift */; };
@@ -263,7 +256,6 @@
 		CABF7BF6259351D500B95813 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF5259351D500B95813 /* Preview Assets.xcassets */; };
 		CABF7BF8259351D500B95813 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BF7259351D500B95813 /* Persistence.swift */; };
 		CABF7BFB259351D500B95813 /* Berlin_Skylarks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BF9259351D500B95813 /* Berlin_Skylarks.xcdatamodeld */; };
-		CAC0449F27749D1C00AD9888 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFDC1FC25BF7F09000A5922 /* ModelData.swift */; };
 		CAC044A027749D2C00AD9888 /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
 		CAC044A127749D2F00AD9888 /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
 		CAC044A227749D3100AD9888 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1722E027542DBE00E8BF36 /* PlayerModel.swift */; };
@@ -293,7 +285,6 @@
 		CAE134882771F2E000DFA745 /* WidgetSkylarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE134872771F2E000DFA745 /* WidgetSkylarks.swift */; };
 		CAE1348B2771F2E100DFA745 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAE1348A2771F2E100DFA745 /* Assets.xcassets */; };
 		CAE134912771F2E100DFA745 /* WidgetSkylarksExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CAE7740A26C1702900A57F66 /* VLBB_2021_Standings.json in Resources */ = {isa = PBXBuildFile; fileRef = CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */; };
 		CAE7740C26C1709B00A57F66 /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
 		CAE7740E26C292F900A57F66 /* StandingsTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740D26C292F900A57F66 /* StandingsTableView.swift */; };
 		CAE9C2BC28A9A2740079AB87 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA65FF4827F5EC4400F7845D /* IntentHandler.swift */; };
@@ -301,7 +292,6 @@
 		CAF062E32774C28400B7A0B2 /* FavoriteTeamWidgetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF062E12774C28400B7A0B2 /* FavoriteTeamWidgetView.swift */; };
 		CAF839D02705F4D9006FAD6B /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF839CF2705F4D9006FAD6B /* TestView.swift */; };
 		CAF98F98282A972D00451946 /* UserOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA6F9E8327B2A9EE00530629 /* UserOnboardingView.swift */; };
-		CAFDC1FD25BF7F09000A5922 /* ModelData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFDC1FC25BF7F09000A5922 /* ModelData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -381,7 +371,6 @@
 		CA0DA0472598BCB1002A0FAB /* ScoresDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoresDetailView.swift; sourceTree = "<group>"; };
 		CA0DA04A2598F449002A0FAB /* SettingsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsListView.swift; sourceTree = "<group>"; };
 		CA0DA04D2598F570002A0FAB /* InfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoView.swift; sourceTree = "<group>"; };
-		CA0DA052259A46FA002A0FAB /* BSM_Games_2020_human_readable.json */ = {isa = PBXFileReference; explicitFileType = text.json; fileEncoding = 4; path = BSM_Games_2020_human_readable.json; sourceTree = "<group>"; };
 		CA0DA056259CAC8E002A0FAB /* StandingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsView.swift; sourceTree = "<group>"; };
 		CA0FD3182C7B3DA400285CB0 /* Onboarding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Onboarding.swift; sourceTree = "<group>"; };
 		CA1722E027542DBE00E8BF36 /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
@@ -521,12 +510,10 @@
 		CAE1348A2771F2E100DFA745 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAE1348C2771F2E100DFA745 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAE134922771F2E100DFA745 /* WidgetSkylarksExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetSkylarksExtension.entitlements; sourceTree = "<group>"; };
-		CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = VLBB_2021_Standings.json; sourceTree = "<group>"; };
 		CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMStandingsTable.swift; sourceTree = "<group>"; };
 		CAE7740D26C292F900A57F66 /* StandingsTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StandingsTableView.swift; sourceTree = "<group>"; };
 		CAF062E12774C28400B7A0B2 /* FavoriteTeamWidgetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteTeamWidgetView.swift; sourceTree = "<group>"; };
 		CAF839CF2705F4D9006FAD6B /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
-		CAFDC1FC25BF7F09000A5922 /* ModelData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -571,15 +558,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CA0DA051259A46CC002A0FAB /* JSON data */ = {
-			isa = PBXGroup;
-			children = (
-				CA0DA052259A46FA002A0FAB /* BSM_Games_2020_human_readable.json */,
-				CAE7740926C1702900A57F66 /* VLBB_2021_Standings.json */,
-			);
-			path = "JSON data";
-			sourceTree = "<group>";
-		};
 		CA1C39A52731856B00BB194C /* WatchSkylarks */ = {
 			isa = PBXGroup;
 			children = (
@@ -781,7 +759,6 @@
 				CA1C3A082733402800BB194C /* Global */,
 				CA1A240C26BC389E00A8D1C7 /* Berlin Skylarks.entitlements */,
 				CA25ABB9294E3869002FA8A6 /* Legal */,
-				CA0DA051259A46CC002A0FAB /* JSON data */,
 				CAFDC20225C0BC77000A5922 /* Views */,
 				CAD6DA8A2C7B4EDF00D049AC /* Enums */,
 				CAFDC20025C0BC63000A5922 /* Models */,
@@ -926,7 +903,6 @@
 				CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */,
 				CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */,
 				CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */,
-				CAFDC1FC25BF7F09000A5922 /* ModelData.swift */,
 				CA1722E027542DBE00E8BF36 /* PlayerModel.swift */,
 				CA1CB20A27567E870007D24E /* BSMTeam.swift */,
 				CA56F3C92880569A00138195 /* BSMFunctionary.swift */,
@@ -1104,10 +1080,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAAB4024277B7C5700F45C7A /* VLBB_2021_Standings.json in Resources */,
 				CA25ABD3294E4108002FA8A6 /* app_pp_en.md in Resources */,
 				CA25ABC0294E38A6002FA8A6 /* app_impressum_en.md in Resources */,
-				CAAB4025277B7C5B00F45C7A /* BSM_Games_2020_human_readable.json in Resources */,
 				CA1C39BF2731856C00BB194C /* Preview Assets.xcassets in Resources */,
 				CA1CB212275D15BA0007D24E /* README.md in Resources */,
 				CA1C39EC2731875800BB194C /* Assets.xcassets in Resources */,
@@ -1148,14 +1122,12 @@
 				CA25ABD2294E4108002FA8A6 /* app_pp_en.md in Resources */,
 				CA940B85292A963A00D91508 /* InfoPlist.strings in Resources */,
 				CABF7BF6259351D500B95813 /* Preview Assets.xcassets in Resources */,
-				CA0DA053259A46FA002A0FAB /* BSM_Games_2020_human_readable.json in Resources */,
 				CA1CB211275D15BA0007D24E /* README.md in Resources */,
 				CA25ABD8294E4108002FA8A6 /* app_pp_de.md in Resources */,
 				CA940B88292A963A00D91508 /* Localizable.strings in Resources */,
 				CA25ABBC294E38A5002FA8A6 /* app_impressum_de.md in Resources */,
 				CABF7BF3259351D500B95813 /* Assets.xcassets in Resources */,
 				CADBDF4929EB4028005F060A /* API_Key.dist in Resources */,
-				CAE7740A26C1702900A57F66 /* VLBB_2021_Standings.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1163,9 +1135,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAAB4022277B7C4B00F45C7A /* VLBB_2021_Standings.json in Resources */,
 				CA48557B277383D5004ED11A /* Assets.xcassets in Resources */,
-				CAAB4021277B7C4800F45C7A /* BSM_Games_2020_human_readable.json in Resources */,
 				CA25ABBE294E38A6002FA8A6 /* app_impressum_de.md in Resources */,
 				CA25ABDA294E4108002FA8A6 /* app_pp_de.md in Resources */,
 				CA5A704729520E3F00F9D853 /* Localizable.strings in Resources */,
@@ -1202,7 +1172,6 @@
 				CA56F3D02880578700138195 /* BSMPerson.swift in Sources */,
 				CA9A89B12739B193001BBFA8 /* SettingsListView.swift in Sources */,
 				CAD42719280BF1C3001CA68A /* ColorSets.swift in Sources */,
-				CA1C39F02731875800BB194C /* ModelData.swift in Sources */,
 				CA1C3A0B2733407400BB194C /* Ints_Floats.swift in Sources */,
 				CAA7C1B7289DB9C500CC0615 /* FunctionaryDetailView.swift in Sources */,
 				CA1C3A132733444400BB194C /* InfoView.swift in Sources */,
@@ -1283,7 +1252,6 @@
 				CA25ABCD294E3BAF002FA8A6 /* MarkdownFile.swift in Sources */,
 				CA2D517E2950CFEF00CF465E /* WidgetSkylarks.intentdefinition in Sources */,
 				CA65FF6E27F882AA00F7845D /* BSMTeam.swift in Sources */,
-				CA65FF7227FF271900F7845D /* ModelData.swift in Sources */,
 				CA65FF6B27F5F1DA00F7845D /* Constants.swift in Sources */,
 				CA65FF6827F5F1A800F7845D /* GlobalFunctions.swift in Sources */,
 				CA65FF7327FF271C00F7845D /* PlayerModel.swift in Sources */,
@@ -1383,7 +1351,6 @@
 				CA2D517C2950CFEF00CF465E /* WidgetSkylarks.intentdefinition in Sources */,
 				CA1C3A0A2733407400BB194C /* Ints_Floats.swift in Sources */,
 				CAA7C1BF289E4BEB00CC0615 /* BallparkRow.swift in Sources */,
-				CAFDC1FD25BF7F09000A5922 /* ModelData.swift in Sources */,
 				CABF7BFB259351D500B95813 /* Berlin_Skylarks.xcdatamodeld in Sources */,
 				CAA7C1AA289DA7BC00CC0615 /* ScorersView.swift in Sources */,
 				CAA7C198289D4F8100CC0615 /* UmpireView.swift in Sources */,
@@ -1438,7 +1405,6 @@
 				CA5CF5D9284E0EBA00ABD7E0 /* ScorerAssignments.swift in Sources */,
 				CA9D3EE628738A6C00835953 /* ScoreNumber.swift in Sources */,
 				CA183EE5287353660088F085 /* GamedayTeamBlock.swift in Sources */,
-				CAC0449F27749D1C00AD9888 /* ModelData.swift in Sources */,
 				CAF062E32774C28400B7A0B2 /* FavoriteTeamWidgetView.swift in Sources */,
 				CA5CF5CD284E0DCF00ABD7E0 /* GameResultIndicator.swift in Sources */,
 				CA25ABCC294E3BAF002FA8A6 /* MarkdownFile.swift in Sources */,

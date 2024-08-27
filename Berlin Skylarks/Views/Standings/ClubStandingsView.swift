@@ -87,6 +87,6 @@ struct ClubStandingsView: View {
 
 struct ClubStandingsView_Previews: PreviewProvider {
     static var previews: some View {
-        ClubStandingsView(leagueTables: [dummyLeagueTable, dummyLeagueTable, dummyLeagueTable, dummyLeagueTable])
+        ClubStandingsView(leagueTables: [emptyTable, emptyTable])
     }
 }

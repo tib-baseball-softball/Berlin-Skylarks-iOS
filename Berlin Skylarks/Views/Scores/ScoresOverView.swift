@@ -99,21 +99,10 @@ struct ScoresOverView: View {
     }
 }
 
-struct ScoresOverView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        List {
-            Section {
-                ScoresOverView(gamescore: dummyGameScores[3])
-                ScoresOverView(gamescore: dummyGameScores[0])
-            }
-            Section {
-                ScoresOverView(gamescore: dummyGameScores[1])
-            }
-            Section {
-                ScoresOverView(gamescore: dummyGameScores[0])
-            }
+#Preview {
+    List {
+        Section {
+            //ScoresOverView(gamescore: dummyGameScores[3])
         }
-        //.preferredColorScheme(.dark)
     }
 }

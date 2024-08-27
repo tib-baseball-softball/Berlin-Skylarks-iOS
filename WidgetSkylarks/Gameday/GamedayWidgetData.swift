@@ -12,11 +12,11 @@ struct GamedayTimeline: TimelineProvider {
     //typealias Entry = GamedayEntry
     
     func placeholder(in context: Context) -> GamedayEntry {
-        GamedayEntry(date: Date(), gamescores: dummyGameScores)
+        GamedayEntry(date: Date(), gamescores: [testGame, testGame])
     }
     
     func getSnapshot(in context: Context, completion: @escaping (GamedayEntry) -> Void) {
-        let entry = GamedayEntry(date: Date(), gamescores: dummyGameScores)
+        let entry = GamedayEntry(date: Date(), gamescores: [testGame, testGame])
         completion(entry)
     }
     

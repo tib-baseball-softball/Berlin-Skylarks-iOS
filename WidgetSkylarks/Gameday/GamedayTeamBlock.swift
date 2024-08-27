@@ -103,7 +103,7 @@ struct GamedayTeamBlock: View {
 
 struct GamedayTeamBlock_Previews: PreviewProvider {
     static var previews: some View {
-        GamedayTeamBlock(gamescore: dummyGameScores[0])
+        GamedayTeamBlock(gamescore: testGame)
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

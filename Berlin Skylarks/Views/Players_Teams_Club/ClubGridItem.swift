@@ -35,7 +35,9 @@ struct ClubGridItem: View {
             Spacer()
         }
         .padding()
+#if !os(watchOS)
         .iOS { $0.background(Color.secondaryBackground) }
+#endif
         .cornerRadius(15)
     }
 }

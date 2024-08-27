@@ -317,9 +317,7 @@ struct ScoresDetailView: View {
     #endif
 }
 
-struct ScoresDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        ScoresDetailView(gamescore: dummyGameScores[3])
-            //.previewDevice(PreviewDevice(rawValue: "Apple Watch Series 6 - 44mm"))
-    }
+#Preview {
+    ScoresDetailView(gamescore: testGame)
+    //.previewDevice(PreviewDevice(rawValue: "Apple Watch Series 6 - 44mm"))
 }
