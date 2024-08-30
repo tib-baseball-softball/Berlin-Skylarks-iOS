@@ -28,6 +28,6 @@ struct TeamLogoWidgetView: View {
 struct TeamLogoWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         TeamLogoWidgetView(entry: LogoEntry(date: .now))
-            .previewContext(WidgetPreviewContext(family: .accessoryCircular))
+            .previewContext(WidgetPreviewContext(family: .systemSmall))
     }
 }

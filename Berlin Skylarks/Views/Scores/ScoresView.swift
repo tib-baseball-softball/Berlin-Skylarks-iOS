@@ -9,7 +9,6 @@ import SwiftUI
 import EventKit
 
 struct ScoresView: View {
-    
     @Environment(\.colorScheme) var colorScheme
     
 #if !os(watchOS)
@@ -59,22 +58,11 @@ struct ScoresView: View {
     
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
     
-    enum Gameday: String, Identifiable, CaseIterable {
-        case previous
-        case current
-        case next
-        case any
-        
-        var displayName: String { rawValue.capitalized }
-        var localizedName: LocalizedStringKey { LocalizedStringKey(rawValue.capitalized) }
-        var id: String { self.rawValue }
-    }
-    
     //TODO: localise
     @State var selectedTeam = "All Teams"
     @State var selectedTeamID: Int = 0 // this is in fact a league ID now - TODO: rename me
     @State var selectedTimeframe = Gameday.current
-
+    
     @State var filterTeams = ["All Teams", ]
     
     //---------------------------------------------------------//
@@ -192,15 +180,15 @@ struct ScoresView: View {
 #if !os(watchOS)
     func checkAccess() async {
         switch EKEventStore.authorizationStatus(for: .event) {
-        case .denied, .restricted:
-            showAlertNoAccess = true
-        case .writeOnly, .fullAccess:
-            showCalendarDialog = true
-        default:
-            let granted = await calendarManager.requestAccess()
-            if granted {
+            case .denied, .restricted:
+                showAlertNoAccess = true
+            case .writeOnly, .fullAccess:
                 showCalendarDialog = true
-            }
+            default:
+                let granted = await calendarManager.requestAccess()
+                if granted {
+                    showCalendarDialog = true
+                }
         }
     }
     
@@ -223,210 +211,202 @@ struct ScoresView: View {
     
     var body: some View {
 #if !os(watchOS)
-        ZStack {
-            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
-                .edgesIgnoringSafeArea(.all)
-            VStack {
-                Picker(
-                    selection: $selectedTimeframe,
-                    //this actually does not show the label, just the selection
-                    label: HStack {
-                        Text("Show:")
-                        //Text(selection)
-                    },
-                    content: {
-                        ForEach(Gameday.allCases) { gameday in
-                            Text(gameday.localizedName)
+        List {
+            Picker(
+                selection: $selectedTimeframe,
+                label: HStack {
+                    Text("Show:")
+                },
+                content: {
+                    ForEach(Gameday.allCases) { gameday in
+                        Text(gameday.localizedName)
                             .tag(gameday)
-                        }
-                        
-                })
-                .pickerStyle(.segmented)
-                .padding(.horizontal)
-                .padding(.vertical, 3)
-                List {
-                    Section(header: Text("Selected Season: ") + Text(String(selectedSeason))){
-                        
-                        //Switch to external games/only our games
-                        Toggle(String(localized: "Show non-Skylarks Games", comment: "toggle in ScoresView"), isOn: $showOtherTeams)
-                            .tint(.skylarksRed)
-                        
-                        //Loading in progress
-                        if loadingInProgress == true {
-                            LoadingView()
-                        }
-                        
-                        //the actual game data
-                        ForEach(listData, id: \.id) { GameScore in
-                            NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
-                                ScoresOverView(gamescore: GameScore)
-                            }
-                            .foregroundColor(.primary)
-                            .listRowSeparatorTint(.skylarksRed)
-                        }
-                        
-                        //fallback if there are no games
-                        if gamescores.isEmpty && loadingInProgress == false {
-                            Text("There are no games scheduled for the chosen time frame.")
-                        }
-                        //convoluted conditions, basically just means: we show just our games, there are none, but there are others that have been filtered out
-                        if skylarksGamescores == [] && !gamescores.isEmpty && showOtherTeams == false && loadingInProgress == false {
-                            Text("There are no Skylarks games scheduled for the chosen time frame.")
-                        }
-                    }
-                }
-                .listStyle(.insetGrouped)
-                .animation(.default, value: searchText)
-                .animation(.default, value: gamescores)
-                .animation(.default, value: showOtherTeams)
-                
-                .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .automatic), prompt: Text("Filter")) //it doesn't let me change the prompt
-               
-                .onChange(of: searchText) {
-                    let searchedObjects = showOtherTeams ? gamescores : skylarksGamescores
-                    searchResults = searchedObjects.filter({ gamescore in
-                        
-                        // list all fields that are searched
-                        gamescore.home_team_name.lowercased().contains(searchText.lowercased()) ||
-                        gamescore.away_team_name.lowercased().contains(searchText.lowercased()) ||
-                        gamescore.match_id.lowercased().contains(searchText.lowercased()) ||
-                        gamescore.league.name.lowercased().contains(searchText.lowercased()) ||
-                        //MARK: watch for index errors here
-                        gamescore.home_league_entry.team.clubs[0].name.lowercased().contains(searchText.lowercased()) ||
-                        gamescore.away_league_entry.team.clubs[0].name.lowercased().contains(searchText.lowercased()) ||
-                        gamescore.home_league_entry.team.clubs[0].short_name.lowercased().contains(searchText.lowercased()) ||
-                        gamescore.away_league_entry.team.clubs[0].short_name.lowercased().contains(searchText.lowercased()) ||
-                        gamescore.home_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased()) ||
-                        gamescore.away_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased())
-                    })
-                }
-                
-                .refreshable {
-                    await refresh()
-                }
-                .onAppear {
-                    initialLoad()
-                }
-                
-                .onChange(of: selectedTeam) {
-                    teamChanged()
-                }
-                
-                .onChange(of: selectedTimeframe) {
-                    timeframeChanged()
-                }
-                
-                .onChange(of: selectedSeason) {
-                    seasonChanged()
-                }
-                
-                // this is the toolbar with the picker in the top right corner where you can select which games to display.
-            
-                .toolbar {
-                    ToolbarItemGroup(placement: .navigationBarLeading) {
-                        Button(
-                            action: {
-                                Task {
-                                    await checkAccess()
-                                }
-                            }
-                        ){
-                            Image(systemName: "calendar.badge.plus")
-                        }
-                        
-                        .sheet(isPresented: $showCalendarDialog) {
-                            Form {
-                                Section {
-                                    HStack {
-                                        Spacer()
-                                        Button("Select Calendar to save to") {
-                                            showCalendarChooser.toggle()
-                                        }
-                                        .buttonStyle(.bordered)
-                                        .padding(.vertical)
-                                        Spacer()
-                                    }
-                                    HStack {
-                                        Spacer()
-                                        Text("Selected Calendar:")
-                                        Text(calendar?.title ?? String(localized: "Default"))
-                                        Spacer()
-                                    }
-                                }
-                                Section {
-                                    HStack {
-                                        Spacer()
-                                        Button("Save game data") {
-                                            showCalendarDialog = false
-                                            Task {
-                                                await saveEvents()
-                                            }
-                                        }
-                                        .buttonStyle(.borderedProminent)
-                                        .padding(.vertical)
-                                        Spacer()
-                                    }
-                                }
-                            }
-                            .presentationDetents([.medium])
-                            
-                            .sheet(isPresented: $showCalendarChooser) {
-                                CalendarChooser(calendar: $calendar)
-                            }
-                        }
-                        
-                        .alert("Save to calendar", isPresented: $showEventAlert) {
-                            Button("OK") { }
-                        } message: {
-                            Text("All games have been saved.")
-                        }
-                        
-                        .alert("Save to calendar", isPresented: $showAlertNoGames) {
-                            Button("OK") { }
-                        } message: {
-                            Text("There is no game data to save.")
-                        }
-                        
-                        .alert("No access to calendar", isPresented: $showAlertNoAccess) {
-                            Button("OK") { }
-                        } message: {
-                            Text("You have disabled access to your calendar. To save games please go to your device settings to enable it.")
-                        }
-                        
-                        .alert("No network connection", isPresented: $showAlertNoNetwork) {
-                            Button("OK") { }
-                        } message: {
-                            Text("No active network connection has been detected. The app needs a connection to download its data.")
-                        }
-                        
-                        //Toggle("Show other teams", isOn: $showOtherTeams)
                     }
                     
-                    ToolbarItemGroup(placement: .navigationBarTrailing) {
-                        Picker(
-                            selection: $selectedTeam,
-                            //this actually does not show the label, just the selection
-                            label: HStack {
-                                //Text(selectedTeam)
-                            },
-                            content: {
-                                ForEach(filterTeams, id: \.self) { option in
-                                    HStack {
-                                        Image(systemName: "person.3")
-                                        Text(" " + option)
-                                    }
-                                    .tag(option)
-                                }
-                                
-                        })
-                        .pickerStyle(.menu)
-                        .padding(.vertical, scoresGridPadding)
-                    }
+                })
+            .pickerStyle(.segmented)
+            .listRowInsets(.init())
+            .listRowBackground(Color.clear)
+            
+            Section(header: Text("Selected Season: ") + Text(String(selectedSeason))){
+                
+                //Switch to external games/only our games
+                Toggle(String(localized: "Show non-Skylarks Games", comment: "toggle in ScoresView"), isOn: $showOtherTeams)
+                    .tint(.skylarksRed)
+                
+                //Loading in progress
+                if loadingInProgress == true {
+                    LoadingView()
                 }
-            .navigationTitle("Scores")
+                
+                //the actual game data
+                ForEach(listData, id: \.id) { GameScore in
+                    NavigationLink(destination: ScoresDetailView(gamescore: GameScore)) {
+                        ScoresOverView(gamescore: GameScore)
+                    }
+                    .foregroundColor(.primary)
+                    .listRowSeparatorTint(.skylarksRed)
+                }
+                
+                //fallback if there are no games
+                if gamescores.isEmpty && loadingInProgress == false {
+                    Text("There are no games scheduled for the chosen time frame.")
+                }
+                //convoluted conditions, basically just means: we show just our games, there are none, but there are others that have been filtered out
+                if skylarksGamescores == [] && !gamescores.isEmpty && showOtherTeams == false && loadingInProgress == false {
+                    Text("There are no Skylarks games scheduled for the chosen time frame.")
+                }
             }
         }
-        #endif
+        .navigationTitle("Scores")
+        .animation(.default, value: searchText)
+        .animation(.default, value: gamescores)
+        .animation(.default, value: showOtherTeams)
+        
+        .searchable(text: $searchText, placement: .automatic, prompt: Text("Filter")) //it doesn't let me change the prompt
+        
+        .onChange(of: searchText) {
+            let searchedObjects = showOtherTeams ? gamescores : skylarksGamescores
+            searchResults = searchedObjects.filter({ gamescore in
+                
+                // list all fields that are searched
+                gamescore.home_team_name.lowercased().contains(searchText.lowercased()) ||
+                gamescore.away_team_name.lowercased().contains(searchText.lowercased()) ||
+                gamescore.match_id.lowercased().contains(searchText.lowercased()) ||
+                gamescore.league.name.lowercased().contains(searchText.lowercased()) ||
+                //MARK: watch for index errors here
+                gamescore.home_league_entry.team.clubs[0].name.lowercased().contains(searchText.lowercased()) ||
+                gamescore.away_league_entry.team.clubs[0].name.lowercased().contains(searchText.lowercased()) ||
+                gamescore.home_league_entry.team.clubs[0].short_name.lowercased().contains(searchText.lowercased()) ||
+                gamescore.away_league_entry.team.clubs[0].short_name.lowercased().contains(searchText.lowercased()) ||
+                gamescore.home_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased()) ||
+                gamescore.away_league_entry.team.clubs[0].acronym.lowercased().contains(searchText.lowercased())
+            })
+        }
+        
+        .refreshable {
+            await refresh()
+        }
+        .onAppear {
+            initialLoad()
+        }
+        
+        .onChange(of: selectedTeam) {
+            teamChanged()
+        }
+        
+        .onChange(of: selectedTimeframe) {
+            timeframeChanged()
+        }
+        
+        .onChange(of: selectedSeason) {
+            seasonChanged()
+        }
+        
+        .toolbar {
+            ToolbarItemGroup(placement: .primaryAction) {
+                Button(
+                    action: {
+                        Task {
+                            await checkAccess()
+                        }
+                    }
+                ){
+                    Image(systemName: "calendar.badge.plus")
+                }
+                
+                .sheet(isPresented: $showCalendarDialog) {
+                    Form {
+                        Section {
+                            HStack {
+                                Spacer()
+                                Button("Select Calendar to save to") {
+                                    showCalendarChooser.toggle()
+                                }
+                                .buttonStyle(.bordered)
+                                .padding(.vertical)
+                                Spacer()
+                            }
+                            HStack {
+                                Spacer()
+                                Text("Selected Calendar:")
+                                Text(calendar?.title ?? String(localized: "Default"))
+                                Spacer()
+                            }
+                        }
+                        Section {
+                            HStack {
+                                Spacer()
+                                
+                                Button("Save game data") {
+                                    showCalendarDialog = false
+                                    Task {
+                                        await saveEvents()
+                                    }
+                                }
+                                .buttonStyle(.borderedProminent)
+                                
+                                Button("Cancel") {
+                                    showCalendarDialog = false
+                                }
+                                Spacer()
+                            }
+                            .padding(.vertical)
+                        }
+                    }
+                    .presentationDetents([.medium])
+                    
+                    .sheet(isPresented: $showCalendarChooser) {
+                        CalendarChooser(calendar: $calendar)
+                    }
+                }
+                
+                .alert("Save to calendar", isPresented: $showEventAlert) {
+                    Button("OK") { }
+                } message: {
+                    Text("All games have been saved.")
+                }
+                
+                .alert("Save to calendar", isPresented: $showAlertNoGames) {
+                    Button("OK") { }
+                } message: {
+                    Text("There is no game data to save.")
+                }
+                
+                .alert("No access to calendar", isPresented: $showAlertNoAccess) {
+                    Button("OK") { }
+                } message: {
+                    Text("You have disabled access to your calendar. To save games please go to your device settings to enable it.")
+                }
+                
+                .alert("No network connection", isPresented: $showAlertNoNetwork) {
+                    Button("OK") { }
+                } message: {
+                    Text("No active network connection has been detected. The app needs a connection to download its data.")
+                }
+                
+                Picker(
+                    selection: $selectedTeam,
+                    //this actually does not show the label, just the selection
+                    label: HStack {
+                        //Text(selectedTeam)
+                    },
+                    content: {
+                        ForEach(filterTeams, id: \.self) { option in
+                            HStack {
+                                Image(systemName: "person.3")
+                                Text(" " + option)
+                            }
+                            .tag(option)
+                        }
+                        
+                    })
+                .pickerStyle(.menu)
+                .padding(.vertical, scoresGridPadding)
+            }
+        }
+        
+#endif
         
         //---------------------------------------------------------//
         //-----------start Apple Watch-specific code---------------//
@@ -440,13 +420,13 @@ struct ScoresView: View {
                 }
                 Picker(
                     selection: $selectedTeam,
-
+                    
                     label: HStack {
                         //                    Image(systemName: "list.bullet.circle")
                         //                        .foregroundColor(.skylarksRed)
                         Text("Team:")
                     },
-
+                    
                     content: {
                         ForEach(filterTeams, id: \.self) { option in
                             HStack {
@@ -467,9 +447,9 @@ struct ScoresView: View {
                     content: {
                         ForEach(Gameday.allCases) { gameday in
                             Text(gameday.localizedName)
-                            .tag(gameday)
+                                .tag(gameday)
                         }
-                })
+                    })
                 Toggle("Show non-Skylarks Games", isOn: $showOtherTeams)
                     .tint(.skylarksRed)
                 ForEach(listData, id: \.id) { GameScore in
@@ -510,16 +490,14 @@ struct ScoresView: View {
             seasonChanged()
         }
         
-        #endif
+#endif
     }
 }
 
-struct ScoresView_Previews: PreviewProvider {
-    static var previews: some View {
-            ScoresView()
-                //.preferredColorScheme(.dark)
+#Preview {
+    ScoresView()
 #if !os(watchOS)
-                .environmentObject(CalendarManager())
+        .environmentObject(CalendarManager())
+        .environmentObject(NetworkManager())
 #endif
-    }
 }

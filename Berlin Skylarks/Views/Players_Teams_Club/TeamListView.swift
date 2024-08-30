@@ -41,8 +41,8 @@ struct TeamListView: View {
     var body: some View {
         ZStack {
             #if !os(watchOS)
-            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
-                .edgesIgnoringSafeArea(.all)
+//            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
+//                .edgesIgnoringSafeArea(.all)
             #endif
             NavigationStack {
                 List {
@@ -100,14 +100,8 @@ struct TeamListView: View {
                     }
                 }
                 .navigationTitle("Teams" + " \(selectedSeason)")
-                .listStyle( {
-#if os(watchOS)
-                    .automatic
-#else
-                    .insetGrouped
-#endif
-                } () )
                 .frame(maxWidth: 600)
+                
                 .refreshable {
                     teams = []
                     await loadTeamData()

@@ -14,7 +14,6 @@ struct TestView: View {
     
     var body: some View {
         ZStack {
-            Color(.secondarySystemBackground)
             List {
                 Section {
                     NavigationLink(destination: Text("top item detail")) {
@@ -29,7 +28,6 @@ struct TestView: View {
                     }
                 }
             }
-            .listStyle(.insetGrouped)
         }
     }
 }

@@ -10,7 +10,7 @@ import MapKit
 
 struct MapViewWithPin: View {
     
-#if !os(watchOS)
+#if os(iOS)
     @Environment(\.verticalSizeClass) var verticalSizeClass
     
     //computed property to use a bigger map on larger screens, but not on portrait iPhones
@@ -48,10 +48,13 @@ struct MapViewWithPin: View {
             }
         }
         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-        #if !os(watchOS)
+        #if os(iOS)
         .frame(height: expandMap ? 500 : 200)
-        #else
+        #elseif os(watchOS)
         .frame(height: 200)
+        #else
+        // macOS
+        .frame(height: 500)
         #endif
         
         .onTapGesture(perform: {

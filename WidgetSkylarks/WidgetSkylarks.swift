@@ -9,6 +9,7 @@ import WidgetKit
 import SwiftUI
 import Intents
 
+#if !os(macOS)
 struct TeamLogoWidget: Widget {
     let kind = "LogoWidget"
     
@@ -21,6 +22,7 @@ struct TeamLogoWidget: Widget {
         .supportedFamilies([.accessoryCircular])
     }
 }
+#endif
 
 #if !os(watchOS)
 struct GamedayWidget: Widget {
@@ -48,7 +50,12 @@ struct FavoriteTeamWidget: Widget {
         .description("Shows info about your favorite Skylarks team.")
         
         //MARK: add support for extraLarge
+        
+        #if !os(macOS)
         .supportedFamilies([.systemSmall, .systemMedium, .systemLarge, .accessoryInline, .accessoryCircular, .accessoryRectangular])
+        #else
+        .supportedFamilies([.systemSmall, .systemMedium, .systemLarge])
+        #endif
     }
 }
 #endif

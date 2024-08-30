@@ -72,7 +72,7 @@ extension View {
     }
 }
 
-#if !os(watchOS)
+#if !os(watchOS) && !os(macOS)
 extension UIApplication {
     static var appName: String? {
         return Bundle.main.object(forInfoDictionaryKey: "CFBundleName") as? String

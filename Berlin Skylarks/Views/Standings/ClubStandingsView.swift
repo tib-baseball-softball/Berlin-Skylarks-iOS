@@ -39,8 +39,8 @@ struct ClubStandingsView: View {
     var body: some View {
         ZStack {
             #if !os(watchOS)
-            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
-                .edgesIgnoringSafeArea(.all)
+//            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
+//                .edgesIgnoringSafeArea(.all)
             #endif
             List {
                 Section(header: HStack {
@@ -87,6 +87,6 @@ struct ClubStandingsView: View {
 
 struct ClubStandingsView_Previews: PreviewProvider {
     static var previews: some View {
-        ClubStandingsView(leagueTables: [dummyLeagueTable, dummyLeagueTable, dummyLeagueTable, dummyLeagueTable])
+        ClubStandingsView(leagueTables: [emptyTable, emptyTable])
     }
 }

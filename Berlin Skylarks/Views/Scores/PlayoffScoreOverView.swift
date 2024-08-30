@@ -41,9 +41,6 @@ struct PlayoffScoreOverView_Previews: PreviewProvider {
     static var previews: some View {
         List {
             Section {
-                PlayoffScoreOverView(gamescore: dummyGameScores[0])
-                PlayoffScoreOverView(gamescore: dummyGameScores[1])
-                PlayoffScoreOverView(gamescore: dummyGameScores[1])
                 PlayoffScoreOverView(gamescore: testGame)
             }
             .listRowSeparatorTint(.skylarksRed)

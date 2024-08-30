@@ -6,8 +6,11 @@
 //
 
 import Foundation
-import EventKitUI
 import SwiftUI
+import EventKit
+
+#if canImport(EventKitUI)
+import EventKitUI
 
 struct CalendarChooser: UIViewControllerRepresentable {
     typealias UIViewControllerType = UINavigationController
@@ -68,3 +71,52 @@ struct CalendarChooser: UIViewControllerRepresentable {
         }
     }
 }
+#else
+
+/// suboptimal attempt to replicate functionality of EventKitUI since it is unavailable on macOS
+struct CalendarChooser: View {
+    @Binding var calendar: EKCalendar?
+    
+    @EnvironmentObject var calendarManager: CalendarManager
+    @Environment(\.presentationMode) var presentationMode
+    
+    var body: some View {
+        VStack {
+            Text("Choose Calendar")
+                .font(.headline)
+            
+            List(calendarManager.calendars, id: \.calendarIdentifier) { cal in
+                HStack {
+                    Text(cal.title)
+                    Spacer()
+                    if cal == calendar {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(.skylarksRed)
+                    }
+                }
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    calendar = cal
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }
+            .frame(minWidth: 300, minHeight: 400)
+            
+            HStack {
+                Spacer()
+                Button("Cancel") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .keyboardShortcut(.cancelAction)
+            }
+            .padding()
+        }
+        .padding()
+        .onAppear {
+            Task {
+                await calendarManager.loadCalendars()                
+            }
+        }
+    }
+}
+#endif

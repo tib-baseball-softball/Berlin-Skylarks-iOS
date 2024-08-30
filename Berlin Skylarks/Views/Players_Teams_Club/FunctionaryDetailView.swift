@@ -46,19 +46,23 @@ struct FunctionaryDetailView: View {
                         .textSelection(.enabled)
 #endif
                 }
-#if !os(watchOS)
                 let mailtoUrl = URL(string: "mailto:\(functionary.mail)")!
-                
+
                 HStack {
                     Image(systemName: "envelope")
                         .clubIconStyleDynamic()
                     Button("\(functionary.mail)", action: {
+#if !os(watchOS) && !os(macOS)
                         if UIApplication.shared.canOpenURL(mailtoUrl) {
                             UIApplication.shared.open(mailtoUrl, options: [:])
                         }
+#endif
+#if os(macOS)
+                       // TODO: send email
+#endif
                     })
                 }
-#endif
+
             }
 #if !os(watchOS)
         .listRowSeparatorTint(.skylarksSand)

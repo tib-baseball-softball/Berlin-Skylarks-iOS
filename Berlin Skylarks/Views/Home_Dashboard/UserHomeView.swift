@@ -214,13 +214,6 @@ struct UserHomeView: View {
                 }
             }
         }
-        .listStyle( {
-          #if os(watchOS)
-            .automatic
-          #else
-            .insetGrouped
-          #endif
-        } () )
         .navigationTitle("Dashboard")
         
         .animation(.default, value: userDashboard.tableRow)
@@ -270,7 +263,7 @@ struct UserHomeView: View {
             Text("No active network connection has been detected. The app needs a connection to download its data.")
         }
         .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
+            ToolbarItemGroup(placement: .primaryAction) {
                 Button(action: {
                     showingSheetTeams = true
                 }) {
@@ -428,11 +421,6 @@ struct UserHomeView: View {
     }
 }
 
-struct UserHomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        //Group {
-            UserHomeView()
-                //.preferredColorScheme(.dark)
-        //}
-    }
+#Preview {
+    UserHomeView()
 }

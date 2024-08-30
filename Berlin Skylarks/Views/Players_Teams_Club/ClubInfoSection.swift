@@ -43,15 +43,13 @@ struct ClubInfoSection: View {
             }
             .padding()
 #if !os(watchOS)
-            .background(colorScheme == .light ? .white : .secondaryBackground)
+            .background(Color.secondaryBackground)
 #endif
             .cornerRadius(15)
         }
     }
 }
 
-struct ClubInfoSection_Previews: PreviewProvider {
-    static var previews: some View {
-        ClubInfoSection(clubData: ClubData())
-    }
+#Preview {
+    ClubInfoSection(clubData: ClubData())
 }

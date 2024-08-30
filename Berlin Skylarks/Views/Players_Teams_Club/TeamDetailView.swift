@@ -29,8 +29,8 @@ struct TeamDetailView: View {
     var body: some View {
         ZStack {
             #if !os(watchOS)
-            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
-                .edgesIgnoringSafeArea(.all)
+//            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
+//                .edgesIgnoringSafeArea(.all)
             #endif
             List {
                 Section(header: Text("Team data")) {
@@ -86,15 +86,10 @@ struct TeamDetailView: View {
 //                }
             }
             .navigationTitle(team.name)
+            #if os(iOS)
             .navigationBarTitleDisplayMode(.inline)
+            #endif
             .frame(maxWidth: 600)
-            .listStyle( {
-              #if os(watchOS)
-                .automatic
-              #else
-                .insetGrouped
-              #endif
-        } () )
         }
     }
 }

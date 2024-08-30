@@ -50,9 +50,9 @@ struct GamedayWidgetView: View {
 struct GamedayWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         Group {
-            GamedayWidgetView(entry: GamedayEntry(date: Date(), gamescores: dummyGameScores))
+            GamedayWidgetView(entry: GamedayEntry(date: Date(), gamescores: [testGame, testGame]))
                 .previewContext(WidgetPreviewContext(family: .systemLarge))
-            GamedayWidgetView(entry: GamedayEntry(date: Date(), gamescores: dummyGameScores))
+            GamedayWidgetView(entry: GamedayEntry(date: Date(), gamescores: [testGame, testGame]))
                 .previewContext(WidgetPreviewContext(family: .systemExtraLarge))
         }
     }

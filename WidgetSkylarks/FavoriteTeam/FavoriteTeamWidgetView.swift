@@ -38,7 +38,7 @@ struct FavoriteTeamWidgetView: View {
                     .padding(widgetFamily == .systemLarge || widgetFamily == .systemExtraLarge ? 5 : 1)
                 }
                 .containerBackground(for: .widget) {
-                    Color(UIColor.systemBackground)
+                    Color.primaryBackground
                 }
         case .accessoryCircular:
             let value = entry.TableRow.wins_count / Double(entry.TableRow.match_count)
@@ -153,9 +153,7 @@ struct TeamWidgetLastGameView: View {
                 }
                 .padding(.vertical, 1.5)
             }
-            .background(ContainerRelativeShape().fill(Color(UIColor.systemBackground)))
-            //.border(Color.skylarksSand)
-            //Divider()
+            .background(ContainerRelativeShape().fill(Color.primaryBackground))
             } else {
                 Text("There is no recent game to display.")
                     .font(.subheadline)
@@ -232,7 +230,7 @@ struct TeamWidgetNextGameView: View {
             }
             //.padding(.top,2)
             .font(.subheadline)
-            .background(ContainerRelativeShape().fill(Color(UIColor.systemBackground)))
+            .background(ContainerRelativeShape().fill(Color.primaryBackground))
             } else {
                 Text("There is no next game to display.")
                     .font(.subheadline)
@@ -307,7 +305,7 @@ struct TeamWidgetOverView: View {
                 }
                 .frame(minWidth: 120)
                 .padding([.top, .bottom, .trailing])
-                .background(ContainerRelativeShape().fill(Color(UIColor.secondarySystemBackground)))
+                .background(ContainerRelativeShape().fill(Color.secondaryBackground))
                 .font(.subheadline)
             }
             .font(Font.body.smallCaps())
@@ -320,7 +318,7 @@ struct TeamWidgetOverView: View {
 struct FavoriteTeamWidgetView_Previews: PreviewProvider {
     static var previews: some View {
         let dummyDashboard = UserDashboard()
-        let dummyEntry = FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: TeamImageData.flamingosLogo, lastGameHomeLogo: TeamImageData.skylarksSecondaryLogo, nextGame: widgetPreviewNextGame, nextGameOpponentLogo: TeamImageData.sluggersLogo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: dummyLeagueTable.rows[0])
+        let dummyEntry = FavoriteTeamEntry(date: Date(), configuration: FavoriteTeamIntent(), team: widgetPreviewTeam, lastGame: widgetPreviewLastGame, lastGameRoadLogo: TeamImageData.flamingosLogo, lastGameHomeLogo: TeamImageData.skylarksSecondaryLogo, nextGame: widgetPreviewNextGame, nextGameOpponentLogo: TeamImageData.sluggersLogo, skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable, TableRow: emptyRow)
         
         Group {
 //            FavoriteTeamWidgetView(entry: dummyEntry)

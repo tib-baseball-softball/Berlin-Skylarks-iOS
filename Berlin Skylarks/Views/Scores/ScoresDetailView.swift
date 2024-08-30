@@ -129,11 +129,10 @@ struct ScoresDetailView: View {
             }
             .textSelection(.enabled)
         }
-        .listStyle(.insetGrouped)
         .navigationTitle("Game Details")
         
         .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
+            ToolbarItemGroup(placement: .primaryAction) {
                 Spacer()
                 
                 Button(
@@ -167,6 +166,7 @@ struct ScoresDetailView: View {
                         Section {
                             HStack {
                                 Spacer()
+                                
                                 Button("Save game data") {
                                     showCalendarDialog = false
                                     Task {
@@ -174,9 +174,13 @@ struct ScoresDetailView: View {
                                     }
                                 }
                                 .buttonStyle(.borderedProminent)
-                                .padding(.vertical)
+                                
+                                Button("Cancel") {
+                                    showCalendarDialog = false
+                                }
                                 Spacer()
                             }
+                            .padding(.vertical)
                         }
                     }
                     .presentationDetents([.medium])
@@ -318,9 +322,7 @@ struct ScoresDetailView: View {
     #endif
 }
 
-struct ScoresDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        ScoresDetailView(gamescore: dummyGameScores[3])
-            //.previewDevice(PreviewDevice(rawValue: "Apple Watch Series 6 - 44mm"))
-    }
+#Preview {
+    ScoresDetailView(gamescore: testGame)
+    //.previewDevice(PreviewDevice(rawValue: "Apple Watch Series 6 - 44mm"))
 }

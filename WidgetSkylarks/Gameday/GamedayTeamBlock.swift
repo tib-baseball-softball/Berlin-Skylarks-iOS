@@ -91,7 +91,7 @@ struct GamedayTeamBlock: View {
         .font(isExtraLarge ? .subheadline : .caption)
         .padding(4)
         //.foregroundColor(.white)
-        .background(ContainerRelativeShape().fill(Color(UIColor.secondarySystemBackground)))
+        .background(ContainerRelativeShape().fill(Color.secondaryBackground))
         .overlay(RoundedRectangle(cornerRadius: 5)
             .stroke(Color.skylarksSand)
         )
@@ -103,7 +103,7 @@ struct GamedayTeamBlock: View {
 
 struct GamedayTeamBlock_Previews: PreviewProvider {
     static var previews: some View {
-        GamedayTeamBlock(gamescore: dummyGameScores[0])
+        GamedayTeamBlock(gamescore: testGame)
             .previewContext(WidgetPreviewContext(family: .systemLarge))
     }
 }

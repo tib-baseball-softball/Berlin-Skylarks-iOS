@@ -113,11 +113,7 @@ struct ScoresOverViewFull: View {
 struct ScoresOverViewFull_Previews: PreviewProvider {
     static var previews: some View {
         List {
-            ScoresOverViewFull(gamescore: dummyGameScores[3])
-            ScoresOverViewFull(gamescore: dummyGameScores[47])
-            ScoresOverViewFull(gamescore: dummyGameScores[25])
-            ScoresOverViewFull(gamescore: dummyGameScores[8])
-            ScoresOverViewFull(gamescore: dummyGameScores[57])
+            ScoresOverViewFull(gamescore: testGame)
         }
         //.preferredColorScheme(.dark)
     }
