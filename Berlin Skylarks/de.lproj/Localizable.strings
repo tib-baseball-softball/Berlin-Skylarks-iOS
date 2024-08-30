@@ -2,6 +2,10 @@
 
 "Default" = "Standard";
 
+"Cancel" = "Abbrechen";
+
+"Choose Calendar" = "Wähle einen Kalender";
+
 "Selected Calendar:" = "Gewählter Kalender: ";
 
 "Select Calendar to save to" = "Kalender zum Speichern auswählen";

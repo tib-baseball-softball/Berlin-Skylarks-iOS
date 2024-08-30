@@ -73,12 +73,50 @@ struct CalendarChooser: UIViewControllerRepresentable {
 }
 #else
 
-// TODO: make work on macOS
+/// suboptimal attempt to replicate functionality of EventKitUI since it is unavailable on macOS
 struct CalendarChooser: View {
     @Binding var calendar: EKCalendar?
     
+    @EnvironmentObject var calendarManager: CalendarManager
+    @Environment(\.presentationMode) var presentationMode
+    
     var body: some View {
-        Text("Calendar Export is not currently working on native macOS.")
+        VStack {
+            Text("Choose Calendar")
+                .font(.headline)
+            
+            List(calendarManager.calendars, id: \.calendarIdentifier) { cal in
+                HStack {
+                    Text(cal.title)
+                    Spacer()
+                    if cal == calendar {
+                        Image(systemName: "checkmark")
+                            .foregroundColor(.skylarksRed)
+                    }
+                }
+                .contentShape(Rectangle())
+                .onTapGesture {
+                    calendar = cal
+                    presentationMode.wrappedValue.dismiss()
+                }
+            }
+            .frame(minWidth: 300, minHeight: 400)
+            
+            HStack {
+                Spacer()
+                Button("Cancel") {
+                    presentationMode.wrappedValue.dismiss()
+                }
+                .keyboardShortcut(.cancelAction)
+            }
+            .padding()
+        }
+        .padding()
+        .onAppear {
+            Task {
+                await calendarManager.loadCalendars()                
+            }
+        }
     }
 }
 #endif

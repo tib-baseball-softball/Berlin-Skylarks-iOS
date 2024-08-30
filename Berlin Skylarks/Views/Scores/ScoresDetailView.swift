@@ -166,6 +166,7 @@ struct ScoresDetailView: View {
                         Section {
                             HStack {
                                 Spacer()
+                                
                                 Button("Save game data") {
                                     showCalendarDialog = false
                                     Task {
@@ -173,9 +174,13 @@ struct ScoresDetailView: View {
                                     }
                                 }
                                 .buttonStyle(.borderedProminent)
-                                .padding(.vertical)
+                                
+                                Button("Cancel") {
+                                    showCalendarDialog = false
+                                }
                                 Spacer()
                             }
+                            .padding(.vertical)
                         }
                     }
                     .presentationDetents([.medium])

@@ -10,7 +10,7 @@ import EventKit
 
 #if !os(watchOS)
 class CalendarManager: ObservableObject {
-    @Published var calendarAccess = false
+    @Published var calendars: [EKCalendar] = []
     
     let eventStore = EKEventStore()
     
@@ -21,6 +21,33 @@ class CalendarManager: ObservableObject {
             print("error \(String(describing: error))")
         }
         return false
+    }
+    
+    func requestFullAccess() async -> Bool {
+        do {
+            return try await eventStore.requestFullAccessToEvents()
+        } catch {
+            print("error \(String(describing: error))")
+        }
+        return false
+    }
+    
+    func loadCalendars() async {
+        let cals = await fetchCalendars()
+        
+        //always publish on main thread
+        await MainActor.run {
+            calendars = cals
+        }
+    }
+    
+    private func fetchCalendars() async -> [EKCalendar] {
+        let granted = await self.requestFullAccess()
+        
+        if granted {
+            return eventStore.calendars(for: .event)
+        }
+        return []
     }
     
     func addGameToCalendar(gameDate: Date, gamescore: GameScore, calendar: EKCalendar? = nil) async {
