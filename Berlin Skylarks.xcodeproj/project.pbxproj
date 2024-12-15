@@ -254,7 +254,6 @@
 		CABF7BF1259351D400B95813 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BF0259351D400B95813 /* ContentView.swift */; };
 		CABF7BF3259351D500B95813 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
 		CABF7BF6259351D500B95813 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF5259351D500B95813 /* Preview Assets.xcassets */; };
-		CABF7BF8259351D500B95813 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BF7259351D500B95813 /* Persistence.swift */; };
 		CABF7BFB259351D500B95813 /* Berlin_Skylarks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BF9259351D500B95813 /* Berlin_Skylarks.xcdatamodeld */; };
 		CAC044A027749D2C00AD9888 /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
 		CAC044A127749D2F00AD9888 /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
@@ -488,7 +487,6 @@
 		CABF7BF0259351D400B95813 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		CABF7BF2259351D500B95813 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CABF7BF5259351D500B95813 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		CABF7BF7259351D500B95813 /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		CABF7BFA259351D500B95813 /* Berlin_Skylarks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Berlin_Skylarks.xcdatamodel; sourceTree = "<group>"; };
 		CABF7BFC259351D500B95813 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAC2D49E28513AFB009EB877 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
@@ -754,7 +752,6 @@
 			isa = PBXGroup;
 			children = (
 				CABF7BEE259351D400B95813 /* Berlin_SkylarksApp.swift */,
-				CABF7BF7259351D500B95813 /* Persistence.swift */,
 				CA1E035C2819939700E2FF8F /* Objects_Classes */,
 				CA1C3A082733402800BB194C /* Global */,
 				CA1A240C26BC389E00A8D1C7 /* Berlin Skylarks.entitlements */,
@@ -1285,7 +1282,6 @@
 				CA1722E127542DBE00E8BF36 /* PlayerModel.swift in Sources */,
 				CA04403628875C7100DAE315 /* ClubDataManager.swift in Sources */,
 				CA25ABCA294E3BAF002FA8A6 /* MarkdownFile.swift in Sources */,
-				CABF7BF8259351D500B95813 /* Persistence.swift in Sources */,
 				CA6F9E8427B2A9EE00530629 /* UserOnboardingView.swift in Sources */,
 				CA56F3DE2887259700138195 /* ClubView.swift in Sources */,
 				CAA7C1AD289DAD8000CC0615 /* FunctionaryView.swift in Sources */,
@@ -1861,7 +1857,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Debug;
@@ -1895,7 +1891,7 @@
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
-				SWIFT_VERSION = 5.0;
+				SWIFT_VERSION = 6.0;
 				TARGETED_DEVICE_FAMILY = "1,2,6";
 			};
 			name = Release;
