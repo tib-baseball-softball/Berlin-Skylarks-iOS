@@ -93,7 +93,7 @@ struct UserHomeView: View {
     var body: some View {
 #if !os(watchOS)
         List {
-            if favoriteTeamID == noTeamID || favoriteTeamID == 0 {
+            if favoriteTeamID == AppSettings.NO_TEAM_ID {
                 Section(header: Text("Favorite Team")) {
                     Text("You haven't selected a favorite Team yet. Select one via the button in the toolbar to have its latest standings and scores appear here.")
                 }

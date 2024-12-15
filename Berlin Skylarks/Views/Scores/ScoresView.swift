@@ -97,7 +97,7 @@ struct ScoresView: View {
         
         //if we're not filtering by any league, then we do not use the URL parameter at all
         if selectedTeam == "All Teams" {
-            gameURLSelected = URL(string: "https://bsm.baseball-softball.de/clubs/\(skylarksID)/matches.json?filters[seasons][]=\(selectedSeason)&filters[gamedays][]=\(selectedTimeframe.rawValue)&api_key=\(apiKey)")!
+            gameURLSelected = URL(string: "https://bsm.baseball-softball.de/clubs/\(AppSettings.SKYLARKS_BSM_ID)/matches.json?filters[seasons][]=\(selectedSeason)&filters[gamedays][]=\(selectedTimeframe.rawValue)&api_key=\(apiKey)")!
         }
         //in any other case we filter the API request by league ID
         else {

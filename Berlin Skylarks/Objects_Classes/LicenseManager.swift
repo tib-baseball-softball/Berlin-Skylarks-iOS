@@ -17,7 +17,7 @@ class LicenseManager: ObservableObject {
     func loadUmpires() async {
         loadingInProgress = true
         
-        let umpireURL = URL(string: "https://bsm.baseball-softball.de/clubs/485/licenses.json?filters[categories][]=umpire&api_key=" + apiKey)!
+        let umpireURL = URL(string: "https://bsm.baseball-softball.de/clubs/\(AppSettings.SKYLARKS_BSM_ID)/licenses.json?filters[categories][]=umpire&api_key=" + apiKey)!
         
         do {
             umpires = try await fetchBSMData(url: umpireURL, dataType: [BSMLicense].self)
@@ -35,7 +35,7 @@ class LicenseManager: ObservableObject {
     func loadScorers() async {
         loadingInProgress = true
         
-        let scorerURL = URL(string: "https://bsm.baseball-softball.de/clubs/485/licenses.json?filters[categories][]=scorer&api_key=" + apiKey)!
+        let scorerURL = URL(string: "https://bsm.baseball-softball.de/clubs/\(AppSettings.SKYLARKS_BSM_ID)/licenses.json?filters[categories][]=scorer&api_key=" + apiKey)!
         
         do {
             scorers = try await fetchBSMData(url: scorerURL, dataType: [BSMLicense].self)
