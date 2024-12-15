@@ -22,7 +22,7 @@ struct MarkdownFile: ExpressibleByStringLiteral {
         //By skipping the ofType argument above, we'll match to the first file whose name
         //exactly matches bundleName
             do {
-                let loadedString = try String(contentsOfFile: filepath)
+                let loadedString = try String(contentsOfFile: filepath, encoding: .utf8)
                 loadedMarkdown = loadedString
             } catch {
                 print("Could not load string: \(error)")
