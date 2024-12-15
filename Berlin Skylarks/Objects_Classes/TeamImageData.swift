@@ -10,8 +10,8 @@ import SwiftUI
 
 class TeamImageData {
     //these are deprecated for actual use, but it's nevertheless helpful to have some fallback images defined
-    static var away_team_logo = Image("App_road_team_logo")
-    static var home_team_logo = Image("App_home_team_logo")
+    static let away_team_logo = Image("App_road_team_logo")
+    static let home_team_logo = Image("App_home_team_logo")
 
     static let skylarksPrimaryLogo = Image("Rondell")
     static let skylarksSecondaryLogo = Image("Bird_whiteoutline")
