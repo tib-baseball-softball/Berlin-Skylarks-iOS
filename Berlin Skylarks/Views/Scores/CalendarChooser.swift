@@ -16,7 +16,7 @@ struct CalendarChooser: UIViewControllerRepresentable {
     typealias UIViewControllerType = UINavigationController
     
     @Environment(\.presentationMode) var presentationMode
-    @EnvironmentObject var calendarManager: CalendarManager
+    @Environment(CalendarManager.self) var calendarManager: CalendarManager
     
     /// Keeps track of the calendar the user selected in the calendar chooser view controller.
     @Binding var calendar: EKCalendar?
@@ -52,7 +52,7 @@ struct CalendarChooser: UIViewControllerRepresentable {
         return Coordinator(self)
     }
     
-    class Coordinator: NSObject, UINavigationControllerDelegate, EKCalendarChooserDelegate {
+    class Coordinator: NSObject, UINavigationControllerDelegate, @preconcurrency EKCalendarChooserDelegate {
         var parent: CalendarChooser
         
         init(_ controller: CalendarChooser) {
@@ -60,13 +60,13 @@ struct CalendarChooser: UIViewControllerRepresentable {
         }
         
         /// The system calls this when the user taps Done in the UI. Save the user's choice.
-        nonisolated func calendarChooserDidFinish(_ calendarChooser: EKCalendarChooser) {
+        func calendarChooserDidFinish(_ calendarChooser: EKCalendarChooser) {
             parent.calendar = calendarChooser.selectedCalendars.first
             parent.presentationMode.wrappedValue.dismiss()
         }
         
         /// The system calls this when the user taps Cancel in the UI. Dismiss the calendar chooser.
-        nonisolated func calendarChooserDidCancel(_ calendarChooser: EKCalendarChooser) {
+        func calendarChooserDidCancel(_ calendarChooser: EKCalendarChooser) {
             parent.presentationMode.wrappedValue.dismiss()
         }
     }
@@ -77,7 +77,7 @@ struct CalendarChooser: UIViewControllerRepresentable {
 struct CalendarChooser: View {
     @Binding var calendar: EKCalendar?
     
-    @EnvironmentObject var calendarManager: CalendarManager
+    @Environment(CalendarManager.self) var calendarManager: CalendarManager
     @Environment(\.presentationMode) var presentationMode
     
     var body: some View {

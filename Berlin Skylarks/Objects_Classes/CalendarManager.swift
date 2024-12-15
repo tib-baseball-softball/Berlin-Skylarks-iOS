@@ -6,11 +6,13 @@
 //
 
 import Foundation
-import EventKit
+@preconcurrency import EventKit // remove me once Apple makes it concurrency-safe
 
 #if !os(watchOS)
-class CalendarManager: ObservableObject {
-    @Published var calendars: [EKCalendar] = []
+@MainActor
+@Observable
+class CalendarManager {
+    var calendars: [EKCalendar] = []
     
     let eventStore = EKEventStore()
     
@@ -31,18 +33,14 @@ class CalendarManager: ObservableObject {
         }
         return false
     }
-    
+
     func loadCalendars() async {
         let cals = await fetchCalendars()
-        
-        //always publish on main thread
-        await MainActor.run {
-            calendars = cals
-        }
+        calendars = cals
     }
     
     private func fetchCalendars() async -> [EKCalendar] {
-        let granted = await self.requestFullAccess()
+        let granted = await requestFullAccess()
         
         if granted {
             return eventStore.calendars(for: .event)

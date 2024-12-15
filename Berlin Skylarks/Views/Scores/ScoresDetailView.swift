@@ -12,7 +12,7 @@ import EventKit
 struct ScoresDetailView: View {
     
 #if !os(watchOS)
-    @EnvironmentObject var calendarManager: CalendarManager
+    @Environment(CalendarManager.self) var calendarManager: CalendarManager
 #endif
     
     @State private var showingSheet = false

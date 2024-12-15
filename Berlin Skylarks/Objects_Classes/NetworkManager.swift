@@ -8,6 +8,7 @@
 import Foundation
 import Network
 
+@MainActor
 @Observable
 class NetworkManager {
     let monitor = NWPathMonitor()

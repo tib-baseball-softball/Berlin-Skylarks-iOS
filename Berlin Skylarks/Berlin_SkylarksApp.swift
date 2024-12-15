@@ -9,13 +9,13 @@ import SwiftUI
 
 @main
 struct Berlin_SkylarksApp: App {
-    @StateObject var calendarManager = CalendarManager()
+    @State var calendarManager = CalendarManager()
     @State var networkManager = NetworkManager()
 
     var body: some Scene {
         WindowGroup {
             ContentView()
-                .environmentObject(calendarManager)
+                .environment(calendarManager)
                 .environment(networkManager)
         }
     }

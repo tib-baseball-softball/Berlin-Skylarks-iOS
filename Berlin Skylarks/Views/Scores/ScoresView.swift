@@ -12,7 +12,7 @@ struct ScoresView: View {
     @Environment(\.colorScheme) var colorScheme
     
 #if !os(watchOS)
-    @EnvironmentObject var calendarManager: CalendarManager
+    @Environment(CalendarManager.self) var calendarManager: CalendarManager
 #endif
     
     @Environment(NetworkManager.self) var networkManager: NetworkManager
@@ -497,7 +497,7 @@ struct ScoresView: View {
 #Preview {
     ScoresView()
 #if !os(watchOS)
-        .environmentObject(CalendarManager())
+        .environment(CalendarManager())
         .environment(NetworkManager())
 #endif
 }
