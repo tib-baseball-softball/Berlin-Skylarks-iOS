@@ -12,13 +12,13 @@ struct Berlin_SkylarksApp: App {
     
     //we're not using calendar shenanigans on the watch for now
     //@StateObject var calendarManager = CalendarManager()
-    @StateObject var networkManager = NetworkManager()
+    @State var networkManager = NetworkManager()
     
     @SceneBuilder var body: some Scene {
         WindowGroup {
             ContentView()
                 //.environmentObject(calendarManager)
-                .environmentObject(networkManager)
+                .environment(networkManager)
         }
 
         //commented until I actually use notifications

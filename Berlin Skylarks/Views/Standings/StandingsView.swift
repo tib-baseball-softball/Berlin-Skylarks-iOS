@@ -13,7 +13,7 @@ struct StandingsView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
-    @EnvironmentObject var networkManager: NetworkManager
+    @Environment(NetworkManager.self) var networkManager: NetworkManager
     @State private var showAlertNoNetwork = false
     
     @State private var leagueTables = [LeagueTable]()
@@ -167,7 +167,7 @@ struct StandingsView_Previews: PreviewProvider {
             Text("some stuff here")
         } content: {
             StandingsView()
-                .environmentObject(NetworkManager())
+                .environment(NetworkManager())
         } detail: {
             Text("some details here")
         }

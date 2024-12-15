@@ -15,7 +15,7 @@ struct ScoresView: View {
     @EnvironmentObject var calendarManager: CalendarManager
 #endif
     
-    @EnvironmentObject var networkManager: NetworkManager
+    @Environment(NetworkManager.self) var networkManager: NetworkManager
     
     @State private var showAlertNoNetwork = false
     
@@ -498,6 +498,6 @@ struct ScoresView: View {
     ScoresView()
 #if !os(watchOS)
         .environmentObject(CalendarManager())
-        .environmentObject(NetworkManager())
+        .environment(NetworkManager())
 #endif
 }

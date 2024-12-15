@@ -11,7 +11,7 @@ struct ClubView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
-    @EnvironmentObject var networkManager: NetworkManager
+    @Environment(NetworkManager.self) var networkManager: NetworkManager
     @State private var showAlertNoNetwork = false
     
     @State private var loadingInProgress = false
@@ -78,6 +78,6 @@ struct ClubView: View {
 #Preview {
     NavigationView {
         ClubView()
-            .environmentObject(NetworkManager())
+            .environment(NetworkManager())
     }
 }

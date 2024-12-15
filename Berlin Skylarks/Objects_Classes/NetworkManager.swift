@@ -8,11 +8,12 @@
 import Foundation
 import Network
 
-class NetworkManager: ObservableObject {
+@Observable
+class NetworkManager {
     let monitor = NWPathMonitor()
     let queue = DispatchQueue.global(qos: .background)
     
-    @Published var isConnected = true
+    var isConnected = true
     
     init() {
         monitor.pathUpdateHandler = { path in

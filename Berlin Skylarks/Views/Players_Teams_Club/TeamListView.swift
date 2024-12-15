@@ -11,7 +11,7 @@ struct TeamListView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
-    @EnvironmentObject var networkManager: NetworkManager
+    @Environment(NetworkManager.self) var networkManager: NetworkManager
     @State private var showAlertNoNetwork = false
     
     @State var teams = [BSMTeam]()
@@ -132,7 +132,7 @@ struct TeamListView: View {
 struct TeamListView_Previews: PreviewProvider {
     static var previews: some View {
         TeamListView()
-            .environmentObject(NetworkManager())
+            .environment(NetworkManager())
             //.preferredColorScheme(.dark)
     }
 }

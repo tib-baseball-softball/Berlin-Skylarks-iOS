@@ -16,7 +16,7 @@ struct UserHomeView: View {
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
     @AppStorage("didLaunchBefore") var didLaunchBefore = false
     
-    @EnvironmentObject var networkManager: NetworkManager
+    @Environment(NetworkManager.self) var networkManager: NetworkManager
     @State private var showAlertNoNetwork = false
     
     @State private var showingSheetSettings = false

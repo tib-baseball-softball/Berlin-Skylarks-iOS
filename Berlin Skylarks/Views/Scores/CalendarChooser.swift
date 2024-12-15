@@ -60,13 +60,13 @@ struct CalendarChooser: UIViewControllerRepresentable {
         }
         
         /// The system calls this when the user taps Done in the UI. Save the user's choice.
-        func calendarChooserDidFinish(_ calendarChooser: EKCalendarChooser) {
+        nonisolated func calendarChooserDidFinish(_ calendarChooser: EKCalendarChooser) {
             parent.calendar = calendarChooser.selectedCalendars.first
             parent.presentationMode.wrappedValue.dismiss()
         }
         
         /// The system calls this when the user taps Cancel in the UI. Dismiss the calendar chooser.
-        func calendarChooserDidCancel(_ calendarChooser: EKCalendarChooser) {
+        nonisolated func calendarChooserDidCancel(_ calendarChooser: EKCalendarChooser) {
             parent.presentationMode.wrappedValue.dismiss()
         }
     }

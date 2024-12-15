@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SettingsListView: View {
     
-    @EnvironmentObject var networkManager: NetworkManager
+    @Environment(NetworkManager.self) var networkManager: NetworkManager
     @State private var showAlertNoNetwork = false
     
     @State var teams = [BSMTeam]()
@@ -174,6 +174,6 @@ struct SettingsListView: View {
 #Preview {
     NavigationStack {
         SettingsListView()
-            .environmentObject(NetworkManager())
+            .environment(NetworkManager())
     }
 }
