@@ -82,7 +82,11 @@ struct UserOnboardingView: View {
                                 }
                             }
                             .transition(.scale)
+                            #if os(iOS)
+                            .pickerStyle(.wheel)
+                            #elseif os(macOS)
                             .pickerStyle(.menu)
+                            #endif
                         }
                     } else {
                         HStack {
