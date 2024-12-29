@@ -7,21 +7,16 @@
 
 import SwiftUI
 
-struct PlayerDetailListHeader: View {
-    var body: some View {
-        HStack {
-            Image(systemName: "photo")
-            Spacer()
-            Text("Name")
-            Spacer()
-            Text("Jersey Number")
-        }
-    }
-}
-
 struct TeamDetailView: View {
+    @State private var vm: PlayerViewModel = PlayerViewModel()
     var team: Components.Schemas.Team
     let listRowPadding: CGFloat = 3
+
+    private func load() async {
+        vm.loadingInProgress = true
+        await vm.loadPlayers(id: nil, bsmID: nil, team: team.uid)
+        vm.loadingInProgress = false
+    }
 
     var body: some View {
         List {
@@ -45,6 +40,19 @@ struct TeamDetailView: View {
                     }
                     .padding(.vertical)
                 }
+
+                if vm.loadingInProgress == true {
+                    LoadingView()
+                }
+
+                ForEach(vm.players, id: \.uid) { player in
+                    NavigationLink(destination: Text("Player Detail")) {
+                        HStack {
+                            Image(systemName: "person.3.fill")
+                            Text(player.fullname)
+                        }
+                    }
+                }
             }
         }
         .navigationTitle(team.name)
@@ -53,6 +61,18 @@ struct TeamDetailView: View {
         #endif
         .frame(maxWidth: 600)
 
+        .refreshable {
+            vm.players = []
+            await load()
+        }
+
+        .onAppear(perform: {
+            if vm.players == [] {
+                Task {
+                    await load()
+                }
+            }
+        })
     }
 }
 

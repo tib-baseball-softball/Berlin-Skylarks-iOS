@@ -13,6 +13,12 @@ struct TeamListView: View {
 
     @Environment(NetworkManager.self) var networkManager: NetworkManager
     @State private var showAlertNoNetwork = false
+    
+    private func load() async {
+        vm.loadingInProgress = true
+        await vm.loadClubTeams(id: nil)
+        vm.loadingInProgress = false
+    }
 
     var body: some View {
         NavigationStack {
@@ -75,17 +81,13 @@ struct TeamListView: View {
 
             .refreshable {
                 vm.teams = []
-                vm.loadingInProgress = true
-                await vm.loadClubTeams(id: nil)
-                vm.loadingInProgress = false
+                await load()
             }
 
             .onAppear(perform: {
                 if vm.teams == [] {
                     Task {
-                        vm.loadingInProgress = true
-                        await vm.loadClubTeams(id: nil)
-                        vm.loadingInProgress = false
+                       await load()
                     }
                 }
             })
