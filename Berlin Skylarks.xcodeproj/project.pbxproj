@@ -94,6 +94,8 @@
 		CA28D66F27A0601B00680067 /* BSMLeagueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */; };
 		CA28D67027A0601B00680067 /* BSMLeagueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */; };
 		CA28FB90280DDDC6007581FD /* HomeTeamDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28FB8F280DDDC6007581FD /* HomeTeamDetailView.swift */; };
+		CA2C18352D21A54E00273312 /* SkylarksAPIClient in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C18342D21A54E00273312 /* SkylarksAPIClient */; };
+		CA2C18372D21A5EA00273312 /* SkylarksAPIClient in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C18362D21A5EA00273312 /* SkylarksAPIClient */; };
 		CA2D5174294F773100CF465E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
 		CA2D5175294F773200CF465E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
 		CA2D517C2950CFEF00CF465E /* WidgetSkylarks.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CA2D51802950CFEF00CF465E /* WidgetSkylarks.intentdefinition */; };
@@ -525,6 +527,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2C18372D21A5EA00273312 /* SkylarksAPIClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -547,6 +550,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2C18352D21A54E00273312 /* SkylarksAPIClient in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1066,6 +1070,9 @@
 				de,
 			);
 			mainGroup = CABF7BE2259351D400B95813;
+			packageReferences = (
+				CA9FCE7B2D218105006686F4 /* XCRemoteSwiftPackageReference "skylarks-api-client-swift" */,
+			);
 			productRefGroup = CABF7BEC259351D400B95813 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -2038,6 +2045,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CA9FCE7B2D218105006686F4 /* XCRemoteSwiftPackageReference "skylarks-api-client-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/tib-baseball-softball/skylarks-api-client-swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CA2C18342D21A54E00273312 /* SkylarksAPIClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA9FCE7B2D218105006686F4 /* XCRemoteSwiftPackageReference "skylarks-api-client-swift" */;
+			productName = SkylarksAPIClient;
+		};
+		CA2C18362D21A5EA00273312 /* SkylarksAPIClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA9FCE7B2D218105006686F4 /* XCRemoteSwiftPackageReference "skylarks-api-client-swift" */;
+			productName = SkylarksAPIClient;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		CABF7BF9259351D500B95813 /* Berlin_Skylarks.xcdatamodeld */ = {
