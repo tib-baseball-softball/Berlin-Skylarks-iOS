@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		CA01EF17287DB9A70056166F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134822771F2E000DFA745 /* WidgetKit.framework */; };
 		CA0A95B525BF704C00A7C7C3 /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
-		CA1722E127542DBE00E8BF36 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1722E027542DBE00E8BF36 /* PlayerModel.swift */; };
-		CA1722E227542DBE00E8BF36 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1722E027542DBE00E8BF36 /* PlayerModel.swift */; };
 		CA1C39A72731856B00BB194C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA1C39A62731856B00BB194C /* Assets.xcassets */; };
 		CA1C39B62731856B00BB194C /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39B52731856B00BB194C /* NotificationController.swift */; };
 		CA1C39B82731856B00BB194C /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39B72731856B00BB194C /* NotificationView.swift */; };
@@ -66,7 +64,6 @@
 		CA65FF6F27F882BF00F7845D /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
 		CA65FF7027FF271000F7845D /* BSMLeagueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */; };
 		CA65FF7127FF271600F7845D /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
-		CA65FF7327FF271C00F7845D /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1722E027542DBE00E8BF36 /* PlayerModel.swift */; };
 		CA940B85292A963A00D91508 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA940B83292A963A00D91508 /* InfoPlist.strings */; };
 		CA940B88292A963A00D91508 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA940B86292A963A00D91508 /* Localizable.strings */; };
 		CA9E4CE22943DDFF00D82D3D /* WatchSkylarks-InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA9E4CE02943DDFF00D82D3D /* WatchSkylarks-InfoPlist.strings */; };
@@ -76,7 +73,6 @@
 		CABF7BFB259351D500B95813 /* Berlin_Skylarks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BF9259351D500B95813 /* Berlin_Skylarks.xcdatamodeld */; };
 		CAC044A027749D2C00AD9888 /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
 		CAC044A127749D2F00AD9888 /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
-		CAC044A227749D3100AD9888 /* PlayerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1722E027542DBE00E8BF36 /* PlayerModel.swift */; };
 		CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* BSMTeam.swift */; };
 		CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
 		CAE134912771F2E100DFA745 /* WidgetSkylarksExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -154,7 +150,6 @@
 
 /* Begin PBXFileReference section */
 		CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMGameScore.swift; sourceTree = "<group>"; };
-		CA1722E027542DBE00E8BF36 /* PlayerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayerModel.swift; sourceTree = "<group>"; };
 		CA1A240C26BC389E00A8D1C7 /* Berlin Skylarks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Berlin Skylarks.entitlements"; sourceTree = "<group>"; };
 		CA1C39A42731856B00BB194C /* Skylarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Skylarks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1C39A62731856B00BB194C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -580,7 +575,6 @@
 				CA56F3CE2880578700138195 /* BSMPerson.swift */,
 				CA56F3D3288059DA00138195 /* BSMClub.swift */,
 				CA56F3E028872A1900138195 /* BSMField.swift */,
-				CA1722E027542DBE00E8BF36 /* PlayerModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -830,7 +824,6 @@
 				CA56F3D5288059DA00138195 /* BSMClub.swift in Sources */,
 				CA1C39F827318C6D00BB194C /* Berlin_SkylarksApp.swift in Sources */,
 				CA28D66F27A0601B00680067 /* BSMLeagueGroup.swift in Sources */,
-				CA1722E227542DBE00E8BF36 /* PlayerModel.swift in Sources */,
 				CA1C39B82731856B00BB194C /* NotificationView.swift in Sources */,
 				CA1CB20C27567E870007D24E /* BSMTeam.swift in Sources */,
 				CA1C39EA2731875800BB194C /* BSMGameScore.swift in Sources */,
@@ -852,7 +845,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA65FF6E27F882AA00F7845D /* BSMTeam.swift in Sources */,
-				CA65FF7327FF271C00F7845D /* PlayerModel.swift in Sources */,
 				CA56F3CD2880569A00138195 /* BSMFunctionary.swift in Sources */,
 				CA65FF7027FF271000F7845D /* BSMLeagueGroup.swift in Sources */,
 				CA56F3E428872DDE00138195 /* BSMField.swift in Sources */,
@@ -871,7 +863,6 @@
 			files = (
 				CA1CB20B27567E870007D24E /* BSMTeam.swift in Sources */,
 				CA28D66E27A0601B00680067 /* BSMLeagueGroup.swift in Sources */,
-				CA1722E127542DBE00E8BF36 /* PlayerModel.swift in Sources */,
 				CA56F3E128872A1900138195 /* BSMField.swift in Sources */,
 				CA0A95B525BF704C00A7C7C3 /* BSMGameScore.swift in Sources */,
 				CABF7BEF259351D400B95813 /* Berlin_SkylarksApp.swift in Sources */,
@@ -892,7 +883,6 @@
 				CA56F3DB2880607E00138195 /* BSMLicense.swift in Sources */,
 				CA28D67027A0601B00680067 /* BSMLeagueGroup.swift in Sources */,
 				CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */,
-				CAC044A227749D3100AD9888 /* PlayerModel.swift in Sources */,
 				CAE9C2BC28A9A2740079AB87 /* IntentHandler.swift in Sources */,
 				CA56F3E328872A1900138195 /* BSMField.swift in Sources */,
 				CAC044A027749D2C00AD9888 /* BSMGameScore.swift in Sources */,
