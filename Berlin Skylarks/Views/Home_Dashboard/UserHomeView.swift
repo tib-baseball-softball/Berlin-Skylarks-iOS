@@ -279,7 +279,7 @@ struct UserHomeView: View {
         
 #else
         List {
-            if favoriteTeamID == noTeamID || favoriteTeamID == 0 {
+            if favoriteTeamID == AppSettings.NO_TEAM_ID || favoriteTeamID == 0 {
                 Section(header: Text("Favorite Team")) {
                     Text("You haven't selected a favorite Team yet. Select one in settings to have its latest standings and scores appear here.")
                 }
