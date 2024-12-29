@@ -1,5 +1,6 @@
 import Foundation
 
 let apiKey = "INSERT_API_KEY_HERE"
+let authHeader = "INSERT_HEADER_HERE"
 
 // insert key and rename file to .swift
