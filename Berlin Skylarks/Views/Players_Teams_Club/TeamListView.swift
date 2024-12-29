@@ -8,131 +8,138 @@
 import SwiftUI
 
 struct TeamListView: View {
-    
     @Environment(\.colorScheme) var colorScheme
-    
+
     @Environment(NetworkManager.self) var networkManager: NetworkManager
     @State private var showAlertNoNetwork = false
-    
+
     @State var teams = [BSMTeam]()
-    
+
     @State private var loadingInProgress = false
-    
-    @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
+
+    @AppStorage("selectedSeason") var selectedSeason = Calendar(
+        identifier: .gregorian
+    ).dateComponents([.year], from: .now).year!
     @AppStorage("favoriteTeamID") var favoriteTeamID = 0
-    
+
     func loadTeamData() async {
         if networkManager.isConnected == false {
             showAlertNoNetwork = true
         }
-        
-        let teamURL = URL(string:"https://bsm.baseball-softball.de/clubs/485/teams.json?filters[seasons][]=" + "\(selectedSeason)" + "&sort[league_sort]=asc&api_key=" + apiKey)!
-        
+
+        let teamURL = URL(
+            string:
+                "https://bsm.baseball-softball.de/clubs/485/teams.json?filters[seasons][]="
+                + "\(selectedSeason)" + "&sort[league_sort]=asc&api_key="
+                + apiKey)!
+
         loadingInProgress = true
-        
+
         do {
-            teams = try await fetchBSMData(url: teamURL, dataType: [BSMTeam].self)
+            teams = try await fetchBSMData(
+                url: teamURL, dataType: [BSMTeam].self)
         } catch {
             print("Request failed with error: \(error)")
         }
         loadingInProgress = false
     }
-    
+
     var body: some View {
-        ZStack {
-            #if !os(watchOS)
-//            Color(colorScheme == .light ? .secondarySystemBackground : .systemBackground)
-//                .edgesIgnoringSafeArea(.all)
-            #endif
-            NavigationStack {
-                List {
-                    Section(header: Text("Team data")) {
-                        HStack {
-                            Image(systemName: "person.3.fill")
-                                .padding(.trailing)
-#if !os(watchOS)
+        NavigationStack {
+            List {
+                Section(header: Text("Team data")) {
+                    HStack {
+                        Image(systemName: "person.3.fill")
+                            .padding(.trailing)
+                        #if !os(watchOS)
                             Text("Team")
-#endif
-                            Spacer()
-                            Text("League")
-                                .frame(maxWidth: 110, alignment: .leading)
-                                .padding(.trailing)
-                        }
-                        //.padding(.horizontal)
-                        .font(.headline)
-                        .listRowBackground(ColorStandingsTableHeadline)
-                        
-                        if loadingInProgress == true {
-                            LoadingView()
-                        }
-                        
-                        ForEach(teams, id: \.self) { team in
-                            NavigationLink(
-                                destination: TeamDetailView(team: team)){
+                        #endif
+                        Spacer()
+                        Text("League")
+                            .frame(maxWidth: 110, alignment: .leading)
+                            .padding(.trailing)
+                    }
+                    .font(.headline)
+                    .listRowBackground(ColorStandingsTableHeadline)
+
+                    if loadingInProgress == true {
+                        LoadingView()
+                    }
+
+                    ForEach(teams, id: \.self) { team in
+                        NavigationLink(
+                            destination: TeamDetailView(team: team)
+                        ) {
+                            HStack {
+                                Image(systemName: "person.3")
+                                    .foregroundColor(
+                                        .skylarksDynamicNavySand
+                                    )
+                                    .padding(.trailing)
+                                #if !os(watchOS)
                                     HStack {
-                                        Image(systemName: "person.3")
-                                            .foregroundColor(.skylarksDynamicNavySand)
-                                            .padding(.trailing)
-#if !os(watchOS)
-                                        HStack {
-                                            Text(team.name)
-                                            if team.id == favoriteTeamID {
-                                                Image(systemName: "star")
-                                                    .foregroundColor(.skylarksRed)
-                                            }
-                                        }
-#endif
-                                        Spacer()
-                                        if !team.league_entries.isEmpty {
-                                            Text(team.league_entries[0].league.name)
-                                                .frame(maxWidth: 110, alignment: .leading)
-                                                .allowsTightening(true)
+                                        Text(team.name)
+                                        if team.id == favoriteTeamID {
+                                            Image(systemName: "star")
+                                                .foregroundColor(
+                                                    .skylarksRed)
                                         }
                                     }
+                                #endif
+                                Spacer()
+                                if !team.league_entries.isEmpty {
+                                    Text(team.league_entries[0].league.name)
+                                        .frame(
+                                            maxWidth: 110,
+                                            alignment: .leading
+                                        )
+                                        .allowsTightening(true)
                                 }
-                        }
-                        
-                        if teams.isEmpty && loadingInProgress == false {
-                            Text("No team data.")
-                        }
-                        //.padding(.horizontal)
-                        //Text(teams.debugDescription)
-                    }
-                }
-                .navigationTitle("Teams" + " \(selectedSeason)")
-                .frame(maxWidth: 600)
-                
-                .refreshable {
-                    teams = []
-                    await loadTeamData()
-                }
-                
-                .onAppear(perform: {
-                    if teams == [] {
-                        Task {
-                            await loadTeamData()
+                            }
                         }
                     }
-                })
-                
-                .onChange(of: selectedSeason) {
-                    teams = []
-                }
-                
-                .alert("No network connection", isPresented: $showAlertNoNetwork) {
-                    Button("OK") { }
-                } message: {
-                    Text("No active network connection has been detected. The app needs a connection to download its data.")
+
+                    if teams.isEmpty && loadingInProgress == false {
+                        Text("No team data.")
+                    }
                 }
             }
+            .navigationTitle("Teams" + " \(selectedSeason)")
+            .frame(maxWidth: 600)
+
+            .refreshable {
+                teams = []
+                await loadTeamData()
+            }
+
+            .onAppear(perform: {
+                if teams == [] {
+                    Task {
+                        await loadTeamData()
+                    }
+                }
+            })
+
+            .onChange(of: selectedSeason) {
+                teams = []
+            }
+
+            .alert(
+                "No network connection", isPresented: $showAlertNoNetwork
+            ) {
+                Button("OK") {}
+            } message: {
+                Text(
+                    "No active network connection has been detected. The app needs a connection to download its data."
+                )
+            }
         }
+
     }
 }
 
-struct TeamListView_Previews: PreviewProvider {
-    static var previews: some View {
-        TeamListView()
-            .environment(NetworkManager())
-            //.preferredColorScheme(.dark)
-    }
+#Preview {
+    TeamListView()
+        .environment(NetworkManager())
+        .preferredColorScheme(.dark)
 }
