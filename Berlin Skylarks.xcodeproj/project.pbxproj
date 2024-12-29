@@ -80,6 +80,7 @@
 		CA2C18372D21A5EA00273312 /* SkylarksAPIClient in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C18362D21A5EA00273312 /* SkylarksAPIClient */; };
 		CA2C18402D21B8E100273312 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C183F2D21B8E100273312 /* OpenAPIRuntime */; };
 		CA2C18432D21B90000273312 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C18422D21B90000273312 /* OpenAPIURLSession */; };
+		CA2C189B2D21CC1E00273312 /* SkylarksAPIClient in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C189A2D21CC1E00273312 /* SkylarksAPIClient */; };
 		CA2D5174294F773100CF465E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
 		CA2D5175294F773200CF465E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
 		CA2D517C2950CFEF00CF465E /* WidgetSkylarks.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CA2D51802950CFEF00CF465E /* WidgetSkylarks.intentdefinition */; };
@@ -586,6 +587,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA2C189B2D21CC1E00273312 /* SkylarksAPIClient in Frameworks */,
 				CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */,
 				CA01EF17287DB9A70056166F /* WidgetKit.framework in Frameworks */,
 			);
@@ -2083,6 +2085,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CA2C18412D21B90000273312 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */;
 			productName = OpenAPIURLSession;
+		};
+		CA2C189A2D21CC1E00273312 /* SkylarksAPIClient */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA9FCE7B2D218105006686F4 /* XCRemoteSwiftPackageReference "skylarks-api-client-swift" */;
+			productName = SkylarksAPIClient;
 		};
 /* End XCSwiftPackageProductDependency section */
 

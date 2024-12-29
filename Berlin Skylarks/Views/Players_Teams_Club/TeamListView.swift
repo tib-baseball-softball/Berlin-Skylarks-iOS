@@ -8,41 +8,11 @@
 import SwiftUI
 
 struct TeamListView: View {
-    @Environment(\.colorScheme) var colorScheme
+    @State private var vm: SkylarksTeamViewModel = SkylarksTeamViewModel()
+    @AppStorage("favoriteTeamID") var favoriteTeamID = 0
 
     @Environment(NetworkManager.self) var networkManager: NetworkManager
     @State private var showAlertNoNetwork = false
-
-    @State var teams = [BSMTeam]()
-
-    @State private var loadingInProgress = false
-
-    @AppStorage("selectedSeason") var selectedSeason = Calendar(
-        identifier: .gregorian
-    ).dateComponents([.year], from: .now).year!
-    @AppStorage("favoriteTeamID") var favoriteTeamID = 0
-
-    func loadTeamData() async {
-        if networkManager.isConnected == false {
-            showAlertNoNetwork = true
-        }
-
-        let teamURL = URL(
-            string:
-                "https://bsm.baseball-softball.de/clubs/485/teams.json?filters[seasons][]="
-                + "\(selectedSeason)" + "&sort[league_sort]=asc&api_key="
-                + apiKey)!
-
-        loadingInProgress = true
-
-        do {
-            teams = try await fetchBSMData(
-                url: teamURL, dataType: [BSMTeam].self)
-        } catch {
-            print("Request failed with error: \(error)")
-        }
-        loadingInProgress = false
-    }
 
     var body: some View {
         NavigationStack {
@@ -62,11 +32,11 @@ struct TeamListView: View {
                     .font(.headline)
                     .listRowBackground(ColorStandingsTableHeadline)
 
-                    if loadingInProgress == true {
+                    if vm.loadingInProgress == true {
                         LoadingView()
                     }
 
-                    ForEach(teams, id: \.self) { team in
+                    ForEach(vm.teams, id: \.self) { team in
                         NavigationLink(
                             destination: TeamDetailView(team: team)
                         ) {
@@ -76,53 +46,49 @@ struct TeamListView: View {
                                         .skylarksDynamicNavySand
                                     )
                                     .padding(.trailing)
-                                #if !os(watchOS)
-                                    HStack {
-                                        Text(team.name)
-                                        if team.id == favoriteTeamID {
-                                            Image(systemName: "star")
-                                                .foregroundColor(
-                                                    .skylarksRed)
-                                        }
+                                HStack {
+                                    Text(team.name)
+                                    if team.bsmLeague == favoriteTeamID {
+                                        Image(systemName: "star")
+                                            .foregroundColor(
+                                                .skylarksRed)
                                     }
-                                #endif
-                                Spacer()
-                                if !team.league_entries.isEmpty {
-                                    Text(team.league_entries[0].league.name)
-                                        .frame(
-                                            maxWidth: 110,
-                                            alignment: .leading
-                                        )
-                                        .allowsTightening(true)
                                 }
+                                Spacer()
+                                Text(team.bsmShortName)
+                                    .frame(
+                                        maxWidth: 110,
+                                        alignment: .leading
+                                    )
+                                    .allowsTightening(true)
                             }
                         }
                     }
 
-                    if teams.isEmpty && loadingInProgress == false {
+                    if vm.teams.isEmpty && vm.loadingInProgress == false {
                         Text("No team data.")
                     }
                 }
             }
-            .navigationTitle("Teams" + " \(selectedSeason)")
+            .navigationTitle("Skylarks Club Teams")
             .frame(maxWidth: 600)
 
             .refreshable {
-                teams = []
-                await loadTeamData()
+                vm.teams = []
+                vm.loadingInProgress = true
+                await vm.loadClubTeams(id: nil)
+                vm.loadingInProgress = false
             }
 
             .onAppear(perform: {
-                if teams == [] {
+                if vm.teams == [] {
                     Task {
-                        await loadTeamData()
+                        vm.loadingInProgress = true
+                        await vm.loadClubTeams(id: nil)
+                        vm.loadingInProgress = false
                     }
                 }
             })
-
-            .onChange(of: selectedSeason) {
-                teams = []
-            }
 
             .alert(
                 "No network connection", isPresented: $showAlertNoNetwork
@@ -134,7 +100,6 @@ struct TeamListView: View {
                 )
             }
         }
-
     }
 }
 

@@ -20,9 +20,6 @@ struct PlayerDetailListHeader: View {
 }
 
 struct TeamDetailView: View {
-
-    @Environment(\.colorScheme) var colorScheme
-
     var team: Components.Schemas.Team
     let listRowPadding: CGFloat = 3
 
@@ -34,49 +31,21 @@ struct TeamDetailView: View {
                     Text(team.name)
                 }
                 .padding(.vertical, listRowPadding)
-                if !team.league_entries.isEmpty {
+                HStack {
+                    Image(systemName: "note.text")
+                    Text(team.bsmShortName)
+                }
+                .padding(.vertical, listRowPadding)
+            }
+            Section(header: Text("Player profiles")) {
+                NavigationLink(destination: Text("Player List here")) {
                     HStack {
-                        Image(systemName: "list.number")
-                        Text(team.league_entries[0].league.name)
+                        Image(systemName: "person.3.sequence.fill")
+                        Text("Show Player List")
                     }
-                    .padding(.vertical, listRowPadding)
-                    HStack {
-                        Image(systemName: "calendar")
-                        Text(String(team.league_entries[0].league.season))
-                    }
-                    .padding(.vertical, listRowPadding)
-                    HStack {
-                        LicenseSportIndicator(
-                            baseball: team.league_entries[0].league.sport
-                                .contains("Baseball") ? true : false)
-                        Text(String(team.league_entries[0].league.sport))
-                    }
-                    .padding(.vertical, listRowPadding)
-                    if let ageGroup = team.league_entries[0].league
-                        .age_group
-                    {
-                        HStack {
-                            Image(systemName: "note")
-                            Text(String(ageGroup))
-                        }
-                        .padding(.vertical, listRowPadding)
-                    }
+                    .padding(.vertical)
                 }
             }
-            //MARK: maybe for a later feature (needs to be blocked for general public as player lists are sensitive data)
-            //                Section(header: Text("Player profiles")) {
-            //                    NavigationLink(destination: Text("Player List here")) {
-            //                        HStack {
-            //                            Image(systemName: "person.3.sequence.fill")
-            //                            Text("Show Player List")
-            //                        }
-            //                        .padding(.vertical)
-            //                    }
-            //                }
-            //                Section(header: Text("Standings")) {
-            //                    Text("temp")
-            //                        .padding(.vertical)
-            //                }
         }
         .navigationTitle(team.name)
         #if os(iOS)
@@ -91,5 +60,7 @@ struct TeamDetailView: View {
     TeamDetailView(
         team: .init(
             uid: 2, name: "Team 2", bsmLeague: 5647, leagueId: 6,
-            bsmShortName: "BEA2"))
+            bsmShortName: "BEA2")
+    )
+    .preferredColorScheme(.dark)
 }

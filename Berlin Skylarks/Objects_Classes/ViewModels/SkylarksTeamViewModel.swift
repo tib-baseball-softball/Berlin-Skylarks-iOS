@@ -11,6 +11,7 @@ import OpenAPIURLSession
 import SkylarksAPIClient
 
 /// Calls Skylarks website API with generated client code from library.
+@MainActor
 @Observable
 class SkylarksTeamViewModel: OpenAPIClientAware {
     var loadingInProgress = false
