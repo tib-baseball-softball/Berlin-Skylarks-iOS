@@ -31,7 +31,7 @@ struct TeamListView: View {
                             Text("Team")
                         #endif
                         Spacer()
-                        Text("League")
+                        Text("Acronym")
                             .frame(maxWidth: 110, alignment: .leading)
                             .padding(.trailing)
                     }

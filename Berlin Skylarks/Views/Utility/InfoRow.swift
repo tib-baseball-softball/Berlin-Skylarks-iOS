@@ -18,7 +18,7 @@ struct InfoRow: View {
                 .foregroundStyle(Color.skylarksRed)
                 .frame(width: 15)
             VStack(alignment: .leading) {
-                Text(title)
+                Text(LocalizedStringKey(title))
                     .font(.subheadline)
                     .foregroundStyle(Color.secondary)
                 Text(value)

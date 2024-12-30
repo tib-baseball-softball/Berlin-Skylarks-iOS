@@ -32,7 +32,7 @@ struct TeamDetailView: View {
                 }
                 .padding(.vertical, listRowPadding)
             }
-            Section(header: Text("Player profiles")) {
+            Section(header: Text("Player Profiles")) {
                 Picker("Display mode", selection: $playerListDisplayMode) {
                     Text("Image").tag(PlayerListDisplayMode.image)
                     Text("Number").tag(PlayerListDisplayMode.number)
@@ -56,7 +56,7 @@ struct TeamDetailView: View {
                     }
                 case .noResults:
                     ContentUnavailableView(
-                        "No Players found", systemImage: "person.3.fill")
+                        "No Players found.", systemImage: "person.3.fill")
                 case .error:
                     ContentUnavailableView(
                         "An error occured while loading data.",
