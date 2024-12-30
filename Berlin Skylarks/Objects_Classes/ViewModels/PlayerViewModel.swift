@@ -12,7 +12,6 @@ import Foundation
 class PlayerViewModel: OpenAPIClientAware {
     var viewState: ViewState = .notInitialised
     var players: [Components.Schemas.Player] = []
-    var loadingInProgress = false
 
     public func loadPlayers(id: Int?, bsmID: Int?, team: Int?) async {
         viewState = .loading

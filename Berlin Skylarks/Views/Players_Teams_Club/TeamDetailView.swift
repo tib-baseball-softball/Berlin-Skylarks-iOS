@@ -13,9 +13,7 @@ struct TeamDetailView: View {
     let listRowPadding: CGFloat = 3
 
     private func load() async {
-        vm.loadingInProgress = true
         await vm.loadPlayers(id: nil, bsmID: nil, team: team.uid)
-        vm.loadingInProgress = false
     }
 
     var body: some View {
@@ -41,37 +39,7 @@ struct TeamDetailView: View {
                     case .found:
                         ForEach(vm.players, id: \.uid) { player in
                             NavigationLink(destination: Text("Player Detail")) {
-                                HStack {
-                                    if let image = player.media?.first {
-                                        AsyncImage(url: URL(string: image.url)) {
-                                            loadedImage in
-                                            loadedImage
-                                                .resizable()
-                                                .aspectRatio(contentMode: .fit)
-                                                .accessibilityLabel(
-                                                image.alt
-                                                    ?? "Image for \(player.fullname)")
-                                        } placeholder: {
-                                            ProgressView()
-                                        }
-                                        .frame(width: 70)
-                                    } else {
-                                        Image("team-placeholder")
-                                            .resizable()
-                                            .aspectRatio(contentMode: .fit)
-                                            .frame(width: 70)
-                                            .accessibilityLabel("Placeholder image")
-                                    }
-                                    VStack(alignment: .leading) {
-                                        Text(player.fullname)
-                                        if let positions = player.positions {
-                                            Text(
-                                                positions.joined(
-                                                    separator: ", ")
-                                            ).font(.caption)
-                                        }
-                                    }
-                                }
+                                PlayerListRow(player: player)
                             }
                         }
                     case .noResults:
@@ -108,5 +76,4 @@ struct TeamDetailView: View {
             uid: 3, name: "Team 2", bsmLeague: 5647, leagueId: 6,
             bsmShortName: "BEA2")
     )
-    //.preferredColorScheme(.dark)
 }
