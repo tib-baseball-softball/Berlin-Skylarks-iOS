@@ -1,3 +1,15 @@
+"Monday" = "Montag";
+"Tuesday" = "Dienstag";
+"Wednesday" = "Mittwoch";
+"Thursday" = "Donnerstag";
+"Friday" = "Freitag";
+"Saturday" = "Samstag";
+"Sunday" = "Sonntag";
+"Summer" = "Sommer";
+"Winter" = "Winter";
+
+"Practice Times" = "Trainingszeiten";
+
 "No Trainings found." = "Keine Trainingszeiten gefunden.";
 
 "Acronym" = "Akronym";

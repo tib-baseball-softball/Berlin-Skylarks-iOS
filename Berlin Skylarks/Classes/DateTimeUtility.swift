@@ -28,4 +28,15 @@ class DateTimeUtility {
         
         return age
     }
+    
+    public static func formatTime(time: Int) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "HH:mm"
+        formatter.timeZone = TimeZone(identifier: "UTC") // backend times are in UTC
+        
+        let date = Date(timeIntervalSince1970: TimeInterval(time))
+        let timeString = formatter.string(from: date)
+        
+        return timeString
+    }
 }

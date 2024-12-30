@@ -46,7 +46,7 @@ struct TeamDetailView: View {
                     LoadingView()
                 case .found:
                     ForEach(vm.trainings, id: \.uid) { training in
-                        // TODO: 
+                        TrainingListRow(training: training)
                     }
                 case .noResults:
                     ContentUnavailableView(
