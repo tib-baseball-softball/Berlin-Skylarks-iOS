@@ -33,25 +33,51 @@ struct TeamDetailView: View {
                 .padding(.vertical, listRowPadding)
             }
             Section(header: Text("Player profiles")) {
-                NavigationLink(destination: Text("Player List here")) {
-                    HStack {
-                        Image(systemName: "person.3.sequence.fill")
-                        Text("Show Player List")
-                    }
-                    .padding(.vertical)
-                }
-
-                if vm.loadingInProgress == true {
-                    LoadingView()
-                }
-
-                ForEach(vm.players, id: \.uid) { player in
-                    NavigationLink(destination: Text("Player Detail")) {
-                        HStack {
-                            Image(systemName: "person.3.fill")
-                            Text(player.fullname)
+                switch vm.viewState {
+                    case .notInitialised:
+                        Text("unitialised")
+                    case .loading:
+                        LoadingView()
+                    case .found:
+                        ForEach(vm.players, id: \.uid) { player in
+                            NavigationLink(destination: Text("Player Detail")) {
+                                HStack {
+                                    if let image = player.media?.first {
+                                        AsyncImage(url: URL(string: image.url)) {
+                                            loadedImage in
+                                            loadedImage
+                                                .resizable()
+                                                .aspectRatio(contentMode: .fit)
+                                                .accessibilityLabel(
+                                                image.alt
+                                                    ?? "Image for \(player.fullname)")
+                                        } placeholder: {
+                                            ProgressView()
+                                        }
+                                        .frame(width: 70)
+                                    } else {
+                                        Image("team-placeholder")
+                                            .resizable()
+                                            .aspectRatio(contentMode: .fit)
+                                            .frame(width: 70)
+                                            .accessibilityLabel("Placeholder image")
+                                    }
+                                    VStack(alignment: .leading) {
+                                        Text(player.fullname)
+                                        if let positions = player.positions {
+                                            Text(
+                                                positions.joined(
+                                                    separator: ", ")
+                                            ).font(.caption)
+                                        }
+                                    }
+                                }
+                            }
                         }
-                    }
+                    case .noResults:
+                        ContentUnavailableView("No Players found", systemImage: "person.3.fill")
+                    case .error:
+                        ContentUnavailableView("An error occured while loading data.", systemImage: "exclamationmark.square")
                 }
             }
         }
@@ -79,8 +105,8 @@ struct TeamDetailView: View {
 #Preview {
     TeamDetailView(
         team: .init(
-            uid: 2, name: "Team 2", bsmLeague: 5647, leagueId: 6,
+            uid: 3, name: "Team 2", bsmLeague: 5647, leagueId: 6,
             bsmShortName: "BEA2")
     )
-    .preferredColorScheme(.dark)
+    //.preferredColorScheme(.dark)
 }

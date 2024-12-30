@@ -10,10 +10,12 @@ import Foundation
 @MainActor
 @Observable
 class PlayerViewModel: OpenAPIClientAware {
+    var viewState: ViewState = .notInitialised
     var players: [Components.Schemas.Player] = []
     var loadingInProgress = false
 
     public func loadPlayers(id: Int?, bsmID: Int?, team: Int?) async {
+        viewState = .loading
         var client: Client
         do {
             client = try createClient()
@@ -37,16 +39,23 @@ class PlayerViewModel: OpenAPIClientAware {
             case .json(let playersResponse):
                 players = playersResponse
             }
+            viewState = .found
         case .internalServerError(let error):
             print("Error loading players: \(error)")
+            viewState = .error
         case .notFound(_):
             print(
                 "No player was found after API call: \(String(describing: id)), \(String(describing: bsmID)), \(String(describing: team))"
             )
+            viewState = .noResults
         case .undocumented(let statusCode, _):
             print("undocumented status code: \(statusCode)")
+            viewState = .error
         case .badRequest(_):
-                print("Bad Request response on API call: \(String(describing: id)), \(String(describing: bsmID)), \(String(describing: team))")
+            print(
+                "Bad Request response on API call: \(String(describing: id)), \(String(describing: bsmID)), \(String(describing: team))"
+            )
+            viewState = .error
         }
     }
 }

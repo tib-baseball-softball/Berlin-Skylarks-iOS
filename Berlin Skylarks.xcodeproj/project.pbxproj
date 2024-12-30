@@ -3,12 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 74;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		CA01EF17287DB9A70056166F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134822771F2E000DFA745 /* WidgetKit.framework */; };
 		CA0A95B525BF704C00A7C7C3 /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
+		CA1A81C32D22AFA100B81B8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA1A81B82D22AFA100B81B8F /* Assets.xcassets */; };
+		CA1A81C52D22AFA100B81B8F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1A81BB2D22AFA100B81B8F /* InfoPlist.strings */; };
+		CA1A81C72D22AFA100B81B8F /* WidgetSkylarks.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1A81C02D22AFA100B81B8F /* WidgetSkylarks.strings */; };
+		CA1A81D22D22AFA100B81B8F /* WidgetPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A81BC2D22AFA100B81B8F /* WidgetPreviewData.swift */; };
+		CA1A81D32D22AFA100B81B8F /* WidgetSkylarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A81C12D22AFA100B81B8F /* WidgetSkylarks.swift */; };
+		CA1A81D52D22AFA100B81B8F /* WidgetPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A81BC2D22AFA100B81B8F /* WidgetPreviewData.swift */; };
+		CA1A81D62D22AFA100B81B8F /* WidgetSkylarks.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CA1A81BE2D22AFA100B81B8F /* WidgetSkylarks.intentdefinition */; };
+		CA1A81D72D22AFA100B81B8F /* WidgetSkylarks.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CA1A81BE2D22AFA100B81B8F /* WidgetSkylarks.intentdefinition */; };
+		CA1A81D82D22AFA100B81B8F /* WidgetSkylarks.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CA1A81BE2D22AFA100B81B8F /* WidgetSkylarks.intentdefinition */; };
 		CA1C39A72731856B00BB194C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA1C39A62731856B00BB194C /* Assets.xcassets */; };
 		CA1C39B62731856B00BB194C /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39B52731856B00BB194C /* NotificationController.swift */; };
 		CA1C39B82731856B00BB194C /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1C39B72731856B00BB194C /* NotificationView.swift */; };
@@ -151,6 +160,13 @@
 /* Begin PBXFileReference section */
 		CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMGameScore.swift; sourceTree = "<group>"; };
 		CA1A240C26BC389E00A8D1C7 /* Berlin Skylarks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Berlin Skylarks.entitlements"; sourceTree = "<group>"; };
+		CA1A81B82D22AFA100B81B8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CA1A81B92D22AFA100B81B8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CA1A81BA2D22AFA100B81B8F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		CA1A81BC2D22AFA100B81B8F /* WidgetPreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreviewData.swift; sourceTree = "<group>"; };
+		CA1A81BD2D22AFA100B81B8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/WidgetSkylarks.intentdefinition; sourceTree = "<group>"; };
+		CA1A81BF2D22AFA100B81B8F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/WidgetSkylarks.strings; sourceTree = "<group>"; };
+		CA1A81C12D22AFA100B81B8F /* WidgetSkylarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSkylarks.swift; sourceTree = "<group>"; };
 		CA1C39A42731856B00BB194C /* Skylarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Skylarks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1C39A62731856B00BB194C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA1C39B52731856B00BB194C /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
@@ -194,6 +210,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CA1A81F12D22AFCD00B81B8F /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				LogoEntry.swift,
+			);
+			target = CA1C39A32731856B00BB194C /* WatchSkylarks */;
+		};
 		CA2C18852D21BEF300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -342,55 +365,12 @@
 			);
 			target = CAE1347F2771F2DF00DFA745 /* WidgetSkylarksExtension */;
 		};
-		CA2C19FD2D21D25600273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				TeamLogo/LogoEntry.swift,
-			);
-			target = CA1C39A32731856B00BB194C /* WatchSkylarks */;
-		};
-		CA2C19FE2D21D25600273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				/Localized/WidgetSkylarks.intentdefinition,
-				Info.plist,
-			);
-			target = CAE1347F2771F2DF00DFA745 /* WidgetSkylarksExtension */;
-		};
-		CA2C1A002D21D25600273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				WidgetPreviewData.swift,
-			);
-			target = CA65FF4327F5EC4400F7845D /* Skylarks Intents */;
-		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
-/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		CA2C19FC2D21D25600273312 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = CABF7BE7259351D400B95813 /* Sources */;
-			membershipExceptions = (
-				/Localized/WidgetSkylarks.intentdefinition,
-			);
-		};
-		CA2C19FF2D21D25600273312 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = CAE1347C2771F2DF00DFA745 /* Sources */;
-			membershipExceptions = (
-				/Localized/WidgetSkylarks.intentdefinition,
-			);
-		};
-		CA2C1A012D21D25600273312 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = CA65FF4027F5EC4400F7845D /* Sources */;
-			membershipExceptions = (
-				/Localized/WidgetSkylarks.intentdefinition,
-			);
-		};
-/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-
 /* Begin PBXFileSystemSynchronizedRootGroup section */
+		CA1A81DC2D22AFC900B81B8F /* FavoriteTeam */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = FavoriteTeam; sourceTree = "<group>"; };
+		CA1A81E42D22AFCB00B81B8F /* Gameday */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Gameday; sourceTree = "<group>"; };
+		CA1A81EC2D22AFCD00B81B8F /* TeamLogo */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CA1A81F12D22AFCD00B81B8F /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = TeamLogo; sourceTree = "<group>"; };
 		CA2C18482D21BDF500273312 /* Generated */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CA2C188C2D21C38200273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C188D2D21C38200273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Generated; sourceTree = "<group>"; };
 		CA2C185A2D21BEF300273312 /* Objects_Classes */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CA2C18852D21BEF300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C18862D21BEF300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C18872D21BEF300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C18882D21BEF300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C18892D21BEF300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Objects_Classes; sourceTree = "<group>"; };
 		CA2C18902D21C46B00273312 /* Protocols */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Protocols; sourceTree = "<group>"; };
@@ -398,7 +378,6 @@
 		CA2C18CE2D21D1EC00273312 /* Legal */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CA2C18DF2D21D1EC00273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C18E02D21D1EC00273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Legal; sourceTree = "<group>"; };
 		CA2C19262D21D1F300273312 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CA2C19AC2D21D1F300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C19AD2D21D1F300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C19AE2D21D1F300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
 		CA2C19B02D21D1FA00273312 /* Enums */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Enums; sourceTree = "<group>"; };
-		CA2C19E52D21D25600273312 /* WidgetSkylarks */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CA2C19FC2D21D25600273312 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, CA2C19FD2D21D25600273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C19FE2D21D25600273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C19FF2D21D25600273312 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, CA2C1A002D21D25600273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C1A012D21D25600273312 /* PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = WidgetSkylarks; sourceTree = "<group>"; };
 		CA2C1A092D21D27B00273312 /* Skylarks IntentsUI */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Skylarks IntentsUI"; sourceTree = "<group>"; };
 		CA2C1A0B2D21D27F00273312 /* BerlinSkylarksTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BerlinSkylarksTests; sourceTree = "<group>"; };
 /* End PBXFileSystemSynchronizedRootGroup section */
@@ -450,6 +429,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA1A81C22D22AFA100B81B8F /* WidgetSkylarks */ = {
+			isa = PBXGroup;
+			children = (
+				CA1A81DC2D22AFC900B81B8F /* FavoriteTeam */,
+				CA1A81E42D22AFCB00B81B8F /* Gameday */,
+				CA1A81EC2D22AFCD00B81B8F /* TeamLogo */,
+				CA1A81B82D22AFA100B81B8F /* Assets.xcassets */,
+				CA1A81B92D22AFA100B81B8F /* Info.plist */,
+				CA1A81BB2D22AFA100B81B8F /* InfoPlist.strings */,
+				CA1A81BC2D22AFA100B81B8F /* WidgetPreviewData.swift */,
+				CA1A81BE2D22AFA100B81B8F /* WidgetSkylarks.intentdefinition */,
+				CA1A81C02D22AFA100B81B8F /* WidgetSkylarks.strings */,
+				CA1A81C12D22AFA100B81B8F /* WidgetSkylarks.swift */,
+			);
+			path = WidgetSkylarks;
+			sourceTree = "<group>";
+		};
 		CA1C39A52731856B00BB194C /* WatchSkylarks */ = {
 			isa = PBXGroup;
 			children = (
@@ -500,7 +496,7 @@
 				CABF7BED259351D400B95813 /* Berlin Skylarks */,
 				CA1C39A52731856B00BB194C /* WatchSkylarks */,
 				CA1C39B02731856B00BB194C /* WatchSkylarks WatchKit Extension */,
-				CA2C19E52D21D25600273312 /* WidgetSkylarks */,
+				CA1A81C22D22AFA100B81B8F /* WidgetSkylarks */,
 				CA65FF4727F5EC4400F7845D /* Skylarks Intents */,
 				CA2C1A092D21D27B00273312 /* Skylarks IntentsUI */,
 				CA2C1A0B2D21D27F00273312 /* BerlinSkylarksTests */,
@@ -693,11 +689,13 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
+				CA1A81DC2D22AFC900B81B8F /* FavoriteTeam */,
+				CA1A81E42D22AFCB00B81B8F /* Gameday */,
+				CA1A81EC2D22AFCD00B81B8F /* TeamLogo */,
 				CA2C185A2D21BEF300273312 /* Objects_Classes */,
 				CA2C18A42D21D1E500273312 /* Global */,
 				CA2C18CE2D21D1EC00273312 /* Legal */,
 				CA2C19B02D21D1FA00273312 /* Enums */,
-				CA2C19E52D21D25600273312 /* WidgetSkylarks */,
 			);
 			name = WidgetSkylarksExtension;
 			productName = WidgetSkylarksExtension;
@@ -733,6 +731,7 @@
 				};
 			};
 			buildConfigurationList = CABF7BE6259351D400B95813 /* Build configuration list for PBXProject "Berlin Skylarks" */;
+			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -744,7 +743,6 @@
 			packageReferences = (
 				CA9FCE7B2D218105006686F4 /* XCRemoteSwiftPackageReference "skylarks-api-client-swift" */,
 			);
-			preferredProjectObjectVersion = 56;
 			productRefGroup = CABF7BEC259351D400B95813 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -807,6 +805,9 @@
 			files = (
 				CA48557B277383D5004ED11A /* Assets.xcassets in Resources */,
 				CA5A704729520E3F00F9D853 /* Localizable.strings in Resources */,
+				CA1A81C32D22AFA100B81B8F /* Assets.xcassets in Resources */,
+				CA1A81C52D22AFA100B81B8F /* InfoPlist.strings in Resources */,
+				CA1A81C72D22AFA100B81B8F /* WidgetSkylarks.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,10 +846,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				CA65FF6E27F882AA00F7845D /* BSMTeam.swift in Sources */,
+				CA1A81D82D22AFA100B81B8F /* WidgetSkylarks.intentdefinition in Sources */,
 				CA56F3CD2880569A00138195 /* BSMFunctionary.swift in Sources */,
 				CA65FF7027FF271000F7845D /* BSMLeagueGroup.swift in Sources */,
 				CA56F3E428872DDE00138195 /* BSMField.swift in Sources */,
 				CA65FF6F27F882BF00F7845D /* BSMGameScore.swift in Sources */,
+				CA1A81D52D22AFA100B81B8F /* WidgetPreviewData.swift in Sources */,
 				CA56F3D7288059DA00138195 /* BSMClub.swift in Sources */,
 				CA65FF4927F5EC4400F7845D /* IntentHandler.swift in Sources */,
 				CA56F3D22880578700138195 /* BSMPerson.swift in Sources */,
@@ -868,6 +871,7 @@
 				CABF7BEF259351D400B95813 /* Berlin_SkylarksApp.swift in Sources */,
 				CA56F3D4288059DA00138195 /* BSMClub.swift in Sources */,
 				CA56F3D92880607E00138195 /* BSMLicense.swift in Sources */,
+				CA1A81D62D22AFA100B81B8F /* WidgetSkylarks.intentdefinition in Sources */,
 				CAE7740C26C1709B00A57F66 /* BSMStandingsTable.swift in Sources */,
 				CA56F3CA2880569A00138195 /* BSMFunctionary.swift in Sources */,
 				CABF7BFB259351D500B95813 /* Berlin_Skylarks.xcdatamodeld in Sources */,
@@ -880,11 +884,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CA1A81D22D22AFA100B81B8F /* WidgetPreviewData.swift in Sources */,
+				CA1A81D32D22AFA100B81B8F /* WidgetSkylarks.swift in Sources */,
 				CA56F3DB2880607E00138195 /* BSMLicense.swift in Sources */,
 				CA28D67027A0601B00680067 /* BSMLeagueGroup.swift in Sources */,
 				CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */,
 				CAE9C2BC28A9A2740079AB87 /* IntentHandler.swift in Sources */,
 				CA56F3E328872A1900138195 /* BSMField.swift in Sources */,
+				CA1A81D72D22AFA100B81B8F /* WidgetSkylarks.intentdefinition in Sources */,
 				CAC044A027749D2C00AD9888 /* BSMGameScore.swift in Sources */,
 				CA56F3D6288059DA00138195 /* BSMClub.swift in Sources */,
 				CA56F3D12880578700138195 /* BSMPerson.swift in Sources */,
@@ -920,6 +927,30 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		CA1A81BB2D22AFA100B81B8F /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA1A81BA2D22AFA100B81B8F /* de */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		CA1A81BE2D22AFA100B81B8F /* WidgetSkylarks.intentdefinition */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA1A81BD2D22AFA100B81B8F /* Base */,
+			);
+			name = WidgetSkylarks.intentdefinition;
+			sourceTree = "<group>";
+		};
+		CA1A81C02D22AFA100B81B8F /* WidgetSkylarks.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				CA1A81BF2D22AFA100B81B8F /* de */,
+			);
+			name = WidgetSkylarks.strings;
+			sourceTree = "<group>";
+		};
 		CA2D51842950D08600CF465E /* Skylarks Intents.entitlements */ = {
 			isa = PBXVariantGroup;
 			children = (
