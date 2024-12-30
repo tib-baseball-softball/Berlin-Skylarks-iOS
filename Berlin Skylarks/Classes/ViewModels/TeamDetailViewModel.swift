@@ -9,12 +9,40 @@ import Foundation
 
 @MainActor
 @Observable
-class PlayerViewModel: OpenAPIClientAware {
-    var viewState: ViewState = .notInitialised
+class TeamDetailViewModel: OpenAPIClientAware {
+    var playerState: ViewState = .notInitialised
+    var trainingState: ViewState = .notInitialised
     var players: [Components.Schemas.Player] = []
+    var trainings: [Components.Schemas.Training] = []
 
+    /// Loads Trainings for the specified team
+    /// - Parameters:
+    ///    - id: ID of the team
+    public func loadTrainingsForTeam(id: Int) async throws {
+        trainingState = .loading
+        let client = try createClient()
+        let response = try await client.getTrainingTimes(query: .init(team: id))
+
+        switch response {
+        case .ok(let okResponse):
+            switch okResponse.body {
+            case .json(let trainingsResponse):
+                trainings = trainingsResponse
+            }
+            trainings = try response.ok.body.json
+            trainingState = .found
+        case .notFound(_):
+            trainingState = .noResults
+        case .internalServerError(_):
+            trainingState = .error
+        case .undocumented(let statusCode, _):
+            trainingState = .error
+        }
+    }
+
+    /// Loads Players according to API definition
     public func loadPlayers(id: Int?, bsmID: Int?, team: Int?) async {
-        viewState = .loading
+        playerState = .loading
         var client: Client
         do {
             client = try createClient()
@@ -38,23 +66,23 @@ class PlayerViewModel: OpenAPIClientAware {
             case .json(let playersResponse):
                 players = playersResponse
             }
-            viewState = .found
+            playerState = .found
         case .internalServerError(let error):
             print("Error loading players: \(error)")
-            viewState = .error
+            playerState = .error
         case .notFound(_):
             print(
                 "No player was found after API call: \(String(describing: id)), \(String(describing: bsmID)), \(String(describing: team))"
             )
-            viewState = .noResults
+            playerState = .noResults
         case .undocumented(let statusCode, _):
             print("undocumented status code: \(statusCode)")
-            viewState = .error
+            playerState = .error
         case .badRequest(_):
             print(
                 "Bad Request response on API call: \(String(describing: id)), \(String(describing: bsmID)), \(String(describing: team))"
             )
-            viewState = .error
+            playerState = .error
         }
     }
 }

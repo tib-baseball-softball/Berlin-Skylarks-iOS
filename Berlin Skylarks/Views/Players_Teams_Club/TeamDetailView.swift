@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TeamDetailView: View {
-    @State private var vm: PlayerViewModel = PlayerViewModel()
+    @State private var vm: TeamDetailViewModel = TeamDetailViewModel()
     @State private var playerListDisplayMode: PlayerListDisplayMode = .image
 
     var team: Components.Schemas.Team
@@ -16,6 +16,11 @@ struct TeamDetailView: View {
 
     private func load() async {
         await vm.loadPlayers(id: nil, bsmID: nil, team: team.uid)
+        do {
+            try await vm.loadTrainingsForTeam(id: team.uid)
+        } catch {
+            print(error)
+        }
     }
 
     var body: some View {
@@ -32,6 +37,27 @@ struct TeamDetailView: View {
                 }
                 .padding(.vertical, listRowPadding)
             }
+
+            Section(header: Text("Practice Times")) {
+                switch vm.trainingState {
+                case .notInitialised:
+                    Text("unitialised")
+                case .loading:
+                    LoadingView()
+                case .found:
+                    ForEach(vm.trainings, id: \.uid) { training in
+                        // TODO: 
+                    }
+                case .noResults:
+                    ContentUnavailableView(
+                        "No Trainings found.", systemImage: "dumbbell")
+                case .error:
+                    ContentUnavailableView(
+                        "An error occured while loading data.",
+                        systemImage: "exclamationmark.square")
+                }
+            }
+
             Section(header: Text("Player Profiles")) {
                 Picker("Display mode", selection: $playerListDisplayMode) {
                     Text("Image").tag(PlayerListDisplayMode.image)
@@ -41,14 +67,16 @@ struct TeamDetailView: View {
                     .pickerStyle(.segmented)
                 #endif
 
-                switch vm.viewState {
+                switch vm.playerState {
                 case .notInitialised:
                     Text("unitialised")
                 case .loading:
                     LoadingView()
                 case .found:
                     ForEach(vm.players, id: \.uid) { player in
-                        NavigationLink(destination: PlayerDetailView(player: player)) {
+                        NavigationLink(
+                            destination: PlayerDetailView(player: player)
+                        ) {
                             PlayerListRow(
                                 player: player,
                                 displayMode: playerListDisplayMode)
@@ -72,16 +100,17 @@ struct TeamDetailView: View {
 
         .refreshable {
             vm.players = []
+            vm.trainings = []
             await load()
         }
 
-        .onAppear(perform: {
-            if vm.players == [] {
+        .onAppear {
+            if vm.players == [] || vm.trainings == [] {
                 Task {
                     await load()
                 }
             }
-        })
+        }
     }
 }
 
