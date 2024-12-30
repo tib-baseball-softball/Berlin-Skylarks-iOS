@@ -48,7 +48,7 @@ struct TeamDetailView: View {
                     LoadingView()
                 case .found:
                     ForEach(vm.players, id: \.uid) { player in
-                        NavigationLink(destination: Text("Player Detail")) {
+                        NavigationLink(destination: PlayerDetailView(player: player)) {
                             PlayerListRow(
                                 player: player,
                                 displayMode: playerListDisplayMode)
