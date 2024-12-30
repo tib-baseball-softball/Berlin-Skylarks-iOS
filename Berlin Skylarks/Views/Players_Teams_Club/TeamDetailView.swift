@@ -9,6 +9,8 @@ import SwiftUI
 
 struct TeamDetailView: View {
     @State private var vm: PlayerViewModel = PlayerViewModel()
+    @State private var playerListDisplayMode: PlayerListDisplayMode = .image
+
     var team: Components.Schemas.Team
     let listRowPadding: CGFloat = 3
 
@@ -31,21 +33,34 @@ struct TeamDetailView: View {
                 .padding(.vertical, listRowPadding)
             }
             Section(header: Text("Player profiles")) {
+                Picker("Display mode", selection: $playerListDisplayMode) {
+                    Text("Image").tag(PlayerListDisplayMode.image)
+                    Text("Number").tag(PlayerListDisplayMode.number)
+                }
+                #if !os(watchOS)
+                    .pickerStyle(.segmented)
+                #endif
+
                 switch vm.viewState {
-                    case .notInitialised:
-                        Text("unitialised")
-                    case .loading:
-                        LoadingView()
-                    case .found:
-                        ForEach(vm.players, id: \.uid) { player in
-                            NavigationLink(destination: Text("Player Detail")) {
-                                PlayerListRow(player: player)
-                            }
+                case .notInitialised:
+                    Text("unitialised")
+                case .loading:
+                    LoadingView()
+                case .found:
+                    ForEach(vm.players, id: \.uid) { player in
+                        NavigationLink(destination: Text("Player Detail")) {
+                            PlayerListRow(
+                                player: player,
+                                displayMode: playerListDisplayMode)
                         }
-                    case .noResults:
-                        ContentUnavailableView("No Players found", systemImage: "person.3.fill")
-                    case .error:
-                        ContentUnavailableView("An error occured while loading data.", systemImage: "exclamationmark.square")
+                    }
+                case .noResults:
+                    ContentUnavailableView(
+                        "No Players found", systemImage: "person.3.fill")
+                case .error:
+                    ContentUnavailableView(
+                        "An error occured while loading data.",
+                        systemImage: "exclamationmark.square")
                 }
             }
         }
