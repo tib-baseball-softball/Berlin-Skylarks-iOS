@@ -13,11 +13,9 @@ struct TeamListView: View {
 
     @Environment(NetworkManager.self) var networkManager: NetworkManager
     @State private var showAlertNoNetwork = false
-    
+
     private func load() async {
-        vm.loadingInProgress = true
         await vm.loadClubTeams(id: nil)
-        vm.loadingInProgress = false
     }
 
     var body: some View {
@@ -38,41 +36,46 @@ struct TeamListView: View {
                     .font(.headline)
                     .listRowBackground(ColorStandingsTableHeadline)
 
-                    if vm.loadingInProgress == true {
+                    switch vm.viewState {
+                    case .notInitialised:
+                        Text("View not initialised. You should never see this.")
+                    case .loading:
                         LoadingView()
-                    }
-
-                    ForEach(vm.teams, id: \.self) { team in
-                        NavigationLink(
-                            destination: TeamDetailView(team: team)
-                        ) {
-                            HStack {
-                                Image(systemName: "person.3")
-                                    .foregroundColor(
-                                        .skylarksDynamicNavySand
-                                    )
-                                    .padding(.trailing)
+                    case .found:
+                        ForEach(vm.teams, id: \.self) { team in
+                            NavigationLink(
+                                destination: TeamDetailView(team: team)
+                            ) {
                                 HStack {
-                                    Text(team.name)
-                                    if team.bsmLeague == favoriteTeamID {
-                                        Image(systemName: "star")
-                                            .foregroundColor(
-                                                .skylarksRed)
+                                    Image(systemName: "person.3")
+                                        .foregroundColor(
+                                            .skylarksDynamicNavySand
+                                        )
+                                        .padding(.trailing)
+                                    HStack {
+                                        Text(team.name)
+                                        if team.bsmLeague == favoriteTeamID {
+                                            Image(systemName: "star")
+                                                .foregroundColor(
+                                                    .skylarksRed)
+                                        }
                                     }
+                                    Spacer()
+                                    Text(team.bsmShortName)
+                                        .frame(
+                                            maxWidth: 110,
+                                            alignment: .leading
+                                        )
+                                        .allowsTightening(true)
                                 }
-                                Spacer()
-                                Text(team.bsmShortName)
-                                    .frame(
-                                        maxWidth: 110,
-                                        alignment: .leading
-                                    )
-                                    .allowsTightening(true)
                             }
                         }
-                    }
-
-                    if vm.teams.isEmpty && vm.loadingInProgress == false {
+                    case .noResults:
                         Text("No team data.")
+                    case .error:
+                        ContentUnavailableView(
+                            "An error occured while loading data.",
+                            systemImage: "exclamationmark.square")
                     }
                 }
             }
@@ -87,7 +90,7 @@ struct TeamListView: View {
             .onAppear(perform: {
                 if vm.teams == [] {
                     Task {
-                       await load()
+                        await load()
                     }
                 }
             })
