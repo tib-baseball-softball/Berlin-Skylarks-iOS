@@ -36,6 +36,7 @@ class TeamDetailViewModel: OpenAPIClientAware {
         case .internalServerError(_):
             trainingState = .error
         case .undocumented(let statusCode, _):
+            print("undocumented status code: \(statusCode)")
             trainingState = .error
         }
     }
