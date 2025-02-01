@@ -8,23 +8,24 @@
 import SwiftUI
 
 struct LicenseLevelIndicator: View {
-    
+
     var level: String
-    
+
     var licenseColor: Color {
-        if level.contains("A") {
+        switch level {
+        case "A":
             return .red
-        } else if level.contains("B") {
+        case "B":
             return .orange
-        } else if level.contains("C") {
+        case "C":
             return .yellow
-        } else if level.contains("D") {
+        case "D":
             return .mint
+        default:
+            return .gray
         }
-        //this should never happen, but let's make it futureproof
-        return .gray
     }
-    
+
     var body: some View {
         Image(systemName: "\(level.lowercased()).square.fill")
             .foregroundColor(licenseColor)
