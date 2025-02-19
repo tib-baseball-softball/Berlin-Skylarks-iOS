@@ -10,10 +10,6 @@ import Foundation
 
 class IntentHandler: INExtension, FavoriteTeamIntentHandling {
     
-//    func provideTeamOptionsCollection(for intent: FavoriteTeamIntent, with completion: @escaping (INObjectCollection<BEATeam>?, Error?) -> Void) {
-//        <#code#>
-//    }
-    
     func provideTeamOptionsCollection(for intent: FavoriteTeamIntent) async throws -> INObjectCollection<BEATeam> {
         
         //widgets don't make any sense with anything except the current year, so it is always set to that
