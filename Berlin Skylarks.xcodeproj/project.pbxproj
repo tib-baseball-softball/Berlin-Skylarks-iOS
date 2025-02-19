@@ -9,11 +9,10 @@
 /* Begin PBXBuildFile section */
 		CA01EF17287DB9A70056166F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134822771F2E000DFA745 /* WidgetKit.framework */; };
 		CA0A95B525BF704C00A7C7C3 /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
-		CA1043612D669B940054CFBD /* WidgetSkylarks.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1A81C02D22AFA100B81B8F /* WidgetSkylarks.strings */; };
-		CA1043622D669B940054CFBD /* WidgetSkylarks.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1A81C02D22AFA100B81B8F /* WidgetSkylarks.strings */; };
+		CA1043642D669C6F0054CFBD /* WidgetSkylarks.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1043632D669C6F0054CFBD /* WidgetSkylarks.strings */; };
+		CA1043652D669C6F0054CFBD /* WidgetSkylarks.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1043632D669C6F0054CFBD /* WidgetSkylarks.strings */; };
 		CA1A81C32D22AFA100B81B8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA1A81B82D22AFA100B81B8F /* Assets.xcassets */; };
 		CA1A81C52D22AFA100B81B8F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1A81BB2D22AFA100B81B8F /* InfoPlist.strings */; };
-		CA1A81C72D22AFA100B81B8F /* WidgetSkylarks.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1A81C02D22AFA100B81B8F /* WidgetSkylarks.strings */; };
 		CA1A81D22D22AFA100B81B8F /* WidgetPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A81BC2D22AFA100B81B8F /* WidgetPreviewData.swift */; };
 		CA1A81D32D22AFA100B81B8F /* WidgetSkylarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A81C12D22AFA100B81B8F /* WidgetSkylarks.swift */; };
 		CA1A81D52D22AFA100B81B8F /* WidgetPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A81BC2D22AFA100B81B8F /* WidgetPreviewData.swift */; };
@@ -162,14 +161,14 @@
 /* Begin PBXFileReference section */
 		CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMGameScore.swift; sourceTree = "<group>"; };
 		CA10435F2D66972C0054CFBD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WidgetSkylarks.strings; sourceTree = "<group>"; };
-		CA1043602D6697310054CFBD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/WidgetSkylarks.strings; sourceTree = "<group>"; };
+		CA1043632D669C6F0054CFBD /* WidgetSkylarks.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = WidgetSkylarks.strings; sourceTree = "<group>"; };
+		CA1043672D669CD50054CFBD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/WidgetSkylarks.strings; sourceTree = "<group>"; };
 		CA1A240C26BC389E00A8D1C7 /* Berlin Skylarks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Berlin Skylarks.entitlements"; sourceTree = "<group>"; };
 		CA1A81B82D22AFA100B81B8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CA1A81B92D22AFA100B81B8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA1A81BA2D22AFA100B81B8F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CA1A81BC2D22AFA100B81B8F /* WidgetPreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreviewData.swift; sourceTree = "<group>"; };
 		CA1A81BD2D22AFA100B81B8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/WidgetSkylarks.intentdefinition; sourceTree = "<group>"; };
-		CA1A81BF2D22AFA100B81B8F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/WidgetSkylarks.strings; sourceTree = "<group>"; };
 		CA1A81C12D22AFA100B81B8F /* WidgetSkylarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSkylarks.swift; sourceTree = "<group>"; };
 		CA1C39A42731856B00BB194C /* Skylarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Skylarks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA1C39A62731856B00BB194C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -446,7 +445,7 @@
 				CA1A81BB2D22AFA100B81B8F /* InfoPlist.strings */,
 				CA1A81BC2D22AFA100B81B8F /* WidgetPreviewData.swift */,
 				CA1A81BE2D22AFA100B81B8F /* WidgetSkylarks.intentdefinition */,
-				CA1A81C02D22AFA100B81B8F /* WidgetSkylarks.strings */,
+				CA1043632D669C6F0054CFBD /* WidgetSkylarks.strings */,
 				CA1A81C12D22AFA100B81B8F /* WidgetSkylarks.swift */,
 			);
 			path = WidgetSkylarks;
@@ -789,7 +788,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA1043622D669B940054CFBD /* WidgetSkylarks.strings in Resources */,
 				CA2D5174294F773100CF465E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -802,7 +800,7 @@
 				CABF7BF6259351D500B95813 /* Preview Assets.xcassets in Resources */,
 				CA1CB211275D15BA0007D24E /* README.md in Resources */,
 				CA940B88292A963A00D91508 /* Localizable.strings in Resources */,
-				CA1043612D669B940054CFBD /* WidgetSkylarks.strings in Resources */,
+				CA1043642D669C6F0054CFBD /* WidgetSkylarks.strings in Resources */,
 				CABF7BF3259351D500B95813 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -815,7 +813,7 @@
 				CA5A704729520E3F00F9D853 /* Localizable.strings in Resources */,
 				CA1A81C32D22AFA100B81B8F /* Assets.xcassets in Resources */,
 				CA1A81C52D22AFA100B81B8F /* InfoPlist.strings in Resources */,
-				CA1A81C72D22AFA100B81B8F /* WidgetSkylarks.strings in Resources */,
+				CA1043652D669C6F0054CFBD /* WidgetSkylarks.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -948,17 +946,9 @@
 			children = (
 				CA1A81BD2D22AFA100B81B8F /* Base */,
 				CA10435F2D66972C0054CFBD /* en */,
-				CA1043602D6697310054CFBD /* de */,
+				CA1043672D669CD50054CFBD /* de */,
 			);
 			name = WidgetSkylarks.intentdefinition;
-			sourceTree = "<group>";
-		};
-		CA1A81C02D22AFA100B81B8F /* WidgetSkylarks.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA1A81BF2D22AFA100B81B8F /* de */,
-			);
-			name = WidgetSkylarks.strings;
 			sourceTree = "<group>";
 		};
 		CA2D51842950D08600CF465E /* Skylarks Intents.entitlements */ = {
@@ -1006,7 +996,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "The Skylarks app needs access to your calendar to add game dates to it.";
@@ -1040,7 +1030,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSCalendarsUsageDescription = "The Skylarks app needs access to your calendar to add game dates to it.";
@@ -1120,7 +1110,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = "Skylarks Intents/Skylarks Intents.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1154,7 +1144,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = "Skylarks Intents/Skylarks Intents.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1320,7 +1310,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Berlin Skylarks/Berlin Skylarks.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Berlin Skylarks/Preview Content\"";
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -1354,7 +1344,7 @@
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
 				CODE_SIGN_ENTITLEMENTS = "Berlin Skylarks/Berlin Skylarks.entitlements";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Berlin Skylarks/Preview Content\"";
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
@@ -1389,7 +1379,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = WidgetSkylarksExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -1425,7 +1415,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = WidgetSkylarksExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
