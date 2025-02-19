@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WatchRootView: View {
     var body: some View {
-        NavigationView {
+        NavigationStack {
             List {
                 NavigationLink(
                     destination: UserHomeView()){
