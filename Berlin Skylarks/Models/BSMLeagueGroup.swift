@@ -27,4 +27,5 @@ struct League: Hashable, Codable, Identifiable {
     var age_group: String?
 }
 
+let LEAGUEGROUP_ALL = LeagueGroup(id: 0, season: 0, name: "All Leagues", acronym: "ALL", league: emptyLeague)
 let emptyLeague = League(id: 42, season: 1970, name: "Kreisliga", acronym: "TLL", sport: "Baseball", classification: "Kreisliga", age_group: "Erwachsene")

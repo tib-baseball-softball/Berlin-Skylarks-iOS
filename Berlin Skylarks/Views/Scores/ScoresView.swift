@@ -59,11 +59,11 @@ struct ScoresView: View {
     @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
     
     //TODO: localise
-    @State var selectedTeam = "All Teams"
-    @State var selectedTeamID: Int = 0 // this is in fact a league ID now - TODO: rename me
+    @State var selectedTeam = LEAGUEGROUP_ALL
+    @State var selectedTeamID: Int = LEAGUEGROUP_ALL.id
     @State var selectedTimeframe = Gameday.current
     
-    @State var filterTeams = ["All Teams", ]
+    @State var filterTeams: [LeagueGroup] = [LEAGUEGROUP_ALL]
     
     //---------------------------------------------------------//
     //-----------local funcs-----------------------------------//
@@ -71,7 +71,7 @@ struct ScoresView: View {
     
     func loadLeagueGroups() async {
         //reset filter options to default
-        filterTeams = ["All Teams", ]
+        filterTeams = [LEAGUEGROUP_ALL]
         
         let leagueGroupsURL = URL(string:"https://bsm.baseball-softball.de/league_groups.json?filters[seasons][]=" + "\(selectedSeason)" + "&api_key=" + apiKey)!
         
@@ -83,7 +83,7 @@ struct ScoresView: View {
         
         //add teams to filter
         for leagueGroup in leagueGroups {
-            filterTeams.append(leagueGroup.name)
+            filterTeams.append(leagueGroup)
         }
         await loadGamesAndProcess()
     }
@@ -96,7 +96,7 @@ struct ScoresView: View {
         var gameURLSelected: URL? = nil
         
         //if we're not filtering by any league, then we do not use the URL parameter at all
-        if selectedTeam == "All Teams" {
+        if selectedTeam == LEAGUEGROUP_ALL {
             gameURLSelected = URL(string: "https://bsm.baseball-softball.de/clubs/\(AppSettings.SKYLARKS_BSM_ID)/matches.json?filters[seasons][]=\(selectedSeason)&filters[gamedays][]=\(selectedTimeframe.rawValue)&api_key=\(apiKey)")!
         }
         //in any other case we filter the API request by league ID
@@ -125,8 +125,8 @@ struct ScoresView: View {
     
     func setTeamID() async {
         //set it back to 0 to make sure it does not keep the former value
-        selectedTeamID = 0
-        for leagueGroup in leagueGroups where leagueGroup.name == selectedTeam {
+        selectedTeamID = LEAGUEGROUP_ALL.id
+        for leagueGroup in leagueGroups where leagueGroup == selectedTeam {
             selectedTeamID = leagueGroup.id
         }
     }
@@ -395,7 +395,7 @@ struct ScoresView: View {
                         ForEach(filterTeams, id: \.self) { option in
                             HStack {
                                 Image(systemName: "person.3")
-                                Text(" " + option)
+                                Text(" " + option.name)
                             }
                             .tag(option)
                         }
@@ -431,7 +431,7 @@ struct ScoresView: View {
                         ForEach(filterTeams, id: \.self) { option in
                             HStack {
                                 //Image(systemName: "list.bullet.circle")
-                                Text(" " + option)
+                                Text(" " + option.name)
                             }
                             .tag(option)
                         }
