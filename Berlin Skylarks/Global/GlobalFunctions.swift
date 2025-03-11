@@ -9,8 +9,7 @@ import Foundation
 import EventKit
 import SwiftUI
 
-//sort of deprecated - the GameScore struct now has a addDates() method, but this is still used by the calendar export
-
+@available(*, deprecated, message: "the GameScore struct now has a `addDates()` method, but this is still used by the calendar export")
 func getDatefromBSMString(gamescore: GameScore) -> Date {
     let dateFormatter = DateFormatter()
     dateFormatter.dateFormat = "y-M-dd HH:mm:ss Z"

@@ -7,8 +7,7 @@
 
 import SwiftUI
 
-// this is meant to be the user's main dashboard where their favorite team is displayed
-
+/// this is the user's main dashboard where their favorite team is displayed
 struct UserHomeView: View {
     
     @AppStorage("favoriteTeam") var favoriteTeam: String = "Not set"
