@@ -29,21 +29,28 @@ class UserDashboard: ObservableObject {
     
     @Published var playoffParticipation = false
     
+    /// Loads all data to used in the Home View (Favorite Team Overview).
+    ///
+    /// - load Games for all LeagueGroups the team is currently playing in
+    /// - enrich data with additional information
+    /// - determine previous and next game
     func loadHomeGameData(team: BSMTeam, leagueGroups: [LeagueGroup], season: Int) async {
-        
         //get the games, then process for next and last
         var selectedHomeScoresURL = URL(string: "https://www.tib-baseball.de")!
         
-        //determine the correct leagueGroup
-        for leagueGroup in leagueGroups where team.league_entries[0].league.id == leagueGroup.league.id {
+        // determine the correct leagueGroup(s)
+        // caution: LeagueGroups might have the same League
+        let filteredLeagueGroups = leagueGroups.filter { $0.league.id == team.league_entries.first?.league.id }
+        
+        for leagueGroup in filteredLeagueGroups {
             selectedHomeScoresURL = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(season)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
-        }
-    
-        //load data
-        do {
-            homeGamescores = try await fetchBSMData(url: selectedHomeScoresURL, dataType: [GameScore].self)
-        } catch {
-            print("Request failed with error: \(error)")
+        
+            do {
+                let results = try await fetchBSMData(url: selectedHomeScoresURL, dataType: [GameScore].self)
+                homeGamescores.append(contentsOf: results)
+            } catch {
+                print("Request failed with error: \(error)")
+            }
         }
         
         for (index, _) in homeGamescores.enumerated() {

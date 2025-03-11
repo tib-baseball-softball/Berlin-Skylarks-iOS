@@ -7,8 +7,10 @@
 
 import Foundation
 
-//this class refers to what's known in BSM as Liga/Gruppe
-
+/// BSM structure "Liga/Gruppe"
+///
+/// always unique to single season
+/// caution: several `LeagueGroups` might have the same `League`
 struct LeagueGroup: Hashable, Codable, Identifiable {
     var id: Int
     var season: Int
@@ -17,6 +19,9 @@ struct LeagueGroup: Hashable, Codable, Identifiable {
     var league: League
 }
 
+/// BSM structure "Liga", corresponds to a playing level
+///
+/// unique for each season
 struct League: Hashable, Codable, Identifiable {
     var id: Int
     var season: Int
