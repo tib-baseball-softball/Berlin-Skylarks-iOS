@@ -181,7 +181,7 @@ internal enum Components {
             ///
             /// - Remark: Generated from `#/components/schemas/League/season`.
             internal var season: Swift.Int
-            /// Unique identifier for the league
+            /// Unique identifier for the league group (BSM ID)
             ///
             /// - Remark: Generated from `#/components/schemas/League/league_id`.
             internal var leagueId: Swift.Int
@@ -191,7 +191,7 @@ internal enum Components {
             ///   - name: Name of the league
             ///   - acronym: Acronym of the league
             ///   - season: The season year
-            ///   - leagueId: Unique identifier for the league
+            ///   - leagueId: Unique identifier for the league group (BSM ID)
             internal init(
                 name: Swift.String,
                 acronym: Swift.String,
@@ -669,8 +669,10 @@ internal enum Components {
             ///
             /// - Remark: Generated from `#/components/schemas/GameReport/teaser_image`.
             internal var teaserImage: [Components.Schemas.Media]
+            /// Images displayed in a prominent way at the beginning of report.
+            ///
             /// - Remark: Generated from `#/components/schemas/GameReport/header_image`.
-            internal var headerImage: Components.Schemas.Media?
+            internal var headerImage: [Components.Schemas.Media]?
             /// List of gallery images associated with the game report
             ///
             /// - Remark: Generated from `#/components/schemas/GameReport/gallery`.
@@ -705,7 +707,7 @@ internal enum Components {
             ///   - reportSecond: HTML content for the second part of the game report
             ///   - preview: HTML preview text for the game report
             ///   - teaserImage: List of teaser images for the game report
-            ///   - headerImage:
+            ///   - headerImage: Images displayed in a prominent way at the beginning of report.
             ///   - gallery: List of gallery images associated with the game report
             ///   - date: The date and time of the game
             ///   - title: Title of the game report
@@ -723,7 +725,7 @@ internal enum Components {
                 reportSecond: Swift.String? = nil,
                 preview: Swift.String? = nil,
                 teaserImage: [Components.Schemas.Media],
-                headerImage: Components.Schemas.Media? = nil,
+                headerImage: [Components.Schemas.Media]? = nil,
                 gallery: [Components.Schemas.Media]? = nil,
                 date: Foundation.Date,
                 title: Swift.String,
