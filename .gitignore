@@ -7,3 +7,5 @@ API_Key.swift
 *.xcuserstate
 
 *.xcsettings
+
+buildServer.json

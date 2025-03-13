@@ -26,3 +26,11 @@ Contact info: app@tib-baseball.de
 ## Roadmap
 
 - Mostly feature complete and not under active development at the moment, maintenance releases for new iOS versions.
+
+## Usage with IDEs other than Xcode
+- install [Xcode Build Server](https://github.com/SolaWing/xcode-build-server)
+- run the following command in project root:
+
+```shell
+xcode-build-server config -project *.xcodeproj`
+```
