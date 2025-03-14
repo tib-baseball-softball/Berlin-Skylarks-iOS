@@ -104,9 +104,3 @@ class UserDashboard: ObservableObject {
         return entries
     }
 }
-
-struct StreakDataEntry: Hashable {
-    var game: String //this is a string because we don't want SwiftUI to dynamically leave out values on the x axis
-    var wonGame: Bool
-    var winsCount: Int
-}
