@@ -27,12 +27,12 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
         } catch {
             print("Request failed with error: \(error)")
         }
-        for team in teams where team.league_entries[0].league.name == configuration.team?.identifier {
+        for team in teams where team.league_entries.first?.league.name == configuration.team?.identifier {
             selectedTeam = team
         }
         
         //failsafe option to make sure there is always a real team selected. Kreisliga is used as the team name for the default value provided above
-        if selectedTeam.league_entries[0].league.name == "Kreisliga" {
+        if selectedTeam.league_entries.first?.league.name == "Kreisliga" {
             if !teams.isEmpty {
                 selectedTeam = teams.randomElement()!
             }
@@ -54,9 +54,9 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
         return teams.map { team in
             let team = BSMTeam(id: team.id, name: team.name, short_name: team.short_name, league_entries: team.league_entries)
             let intent = FavoriteTeamIntent()
-            intent.team = BEATeam(identifier: team.league_entries[0].league.name, display: team.league_entries[0].league.name)
+            intent.team = BEATeam(identifier: team.league_entries.first?.league.name, display: team.league_entries.first?.league.name)
             
-            return IntentRecommendation(intent: intent, description: Text(team.league_entries[0].league.name))
+            return IntentRecommendation(intent: intent, description: Text(team.league_entries.first?.league.name))
         }
     }
     
@@ -75,10 +75,6 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
         
         Task {
             let selectedTeam = await team(for: configuration)
-            
-            //MARK: DEBUG
-            // first we load the tables to infer the league ID for scores
-            
             let leagueGroups = await loadLeagueGroups(season: season)
             
             if let table = await loadTableForTeam(team: selectedTeam, leagueGroups: leagueGroups) {
@@ -86,17 +82,13 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
                 widgetData.tableRow = determineTableRow(team: selectedTeam, table: widgetData.leagueTable)
             }
             
-            
             var gamescores = [GameScore]()
             
-            //get correct URL for team
-            for leagueGroup in leagueGroups where selectedTeam.league_entries[0].league.id == leagueGroup.league.id {
+            for leagueGroup in leagueGroups where selectedTeam.league_entries.first?.league.id == leagueGroup.league.id {
                 let scoresURL = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(season)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
                 
-                //load games
-                gamescores = try await fetchBSMData(url: scoresURL, dataType: [GameScore].self)
+                gamescores.append(contentsOf: try await fetchBSMData(url: scoresURL, dataType: [GameScore].self))
             }
-//            loadBSMData(url: team1.scoresURL, dataType: [GameScore].self) { gamescores in
                 
             //create tuple with two GameScores
             let displayGames = processGameDates(gamescores: gamescores)
@@ -136,8 +128,7 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
             
             var entries: [FavoriteTeamEntry] = []
 
-            //Original: Generate a timeline consisting of 3 entries an hour apart, starting from the current date.
-            //changed it to update every 20 minutes (hopefully) and created 5 timeline entries
+            //update every 20 minutes (hopefully) and created 5 timeline entries
             let currentDate = Date()
             for hourOffset in 0 ..< 1 {
                 let entryDate = Calendar.current.date(byAdding: .minute, value: hourOffset * 20, to: currentDate)!
