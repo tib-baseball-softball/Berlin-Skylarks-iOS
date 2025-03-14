@@ -42,7 +42,7 @@ struct ScoresDetailView: View {
     }
     
     func saveEvent() async {
-        let gameDate = getDatefromBSMString(gamescore: gamescore)
+        let gameDate = DateTimeUtility.getDatefromBSMString(gamescore: gamescore)
         await calendarManager.addGameToCalendar(gameDate: gameDate, gamescore: gamescore, calendar: calendar)
         showEventAlert = true
     }

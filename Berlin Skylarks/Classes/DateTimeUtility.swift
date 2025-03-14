@@ -39,4 +39,11 @@ class DateTimeUtility {
         
         return timeString
     }
+    
+    public static func getDatefromBSMString(gamescore: GameScore) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "y-M-dd HH:mm:ss Z"
+        
+        return dateFormatter.date(from: gamescore.time) ?? Date()
+    }
 }

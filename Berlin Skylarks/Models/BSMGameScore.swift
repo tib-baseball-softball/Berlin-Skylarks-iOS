@@ -143,6 +143,6 @@ struct GameScore: Hashable, Codable, Identifiable {
     }
     
     mutating func addDates() {
-        gameDate = getDatefromBSMString(gamescore: self)
+        gameDate = DateTimeUtility.getDatefromBSMString(gamescore: self)
     }
 }

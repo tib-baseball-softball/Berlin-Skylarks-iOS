@@ -9,16 +9,6 @@ import Foundation
 import EventKit
 import SwiftUI
 
-@available(*, deprecated, message: "the GameScore struct now has a `addDates()` method, but this is still used by the calendar export")
-func getDatefromBSMString(gamescore: GameScore) -> Date {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "y-M-dd HH:mm:ss Z"
-    
-    return dateFormatter.date(from: gamescore.time)!
-    //force unwrapping alert: gametime really should be a required field in BSM DB - let's see if there are crashes
-    //gameDate = dateFormatter.date(from: gamescore.time)!
-}
-
 func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameScore?) {
     // processing
     let formatter = DateFormatter()
