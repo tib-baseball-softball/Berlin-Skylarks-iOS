@@ -27,9 +27,6 @@ func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameS
     //for testing purposes this can be set to some date in the season, normally it's just the current date
     let now = Date()
     //let now = formatter.date(from: "20210928") ?? Date.now // September 27th, 2021 UTC
-    
-    var nextGames = [GameScore]()
-    var previousGames = [GameScore]()
 
     //add game dates to all games to allow for ordering | outsourced below
     var gameList = gamescores
@@ -39,35 +36,10 @@ func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameS
     }
     
     //collect nextGames and add to array
-    for gamescore in gameList where gamescore.gameDate! > now {
-        nextGames.append(gamescore)
-    }
+    let nextGame = gameList.first(where: { $0.gameDate! > now })
+    let previousGame = gameList.first(where: { $0.gameDate! < now })
     
-    //Add last games to separate array and set it to be displayed
-    for gamescore in gameList where gamescore.gameDate! < now {
-        previousGames.append(gamescore)
-    }
-    
-    //case: there is both a last and next game (e.g. middle of the season)
-    if nextGames != [] && previousGames != [] {
-        return (nextGames.first!, previousGames.last!)
-    }
-    
-    //case: there is a previous game and no next game (e.g. season over for selected team)
-    if nextGames == [] && previousGames != [] {
-        return (nil, previousGames.last!)
-    }
-    
-    //case: there is a next game and no previous game (e.g. season has not yet started for selected team)
-    if nextGames != [] && previousGames == [] {
-        return (nextGames.first!, nil)
-    }
-    
-    //case: there is no game at all (error loading data, problems with async?)
-    else {
-        print("nothing to return, gamescores is empty")
-        return (nil, nil)
-    }
+    return (nextGame, previousGame)
 }
 
 func determineTableRow(team: BSMTeam, table: LeagueTable) -> LeagueTable.Row {

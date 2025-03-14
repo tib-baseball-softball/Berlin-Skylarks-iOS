@@ -54,9 +54,9 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
         return teams.map { team in
             let team = BSMTeam(id: team.id, name: team.name, short_name: team.short_name, league_entries: team.league_entries)
             let intent = FavoriteTeamIntent()
-            intent.team = BEATeam(identifier: team.league_entries.first?.league.name, display: team.league_entries.first?.league.name)
+            intent.team = BEATeam(identifier: team.league_entries.first?.league.name, display: team.league_entries.first?.league.name ?? "")
             
-            return IntentRecommendation(intent: intent, description: Text(team.league_entries.first?.league.name))
+            return IntentRecommendation(intent: intent, description: Text(team.league_entries.first?.league.name ?? ""))
         }
     }
     
