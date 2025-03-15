@@ -305,7 +305,6 @@ struct UserHomeView: View {
                 }
             }
         }
-        .listStyle(.insetGrouped)
         .navigationTitle("Dashboard")
     }
 }
