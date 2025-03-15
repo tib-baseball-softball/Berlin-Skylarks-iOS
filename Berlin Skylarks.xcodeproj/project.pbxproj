@@ -12,10 +12,12 @@
 		CA2C18352D21A54E00273312 /* SkylarksAPIClient in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C18342D21A54E00273312 /* SkylarksAPIClient */; };
 		CA2C18402D21B8E100273312 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C183F2D21B8E100273312 /* OpenAPIRuntime */; };
 		CA2C18432D21B90000273312 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C18422D21B90000273312 /* OpenAPIURLSession */; };
-		CA2C189B2D21CC1E00273312 /* SkylarksAPIClient in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C189A2D21CC1E00273312 /* SkylarksAPIClient */; };
 		CA65FF4627F5EC4400F7845D /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA65FF4527F5EC4400F7845D /* Intents.framework */; };
 		CA65FF4927F5EC4400F7845D /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA65FF4827F5EC4400F7845D /* IntentHandler.swift */; };
 		CA65FF5F27F5EC4400F7845D /* Skylarks Intents.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CA65FF4427F5EC4400F7845D /* Skylarks Intents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		CAA393242D85F6A100E80819 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = CAA393232D85F6A100E80819 /* OpenAPIURLSession */; };
+		CAA393272D85F6AF00E80819 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = CAA393262D85F6AF00E80819 /* OpenAPIRuntime */; };
+		CAA393292D85F72A00E80819 /* SkylarksAPIClient in Frameworks */ = {isa = PBXBuildFile; productRef = CAA393282D85F72A00E80819 /* SkylarksAPIClient */; };
 		CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
 		CAE134912771F2E100DFA745 /* WidgetSkylarksExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CAE9C2BC28A9A2740079AB87 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA65FF4827F5EC4400F7845D /* IntentHandler.swift */; };
@@ -123,6 +125,7 @@
 				"/Localized: Localizable.strings",
 				Assets.xcassets,
 				Classes/CalendarManager.swift,
+				Classes/Data/OpenAPIClientAware.swift,
 				Classes/DateTimeUtility.swift,
 				Classes/FavoriteTeamWidgetObject.swift,
 				Classes/MarkdownFile.swift,
@@ -206,16 +209,16 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		CAE1C91D2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Berlin Skylarks" target */ = {
+		CAA393322D85FBD600E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "WidgetSkylarksExtension" target */ = {
 			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = CABF7BE7259351D400B95813 /* Sources */;
+			buildPhase = CAE1347C2771F2DF00DFA745 /* Sources */;
 			membershipExceptions = (
 				"/Localized: WidgetSkylarks.intentdefinition",
 			);
 		};
-		CAE1C91F2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "WidgetSkylarksExtension" target */ = {
+		CAA393352D85FC1500E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Berlin Skylarks" target */ = {
 			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = CAE1347C2771F2DF00DFA745 /* Sources */;
+			buildPhase = CABF7BE7259351D400B95813 /* Sources */;
 			membershipExceptions = (
 				"/Localized: WidgetSkylarks.intentdefinition",
 			);
@@ -244,9 +247,9 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				CAE1C91C2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Berlin Skylarks" target */,
-				CAE1C91D2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Berlin Skylarks" target */,
+				CAA393352D85FC1500E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Berlin Skylarks" target */,
 				CAE1C91E2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "WidgetSkylarksExtension" target */,
-				CAE1C91F2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "WidgetSkylarksExtension" target */,
+				CAA393322D85FBD600E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "WidgetSkylarksExtension" target */,
 				CAE1C9202D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Skylarks Intents" target */,
 				CAE1C9212D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Skylarks Intents" target */,
 			);
@@ -296,7 +299,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA2C189B2D21CC1E00273312 /* SkylarksAPIClient in Frameworks */,
+				CAA393292D85F72A00E80819 /* SkylarksAPIClient in Frameworks */,
+				CAA393242D85F6A100E80819 /* OpenAPIURLSession in Frameworks */,
+				CAA393272D85F6AF00E80819 /* OpenAPIRuntime in Frameworks */,
 				CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */,
 				CA01EF17287DB9A70056166F /* WidgetKit.framework in Frameworks */,
 			);
@@ -473,6 +478,8 @@
 			mainGroup = CABF7BE2259351D400B95813;
 			packageReferences = (
 				CA9FCE7B2D218105006686F4 /* XCRemoteSwiftPackageReference "skylarks-api-client-swift" */,
+				CAA393222D85F6A100E80819 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */,
+				CAA393252D85F6AF00E80819 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CABF7BEC259351D400B95813 /* Products */;
@@ -840,11 +847,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_ASSET_PATHS = "\"Berlin Skylarks/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Berlin Skylarks/Info.plist";
+				INFOPLIST_FILE = Berlin_Skylarks/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Skylarks;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -876,11 +882,10 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
-				DEVELOPMENT_ASSET_PATHS = "\"Berlin Skylarks/Preview Content\"";
 				DEVELOPMENT_TEAM = "";
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Berlin Skylarks/Info.plist";
+				INFOPLIST_FILE = Berlin_Skylarks/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = Skylarks;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.sports";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -1049,6 +1054,22 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		CAA393222D85F6A100E80819 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-openapi-urlsession";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.2;
+			};
+		};
+		CAA393252D85F6AF00E80819 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apple/swift-openapi-runtime";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.8.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1067,7 +1088,17 @@
 			package = CA2C18412D21B90000273312 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */;
 			productName = OpenAPIURLSession;
 		};
-		CA2C189A2D21CC1E00273312 /* SkylarksAPIClient */ = {
+		CAA393232D85F6A100E80819 /* OpenAPIURLSession */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CAA393222D85F6A100E80819 /* XCRemoteSwiftPackageReference "swift-openapi-urlsession" */;
+			productName = OpenAPIURLSession;
+		};
+		CAA393262D85F6AF00E80819 /* OpenAPIRuntime */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CAA393252D85F6AF00E80819 /* XCRemoteSwiftPackageReference "swift-openapi-runtime" */;
+			productName = OpenAPIRuntime;
+		};
+		CAA393282D85F72A00E80819 /* SkylarksAPIClient */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CA9FCE7B2D218105006686F4 /* XCRemoteSwiftPackageReference "skylarks-api-client-swift" */;
 			productName = SkylarksAPIClient;
