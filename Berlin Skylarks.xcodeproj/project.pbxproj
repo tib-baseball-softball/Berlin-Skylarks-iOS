@@ -133,15 +133,6 @@
 		CA1A81BC2D22AFA100B81B8F /* WidgetPreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreviewData.swift; sourceTree = "<group>"; };
 		CA1A81BD2D22AFA100B81B8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/WidgetSkylarks.intentdefinition; sourceTree = "<group>"; };
 		CA1A81C12D22AFA100B81B8F /* WidgetSkylarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSkylarks.swift; sourceTree = "<group>"; };
-		CA1C39A62731856B00BB194C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CA1C39B52731856B00BB194C /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		CA1C39B72731856B00BB194C /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
-		CA1C39BB2731856C00BB194C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CA1C39BE2731856C00BB194C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		CA1C39C02731856C00BB194C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CA1C39C12731856C00BB194C /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
-		CA1C39F727318C6D00BB194C /* Berlin_SkylarksApp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Berlin_SkylarksApp.swift; sourceTree = "<group>"; };
-		CA1C3A162733473100BB194C /* watchOS_globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = watchOS_globals.swift; sourceTree = "<group>"; };
 		CA1CB20A27567E870007D24E /* BSMTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMTeam.swift; sourceTree = "<group>"; };
 		CA1CB210275D15BA0007D24E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BSMLeagueGroup.swift; path = "Berlin Skylarks/Models/BSMLeagueGroup.swift"; sourceTree = SOURCE_ROOT; };
@@ -355,37 +346,6 @@
 			path = WidgetSkylarks;
 			sourceTree = "<group>";
 		};
-		CA1C39A52731856B00BB194C /* WatchSkylarks */ = {
-			isa = PBXGroup;
-			children = (
-				CA1C39A62731856B00BB194C /* Assets.xcassets */,
-			);
-			path = WatchSkylarks;
-			sourceTree = "<group>";
-		};
-		CA1C39B02731856B00BB194C /* WatchSkylarks WatchKit Extension */ = {
-			isa = PBXGroup;
-			children = (
-				CA1C39F727318C6D00BB194C /* Berlin_SkylarksApp.swift */,
-				CA1C39B52731856B00BB194C /* NotificationController.swift */,
-				CA1C39B72731856B00BB194C /* NotificationView.swift */,
-				CA1C3A162733473100BB194C /* watchOS_globals.swift */,
-				CA1C39BB2731856C00BB194C /* Assets.xcassets */,
-				CA1C39C02731856C00BB194C /* Info.plist */,
-				CA1C39C12731856C00BB194C /* PushNotificationPayload.apns */,
-				CA1C39BD2731856C00BB194C /* Preview Content */,
-			);
-			path = "WatchSkylarks WatchKit Extension";
-			sourceTree = "<group>";
-		};
-		CA1C39BD2731856C00BB194C /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				CA1C39BE2731856C00BB194C /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
 		CA65FF4727F5EC4400F7845D /* Skylarks Intents */ = {
 			isa = PBXGroup;
 			children = (
@@ -403,8 +363,6 @@
 				CA9E4CE02943DDFF00D82D3D /* WatchSkylarks-InfoPlist.strings */,
 				CA1CB210275D15BA0007D24E /* README.md */,
 				CABF7BED259351D400B95813 /* Berlin Skylarks */,
-				CA1C39A52731856B00BB194C /* WatchSkylarks */,
-				CA1C39B02731856B00BB194C /* WatchSkylarks WatchKit Extension */,
 				CA1A81C22D22AFA100B81B8F /* WidgetSkylarks */,
 				CA65FF4727F5EC4400F7845D /* Skylarks Intents */,
 				CA2C1A092D21D27B00273312 /* Skylarks IntentsUI */,
