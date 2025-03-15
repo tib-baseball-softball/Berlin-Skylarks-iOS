@@ -3,71 +3,21 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 70;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		CA01EF17287DB9A70056166F /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134822771F2E000DFA745 /* WidgetKit.framework */; };
-		CA0A95B525BF704C00A7C7C3 /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
-		CA1043642D669C6F0054CFBD /* WidgetSkylarks.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1043632D669C6F0054CFBD /* WidgetSkylarks.strings */; };
-		CA1043652D669C6F0054CFBD /* WidgetSkylarks.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1043632D669C6F0054CFBD /* WidgetSkylarks.strings */; };
-		CA1A81C32D22AFA100B81B8F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CA1A81B82D22AFA100B81B8F /* Assets.xcassets */; };
-		CA1A81C52D22AFA100B81B8F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA1A81BB2D22AFA100B81B8F /* InfoPlist.strings */; };
-		CA1A81D22D22AFA100B81B8F /* WidgetPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A81BC2D22AFA100B81B8F /* WidgetPreviewData.swift */; };
-		CA1A81D32D22AFA100B81B8F /* WidgetSkylarks.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A81C12D22AFA100B81B8F /* WidgetSkylarks.swift */; };
-		CA1A81D52D22AFA100B81B8F /* WidgetPreviewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1A81BC2D22AFA100B81B8F /* WidgetPreviewData.swift */; };
-		CA1A81D62D22AFA100B81B8F /* WidgetSkylarks.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CA1A81BE2D22AFA100B81B8F /* WidgetSkylarks.intentdefinition */; };
-		CA1A81D72D22AFA100B81B8F /* WidgetSkylarks.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CA1A81BE2D22AFA100B81B8F /* WidgetSkylarks.intentdefinition */; };
-		CA1A81D82D22AFA100B81B8F /* WidgetSkylarks.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = CA1A81BE2D22AFA100B81B8F /* WidgetSkylarks.intentdefinition */; };
-		CA1CB20B27567E870007D24E /* BSMTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* BSMTeam.swift */; };
 		CA1CB211275D15BA0007D24E /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CA1CB210275D15BA0007D24E /* README.md */; };
-		CA28D66E27A0601B00680067 /* BSMLeagueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */; };
-		CA28D67027A0601B00680067 /* BSMLeagueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */; };
 		CA2C18352D21A54E00273312 /* SkylarksAPIClient in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C18342D21A54E00273312 /* SkylarksAPIClient */; };
 		CA2C18402D21B8E100273312 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C183F2D21B8E100273312 /* OpenAPIRuntime */; };
 		CA2C18432D21B90000273312 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C18422D21B90000273312 /* OpenAPIURLSession */; };
 		CA2C189B2D21CC1E00273312 /* SkylarksAPIClient in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C189A2D21CC1E00273312 /* SkylarksAPIClient */; };
-		CA2D5174294F773100CF465E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
-		CA2D5175294F773200CF465E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
-		CA48557B277383D5004ED11A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
-		CA559AC12D84F4E100801066 /* StreakDataEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA559AC02D84F4E100801066 /* StreakDataEntry.swift */; };
-		CA559AC22D84F4E100801066 /* StreakDataEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA559AC02D84F4E100801066 /* StreakDataEntry.swift */; };
-		CA559AC42D84F4E100801066 /* StreakDataEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA559AC02D84F4E100801066 /* StreakDataEntry.swift */; };
-		CA56F3CA2880569A00138195 /* BSMFunctionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56F3C92880569A00138195 /* BSMFunctionary.swift */; };
-		CA56F3CC2880569A00138195 /* BSMFunctionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56F3C92880569A00138195 /* BSMFunctionary.swift */; };
-		CA56F3CD2880569A00138195 /* BSMFunctionary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56F3C92880569A00138195 /* BSMFunctionary.swift */; };
-		CA56F3CF2880578700138195 /* BSMPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56F3CE2880578700138195 /* BSMPerson.swift */; };
-		CA56F3D12880578700138195 /* BSMPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56F3CE2880578700138195 /* BSMPerson.swift */; };
-		CA56F3D22880578700138195 /* BSMPerson.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56F3CE2880578700138195 /* BSMPerson.swift */; };
-		CA56F3D4288059DA00138195 /* BSMClub.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56F3D3288059DA00138195 /* BSMClub.swift */; };
-		CA56F3D6288059DA00138195 /* BSMClub.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56F3D3288059DA00138195 /* BSMClub.swift */; };
-		CA56F3D7288059DA00138195 /* BSMClub.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56F3D3288059DA00138195 /* BSMClub.swift */; };
-		CA56F3D92880607E00138195 /* BSMLicense.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56F3D82880607E00138195 /* BSMLicense.swift */; };
-		CA56F3DB2880607E00138195 /* BSMLicense.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56F3D82880607E00138195 /* BSMLicense.swift */; };
-		CA56F3DC2880607E00138195 /* BSMLicense.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56F3D82880607E00138195 /* BSMLicense.swift */; };
-		CA56F3E128872A1900138195 /* BSMField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56F3E028872A1900138195 /* BSMField.swift */; };
-		CA56F3E328872A1900138195 /* BSMField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56F3E028872A1900138195 /* BSMField.swift */; };
-		CA56F3E428872DDE00138195 /* BSMField.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA56F3E028872A1900138195 /* BSMField.swift */; };
-		CA5A704729520E3F00F9D853 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA940B86292A963A00D91508 /* Localizable.strings */; };
 		CA65FF4627F5EC4400F7845D /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA65FF4527F5EC4400F7845D /* Intents.framework */; };
 		CA65FF4927F5EC4400F7845D /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA65FF4827F5EC4400F7845D /* IntentHandler.swift */; };
 		CA65FF5F27F5EC4400F7845D /* Skylarks Intents.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CA65FF4427F5EC4400F7845D /* Skylarks Intents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CA65FF6E27F882AA00F7845D /* BSMTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* BSMTeam.swift */; };
-		CA65FF6F27F882BF00F7845D /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
-		CA65FF7027FF271000F7845D /* BSMLeagueGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */; };
-		CA65FF7127FF271600F7845D /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
-		CA940B85292A963A00D91508 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA940B83292A963A00D91508 /* InfoPlist.strings */; };
-		CA940B88292A963A00D91508 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = CA940B86292A963A00D91508 /* Localizable.strings */; };
-		CABF7BEF259351D400B95813 /* Berlin_SkylarksApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BEE259351D400B95813 /* Berlin_SkylarksApp.swift */; };
-		CABF7BF3259351D500B95813 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF2259351D500B95813 /* Assets.xcassets */; };
-		CABF7BF6259351D500B95813 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CABF7BF5259351D500B95813 /* Preview Assets.xcassets */; };
-		CABF7BFB259351D500B95813 /* Berlin_Skylarks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = CABF7BF9259351D500B95813 /* Berlin_Skylarks.xcdatamodeld */; };
-		CAC044A027749D2C00AD9888 /* BSMGameScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */; };
-		CAC044A127749D2F00AD9888 /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
-		CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1CB20A27567E870007D24E /* BSMTeam.swift */; };
 		CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
 		CAE134912771F2E100DFA745 /* WidgetSkylarksExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CAE7740C26C1709B00A57F66 /* BSMStandingsTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */; };
 		CAE9C2BC28A9A2740079AB87 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA65FF4827F5EC4400F7845D /* IntentHandler.swift */; };
 		CAE9C2BD28A9A79C0079AB87 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA65FF4827F5EC4400F7845D /* IntentHandler.swift */; };
 /* End PBXBuildFile section */
@@ -122,172 +72,198 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMGameScore.swift; sourceTree = "<group>"; };
-		CA10435F2D66972C0054CFBD /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/WidgetSkylarks.strings; sourceTree = "<group>"; };
-		CA1043632D669C6F0054CFBD /* WidgetSkylarks.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = WidgetSkylarks.strings; sourceTree = "<group>"; };
-		CA1043672D669CD50054CFBD /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/WidgetSkylarks.strings; sourceTree = "<group>"; };
-		CA1A240C26BC389E00A8D1C7 /* Berlin Skylarks.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Berlin Skylarks.entitlements"; sourceTree = "<group>"; };
-		CA1A81B82D22AFA100B81B8F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CA1A81B92D22AFA100B81B8F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		CA1A81BA2D22AFA100B81B8F /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CA1A81BC2D22AFA100B81B8F /* WidgetPreviewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetPreviewData.swift; sourceTree = "<group>"; };
-		CA1A81BD2D22AFA100B81B8F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; name = Base; path = Base.lproj/WidgetSkylarks.intentdefinition; sourceTree = "<group>"; };
-		CA1A81C12D22AFA100B81B8F /* WidgetSkylarks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetSkylarks.swift; sourceTree = "<group>"; };
-		CA1CB20A27567E870007D24E /* BSMTeam.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMTeam.swift; sourceTree = "<group>"; };
 		CA1CB210275D15BA0007D24E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BSMLeagueGroup.swift; path = "Berlin Skylarks/Models/BSMLeagueGroup.swift"; sourceTree = SOURCE_ROOT; };
 		CA2D51832950D08600CF465E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Base; path = "Base.lproj/Skylarks Intents.entitlements"; sourceTree = "<group>"; };
 		CA3C4C2C28B40C3400F72841 /* BerlinSkylarksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BerlinSkylarksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		CA559AC02D84F4E100801066 /* StreakDataEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreakDataEntry.swift; sourceTree = "<group>"; };
-		CA56F3C92880569A00138195 /* BSMFunctionary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMFunctionary.swift; sourceTree = "<group>"; };
-		CA56F3CE2880578700138195 /* BSMPerson.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMPerson.swift; sourceTree = "<group>"; };
-		CA56F3D3288059DA00138195 /* BSMClub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMClub.swift; sourceTree = "<group>"; };
-		CA56F3D82880607E00138195 /* BSMLicense.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMLicense.swift; sourceTree = "<group>"; };
-		CA56F3E028872A1900138195 /* BSMField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMField.swift; sourceTree = "<group>"; };
 		CA65FF4427F5EC4400F7845D /* Skylarks Intents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Skylarks Intents.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA65FF4527F5EC4400F7845D /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
 		CA65FF4827F5EC4400F7845D /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		CA65FF4A27F5EC4400F7845D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA65FF5027F5EC4400F7845D /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
-		CA940B84292A963A00D91508 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		CA940B87292A963A00D91508 /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
-		CA9E4CDF2943D6BA00D82D3D /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
-		CA9E4CE12943DDFF00D82D3D /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = "WatchSkylarks WatchKit Extension/de.lproj/WatchSkylarks-InfoPlist.strings"; sourceTree = "<group>"; };
 		CABF7BEB259351D400B95813 /* Berlin Skylarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Berlin Skylarks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CABF7BEE259351D400B95813 /* Berlin_SkylarksApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Berlin_SkylarksApp.swift; sourceTree = "<group>"; };
-		CABF7BF2259351D500B95813 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		CABF7BF5259351D500B95813 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		CABF7BFA259351D500B95813 /* Berlin_Skylarks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Berlin_Skylarks.xcdatamodel; sourceTree = "<group>"; };
-		CABF7BFC259351D500B95813 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetSkylarksExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE134822771F2E000DFA745 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		CAE134842771F2E000DFA745 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		CAE134922771F2E100DFA745 /* WidgetSkylarksExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WidgetSkylarksExtension.entitlements; sourceTree = "<group>"; };
-		CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BSMStandingsTable.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		CA2C18852D21BEF300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		CAE1C91C2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Berlin Skylarks" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				FavoriteTeamWidgetObject.swift,
+				WidgetSkylarks.strings,
 			);
 			target = CABF7BEA259351D400B95813 /* Berlin Skylarks */;
 		};
-		CA2C18872D21BEF300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		CAE1C91E2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "WidgetSkylarksExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				CalendarManager.swift,
-				NetworkManager.swift,
-				ViewModels/ClubDataManager.swift,
-				ViewModels/LicenseManager.swift,
-				ViewModels/SkylarksTeamViewModel.swift,
+				"/Localized: WidgetSkylarks.intentdefinition",
+				Info.plist,
 			);
 			target = CAE1347F2771F2DF00DFA745 /* WidgetSkylarksExtension */;
 		};
-		CA2C18882D21BEF300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		CAE1C9202D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Skylarks Intents" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				DateTimeUtility.swift,
-				MarkdownFile.swift,
-				PlayoffSeries.swift,
-				PlayoffTeam.swift,
-				TeamImageData.swift,
-				ViewModels/UserDashboard.swift,
+				WidgetPreviewData.swift,
 			);
 			target = CA65FF4327F5EC4400F7845D /* Skylarks Intents */;
 		};
-		CA2C18892D21BEF300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		CAE1CA692D85EB7400AA7538 /* Exceptions for "Berlin_Skylarks" folder in "Berlin Skylarks" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				DateTimeUtility.swift,
-				MarkdownFile.swift,
-			);
-			target = CA3C4C2B28B40C3400F72841 /* BerlinSkylarksTests */;
-		};
-		CA2C188D2D21C38200273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Client.swift,
-				Types.swift,
-			);
-			target = CAE1347F2771F2DF00DFA745 /* WidgetSkylarksExtension */;
-		};
-		CA2C18C72D21D1E500273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				API_Key.dist,
-			);
-			target = CAE1347F2771F2DF00DFA745 /* WidgetSkylarksExtension */;
-		};
-		CA2C18C82D21D1E500273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				API_Key.dist,
-				ViewModifiers.swift,
-			);
-			target = CA65FF4327F5EC4400F7845D /* Skylarks Intents */;
-		};
-		CA2C18C92D21D1E500273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				AppSettings.swift,
-			);
-			target = CA3C4C2B28B40C3400F72841 /* BerlinSkylarksTests */;
-		};
-		CA2C18DF2D21D1EC00273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				app_pp_de.md,
-				app_pp_en.md,
-			);
-			target = CA65FF4327F5EC4400F7845D /* Skylarks Intents */;
-		};
-		CA2C18E02D21D1EC00273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				app_pp_de.md,
-				app_pp_en.md,
-			);
-			target = CA3C4C2B28B40C3400F72841 /* BerlinSkylarksTests */;
-		};
-		CA2C19AC2D21D1F300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Meta/WatchRootView.swift,
+				Info.plist,
 			);
 			target = CABF7BEA259351D400B95813 /* Berlin Skylarks */;
 		};
-		CA2C19AE2D21D1F300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */ = {
+		CAE1CA6A2D85EB7400AA7538 /* Exceptions for "Berlin_Skylarks" folder in "WidgetSkylarksExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
-				Players_Teams_Club/ClubGridItem.swift,
-				Players_Teams_Club/MapViewWithPin.swift,
-				Scores/BallparkLocation.swift,
-				Scores/GameResultIndicator.swift,
-				Scores/ScoreMainInfo.swift,
-				Scores/ScoreNumber.swift,
-				Scores/ScorerAssignments.swift,
-				Scores/ScoresStatusSection.swift,
-				Scores/UmpireAssignments.swift,
+				"/Localized: Localizable.strings",
+				Assets.xcassets,
+				Classes/CalendarManager.swift,
+				Classes/DateTimeUtility.swift,
+				Classes/FavoriteTeamWidgetObject.swift,
+				Classes/MarkdownFile.swift,
+				Classes/NetworkManager.swift,
+				Classes/PlayoffSeries.swift,
+				Classes/PlayoffTeam.swift,
+				Classes/TeamImageData.swift,
+				Classes/ViewModels/ClubDataManager.swift,
+				Classes/ViewModels/LicenseManager.swift,
+				Classes/ViewModels/TeamDetailViewModel.swift,
+				Classes/ViewModels/TeamsLoader.swift,
+				Classes/ViewModels/UserDashboard.swift,
+				Enums/Gameday.swift,
+				Enums/PlayerListDisplayMode.swift,
+				Enums/ViewState.swift,
+				Generated/Client.swift,
+				Generated/Types.swift,
+				Global/API_Key.dist,
+				Global/API_Key.swift,
+				Global/AppSettings.swift,
+				Global/ColorSets.swift,
+				Global/GlobalFunctions.swift,
+				Global/Ints_Floats.swift,
+				Global/TestData.swift,
+				Global/ViewModifiers.swift,
+				Legal/app_impressum_de.md,
+				Legal/app_impressum_en.md,
+				Legal/app_pp_de.md,
+				Legal/app_pp_en.md,
+				Models/BSMClub.swift,
+				Models/BSMField.swift,
+				Models/BSMFunctionary.swift,
+				Models/BSMGameScore.swift,
+				Models/BSMLeagueGroup.swift,
+				Models/BSMLicense.swift,
+				Models/BSMPerson.swift,
+				Models/BSMStandingsTable.swift,
+				Models/BSMTeam.swift,
+				Models/StreakDataEntry.swift,
+				Views/Scores/ScoreNumber.swift,
 			);
 			target = CAE1347F2771F2DF00DFA745 /* WidgetSkylarksExtension */;
+		};
+		CAE1CA6B2D85EB7400AA7538 /* Exceptions for "Berlin_Skylarks" folder in "Skylarks Intents" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				Classes/DateTimeUtility.swift,
+				Global/API_Key.dist,
+				Global/API_Key.swift,
+				Global/AppSettings.swift,
+				Global/ColorSets.swift,
+				Global/GlobalFunctions.swift,
+				Global/Ints_Floats.swift,
+				Global/TestData.swift,
+				Global/ViewModifiers.swift,
+				Models/BSMClub.swift,
+				Models/BSMField.swift,
+				Models/BSMFunctionary.swift,
+				Models/BSMGameScore.swift,
+				Models/BSMLeagueGroup.swift,
+				Models/BSMLicense.swift,
+				Models/BSMPerson.swift,
+				Models/BSMStandingsTable.swift,
+				Models/BSMTeam.swift,
+				Models/StreakDataEntry.swift,
+			);
+			target = CA65FF4327F5EC4400F7845D /* Skylarks Intents */;
+		};
+		CAE1CA6C2D85EB7400AA7538 /* Exceptions for "Berlin_Skylarks" folder in "BerlinSkylarksTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Assets.xcassets,
+				Enums/Gameday.swift,
+				Enums/PlayerListDisplayMode.swift,
+				Enums/ViewState.swift,
+				Models/BSMLeagueGroup.swift,
+			);
+			target = CA3C4C2B28B40C3400F72841 /* BerlinSkylarksTests */;
 		};
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
+/* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+		CAE1C91D2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Berlin Skylarks" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = CABF7BE7259351D400B95813 /* Sources */;
+			membershipExceptions = (
+				"/Localized: WidgetSkylarks.intentdefinition",
+			);
+		};
+		CAE1C91F2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "WidgetSkylarksExtension" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = CAE1347C2771F2DF00DFA745 /* Sources */;
+			membershipExceptions = (
+				"/Localized: WidgetSkylarks.intentdefinition",
+			);
+		};
+		CAE1C9212D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Skylarks Intents" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = CA65FF4027F5EC4400F7845D /* Sources */;
+			membershipExceptions = (
+				"/Localized: WidgetSkylarks.intentdefinition",
+			);
+		};
+/* End PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
-		CA1A81DC2D22AFC900B81B8F /* FavoriteTeam */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = FavoriteTeam; sourceTree = "<group>"; };
-		CA1A81E42D22AFCB00B81B8F /* Gameday */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Gameday; sourceTree = "<group>"; };
-		CA1A81EC2D22AFCD00B81B8F /* TeamLogo */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = TeamLogo; sourceTree = "<group>"; };
-		CA2C18482D21BDF500273312 /* Generated */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CA2C188D2D21C38200273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Generated; sourceTree = "<group>"; };
-		CA2C185A2D21BEF300273312 /* Classes */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CA2C18852D21BEF300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C18872D21BEF300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C18882D21BEF300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C18892D21BEF300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Classes; sourceTree = "<group>"; };
-		CA2C18902D21C46B00273312 /* Protocols */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Protocols; sourceTree = "<group>"; };
-		CA2C18A42D21D1E500273312 /* Global */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CA2C18C72D21D1E500273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C18C82D21D1E500273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C18C92D21D1E500273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Global; sourceTree = "<group>"; };
-		CA2C18CE2D21D1EC00273312 /* Legal */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CA2C18DF2D21D1EC00273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C18E02D21D1EC00273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Legal; sourceTree = "<group>"; };
-		CA2C19262D21D1F300273312 /* Views */ = {isa = PBXFileSystemSynchronizedRootGroup; exceptions = (CA2C19AC2D21D1F300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, CA2C19AE2D21D1F300273312 /* PBXFileSystemSynchronizedBuildFileExceptionSet */, ); explicitFileTypes = {}; explicitFolders = (); path = Views; sourceTree = "<group>"; };
-		CA2C19B02D21D1FA00273312 /* Enums */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Enums; sourceTree = "<group>"; };
-		CA2C1A092D21D27B00273312 /* Skylarks IntentsUI */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = "Skylarks IntentsUI"; sourceTree = "<group>"; };
-		CA2C1A0B2D21D27F00273312 /* BerlinSkylarksTests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = BerlinSkylarksTests; sourceTree = "<group>"; };
+		CA2C1A092D21D27B00273312 /* Skylarks IntentsUI */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = "Skylarks IntentsUI";
+			sourceTree = "<group>";
+		};
+		CA2C1A0B2D21D27F00273312 /* BerlinSkylarksTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = BerlinSkylarksTests;
+			sourceTree = "<group>";
+		};
+		CAE1C9042D85EB2200AA7538 /* WidgetSkylarks */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CAE1C91C2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Berlin Skylarks" target */,
+				CAE1C91D2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Berlin Skylarks" target */,
+				CAE1C91E2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "WidgetSkylarksExtension" target */,
+				CAE1C91F2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "WidgetSkylarksExtension" target */,
+				CAE1C9202D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Skylarks Intents" target */,
+				CAE1C9212D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Skylarks Intents" target */,
+			);
+			path = WidgetSkylarks;
+			sourceTree = "<group>";
+		};
+		CAE1C9AF2D85EB7400AA7538 /* Berlin_Skylarks */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CAE1CA692D85EB7400AA7538 /* Exceptions for "Berlin_Skylarks" folder in "Berlin Skylarks" target */,
+				CAE1CA6A2D85EB7400AA7538 /* Exceptions for "Berlin_Skylarks" folder in "WidgetSkylarksExtension" target */,
+				CAE1CA6B2D85EB7400AA7538 /* Exceptions for "Berlin_Skylarks" folder in "Skylarks Intents" target */,
+				CAE1CA6C2D85EB7400AA7538 /* Exceptions for "Berlin_Skylarks" folder in "BerlinSkylarksTests" target */,
+			);
+			path = Berlin_Skylarks;
+			sourceTree = "<group>";
+		};
 /* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -329,23 +305,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CA1A81C22D22AFA100B81B8F /* WidgetSkylarks */ = {
-			isa = PBXGroup;
-			children = (
-				CA1A81DC2D22AFC900B81B8F /* FavoriteTeam */,
-				CA1A81E42D22AFCB00B81B8F /* Gameday */,
-				CA1A81EC2D22AFCD00B81B8F /* TeamLogo */,
-				CA1A81B82D22AFA100B81B8F /* Assets.xcassets */,
-				CA1A81B92D22AFA100B81B8F /* Info.plist */,
-				CA1A81BB2D22AFA100B81B8F /* InfoPlist.strings */,
-				CA1A81BC2D22AFA100B81B8F /* WidgetPreviewData.swift */,
-				CA1A81BE2D22AFA100B81B8F /* WidgetSkylarks.intentdefinition */,
-				CA1043632D669C6F0054CFBD /* WidgetSkylarks.strings */,
-				CA1A81C12D22AFA100B81B8F /* WidgetSkylarks.swift */,
-			);
-			path = WidgetSkylarks;
-			sourceTree = "<group>";
-		};
 		CA65FF4727F5EC4400F7845D /* Skylarks Intents */ = {
 			isa = PBXGroup;
 			children = (
@@ -360,10 +319,9 @@
 			isa = PBXGroup;
 			children = (
 				CAE134922771F2E100DFA745 /* WidgetSkylarksExtension.entitlements */,
-				CA9E4CE02943DDFF00D82D3D /* WatchSkylarks-InfoPlist.strings */,
 				CA1CB210275D15BA0007D24E /* README.md */,
-				CABF7BED259351D400B95813 /* Berlin Skylarks */,
-				CA1A81C22D22AFA100B81B8F /* WidgetSkylarks */,
+				CAE1C9AF2D85EB7400AA7538 /* Berlin_Skylarks */,
+				CAE1C9042D85EB2200AA7538 /* WidgetSkylarks */,
 				CA65FF4727F5EC4400F7845D /* Skylarks Intents */,
 				CA2C1A092D21D27B00273312 /* Skylarks IntentsUI */,
 				CA2C1A0B2D21D27F00273312 /* BerlinSkylarksTests */,
@@ -383,37 +341,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		CABF7BED259351D400B95813 /* Berlin Skylarks */ = {
-			isa = PBXGroup;
-			children = (
-				CA2C18902D21C46B00273312 /* Protocols */,
-				CA2C18482D21BDF500273312 /* Generated */,
-				CABF7BEE259351D400B95813 /* Berlin_SkylarksApp.swift */,
-				CA2C185A2D21BEF300273312 /* Classes */,
-				CA2C18A42D21D1E500273312 /* Global */,
-				CA1A240C26BC389E00A8D1C7 /* Berlin Skylarks.entitlements */,
-				CA2C18CE2D21D1EC00273312 /* Legal */,
-				CA2C19262D21D1F300273312 /* Views */,
-				CA2C19B02D21D1FA00273312 /* Enums */,
-				CAFDC20025C0BC63000A5922 /* Models */,
-				CABF7BF2259351D500B95813 /* Assets.xcassets */,
-				CABF7BFC259351D500B95813 /* Info.plist */,
-				CA940B86292A963A00D91508 /* Localizable.strings */,
-				CA940B83292A963A00D91508 /* InfoPlist.strings */,
-				CABF7BF9259351D500B95813 /* Berlin_Skylarks.xcdatamodeld */,
-				CABF7BF4259351D500B95813 /* Preview Content */,
-			);
-			path = "Berlin Skylarks";
-			sourceTree = "<group>";
-		};
-		CABF7BF4259351D500B95813 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				CABF7BF5259351D500B95813 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
 		CAE134812771F2DF00DFA745 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -423,23 +350,6 @@
 				CA65FF5027F5EC4400F7845D /* IntentsUI.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		CAFDC20025C0BC63000A5922 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-				CA559AC02D84F4E100801066 /* StreakDataEntry.swift */,
-				CA0A95B425BF704C00A7C7C3 /* BSMGameScore.swift */,
-				CA28D66D27A0601B00680067 /* BSMLeagueGroup.swift */,
-				CAE7740B26C1709B00A57F66 /* BSMStandingsTable.swift */,
-				CA1CB20A27567E870007D24E /* BSMTeam.swift */,
-				CA56F3C92880569A00138195 /* BSMFunctionary.swift */,
-				CA56F3D82880607E00138195 /* BSMLicense.swift */,
-				CA56F3CE2880578700138195 /* BSMPerson.swift */,
-				CA56F3D3288059DA00138195 /* BSMClub.swift */,
-				CA56F3E028872A1900138195 /* BSMField.swift */,
-			);
-			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -459,7 +369,6 @@
 				CA3C4C3128B40C3400F72841 /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				CA2C19B02D21D1FA00273312 /* Enums */,
 				CA2C1A0B2D21D27F00273312 /* BerlinSkylarksTests */,
 			);
 			name = BerlinSkylarksTests;
@@ -478,9 +387,6 @@
 			buildRules = (
 			);
 			dependencies = (
-			);
-			fileSystemSynchronizedGroups = (
-				CA2C18A42D21D1E500273312 /* Global */,
 			);
 			name = "Skylarks Intents";
 			productName = "Skylarks Intents";
@@ -504,13 +410,7 @@
 				CA65FF5E27F5EC4400F7845D /* PBXTargetDependency */,
 			);
 			fileSystemSynchronizedGroups = (
-				CA2C18482D21BDF500273312 /* Generated */,
-				CA2C185A2D21BEF300273312 /* Classes */,
-				CA2C18902D21C46B00273312 /* Protocols */,
-				CA2C18A42D21D1E500273312 /* Global */,
-				CA2C18CE2D21D1EC00273312 /* Legal */,
-				CA2C19262D21D1F300273312 /* Views */,
-				CA2C19B02D21D1FA00273312 /* Enums */,
+				CAE1C9AF2D85EB7400AA7538 /* Berlin_Skylarks */,
 			);
 			name = "Berlin Skylarks";
 			productName = "Berlin Skylarks";
@@ -530,13 +430,7 @@
 			dependencies = (
 			);
 			fileSystemSynchronizedGroups = (
-				CA1A81DC2D22AFC900B81B8F /* FavoriteTeam */,
-				CA1A81E42D22AFCB00B81B8F /* Gameday */,
-				CA1A81EC2D22AFCD00B81B8F /* TeamLogo */,
-				CA2C185A2D21BEF300273312 /* Classes */,
-				CA2C18A42D21D1E500273312 /* Global */,
-				CA2C18CE2D21D1EC00273312 /* Legal */,
-				CA2C19B02D21D1FA00273312 /* Enums */,
+				CAE1C9042D85EB2200AA7538 /* WidgetSkylarks */,
 			);
 			name = WidgetSkylarksExtension;
 			productName = WidgetSkylarksExtension;
@@ -569,7 +463,6 @@
 				};
 			};
 			buildConfigurationList = CABF7BE6259351D400B95813 /* Build configuration list for PBXProject "Berlin Skylarks" */;
-			compatibilityVersion = "Xcode 14.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -581,6 +474,7 @@
 			packageReferences = (
 				CA9FCE7B2D218105006686F4 /* XCRemoteSwiftPackageReference "skylarks-api-client-swift" */,
 			);
+			preferredProjectObjectVersion = 77;
 			productRefGroup = CABF7BEC259351D400B95813 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -598,7 +492,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA2D5175294F773200CF465E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -606,7 +499,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA2D5174294F773100CF465E /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -614,12 +506,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA940B85292A963A00D91508 /* InfoPlist.strings in Resources */,
-				CABF7BF6259351D500B95813 /* Preview Assets.xcassets in Resources */,
 				CA1CB211275D15BA0007D24E /* README.md in Resources */,
-				CA940B88292A963A00D91508 /* Localizable.strings in Resources */,
-				CA1043642D669C6F0054CFBD /* WidgetSkylarks.strings in Resources */,
-				CABF7BF3259351D500B95813 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -627,11 +514,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA48557B277383D5004ED11A /* Assets.xcassets in Resources */,
-				CA5A704729520E3F00F9D853 /* Localizable.strings in Resources */,
-				CA1A81C32D22AFA100B81B8F /* Assets.xcassets in Resources */,
-				CA1A81C52D22AFA100B81B8F /* InfoPlist.strings in Resources */,
-				CA1043652D669C6F0054CFBD /* WidgetSkylarks.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,19 +531,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA559AC22D84F4E100801066 /* StreakDataEntry.swift in Sources */,
-				CA65FF6E27F882AA00F7845D /* BSMTeam.swift in Sources */,
-				CA1A81D82D22AFA100B81B8F /* WidgetSkylarks.intentdefinition in Sources */,
-				CA56F3CD2880569A00138195 /* BSMFunctionary.swift in Sources */,
-				CA65FF7027FF271000F7845D /* BSMLeagueGroup.swift in Sources */,
-				CA56F3E428872DDE00138195 /* BSMField.swift in Sources */,
-				CA65FF6F27F882BF00F7845D /* BSMGameScore.swift in Sources */,
-				CA1A81D52D22AFA100B81B8F /* WidgetPreviewData.swift in Sources */,
-				CA56F3D7288059DA00138195 /* BSMClub.swift in Sources */,
 				CA65FF4927F5EC4400F7845D /* IntentHandler.swift in Sources */,
-				CA56F3D22880578700138195 /* BSMPerson.swift in Sources */,
-				CA56F3DC2880607E00138195 /* BSMLicense.swift in Sources */,
-				CA65FF7127FF271600F7845D /* BSMStandingsTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -669,19 +539,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA1CB20B27567E870007D24E /* BSMTeam.swift in Sources */,
-				CA28D66E27A0601B00680067 /* BSMLeagueGroup.swift in Sources */,
-				CA56F3E128872A1900138195 /* BSMField.swift in Sources */,
-				CA559AC12D84F4E100801066 /* StreakDataEntry.swift in Sources */,
-				CA0A95B525BF704C00A7C7C3 /* BSMGameScore.swift in Sources */,
-				CABF7BEF259351D400B95813 /* Berlin_SkylarksApp.swift in Sources */,
-				CA56F3D4288059DA00138195 /* BSMClub.swift in Sources */,
-				CA56F3D92880607E00138195 /* BSMLicense.swift in Sources */,
-				CA1A81D62D22AFA100B81B8F /* WidgetSkylarks.intentdefinition in Sources */,
-				CAE7740C26C1709B00A57F66 /* BSMStandingsTable.swift in Sources */,
-				CA56F3CA2880569A00138195 /* BSMFunctionary.swift in Sources */,
-				CABF7BFB259351D500B95813 /* Berlin_Skylarks.xcdatamodeld in Sources */,
-				CA56F3CF2880578700138195 /* BSMPerson.swift in Sources */,
 				CAE9C2BD28A9A79C0079AB87 /* IntentHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -690,20 +547,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA1A81D22D22AFA100B81B8F /* WidgetPreviewData.swift in Sources */,
-				CA1A81D32D22AFA100B81B8F /* WidgetSkylarks.swift in Sources */,
-				CA56F3DB2880607E00138195 /* BSMLicense.swift in Sources */,
-				CA559AC42D84F4E100801066 /* StreakDataEntry.swift in Sources */,
-				CA28D67027A0601B00680067 /* BSMLeagueGroup.swift in Sources */,
-				CAC044A327749D3400AD9888 /* BSMTeam.swift in Sources */,
 				CAE9C2BC28A9A2740079AB87 /* IntentHandler.swift in Sources */,
-				CA56F3E328872A1900138195 /* BSMField.swift in Sources */,
-				CA1A81D72D22AFA100B81B8F /* WidgetSkylarks.intentdefinition in Sources */,
-				CAC044A027749D2C00AD9888 /* BSMGameScore.swift in Sources */,
-				CA56F3D6288059DA00138195 /* BSMClub.swift in Sources */,
-				CA56F3D12880578700138195 /* BSMPerson.swift in Sources */,
-				CA56F3CC2880569A00138195 /* BSMFunctionary.swift in Sources */,
-				CAC044A127749D2F00AD9888 /* BSMStandingsTable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -728,55 +572,12 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		CA1A81BB2D22AFA100B81B8F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA1A81BA2D22AFA100B81B8F /* de */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		CA1A81BE2D22AFA100B81B8F /* WidgetSkylarks.intentdefinition */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA1A81BD2D22AFA100B81B8F /* Base */,
-				CA10435F2D66972C0054CFBD /* en */,
-				CA1043672D669CD50054CFBD /* de */,
-			);
-			name = WidgetSkylarks.intentdefinition;
-			sourceTree = "<group>";
-		};
 		CA2D51842950D08600CF465E /* Skylarks Intents.entitlements */ = {
 			isa = PBXVariantGroup;
 			children = (
 				CA2D51832950D08600CF465E /* Base */,
 			);
 			name = "Skylarks Intents.entitlements";
-			sourceTree = "<group>";
-		};
-		CA940B83292A963A00D91508 /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA940B84292A963A00D91508 /* de */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		CA940B86292A963A00D91508 /* Localizable.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA940B87292A963A00D91508 /* de */,
-				CA9E4CDF2943D6BA00D82D3D /* en */,
-			);
-			name = Localizable.strings;
-			sourceTree = "<group>";
-		};
-		CA9E4CE02943DDFF00D82D3D /* WatchSkylarks-InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA9E4CE12943DDFF00D82D3D /* de */,
-			);
-			name = "WatchSkylarks-InfoPlist.strings";
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -1035,11 +836,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Berlin Skylarks/Berlin Skylarks.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Berlin_Skylarks/Berlin_Skylarks.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Berlin Skylarks/Preview Content\"";
-				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
+				DEVELOPMENT_TEAM = "";
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Berlin Skylarks/Info.plist";
@@ -1054,6 +856,7 @@
 				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1069,11 +872,12 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				ASSETCATALOG_COMPILER_INCLUDE_ALL_APPICON_ASSETS = NO;
-				CODE_SIGN_ENTITLEMENTS = "Berlin Skylarks/Berlin Skylarks.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Berlin_Skylarks/Berlin_Skylarks.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"Berlin Skylarks/Preview Content\"";
-				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
+				DEVELOPMENT_TEAM = "";
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = "Berlin Skylarks/Info.plist";
@@ -1088,6 +892,7 @@
 				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = "de.davidbattefeld.berlinskylarks.Berlin-Skylarks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
@@ -1268,19 +1073,6 @@
 			productName = SkylarksAPIClient;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-/* Begin XCVersionGroup section */
-		CABF7BF9259351D500B95813 /* Berlin_Skylarks.xcdatamodeld */ = {
-			isa = XCVersionGroup;
-			children = (
-				CABF7BFA259351D500B95813 /* Berlin_Skylarks.xcdatamodel */,
-			);
-			currentVersion = CABF7BFA259351D500B95813 /* Berlin_Skylarks.xcdatamodel */;
-			path = Berlin_Skylarks.xcdatamodeld;
-			sourceTree = "<group>";
-			versionGroupType = wrapper.xcdatamodel;
-		};
-/* End XCVersionGroup section */
 	};
 	rootObject = CABF7BE3259351D400B95813 /* Project object */;
 }
