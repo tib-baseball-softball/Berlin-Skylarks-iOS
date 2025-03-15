@@ -8,7 +8,7 @@
 import Foundation
 import SwiftUI
 
-#if !os(watchOS) && !os(macOS)
+#if !os(macOS)
 let ScoresSubItemBackground = Color(UIColor.tertiarySystemFill)
 let ColorStandingsTableHeadline = Color(UIColor.secondarySystemFill)
 
@@ -36,7 +36,7 @@ extension Color {
     static let skylarksAdaptiveBlue = Color("SkylarksAdaptiveBlue")
     static let skylarksDynamicNavySand = Color("SkylarksDynamicNavySand")
     
-    #if !os(watchOS) && !os(macOS)
+    #if !os(macOS)
     static let primaryBackground = Color(uiColor: .systemBackground)
     static let secondaryBackground = Color(uiColor: .secondarySystemBackground)
     #endif

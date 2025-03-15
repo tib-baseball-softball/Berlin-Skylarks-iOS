@@ -9,17 +9,13 @@ import SwiftUI
 
 struct LicenseDetailView: View {
     var license: BSMLicense
-    
+
     var body: some View {
         List {
             Section {
                 HStack {
                     LicenseLevelIndicator(level: license.level)
-#if !os(watchOS)
-                .font(.title)
-#else
-                .font(.title2)
-#endif
+                        .font(.title)
                     Text(license.category)
                 }
                 if license.baseball {
@@ -47,20 +43,21 @@ struct LicenseDetailView: View {
             }
             Section {
                 HStack {
-                    Image(systemName: license.category == "Scorer" ? "pencil" : "person.fill")
-                        .clubIconStyleDynamic()
-                    Text("\(license.person.first_name) \(license.person.last_name)")
-#if !os(watchOS)
-                        .textSelection(.enabled)
-#endif
+                    Image(
+                        systemName: license.category == "Scorer"
+                            ? "pencil" : "person.fill"
+                    )
+                    .clubIconStyleDynamic()
+                    Text(
+                        "\(license.person.first_name) \(license.person.last_name)"
+                    )
+                    .textSelection(.enabled)
                 }
                 HStack {
                     Image(systemName: "number")
                         .clubIconStyleDynamic()
                     Text(license.number)
-#if !os(watchOS)
                         .textSelection(.enabled)
-#endif
                 }
                 HStack {
                     Image(systemName: "calendar")

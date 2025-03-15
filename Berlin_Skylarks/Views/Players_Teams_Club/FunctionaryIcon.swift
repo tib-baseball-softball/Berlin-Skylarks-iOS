@@ -21,9 +21,7 @@ struct FunctionaryIcon: View {
             Image(systemName: "pencil.circle")
                 .foregroundColor(.skylarksRed)
         } else if functionary.category.contains("Jugend") {
-            //iOS 16
-            //Image(systemName: "figure.and.child.holdinghands")
-            Image(systemName: "person.2")
+            Image(systemName: "figure.and.child.holdinghands")
                 .colorDynamicNavySandWatchOS()
         } else if functionary.category.contains("Umpire") {
             Image(systemName: "person")

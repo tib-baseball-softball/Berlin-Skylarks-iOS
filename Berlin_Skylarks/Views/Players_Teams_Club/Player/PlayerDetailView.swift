@@ -15,23 +15,17 @@ struct PlayerDetailView: View {
             Section {
                 PlayerHeaderView(player: player)
             }
-            #if !os(watchOS)
-                .listRowSeparatorTint(.skylarksDynamicNavySand)
-            #endif
+            .listRowSeparatorTint(.skylarksDynamicNavySand)
 
             Section(header: Text("Player Data")) {
                 PlayerMetaView(player: player)
             }
-            #if !os(watchOS)
-                .listRowSeparatorTint(.skylarksDynamicNavySand)
-            #endif
+            .listRowSeparatorTint(.skylarksDynamicNavySand)
 
             Section(header: Text("On the Field")) {
                 PlayerFieldView(player: player)
             }
-            #if !os(watchOS)
-                .listRowSeparatorTint(.skylarksDynamicNavySand)
-            #endif
+            .listRowSeparatorTint(.skylarksDynamicNavySand)
         }
         .navigationTitle("Player Details")
         #if !os(macOS)

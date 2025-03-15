@@ -25,9 +25,9 @@ struct TeamListView: View {
                     HStack {
                         Image(systemName: "person.3.fill")
                             .padding(.trailing)
-                        #if !os(watchOS)
-                            Text("Team")
-                        #endif
+                        
+                        Text("Team")
+                        
                         Spacer()
                         Text("Acronym")
                             .frame(maxWidth: 110, alignment: .leading)

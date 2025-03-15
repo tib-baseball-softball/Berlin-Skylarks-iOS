@@ -8,7 +8,6 @@
 import Foundation
 @preconcurrency import EventKit // remove me once Apple makes it concurrency-safe
 
-#if !os(watchOS)
 @MainActor
 @Observable
 class CalendarManager {
@@ -92,4 +91,3 @@ class CalendarManager {
         }
     }
 }
-#endif

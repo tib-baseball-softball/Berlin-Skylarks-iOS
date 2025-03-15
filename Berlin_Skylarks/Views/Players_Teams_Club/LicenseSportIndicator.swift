@@ -10,16 +10,12 @@ import SwiftUI
 struct LicenseSportIndicator: View {
     //this view can never have both
     var baseball: Bool
-    
+
     var body: some View {
         if baseball == true {
             ZStack {
                 Image(systemName: "circle.fill")
-#if !os(watchOS)
-                .font(.title)
-#else
-                .font(.title2)
-#endif
+                    .font(.title)
                     .foregroundColor(.skylarksRed)
                 Text("BB")
                     .bold()
@@ -29,11 +25,7 @@ struct LicenseSportIndicator: View {
         } else {
             ZStack {
                 Image(systemName: "circle.fill")
-#if !os(watchOS)
-                .font(.title)
-#else
-                .font(.title2)
-#endif
+                    .font(.title)
                     .foregroundColor(.skylarksDynamicNavySand)
                 Text("SB")
                     .foregroundColor(.white)

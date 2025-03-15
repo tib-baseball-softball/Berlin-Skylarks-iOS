@@ -9,15 +9,20 @@ import SwiftUI
 
 struct PrivacyPolicyView: View {
     var languageCode: String
-    
+
     var body: some View {
         ScrollView {
-            let privacyPolicyText = MarkdownFile(stringLiteral: "app_pp_\(languageCode).md")
-            
-            Text(try! AttributedString(markdown: privacyPolicyText.rawMarkdown ?? "Default Privacy Policy text.", options: AttributedString.MarkdownParsingOptions(interpretedSyntax: .inlineOnlyPreservingWhitespace)))
-#if !os(watchOS)
+            let privacyPolicyText = MarkdownFile(
+                stringLiteral: "app_pp_\(languageCode).md")
+
+            Text(
+                try! AttributedString(
+                    markdown: privacyPolicyText.rawMarkdown
+                        ?? "Default Privacy Policy text.",
+                    options: AttributedString.MarkdownParsingOptions(
+                        interpretedSyntax: .inlineOnlyPreservingWhitespace))
+            )
             .textSelection(.enabled)
-#endif
             .padding()
         }
         .navigationTitle("Privacy Policy")

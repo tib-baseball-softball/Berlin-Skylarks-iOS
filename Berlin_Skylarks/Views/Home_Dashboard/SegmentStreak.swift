@@ -89,6 +89,5 @@ struct SegmentStreak_Previews: PreviewProvider {
         List {
             SegmentStreak(userDashboard: UserDashboard())
         }
-        //.preferredColorScheme(.dark)
     }
 }

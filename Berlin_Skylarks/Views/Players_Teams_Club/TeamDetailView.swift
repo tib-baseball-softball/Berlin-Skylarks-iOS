@@ -38,71 +38,69 @@ struct TeamDetailView: View {
                 }
                 .padding(.vertical, listRowPadding)
             }
-            
+
             Section(header: Text("Practice Times")) {
                 switch vm.trainingState {
-                    case .notInitialised:
-                        Text("unitialised")
-                    case .loading:
-                        LoadingView()
-                    case .found:
-                        Button("Show Practices") {
-                            showingTrainingSheet = true
-                        }
-                        .sheet(isPresented: $showingTrainingSheet) {
-                            TrainingSheet(trainings: vm.trainings)
-                                .presentationDetents([.fraction(0.75), .large])
-                                .frame(height: 500)
-                        }
-                        
-                    case .noResults:
-                        ContentUnavailableView(
-                            "No Trainings found.", systemImage: "dumbbell")
-                    case .error:
-                        ContentUnavailableView(
-                            "An error occured while loading data.",
-                            systemImage: "exclamationmark.square")
+                case .notInitialised:
+                    Text("unitialised")
+                case .loading:
+                    LoadingView()
+                case .found:
+                    Button("Show Practices") {
+                        showingTrainingSheet = true
+                    }
+                    .sheet(isPresented: $showingTrainingSheet) {
+                        TrainingSheet(trainings: vm.trainings)
+                            .presentationDetents([.fraction(0.75), .large])
+                            .frame(height: 500)
+                    }
+
+                case .noResults:
+                    ContentUnavailableView(
+                        "No Trainings found.", systemImage: "dumbbell")
+                case .error:
+                    ContentUnavailableView(
+                        "An error occured while loading data.",
+                        systemImage: "exclamationmark.square")
                 }
             }
-            
+
             Section(header: Text("Player Profiles")) {
                 Picker("Display mode", selection: $playerListDisplayMode) {
                     Text("Image").tag(PlayerListDisplayMode.image)
                     Text("Number").tag(PlayerListDisplayMode.number)
                 }
-#if !os(watchOS)
                 .pickerStyle(.segmented)
-#endif
-                
+
                 switch vm.playerState {
-                    case .notInitialised:
-                        Text("unitialised")
-                    case .loading:
-                        LoadingView()
-                    case .found:
-                        ForEach(vm.players, id: \.uid) { player in
-                            NavigationLink(
-                                destination: PlayerDetailView(player: player)
-                            ) {
-                                PlayerListRow(
-                                    player: player,
-                                    displayMode: playerListDisplayMode)
-                            }
+                case .notInitialised:
+                    Text("unitialised")
+                case .loading:
+                    LoadingView()
+                case .found:
+                    ForEach(vm.players, id: \.uid) { player in
+                        NavigationLink(
+                            destination: PlayerDetailView(player: player)
+                        ) {
+                            PlayerListRow(
+                                player: player,
+                                displayMode: playerListDisplayMode)
                         }
-                    case .noResults:
-                        ContentUnavailableView(
-                            "No Players found.", systemImage: "person.3.fill")
-                    case .error:
-                        ContentUnavailableView(
-                            "An error occured while loading data.",
-                            systemImage: "exclamationmark.square")
+                    }
+                case .noResults:
+                    ContentUnavailableView(
+                        "No Players found.", systemImage: "person.3.fill")
+                case .error:
+                    ContentUnavailableView(
+                        "An error occured while loading data.",
+                        systemImage: "exclamationmark.square")
                 }
             }
         }
         .navigationTitle(team.name)
-#if os(iOS)
-        .navigationBarTitleDisplayMode(.inline)
-#endif
+        #if os(iOS)
+            .navigationBarTitleDisplayMode(.inline)
+        #endif
         .frame(maxWidth: 600)
 
         .refreshable {

@@ -9,24 +9,13 @@ import SwiftUI
 
 struct LicenseRow: View {
     var license: BSMLicense
-    
+
     var body: some View {
         HStack {
             LicenseLevelIndicator(level: license.level)
-#if !os(watchOS)
                 .font(.title)
-#else
-                .font(.title3)
-#endif
                 .clubIconStyleDynamic()
             Text("\(license.person.last_name), \(license.person.first_name)")
-//            Spacer()
-//            if license.baseball {
-//                LicenseSportIndicator(baseball: true)
-//            }
-//            if license.softball {
-//                LicenseSportIndicator(baseball: false)
-//            }
         }
     }
 }

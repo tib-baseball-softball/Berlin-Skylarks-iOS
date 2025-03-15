@@ -26,18 +26,10 @@ struct UmpireAssignments: View {
             }.padding(ScoresItemPadding)
         }
         
-        if !gamescore.umpire_assignments.indices.contains(0) {
+        if gamescore.umpire_assignments.isEmpty {
             HStack {
                 Image(systemName: "person.fill")
-                Text("No first umpire assigned yet")
-                Spacer()
-            }.padding(ScoresItemPadding)
-        }
-        
-        if !gamescore.umpire_assignments.indices.contains(1) {
-            HStack {
-                Image(systemName: "person.fill")
-                Text("No second umpire assigned yet")
+                Text("No umpires assigned yet")
                 Spacer()
             }.padding(ScoresItemPadding)
         }

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct FunctionaryDetailView: View {
     var functionary: BSMFunctionary
-    
+
     var body: some View {
         List {
             Section {
@@ -17,9 +17,7 @@ struct FunctionaryDetailView: View {
                     FunctionaryIcon(functionary: functionary)
                         .clubIconStyleDynamic()
                     Text(functionary.function)
-#if !os(watchOS)
                         .textSelection(.enabled)
-#endif
                 }
                 HStack {
                     Image(systemName: "info.circle")
@@ -27,46 +25,44 @@ struct FunctionaryDetailView: View {
                         .clubIconStyleDynamic()
                     Text(functionary.category)
                         .foregroundColor(.secondary)
-#if !os(watchOS)
                         .textSelection(.enabled)
-#endif
                 }
             }
-#if !os(watchOS)
-        .listRowSeparatorTint(.skylarksSand)
-#endif
+            .listRowSeparatorTint(.skylarksSand)
             Section {
                 HStack {
                     Image(systemName: "rhombus")
                         .clubIconStyleDynamic()
-                    Text("\(functionary.person.last_name), \(functionary.person.first_name)")
-                        .font(.headline)
-                        .padding(.vertical, 1)
-#if !os(watchOS)
-                        .textSelection(.enabled)
-#endif
+                    Text(
+                        "\(functionary.person.last_name), \(functionary.person.first_name)"
+                    )
+                    .font(.headline)
+                    .padding(.vertical, 1)
+                    .textSelection(.enabled)
                 }
                 let mailtoUrl = URL(string: "mailto:\(functionary.mail)")!
 
                 HStack {
                     Image(systemName: "envelope")
                         .clubIconStyleDynamic()
-                    Button("\(functionary.mail)", action: {
-#if !os(watchOS) && !os(macOS)
-                        if UIApplication.shared.canOpenURL(mailtoUrl) {
-                            UIApplication.shared.open(mailtoUrl, options: [:])
-                        }
-#endif
-#if os(macOS)
-                       // TODO: send email
-#endif
-                    })
+                    Button(
+                        "\(functionary.mail)",
+                        action: {
+                            #if !os(macOS)
+                                if UIApplication.shared.canOpenURL(mailtoUrl) {
+                                    UIApplication.shared.open(
+                                        mailtoUrl, options: [:])
+                                }
+                            #endif
+
+                            #if os(macOS)
+                                // TODO: send email
+                            #endif
+                        })
                 }
 
             }
-#if !os(watchOS)
-        .listRowSeparatorTint(.skylarksSand)
-#endif
+            .listRowSeparatorTint(.skylarksSand)
         }
         .navigationTitle("Contact Details")
     }
@@ -77,6 +73,6 @@ struct FunctionaryDetailView_Previews: PreviewProvider {
         NavigationView {
             FunctionaryDetailView(functionary: previewFunctionary)
         }
-            .preferredColorScheme(.dark)
+        .preferredColorScheme(.dark)
     }
 }

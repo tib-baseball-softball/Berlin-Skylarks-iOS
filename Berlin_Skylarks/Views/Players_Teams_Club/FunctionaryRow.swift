@@ -20,7 +20,6 @@ struct FunctionaryRow: View {
                     .foregroundColor(.secondary)
                 Text("\(functionary.person.last_name), \(functionary.person.first_name)")
                     .bold()
-                    //.padding(1)
             }
             .padding(3)
         }

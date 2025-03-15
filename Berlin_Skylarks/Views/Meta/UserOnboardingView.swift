@@ -8,17 +8,19 @@
 import SwiftUI
 
 struct UserOnboardingView: View {
-    
+
     @Environment(\.dismiss) var dismiss
-    
+
     @State private var showingPicker = false
     @State var teams = [BSMTeam]()
-    
+
     //this is always the current year here, so it should be set immediately
-    @AppStorage("selectedSeason") var selectedSeason = Calendar(identifier: .gregorian).dateComponents([.year], from: .now).year!
-    
+    @AppStorage("selectedSeason") var selectedSeason = Calendar(
+        identifier: .gregorian
+    ).dateComponents([.year], from: .now).year!
+
     @AppStorage("favoriteTeamID") var favoriteTeamID = 0
-    
+
     func fetchTeams() async {
         do {
             teams = try await loadSkylarksTeams(season: selectedSeason)
@@ -26,11 +28,9 @@ struct UserOnboardingView: View {
             print("Request failed with error: \(error)")
         }
     }
-    
 
     var body: some View {
-        
-#if !os(watchOS)
+
         VStack {
             TeamImageData.skylarksPrimaryLogo
                 .resizable()
@@ -42,10 +42,12 @@ struct UserOnboardingView: View {
                     .font(.title)
                     .bold()
                     .padding(.top)
-                Text("Please select your favorite team to optimize your experience. Your favorite team appears in the Home dashboard.")
-                    .fixedSize(horizontal: false, vertical: true)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
+                Text(
+                    "Please select your favorite team to optimize your experience. Your favorite team appears in the Home dashboard."
+                )
+                .fixedSize(horizontal: false, vertical: true)
+                .font(.subheadline)
+                .foregroundColor(.secondary)
                 VStack {
                     if !teams.isEmpty {
                         HStack {
@@ -61,31 +63,34 @@ struct UserOnboardingView: View {
                         .foregroundColor(.white)
                         .background(Color.skylarksRed)
                         .cornerRadius(10)
-                        
+
                         .onTapGesture {
                             withAnimation {
                                 showingPicker.toggle()
                             }
                         }
                         if showingPicker == true {
-                            Picker(selection: $favoriteTeamID,
-                                   label:
-                                        Text("Favorite Team")
+                            Picker(
+                                selection: $favoriteTeamID,
+                                label:
+                                    Text("Favorite Team")
                             ) {
                                 Text("No Team")
                                     .tag(AppSettings.NO_TEAM_ID)
                                 ForEach(teams, id: \.self) { team in
                                     if !team.league_entries.isEmpty {
-                                        Text("\(team.name) (\(team.league_entries[0].league.name))")
-                                            .tag(team.id)
+                                        Text(
+                                            "\(team.name) (\(team.league_entries[0].league.name))"
+                                        )
+                                        .tag(team.id)
                                     }
                                 }
                             }
                             .transition(.scale)
                             #if os(iOS)
-                            .pickerStyle(.wheel)
+                                .pickerStyle(.wheel)
                             #elseif os(macOS)
-                            .pickerStyle(.menu)
+                                .pickerStyle(.menu)
                             #endif
                         }
                     } else {
@@ -101,7 +106,7 @@ struct UserOnboardingView: View {
                     }
                 }
                 .padding(.bottom)
-                
+
             }
             HStack {
                 Spacer()
@@ -120,97 +125,12 @@ struct UserOnboardingView: View {
         .padding()
         //cannot be closed by gesture
         .interactiveDismissDisabled()
-        
+
         .onAppear(perform: {
             Task {
                 await fetchTeams()
             }
         })
-        
-        //---------------------------------------------------------//
-        //-----------start Apple Watch-specific code---------------//
-        //---------------------------------------------------------//
-#else
-        List {
-            //Spacer()
-            VStack(alignment: .leading) {
-                HStack {
-                    Text("Welcome to the app!")
-                    //.font(.title)
-                        .bold()
-                    Spacer()
-                    TeamImageData.skylarksPrimaryLogo
-                        .resizable()
-                        .scaledToFit()
-                        .frame(maxWidth: 40)
-                }
-                Text("Please select your favorite team to optimize your experience. Your favorite team appears in the Home dashboard.")
-                    .fixedSize(horizontal: false, vertical: true)
-                    .font(.subheadline)
-                    .foregroundColor(.secondary)
-            }
-            if !teams.isEmpty {
-                
-                Button(action: {
-                    withAnimation {
-                        showingPicker.toggle()
-                    }
-                }) {
-                    HStack {
-                        Image(systemName: "star.square.fill")
-                            .foregroundColor(.skylarksRed)
-                        Text("Select Favorite Team")
-                            .bold()
-                    }
-                }
-                if showingPicker == true {
-                    Picker(selection: $favoriteTeamID,
-                           label:
-                                Text("Favorite Team")
-                    ) {
-                        ForEach(teams, id: \.self) { team in
-                            if !team.league_entries.isEmpty {
-                                Text("\(team.name) (\(team.league_entries[0].league.name))")
-                                    .tag(team.id)
-                            }
-                        }
-                    }
-                    .transition(.scale)
-                    .pickerStyle(.inline)
-                }
-            } else {
-                HStack {
-                    Text("Loading teams for current season...")
-                    Spacer()
-                    ProgressView()
-                }
-                .font(.title3)
-                .cornerRadius(10)
-            }
-            HStack {
-                Spacer()
-                Button(action: {
-                    dismiss()
-                }) {
-                    Text("Accept selection")
-                        .bold()
-                        .foregroundColor(.skylarksRed)
-                }
-                //tappable only after a favorite team is selected
-                .disabled(favoriteTeamID == 0)
-                Spacer()
-            }
-            //.listItemTint(.skylarksRed)
-        }
-        //cannot be closed by gesture
-        .interactiveDismissDisabled()
-        
-        .onAppear(perform: {
-            Task {
-                await fetchTeams()
-            }
-        })
-#endif
     }
 }
 

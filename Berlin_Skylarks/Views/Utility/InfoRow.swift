@@ -27,3 +27,7 @@ struct InfoRow: View {
         }
     }
 }
+
+#Preview {
+    InfoRow(iconName: "pencil", title: "Test", value: "7")
+}

@@ -17,27 +17,16 @@ struct ClubGridItem: View {
         HStack {
             VStack(alignment: .leading, spacing: 10) {
                 Image(systemName: systemImage)
-#if !os(watchOS)
                     .font(.title2)
                     .foregroundColor(.skylarksDynamicNavySand)
-#else
-                    .font(.title3)
-                    .foregroundColor(.skylarksSand)
-#endif
                 Text(LocalizedStringKey(itemName))
                     .fixedSize()
-#if !os(watchOS)
                     .font(.headline)
-#else
-                    .font(.footnote)
-#endif
             }
             Spacer()
         }
         .padding()
-#if !os(watchOS)
         .iOS { $0.background(Color.secondaryBackground) }
-#endif
         .cornerRadius(15)
     }
 }

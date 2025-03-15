@@ -12,7 +12,7 @@ struct ScorerAssignments: View {
     var gamescore: GameScore
     
     var body: some View {
-        if gamescore.scorer_assignments != [] {
+        if !gamescore.scorer_assignments.isEmpty {
             ForEach(gamescore.scorer_assignments, id: \.self) { scorerEntry in
                 HStack {
                     Image(systemName: "pencil")

@@ -19,7 +19,6 @@ struct SegmentPercentage: View {
     var body: some View {
         Section(
             header: Text("Rank")
-            //footer: Text("more Stuff")
         ){
             HStack {
                 Spacer()
@@ -38,7 +37,6 @@ struct SegmentPercentage: View {
         }
         Section(
             header: Text("Wins/Losses")
-            //footer: Text("more Stuff")
         ){
             HStack {
                 Spacer()
@@ -58,7 +56,6 @@ struct SegmentPercentage: View {
         let percentage = getPercentage()
         Section(
             header: Text("Winning Percentage")
-            //footer: Text("more Stuff")
         ){
             HStack {
                 Spacer()
@@ -74,7 +71,5 @@ struct SegmentPercentage_Previews: PreviewProvider {
         List {
             SegmentPercentage(userDashboard: UserDashboard())
         }
-        //.preferredColorScheme(.dark)
-        //.previewInterfaceOrientation(.landscapeLeft)
     }
 }

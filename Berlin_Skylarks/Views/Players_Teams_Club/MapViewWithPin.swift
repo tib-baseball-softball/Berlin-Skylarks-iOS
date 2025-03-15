@@ -50,8 +50,6 @@ struct MapViewWithPin: View {
         .listRowInsets(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
         #if os(iOS)
         .frame(height: expandMap ? 500 : 200)
-        #elseif os(watchOS)
-        .frame(height: 200)
         #else
         // macOS
         .frame(height: 500)
