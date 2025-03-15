@@ -13,15 +13,12 @@
 		CA2C18402D21B8E100273312 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C183F2D21B8E100273312 /* OpenAPIRuntime */; };
 		CA2C18432D21B90000273312 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = CA2C18422D21B90000273312 /* OpenAPIURLSession */; };
 		CA65FF4627F5EC4400F7845D /* Intents.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CA65FF4527F5EC4400F7845D /* Intents.framework */; };
-		CA65FF4927F5EC4400F7845D /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA65FF4827F5EC4400F7845D /* IntentHandler.swift */; };
 		CA65FF5F27F5EC4400F7845D /* Skylarks Intents.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CA65FF4427F5EC4400F7845D /* Skylarks Intents.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		CAA393242D85F6A100E80819 /* OpenAPIURLSession in Frameworks */ = {isa = PBXBuildFile; productRef = CAA393232D85F6A100E80819 /* OpenAPIURLSession */; };
 		CAA393272D85F6AF00E80819 /* OpenAPIRuntime in Frameworks */ = {isa = PBXBuildFile; productRef = CAA393262D85F6AF00E80819 /* OpenAPIRuntime */; };
 		CAA393292D85F72A00E80819 /* SkylarksAPIClient in Frameworks */ = {isa = PBXBuildFile; productRef = CAA393282D85F72A00E80819 /* SkylarksAPIClient */; };
 		CAE134852771F2E000DFA745 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CAE134842771F2E000DFA745 /* SwiftUI.framework */; };
 		CAE134912771F2E100DFA745 /* WidgetSkylarksExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		CAE9C2BC28A9A2740079AB87 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA65FF4827F5EC4400F7845D /* IntentHandler.swift */; };
-		CAE9C2BD28A9A79C0079AB87 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA65FF4827F5EC4400F7845D /* IntentHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,12 +72,9 @@
 
 /* Begin PBXFileReference section */
 		CA1CB210275D15BA0007D24E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		CA2D51832950D08600CF465E /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; name = Base; path = "Base.lproj/Skylarks Intents.entitlements"; sourceTree = "<group>"; };
 		CA3C4C2C28B40C3400F72841 /* BerlinSkylarksTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BerlinSkylarksTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA65FF4427F5EC4400F7845D /* Skylarks Intents.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Skylarks Intents.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CA65FF4527F5EC4400F7845D /* Intents.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Intents.framework; path = System/Library/Frameworks/Intents.framework; sourceTree = SDKROOT; };
-		CA65FF4827F5EC4400F7845D /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
-		CA65FF4A27F5EC4400F7845D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CA65FF5027F5EC4400F7845D /* IntentsUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IntentsUI.framework; path = System/Library/Frameworks/IntentsUI.framework; sourceTree = SDKROOT; };
 		CABF7BEB259351D400B95813 /* Berlin Skylarks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Berlin Skylarks.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAE134802771F2DF00DFA745 /* WidgetSkylarksExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = WidgetSkylarksExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -90,6 +84,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		CAA393422D85FFA300E80819 /* Exceptions for "Skylarks_Intents" folder in "Skylarks Intents" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = CA65FF4327F5EC4400F7845D /* Skylarks Intents */;
+		};
 		CAE1C91C2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Berlin Skylarks" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -243,6 +244,14 @@
 			path = BerlinSkylarksTests;
 			sourceTree = "<group>";
 		};
+		CAA3933F2D85FED300E80819 /* Skylarks_Intents */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				CAA393422D85FFA300E80819 /* Exceptions for "Skylarks_Intents" folder in "Skylarks Intents" target */,
+			);
+			path = Skylarks_Intents;
+			sourceTree = "<group>";
+		};
 		CAE1C9042D85EB2200AA7538 /* WidgetSkylarks */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
@@ -310,16 +319,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		CA65FF4727F5EC4400F7845D /* Skylarks Intents */ = {
-			isa = PBXGroup;
-			children = (
-				CA2D51842950D08600CF465E /* Skylarks Intents.entitlements */,
-				CA65FF4827F5EC4400F7845D /* IntentHandler.swift */,
-				CA65FF4A27F5EC4400F7845D /* Info.plist */,
-			);
-			path = "Skylarks Intents";
-			sourceTree = "<group>";
-		};
 		CABF7BE2259351D400B95813 = {
 			isa = PBXGroup;
 			children = (
@@ -327,7 +326,7 @@
 				CA1CB210275D15BA0007D24E /* README.md */,
 				CAE1C9AF2D85EB7400AA7538 /* Berlin_Skylarks */,
 				CAE1C9042D85EB2200AA7538 /* WidgetSkylarks */,
-				CA65FF4727F5EC4400F7845D /* Skylarks Intents */,
+				CAA3933F2D85FED300E80819 /* Skylarks_Intents */,
 				CA2C1A092D21D27B00273312 /* Skylarks IntentsUI */,
 				CA2C1A0B2D21D27F00273312 /* BerlinSkylarksTests */,
 				CAE134812771F2DF00DFA745 /* Frameworks */,
@@ -392,6 +391,9 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				CAA3933F2D85FED300E80819 /* Skylarks_Intents */,
 			);
 			name = "Skylarks Intents";
 			productName = "Skylarks Intents";
@@ -538,7 +540,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CA65FF4927F5EC4400F7845D /* IntentHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -546,7 +547,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAE9C2BD28A9A79C0079AB87 /* IntentHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -554,7 +554,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAE9C2BC28A9A2740079AB87 /* IntentHandler.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -577,17 +576,6 @@
 			targetProxy = CAE1348F2771F2E100DFA745 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
-
-/* Begin PBXVariantGroup section */
-		CA2D51842950D08600CF465E /* Skylarks Intents.entitlements */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CA2D51832950D08600CF465E /* Base */,
-			);
-			name = "Skylarks Intents.entitlements";
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		CA3C4C3228B40C3400F72841 /* Debug */ = {
@@ -643,13 +631,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_ENTITLEMENTS = "Skylarks Intents/Skylarks Intents.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Skylarks_Intents/Skylarks_Intents.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Skylarks Intents/Info.plist";
+				INFOPLIST_FILE = Skylarks_Intents/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Skylarks Intents";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
@@ -677,13 +665,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = NO;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
-				CODE_SIGN_ENTITLEMENTS = "Skylarks Intents/Skylarks Intents.entitlements";
+				CODE_SIGN_ENTITLEMENTS = Skylarks_Intents/Skylarks_Intents.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Skylarks Intents/Info.plist";
+				INFOPLIST_FILE = Skylarks_Intents/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = "Skylarks Intents";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
