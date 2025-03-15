@@ -7,7 +7,9 @@
 
 import Foundation
 
+/// Utility class to help with isolated date and time-related tasks.
 class DateTimeUtility {
+    /// Calculates a person's age from a given ``TimeInterval``
     public static func getAge(from birthday: TimeInterval) -> Int {
         let birthDate = Date(timeIntervalSince1970: birthday)
         let calendar = Calendar.current
@@ -40,6 +42,9 @@ class DateTimeUtility {
         return timeString
     }
     
+    /// Parses a BSM-specific time string into a ``Date`` object
+    ///
+    /// TODO: refactor to accept string parameter
     public static func getDatefromBSMString(gamescore: GameScore) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "y-M-dd HH:mm:ss Z"

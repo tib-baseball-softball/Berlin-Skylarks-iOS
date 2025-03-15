@@ -32,5 +32,5 @@ Contact info: app@tib-baseball.de
 - run the following command in project root:
 
 ```shell
-xcode-build-server config -project *.xcodeproj`
+xcode-build-server config -project *.xcodeproj
 ```

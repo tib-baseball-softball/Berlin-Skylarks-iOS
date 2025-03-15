@@ -9,8 +9,15 @@ import Foundation
 import EventKit
 import SwiftUI
 
+/// Determines the games following and immediately preceding the current date from a list of games.
+///
+/// - Parameters:
+///   - gamescores: an array of ``GameScore`` objects
+///
+/// Returns an optional tuple of ``GameScore`` instances, depending on the state of the season.
+///
+/// TODO: make generic by accepting ``Date`` parameter.
 func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameScore?) {
-    // processing
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyyMMdd"
     
@@ -18,14 +25,12 @@ func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameS
     let now = Date()
     //let now = formatter.date(from: "20210928") ?? Date.now // September 27th, 2021 UTC
 
-    //add game dates to all games to allow for ordering | outsourced below
+    //add game dates to all games to allow for ordering
     var gameList = gamescores
-    
     for (index, _) in gameList.enumerated() {
         gameList[index].addDates()
     }
     
-    //collect nextGames and add to array
     let nextGame = gameList.first(where: { $0.gameDate! > now })
     let previousGame = gameList.first(where: { $0.gameDate! < now })
     
@@ -57,8 +62,9 @@ func determineTableRow(team: BSMTeam, table: LeagueTable) -> LeagueTable.Row {
 //-----------------------------------LOAD DATA-----------------------------------//
 //-------------------------------------------------------------------------------//
 
-//MARK: Generic load function that accepts any codable type
-
+/// Generic load function that accepts any codable type.
+///
+/// Should be refactored to be the base of an API client class.
 func fetchBSMData<T: Codable>(url: URL, dataType: T.Type) async throws -> T {
     
     let (data, _) = try await URLSession.shared.data(from: url)
