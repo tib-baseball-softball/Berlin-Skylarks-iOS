@@ -91,13 +91,6 @@
 			);
 			target = CA65FF4327F5EC4400F7845D /* Skylarks Intents */;
 		};
-		CAE1C91C2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Berlin Skylarks" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				WidgetSkylarks.strings,
-			);
-			target = CABF7BEA259351D400B95813 /* Berlin Skylarks */;
-		};
 		CAE1C91E2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "WidgetSkylarksExtension" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -210,21 +203,21 @@
 /* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet section */
-		CAA393322D85FBD600E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "WidgetSkylarksExtension" target */ = {
-			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
-			buildPhase = CAE1347C2771F2DF00DFA745 /* Sources */;
-			membershipExceptions = (
-				"/Localized: WidgetSkylarks.intentdefinition",
-			);
-		};
-		CAA393352D85FC1500E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Berlin Skylarks" target */ = {
+		CAA3936C2D86AF7C00E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Berlin Skylarks" target */ = {
 			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
 			buildPhase = CABF7BE7259351D400B95813 /* Sources */;
 			membershipExceptions = (
 				"/Localized: WidgetSkylarks.intentdefinition",
 			);
 		};
-		CAE1C9212D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Skylarks Intents" target */ = {
+		CAA3936D2D86AF7C00E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "WidgetSkylarksExtension" target */ = {
+			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
+			buildPhase = CAE1347C2771F2DF00DFA745 /* Sources */;
+			membershipExceptions = (
+				"/Localized: WidgetSkylarks.intentdefinition",
+			);
+		};
+		CAA3936E2D86AF7C00E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Skylarks Intents" target */ = {
 			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
 			buildPhase = CA65FF4027F5EC4400F7845D /* Sources */;
 			membershipExceptions = (
@@ -255,12 +248,11 @@
 		CAE1C9042D85EB2200AA7538 /* WidgetSkylarks */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
-				CAE1C91C2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Berlin Skylarks" target */,
-				CAA393352D85FC1500E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Berlin Skylarks" target */,
+				CAA3936C2D86AF7C00E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Berlin Skylarks" target */,
 				CAE1C91E2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "WidgetSkylarksExtension" target */,
-				CAA393322D85FBD600E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "WidgetSkylarksExtension" target */,
+				CAA3936D2D86AF7C00E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "WidgetSkylarksExtension" target */,
 				CAE1C9202D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Skylarks Intents" target */,
-				CAE1C9212D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Skylarks Intents" target */,
+				CAA3936E2D86AF7C00E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Skylarks Intents" target */,
 			);
 			path = WidgetSkylarks;
 			sourceTree = "<group>";
@@ -633,7 +625,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = Skylarks_Intents/Skylarks_Intents.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -667,7 +659,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = Skylarks_Intents/Skylarks_Intents.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -834,7 +826,7 @@
 				CODE_SIGN_ENTITLEMENTS = Berlin_Skylarks/Berlin_Skylarks.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
@@ -869,7 +861,7 @@
 				CODE_SIGN_ENTITLEMENTS = Berlin_Skylarks/Berlin_Skylarks.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				ENABLE_PREVIEWS = YES;
@@ -904,7 +896,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = WidgetSkylarksExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
@@ -940,7 +932,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++17";
 				CODE_SIGN_ENTITLEMENTS = WidgetSkylarksExtension.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 4;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 5KD4MUBZ2T;
 				"ENABLE_HARDENED_RUNTIME[sdk=macosx*]" = YES;
 				GENERATE_INFOPLIST_FILE = YES;
