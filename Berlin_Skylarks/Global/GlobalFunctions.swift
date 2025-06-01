@@ -32,7 +32,7 @@ func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameS
     }
     
     let nextGame = gameList.first(where: { $0.gameDate! > now })
-    let previousGame = gameList.first(where: { $0.gameDate! < now })
+    let previousGame = gameList.last(where: { $0.gameDate! < now })
     
     return (nextGame, previousGame)
 }
