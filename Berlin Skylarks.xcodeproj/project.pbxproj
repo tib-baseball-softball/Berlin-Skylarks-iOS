@@ -217,7 +217,7 @@
 				"/Localized: WidgetSkylarks.intentdefinition",
 			);
 		};
-		CAA3936E2D86AF7C00E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Skylarks Intents" target */ = {
+		CAC9A0C22DECFA2300823E77 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Skylarks Intents" target */ = {
 			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
 			buildPhase = CA65FF4027F5EC4400F7845D /* Sources */;
 			membershipExceptions = (
@@ -252,7 +252,7 @@
 				CAE1C91E2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "WidgetSkylarksExtension" target */,
 				CAA3936D2D86AF7C00E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "WidgetSkylarksExtension" target */,
 				CAE1C9202D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Skylarks Intents" target */,
-				CAA3936E2D86AF7C00E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Skylarks Intents" target */,
+				CAC9A0C22DECFA2300823E77 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Skylarks Intents" target */,
 			);
 			path = WidgetSkylarks;
 			sourceTree = "<group>";
