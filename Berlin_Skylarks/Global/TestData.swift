@@ -10,7 +10,7 @@ import SwiftUI
 
 let emptyTable = LeagueTable(league_id: 1, league_name: "League", season: Calendar.current.component(.year, from: Date()), rows: [])
 
-let emptyRow = LeagueTable.Row(rank: " ", team_name: " ", short_team_name: " ", match_count: 0, wins_count: 0, losses_count: 0, quota: " ", games_behind: " ", streak: " ")
+let emptyRow = LeagueTable.Row(rank: " ", league_entry_id: 0, team_name: " ", short_team_name: " ", match_count: 0, wins_count: 0, losses_count: 0, quota: " ", games_behind: " ", streak: " ")
 
 let emptyScoreTeam = GameScore.Team(name: "Team Name", short_name: "ACR", clubs: [])
 
