@@ -24,38 +24,22 @@ func processGameDates(gamescores: [GameScore]) -> (next: GameScore?, last: GameS
     //for testing purposes this can be set to some date in the season, normally it's just the current date
     let now = Date()
     //let now = formatter.date(from: "20210928") ?? Date.now // September 27th, 2021 UTC
-
+    
     //add game dates to all games to allow for ordering
     var gameList = gamescores
     for (index, _) in gameList.enumerated() {
         gameList[index].addDates()
     }
     
-    let nextGame = gameList.first(where: { $0.gameDate! > now })
-    let previousGame = gameList.last(where: { $0.gameDate! < now })
+    let nextGame = gameList.first(where: { $0.gameDate ?? now > now })
+    let previousGame = gameList.last(where: { $0.gameDate ?? now < now })
     
     return (nextGame, previousGame)
 }
 
 func determineTableRow(team: BSMTeam, table: LeagueTable) -> LeagueTable.Row {
-    var correctRow = emptyRow
-    
-    for row in table.rows where row.team_name.contains("Skylarks") {
-        //we might have two teams for BZL, so the function needs to account for the correct one
-        
-        if team.name.contains("3") {
-            if row.team_name == "Skylarks 3" {
-                correctRow = row
-            }
-        } else if team.name.contains("4") {
-            if row.team_name == "Skylarks 4" {
-                correctRow = row
-            }
-        } else if !team.name.contains("3") && !team.name.contains("4") {
-            correctRow = row
-        }
-    }
-    return correctRow
+    let filteredRows = table.rows.filter { $0.team_name == team.name }
+    return filteredRows.first ?? emptyRow
 }
 
 //-------------------------------------------------------------------------------//
@@ -86,27 +70,27 @@ func loadLeagueGroups(season: Int) async -> [LeagueGroup] {
     var loadedLeagues = [LeagueGroup]()
     
     do {
-       loadedLeagues = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
+        loadedLeagues = try await fetchBSMData(url: leagueGroupsURL, dataType: [LeagueGroup].self)
     } catch {
         print("Request failed with error: \(error)")
     }
     return loadedLeagues
 }
 
-func loadTableForTeam(team: BSMTeam, leagueGroups: [LeagueGroup]) async -> LeagueTable? {
-    var correctTable = emptyTable
+func loadTablesForTeam(team: BSMTeam, leagueGroups: [LeagueGroup]) async -> [LeagueTable] {
+    var ret: [LeagueTable] = []
     
-    for leagueGroup in leagueGroups where team.league_entries[0].league.id == leagueGroup.league.id {
-        let url = URL(string: "https://bsm.baseball-softball.de/leagues/" + "\(leagueGroup.id)" + "/table.json")!
+    for leagueGroup in leagueGroups where team.league_entries.first?.league.id == leagueGroup.league.id {
+        let url = URL(string: "https://bsm.baseball-softball.de/leagues/\(leagueGroup.id)/table.json")!
         
         do {
             let table = try await fetchBSMData(url: url, dataType: LeagueTable.self)
             
-            correctTable = table
+            ret.append(table)
         } catch {
             print("Request failed with error: \(error)")
-            return nil
+            return []
         }
     }
-    return correctTable
+    return ret
 }
