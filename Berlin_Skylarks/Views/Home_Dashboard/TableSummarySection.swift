@@ -8,11 +8,12 @@
 import SwiftUI
 
 struct TableSummarySection: View {
+    @EnvironmentObject var userDashboard: UserDashboard
+    
     var showingTableData: Bool
     var loadingTables: Bool
     var team: BSMTeam
     var table: LeagueTable
-    var userDashboard: UserDashboard
     
     var body: some View {
         let row = determineTableRow(team: team, table: table)
@@ -20,8 +21,7 @@ struct TableSummarySection: View {
         Section(header: Text("Standings/Record")) {
             if showingTableData && !loadingTables {
                 NavigationLink(
-                    destination: HomeTeamDetailView(
-                        userDashboard: userDashboard)
+                    destination: HomeTeamDetailView(team: team, table: table, row: row).environmentObject(userDashboard)
                 ) {
                     VStack(alignment: .leading) {
                         HStack {
@@ -85,5 +85,5 @@ struct TableSummarySection: View {
 }
 
 #Preview {
-    TableSummarySection(showingTableData: true, loadingTables: true, team: emptyTeam, table: emptyTable, userDashboard: UserDashboard())
+    TableSummarySection(showingTableData: true, loadingTables: true, team: emptyTeam, table: emptyTable)
 }

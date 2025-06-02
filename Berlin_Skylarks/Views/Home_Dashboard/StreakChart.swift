@@ -9,8 +9,7 @@ import SwiftUI
 import Charts
 
 struct StreakBar: View {
-    
-    @ObservedObject var userDashboard: UserDashboard
+    @EnvironmentObject var userDashboard: UserDashboard
     
     var itemWidth: CGFloat {
         #if !os(macOS)
@@ -58,10 +57,7 @@ struct StreakBar: View {
     }
 }
 
-struct StreakBar_Previews: PreviewProvider {
-    static var previews: some View {
-        List {
-            StreakBar(userDashboard: UserDashboard())
-        }
-    }
+#Preview {
+    StreakBar()
+        .environmentObject(UserDashboard())
 }

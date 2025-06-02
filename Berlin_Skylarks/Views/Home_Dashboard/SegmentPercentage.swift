@@ -8,11 +8,10 @@
 import SwiftUI
 
 struct SegmentPercentage: View {
-    
-    @ObservedObject var userDashboard: UserDashboard
+    var row: LeagueTable.Row
     
     private func getPercentage() -> CGFloat {
-        let percentage = CGFloat((userDashboard.tableRow.quota as NSString).floatValue)
+        let percentage = CGFloat((row.quota as NSString).floatValue)
         return percentage
     }
     
@@ -22,12 +21,12 @@ struct SegmentPercentage: View {
         ){
             HStack {
                 Spacer()
-                if userDashboard.tableRow.rank == "1." {
+                if row.rank == "1." {
                     Image(systemName: "crown")
                         .foregroundColor(Color.skylarksRed)
                         .padding(.horizontal)
                 }
-                Text("\(userDashboard.tableRow.rank)")
+                Text("\(row.rank)")
                     .bold()
                     .padding(.horizontal)
                 Spacer()
@@ -40,12 +39,12 @@ struct SegmentPercentage: View {
         ){
             HStack {
                 Spacer()
-                Text("\(Int(userDashboard.tableRow.wins_count))")
+                Text("\(Int(row.wins_count))")
                     .bold()
                     .padding(.horizontal)
                 Text("-")
                     .bold()
-                Text("\(Int(userDashboard.tableRow.losses_count))")
+                Text("\(Int(row.losses_count))")
                     .bold()
                     .padding(.horizontal)
                 Spacer()
@@ -59,17 +58,13 @@ struct SegmentPercentage: View {
         ){
             HStack {
                 Spacer()
-                LargePercentageCircle(percentage: percentage, percentageText: userDashboard.tableRow.quota)
+                LargePercentageCircle(percentage: percentage, percentageText: row.quota)
                 Spacer()
             }
         }
     }
 }
 
-struct SegmentPercentage_Previews: PreviewProvider {
-    static var previews: some View {
-        List {
-            SegmentPercentage(userDashboard: UserDashboard())
-        }
-    }
+#Preview {
+    SegmentPercentage(row: emptyRow)
 }

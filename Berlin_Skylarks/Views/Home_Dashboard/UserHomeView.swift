@@ -131,7 +131,8 @@ struct UserHomeView: View {
                 }
                 
                 ForEach(homeLeagueTables, id: \.league_id) { table in
-                    TableSummarySection(showingTableData: showingTableData, loadingTables: loadingTables, team: displayTeam, table: table, userDashboard: userDashboard)
+                    TableSummarySection(showingTableData: showingTableData, loadingTables: loadingTables, team: displayTeam, table: table)
+                        .environmentObject(userDashboard)
                 }
                 
                 if homeLeagueTables.isEmpty {

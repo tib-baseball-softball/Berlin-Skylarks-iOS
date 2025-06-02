@@ -9,8 +9,7 @@ import SwiftUI
 import Charts
 
 struct SegmentChart: View {
-    
-    @ObservedObject var userDashboard: UserDashboard
+    var table: LeagueTable
     
     #if !os(macOS)
     let showShortenedTeamName = UIDevice.current.userInterfaceIdiom != .phone
@@ -24,7 +23,7 @@ struct SegmentChart: View {
             footer: Text("The chart shows the absolute number of wins in the league selected.")
         ){
             Chart {
-                ForEach(userDashboard.leagueTable.rows, id: \.self) { row in
+                ForEach(table.rows, id: \.self) { row in
                     BarMark(
                         x: .value("Team Name", showShortenedTeamName ? row.short_team_name : row.team_name),
                         y: .value("Wins Count", row.wins_count)
@@ -37,11 +36,6 @@ struct SegmentChart: View {
     }
 }
 
-struct SegmentChart_Previews: PreviewProvider {
-    static var previews: some View {
-        List {
-            SegmentChart(userDashboard: UserDashboard())
-        }
-        //.preferredColorScheme(.dark)
-    }
+#Preview {
+    SegmentChart(table: emptyTable)
 }
