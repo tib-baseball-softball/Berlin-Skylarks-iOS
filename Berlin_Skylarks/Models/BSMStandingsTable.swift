@@ -9,7 +9,6 @@ import Foundation
 import SwiftUI
 
 struct LeagueTable: Hashable, Codable {
-    //var id: UUID = UUID()
     var league_id: Int
     var league_name: String
     var season: Int
@@ -17,6 +16,7 @@ struct LeagueTable: Hashable, Codable {
     
     struct Row: Hashable, Codable {
         var rank: String
+        var league_entry_id: Int
         var team_name: String
         var short_team_name: String
         var match_count: Int //those might be optionals!

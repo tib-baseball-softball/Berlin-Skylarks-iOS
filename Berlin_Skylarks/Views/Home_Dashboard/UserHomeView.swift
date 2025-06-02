@@ -81,10 +81,9 @@ struct UserHomeView: View {
     func loadHomeTeamTable(team: BSMTeam, leagueGroups: [LeagueGroup]) async {
 
         //load table for specific leagueGroup that corresponds to favorite team
-
-        if let table = await loadTableForTeam(
-            team: team, leagueGroups: leagueGroups)
-        {
+        let tables = await loadTablesForTeam(team: team, leagueGroups: leagueGroups)
+        
+        for table in tables {
             let row = determineTableRow(team: team, table: table)
 
             homeLeagueTables.append(table)
@@ -111,7 +110,7 @@ struct UserHomeView: View {
                         Image(systemName: "star.fill")
                             .foregroundColor(.skylarksRed)
                         Text(
-                            "\(displayTeam.name) (\(displayTeam.league_entries[0].league.acronym))"
+                            "\(displayTeam.name) (\(displayTeam.league_entries.first?.league.acronym ?? ""))"
                         )
                         .padding(.leading)
                     }
@@ -130,71 +129,15 @@ struct UserHomeView: View {
                             .padding(.leading)
                     }
                 }
-                Section(header: Text("Standings/Record")) {
-                    if showingTableData && !loadingTables {
-                        NavigationLink(
-                            destination: HomeTeamDetailView(
-                                userDashboard: userDashboard)
-                        ) {
-                            VStack(alignment: .leading) {
-                                HStack {
-                                    Image(systemName: "sum")
-                                        .frame(maxWidth: 20)
-                                        .foregroundColor(
-                                            Color.skylarksAdaptiveBlue)
-                                    Text(
-                                        "\(Int(userDashboard.tableRow.wins_count)) - \(Int(userDashboard.tableRow.losses_count))"
-                                    )
-                                    .bold()
-                                    .padding(.leading)
-                                }
-                                Divider()
-                                HStack {
-                                    Image(systemName: "percent")
-                                        .frame(maxWidth: 20)
-                                        .foregroundColor(
-                                            Color.skylarksAdaptiveBlue)
-                                    Text(userDashboard.tableRow.quota)
-                                        .bold()
-                                        .padding(.leading)
-                                }
-                                Divider()
-                                HStack {
-                                    Image(systemName: "number")
-                                        .frame(maxWidth: 20)
-                                        .foregroundColor(
-                                            Color.skylarksAdaptiveBlue)
-                                    Text(userDashboard.tableRow.rank)
-                                        .bold()
-                                        .padding(.leading)
-                                    if userDashboard.tableRow.rank == "1." {
-                                        Image(systemName: "crown")
-                                            .foregroundColor(Color.skylarksRed)
-                                    }
-                                }
-                            }
-                            .padding(.vertical, 6)
-                        }
-                    }
-                    if !homeLeagueTables.isEmpty && !loadingTables {
-                        NavigationLink(
-                            destination: StandingsTableView(
-                                leagueTable: homeLeagueTables[0])
-                        ) {
-                            HStack {
-                                Image(systemName: "tablecells")
-                                    .foregroundColor(.skylarksRed)
-                                Text("See full Standings")
-                                    .padding(.leading)
-                            }
-                        }
-                    } else {
-                        Text("No Standings available.")
-                    }
-                    if loadingTables == true {
-                        LoadingView()
-                    }
+                
+                ForEach(homeLeagueTables, id: \.league_id) { table in
+                    TableSummarySection(showingTableData: showingTableData, loadingTables: loadingTables, team: displayTeam, table: table, userDashboard: userDashboard)
                 }
+                
+                if homeLeagueTables.isEmpty {
+                    Text("No Standings available.")
+                }
+                
                 if userDashboard.playoffParticipation {
                     Section(header: Text("Playoffs")) {
                         HStack {
@@ -209,6 +152,7 @@ struct UserHomeView: View {
                         }
                     }
                 }
+                
                 Section(header: Text("Next Game")) {
                     if userDashboard.showNextGame == true && !loadingScores {
                         NavigationLink(

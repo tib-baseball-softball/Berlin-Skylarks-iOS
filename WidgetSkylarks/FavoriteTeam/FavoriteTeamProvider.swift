@@ -77,7 +77,10 @@ struct FavoriteTeamProvider: IntentTimelineProvider {
             let selectedTeam = await team(for: configuration)
             let leagueGroups = await loadLeagueGroups(season: season)
             
-            if let table = await loadTableForTeam(team: selectedTeam, leagueGroups: leagueGroups) {
+            let tables = await loadTablesForTeam(team: selectedTeam, leagueGroups: leagueGroups)
+            
+            // TODO: account for multiple matches
+            if let table = tables.first {
                 widgetData.leagueTable = table
                 widgetData.tableRow = determineTableRow(team: selectedTeam, table: widgetData.leagueTable)
             }

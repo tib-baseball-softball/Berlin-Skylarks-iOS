@@ -26,8 +26,9 @@ struct BSMTeam: Hashable, Codable, Identifiable {
         }
     }
     struct LeagueEntry: Hashable, Codable {
+        var id: Int
         var league: League
     }
 }
 
-let emptyTeam = BSMTeam(id: 999, name: "Team Name", short_name: "ACR", league_entries: [BSMTeam.LeagueEntry(league: emptyLeague)], current_player_list: BSMTeam.PlayerList(player_list_entries: []))
+let emptyTeam = BSMTeam(id: 999, name: "Team Name", short_name: "ACR", league_entries: [BSMTeam.LeagueEntry(id: 0, league: emptyLeague)], current_player_list: BSMTeam.PlayerList(player_list_entries: []))
