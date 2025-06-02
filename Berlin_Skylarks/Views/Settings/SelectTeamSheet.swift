@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct SelectTeamSheet: View {
-
     @Environment(\.dismiss) var dismiss
     @Environment(\.colorScheme) var colorScheme
-
+    
     @State var teams = [BSMTeam]()
     @State var loadingTeams = false
-
+    
     @AppStorage("selectedSeason") var selectedSeason = Calendar(
         identifier: .gregorian
     ).dateComponents([.year], from: .now).year!
     @AppStorage("favoriteTeamID") var favoriteTeamID = 0
-
+    
     func fetchTeams() async {
         loadingTeams = true
         do {
@@ -29,7 +28,7 @@ struct SelectTeamSheet: View {
             print("Request failed with error: \(error)")
         }
     }
-
+    
     var body: some View {
         Form {
             Section(
@@ -64,14 +63,19 @@ struct SelectTeamSheet: View {
                             dismiss()
                         }
                         .disabled(favoriteTeamID == 0)
+#if os(iOS)
                         .padding()
+#endif
                         Spacer()
                     }
                 }
             }
+#if os(macOS)
+            .padding()
+#endif
         }
         .interactiveDismissDisabled()
-
+        
         .onAppear(perform: {
             Task {
                 await fetchTeams()
@@ -80,9 +84,6 @@ struct SelectTeamSheet: View {
     }
 }
 
-struct SelectTeamSheet_Previews: PreviewProvider {
-    static var previews: some View {
-        SelectTeamSheet()
-            .preferredColorScheme(.dark)
-    }
+#Preview {
+    SelectTeamSheet()
 }
