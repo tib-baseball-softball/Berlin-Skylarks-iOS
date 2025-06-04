@@ -350,7 +350,7 @@ struct TeamWidgetOverView: View {
 
 struct FavoriteTeamWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        let dummyDashboard = UserDashboard()
+        let dummyDashboard = HomeViewModel()
         let dummyEntry = FavoriteTeamEntry(
             date: Date(), configuration: FavoriteTeamIntent(),
             team: widgetPreviewTeam, lastGame: widgetPreviewLastGame,

@@ -30,7 +30,7 @@ struct UserHomeView: View {
     @State private var loadingScores = false
     @State private var loadingTables = false
 
-    @StateObject var userDashboard = UserDashboard()
+    @StateObject var vm = HomeViewModel()
     @State var homeLeagueTables = [LeagueTable]()
     @State var teams = [BSMTeam]()
     @State var leagueGroups = [LeagueGroup]()
@@ -57,7 +57,7 @@ struct UserHomeView: View {
         leagueGroups = await loadLeagueGroups(season: selectedSeason)
         await loadHomeTeamTable(team: displayTeam, leagueGroups: leagueGroups)
         loadingTables = false
-        await userDashboard.loadHomeGameData(
+        await vm.loadHomeGameData(
             team: displayTeam, leagueGroups: leagueGroups,
             season: selectedSeason)
         loadingScores = false
@@ -87,8 +87,8 @@ struct UserHomeView: View {
             let row = determineTableRow(team: team, table: table)
 
             homeLeagueTables.append(table)
-            userDashboard.leagueTable = table
-            userDashboard.tableRow = row
+            vm.leagueTable = table
+            vm.tableRow = row
         }
 
         if !homeLeagueTables.isEmpty {
@@ -118,35 +118,35 @@ struct UserHomeView: View {
                         Image(systemName: "tablecells")
                             .frame(maxWidth: 20)
                             .foregroundColor(Color.skylarksAdaptiveBlue)
-                        Text(userDashboard.leagueTable.league_name)
+                        Text(vm.leagueTable.league_name)
                             .padding(.leading)
                     }
                     HStack {
                         Image(systemName: "calendar.badge.clock")
                             .frame(maxWidth: 20)
                             .foregroundColor(Color.skylarksAdaptiveBlue)
-                        Text(String(userDashboard.leagueTable.season))
+                        Text(String(vm.leagueTable.season))
                             .padding(.leading)
                     }
                 }
                 
                 ForEach(homeLeagueTables, id: \.league_id) { table in
                     TableSummarySection(showingTableData: showingTableData, loadingTables: loadingTables, team: displayTeam, table: table)
-                        .environmentObject(userDashboard)
+                        .environmentObject(vm)
                 }
                 
                 if homeLeagueTables.isEmpty {
                     Text("No Standings available.")
                 }
                 
-                if userDashboard.playoffParticipation {
+                if vm.playoffParticipation {
                     Section(header: Text("Playoffs")) {
                         HStack {
                             Image(systemName: "trophy.fill")
                                 .foregroundColor(.skylarksRed)
                             NavigationLink(
                                 destination: PlayoffSeriesView(
-                                    userDashboard: userDashboard)
+                                    vm: vm)
                             ) {
                                 Text("See playoff series")
                             }
@@ -155,14 +155,14 @@ struct UserHomeView: View {
                 }
                 
                 Section(header: Text("Next Game")) {
-                    if userDashboard.showNextGame == true && !loadingScores {
+                    if vm.showNextGame == true && !loadingScores {
                         NavigationLink(
                             destination: ScoresDetailView(
-                                gamescore: userDashboard.NextGame)
+                                gamescore: vm.NextGame)
                         ) {
-                            ScoresOverView(gamescore: userDashboard.NextGame)
+                            ScoresOverView(gamescore: vm.NextGame)
                         }
-                    } else if !userDashboard.showNextGame && !loadingScores {
+                    } else if !vm.showNextGame && !loadingScores {
                         Text("There is no next game to display.")
                     }
                     if loadingScores == true {
@@ -170,14 +170,14 @@ struct UserHomeView: View {
                     }
                 }
                 Section(header: Text("Latest Score")) {
-                    if userDashboard.showLastGame == true && !loadingScores {
+                    if vm.showLastGame == true && !loadingScores {
                         NavigationLink(
                             destination: ScoresDetailView(
-                                gamescore: userDashboard.LastGame)
+                                gamescore: vm.LastGame)
                         ) {
-                            ScoresOverView(gamescore: userDashboard.LastGame)
+                            ScoresOverView(gamescore: vm.LastGame)
                         }
-                    } else if !userDashboard.showLastGame && !loadingScores {
+                    } else if !vm.showLastGame && !loadingScores {
                         Text("There is no recent game to display.")
                     }
                     if loadingScores == true {
@@ -188,10 +188,10 @@ struct UserHomeView: View {
         }
         .navigationTitle("Dashboard")
 
-        .animation(.default, value: userDashboard.tableRow)
-        .animation(.default, value: userDashboard.NextGame)
-        .animation(.default, value: userDashboard.LastGame)
-        .animation(.default, value: userDashboard.playoffParticipation)
+        .animation(.default, value: vm.tableRow)
+        .animation(.default, value: vm.NextGame)
+        .animation(.default, value: vm.LastGame)
+        .animation(.default, value: vm.playoffParticipation)
 
         .onAppear(perform: {
             if homeLeagueTables.isEmpty {
@@ -210,7 +210,7 @@ struct UserHomeView: View {
                 displayTeam = await setFavoriteTeam()
             }
             homeLeagueTables = []
-            userDashboard.homeGamescores = []
+            vm.homeGamescores = []
         }
 
         //this triggers only after the first launch once the onboarding sheet is dismissed. This var starts false, is set to true after the user selects their favorite team and is never set back to false anywhere

@@ -9,7 +9,7 @@ import SwiftUI
 import Charts
 
 struct StreakBar: View {
-    @EnvironmentObject var userDashboard: UserDashboard
+    @EnvironmentObject var vm: HomeViewModel
     
     var itemWidth: CGFloat {
         #if !os(macOS)
@@ -23,7 +23,7 @@ struct StreakBar: View {
     }
     
     var body: some View {
-        let data = userDashboard.createStreakDataEntries()
+        let data = vm.createStreakDataEntries()
         Section(
             header: Text("Visualization of current season"),
             footer: Text("Hot or cold - how is your team's season going?")
@@ -47,7 +47,7 @@ struct StreakBar: View {
                     .padding(.vertical)
                     .frame(width: CGFloat(data.count) * itemWidth)
                 }
-                Text(userDashboard.tableRow.streak)
+                Text(vm.tableRow.streak)
                 //Text("W6") //DEBUG
                     .font(.title)
                     .bold()
@@ -59,5 +59,5 @@ struct StreakBar: View {
 
 #Preview {
     StreakBar()
-        .environmentObject(UserDashboard())
+        .environmentObject(HomeViewModel())
 }

@@ -210,7 +210,7 @@
 				"/Localized: WidgetSkylarks.intentdefinition",
 			);
 		};
-		CAA3936D2D86AF7C00E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "WidgetSkylarksExtension" target */ = {
+		CAC832142DF0E0E100EB7B8C /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "WidgetSkylarksExtension" target */ = {
 			isa = PBXFileSystemSynchronizedGroupBuildPhaseMembershipExceptionSet;
 			buildPhase = CAE1347C2771F2DF00DFA745 /* Sources */;
 			membershipExceptions = (
@@ -250,7 +250,7 @@
 			exceptions = (
 				CAA3936C2D86AF7C00E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Berlin Skylarks" target */,
 				CAE1C91E2D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "WidgetSkylarksExtension" target */,
-				CAA3936D2D86AF7C00E80819 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "WidgetSkylarksExtension" target */,
+				CAC832142DF0E0E100EB7B8C /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "WidgetSkylarksExtension" target */,
 				CAE1C9202D85EB2200AA7538 /* Exceptions for "WidgetSkylarks" folder in "Skylarks Intents" target */,
 				CAC9A0C22DECFA2300823E77 /* Exceptions for "WidgetSkylarks" folder in "Compile Sources" phase from "Skylarks Intents" target */,
 			);
