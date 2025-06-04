@@ -10,16 +10,14 @@ import Charts
 
 struct StreakBar: View {
     @Environment(HomeViewModel.self) var vm: HomeViewModel
+    @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
     var itemWidth: CGFloat {
-        #if !os(macOS)
-        if UIDevice.current.userInterfaceIdiom == .phone {
+        if horizontalSizeClass == .compact {
             return 25
         } else {
             return 35
         }
-        #endif
-        return 35
     }
     
     var body: some View {
@@ -48,7 +46,6 @@ struct StreakBar: View {
                     .frame(width: CGFloat(data.count) * itemWidth)
                 }
                 Text(vm.tableRow.streak)
-                //Text("W6") //DEBUG
                     .font(.title)
                     .bold()
                     .padding(.bottom)
