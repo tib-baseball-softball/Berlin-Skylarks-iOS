@@ -11,23 +11,24 @@ import Foundation
 //-------------------------------DASHBOARD---------------------------------//
 
 @MainActor
-class HomeViewModel: ObservableObject {
-    @Published var leagueTable = emptyTable
+@Observable
+class HomeViewModel {
+    var leagueTable = emptyTable
     
-    @Published var tableRow = emptyRow
+    var tableRow = emptyRow
     
-    @Published var homeGamescores: [GameScore] = []
-    @Published var playoffGames: [GameScore] = []
+    var homeGamescores: [GameScore] = []
+    var playoffGames: [GameScore] = []
     
-    @Published var playoffSeries = PlayoffSeries()
+    var playoffSeries = PlayoffSeries()
     
-    @Published var NextGame = testGame
-    @Published var LastGame = testGame
+    var NextGame = testGame
+    var LastGame = testGame
     
-    @Published var showNextGame = false
-    @Published var showLastGame = false
+    var showNextGame = false
+    var showLastGame = false
     
-    @Published var playoffParticipation = false
+    var playoffParticipation = false
     
     /// Loads all data to used in the Home View (Favorite Team Overview).
     ///

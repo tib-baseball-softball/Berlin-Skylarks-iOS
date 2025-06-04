@@ -30,7 +30,7 @@ struct UserHomeView: View {
     @State private var loadingScores = false
     @State private var loadingTables = false
 
-    @StateObject var vm = HomeViewModel()
+    @State var vm = HomeViewModel()
     @State var homeLeagueTables = [LeagueTable]()
     @State var teams = [BSMTeam]()
     @State var leagueGroups = [LeagueGroup]()
@@ -132,7 +132,7 @@ struct UserHomeView: View {
                 
                 ForEach(homeLeagueTables, id: \.league_id) { table in
                     TableSummarySection(showingTableData: showingTableData, loadingTables: loadingTables, team: displayTeam, table: table)
-                        .environmentObject(vm)
+                        .environment(vm)
                 }
                 
                 if homeLeagueTables.isEmpty {

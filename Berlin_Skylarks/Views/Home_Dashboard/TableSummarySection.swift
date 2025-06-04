@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct TableSummarySection: View {
-    @EnvironmentObject var vm: HomeViewModel
+    @Environment(HomeViewModel.self) var vm: HomeViewModel
     
     var showingTableData: Bool
     var loadingTables: Bool
@@ -21,7 +21,7 @@ struct TableSummarySection: View {
         Section(header: Text("Standings/Record")) {
             if showingTableData && !loadingTables {
                 NavigationLink(
-                    destination: HomeTeamDetailView(team: team, table: table, row: row).environmentObject(vm)
+                    destination: HomeTeamDetailView(team: team, table: table, row: row).environment(vm)
                 ) {
                     VStack(alignment: .leading) {
                         HStack {

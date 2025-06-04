@@ -11,7 +11,7 @@ struct PlayoffSeriesView: View {
     
     @Environment(\.colorScheme) var colorScheme
     
-    @ObservedObject var vm: HomeViewModel
+    var vm: HomeViewModel
     
     var body: some View {
         NavigationStack {
