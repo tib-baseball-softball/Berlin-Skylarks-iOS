@@ -26,24 +26,23 @@ class HomeViewModel {
         
         for leagueGroup in filteredLeagueGroups {
             var dataset: HomeDataset = HomeDataset()
-            var gameList: [GameScore] = []
             
             // -------TODO: API client
             let selectedHomeScoresURL = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(season)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!
             
             do {
-                gameList = try await fetchBSMData(url: selectedHomeScoresURL, dataType: [GameScore].self)
+                dataset.homeGamescores = try await fetchBSMData(url: selectedHomeScoresURL, dataType: [GameScore].self)
             } catch {
                 print("Fetching data for team \(team.name) and league \(leagueGroup.name) (season: \(season)) failed with error: \(error)")
             }
             // -------end API client
             
-            for (index, _) in gameList.enumerated() {
-                gameList[index].addDates()
-                gameList[index].determineGameStatus()
+            for (index, _) in dataset.homeGamescores.enumerated() {
+                dataset.homeGamescores[index].addDates()
+                dataset.homeGamescores[index].determineGameStatus()
             }
             
-            let displayGames = processGameDates(gamescores: gameList)
+            let displayGames = processGameDates(gamescores: dataset.homeGamescores)
             
             if let nextGame = displayGames.next {
                 dataset.nextGame = nextGame
@@ -60,7 +59,7 @@ class HomeViewModel {
             }
             
             //get playoff games (if applicable) - kind of a hacky solution since there is no definite info in the data structure identifying a single game as a playoff game
-            dataset.playoffGames = gameList.filter { $0.match_id.contains("PO")}
+            dataset.playoffGames = dataset.homeGamescores.filter { $0.match_id.contains("PO")}
             if !dataset.playoffGames.isEmpty {
                 dataset.playoffParticipation = true
                 dataset.playoffSeries.getSeriesStatus(playoffSeriesGames: dataset.playoffGames)
