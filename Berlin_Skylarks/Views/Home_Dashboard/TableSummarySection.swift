@@ -75,10 +75,6 @@ struct TableSummarySection: View {
                 }
             }
         }
-        
-        if loadingTables == true {
-            LoadingView()
-        }
     }
 }
 

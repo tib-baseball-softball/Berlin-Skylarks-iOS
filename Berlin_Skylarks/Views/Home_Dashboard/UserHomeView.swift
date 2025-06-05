@@ -82,8 +82,13 @@ struct UserHomeView: View {
             } else {
                 favoriteTeamSection
                 leagueGroupsSection
-                if vm.homeDatasets.isEmpty {
+                
+                if vm.homeDatasets.isEmpty && loadingTables == false && loadingScores == false {
                     Text("No data available.")
+                }
+                
+                if loadingTables == true || loadingScores == true {
+                    LoadingView()
                 }
             }
         }
