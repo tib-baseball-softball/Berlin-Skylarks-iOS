@@ -7,6 +7,7 @@
 
 import Foundation
 
+@Observable
 class PlayoffSeries {
     enum Status {
         case leading, tied, won

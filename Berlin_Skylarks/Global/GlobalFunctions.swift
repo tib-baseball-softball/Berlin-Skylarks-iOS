@@ -77,6 +77,7 @@ func loadLeagueGroups(season: Int) async -> [LeagueGroup] {
     return loadedLeagues
 }
 
+@available(*, deprecated, message: "load single table instead")
 func loadTablesForTeam(team: BSMTeam, leagueGroups: [LeagueGroup]) async -> [LeagueTable] {
     var ret: [LeagueTable] = []
     
@@ -93,4 +94,16 @@ func loadTablesForTeam(team: BSMTeam, leagueGroups: [LeagueGroup]) async -> [Lea
         }
     }
     return ret
+}
+
+func loadSingleTable(for leagueGroup: LeagueGroup) async -> LeagueTable {
+    let url = URL(string: "https://bsm.baseball-softball.de/leagues/\(leagueGroup.id)/table.json")!
+    
+    do {
+        let table = try await fetchBSMData(url: url, dataType: LeagueTable.self)
+        return table
+    } catch {
+        print("Failed to load table for LeagueGroup \(leagueGroup.name) (ID: \(leagueGroup.id)) with error: \(error)")
+        return emptyTable
+    }
 }

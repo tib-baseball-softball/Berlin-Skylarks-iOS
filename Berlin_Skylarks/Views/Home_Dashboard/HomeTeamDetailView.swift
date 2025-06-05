@@ -8,9 +8,7 @@
 import SwiftUI
 
 struct HomeTeamDetailView: View {
-    var team: BSMTeam
-    var table: LeagueTable
-    var row: LeagueTable.Row
+    var dataset: HomeDataset
     
     enum Segment: String, Identifiable, CaseIterable {
         case chart, percentage, streak
@@ -39,19 +37,15 @@ struct HomeTeamDetailView: View {
             
             List {
                 if selection == Segment.chart {
-                    SegmentChart(table: table)
+                    SegmentChart(table: dataset.leagueTable)
                 } else if selection == Segment.percentage {
-                    SegmentPercentage(row: row)
+                    SegmentPercentage(row: dataset.tableRow)
                 } else if selection == Segment.streak {
-                    SegmentStreak(table: table, row: row)
+                    SegmentStreak(dataset: dataset)
                 }
             }
             .navigationTitle("Favorite Team Details")
             .animation(.easeInOut, value: selection)
         }
     }
-}
-
-#Preview {
-    HomeTeamDetailView(team: emptyTeam, table: emptyTable, row: emptyRow, selection: HomeTeamDetailView.Segment.percentage)
 }

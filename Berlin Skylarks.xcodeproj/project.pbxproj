@@ -158,6 +158,7 @@
 				Models/BSMPerson.swift,
 				Models/BSMStandingsTable.swift,
 				Models/BSMTeam.swift,
+				Models/HomeDataset.swift,
 				Models/StreakDataEntry.swift,
 				Views/Scores/ScoreNumber.swift,
 			);
@@ -168,6 +169,8 @@
 			membershipExceptions = (
 				Assets.xcassets,
 				Classes/DateTimeUtility.swift,
+				Classes/PlayoffSeries.swift,
+				Classes/PlayoffTeam.swift,
 				Global/API_Key.dist,
 				Global/API_Key.swift,
 				Global/AppSettings.swift,
@@ -185,6 +188,7 @@
 				Models/BSMPerson.swift,
 				Models/BSMStandingsTable.swift,
 				Models/BSMTeam.swift,
+				Models/HomeDataset.swift,
 				Models/StreakDataEntry.swift,
 			);
 			target = CA65FF4327F5EC4400F7845D /* Skylarks Intents */;

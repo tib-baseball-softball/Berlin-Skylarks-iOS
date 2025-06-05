@@ -8,8 +8,7 @@
 import SwiftUI
 
 struct SegmentStreak: View {
-    var table: LeagueTable
-    var row: LeagueTable.Row
+    var dataset: HomeDataset
     
     let startValue: Double = 10
     let maxValue: Double = 20
@@ -17,7 +16,7 @@ struct SegmentStreak: View {
     private func getStreak() -> Double {
         //Internal logic: Losing Streak from L10 to Winning Streak W10. This gets converted to a simple scale from 0 to 20 and used as values for the slider. Every streak longer than 10 gets subsumed (should it ever happen).
         
-        let streak = row.streak
+        let streak = dataset.tableRow.streak
         //we start at 10 - right in the middle if there is no other data
         var streakNumber: Double = startValue
         
@@ -77,13 +76,9 @@ struct SegmentStreak: View {
     
     var body: some View {
         let value = getStreak()
-        StreakBar()
+        StreakBar(dataset: dataset)
         
         let emoji = getEmoji(streakNumber: value)
         StreakEmoji(emoji: emoji)
     }
-}
-
-#Preview {
-    SegmentStreak(table: emptyTable, row: emptyRow)
 }

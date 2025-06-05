@@ -350,7 +350,6 @@ struct TeamWidgetOverView: View {
 
 struct FavoriteTeamWidgetView_Previews: PreviewProvider {
     static var previews: some View {
-        let dummyDashboard = HomeViewModel()
         let dummyEntry = FavoriteTeamEntry(
             date: Date(), configuration: FavoriteTeamIntent(),
             team: widgetPreviewTeam, lastGame: widgetPreviewLastGame,
@@ -358,7 +357,7 @@ struct FavoriteTeamWidgetView_Previews: PreviewProvider {
             lastGameHomeLogo: TeamImageData.skylarksSecondaryLogo,
             nextGame: widgetPreviewNextGame,
             nextGameOpponentLogo: TeamImageData.sluggersLogo,
-            skylarksAreRoadTeam: false, Table: dummyDashboard.leagueTable,
+            skylarksAreRoadTeam: false, Table: emptyTable,
             TableRow: emptyRow)
 
         Group {

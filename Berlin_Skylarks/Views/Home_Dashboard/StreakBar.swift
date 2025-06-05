@@ -9,6 +9,8 @@ import SwiftUI
 import Charts
 
 struct StreakBar: View {
+    var dataset: HomeDataset
+    
     @Environment(HomeViewModel.self) var vm: HomeViewModel
     @Environment(\.horizontalSizeClass) private var horizontalSizeClass
     
@@ -21,7 +23,7 @@ struct StreakBar: View {
     }
     
     var body: some View {
-        let data = vm.createStreakDataEntries()
+        let data = vm.createStreakDataEntries(games: dataset.homeGamescores, row: dataset.tableRow)
         Section(
             header: Text("Visualization of current season"),
             footer: Text("Hot or cold - how is your team's season going?")
@@ -45,16 +47,11 @@ struct StreakBar: View {
                     .padding(.vertical)
                     .frame(width: CGFloat(data.count) * itemWidth)
                 }
-                Text(vm.tableRow.streak)
+                Text(dataset.tableRow.streak)
                     .font(.title)
                     .bold()
                     .padding(.bottom)
             }
         }
     }
-}
-
-#Preview {
-    StreakBar()
-        .environment(HomeViewModel())
 }

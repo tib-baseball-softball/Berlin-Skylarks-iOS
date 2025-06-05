@@ -9,93 +9,68 @@ import SwiftUI
 
 /// this is the user's main dashboard where their favorite team is displayed
 struct UserHomeView: View {
-
     @AppStorage("favoriteTeam") var favoriteTeam: String = "Not set"
     @AppStorage("favoriteTeamID") var favoriteTeamID = 0
     @AppStorage("selectedSeason") var selectedSeason = Calendar(
         identifier: .gregorian
-    ).dateComponents([.year], from: .now).year!
+    ).dateComponents([.year], from: .now).year ?? 2025
     @AppStorage("didLaunchBefore") var didLaunchBefore = false
-
+    
     @Environment(NetworkManager.self) var networkManager: NetworkManager
     @State private var showAlertNoNetwork = false
-
+    @State var vm = HomeViewModel()
+    
     @State private var showingSheetSettings = false
     @State private var showingSheetNextGame = false
     @State private var showingSheetLastGame = false
     @State var showingSheetTeams = false
-
-    @State var showingTableData = false
-
+    
     @State private var loadingScores = false
     @State private var loadingTables = false
-
-    @State var vm = HomeViewModel()
-    @State var homeLeagueTables = [LeagueTable]()
+    
     @State var teams = [BSMTeam]()
     @State var leagueGroups = [LeagueGroup]()
     @State var displayTeam: BSMTeam = emptyTeam
-
+    
     //should be overridden before first network call - but isn't
     @State var selectedHomeTablesURL = URL(
         string: "https://www.tib-baseball.de")!
     @State var selectedHomeScoresURL = URL(
         string: "https://www.tib-baseball.de")!
-
+    
     //-------------------------------------------//
     //LOCAL FUNCTIONS
     //-------------------------------------------//
-
+    
     func loadProcessHomeData() async {
         if networkManager.isConnected == false {
             showAlertNoNetwork = true
         }
-
+        
         displayTeam = await setFavoriteTeam()
         loadingTables = true
         loadingScores = true
         leagueGroups = await loadLeagueGroups(season: selectedSeason)
-        await loadHomeTeamTable(team: displayTeam, leagueGroups: leagueGroups)
-        loadingTables = false
-        await vm.loadHomeGameData(
+        await vm.loadHomeData(
             team: displayTeam, leagueGroups: leagueGroups,
             season: selectedSeason)
         loadingScores = false
+        loadingTables = false
     }
-
+    
     func setFavoriteTeam() async -> BSMTeam {
-        //get all teams
         do {
             teams = try await loadSkylarksTeams(season: selectedSeason)
         } catch {
             print("Request failed with error: \(error)")
         }
-
-        //check for the favorite one
+        
         for team in teams where team.id == favoriteTeamID {
             displayTeam = team
         }
         return displayTeam
     }
-
-    func loadHomeTeamTable(team: BSMTeam, leagueGroups: [LeagueGroup]) async {
-
-        //load table for specific leagueGroup that corresponds to favorite team
-        let tables = await loadTablesForTeam(team: team, leagueGroups: leagueGroups)
-        
-        for table in tables {
-            let row = determineTableRow(team: team, table: table)
-
-            homeLeagueTables.append(table)
-            vm.leagueTable = table
-            vm.tableRow = row
-        }
-
-        if !homeLeagueTables.isEmpty {
-            showingTableData = true
-        }
-    }
-
+    
     var body: some View {
         List {
             if favoriteTeamID == AppSettings.NO_TEAM_ID {
@@ -105,121 +80,35 @@ struct UserHomeView: View {
                     )
                 }
             } else {
-                Section(header: Text("Favorite Team")) {
-                    HStack {
-                        Image(systemName: "star.fill")
-                            .foregroundColor(.skylarksRed)
-                        Text(
-                            "\(displayTeam.name) (\(displayTeam.league_entries.first?.league.acronym ?? ""))"
-                        )
-                        .padding(.leading)
-                    }
-                    HStack {
-                        Image(systemName: "tablecells")
-                            .frame(maxWidth: 20)
-                            .foregroundColor(Color.skylarksAdaptiveBlue)
-                        Text(vm.leagueTable.league_name)
-                            .padding(.leading)
-                    }
-                    HStack {
-                        Image(systemName: "calendar.badge.clock")
-                            .frame(maxWidth: 20)
-                            .foregroundColor(Color.skylarksAdaptiveBlue)
-                        Text(String(vm.leagueTable.season))
-                            .padding(.leading)
-                    }
-                }
-                
-                ForEach(homeLeagueTables, id: \.league_id) { table in
-                    TableSummarySection(showingTableData: showingTableData, loadingTables: loadingTables, team: displayTeam, table: table)
-                        .environment(vm)
-                }
-                
-                if homeLeagueTables.isEmpty {
-                    Text("No Standings available.")
-                }
-                
-                if vm.playoffParticipation {
-                    Section(header: Text("Playoffs")) {
-                        HStack {
-                            Image(systemName: "trophy.fill")
-                                .foregroundColor(.skylarksRed)
-                            NavigationLink(
-                                destination: PlayoffSeriesView(
-                                    vm: vm)
-                            ) {
-                                Text("See playoff series")
-                            }
-                        }
-                    }
-                }
-                
-                Section(header: Text("Next Game")) {
-                    if vm.showNextGame == true && !loadingScores {
-                        NavigationLink(
-                            destination: ScoresDetailView(
-                                gamescore: vm.NextGame)
-                        ) {
-                            ScoresOverView(gamescore: vm.NextGame)
-                        }
-                    } else if !vm.showNextGame && !loadingScores {
-                        Text("There is no next game to display.")
-                    }
-                    if loadingScores == true {
-                        LoadingView()
-                    }
-                }
-                Section(header: Text("Latest Score")) {
-                    if vm.showLastGame == true && !loadingScores {
-                        NavigationLink(
-                            destination: ScoresDetailView(
-                                gamescore: vm.LastGame)
-                        ) {
-                            ScoresOverView(gamescore: vm.LastGame)
-                        }
-                    } else if !vm.showLastGame && !loadingScores {
-                        Text("There is no recent game to display.")
-                    }
-                    if loadingScores == true {
-                        LoadingView()
-                    }
+                favoriteTeamSection
+                leagueGroupsSection
+                if vm.homeDatasets.isEmpty {
+                    Text("No data available.")
                 }
             }
         }
         .navigationTitle("Dashboard")
-
-        .animation(.default, value: vm.tableRow)
-        .animation(.default, value: vm.NextGame)
-        .animation(.default, value: vm.LastGame)
-        .animation(.default, value: vm.playoffParticipation)
-
         .onAppear(perform: {
-            if homeLeagueTables.isEmpty {
+            if vm.homeDatasets.isEmpty {
                 Task {
                     await loadProcessHomeData()
                 }
             }
         })
-
         .refreshable {
             await loadProcessHomeData()
         }
-
         .onChange(of: favoriteTeamID) {
             Task {
                 displayTeam = await setFavoriteTeam()
             }
-            homeLeagueTables = []
-            vm.homeGamescores = []
+            vm.homeDatasets = []
         }
-
-        //this triggers only after the first launch once the onboarding sheet is dismissed. This var starts false, is set to true after the user selects their favorite team and is never set back to false anywhere
         .onChange(of: didLaunchBefore) {
             Task {
                 await loadProcessHomeData()
             }
         }
-
         .sheet(
             isPresented: $showingSheetTeams,
             onDismiss: {
@@ -232,7 +121,6 @@ struct UserHomeView: View {
                     .presentationDetents([.fraction(0.8)])
             }
         )
-
         .alert("No network connection", isPresented: $showAlertNoNetwork) {
             Button("OK") {}
         } message: {
@@ -250,7 +138,81 @@ struct UserHomeView: View {
                 }
             }
         }
-        .navigationTitle("Dashboard")
+    }
+
+    private var favoriteTeamSection: some View {
+        Section(header: Text("Favorite Team")) {
+            HStack {
+                Image(systemName: "star.fill")
+                    .foregroundColor(.skylarksRed)
+                Text(
+                    "\(displayTeam.name) (\(displayTeam.league_entries.first?.league.acronym ?? ""))"
+                )
+                .padding(.leading)
+            }
+            HStack {
+                Image(systemName: "tablecells")
+                    .frame(maxWidth: 20)
+                    .foregroundColor(Color.skylarksAdaptiveBlue)
+                Text(displayTeam.league_entries.first?.league.name ?? "")
+                    .padding(.leading)
+            }
+            HStack {
+                Image(systemName: "calendar.badge.clock")
+                    .frame(maxWidth: 20)
+                    .foregroundColor(Color.skylarksAdaptiveBlue)
+                Text(String(displayTeam.league_entries.first?.league.season ?? selectedSeason))
+                    .padding(.leading)
+            }
+        }
+    }
+
+    private var leagueGroupsSection: some View {
+        ForEach(vm.homeDatasets, id: \.id) { dataset in
+            TableSummarySection(loadingTables: loadingTables, team: displayTeam, dataset: dataset)
+                .environment(vm)
+            if dataset.playoffParticipation {
+                Section(header: Text("Playoffs")) {
+                    HStack {
+                        Image(systemName: "trophy.fill")
+                            .foregroundColor(.skylarksRed)
+                        NavigationLink(
+                            destination: PlayoffSeriesView(
+                                playoffSeries: dataset.playoffSeries, playoffGames: dataset.playoffGames)
+                        ) {
+                            Text("See playoff series")
+                        }
+                    }
+                }
+            }
+            Section(header: Text("Next Game")) {
+                if dataset.showNextGame == true && !loadingScores {
+                    NavigationLink(
+                        destination: ScoresDetailView(
+                            gamescore: dataset.nextGame)
+                    ) {
+                        ScoresOverView(gamescore: dataset.nextGame)
+                    }
+                } else if !dataset.showNextGame && !loadingScores {
+                    Text("There is no next game to display.")
+                }
+                if loadingScores == true {
+                    LoadingView()
+                }
+            }
+            Section(header: Text("Latest Score")) {
+                if dataset.showLastGame == true && !loadingScores {
+                    NavigationLink(
+                        destination: ScoresDetailView(
+                            gamescore: dataset.lastGame)
+                    ) {
+                        ScoresOverView(gamescore: dataset.lastGame)
+                    }
+                } else if !dataset.showLastGame && !loadingScores {
+                    Text("There is no recent game to display.")
+                }
+            }
+        }
     }
 }
 

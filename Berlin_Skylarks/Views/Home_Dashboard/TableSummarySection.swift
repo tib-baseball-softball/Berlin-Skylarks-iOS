@@ -10,18 +10,15 @@ import SwiftUI
 struct TableSummarySection: View {
     @Environment(HomeViewModel.self) var vm: HomeViewModel
     
-    var showingTableData: Bool
     var loadingTables: Bool
     var team: BSMTeam
-    var table: LeagueTable
+    var dataset: HomeDataset
     
     var body: some View {
-        let row = determineTableRow(team: team, table: table)
-        
         Section(header: Text("Standings/Record")) {
-            if showingTableData && !loadingTables {
+            if !loadingTables {
                 NavigationLink(
-                    destination: HomeTeamDetailView(team: team, table: table, row: row).environment(vm)
+                    destination: HomeTeamDetailView(dataset: dataset).environment(vm)
                 ) {
                     VStack(alignment: .leading) {
                         HStack {
@@ -30,7 +27,7 @@ struct TableSummarySection: View {
                                 .foregroundColor(
                                     Color.skylarksAdaptiveBlue)
                             Text(
-                                "\(Int(row.wins_count)) - \(Int(row.losses_count))"
+                                "\(Int(dataset.tableRow.wins_count)) - \(Int(dataset.tableRow.losses_count))"
                             )
                             .bold()
                             .padding(.leading)
@@ -41,7 +38,7 @@ struct TableSummarySection: View {
                                 .frame(maxWidth: 20)
                                 .foregroundColor(
                                     Color.skylarksAdaptiveBlue)
-                            Text(row.quota)
+                            Text(dataset.tableRow.quota)
                                 .bold()
                                 .padding(.leading)
                         }
@@ -51,10 +48,10 @@ struct TableSummarySection: View {
                                 .frame(maxWidth: 20)
                                 .foregroundColor(
                                     Color.skylarksAdaptiveBlue)
-                            Text(row.rank)
+                            Text(dataset.tableRow.rank)
                                 .bold()
                                 .padding(.leading)
-                            if row.rank == "1." {
+                            if dataset.tableRow.rank == "1." {
                                 Image(systemName: "crown")
                                     .foregroundColor(Color.skylarksRed)
                             }
@@ -63,27 +60,25 @@ struct TableSummarySection: View {
                     .padding(.vertical, 6)
                 }
             }
-            
-            if !loadingTables {
-                NavigationLink(
-                    destination: StandingsTableView(
-                        leagueTable: table)
-                ) {
-                    HStack {
-                        Image(systemName: "tablecells")
-                            .foregroundColor(.skylarksRed)
-                        Text(table.league_name)
-                            .padding(.leading)
-                    }
+        }
+        
+        if !loadingTables {
+            NavigationLink(
+                destination: StandingsTableView(
+                    leagueTable: dataset.leagueTable)
+            ) {
+                HStack {
+                    Image(systemName: "tablecells")
+                        .foregroundColor(.skylarksRed)
+                    Text(dataset.leagueTable.league_name)
+                        .padding(.leading)
                 }
             }
-            if loadingTables == true {
-                LoadingView()
-            }
+        }
+        
+        if loadingTables == true {
+            LoadingView()
         }
     }
 }
 
-#Preview {
-    TableSummarySection(showingTableData: true, loadingTables: true, team: emptyTeam, table: emptyTable)
-}
