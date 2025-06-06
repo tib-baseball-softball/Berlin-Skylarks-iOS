@@ -67,6 +67,7 @@ struct UserHomeView: View {
         if networkManager.isConnected == false {
             showAlertNoNetwork = true
         }
+        print("favorite Team ID is \(favoriteTeamID)")
         
         displayTeam = await setFavoriteTeam()
         loadingTables = true
@@ -117,6 +118,7 @@ struct UserHomeView: View {
             }
         }
         .navigationTitle("Dashboard")
+        
         .onAppear(perform: {
             if vm.homeDatasets.isEmpty {
                 Task {
@@ -124,20 +126,24 @@ struct UserHomeView: View {
                 }
             }
         })
+        
         .refreshable {
             await loadProcessHomeData()
         }
+        
         .onChange(of: favoriteTeamID) {
             Task {
                 displayTeam = await setFavoriteTeam()
             }
             vm.homeDatasets = []
         }
+        
         .onChange(of: didLaunchBefore) {
             Task {
                 await loadProcessHomeData()
             }
         }
+        
         .sheet(
             isPresented: $showingSheetTeams,
             onDismiss: {
@@ -150,6 +156,7 @@ struct UserHomeView: View {
                     .presentationDetents([.fraction(0.8)])
             }
         )
+        
         .alert("No network connection", isPresented: $showAlertNoNetwork) {
             Button("OK") {}
         } message: {
@@ -157,6 +164,7 @@ struct UserHomeView: View {
                 "No active network connection has been detected. The app needs a connection to download its data."
             )
         }
+        
         .toolbar {
             ToolbarItemGroup(placement: .primaryAction) {
                 Button(action: {
@@ -168,10 +176,13 @@ struct UserHomeView: View {
             }
         }
     }
-
+    
     /// Section displaying the user's favorite team and its league information.
     private var favoriteTeamSection: some View {
-        Section(header: Text("Favorite Team")) {
+        Section(
+            header: Text("Favorite Team"),
+            footer: Text("A single team can be associated with several leagues in BSM in the same season.")
+        ) {
             HStack {
                 Image(systemName: "star.fill")
                     .foregroundColor(.skylarksRed)
@@ -196,7 +207,7 @@ struct UserHomeView: View {
             }
         }
     }
-
+    
     /// Section displaying league group summaries, playoff participation, and upcoming/latest games.
     private var leagueGroupsSection: some View {
         ForEach(vm.homeDatasets, id: \.id) { dataset in

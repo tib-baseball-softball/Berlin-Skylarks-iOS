@@ -18,14 +18,11 @@ class HomeViewModel {
     /// - enrich data with additional information
     /// - determine previous and next game
     func loadHomeData(team: BSMTeam, leagueGroups: [LeagueGroup], season: Int) async {
-        //get the games, then process for next and last
-        
-        // determine the correct leagueGroup(s)
-        // caution: different LeagueGroups might have the same associated League
         let filteredLeagueGroups = leagueGroups.filter { $0.league.id == team.league_entries.first?.league.id }
         
         for leagueGroup in filteredLeagueGroups {
             var dataset: HomeDataset = HomeDataset()
+            dataset.leagueGroup = leagueGroup
             
             // -------TODO: API client
             let selectedHomeScoresURL = URL(string: "https://bsm.baseball-softball.de/matches.json?filters[seasons][]=" + "\(season)" + "&search=skylarks&filters[leagues][]=" + "\(leagueGroup.id)" + "&filters[gamedays][]=any&api_key=" + apiKey)!

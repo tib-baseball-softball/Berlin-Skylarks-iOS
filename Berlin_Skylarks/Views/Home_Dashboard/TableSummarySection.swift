@@ -18,7 +18,7 @@ struct TableSummarySection: View {
     var dataset: HomeDataset
     
     var body: some View {
-        Section(header: Text("Standings/Record")) {
+        Section(header: Text("\(dataset.leagueGroup?.name ?? "None") (\(dataset.leagueGroup?.acronym ?? "None"), \(String(dataset.leagueTable.season)))")) {
             if !loadingTables {
                 NavigationLink(
                     destination: HomeTeamDetailView(dataset: dataset).environment(vm)
@@ -63,18 +63,17 @@ struct TableSummarySection: View {
                     .padding(.vertical, 6)
                 }
             }
-        }
-        
-        if !loadingTables {
-            NavigationLink(
-                destination: StandingsTableView(
-                    leagueTable: dataset.leagueTable)
-            ) {
-                HStack {
-                    Image(systemName: "tablecells")
-                        .foregroundColor(.skylarksRed)
-                    Text(dataset.leagueTable.league_name)
-                        .padding(.leading)
+            if !loadingTables {
+                NavigationLink(
+                    destination: StandingsTableView(
+                        leagueTable: dataset.leagueTable)
+                ) {
+                    HStack {
+                        Image(systemName: "tablecells")
+                            .foregroundColor(.skylarksRed)
+                        Text("See full Standings")
+                            .padding(.leading)
+                    }
                 }
             }
         }
