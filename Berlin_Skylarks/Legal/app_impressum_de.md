@@ -4,7 +4,7 @@ David Battefeld
 Leibnizstraße 40  
 10629 Berlin  
 Telefon: 030-60947072  
-E-Mail: [vorstand@tib-baseball.de](mailto:vorstand@tib-baseball.de)
+E-Mail: [app@tib-baseball.de](mailto:app@tib-baseball.de)
 
 **Verantwortlich für den Inhalt nach § 55 Abs. 2 RstV**
 
