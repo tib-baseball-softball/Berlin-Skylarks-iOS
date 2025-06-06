@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// A circular progress indicator displaying a percentage value.
+///
+/// Used to visualize win/loss quotas or similar statistics.
 struct LargePercentageCircle: View {
 
     var percentage: CGFloat

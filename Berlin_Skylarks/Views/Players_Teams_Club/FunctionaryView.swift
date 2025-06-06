@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// Displays a list of club officials (functionaries).
+///
+/// Allows navigation to detailed information for each official.
 struct FunctionaryView: View {
     @ObservedObject var clubData: ClubData
 

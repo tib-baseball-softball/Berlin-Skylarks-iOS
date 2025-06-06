@@ -9,6 +9,9 @@ import CoreData
 import SwiftUI
 import WidgetKit
 
+/// The root view for the Berlin Skylarks app.
+///
+/// Handles onboarding and device-specific navigation.
 struct ContentView: View {
     @State private var showingSheetOnboarding = false
 

@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// The main club overview screen.
+///
+/// Provides navigation to club details, teams, ballparks, officials, and license holders.
 struct ClubView: View {
 
     @Environment(\.colorScheme) var colorScheme

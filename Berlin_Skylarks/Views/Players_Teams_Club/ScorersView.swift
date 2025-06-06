@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// Displays a list of all licensed scorers for the club.
+///
+/// Data is loaded from the BSM and managed by the BSVBB.
 struct ScorersView: View {
     @ObservedObject var licenseManager: LicenseManager
     

@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// The main sidebar navigation for the app (iPad/macOS).
+///
+/// Provides navigation links to all major sections of the app.
 struct SidebarNavigationView: View {
 
     var body: some View {

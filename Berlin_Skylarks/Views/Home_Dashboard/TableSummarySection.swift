@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// Displays a summary section for a team's standings and record.
+///
+/// Shows wins, losses, quota, and rank, and provides navigation to detailed standings.
 struct TableSummarySection: View {
     @Environment(HomeViewModel.self) var vm: HomeViewModel
     

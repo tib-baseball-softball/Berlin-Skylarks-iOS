@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+/// Displays a list of all ballparks for the club.
+///
+/// Allows navigation to detailed ballpark information.
 struct BallparkView: View {
     @ObservedObject var clubData: ClubData
     
