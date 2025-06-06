@@ -8,10 +8,11 @@
 import Foundation
 
 @Observable
-class HomeDataset {
+class HomeDataset: Identifiable, Equatable {
     var id = UUID()
     var leagueTable = emptyTable
     var tableRow = emptyRow
+    var leagueGroup: LeagueGroup?
     
     var homeGamescores: [GameScore] = []
     var playoffGames: [GameScore] = []
@@ -25,4 +26,8 @@ class HomeDataset {
     var showLastGame = false
     
     var playoffParticipation = false
+    
+    static func == (lhs: HomeDataset, rhs: HomeDataset) -> Bool {
+        return lhs.id == rhs.id
+    }
 }
