@@ -69,6 +69,8 @@ struct UserHomeView: View {
         }
         print("favorite Team ID is \(favoriteTeamID)")
         
+        vm.homeDatasets = []
+        
         displayTeam = await setFavoriteTeam()
         loadingTables = true
         loadingScores = true
@@ -120,7 +122,7 @@ struct UserHomeView: View {
         .navigationTitle("Dashboard")
         
         .onAppear(perform: {
-            if vm.homeDatasets.isEmpty {
+            if vm.homeDatasets.isEmpty || displayTeam == emptyTeam {
                 Task {
                     await loadProcessHomeData()
                 }
@@ -134,14 +136,19 @@ struct UserHomeView: View {
         .onChange(of: favoriteTeamID) {
             Task {
                 displayTeam = await setFavoriteTeam()
+                await loadProcessHomeData()
             }
-            vm.homeDatasets = []
         }
         
         .onChange(of: didLaunchBefore) {
             Task {
                 await loadProcessHomeData()
             }
+        }
+        
+        .onChange(of: selectedSeason) {
+            print("selected season changed, invalidating home data...")
+            vm.homeDatasets = []
         }
         
         .sheet(
