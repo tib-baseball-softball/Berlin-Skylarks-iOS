@@ -42,6 +42,7 @@ class TeamImageData {
         "Knights": Image("knights"),
         "Stealers": Image("Hamburg_Stealers"),
         "Wild Farmers": Image("Dohren_Wild_Farmers"),
+        "Wallbreakers": Image("wallbreakers_logo"),
         "Seahawks": Image("kiel"),
         "89ers": Image("89ers"),
     ]
