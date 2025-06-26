@@ -153,11 +153,6 @@ struct UserHomeView: View {
         
         .sheet(
             isPresented: $showingSheetTeams,
-            onDismiss: {
-                Task {
-                    await loadProcessHomeData()
-                }
-            },
             content: {
                 SelectTeamSheet()
                     .presentationDetents([.fraction(0.8)])
