@@ -2,7 +2,7 @@
 iOS/macOS/watchOS App for the Berlin Skylarks Baseball &amp; Softball Club, built in Swift.
 
 > [!WARNING]
-> This is the repository for the Skylarks app the exclusively used Swift. Development has moved to this [repository](https://github.com/tib-baseball-softball/Berlin-Skylarks-Mobile) (formerly the Android app, now using Kotlin Multiplatform to share business logic).
+> This is the repository for the Skylarks app that exclusively used Swift. Development has moved to [this repository](https://github.com/tib-baseball-softball/Berlin-Skylarks-Mobile) (formerly the Android app, now using Kotlin Multiplatform to share business logic).
 
 Intended Features:
 
